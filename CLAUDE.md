@@ -385,6 +385,26 @@ The teaching loop is the core methodology. Each cycle targets specific weaknesse
 5. Integrate: add lesson data to training set (Step 8)
 6. Repeat from step 1
 
+### Lesson File Format (REQUIRED)
+
+All lesson files in `lessons/` must follow this structure. **Use `lesson_name`, NOT `title`** — the exam runner depends on this key.
+
+```json
+{
+  "lesson_id": "lesson_13",
+  "lesson_name": "Descriptive Name Here",
+  "description": "What this lesson covers...",
+  "prompts": [
+    {
+      "id": "L13_01",
+      "category": "category_name",
+      "instruction": "Create a Blueprint that...",
+      "expected_dsl": "BLUEPRINT: BP_Name\n..."
+    }
+  ]
+}
+```
+
 ### Error Taxonomy
 - **Missing nodes** — model didn't generate a required node type
 - **Missing EXEC** — execution flow connections missing
@@ -469,6 +489,8 @@ The teaching loop is the core methodology. Each cycle targets specific weaknesse
 8. **3B model cannot generate valid Blueprint DSL** — too small for structured output. Minimum 8B, ideally 70B.
 9. **transformers 5.x breaks gptqmodel** — if needed, stay on transformers 4.57.x.
 10. **HuggingFace login doesn't persist across sessions sometimes** — use `login(add_to_git_credential=False)` and re-login if downloads fail.
+11. **Lesson JSON files must use `lesson_name` not `title`** — `12_run_exam.py` reads `lesson['lesson_name']`. Using `title` causes `KeyError`. Fixed in lesson_13.json (v7).
+12. **Orchestrator had hardcoded training timeout (14400s/4h)** — `error_handler.py` STEP_RETRY_CONFIGS was correct (28800s) but `run_script()` call on line 788 of the orchestrator passed `timeout=14400` directly, overriding it. Fixed to 28800s in v7. Always check both files when changing timeouts.
 
 ---
 
