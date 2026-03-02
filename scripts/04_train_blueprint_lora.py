@@ -189,7 +189,7 @@ DEFAULT_CONFIG = {
     # Training
     "epochs": 3,
     "batch_size": 1,
-    "gradient_accumulation_steps": 8,
+    "gradient_accumulation_steps": 4,
     "learning_rate": 2e-4,
     "warmup_steps": 10,
     "weight_decay": 0.01,

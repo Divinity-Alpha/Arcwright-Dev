@@ -211,7 +211,7 @@ Format: `[STEP X.Y] STARTING/COMPLETE/PROGRESS: Description`
 {
   "gpu": 0,
   "base_model": "meta-llama/Meta-Llama-3.1-70B",
-  "epochs": 2,
+  "epochs": 3,
   "learning_rate": 0.00005,
   "lora_rank": 64,
   "lora_alpha": 128,
@@ -232,11 +232,86 @@ Format: `[STEP X.Y] STARTING/COMPLETE/PROGRESS: Description`
 
 ### Key Training Decisions
 - **Learning rate 0.00005** (halved from 8B's 0.0001) — larger models need smaller LR
-- **2 epochs** — sweet spot found during 8B training. More = overfitting (v1 lesson learned)
+- **3 epochs** — proven in v6. 2 epochs caused shallow learning and regressions in v5. 3 gives 50% more repetition, critical for replay buffer data to stick.
 - **LoRA rank 64** — good balance of quality vs training speed
-- **Gradient accumulation 4** — effective batch size of 4 without extra VRAM
+- **Gradient accumulation 4** — effective batch size of 4. v7 accidentally used 8 and regressed. Do not change.
 - **8-bit quantization** — only method that works on Blackwell hardware
 - **Stall kill 1800s** (30 min) — training has legitimate long pauses during eval checkpoints
+
+### ⚠️ GOLDEN CONFIG (v6 proven — do not deviate without owner approval)
+These exact values produced 95.5% syntax / 90% similarity. Any deviation requires explicit justification:
+```
+epochs: 3
+learning_rate: 0.00005
+batch_size: 1
+gradient_accumulation_steps: 4
+lora_rank: 64
+lora_alpha: 128
+max_seq_length: 2048
+quantization: 8bit (load_in_8bit=True)
+training_timeout: 28800
+```
+**If pipeline_config.json contains different values, update it to match this block before training.**
+
+---
+
+## Strategic Rules (MANDATORY — Read Before Any Action)
+
+These rules were learned through hard experience. **Any Claude session (claude.ai or Claude Code) must follow these rules. Do not override without explicit owner approval.**
+
+### Training Rules
+1. **ALWAYS use 3 epochs.** 2 epochs causes shallow learning and regressions (proven v5→v6). This is non-negotiable.
+2. **ALWAYS include replay buffer data** when adding new lessons. Double L01-L02 examples in the dataset to prevent catastrophic forgetting of fundamentals.
+3. **ALWAYS run full L01-L12+ exam suite** after any training run, not just the new lesson. Regressions hide in lessons you didn't test.
+4. **NEVER skip the correction lesson pattern.** New training = new exam = grade = targeted corrections. No shortcuts.
+5. **8-bit quantization only.** 4-bit does not work on Blackwell. Don't try it.
+5b. **gradient_accumulation_steps=4, NOT 8.** v6 achieved 95.5% with GA=4. v7 regressed to 92.8% when GA was changed to 8. Do not change this without explicit owner approval.
+
+### Plugin / API Rules
+6. **Pin name mismatches go in the plugin, not the model.** The LLM's job is understanding logic. The plugin's job is UE internal naming.
+7. **Float→Double remapping stays in the plugin.** This is an engine version detail, not a model concern.
+8. **Delete existing Blueprint assets before re-import.** Overwriting causes crashes.
+
+### Process Rules
+9. **Update CLAUDE.md immediately** when a strategic decision is made. If it's not in CLAUDE.md, it doesn't exist for future sessions.
+10. **Update pipeline_config.json to match CLAUDE.md** whenever config changes. The config file and CLAUDE.md must always agree. **If they disagree, CLAUDE.md is the source of truth — update pipeline_config.json to match.**
+11. **When giving instructions to Claude Code**, always say "Reference CLAUDE.md for all configuration details and strategic rules" — this forces the other session to read the rules.
+12. **Every version gets a grading report** saved to `/mnt/user-data/outputs/` and committed to git. This is the historical record.
+13. **When in doubt, search CLAUDE.md first.** The answer is probably already documented.
+13b. **Before every training run, verify the actual config.** Claude Code must print the effective training config (epochs, gradient_accumulation_steps, learning_rate, batch_size, quantization) and confirm it matches CLAUDE.md BEFORE training starts. If any value differs, stop and fix it. Do not proceed with mismatched config.
+
+### Architecture Rules
+14. **The LLM generates DSL. The parser validates. The plugin translates.** Keep these concerns separated. Don't bleed UE implementation details into training data.
+15. **The compliance checker validates against the DSL spec, not against UE internals.** Third-party tools shouldn't need to know UE pin names.
+16. **New node types discovered during plugin testing** get added to node_map.py first, then to the training curriculum if the model doesn't already handle them.
+
+### CLAUDE.md Update Policy
+
+**Update immediately when:**
+- A training config changes (epochs, learning rate, dataset composition, anything in the JSON block)
+- Something breaks or doesn't work (add to "Things That Have Broken Before")
+- A new strategic rule emerges from a mistake
+- The plugin gains a new capability or node type support
+- Any decision is made that would change what Claude Code does next
+
+**Update after each training cycle:**
+- Add a row to the version/training history table
+- Document any new correction patterns or techniques
+- Update accuracy numbers and status fields
+
+**Update at phase transitions:**
+- When a phase moves from "in progress" to "complete"
+- When the roadmap timeline shifts based on reality
+- When a major architectural decision changes
+
+**Don't update for:**
+- Mid-conversation brainstorming that hasn't led to a decision
+- One-off debugging details
+- Information already captured in grading reports
+
+**Simple rule: If it would change what Claude Code does, update now. If it's historical record, update at the next training cycle. If it's a strategic shift, update at the phase boundary.**
+
+---
 
 ### Overfitting Warning Signs (from v1 experience)
 - Train loss < 0.05 = almost certainly memorizing
@@ -385,26 +460,6 @@ The teaching loop is the core methodology. Each cycle targets specific weaknesse
 5. Integrate: add lesson data to training set (Step 8)
 6. Repeat from step 1
 
-### Lesson File Format (REQUIRED)
-
-All lesson files in `lessons/` must follow this structure. **Use `lesson_name`, NOT `title`** — the exam runner depends on this key.
-
-```json
-{
-  "lesson_id": "lesson_13",
-  "lesson_name": "Descriptive Name Here",
-  "description": "What this lesson covers...",
-  "prompts": [
-    {
-      "id": "L13_01",
-      "category": "category_name",
-      "instruction": "Create a Blueprint that...",
-      "expected_dsl": "BLUEPRINT: BP_Name\n..."
-    }
-  ]
-}
-```
-
 ### Error Taxonomy
 - **Missing nodes** — model didn't generate a required node type
 - **Missing EXEC** — execution flow connections missing
@@ -469,11 +524,86 @@ All lesson files in `lessons/` must follow this structure. **Use `lesson_name`, 
 
 | Phase | Timeline | Goal |
 |---|---|---|
-| **1: Blueprint Mastery** | Now → Month 3 | 85%+ mastery on all 42+ node types |
-| **2: UE5 Plugin** | Months 3-6 | First product, $29/month subscription |
-| **3: Multi-System** | Months 6-12 | Add Behavior Trees, Data Tables, Materials, Animation, Niagara, Sequences |
-| **4: Platform** | Months 12-18 | Teaching loop as a service for other industries |
-| **5: Scale** | Months 18-24 | Multi-industry, $3-10M ARR |
+| **1: Blueprint Mastery** | Now → Month 3 | 95%+ mastery on all node types ✅ (achieved v6) |
+| **2: UE5 Plugin** | Months 1-3 | End-to-end DSL → Blueprint in UE Editor ✅ (in progress) |
+| **3: Direct Claude Integration** | Months 3-6 | Claude.ai generates Blueprints with minimal human interaction |
+| **4: DSL Open Standard & Compliance Checker** | Months 4-8 | Publish spec, build validator API, enable community tools |
+| **5: Community Ecosystem** | Months 6-12 | Third-party tools, marketplace, certification tiers |
+| **6: Multi-System** | Months 8-14 | Behavior Trees, Materials, Animation, Niagara, Sequences |
+| **7: Platform** | Months 14-20 | Teaching loop as a service for other structured languages |
+| **8: Scale** | Months 20-30 | Multi-industry, $3-10M ARR |
+
+---
+
+## Grand Vision
+
+### The Origin Story
+This project exists because Claude.ai helped design an exciting game, but building the Blueprints to its instructions was so tedious that there had to be a better way. The gap between "AI can describe game logic" and "AI can build game logic" is exactly what BlueprintLLM fills.
+
+### Phase 3: Direct Claude Integration
+Once the UE plugin is proven end-to-end, the workflow becomes:
+1. User describes gameplay in natural language to Claude
+2. Claude generates DSL (already 95.5% accurate with fine-tuned model)
+3. Parser converts DSL to IR automatically
+4. Plugin creates real Blueprints in UE Editor
+5. User goes from game design doc to functional prototype in hours, not weeks
+
+Longer term, Claude could output `.blueprint.json` IR files directly — no fine-tuned model needed, just the parser and plugin on the user's end.
+
+### Phase 4: DSL Open Standard & Compliance Checker
+What we've actually built is three things:
+1. **A DSL specification** for describing Blueprint logic in text
+2. **A validation pipeline** that can check compliance
+3. **A proven training methodology** showing LLMs can learn the format
+
+The plan:
+- Formalize the DSL spec as a versioned document (v1.0) after end-to-end is proven
+- Build a **Compliance Checker** — a web API or CLI tool that accepts DSL and returns pass/fail with specific violations
+- The checker validates: syntax validity, node type mapping, connection integrity, pin name resolution, variable declarations, event presence
+- Scoring mirrors our exam grading: syntax %, similarity %, node mapping rate
+- Compliance checker can also validate third-party tool output (see Phase 5)
+
+### Phase 5: Community Ecosystem & Marketplace
+Publish the DSL spec as an open standard so other developers can build compliant tools:
+- Visual editors, node-based web tools, other AI integrations
+- Tools for other engines that compile the same DSL to their native format
+- The DSL becomes the lingua franca for text-based Blueprint description
+
+**Certification Tiers:**
+| Tier | Requirement | Description |
+|---|---|---|
+| **Basic** | Pass L01-L06 node types | Core events, flow control, variables |
+| **Advanced** | Pass full node set | All 179+ node types mapped correctly |
+| **Certified** | Pass all eval tests | All 11 eval tests at 90%+ accuracy |
+
+**Marketplace Model:**
+- Developers submit their tool
+- Tool generates DSL for a standard test suite (like our eval tests)
+- Compliance checker scores it automatically
+- Tools that pass get listed with their tier badge
+- Automated re-testing on spec version updates
+
+**Compliance Checker Architecture:**
+```
+Third-party tool output (DSL text)
+    ↓
+Compliance API / CLI
+    ├── Syntax validation (regex + grammar check)
+    ├── Node type mapping (against NODE_MAP)
+    ├── Connection integrity (reference validation)
+    ├── Pin name resolution (known aliases + UE pin names)
+    ├── Variable declaration check
+    └── Event presence check
+    ↓
+Score Report
+    ├── Syntax validity %
+    ├── Node mapping rate %
+    ├── Connection integrity %
+    ├── Overall compliance tier (Basic/Advanced/Certified)
+    └── Specific violations with line numbers
+```
+
+This is buildable on top of the existing parser — it already validates syntax, checks node types, verifies connections, and flags unmapped types. Wrapping it into an API with tiered scoring is straightforward.
 
 ---
 
@@ -489,8 +619,6 @@ All lesson files in `lessons/` must follow this structure. **Use `lesson_name`, 
 8. **3B model cannot generate valid Blueprint DSL** — too small for structured output. Minimum 8B, ideally 70B.
 9. **transformers 5.x breaks gptqmodel** — if needed, stay on transformers 4.57.x.
 10. **HuggingFace login doesn't persist across sessions sometimes** — use `login(add_to_git_credential=False)` and re-login if downloads fail.
-11. **Lesson JSON files must use `lesson_name` not `title`** — `12_run_exam.py` reads `lesson['lesson_name']`. Using `title` causes `KeyError`. Fixed in lesson_13.json (v7).
-12. **Orchestrator had hardcoded training timeout (14400s/4h)** — `error_handler.py` STEP_RETRY_CONFIGS was correct (28800s) but `run_script()` call on line 788 of the orchestrator passed `timeout=14400` directly, overriding it. Fixed to 28800s in v7. Always check both files when changing timeouts.
 
 ---
 
