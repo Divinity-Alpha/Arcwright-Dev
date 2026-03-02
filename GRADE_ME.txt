@@ -1,0 +1,10 @@
+Grade these v7 results:
+https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_12_20260302_071921.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_12_20260302_071921_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_11_20260302_065509.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_11_20260302_065509_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_10_20260302_062106.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_10_20260302_062106_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_09_20260302_055438.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_09_20260302_055438_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/eval_v7_20260302.json

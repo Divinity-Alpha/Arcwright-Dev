@@ -16,29 +16,43 @@
         "step": "Training summary",
         "category": "encoding",
         "message": "exit 1: encoding",
-        "timestamp": "2026-02-28T20:22:13.009823",
+        "timestamp": "2026-03-02T03:08:44.212709",
         "attempt": 0
       },
       {
         "step": "Training summary",
         "category": "encoding",
         "message": "exit 1: encoding",
-        "timestamp": "2026-02-28T20:22:23.059899",
+        "timestamp": "2026-03-02T03:08:54.274096",
         "attempt": 1
       },
       {
-        "step": "Health check v6",
+        "step": "Health check v7",
         "category": "unknown",
         "message": "exit 2: unknown",
-        "timestamp": "2026-02-28T20:22:23.176492",
+        "timestamp": "2026-03-02T03:08:54.389980",
         "attempt": 0
+      },
+      {
+        "step": "Exam: lesson_13.json",
+        "category": "unknown",
+        "message": "exit 1: unknown",
+        "timestamp": "2026-03-02T07:38:05.268304",
+        "attempt": 0
+      },
+      {
+        "step": "Exam: lesson_13.json",
+        "category": "unknown",
+        "message": "exit 1: unknown",
+        "timestamp": "2026-03-02T07:38:37.326847",
+        "attempt": 1
       }
     ],
-    "message": "  FAILED (exit 2, category=unknown)"
+    "message": "  ERR| KeyError: 'lesson_name'"
   },
   "state_snapshot": {
-    "last_training_data_hash": "3bc2ae96696b9ce2",
-    "last_model_version": 6
+    "last_training_data_hash": "eb0c9ab0e82470e1",
+    "last_model_version": 7
   },
-  "timestamp": "2026-03-01T00:21:43.745278"
+  "timestamp": "2026-03-02T07:50:54.190714"
 }

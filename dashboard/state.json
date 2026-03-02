@@ -1,27 +1,27 @@
 {
-  "version": "v6",
+  "version": "v7",
   "status": "idle",
-  "pipeline_start_time": 1772319611.0338998,
+  "pipeline_start_time": 1772431225.1845481,
   "current_step": {
     "number": 9,
     "total_steps": 9,
     "name": "Finalize",
-    "started_at": 1772346101.538757
+    "started_at": 1772459450.9349835
   },
   "steps": [
     {
       "number": 1,
       "name": "Data Foundation",
       "status": "done",
-      "started_at": 1772319611.0348399,
-      "duration_seconds": 7.4
+      "started_at": 1772431225.1845481,
+      "duration_seconds": 10.1
     },
     {
       "number": 2,
       "name": "Pre-Flight Checks",
       "status": "done",
-      "started_at": 1772319618.469482,
-      "duration_seconds": 3.4
+      "started_at": 1772431235.2427113,
+      "duration_seconds": 3.2
     },
     {
       "number": 3,
@@ -32,45 +32,52 @@
       "number": 4,
       "name": "Training",
       "status": "done",
-      "started_at": 1772319621.821675,
-      "duration_seconds": 12111.1
+      "started_at": 1772431238.4438198,
+      "duration_seconds": 11285.7
     },
     {
       "number": 5,
       "name": "Post-Training",
       "status": "done",
-      "started_at": 1772331732.9177449,
+      "started_at": 1772442524.123416,
       "duration_seconds": 20.4
     },
     {
       "number": 6,
       "name": "Run exams",
       "status": "done",
-      "started_at": 1772331753.2871253,
-      "duration_seconds": 13733.2
+      "started_at": 1772442544.4911754,
+      "duration_seconds": 16172.9
     },
     {
       "number": 7,
       "name": "Run eval suite",
       "status": "done",
-      "started_at": 1772345486.4612086,
-      "duration_seconds": 606.9
+      "started_at": 1772458717.3434074,
+      "duration_seconds": 722.8
     },
     {
       "number": 8,
       "name": "Lesson Integration",
       "status": "done",
-      "started_at": 1772346093.4044917,
-      "duration_seconds": 8.1
+      "started_at": 1772459440.1852345,
+      "duration_seconds": 10.7
     },
     {
       "number": 9,
       "name": "Finalize",
       "status": "done",
-      "started_at": 1772346101.538757,
+      "started_at": 1772459450.9349835,
       "duration_seconds": 0.1
     }
   ],
   "training": null,
-  "exam_active": null
+  "exam_active": {
+    "lesson_id": "lesson_13",
+    "lesson_name": "Corrective Training: Connection Patterns + New Node Types",
+    "current_prompt": 7,
+    "total_prompts": 20,
+    "last_prompt_time_seconds": 61.5,
+    "avg_prompt_time_seconds": 50.3
+  }
 }

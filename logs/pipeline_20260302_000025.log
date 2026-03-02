@@ -4736,3 +4736,53 @@
 [07:50:50] [STEP 9] STARTING: Dashboard & Finalize
 [07:50:50] [INFO] Running: Updating dashboard
 [07:50:50] [INFO]   Cmd: C:\BlueprintLLM\venv\Scripts\python.exe C:\BlueprintLLM\scripts\14_update_dashboard.py
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.1] STARTING: Collect metrics
+[07:50:51] [INFO]   | BlueprintLLM Dashboard Generator
+[07:50:51] [INFO]   | ========================================
+[07:50:51] [INFO]   |   Auto-detected training log: logs\pipeline_live.log
+[07:50:51] [INFO]   |   Parsing training log...
+[07:50:51] [INFO]   |     0 training steps, 0 eval points
+[07:50:51] [INFO]   |     Final loss: 0.000, accuracy: 0.0%
+[07:50:51] [INFO]   |   Parsing exam results...
+[07:50:51] [INFO]   |     0 exams found, 0 nodes scored
+[07:50:51] [INFO]   |   Parsing lessons...
+[07:50:51] [INFO]   |     13 lessons found
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.1] COMPLETE: Collect metrics (0.0s)
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.2] STARTING: Generate charts
+[07:50:51] [INFO]   |   Loading health report...
+[07:50:51] [INFO]   |     Health status: warning, 7 alerts
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.2] COMPLETE: Generate charts (0.0s)
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.3] STARTING: Build HTML
+[07:50:51] [INFO]   |   Generating dashboard...
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.3] COMPLETE: Build HTML (0.0s)
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.4] STARTING: Write dashboard
+[07:50:51] [INFO]   | 
+[07:50:51] [INFO]   |   Dashboard saved to: C:\BlueprintLLM\dashboard\index.html
+[07:50:51] [INFO]   |   Open in browser: file:///C:/BlueprintLLM/dashboard/index.html
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.4] COMPLETE: Write dashboard (0.0s)
+[07:50:51] [INFO]   |            C:\BlueprintLLM\dashboard\index.html
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.5] STARTING: Finalize
+[07:50:51] [INFO]   | 
+[07:50:51] [INFO]   | Done!
+[07:50:51] [INFO]   | [07:50:51] [STEP 9.5] COMPLETE: Finalize (0.0s)
+[07:50:51] [STEP 9] COMPLETE: Dashboard & Finalize
+[07:50:51] [INFO] ============================================================
+[07:50:51] [INFO]   GIT PUSH
+[07:50:51] [INFO] ============================================================
+[07:50:51] [INFO] Committing training results to git...
+[07:50:51] [INFO] Committed: v7 training results
+[07:50:54] [INFO] Pushed to remote.
+[07:50:54] [INFO] ============================================================
+[07:50:54] [INFO]   GRADE_ME.txt
+[07:50:54] [INFO] ============================================================
+[07:50:54] [INFO] Created C:\BlueprintLLM\GRADE_ME.txt with 9 URLs
+[07:50:54] [INFO] Desktop notification sent (MessageBox).
+[07:50:54] [INFO] Resume state saved. Re-run with --resume to continue.
+[07:50:54] [INFO] ============================================================
+[07:50:54] [INFO]   PIPELINE COMPLETE
+[07:50:54] [INFO] ============================================================
+[07:50:54] [INFO] Time: 470m 29s
+[07:50:54] [INFO] Version: v7
+[07:50:54] [INFO] Errors: 49
+[07:50:54] [INFO] Error categories: unknown, encoding
+[07:50:54] [INFO] Eval: 11/11 (99%)

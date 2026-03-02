@@ -1,369 +1,641 @@
-# CLAUDE.md
+# BlueprintLLM — Claude Code Project Context
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+> **Last Updated:** 2026-02-26
+> **Owner:** Divinity Alpha
+> **Repo:** github.com/Divinity-Alpha/BlueprintLLM
 
-## Project Overview
+---
 
-Blueprint LLM fine-tunes LLaMA models using QLoRA to generate Unreal Engine 5 Blueprint code in a custom DSL. The current production model is **Meta-Llama-3.1-70B** with **8-bit quantization** (bitsandbytes) running on an NVIDIA RTX PRO 6000 Blackwell (96 GB VRAM). Smaller models (3.2-3B, 3.1-8B) are also supported. The system implements a curriculum-based training loop: raw UE5 clipboard exports are parsed into DSL, used to train LoRA adapters, evaluated via tiered exams, and failures feed back into new lessons for the next training iteration.
+## What This Project Is
 
-## Key Commands
+BlueprintLLM is a self-improving AI system that trains LLMs to generate **validated, structurally correct** Unreal Engine 5 Blueprint DSL from natural language descriptions. The core innovation is the **teaching loop** — a closed-loop cycle of train → examine → grade → create lesson → retrain that targets specific weaknesses each iteration.
 
-```bash
-# Activate the virtual environment first
-venv\Scripts\activate          # Windows cmd
-source venv/Scripts/activate   # bash/git-bash
+The long-term vision is a platform that trains validated AI models for ANY structured language (not just Blueprints). Blueprints are the proof-of-concept. The teaching loop infrastructure is language-agnostic.
 
-# Full pipeline (data → training → evaluation)
-python scripts/11_pipeline_orchestrator.py --full
+---
 
-# Individual pipeline modes
-python scripts/11_pipeline_orchestrator.py --data-only
-python scripts/11_pipeline_orchestrator.py --train-only --force
-python scripts/11_pipeline_orchestrator.py --eval-only
+## Hardware Configuration (Current — February 2026)
 
-# Resume after failure (skips already-completed steps)
-python scripts/11_pipeline_orchestrator.py --full --resume
+| Component | Details |
+|---|---|
+| **GPU 0 (PyTorch cuda:0)** | NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition, 96GB VRAM |
+| **GPU 1 (PyTorch cuda:1)** | NVIDIA GeForce RTX 5070 Ti, 16GB VRAM |
+| **System RAM** | 64GB DDR5 @ 4000 MT/s |
+| **nvidia-smi ordering** | GPU 0 = 5070 Ti, GPU 1 = PRO 6000 (reversed from PyTorch) |
+| **CUDA Version** | 13.1 |
+| **Driver** | 591.74 |
+| **Compute Capability** | PRO 6000 = sm_120 (Blackwell), 5070 Ti = sm_100 |
 
-# Evaluate a specific model
-python scripts/09_evaluate_model.py --model models/blueprint-lora-v1/final
-python scripts/09_evaluate_model.py --model models/blueprint-lora-v1/final --quick   # smoke test
-python scripts/09_evaluate_model.py --model models/blueprint-lora-v1/final --compare models/blueprint-lora-v2/final
+### CRITICAL Hardware Notes
 
-# Run an exam against a lesson
-python scripts/12_run_exam.py --lesson lessons/lesson_01.json --model models/blueprint-lora-v2/final
+- **Monitors are connected to the 5070 Ti, NOT the PRO 6000.** Display rendering must stay off the training card.
+- **PyTorch and nvidia-smi order GPUs differently.** PyTorch cuda:0 = PRO 6000. nvidia-smi GPU 0 = 5070 Ti. Always use PyTorch ordering in scripts.
+- **CUDA_VISIBLE_DEVICES=0 targets the PRO 6000** in our scripts (PyTorch ordering).
+- **Blackwell (sm_120) has compatibility issues** with bitsandbytes 4-bit NF4 quantization. 4-bit does NOT work. Use 8-bit quantization.
 
-# Single-file operations
-python scripts/01_analyze_blueprint_clipboard.py <clipboard_export.txt>
-python scripts/05_auto_translate_export.py <file.txt> --training
-python scripts/03_generate_synthetic_data.py --count 500 --output datasets/train.jsonl
-python scripts/06_validate_dsl.py datasets/train.jsonl
-python scripts/07_inference.py --model models/blueprint-lora/final --prompt "Create a..."
+### GPU Role Assignment
 
-# Training health monitor
-python scripts/19_training_health_monitor.py                    # auto-detect latest version
-python scripts/19_training_health_monitor.py --version v2       # check specific version
+| GPU | Role | What Runs Here |
+|---|---|---|
+| **PRO 6000 (cuda:0)** | ML Training & Inference | 70B model training, exams, inference, all heavy ML work |
+| **5070 Ti (cuda:1)** | Display + Light Tasks | Monitor rendering, UE5 editor, dashboard, 8B quick testing, general computing |
 
-# Windows Task Scheduler wrapper
-.\run_pipeline.ps1 -Mode full
+### Quantization — What Works and What Doesn't
 
-# Graceful shutdown (one-click or CLI)
-stop.bat                                        # request stop
-resume.bat                                      # clear stop signal
-python scripts/15_stop_signal.py stop           # CLI alternative
-python scripts/15_stop_signal.py resume
-python scripts/15_stop_signal.py status         # check if stop is pending
+| Method | Status | Notes |
+|---|---|---|
+| bitsandbytes 4-bit NF4 | ❌ FAILS | Segfaults or extreme slowdown on Blackwell sm_120 |
+| bitsandbytes 8-bit | ✅ WORKS | 67.7GB VRAM, loads in ~125s, 3.4 tok/s inference |
+| GPTQ (gptqmodel) | ❌ FAILS | Version incompatibility with transformers 5.x |
+| AWQ (autoawq) | ❌ FAILS | Pins old torch version, won't build |
+| bfloat16 (no quant) | ✅ WORKS | For small models (3B, 8B) that fit in VRAM |
+
+**ALWAYS use `load_in_8bit=True` for the 70B model. Never attempt 4-bit on this hardware.**
+
+---
+
+## Software Environment
+
+| Package | Version | Notes |
+|---|---|---|
+| Python | 3.11.9 | Installed to C:\Program Files\Python311 |
+| PyTorch | 2.10.0+cu130 | CUDA-enabled build |
+| transformers | 4.57.6 | Downgraded from 5.x for gptqmodel compat |
+| bitsandbytes | 0.49.2 | 8-bit works, 4-bit does not on Blackwell |
+| peft | Installed | QLoRA adapter management |
+| trl | Installed | Training with SFTTrainer |
+| accelerate | Installed | Multi-device management |
+| CUDA Toolkit | 13.1 | Matches driver |
+| Git | 2.53.0 | |
+| Node.js | 24.14.0 | For Claude Code |
+| Visual Studio 2022 | Community | C++ build tools for CUDA compilation |
+
+### Virtual Environment
+- Location: `C:\BlueprintLLM\venv\`
+- Always activate before running: `.\venv\Scripts\activate`
+- Python on PATH requires disabling Windows app execution aliases
+
+---
+
+## Project Structure
+
+```
+C:\BlueprintLLM\
+├── scripts/                    # All pipeline scripts (numbered 01-20+)
+│   ├── utils/                  # Shared utilities
+│   ├── 01_analyze_blueprint_clipboard.py
+│   ├── 02_dsl_to_training_entry.py
+│   ├── 03_generate_synthetic_data.py
+│   ├── 04_train_blueprint_lora.py      # Main training script
+│   ├── 05_auto_translate_export.py
+│   ├── 06_validate_dsl.py              # DSL parser/validator
+│   ├── 07_inference.py                 # Interactive inference
+│   ├── 08_generate_system_prompt.py
+│   ├── 09_evaluate_model.py
+│   ├── 10_training_dashboard.py
+│   ├── 11_pipeline_orchestrator.py     # Autonomous pipeline
+│   ├── 12_run_exam.py                  # Exam runner
+│   ├── 13_lesson_to_training.py        # Lesson integration
+│   ├── 14_update_dashboard.py          # Dashboard generator
+│   ├── 15_stop_signal.py               # Graceful shutdown
+│   ├── 16_backup.py                    # Backup utility
+│   ├── 17_scheduled_backup.py          # Watchdog backup
+│   ├── 18_restore_backup.py            # Restore from backup
+│   ├── 19_training_health_monitor.py   # Automated health checks
+│   ├── 20_deduplicate_dataset.py
+│   ├── error_handler.py                # Retry logic, timeout handling
+│   ├── pipeline_logger.py              # Step-numbered logging
+│   ├── backup_utils.py
+│   └── system_prompt.txt               # Training system prompt
+├── datasets/
+│   ├── train.jsonl                     # Main training data (~728KB, 1400+ examples)
+│   ├── validation.jsonl                # Eval set (~21KB)
+│   ├── auto_translated.jsonl           # Auto-translated examples
+│   ├── synthetic_train.jsonl           # Synthetic training data
+│   └── lesson_02_data.jsonl            # Lesson 2 additions
+├── lessons/
+│   ├── lesson_01.json                  # First teaching lesson (20 prompts)
+│   └── lesson_02.json                  # Second teaching lesson
+├── models/                             # Created by training (adapter weights)
+├── exams/                              # Exam results
+├── logs/                               # Training logs, pipeline logs
+│   ├── pipeline_live_state.json        # Live dashboard state file
+│   ├── pipeline_heartbeat              # Heartbeat for stall detection
+│   └── step_timing_history.json        # Historical step timings for ETA
+├── dashboard/
+│   ├── index.html                      # Main training observatory
+│   └── live.html                       # Live pipeline monitor
+├── backups/                            # Local backups (primary)
+├── offload/                            # Disk offload folder for model loading
+├── pipeline_config.json                # Pipeline configuration
+└── .claude/
+    └── CLAUDE.md                       # THIS FILE
 ```
 
-## Graceful Shutdown
+---
 
-A file-based `STOP_SIGNAL` mechanism lets you stop long-running operations without losing work. Double-click `stop.bat` (or run `python scripts/15_stop_signal.py stop`) to request a stop. The running process finishes its current unit of work, saves state, and exits cleanly.
+## Pipeline Step Numbering System
 
-Where it's checked:
-- **`04_train_blueprint_lora.py`** — Custom `TrainerCallback` checks at each logging step (~every 10 batches). Saves a resumable HF checkpoint before exiting.
-- **`12_run_exam.py`** — Checks between each prompt. Saves partial results already collected to the JSONL output file.
-- **`11_pipeline_orchestrator.py`** — Checks between each pipeline stage (analyze, validate, merge, prompt, train, evaluate, summary). Finishes the current stage before stopping.
+ALL pipeline output, logs, dashboard, and communication uses this canonical numbering:
 
-Key principle: never interrupt mid-operation. The signal is only checked at safe boundaries. The signal file is automatically deleted after being handled. Use `resume.bat` to clear a signal that was set but not yet consumed.
+| Step | Name | Duration | Auto? |
+|---|---|---|---|
+| **1** | **Data Foundation** | | |
+| 1.1 | Export UE5 Blueprints | Manual | ❌ |
+| 1.2 | Convert to DSL format | ~2 min | ✅ |
+| 1.3 | Validate with parser | ~1 min | ✅ |
+| 1.4 | Format as training JSONL | ~1 min | ✅ |
+| 1.5 | Split train/validation sets | ~30 sec | ✅ |
+| **2** | **Pre-Flight Checks** | | |
+| 2.1 | Check STOP_SIGNAL | ~1 sec | ✅ |
+| 2.2 | Verify GPU availability | ~5 sec | ✅ |
+| 2.3 | Verify dataset integrity | ~10 sec | ✅ |
+| 2.4 | Pre-training backup | ~2 min | ✅ |
+| **3** | **Model Loading** | | |
+| 3.1 | Load base model from cache | ~2 min (125s for 70B 8-bit) | ✅ |
+| 3.2 | Apply quantization (8-bit) | Included in 3.1 | ✅ |
+| 3.3 | Apply QLoRA adapters | ~30 sec | ✅ |
+| 3.4 | Load tokenizer | ~10 sec | ✅ |
+| 3.5 | Load training dataset | ~15 sec | ✅ |
+| 3.6 | Configure trainer | ~5 sec | ✅ |
+| **4** | **Training** | | |
+| 4.1 | Training epoch 1 begin | ~1 sec | ✅ |
+| 4.2 | Training epoch 1 steps | ~1-2 hrs | ✅ |
+| 4.3 | Epoch 1 eval checkpoint | ~2-5 min | ✅ |
+| 4.4 | Training epoch 2 begin | ~1 sec | ✅ |
+| 4.5 | Training epoch 2 steps | ~1-2 hrs | ✅ |
+| 4.6 | Epoch 2 eval checkpoint | ~2-5 min | ✅ |
+| 4.7 | Final eval | ~2-5 min | ✅ |
+| **5** | **Post-Training** | | |
+| 5.1 | Verify loss health | ~10 sec | ✅ |
+| 5.2 | Save LoRA adapter | ~1-2 min | ✅ |
+| 5.3 | Save training config | ~2 sec | ✅ |
+| 5.4 | Save training log | ~2 sec | ✅ |
+| 5.5 | Post-training backup | ~2 min | ✅ |
+| 5.6 | Run health monitor | ~10 sec | ✅ |
+| **6** | **Examination** | | |
+| 6.1 | Load exam prompts | ~5 sec | ✅ |
+| 6.2 | Load trained model for inference | ~2-3 min | ✅ |
+| 6.3 | Generate DSL prompt N/N | ~15-30 sec each | ✅ |
+| 6.N+3 | Compare all outputs vs expected | ~5 sec | ✅ |
+| 6.N+4 | Score node mastery | ~5 sec | ✅ |
+| 6.N+5 | Categorize errors | ~5 sec | ✅ |
+| 6.N+6 | Save exam results | ~2 sec | ✅ |
+| **7** | **Claude Grading** | | |
+| 7.1 | Upload exam results | Manual | ❌ |
+| 7.2 | Analyze error patterns | ~5 min | ❌ Claude |
+| 7.3 | Identify weak nodes | ~2 min | ❌ Claude |
+| 7.4 | Write corrections | ~10 min | ❌ Claude |
+| 7.5 | Create next lesson file | ~10 min | ❌ Claude |
+| **8** | **Lesson Integration** | | |
+| 8.1 | Load new lesson | ~2 sec | ✅ |
+| 8.2 | Generate prompt variations | ~1 min | ✅ |
+| 8.3 | Validate all DSL | ~30 sec | ✅ |
+| 8.4 | Merge into training set | ~5 sec | ✅ |
+| 8.5 | Update dataset stats | ~2 sec | ✅ |
+| **9** | **Dashboard & Finalize** | | |
+| 9.1 | Update main dashboard | ~5 sec | ✅ |
+| 9.2 | Milestone backup | ~2 min | ✅ |
+| 9.3 | Log to pipeline history | ~2 sec | ✅ |
+| 9.4 | Update step timing history | ~2 sec | ✅ |
+| 9.5 | Cycle complete | ~1 sec | ✅ |
 
-## Architecture
+**ALWAYS use this numbering in console output, log files, and dashboard displays.**
+Format: `[STEP X.Y] STARTING/COMPLETE/PROGRESS: Description`
 
-### Data Flow
+---
 
-```
-raw-data/clipboard-exports/   UE5 clipboard text
-        ↓ (01_analyze → 05_auto_translate)
-cleaned-data/parsed-blueprints/   DSL files
-        ↓ (02_dsl_to_training_entry + 03_generate_synthetic + 13_lesson_to_training)
-datasets/train.jsonl              merged training data (instruction → DSL output)
-        ↓ (04_train_blueprint_lora)
-models/blueprint-lora-vN/final    QLoRA adapter weights
-        ↓ (09_evaluate_model / 12_run_exam)
-results/                          eval reports + exam summaries
-        ↓ (19_training_health_monitor)
-health_report.json                health alerts + trends
-logs/training_history.json        cycle-over-cycle metrics
-        ↓ (Claude creates correction lessons)
-lessons/lesson_XX.json            feed back into next training cycle
-```
-
-### Script Numbering Convention
-
-Scripts are numbered `01`–`19` reflecting pipeline order. The orchestrator (`11_pipeline_orchestrator.py`) chains them together. Each script is self-contained with its own `argparse` CLI and can run independently.
-
-### Key Modules
-
-- **`scripts/utils/dsl_parser.py`** — Parses and validates the Blueprint DSL. Converts between DSL text and Python dataclasses. All generated output must pass this parser.
-- **`scripts/utils/blueprint_patterns.py`** — Node type catalog (50+ types) with pin definitions. Used for synthetic data generation and validation.
-- **`scripts/pipeline_logger.py`** — Unified pipeline logging with step tracking, ETA prediction, error/retry tracking, and live state for dashboard consumption. See [Pipeline Logger](#pipeline-logger) section below.
-- **`scripts/error_handler.py`** — Error classification, retry logic, subprocess stall detection, per-prompt timeouts, CUDA OOM recovery, and resume state management. See [Error Handling](#error-handling) section below.
-- **`scripts/11_pipeline_orchestrator.py`** — Master orchestrator. Manages state via `.pipeline_state.json`, detects data changes via hash, auto-increments model versions. Retries failed steps based on error category.
-- **`scripts/09_evaluate_model.py`** — Tier-based test suite (Tiers 1–4). Scores on structure/keywords/node-types/connections/parseability. Pass threshold: 70%.
-- **`scripts/19_training_health_monitor.py`** — Post-training health analysis across 6 dimensions (epoch efficiency, overfitting, learning rate, dataset quality, node mastery velocity, resource usage). Outputs `health_report.json` and `logs/training_history.json`.
-
-### Hardware Configuration (`pipeline_config.json`)
-
-The `pipeline_config.json` file at project root configures hardware-specific settings. Both the orchestrator (`PipelineConfig`) and training script (`04_train_blueprint_lora.py`) load it automatically. CLI arguments still override these values.
+## Training Configuration (70B on PRO 6000)
 
 ```json
 {
-    "hardware": {
-        "cuda_visible_devices": "0",
-        "gpu_name": "NVIDIA RTX PRO 6000 Blackwell 96GB",
-        "gpu_vram_gb": 96
-    },
-    "model": {
-        "base_model": "meta-llama/Meta-Llama-3.1-70B",
-        "max_seq_length": 4096
-    },
-    "quantization": {
-        "use_8bit": true,
-        "use_4bit": false
-    },
-    "lora": { "lora_r": 64, "lora_alpha": 128 },
-    "training": {
-        "learning_rate": 5e-5,
-        "batch_size": 2,
-        "gradient_accumulation_steps": 4
-    },
-    "stall_detection": {
-        "stall_kill_seconds_training": 10800
-    }
+  "gpu": 0,
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "epochs": 2,
+  "learning_rate": 0.00005,
+  "lora_rank": 64,
+  "lora_alpha": 128,
+  "batch_size": 1,
+  "gradient_accumulation_steps": 4,
+  "max_seq_length": 2048,
+  "quantization": "8bit",
+  "use_4bit": false,
+  "use_8bit": true,
+  "auto_backup": true,
+  "max_scheduled_backups": 5,
+  "stop_on_error": true,
+  "stall_kill_seconds": 1800,
+  "prompt_timeout_seconds": 120,
+  "heartbeat_interval_seconds": 60
 }
 ```
 
-**GPU pinning**: `CUDA_VISIBLE_DEVICES` is set in `pipeline_config.json`, the orchestrator's subprocess env, `run_pipeline.ps1`, and `startup_blueprint_llm.ps1`. This ensures GPU 0 (training GPU) is used consistently, keeping GPU 1 (display) free.
+### Key Training Decisions
+- **Learning rate 0.00005** (halved from 8B's 0.0001) — larger models need smaller LR
+- **2 epochs** — sweet spot found during 8B training. More = overfitting (v1 lesson learned)
+- **LoRA rank 64** — good balance of quality vs training speed
+- **Gradient accumulation 4** — effective batch size of 4 without extra VRAM
+- **8-bit quantization** — only method that works on Blackwell hardware
+- **Stall kill 1800s** (30 min) — training has legitimate long pauses during eval checkpoints
 
-**Dual GPU setup**: The system has two GPUs:
-- GPU 0 (CUDA device 0): NVIDIA RTX PRO 6000 Blackwell (96 GB VRAM, compute)
-- GPU 1 (nvidia-smi index 0): NVIDIA RTX 5070 Ti (16 GB, display)
-Note: `CUDA_VISIBLE_DEVICES=0` maps to the PRO 6000 despite nvidia-smi showing it as index 1.
+### Overfitting Warning Signs (from v1 experience)
+- Train loss < 0.05 = almost certainly memorizing
+- Train loss << eval loss (gap > 50%) = memorizing
+- Loss 0.013 with regurgitated format rules = classic overfit (v1 failure mode)
+- v2 at 2 epochs: loss 0.260, eval accuracy 95.6% > train accuracy 93.5% = healthy generalization
 
-**Quantization**: The 70B model uses 8-bit quantization (bitsandbytes `load_in_8bit=True`), consuming ~68 GB VRAM plus ~30 GB for gradients/optimizer state. GPTQ (INT4) and AWQ are NOT working due to package version incompatibilities with the Blackwell GPU (sm_120) and current toolchain (torch 2.10.0+cu130, transformers 4.57.6).
-
-**70B training performance**: The first training step takes ~96 minutes (measured) due to CUDA kernel JIT compilation, cuBLAS autotuning, bitsandbytes 8-bit warmup, and gradient checkpointing overhead on Blackwell architecture. This happens every training run, not just once. CUDA JIT kernels are cached to `.cuda_cache/` (via `CUDA_CACHE_PATH`) and `torch.backends.cudnn.benchmark = True` caches cuDNN autotuning within each run — both configured in `04_train_blueprint_lora.py`. The stall detection threshold is set to 10800s (3 hours) to accommodate this. Heartbeats are written at step boundaries.
-
-**Zombie process cleanup**: Failed pipeline runs can leave Python processes consuming all GPU VRAM. Before relaunching, always check `nvidia-smi` and kill zombie processes with `taskkill /F /PID <pid>`.
-
-**Model auto-detection**: If `base_model` is not set in `pipeline_config.json`, the orchestrator detects VRAM and picks: 70B (>=48 GB), 8B (>=12 GB), or 3B (fallback).
-
-### Training Configuration
-
-Stored per model version at `models/blueprint-lora-vN/training_config.json`. Key settings: QLoRA with 8-bit quantization (for 70B) or 4-bit NF4 (for smaller models), LoRA targeting all attention + MLP projections, gradient checkpointing enabled. The system prompt embeds a full node vocabulary reference (~5660 chars) so the model can use it as a "cheat sheet" rather than memorizing all node types.
-
-## DSL Format
-
-```
-BLUEPRINT: BP_Name
-PARENT: Actor
-VAR Health: Float = 100.0
-GRAPH: EventGraph
-NODE n1: Event_BeginPlay
-NODE n2: PrintString [InString="Hello"]
-EXEC n1.Then -> n2.Execute
-DATA n3.ReturnValue -> n4.Target [ObjectRef]
-```
-
-All generated Blueprint DSL must include `BLUEPRINT:`, `GRAPH:`, properly numbered `NODE` declarations, and `EXEC`/`DATA` connections. The parser in `dsl_parser.py` is the source of truth for valid syntax.
-
-## Training Data Format
-
-JSONL with `instruction` and `output` fields:
-```json
-{"instruction": "Create a Blueprint that...", "input": "", "output": "BLUEPRINT: BP_...\n..."}
-```
-
-## State Tracking
-
-`.pipeline_state.json` at project root tracks run history, training data hashes, and the current model version number. The orchestrator uses this to skip redundant training when data hasn't changed.
-
-`logs/training_history.json` accumulates per-cycle metrics (loss, accuracy, node scores, dataset size) used by the health monitor to detect trends, plateaus, and regressions across training cycles.
-
-`health_report.json` at project root is the latest health check output with alerts, trends, and cycle data. Read by the dashboard generator to display the health panel.
-
-`logs/pipeline_live_state.json` is the current pipeline step/status, atomically updated by `PipelineLogger`. Shows `{"status": "idle"}` when no pipeline is running.
-
-`logs/step_timing_history.json` accumulates per-step durations (last 10 per step) used by `PipelineLogger` to predict ETAs for future runs.
-
-`logs/pipeline_resume_state.json` is written when the pipeline fails. Contains which steps completed successfully and what error occurred. Used by `--resume` to skip completed steps on the next run. Automatically deleted on successful completion.
-
-## Pipeline Logger
-
-A unified `PipelineLogger` (`scripts/pipeline_logger.py`) provides step-numbered logging, ETA prediction from historical timings, and a live state file for dashboard consumption. All pipeline scripts (01–20) use it.
-
-### How It Works
-
-- The **orchestrator** generates a `PIPELINE_RUN_ID` and passes it to subprocesses via environment variable.
-- Each script calls `get_logger(step_prefix="N")` which returns a real `PipelineLogger` when `PIPELINE_RUN_ID` is set, or a silent `_NoOpLogger` for standalone runs (zero extra output).
-- The orchestrator's `Logger` class wraps `PipelineLogger` while keeping its own per-run log file.
-
-### Step Numbering (9-Step Hierarchy)
-
-| Phase | Script(s)            | Sub-steps                                                         |
-|-------|----------------------|-------------------------------------------------------------------|
-| 1     | 01, 05, 03, 13, 20  | 1.1 analyze, 1.2 translate, 1.3 synthetic, 1.4 lessons, 1.5 merge+dedup |
-| 2     | 06, 08, orchestrator | 2.1 validate DSL, 2.2 validate JSONL, 2.3 system prompt, 2.4 data hash |
-| 3     | 04 (setup)           | 3.1 prompt, 3.2 dataset, 3.3 GPU, 3.4 model, 3.5 LoRA, 3.6 trainer |
-| 4     | 04 (training)        | 4.1 backup, 4.2 init, 4.3 training loop, 4.4–4.6 save, 4.7 backup |
-| 5     | 10, 19, orchestrator | 5.1 verify, 5.2 summary, 5.3 health, 5.4 report, 5.5 history, 5.6 archive |
-| 6     | 12                   | 6.1 lesson, 6.2 model, 6.3 prompts, 6.4 validate, 6.5 score, 6.6 save, 6.7 backup |
-| 7     | 09                   | 7.1 load model, 7.2 run tests, 7.3 score, 7.4 report, 7.5 save  |
-| 8     | 13 (context=8)       | 8.1–8.5 lesson integration for next cycle                        |
-| 9     | 14                   | 9.1 collect, 9.2 charts, 9.3 build HTML, 9.4 write, 9.5 finalize |
-
-### Output Files
-
-- **`logs/pipeline_live.log`** — Append-only log shared by orchestrator and subprocesses. Truncated at each pipeline start.
-- **`logs/pipeline_live_state.json`** — Atomically replaced JSON showing current step, status, and progress. Consumed by the dashboard.
-- **`logs/step_timing_history.json`** — Accumulated per-step timings (last 10 runs each) used for ETA prediction.
-
-### Output Format
-
-```
-[14:30:06] [STEP 3.1] STARTING: Load system prompt
-[14:30:06] [STEP 3.1] COMPLETE: Load system prompt (0.8s)
-           5,660 chars loaded
-[14:30:06] [STEP 3.4] STARTING: Load base model + quantize | ETA: 4.2m
-[14:34:22] [STEP 3.4] COMPLETE: Load base model + quantize (4m 15s)
-[14:34:22] [STEP 4.3] STARTING: Training loop | ETA: 52.3m
-           3 epochs, 458 examples
-[14:35:10]   [4.3] 20/171 (12%) — loss=2.3412
-[14:36:05]   [4.3] 40/171 (23%) — loss=1.8921
-```
-
-### Key Design Decisions
-
-- **Progress is rate-limited** to every 5 seconds to prevent log spam from training loops.
-- **`_NoOpLogger`** means scripts never need `if plog:` guards — standalone runs are completely silent.
-- **Timing history** keeps last 10 runs per step_id for ETA calculation.
-
-## Error Handling
-
-The pipeline has robust error handling via `scripts/error_handler.py`, integrated into the orchestrator and subprocess scripts.
-
-### Error Classification
-
-Every subprocess failure is classified into one of 7 categories by inspecting stderr and exception types:
-
-| Category | Pattern Examples | Retryable |
-|----------|-----------------|-----------|
-| `TIMEOUT` | subprocess timeout, stall detection | Yes |
-| `CUDA_OOM` | "CUDA out of memory", `OutOfMemoryError` | Yes |
-| `DISK_FULL` | "no space left on device" | **No** (stops immediately) |
-| `NETWORK` | `ConnectionError`, `SSLError`, `URLError` | Yes |
-| `CORRUPT_CHECKPOINT` | "corrupted", safetensors errors | Yes |
-| `ENCODING` | `UnicodeEncodeError`, charmap codec | Yes |
-| `UNKNOWN` | anything else | Yes |
-
-### Retry Logic
-
-Each pipeline step has a category that determines its retry policy:
-
-| Step Category | Steps | Max Retries | Backoff | Timeout |
-|---------------|-------|-------------|---------|---------|
-| `data` | 1.x (analyze, translate, synthetic, lessons) | 2 | 10s, 30s | 10m |
-| `validate` | 2.x (DSL validation) | 1 | 5s | 5m |
-| `training` | 3.x–4.x (model setup, training) | 2 | 60s, 120s | 4h |
-| `eval` | 7.x (evaluation) | 1 | 30s | 4h |
-| `exam` | 6.x (exam) | 1 | 30s | 4h |
-| `utility` | 5.x, 8.x, 9.x (post-training, dashboard) | 1 | 10s | 10m |
-
-The `run_script()` function in the orchestrator handles the retry loop: classify error → check if retryable → wait backoff → retry or fail.
-
-### Subprocess Stall Detection
-
-For long-running steps (training, eval, exam), a `SubprocessMonitor` daemon thread watches both `pipeline_live_state.json` and `logs/pipeline_heartbeat` for liveness:
-- **Warning** at 5 minutes without any update
-- **Kill** at 10 minutes for eval/exam, **30 minutes for training** — terminates the subprocess and marks it as stalled
-
-Training uses a higher threshold (1800s vs 600s) because it has legitimate long pauses during eval checkpoints, checkpoint saves, gradient accumulation, and CUDA synchronization.
-
-The training script (`04_train_blueprint_lora.py`) writes heartbeats via `write_heartbeat()` on every training step, logging step, evaluation, and checkpoint save. The heartbeat file is a lightweight fallback that avoids JSON file-locking issues on Windows.
-
-This catches `model.generate()` hangs that would otherwise block the pipeline indefinitely.
-
-### Per-Prompt Timeouts
-
-Both `12_run_exam.py` and `09_evaluate_model.py` wrap `model.generate()` in `per_prompt_timeout(timeout_seconds=300)`. If a single generation takes longer than 5 minutes:
-- The prompt is skipped (not the entire script)
-- Exam: result marked as `{"status": "timeout_skipped"}`, `actual_dsl = "[TIMEOUT]"`
-- Eval: `TestResult` with `score=0`, `errors=["Generation timed out"]`
-
-**Windows limitation**: Python can't kill threads stuck in C extensions. The thread lingers but the script continues. The subprocess-level timeout is the ultimate safety net.
-
-### CUDA OOM Recovery
-
-`cuda_oom_retry()` wraps `trainer.train()` in `04_train_blueprint_lora.py` with automatic config reduction:
-1. Catch `torch.cuda.OutOfMemoryError`
-2. Clear CUDA cache, delete old model
-3. Reduce `max_seq_length` by half (min 512), or reduce `lora_r` by half (min 16)
-4. Rebuild model + trainer with reduced config, retry up to 2 times
-
-### Pipeline Resume
-
-When the pipeline fails, it saves `logs/pipeline_resume_state.json` containing:
-- Which step functions completed successfully
-- What step failed and why
-- A snapshot of pipeline state (data hash, model version)
-
-To resume from a failure:
-```bash
-python scripts/11_pipeline_orchestrator.py --full --resume
-```
-
-This skips completed steps and picks up where it left off. On successful completion, the resume state file is automatically deleted.
-
-### Dashboard Error Display
-
-The live dashboard (`dashboard/live.html`) shows error state:
-- **Status pill**: `retrying` (amber pulse) or `error` (red)
-- **Error panel**: collapsible panel below the progress bar showing last 10 errors with color-coded category tags
-- **Retry badge**: shows current retry attempt (e.g., "Retry 2/3")
-- State fields in `pipeline_live_state.json`: `error_info`, `retry_info`, `error_history`
+---
 
 ## Backup System
 
-An automatic backup system protects datasets, results, lessons, pipeline state, and the system prompt against accidental loss. Models are NOT backed up by default (too large); only pre-training safety backups include the current best model's `final/` directory.
+### Three-Tier Architecture
 
-### Commands
+**Tier 1: Local Backups (C:\BlueprintLLM\backups\)**
+- Milestone backups after training/exam completion (NEVER auto-deleted)
+- Pre-training safety backups (keep last 3)
+- Scheduled watchdog backups every 6 hours (keep last 5)
 
-```bash
-# Manual milestone backup
-python scripts/16_backup.py
+**Tier 2: Secondary SSD Backup (D:\BlueprintLLMBackup\)**
+- **Mirror of ALL local backups** — automatic duplicate
+- Protects against primary drive failure
+- MUST be updated every time a local backup runs
+- Captures everything NOT in Git:
+  - `models/` — trained LoRA adapter weights (the most critical files)
+  - `datasets/` — curated training data (train.jsonl, validation.jsonl, etc.)
+  - `lessons/` — teaching loop lesson files
+  - `exams/` — exam results and history
+  - `logs/` — training logs, pipeline history, timing data
+  - `backups/backup_manifest.json` — integrity checksums
+  - `pipeline_config.json` — current configuration
+  - `dashboard/` — generated dashboard HTML
 
-# List all backups
-python scripts/16_backup.py --list
+**Tier 3: Git (github.com/Divinity-Alpha/BlueprintLLM)**
+- All scripts (scripts/*.py)
+- Documentation
+- System prompts
+- NOT model weights, datasets, or logs (too large / contains training data)
 
-# Run retention cleanup
-python scripts/16_backup.py --cleanup
+### Backup Implementation
 
-# Start background watchdog (checks every 6 hours)
-start_backup_watchdog.bat
-python scripts/17_scheduled_backup.py --interval 6
-python scripts/17_scheduled_backup.py --once        # single check
+Every backup script MUST:
+1. Save to `C:\BlueprintLLM\backups\` (primary)
+2. Mirror to `D:\BlueprintLLMBackup\` (secondary SSD)
+3. Include SHA256 checksums in backup_manifest.json
+4. Log the backup to `logs/backup_log.txt`
 
-# Restore a backup
-python scripts/18_restore_backup.py --list
-python scripts/18_restore_backup.py --restore <label>
+```python
+# Standard backup paths
+PRIMARY_BACKUP = r"C:\BlueprintLLM\backups"
+SECONDARY_BACKUP = r"D:\BlueprintLLMBackup"
+
+# After any backup to PRIMARY_BACKUP:
+import shutil
+shutil.copytree(backup_path, os.path.join(SECONDARY_BACKUP, backup_name), dirs_exist_ok=True)
 ```
 
-### Automatic Triggers
+### What Gets Backed Up (per backup)
+- `adapter_model.safetensors` (~500-800MB for 70B 8-bit LoRA)
+- `adapter_config.json`
+- `training_config.json`
+- `datasets/train.jsonl` + `validation.jsonl`
+- `lessons/lesson_*.json`
+- `exams/exam_*.jsonl`
+- `logs/*.log`
+- `pipeline_config.json`
+- `requirements.txt` snapshot
 
-Backups are created automatically at these pipeline milestones:
-- **Pre-training** (`04_train_blueprint_lora.py`) — includes current best model weights
-- **Post-training** (`04_train_blueprint_lora.py`) — milestone after training completes
-- **Post-exam** (`12_run_exam.py`) — milestone after exam results are saved
-- **Post-merge** (`13_lesson_to_training.py`) — milestone after lesson data is merged
+### What Does NOT Need Backup
+- Base LLaMA model (re-downloads from HuggingFace, ~130GB cache)
+- Python packages (reinstalls from requirements.txt)
+- Scripts (in Git)
+- venv/ folder (recreate with `python -m venv venv`)
 
-### Retention Policy
+---
 
-- **Milestone** backups (train_complete, exam_complete, lesson_merged, manual): kept forever
-- **Scheduled** backups: last 5 kept
-- **Pre-train** backups: last 3 kept
+## GPU Offloading Strategy
 
-### Mirror to D:\BlueprintLLMBackup
+### Tasks for PRO 6000 (cuda:0) ONLY
+- All 70B model operations (training, inference, exams)
+- Any operation involving the trained LoRA adapter
+- Heavy ML compute
 
-All backups are automatically mirrored to `D:\BlueprintLLMBackup` via `_mirror_to_external()` in `backup_utils.py`. The mirror is non-fatal — if D: is unavailable, the backup proceeds normally with a warning. Retention cleanup also removes mirror copies to keep them in sync. The `--list` command shows mirror status with `[LM]` indicators (L=local, M=mirror).
+### Tasks for 5070 Ti (cuda:1) — Offload These
+- Dashboard generation and serving (no GPU needed, CPU task)
+- DSL validation/parsing (CPU task)
+- Dataset processing and deduplication (CPU task)
+- File I/O operations (backups, log writing)
+- 8B model quick testing (if needed for comparison)
+- UE5 Editor (when user is working in Unreal)
+- Display rendering (monitors connected here)
 
-### Restore Safety
+### Implementation
+```python
+# For training/inference scripts:
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"  # PRO 6000 only
 
-The restore utility (`18_restore_backup.py`) always creates a safety backup of the current state before overwriting files, and asks for confirmation before proceeding.
+# For quick 8B testing on secondary GPU:
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"  # 5070 Ti only
+
+# For non-GPU tasks (dashboard, parsing, backups):
+# Don't set CUDA_VISIBLE_DEVICES — these don't use GPU
+```
+
+### IMPORTANT: Never run on both GPUs simultaneously for training
+Multi-GPU training requires matched VRAM. 96GB + 16GB = broken. Always single-GPU training on the PRO 6000.
+
+---
+
+## Error Handling Philosophy
+
+### Retry Logic
+- Default 3 retries with exponential backoff (30s, 60s, 120s)
+- Timeout: model load = 600s, training steps = no hard timeout, inference = 120s per prompt
+- CUDA OOM: clear cache, reduce batch size, retry
+- Single exam prompt timeout: skip and continue (don't fail entire exam)
+- Network timeout: retry with backoff
+
+### Stall Detection
+- Heartbeat file updated every 60 seconds during training
+- Stall threshold: 1800s (30 min) for training steps
+- Training has legitimate pauses during eval checkpoints (5-10 min)
+- HeartbeatCallback in training fires on: on_log, on_evaluate, on_save
+
+### Graceful Shutdown
+- STOP_SIGNAL file approach: `python scripts/15_stop_signal.py stop`
+- Pipeline checks between major steps (not mid-training batch)
+- Current operation completes, checkpoint saves, then exits
+- Resume with: `python scripts/11_pipeline_orchestrator.py --resume`
+
+### Resume Capability
+- On fatal error: saves state to `logs/pipeline_resume_state.json`
+- `--resume` flag picks up from failed step
+- Always creates safety backup before resuming
+
+---
+
+## Teaching Loop — How It Works
+
+The teaching loop is the core methodology. Each cycle targets specific weaknesses found in the previous exam.
+
+### The Loop
+1. Train model on dataset (Steps 2-5)
+2. Exam: test model against lesson prompts (Step 6)
+3. Grade: analyze errors, identify weak nodes (Step 7 — requires Claude)
+4. Create lesson: write targeted examples for weak areas (Step 7)
+5. Integrate: add lesson data to training set (Step 8)
+6. Repeat from step 1
+
+### Error Taxonomy
+- **Missing nodes** — model didn't generate a required node type
+- **Missing EXEC** — execution flow connections missing
+- **Missing DATA** — data pin connections missing
+- **Format errors** — DSL syntax violations
+- **Extra lines** — model generated unnecessary content
+
+### Node Mastery Tracking
+- 42+ target node types tracked individually
+- Per-node accuracy from exam scores
+- ≥85% = mastered (minimum threshold, not ship quality)
+- ≥95% per-node with validation retry = good product quality
+- ≥97% per-node = production quality
+
+### Health Monitor Alerts
+- Dataset > 2500 examples: suggest reducing to 1 epoch
+- Train loss < eval loss × 0.5: overfitting detected
+- Node stuck 3+ cycles: change teaching approach
+- Node regresses after mastery: catastrophic forgetting
+- Lesson data > 40% of total: risk of teaching to the test
+
+---
+
+## Training History
+
+| Version | Date | Model | Hardware | Loss | Accuracy | Notes |
+|---|---|---|---|---|---|---|
+| v1 | 2026-02-22 | 8B | RTX 4070 12GB | 0.013 | N/A | OVERFIT — too many epochs, regurgitated format rules |
+| v2 | 2026-02-23 | 8B | RTX 4070 12GB | 0.260 | 93.5% train / 95.6% eval | Healthy — 2 epochs, good generalization |
+| v3 | 2026-02-25 | 3B | RTX 4070 12GB | 1.07 | N/A | FAILED — only 10 steps before graceful stop, model too small |
+| v4 | 2026-02-26 | 70B | PRO 6000 96GB | TBD | TBD | FIRST 70B RUN — currently in progress |
+
+---
+
+## Console Output Standards
+
+### Verbose Step Logging
+```
+[14:30:05] [STEP 2.1] STARTING: Pre-training backup
+[14:30:07] [STEP 2.1] COMPLETE: Pre-training backup (2.1s)
+           Saved to backups/pre_train_v4_20260226/
+[14:30:07] [STEP 3.1] STARTING: Load base model | ETA: 2m 5s
+           Model: meta-llama/Meta-Llama-3.1-70B (8-bit)
+[14:32:12] [STEP 3.1] COMPLETE: Load base model (2m 5s)
+           VRAM: 67.7 GB allocated on cuda:0
+```
+
+### Progress Updates During Training
+```
+[14:45:08] [STEP 4.2] PROGRESS: 7.2% (100/1393) | Elapsed: 10m | Remaining: 2h 5m | loss: 0.8432
+```
+
+### Error Format
+```
+[14:50:00] [STEP 6.3] ERROR: Prompt 7/20 timed out after 120s — skipping
+[14:50:00] [STEP 6.3] RETRY 1/3: Attempting with reduced max_tokens
+```
+
+---
+
+## Product Roadmap (Summary)
+
+| Phase | Timeline | Goal |
+|---|---|---|
+| **1: Blueprint Mastery** | Now → Month 3 | 85%+ mastery on all 42+ node types |
+| **2: UE5 Plugin** | Months 3-6 | First product, $29/month subscription |
+| **3: Multi-System** | Months 6-12 | Add Behavior Trees, Data Tables, Materials, Animation, Niagara, Sequences |
+| **4: Platform** | Months 12-18 | Teaching loop as a service for other industries |
+| **5: Scale** | Months 18-24 | Multi-industry, $3-10M ARR |
+
+---
+
+## Things That Have Broken Before (Lessons Learned)
+
+1. **Overfitting at low epoch counts looks like success** — v1 had loss 0.013 which seemed great but was memorization. Watch for train loss << eval loss.
+2. **Windows PowerShell needs execution policy change** — `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+3. **New PATH entries require new terminal session** — close and reopen PowerShell after installing anything.
+4. **Windows app execution aliases intercept `python` command** — disable in Settings → Apps → Advanced app settings → App execution aliases.
+5. **bitsandbytes 4-bit does NOT work on Blackwell** — always use 8-bit.
+6. **PyTorch and nvidia-smi order GPUs differently** — always verify with `torch.cuda.get_device_name(0)`.
+7. **Stall detection too aggressive** — training has legit long pauses. Use 1800s threshold, not 600s.
+8. **3B model cannot generate valid Blueprint DSL** — too small for structured output. Minimum 8B, ideally 70B.
+9. **transformers 5.x breaks gptqmodel** — if needed, stay on transformers 4.57.x.
+10. **HuggingFace login doesn't persist across sessions sometimes** — use `login(add_to_git_credential=False)` and re-login if downloads fail.
+
+---
+
+## UE 5.7 Plugin (Phase 2) — WORKING as of 2026-03-02
+
+### Architecture
+The pipeline is: **Natural Language → Fine-tuned LLM → DSL Text → Python Parser → JSON IR → C++ UE Plugin → Real Blueprint Asset**
+
+### Components
+
+| Component | Location | Status |
+|---|---|---|
+| DSL Parser (Python) | `scripts/dsl_parser/` | ✅ 99.9% map rate, 179 node types |
+| Node Map | `scripts/dsl_parser/node_map.py` | ✅ 179 NODE_MAP + 24 ALIASES |
+| UE 5.7 C++ Plugin | `ue_plugin/BlueprintLLM/` | ✅ Full node/connection support |
+| Test IR Files | `test_ir/*.blueprint.json` | 7 files, 6 tested |
+
+### Plugin Files
+```
+ue_plugin/BlueprintLLM/
+├── BlueprintLLM.uplugin
+├── Source/BlueprintLLM/
+│   ├── BlueprintLLM.Build.cs
+│   ├── Public/
+│   │   ├── BlueprintLLMModule.h      (Tools menu registration)
+│   │   ├── DSLImporter.h             (JSON IR → structs)
+│   │   └── BlueprintBuilder.h        (structs → UBlueprint)
+│   └── Private/
+│       ├── BlueprintLLMModule.cpp
+│       ├── DSLImporter.cpp
+│       └── BlueprintBuilder.cpp
+└── Content/
+```
+
+### How to Build
+```powershell
+# Copy plugin into UE project
+xcopy /E /I C:\BlueprintLLM\ue_plugin\BlueprintLLM "C:\Junk\BlueprintLLMTest\Plugins\BlueprintLLM"
+
+# Build editor target
+& "C:\Program Files\Epic Games\UE_5.7\Engine\Build\BatchFiles\Build.bat" BlueprintLLMTestEditor Win64 Development "C:\Junk\BlueprintLLMTest\BlueprintLLMTest.uproject"
+
+# Open editor, Tools → BlueprintLLM → Import DSL Blueprint
+# IMPORTANT: Delete existing generated blueprints before re-import
+```
+
+### Supported Node Types
+
+| Category | UE Class | Creation Method | Notes |
+|---|---|---|---|
+| Events | UK2Node_Event | Native | BeginPlay, ActorBeginOverlap, AnyDamage, Tick |
+| InputAction | UK2Node_InputAction | Native | Requires Input Action configured in project |
+| CustomEvent | UK2Node_CustomEvent | Native | |
+| CallFunction | UK2Node_CallFunction | SetFromFunction() | PrintString, math, gameplay statics, etc. |
+| Branch | UK2Node_IfThenElse | Native | |
+| Sequence | UK2Node_ExecutionSequence | Native + AddInputPin() | Dynamic output count from connections |
+| MultiGate | UK2Node_MultiGate | Native + AddInputPin() | Dynamic output count from connections |
+| FlipFlop | UK2Node_MacroInstance | Macro (StandardMacros) | Loaded from EditorBlueprintResources |
+| DoOnce | UK2Node_MacroInstance | Macro (StandardMacros) | Loaded from EditorBlueprintResources |
+| Gate | UK2Node_MacroInstance | Macro (StandardMacros) | Loaded from EditorBlueprintResources |
+| ForLoop | UK2Node_MacroInstance | Macro (StandardMacros) | Loaded from EditorBlueprintResources |
+| WhileLoop | UK2Node_MacroInstance | Macro (StandardMacros) | Loaded from EditorBlueprintResources |
+| ForEachLoop | UK2Node_MacroInstance | Macro (StandardMacros) | Loaded from EditorBlueprintResources |
+| Cast | UK2Node_DynamicCast | Native | Object pin set to AActor type |
+| VariableGet | UK2Node_VariableGet | Native | Property created on BP class |
+| VariableSet | UK2Node_VariableSet | Native | Property created on BP class |
+
+### Pin Name Resolution (FindPinByDSLName — 11 strategies)
+
+The DSL uses short/generic pin names that don't match UE's internal names. The resolver tries these in order:
+
+1. **Exact match** — FindPin(DSLName, Direction)
+2. **Exact match (any direction)** — FindPin(DSLName) without direction filter
+3. **Known aliases** — TMap with 15+ mappings (e.g. "I" → "InString", "C" → "Condition")
+4. **VariableGet "Value"** — First non-exec, non-self, non-WorldContextObject pin
+5. **Sequence A-F** — "then 0" through "then 5" + Nth exec output fallback
+6. **Out_N pattern** — "Out_0", "Out_1" etc. for MultiGate + Nth exec output fallback
+7. **Branch "C"** — Maps to "Condition" / "bCondition"
+8. **Exec input "Execute"** — PN_Execute, then "In", "Input", then first exec input pin
+9. **Exec output "Then"** — PN_Then, then "Out", "Output", then first exec output pin
+10. **"Pressed"/"Released"** — Nth exec output on InputAction nodes
+11. **Case-insensitive search** — Last resort before substring match
+
+**WorldContextObject is excluded from all fallback matching** — it exists on every CallFunction node and causes false matches.
+
+### Connection Wiring
+
+- Uses `Schema->TryCreateConnection()` instead of `MakeLinkTo()` — auto-inserts conversion nodes (Float→String, Int→Float, etc.)
+- All nodes get `CreateNewGuid()` after creation — required for editor interactivity
+- `Graph->NotifyGraphChanged()` called after wiring — proper editor state
+
+### UE5 Compatibility Fixes
+
+- **Float→Double function rename** — Auto-remaps `Add_FloatFloat` → `Add_DoubleDouble` etc.
+- **KismetMathLibrary class resolution** — Falls back to `UKismetMathLibrary::StaticClass()` if path lookup fails
+- **Re-import safety** — Deletes existing assets before recreation (prevents crash)
+- **Unused default events** — Removes auto-created Event ActorBeginOverlap/Tick if not used
+
+### UE5 Pin Name Cheat Sheet (discovered through testing)
+
+| Node Type | Pin Name (UE Internal) | DSL Name | Notes |
+|---|---|---|---|
+| FlipFlop exec input | `None` | Execute | Yes, literally "None" |
+| FlipFlop exec outputs | `A`, `B` | A, B | |
+| FlipFlop data output | `IsA` | IsA | Boolean |
+| Sequence exec outputs | `then 0`, `then 1`... | A, B, C... | Space in name |
+| MultiGate exec outputs | `Out 0`, `Out 1`... | Out_0, Out_1... | TBD - need log confirmation |
+| Branch condition | `Condition` | C | |
+| Branch exec outputs | standard PN_Then/PN_Else | True, False | |
+| PrintString input | `InString` | I | |
+| Cast object input | `Object` | Object | Must set PinType to AActor |
+| Math inputs | `A`, `B` | A, B | Direct match |
+| Math output | `ReturnValue` | ReturnValue | |
+
+### Test Results (as of 2026-03-02)
+
+| Test | Description | Nodes | Connections | Plugin Status | Model IR Quality |
+|---|---|---|---|---|---|
+| T1_01 | Hello World | 2 | 1 | ✅ Perfect | ✅ Perfect |
+| L05_01 | IsValid + Branch | 6 | 6 | ✅ Perfect | ✅ Perfect |
+| L05_02 | CastToCharacter | 4 | 4 | ✅ Perfect | ⚠️ Only 1/4 connections generated |
+| L12_02 | Sequence + 4 prints | 6 | 5 | ✅ Perfect | ✅ Perfect |
+| L12_08 | FlipFlop toggle | 6 | 5 | ✅ Perfect | ✅ Perfect |
+| L12_14 | MultiGate 3 outputs | 5 | 4 | ✅ Perfect | ✅ Perfect |
+| L12_19 | Math operations | 12 | 17 | ✅ Perfect | ⚠️ Sequence wired linearly, Float not Double |
+| L12_20 | Health/Damage system | 13 | 10 | ✅ Perfect | ⚠️ Missing connections, wrong data flow |
+
+### Model Training Issues (see MODEL_TRAINING_ISSUES.md for details)
+
+5 high-severity issues found in model IR output:
+1. Incomplete Cast node connections (L05_02)
+2. Sequence node used linearly instead of fan-out (L12_19)
+3. LessThan node created but not wired into data chain (L12_20)
+4. Event output pin used as string literal instead of data connection (L12_20)
+5. Missing exec connections leaving nodes orphaned (L12_20)
+
+2 medium-severity (plugin has workarounds):
+1. Float vs Double function names (auto-remapped)
+2. Missing implicit conversion nodes (TryCreateConnection handles it)
+
+### Plugin Includes Required
+
+```cpp
+#include "EdGraphSchema_K2.h"
+#include "K2Node_CallFunction.h"
+#include "K2Node_Event.h"
+#include "K2Node_CustomEvent.h"
+#include "K2Node_IfThenElse.h"
+#include "K2Node_ExecutionSequence.h"
+#include "K2Node_MultiGate.h"
+#include "K2Node_DynamicCast.h"
+#include "K2Node_InputAction.h"
+#include "K2Node_VariableGet.h"
+#include "K2Node_VariableSet.h"
+#include "K2Node_MacroInstance.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
+#include "GameFramework/Character.h"
+```
+
+---
+
+## Communication Protocol
+
+- **Step numbering is the universal language.** Use it in all logs, dashboard, and communication.
+- **Claude.ai (architect)** designs solutions and creates lessons. Share exam results there for grading.
+- **Claude Code (builder)** implements solutions and runs the pipeline.
+- **This file (CLAUDE.md)** is the shared context between both. Update it when architecture decisions change.
+- **The user is the project director**, not a relay between AIs. Minimize copy-pasting between Claude.ai and Claude Code.

@@ -785,7 +785,7 @@ def step_train(cfg, log, state, dry_run, force, data_hash=None):
         "--output", str(model_dir), "--epochs", str(cfg.epochs),
         "--batch_size", str(cfg.batch_size), "--lr", str(cfg.learning_rate),
         "--lora_r", str(cfg.lora_r)
-    ], f"Fine-tuning v{ver}", dry_run, timeout=14400, step_category="training")
+    ], f"Fine-tuning v{ver}", dry_run, timeout=28800, step_category="training")
     if ok or dry_run:
         state["last_training_data_hash"] = cur_hash
         state["last_model_version"] = ver
