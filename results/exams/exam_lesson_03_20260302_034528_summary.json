@@ -1,0 +1,113 @@
+{
+  "lesson_id": "lesson_03",
+  "lesson_name": "Timers and Delayed Actions",
+  "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260302_034528",
+  "total_prompts": 20,
+  "valid_syntax": 18,
+  "valid_syntax_pct": 90.0,
+  "avg_similarity_score": 75.1,
+  "per_category": {
+    "timer_basic": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 88.9
+    },
+    "timer_clear": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 58.3
+    },
+    "timer_oneshot": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "retriggerable_delay": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "timer_with_branch": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 50.0
+    },
+    "delay_sequence": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "timer_counter": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 12.5
+    },
+    "delay_with_visibility": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 70.0
+    },
+    "timer_toggle": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 31.8
+    },
+    "delay_overlap": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 41.7
+    },
+    "timer_spawner": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "delay_chain_branch": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 70.6
+    },
+    "timer_health_regen": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 88.5
+    },
+    "retriggerable_interaction": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 90.0
+    },
+    "timer_with_sound": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 63.6
+    },
+    "delay_destroy_sequence": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "timer_with_gate": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 42.9
+    },
+    "delay_flipflop": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "timer_overlap_clear": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "delay_multi_event": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.8
+    }
+  }
+}

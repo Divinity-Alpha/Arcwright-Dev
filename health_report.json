@@ -1,7 +1,7 @@
 {
-  "generated": "2026-02-28T20:22:33",
-  "version": "v6",
-  "cycle": 6,
+  "generated": "2026-03-02T03:09:04",
+  "version": "v7",
+  "cycle": 7,
   "summary": {
     "total_alerts": 7,
     "by_level": {
@@ -17,16 +17,16 @@
       "level": "INFO",
       "dimension": "overfitting",
       "title": "Generalization: healthy",
-      "detail": "Train accuracy 94.7% vs eval accuracy 95.9% (gap: -1.2%).",
+      "detail": "Train accuracy 95.0% vs eval accuracy 96.1% (gap: -1.2%).",
       "metric": "accuracy_gap",
-      "value": -0.012012340128421783,
+      "value": -0.011664190888404868,
       "threshold": null
     },
     {
       "level": "INFO",
       "dimension": "learning_rate",
       "title": "Learning rate configuration",
-      "detail": "LR: 0.0002, total steps: 49, loss range: 2.8755 -> 0.2431.",
+      "detail": "LR: 0.0002, total steps: 52, loss range: 3.1348 -> 0.2405.",
       "metric": "learning_rate",
       "value": 0.0002,
       "threshold": null
@@ -35,18 +35,18 @@
       "level": "INFO",
       "dimension": "dataset_quality",
       "title": "Dataset composition",
-      "detail": "Total: 662 | Synthetic: 662 | Lesson: 0 | Auto-translated: 0 | Manual: 0 | Duplicates: 44",
+      "detail": "Total: 700 | Synthetic: 695 | Lesson: 0 | Auto-translated: 0 | Manual: 0 | Duplicates: 44",
       "metric": "dataset_total",
-      "value": 662,
+      "value": 700,
       "threshold": null
     },
     {
       "level": "INFO",
       "dimension": "node_mastery",
       "title": "Node mastery snapshot",
-      "detail": "28 nodes scored: 3 mastered (>=85%), 15 learning (60-84%), 10 struggling (<60%).",
+      "detail": "28 nodes scored: 18 mastered (>=85%), 8 learning (60-84%), 2 struggling (<60%).",
       "metric": "nodes_mastered",
-      "value": 3,
+      "value": 18,
       "threshold": null
     },
     {
@@ -60,80 +60,80 @@
     },
     {
       "level": "WARNING",
-      "dimension": "dataset_quality",
-      "title": "Duplicate training examples",
-      "detail": "Found 44 duplicate outputs (6.6% of dataset). Duplicates cause the model to over-weight those patterns.",
-      "metric": "duplicate_count",
-      "value": 44,
-      "threshold": null
+      "dimension": "overfitting",
+      "title": "Accuracy plateau",
+      "detail": "Accuracy has changed less than 0.5% over the last 3 cycles (95.9%, 96.1%, 96.1%). Consider curriculum changes, learning rate adjustments, or new training data.",
+      "metric": "accuracy_plateau_range",
+      "value": 0.0027381330728530884,
+      "threshold": 0.005
     },
     {
       "level": "WARNING",
-      "dimension": "node_mastery",
-      "title": "Node scores stagnant for 3+ cycles",
-      "detail": "1 node(s) unchanged: Event_AnyDamage (24%). Consider targeted lessons or more examples for these types.",
-      "metric": "stagnant_node_count",
-      "value": 1,
-      "threshold": 1
+      "dimension": "dataset_quality",
+      "title": "Duplicate training examples",
+      "detail": "Found 44 duplicate outputs (6.3% of dataset). Duplicates cause the model to over-weight those patterns.",
+      "metric": "duplicate_count",
+      "value": 44,
+      "threshold": null
     }
   ],
   "current_cycle": {
-    "version": "v6",
-    "date": "2026-02-28",
-    "dataset_size": 662,
+    "version": "v7",
+    "date": "2026-03-02",
+    "dataset_size": 700,
     "lesson_data_size": 0,
     "dataset_composition": {
-      "total": 662,
-      "synthetic": 662,
+      "total": 700,
+      "synthetic": 695,
       "lesson": 0,
       "auto_translated": 0,
       "manual": 0,
-      "unknown": 0,
+      "unknown": 5,
       "duplicates": 44
     },
     "epochs": 3,
     "learning_rate": 0.0002,
     "training_time_seconds": null,
-    "total_steps": 49,
-    "initial_loss": 2.8755,
-    "final_loss": 0.2431,
-    "eval_loss": 0.19676415622234344,
-    "train_accuracy": 0.9467326179146767,
-    "eval_accuracy": 0.9587449580430984,
+    "total_steps": 52,
+    "initial_loss": 3.1348,
+    "final_loss": 0.2405,
+    "eval_loss": 0.19371548295021057,
+    "train_accuracy": 0.9498189002275467,
+    "eval_accuracy": 0.9614830911159515,
     "node_scores": {
-      "Event_BeginPlay": 0.875,
-      "Sequence": 0.643,
-      "PrintString": 0.875,
-      "Delay": 0.875,
-      "Event_ActorBeginOverlap": 0.833,
-      "Event_ActorEndOverlap": 0.833,
-      "Event_Tick": 0.833,
-      "VariableGet": 0.667,
-      "Event_Custom": 0.167,
-      "DestroyActor": 0.667,
-      "Event_InputAction": 0.778,
-      "FlipFlop": 0.706,
-      "VariableSet": 0.706,
-      "DoOnce": 0.833,
-      "MultiplyFloat": 0.571,
-      "SetVisibility": 0.6,
-      "CastToCharacter": 0.75,
-      "Gate": 0.643,
-      "MultiGate": 0.75,
-      "GetActorLocation": 0.583,
-      "GetDisplayName": 0.583,
-      "CastToPawn": 0.75,
-      "AddFloat": 0.265,
-      "SubtractFloat": 0.265,
-      "DivideFloat": 0.265,
-      "Event_AnyDamage": 0.235,
-      "LessThan": 0.235,
-      "Branch": 0.235
+      "Event_BeginPlay": 0.938,
+      "Sequence": 0.929,
+      "PrintString": 1.0,
+      "Delay": 0.938,
+      "Event_ActorBeginOverlap": 1.0,
+      "Event_ActorEndOverlap": 0.917,
+      "Event_Tick": 0.929,
+      "VariableGet": 0.917,
+      "Event_Custom": 0.917,
+      "DestroyActor": 0.833,
+      "Event_InputAction": 1.0,
+      "FlipFlop": 1.0,
+      "VariableSet": 1.0,
+      "DoOnce": 1.0,
+      "MultiplyFloat": 0.857,
+      "SetVisibility": 0.3,
+      "CastToCharacter": 0.938,
+      "Gate": 0.929,
+      "MultiGate": 0.917,
+      "GetActorLocation": 0.667,
+      "GetDisplayName": 0.667,
+      "CastToPawn": 0.938,
+      "AddFloat": 0.735,
+      "SubtractFloat": 0.735,
+      "DivideFloat": 0.382,
+      "Event_AnyDamage": 0.735,
+      "LessThan": 0.735,
+      "Branch": 0.735
     },
     "eval_summary": {
       "total": 20,
-      "passed": 16,
-      "avg_score": 0.607
+      "passed": 19,
+      "avg_score": 0.794
     }
   },
   "trends": {
@@ -143,7 +143,8 @@
       0.3485,
       0.8766,
       0.2431,
-      0.2431
+      0.2405,
+      0.2405
     ],
     "accuracy": [
       0.9980449676513672,
@@ -151,7 +152,8 @@
       0.9430030137300491,
       0.947027325630188,
       0.9587449580430984,
-      0.9587449580430984
+      0.9614830911159515,
+      0.9614830911159515
     ],
     "dataset_size": [
       391,
@@ -159,7 +161,8 @@
       573,
       587,
       662,
-      662
+      700,
+      700
     ],
     "training_time": []
   }
