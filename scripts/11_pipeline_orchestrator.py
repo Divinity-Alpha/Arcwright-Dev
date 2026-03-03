@@ -208,8 +208,8 @@ class PipelineConfig:
         self.retry_config = STEP_RETRY_CONFIGS
         self.stall_warn_seconds = stall_cfg.get("stall_warn_seconds", 300)
         self.stall_kill_seconds = stall_cfg.get("stall_kill_seconds", 600)
-        # Training has legitimate long pauses (eval checkpoints, saves,
-        # gradient accumulation, CUDA sync) so use a much higher threshold.
+        # Training uses heartbeat-based stall detection only — no fixed
+        # duration timeout.  If no heartbeat for this many seconds, kill.
         self.stall_kill_seconds_training = stall_cfg.get("stall_kill_seconds_training", 1800)
 
     def _load_pipeline_config(self):
@@ -414,7 +414,12 @@ def run_script(cfg, log, script, args, desc, dry_run=False, allow_fail=False,
                 )
                 monitor.start()
                 try:
-                    stdout, stderr = proc.communicate(timeout=effective_timeout)
+                    # Training relies on heartbeat-based stall detection
+                    # only — no fixed duration timeout.  SubprocessMonitor
+                    # kills the process if heartbeat goes stale.
+                    comm_timeout = (None if step_category == "training"
+                                    else effective_timeout)
+                    stdout, stderr = proc.communicate(timeout=comm_timeout)
                 except subprocess.TimeoutExpired:
                     proc.terminate()
                     stdout, stderr = proc.communicate(timeout=30)
@@ -785,7 +790,7 @@ def step_train(cfg, log, state, dry_run, force, data_hash=None):
         "--output", str(model_dir), "--epochs", str(cfg.epochs),
         "--batch_size", str(cfg.batch_size), "--lr", str(cfg.learning_rate),
         "--lora_r", str(cfg.lora_r)
-    ], f"Fine-tuning v{ver}", dry_run, timeout=43200, step_category="training")
+    ], f"Fine-tuning v{ver}", dry_run, step_category="training")
     if ok or dry_run:
         state["last_training_data_hash"] = cur_hash
         state["last_model_version"] = ver

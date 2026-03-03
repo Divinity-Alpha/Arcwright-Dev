@@ -32,8 +32,7 @@
     "stall_detection": {
         "stall_warn_seconds": 300,
         "stall_kill_seconds": 600,
-        "stall_kill_seconds_training": 10800,
-        "training_timeout": 43200
+        "stall_kill_seconds_training": 1800
     },
     "synthetic": {
         "synthetic_count": 500

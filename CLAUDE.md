@@ -1,6 +1,6 @@
 # BlueprintLLM — Claude Code Project Context
 
-> **Doc Version:** 2.1
+> **Doc Version:** 2.2
 > **Last Updated:** 2026-03-02
 > **Owner:** Divinity Alpha
 > **Repo:** github.com/Divinity-Alpha/BlueprintLLM
@@ -20,6 +20,7 @@
 | 1.9 | 2026-03-02 | TCP Command Server added (port 13377). Python client library + test runner. Strategic Rule 17. Roadmap Phase 2 updated. |
 | 2.0 | 2026-03-02 | Training timeout 28800→43200 (12h). Strategic Rule 18 (size timeout for cold-cache pace). Golden Config updated. |
 | 2.1 | 2026-03-02 | Command Server OPERATIONAL (8/8 tests pass). data_literal pin defaults implemented. L12_20 IR fixed. Plugin Testing Log updated. |
+| 2.2 | 2026-03-02 | Training uses heartbeat-based stall detection (1800s), no fixed duration timeout. Removed training_timeout from config. Rule 18 replaced. |
 
 **Claude Code: When you update this file, increment the version number and add a changelog entry. Always print the current doc version when starting a session.**
 
@@ -268,7 +269,7 @@ lora_rank: 64
 lora_alpha: 128
 max_seq_length: 2048
 quantization: 8bit (load_in_8bit=True)
-training_timeout: 43200
+stall_kill_seconds_training: 1800  (heartbeat-based, no fixed duration limit)
 ```
 **If pipeline_config.json contains different values, update it to match this block before training.**
 
@@ -304,7 +305,7 @@ These rules were learned through hard experience. **Any Claude session (claude.a
 15. **The compliance checker validates against the DSL spec, not against UE internals.** Third-party tools shouldn't need to know UE pin names.
 16. **New node types discovered during plugin testing** get added to node_map.py first, then to the training curriculum if the model doesn't already handle them.
 17. **The Command Server reuses existing import logic.** `import_from_ir` must call the same `FDSLImporter::ParseIR` + `FBlueprintBuilder::CreateBlueprint` as the Tools menu. One code path, two entry points. Never duplicate Blueprint creation logic in the server.
-18. **Training timeout must be 43200s (12h) minimum.** First-run CUDA JIT on Blackwell takes ~75s/step; subsequent runs ~11s/step. Size timeout for cold-cache pace. The timeout exists in THREE places: `pipeline_config.json`, `error_handler.py` STEP_RETRY_CONFIGS, and the hardcoded `timeout=` param in the orchestrator's `run_script()` call. All three must match.
+18. **Training uses heartbeat-based stall detection, not fixed timeouts.** Never set a fixed training duration timeout. The SubprocessMonitor watches `pipeline_heartbeat` and `pipeline_live_state.json` — if neither updates for `stall_kill_seconds_training` (1800s), the process is killed. Training runs indefinitely as long as heartbeats arrive. This handles growing datasets without guessing timeout values.
 
 ### CLAUDE.md Update Policy
 
@@ -640,7 +641,7 @@ This is buildable on top of the existing parser — it already validates syntax,
 8. **3B model cannot generate valid Blueprint DSL** — too small for structured output. Minimum 8B, ideally 70B.
 9. **transformers 5.x breaks gptqmodel** — if needed, stay on transformers 4.57.x.
 10. **HuggingFace login doesn't persist across sessions sometimes** — use `login(add_to_git_credential=False)` and re-login if downloads fail.
-11. **Training timeout must account for cold CUDA cache.** 525 steps at ~75s/step (cold) = ~11h. Timeout of 28800s (8h) caused v8 training to timeout and restart. Fixed to 43200s (12h). The timeout is in THREE places: `pipeline_config.json`, `error_handler.py`, and hardcoded in `11_pipeline_orchestrator.py` line 788 — all three must match.
+11. **Fixed training timeouts don't scale.** 28800s (8h) was too short for cold CUDA cache; 43200s (12h) was a guess that would break for larger datasets. Replaced with heartbeat-based stall detection: if no heartbeat for 1800s, kill. Training runs as long as needed. Config: `stall_kill_seconds_training` in `pipeline_config.json`.
 
 ---
 
