@@ -1,6 +1,6 @@
 # BlueprintLLM — Claude Code Project Context
 
-> **Doc Version:** 2.2
+> **Doc Version:** 2.3
 > **Last Updated:** 2026-03-02
 > **Owner:** Divinity Alpha
 > **Repo:** github.com/Divinity-Alpha/BlueprintLLM
@@ -21,6 +21,7 @@
 | 2.0 | 2026-03-02 | Training timeout 28800→43200 (12h). Strategic Rule 18 (size timeout for cold-cache pace). Golden Config updated. |
 | 2.1 | 2026-03-02 | Command Server OPERATIONAL (8/8 tests pass). data_literal pin defaults implemented. L12_20 IR fixed. Plugin Testing Log updated. |
 | 2.2 | 2026-03-02 | Training uses heartbeat-based stall detection (1800s), no fixed duration timeout. Removed training_timeout from config. Rule 18 replaced. |
+| 2.3 | 2026-03-02 | Added parallel development roadmap (Track A: LLM, Track B: Command Server). Replaced fixed training timeout with heartbeat-based stall detection. Added Strategic Rule 18. |
 
 **Claude Code: When you update this file, increment the version number and add a changelog entry. Always print the current doc version when starting a session.**
 
@@ -256,7 +257,7 @@ Format: `[STEP X.Y] STARTING/COMPLETE/PROGRESS: Description`
 - **LoRA rank 64** — good balance of quality vs training speed
 - **Gradient accumulation 4** — effective batch size of 4. v7 accidentally used 8 and regressed. Do not change.
 - **8-bit quantization** — only method that works on Blackwell hardware
-- **Stall kill 1800s** (30 min) — training has legitimate long pauses during eval checkpoints
+- **Stall detection: heartbeat-based** — kill if no new training log output for 1800s (30 min). No fixed total duration timeout. Training time grows with dataset size; fixed timeouts cause false kills.
 
 ### ⚠️ GOLDEN CONFIG (v6 proven — do not deviate without owner approval)
 These exact values produced 95.5% syntax / 90% similarity. Any deviation requires explicit justification:
@@ -269,7 +270,7 @@ lora_rank: 64
 lora_alpha: 128
 max_seq_length: 2048
 quantization: 8bit (load_in_8bit=True)
-stall_kill_seconds_training: 1800  (heartbeat-based, no fixed duration limit)
+training_timeout: heartbeat (kill if no log output for 1800s, no fixed duration limit)
 ```
 **If pipeline_config.json contains different values, update it to match this block before training.**
 
@@ -305,7 +306,7 @@ These rules were learned through hard experience. **Any Claude session (claude.a
 15. **The compliance checker validates against the DSL spec, not against UE internals.** Third-party tools shouldn't need to know UE pin names.
 16. **New node types discovered during plugin testing** get added to node_map.py first, then to the training curriculum if the model doesn't already handle them.
 17. **The Command Server reuses existing import logic.** `import_from_ir` must call the same `FDSLImporter::ParseIR` + `FBlueprintBuilder::CreateBlueprint` as the Tools menu. One code path, two entry points. Never duplicate Blueprint creation logic in the server.
-18. **Training uses heartbeat-based stall detection, not fixed timeouts.** Never set a fixed training duration timeout. The SubprocessMonitor watches `pipeline_heartbeat` and `pipeline_live_state.json` — if neither updates for `stall_kill_seconds_training` (1800s), the process is killed. Training runs indefinitely as long as heartbeats arrive. This handles growing datasets without guessing timeout values.
+18. **Training uses heartbeat-based stall detection, not fixed timeouts.** Never set a fixed training duration timeout. Monitor training logs for activity — if no new output for 30 minutes, the process is stalled. If logs are still being written, let training continue regardless of total elapsed time.
 
 ### CLAUDE.md Update Policy
 
@@ -850,6 +851,62 @@ python scripts/mcp_client/test_runner.py
 ```
 
 **Build verified:** 2026-03-02, UE 5.7, VS 2026 14.50.35725, Win64 Development. data_literal support added (sets pin DefaultValue). All 8 IR tests pass via automated test runner.
+
+---
+
+## Parallel Development Roadmap
+
+Two tracks run simultaneously. Track A (LLM) runs when training finishes. Track B (Command Server) runs while training is in progress. They converge at integration points.
+
+### Track A: LLM Training & Accuracy
+
+| Step | Task | Status | Depends On |
+|---|---|---|---|
+| A1 | Grade v7b results — confirm GA=4 fixed regression | Not started | v7b training complete |
+| A2 | Identify remaining weak categories from v7b | Not started | A1 |
+| A3 | Write Lesson 14 corrections for weak categories | Not started | A2 |
+| A4 | Train v8 (L14 + replay buffer, golden config) | Not started | A3 |
+| A5 | Grade v8 with full L01-L14 exam suite | Not started | A4 |
+| A6 | Generate fresh IR from v8 exam outputs via parser | Not started | A5 |
+| A7 | Separate model-side vs plugin-side failures | Not started | A6 + B4 |
+| A8 | Write corrections for remaining model failures | Not started | A7 |
+| A9 | Train v9 — target 97%+ syntax all lessons | Not started | A8 |
+| A10 | Final accuracy milestone — all failures are plugin-side only | Not started | A9 |
+
+### Track B: Command Server & Automation
+
+| Step | Task | Status | Depends On |
+|---|---|---|---|
+| B1 | TCP server + health_check | Complete | — |
+| B2 | import_from_ir command | Complete | B1 |
+| B3 | get_blueprint_info + compile_blueprint | Complete | B1 |
+| B4 | Automated test runner (8/8 passing) | Complete | B2 + B3 |
+| B5 | Individual node commands (add_node, remove_node, add/remove_connection) | Not started | B4 |
+| B6 | set_node_param and set_variable commands | Not started | B5 |
+| B7 | spawn_actor and get_actors commands (level placement) | Not started | B4 |
+| B8 | DSL-to-UE single command (raw DSL text → verified Blueprint) | Not started | B4 |
+| B9 | Claude Desktop integration via MCP | Not started | B8 |
+| B10 | Widget Tree commands (create_widget, add_widget_child) | Not started | B5 |
+| B11 | Level population commands (spawn_actor_at, set_actor_properties) | Not started | B7 |
+| B12 | Material commands (create_material_instance, apply_material) | Not started | B7 |
+
+### Integration Points
+
+| Milestone | Tracks | What It Proves |
+|---|---|---|
+| First automated end-to-end test | A1 + B4 | v7b IR files verified through test runner automatically |
+| Quantified pipeline accuracy | A6 + B4 | Exact count of Blueprints that work end-to-end from v8 |
+| Single-command pipeline | A6 + B8 | Raw DSL → verified Blueprint, no intermediate files |
+| Live natural language to Blueprint | A10 + B9 | Claude Desktop connected, fine-tuned model, real-time creation |
+| First complete scene from description | A10 + B10 + B11 | Blueprints + UI + actors placed in level |
+
+### What To Work On When
+
+- **While training runs:** Work on Track B (next uncompleted step)
+- **When training finishes:** Grade results (Track A), write corrections, start next training run, then resume Track B
+- **At integration points:** Run convergence tests, document results
+
+---
 
 ### Model Training Issues (see MODEL_TRAINING_ISSUES.md for details)
 
