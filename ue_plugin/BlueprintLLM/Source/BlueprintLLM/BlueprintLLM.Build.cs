@@ -11,7 +11,9 @@ public class BlueprintLLM : ModuleRules
 			"Core",
 			"CoreUObject",
 			"Engine",
-			"InputCore"
+			"InputCore",
+			"Networking",
+			"Sockets"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]

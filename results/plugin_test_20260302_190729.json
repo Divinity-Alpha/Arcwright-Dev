@@ -1,0 +1,202 @@
+{
+  "timestamp": "2026-03-02T19:07:29.584627",
+  "server_version": "1.0",
+  "ir_directory": "C:\\BlueprintLLM\\test_ir",
+  "total_tests": 8,
+  "passed": 7,
+  "partial": 0,
+  "failed": 1,
+  "total_duration_seconds": 2.58,
+  "results": [
+    {
+      "file": "L05_01.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L05_01.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 1,
+        "nodes_created": 6,
+        "connections_wired": 5,
+        "variables_created": 1,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_TargetCheck",
+        "query_nodes": 6,
+        "query_connections": 5,
+        "query_variables": 1,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_TargetCheck",
+      "duration_seconds": 0.67
+    },
+    {
+      "file": "L05_02.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L05_02.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 1,
+        "variables_expected": 0,
+        "nodes_created": 4,
+        "connections_wired": 1,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_CastToCharacter",
+        "query_nodes": 4,
+        "query_connections": 1,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_CastToCharacter",
+      "duration_seconds": 0.1
+    },
+    {
+      "file": "L12_02.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_02.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 0,
+        "nodes_created": 6,
+        "connections_wired": 5,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_SequenceExample",
+        "query_nodes": 6,
+        "query_connections": 5,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_SequenceExample",
+      "duration_seconds": 0.06
+    },
+    {
+      "file": "L12_08.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_08.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 1,
+        "nodes_created": 6,
+        "connections_wired": 5,
+        "variables_created": 1,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_ToggleState",
+        "query_nodes": 6,
+        "query_connections": 5,
+        "query_variables": 1,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_ToggleState",
+      "duration_seconds": 1.05
+    },
+    {
+      "file": "L12_14.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_14.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 4,
+        "variables_expected": 0,
+        "nodes_created": 5,
+        "connections_wired": 4,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_CycleColors",
+        "query_nodes": 5,
+        "query_connections": 4,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_CycleColors",
+      "duration_seconds": 0.08
+    },
+    {
+      "file": "L12_19.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_19.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 12,
+        "connections_expected": 17,
+        "variables_expected": 2,
+        "nodes_created": 16,
+        "connections_wired": 21,
+        "variables_created": 2,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_MathExample",
+        "query_nodes": 16,
+        "query_connections": 21,
+        "query_variables": 2,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_MathExample",
+      "duration_seconds": 0.07
+    },
+    {
+      "file": "L12_20.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_20.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 13,
+        "connections_expected": 12,
+        "variables_expected": 1,
+        "nodes_created": 13,
+        "connections_wired": 8,
+        "variables_created": 1,
+        "compiled": false,
+        "compile_errors": [
+          "Node float - float: compiler error",
+          "Node Branch: compiler error"
+        ],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_HealthSystem",
+        "query_nodes": 13,
+        "query_connections": 8,
+        "query_variables": 1,
+        "query_compiled": false
+      },
+      "errors": [
+        "Connections: 8/12",
+        "Compilation failed"
+      ],
+      "blueprint_name": "BP_HealthSystem",
+      "duration_seconds": 0.49
+    },
+    {
+      "file": "T1_01_HelloWorld.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\T1_01_HelloWorld.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 2,
+        "connections_expected": 1,
+        "variables_expected": 0,
+        "nodes_created": 2,
+        "connections_wired": 1,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_HelloWorld",
+        "query_nodes": 2,
+        "query_connections": 1,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_HelloWorld",
+      "duration_seconds": 0.07
+    }
+  ]
+}

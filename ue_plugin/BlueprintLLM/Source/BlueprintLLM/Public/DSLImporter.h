@@ -26,6 +26,7 @@ struct FDSLConnection
 	FString TargetNode;
 	FString TargetPin;
 	FString DataType;  // For data connections
+	FString Value;     // For data_literal connections
 };
 
 // Represents a variable declaration

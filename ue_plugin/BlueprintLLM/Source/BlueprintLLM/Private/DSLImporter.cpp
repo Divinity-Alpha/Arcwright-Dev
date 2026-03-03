@@ -128,6 +128,7 @@ bool FDSLImporter::ParseConnection(const TSharedPtr<FJsonObject>& JsonConn, FDSL
 	JsonConn->TryGetStringField(TEXT("dst_node"), OutConn.TargetNode);
 	JsonConn->TryGetStringField(TEXT("dst_pin"), OutConn.TargetPin);
 	JsonConn->TryGetStringField(TEXT("data_type"), OutConn.DataType);
+	JsonConn->TryGetStringField(TEXT("value"), OutConn.Value);
 
 	return true;
 }

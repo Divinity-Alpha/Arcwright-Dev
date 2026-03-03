@@ -1,6 +1,6 @@
 # BlueprintLLM — Claude Code Project Context
 
-> **Last Updated:** 2026-02-26
+> **Last Updated:** 2026-03-02
 > **Owner:** Divinity Alpha
 > **Repo:** github.com/Divinity-Alpha/BlueprintLLM
 
@@ -106,7 +106,11 @@ C:\BlueprintLLM\
 │   ├── error_handler.py                # Retry logic, timeout handling
 │   ├── pipeline_logger.py              # Step-numbered logging
 │   ├── backup_utils.py
-│   └── system_prompt.txt               # Training system prompt
+│   ├── system_prompt.txt               # Training system prompt
+│   └── mcp_client/                     # TCP client for UE plugin
+│       ├── blueprint_client.py         # BlueprintLLMClient class
+│       ├── verify.py                   # Quick connectivity test
+│       └── test_runner.py              # Batch IR import + report
 ├── datasets/
 │   ├── train.jsonl                     # Main training data (~728KB, 1400+ examples)
 │   ├── validation.jsonl                # Eval set (~21KB)
@@ -449,11 +453,14 @@ The teaching loop is the core methodology. Each cycle targets specific weaknesse
 
 | Phase | Timeline | Goal |
 |---|---|---|
-| **1: Blueprint Mastery** | Now → Month 3 | 85%+ mastery on all 42+ node types |
-| **2: UE5 Plugin** | Months 3-6 | First product, $29/month subscription |
-| **3: Multi-System** | Months 6-12 | Add Behavior Trees, Data Tables, Materials, Animation, Niagara, Sequences |
-| **4: Platform** | Months 12-18 | Teaching loop as a service for other industries |
-| **5: Scale** | Months 18-24 | Multi-industry, $3-10M ARR |
+| **1: Blueprint Mastery** | Now → Month 3 | 95%+ mastery on all node types (achieved v6) |
+| **2: UE5 Plugin** | Months 1-3 | End-to-end DSL → Blueprint in UE Editor (in progress — TCP Command Server built) |
+| **3: Direct Claude Integration** | Months 3-6 | Claude.ai generates Blueprints with minimal human interaction |
+| **4: DSL Open Standard & Compliance Checker** | Months 4-8 | Publish spec, build validator API, enable community tools |
+| **5: Community Ecosystem** | Months 6-12 | Third-party tools, marketplace, certification tiers |
+| **6: Multi-System** | Months 8-14 | Behavior Trees, Materials, Animation, Niagara, Sequences |
+| **7: Platform** | Months 14-20 | Teaching loop as a service for other structured languages |
+| **8: Scale** | Months 20-30 | Multi-industry, $3-10M ARR |
 
 ---
 

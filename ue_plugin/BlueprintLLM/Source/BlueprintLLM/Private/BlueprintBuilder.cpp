@@ -487,9 +487,25 @@ bool FBlueprintBuilder::ConnectPins(
 
 	for (const FDSLConnection& Conn : Connections)
 	{
-		// Skip literal data connections for now
+		// Handle literal data connections — set pin default values
 		if (Conn.Type == TEXT("data_literal"))
 		{
+			UEdGraphNode* const* DstNodePtr = NodeMap.Find(Conn.TargetNode);
+			if (!DstNodePtr)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: data_literal target node not found: %s"), *Conn.TargetNode);
+				FailCount++;
+				continue;
+			}
+			UEdGraphPin* DstPin = (*DstNodePtr)->FindPin(FName(*Conn.TargetPin));
+			if (!DstPin)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: data_literal pin not found: %s.%s"), *Conn.TargetNode, *Conn.TargetPin);
+				FailCount++;
+				continue;
+			}
+			DstPin->DefaultValue = Conn.Value;
+			SuccessCount++;
 			continue;
 		}
 
