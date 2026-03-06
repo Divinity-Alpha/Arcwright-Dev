@@ -1,0 +1,68 @@
+{
+  "timestamp": "20260304_210126",
+  "passed": 10,
+  "failed": 0,
+  "total": 10,
+  "results": [
+    {
+      "step": 1,
+      "name": "connect",
+      "status": "PASS",
+      "detail": "BlueprintLLM"
+    },
+    {
+      "step": 2,
+      "name": "create_blueprint_from_dsl: Simple (BeginPlay -> PrintString)",
+      "status": "PASS",
+      "detail": "4/2 nodes, 1/1 conns, compiled=True"
+    },
+    {
+      "step": 3,
+      "name": "verify BP_DSL_SimpleHello",
+      "status": "PASS",
+      "detail": "4 nodes, 1 conns, compiled=True"
+    },
+    {
+      "step": 4,
+      "name": "create_blueprint_from_dsl: Medium (Branch + Variable)",
+      "status": "PASS",
+      "detail": "7/5 nodes, 4/4 conns, compiled=True"
+    },
+    {
+      "step": 5,
+      "name": "verify BP_DSL_BranchTest",
+      "status": "PASS",
+      "detail": "7 nodes, 4 conns, compiled=True"
+    },
+    {
+      "step": 6,
+      "name": "create_blueprint_from_dsl: Complex (Sequence + Branch + Variable)",
+      "status": "PASS",
+      "detail": "9/8 nodes, 5/7 conns, compiled=True, warnings=2"
+    },
+    {
+      "step": 7,
+      "name": "verify BP_DSL_ComplexFlow",
+      "status": "PASS",
+      "detail": "9 nodes, 5 conns, compiled=True"
+    },
+    {
+      "step": 8,
+      "name": "cleanup BP_DSL_SimpleHello",
+      "status": "PASS",
+      "detail": "deleted=True"
+    },
+    {
+      "step": 9,
+      "name": "cleanup BP_DSL_BranchTest",
+      "status": "PASS",
+      "detail": "deleted=True"
+    },
+    {
+      "step": 10,
+      "name": "cleanup BP_DSL_ComplexFlow",
+      "status": "PASS",
+      "detail": "deleted=True"
+    }
+  ]
+}

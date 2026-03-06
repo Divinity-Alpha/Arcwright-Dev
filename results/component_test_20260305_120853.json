@@ -1,0 +1,62 @@
+{
+  "timestamp": "20260305_120853",
+  "tests": [
+    {
+      "test": "health_check",
+      "status": "PASS",
+      "detail": "1.0"
+    },
+    {
+      "test": "create_test_bp",
+      "status": "PASS",
+      "detail": "nodes=4"
+    },
+    {
+      "test": "add_box_collision",
+      "status": "PASS",
+      "detail": "class=BoxComponent, parent=DefaultSceneRoot"
+    },
+    {
+      "test": "add_sphere_collision",
+      "status": "PASS",
+      "detail": "class=SphereComponent"
+    },
+    {
+      "test": "add_point_light",
+      "status": "PASS",
+      "detail": "class=PointLightComponent"
+    },
+    {
+      "test": "get_components",
+      "status": "PASS",
+      "detail": "count=3, names=['CollisionBox', 'CollisionSphere', 'MyLight']"
+    },
+    {
+      "test": "duplicate_name_error",
+      "status": "PASS",
+      "detail": "Component 'CollisionBox' already exists in BP_ComponentTest"
+    },
+    {
+      "test": "remove_component",
+      "status": "PASS",
+      "detail": "deleted=True"
+    },
+    {
+      "test": "remove_nonexistent",
+      "status": "PASS",
+      "detail": "deleted=False"
+    },
+    {
+      "test": "count_after_remove",
+      "status": "PASS",
+      "detail": "count=2, names=['CollisionBox', 'CollisionSphere']"
+    },
+    {
+      "test": "unknown_type_error",
+      "status": "PASS",
+      "detail": "Unknown component type: FakeComponent. Supported: BoxCollision, SphereCollision,"
+    }
+  ],
+  "passed": 11,
+  "failed": 0
+}

@@ -1,0 +1,83 @@
+{
+  "lesson_id": "lesson_15",
+  "lesson_name": "Corrective Training: Weak Similarity Patterns",
+  "model": "models/blueprint-lora-v10/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260305_084451",
+  "total_prompts": 20,
+  "valid_syntax": 20,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 95.6,
+  "per_category": {
+    "foreach_distance": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 89.5
+    },
+    "movement_patrol": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 79.5
+    },
+    "physics_gravity": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "physics_toggle": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "gate_debug": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "damage_timer": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "pickup_pattern": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 95.8
+    },
+    "spawn_pattern": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.8
+    },
+    "isvalid_spawn": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 94.0
+    },
+    "timer_toggle": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "math_heavy": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "loading_screen": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "pressure_plate": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "moving_platform": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    }
+  }
+}

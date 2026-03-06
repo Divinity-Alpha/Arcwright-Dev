@@ -1,0 +1,58 @@
+{
+  "lesson_id": "lesson_13",
+  "lesson_name": "Corrective Training: Connection Patterns + New Node Types",
+  "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260306_124237",
+  "total_prompts": 20,
+  "valid_syntax": 19,
+  "valid_syntax_pct": 95.0,
+  "avg_similarity_score": 92.2,
+  "per_category": {
+    "cast_complete": {
+      "count": 3,
+      "valid": 3,
+      "avg_score": 80.3
+    },
+    "sequence_fanout": {
+      "count": 3,
+      "valid": 3,
+      "avg_score": 96.7
+    },
+    "math_compare_branch": {
+      "count": 3,
+      "valid": 3,
+      "avg_score": 92.0
+    },
+    "event_pin_wiring": {
+      "count": 3,
+      "valid": 3,
+      "avg_score": 87.4
+    },
+    "complete_exec_chains": {
+      "count": 2,
+      "valid": 1,
+      "avg_score": 93.4
+    },
+    "forloop_proper": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "foreach_proper": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 94.7
+    },
+    "switch_new": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "select_new": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.8
+    }
+  }
+}

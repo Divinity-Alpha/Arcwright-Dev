@@ -1,0 +1,668 @@
+[05:15:05] v10 Exam Suite L07-L15 — 9 lessons
+[05:15:05] Model: models/blueprint-lora-v10/final
+[05:15:08] Loading model...
+Loaded system prompt from models\blueprint-lora-v10\system_prompt.txt (463 chars)
+Loading base model: meta-llama/Meta-Llama-3.1-70B
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|3         | 1/30 [00:04<02:12,  4.57s/it]Loading checkpoint shards:   7%|6         | 2/30 [00:09<02:09,  4.61s/it]Loading checkpoint shards:  10%|#         | 3/30 [00:14<02:10,  4.84s/it]Loading checkpoint shards:  13%|#3        | 4/30 [00:19<02:06,  4.87s/it]Loading checkpoint shards:  17%|#6        | 5/30 [00:23<02:00,  4.82s/it]Loading checkpoint shards:  20%|##        | 6/30 [00:28<01:52,  4.69s/it]Loading checkpoint shards:  23%|##3       | 7/30 [00:32<01:46,  4.63s/it]Loading checkpoint shards:  27%|##6       | 8/30 [00:37<01:43,  4.69s/it]Loading checkpoint shards:  30%|###       | 9/30 [00:42<01:40,  4.77s/it]Loading checkpoint shards:  33%|###3      | 10/30 [00:48<01:42,  5.11s/it]Loading checkpoint shards:  37%|###6      | 11/30 [00:54<01:42,  5.37s/it]Loading checkpoint shards:  40%|####      | 12/30 [01:00<01:40,  5.60s/it]Loading checkpoint shards:  43%|####3     | 13/30 [01:06<01:36,  5.68s/it]Loading checkpoint shards:  47%|####6     | 14/30 [01:11<01:27,  5.50s/it]Loading checkpoint shards:  50%|#####     | 15/30 [01:16<01:20,  5.33s/it]Loading checkpoint shards:  53%|#####3    | 16/30 [01:21<01:12,  5.18s/it]Loading checkpoint shards:  57%|#####6    | 17/30 [01:26<01:05,  5.06s/it]Loading checkpoint shards:  60%|######    | 18/30 [01:31<01:00,  5.07s/it]Loading checkpoint shards:  63%|######3   | 19/30 [01:36<00:56,  5.14s/it]Loading checkpoint shards:  67%|######6   | 20/30 [01:41<00:50,  5.03s/it]Loading checkpoint shards:  70%|#######   | 21/30 [01:46<00:44,  4.94s/it]Loading checkpoint shards:  73%|#######3  | 22/30 [01:51<00:39,  4.99s/it]Loading checkpoint shards:  77%|#######6  | 23/30 [01:56<00:35,  5.09s/it]Loading checkpoint shards:  80%|########  | 24/30 [02:01<00:30,  5.16s/it]Loading checkpoint shards:  83%|########3 | 25/30 [02:06<00:25,  5.15s/it]Loading checkpoint shards:  87%|########6 | 26/30 [02:11<00:20,  5.07s/it]Loading checkpoint shards:  90%|######### | 27/30 [02:16<00:15,  5.04s/it]Loading checkpoint shards:  93%|#########3| 28/30 [02:22<00:10,  5.10s/it]Loading checkpoint shards:  97%|#########6| 29/30 [02:27<00:05,  5.09s/it]Loading checkpoint shards: 100%|##########| 30/30 [02:28<00:00,  4.02s/it]Loading checkpoint shards: 100%|##########| 30/30 [02:28<00:00,  4.95s/it]
+Loading LoRA adapter: models/blueprint-lora-v10/final
+[05:19:08] Model loaded in 240s
+[05:19:08] === [1/9] lesson_07: String Operations and Debug Patterns (20 prompts) ===
+[05:19:08]   [1/20] L07_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:19:43]     [OK] score=91% nodes=4 35.6s
+[05:19:43]   [2/20] L07_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:20:33]     [OK] score=75% nodes=6 50.0s
+[05:20:33]   [3/20] L07_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:21:27]     [OK] score=94% nodes=6 53.1s
+[05:21:27]   [4/20] L07_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:21:47]     [OK] score=100% nodes=3 20.0s
+[05:21:47]   [5/20] L07_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:22:20]     [OK] score=100% nodes=4 33.0s
+[05:22:20]   [6/20] L07_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:22:54]     [OK] score=100% nodes=5 34.6s
+[05:22:54]   [7/20] L07_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:23:44]     [OK] score=75% nodes=6 49.5s
+[05:23:44]   [8/20] L07_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:24:17]     [OK] score=100% nodes=4 33.4s
+[05:24:17]   [9/20] L07_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:25:08]     [OK] score=93% nodes=7 51.4s
+[05:25:08]   [10/20] L07_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:25:58]     [OK] score=100% nodes=6 49.4s
+[05:25:58]   [11/20] L07_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:26:35]     [OK] score=62% nodes=5 37.6s
+[05:26:35]   [12/20] L07_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:27:25]     [OK] score=100% nodes=6 49.3s
+[05:27:25]   [13/20] L07_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:27:58]     [OK] score=100% nodes=4 33.7s
+[05:27:58]   [14/20] L07_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:28:36]     [OK] score=100% nodes=5 37.9s
+[05:28:36]   [15/20] L07_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:29:40]     [OK] score=47% nodes=6 63.7s
+[05:29:40]   [16/20] L07_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:30:17]     [OK] score=100% nodes=5 37.4s
+[05:30:17]   [17/20] L07_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:30:46]     [OK] score=100% nodes=4 29.0s
+[05:30:46]   [18/20] L07_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:31:29]     [OK] score=25% nodes=6 42.3s
+[05:31:29]   [19/20] L07_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:32:02]     [OK] score=100% nodes=4 33.5s
+[05:32:02]   [20/20] L07_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:32:54]     [OK] score=100% nodes=8 51.9s
+[05:32:54]   => lesson_07: syntax=100.0% sim=88.2%
+[05:32:54] === [2/9] lesson_08: UI Widgets and HUD Patterns (20 prompts) ===
+[05:32:54]   [1/20] L08_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:33:19]     [OK] score=100% nodes=3 24.8s
+[05:33:19]   [2/20] L08_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:33:45]     [OK] score=100% nodes=3 25.7s
+[05:33:45]   [3/20] L08_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:35:06]     [OK] score=79% nodes=10 81.0s
+[05:35:06]   [4/20] L08_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:35:53]     [OK] score=100% nodes=6 47.8s
+[05:35:53]   [5/20] L08_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:36:49]     [OK] score=100% nodes=7 55.3s
+[05:36:49]   [6/20] L08_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:37:24]     [OK] score=83% nodes=4 35.7s
+[05:37:24]   [7/20] L08_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:37:55]     [OK] score=91% nodes=4 30.5s
+[05:37:55]   [8/20] L08_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:38:42]     [OK] score=94% nodes=6 46.9s
+[05:38:42]   [9/20] L08_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:39:30]     [OK] score=100% nodes=6 48.6s
+[05:39:30]   [10/20] L08_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:40:18]     [OK] score=76% nodes=6 47.7s
+[05:40:18]   [11/20] L08_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:41:06]     [OK] score=93% nodes=6 48.1s
+[05:41:06]   [12/20] L08_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:42:20]     [OK] score=96% nodes=10 73.8s
+[05:42:20]   [13/20] L08_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:43:26]     [OK] score=100% nodes=9 66.3s
+[05:43:26]   [14/20] L08_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:44:11]     [OK] score=100% nodes=5 45.0s
+[05:44:11]   [15/20] L08_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:45:18]     [OK] score=96% nodes=9 67.1s
+[05:45:18]   [16/20] L08_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:46:23]     [OK] score=86% nodes=8 64.9s
+[05:46:23]   [17/20] L08_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:47:13]     [OK] score=100% nodes=6 49.8s
+[05:47:13]   [18/20] L08_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:48:15]     [OK] score=95% nodes=8 61.5s
+[05:48:15]   [19/20] L08_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:49:23]     [OK] score=100% nodes=8 68.1s
+[05:49:23]   [20/20] L08_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:50:28]     [OK] score=42% nodes=8 65.6s
+[05:50:28]   => lesson_08: syntax=100.0% sim=91.5%
+[05:50:28] === [3/9] lesson_09: Nested Branches and Switch Patterns (20 prompts) ===
+[05:50:28]   [1/20] L09_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:51:27]     [OK] score=90% nodes=8 58.9s
+[05:51:27]   [2/20] L09_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:52:36]     [OK] score=96% nodes=9 68.7s
+[05:52:36]   [3/20] L09_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:53:30]     [OK] score=100% nodes=7 54.1s
+[05:53:30]   [4/20] L09_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:54:25]     [OK] score=100% nodes=7 55.2s
+[05:54:25]   [5/20] L09_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:55:19]     [OK] score=89% nodes=7 53.8s
+[05:55:19]   [6/20] L09_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:55:55]     [OK] score=85% nodes=5 36.2s
+[05:55:55]   [7/20] L09_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:56:55]     [OK] score=95% nodes=8 59.7s
+[05:56:55]   [8/20] L09_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:57:50]     [OK] score=89% nodes=7 54.9s
+[05:57:50]   [9/20] L09_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[05:58:40]     [OK] score=100% nodes=6 49.9s
+[05:58:40]   [10/20] L09_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:00:31]     [OK] score=84% nodes=14 111.9s
+[06:00:31]   [11/20] L09_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:01:15]     [OK] score=87% nodes=6 43.4s
+[06:01:15]   [12/20] L09_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:02:35]     [OK] score=93% nodes=11 79.8s
+[06:02:35]   [13/20] L09_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:03:33]     [OK] score=94% nodes=7 58.7s
+[06:03:33]   [14/20] L09_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:05:01]     [OK] score=100% nodes=10 87.3s
+[06:05:01]   [15/20] L09_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:05:56]     [OK] score=89% nodes=7 54.9s
+[06:05:56]   [16/20] L09_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:07:05]     [OK] score=100% nodes=9 69.4s
+[06:07:05]   [17/20] L09_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:08:12]     [OK] score=100% nodes=7 67.2s
+[06:08:12]   [18/20] L09_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:09:21]     [OK] score=96% nodes=9 68.8s
+[06:09:21]   [19/20] L09_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:10:33]     [OK] score=96% nodes=10 71.5s
+[06:10:33]   [20/20] L09_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:11:52]     [OK] score=96% nodes=9 79.5s
+[06:11:52]   => lesson_09: syntax=100.0% sim=93.8%
+[06:11:52] === [4/9] lesson_10: Complex Real-World Blueprints (20 prompts) ===
+[06:11:52]   [1/20] L10_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:13:05]     [OK] score=47% nodes=9 73.0s
+[06:13:05]   [2/20] L10_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:13:47]     [OK] score=92% nodes=5 41.7s
+[06:13:47]   [3/20] L10_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:15:04]     [OK] score=100% nodes=10 76.7s
+[06:15:04]   [4/20] L10_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:16:41]     [OK] score=39% nodes=12 97.6s
+[06:16:41]   [5/20] L10_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:17:38]     [OK] score=100% nodes=7 57.2s
+[06:17:38]   [6/20] L10_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:18:47]     [OK] score=80% nodes=9 69.1s
+[06:18:47]   [7/20] L10_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:19:58]     [OK] score=87% nodes=9 70.1s
+[06:19:58]   [8/20] L10_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:20:50]     [OK] score=93% nodes=7 52.5s
+[06:20:50]   [9/20] L10_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:22:01]     [OK] score=100% nodes=10 71.5s
+[06:22:01]   [10/20] L10_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:22:57]     [OK] score=80% nodes=7 55.6s
+[06:22:57]   [11/20] L10_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:24:13]     [OK] score=100% nodes=9 75.6s
+[06:24:13]   [12/20] L10_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:25:25]     [OK] score=95% nodes=10 71.9s
+[06:25:25]   [13/20] L10_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:27:07]     [OK] score=88% nodes=13 102.5s
+[06:27:07]   [14/20] L10_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:28:19]     [OK] score=91% nodes=11 71.9s
+[06:28:19]   [15/20] L10_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:29:11]     [OK] score=50% nodes=7 52.2s
+[06:29:11]   [16/20] L10_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:30:51]     [OK] score=91% nodes=13 99.5s
+[06:30:51]   [17/20] L10_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:32:51]     [OK] score=26% nodes=14 120.1s
+[06:32:51]   [18/20] L10_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:34:01]     [OK] score=77% nodes=9 70.2s
+[06:34:01]   [19/20] L10_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:35:06]     [OK] score=95% nodes=8 65.3s
+[06:35:06]   [20/20] L10_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:37:28]     [OK] score=72% nodes=18 141.9s
+[06:37:28]   => lesson_10: syntax=100.0% sim=80.2%
+[06:37:28] === [5/9] lesson_11: Arrays and Data Structures (20 prompts) ===
+[06:37:28]   [1/20] L11_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:38:07]     [OK] score=100% nodes=5 39.1s
+[06:38:07]   [2/20] L11_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:38:40]     [OK] score=100% nodes=4 32.7s
+[06:38:40]   [3/20] L11_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:39:10]     [OK] score=100% nodes=4 30.2s
+[06:39:10]   [4/20] L11_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:39:54]     [OK] score=93% nodes=6 43.2s
+[06:39:54]   [5/20] L11_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:40:43]     [OK] score=100% nodes=7 49.2s
+[06:40:43]   [6/20] L11_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:41:16]     [OK] score=100% nodes=4 32.7s
+[06:41:16]   [7/20] L11_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:41:47]     [OK] score=100% nodes=4 31.4s
+[06:41:47]   [8/20] L11_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:42:30]     [OK] score=100% nodes=5 43.1s
+[06:42:30]   [9/20] L11_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:43:12]     [OK] score=100% nodes=5 41.6s
+[06:43:12]   [10/20] L11_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:44:47]     [OK] score=38% nodes=11 94.8s
+[06:44:47]   [11/20] L11_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:45:35]     [OK] score=100% nodes=6 48.0s
+[06:45:35]   [12/20] L11_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:46:53]     [OK] score=50% nodes=9 78.3s
+[06:46:53]   [13/20] L11_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:48:14]     [OK] score=100% nodes=10 80.8s
+[06:48:14]   [14/20] L11_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:49:40]     [OK] score=88% nodes=11 86.4s
+[06:49:40]   [15/20] L11_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:50:26]     [OK] score=100% nodes=6 45.6s
+[06:50:26]   [16/20] L11_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:51:54]     [OK] score=96% nodes=11 88.3s
+[06:51:54]   [17/20] L11_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:53:21]     [OK] score=100% nodes=9 86.8s
+[06:53:21]   [18/20] L11_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:54:38]     [OK] score=96% nodes=10 77.4s
+[06:54:38]   [19/20] L11_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:55:38]     [OK] score=100% nodes=8 60.0s
+[06:55:38]   [20/20] L11_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:56:57]     [OK] score=88% nodes=9 78.7s
+[06:56:57]   => lesson_11: syntax=100.0% sim=92.5%
+[06:56:57] === [6/9] lesson_12: Edge Cases and Unusual Patterns (20 prompts) ===
+[06:56:57]   [1/20] L12_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:57:24]     [OK] score=100% nodes=4 27.5s
+[06:57:24]   [2/20] L12_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:58:05]     [OK] score=71% nodes=6 40.7s
+[06:58:05]   [3/20] L12_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:58:54]     [OK] score=100% nodes=7 49.5s
+[06:58:54]   [4/20] L12_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[06:59:29]     [OK] score=100% nodes=6 34.7s
+[06:59:29]   [5/20] L12_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:00:01]     [OK] score=100% nodes=3 32.2s
+[07:00:01]   [6/20] L12_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:00:43]     [OK] score=75% nodes=6 41.8s
+[07:00:43]   [7/20] L12_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:00:57]     [OK] score=100% nodes=2 13.6s
+[07:00:57]   [8/20] L12_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:01:43]     [OK] score=76% nodes=6 46.7s
+[07:01:43]   [9/20] L12_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:02:14]     [OK] score=90% nodes=5 30.8s
+[07:02:14]   [10/20] L12_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:02:55]     [OK] score=100% nodes=5 41.0s
+[07:02:55]   [11/20] L12_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:03:26]     [OK] score=100% nodes=4 31.2s
+[07:03:26]   [12/20] L12_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:03:58]     [OK] score=50% nodes=4 31.8s
+[07:03:58]   [13/20] L12_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:04:40]     [OK] score=93% nodes=6 42.1s
+[07:04:40]   [14/20] L12_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:05:19]     [OK] score=100% nodes=5 38.5s
+[07:05:19]   [15/20] L12_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:05:48]     [OK] score=100% nodes=4 29.2s
+[07:05:48]   [16/20] L12_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:06:20]     [OK] score=100% nodes=5 31.9s
+[07:06:20]   [17/20] L12_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:07:10]     [OK] score=94% nodes=6 49.7s
+[07:07:10]   [18/20] L12_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:07:43]     [OK] score=100% nodes=5 33.2s
+[07:07:43]   [19/20] L12_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:09:28]     [OK] score=41% nodes=12 105.6s
+[07:09:28]   [20/20] L12_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:11:15]     [OK] score=82% nodes=15 106.1s
+[07:11:15]   => lesson_12: syntax=100.0% sim=88.7%
+[07:11:15] === [7/9] lesson_13: Corrective Training: Connection Patterns + New Node Types (20 prompts) ===
+[07:11:15]   [1/20] L13_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:11:48]     [OK] score=91% nodes=4 33.2s
+[07:11:48]   [2/20] L13_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:12:35]     [OK] score=100% nodes=6 47.5s
+[07:12:35]   [3/20] L13_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:13:22]     [OK] score=93% nodes=5 47.1s
+[07:13:22]   [4/20] L13_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:13:56]     [OK] score=100% nodes=5 33.7s
+[07:13:56]   [5/20] L13_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:15:26]     [OK] score=90% nodes=11 89.8s
+[07:15:26]   [6/20] L13_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:16:13]     [OK] score=100% nodes=7 47.5s
+[07:16:13]   [7/20] L13_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:17:18]     [OK] score=95% nodes=8 64.3s
+[07:17:18]   [8/20] L13_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:18:21]     [OK] score=90% nodes=8 63.3s
+[07:18:21]   [9/20] L13_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:19:31]     [OK] score=100% nodes=9 69.5s
+[07:19:31]   [10/20] L13_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:20:15]     [OK] score=87% nodes=5 44.7s
+[07:20:15]   [11/20] L13_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:20:40]     [OK] score=89% nodes=3 25.2s
+[07:20:40]   [12/20] L13_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:21:19]     [OK] score=100% nodes=5 38.9s
+[07:21:19]   [13/20] L13_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:23:06]     [OK] score=85% nodes=15 107.1s
+[07:23:06]   [14/20] L13_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:24:35]     [OK] score=79% nodes=11 88.6s
+[07:24:35]   [15/20] L13_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:25:08]     [OK] score=100% nodes=4 32.7s
+[07:25:08]   [16/20] L13_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:26:03]     [OK] score=78% nodes=7 55.4s
+[07:26:03]   [17/20] L13_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:28:53]     [OK] score=95% nodes=7 169.5s
+[07:28:53]   [18/20] L13_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:32:30]     [OK] score=100% nodes=6 217.3s
+[07:32:30]   [19/20] L13_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:36:51]     [OK] score=100% nodes=7 261.4s
+[07:36:51]   [20/20] L13_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:40:52]     [OK] score=100% nodes=6 240.8s
+[07:40:52]   => lesson_13: syntax=100.0% sim=93.6%
+[07:40:52] === [8/9] lesson_14: Corrective Training: DATA Line Completion + Core Pattern Consistency (20 prompts) ===
+[07:40:52]   [1/20] L14_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:43:23]     [OK] score=31% nodes=4 150.8s
+[07:43:23]   [2/20] L14_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:46:26]     [OK] score=100% nodes=5 183.4s
+[07:46:26]   [3/20] L14_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:49:48]     [OK] score=100% nodes=6 201.4s
+[07:49:48]   [4/20] L14_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:52:16]     [OK] score=90% nodes=4 147.8s
+[07:52:16]   [5/20] L14_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:55:31]     [OK] score=100% nodes=5 195.4s
+[07:55:31]   [6/20] L14_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[07:58:10]     [OK] score=90% nodes=4 159.1s
+[07:58:10]   [7/20] L14_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:00:39]     [OK] score=83% nodes=4 149.2s
+[08:00:39]   [8/20] L14_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:04:58]     [OK] score=89% nodes=7 258.3s
+[08:04:58]   [9/20] L14_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:07:38]     [OK] score=82% nodes=4 160.2s
+[08:07:38]   [10/20] L14_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:08:14]     [OK] score=73% nodes=4 35.9s
+[08:08:14]   [11/20] L14_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:08:48]     [OK] score=64% nodes=4 34.9s
+[08:08:48]   [12/20] L14_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:09:30]     [OK] score=73% nodes=5 41.4s
+[08:09:30]   [13/20] L14_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:10:23]     [OK] score=100% nodes=6 52.8s
+[08:10:23]   [14/20] L14_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:11:31]     [OK] score=91% nodes=8 68.1s
+[08:11:31]   [15/20] L14_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:12:38]     [OK] score=100% nodes=8 67.3s
+[08:12:38]   [16/20] L14_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:13:23]     [OK] score=71% nodes=5 44.6s
+[08:13:23]   [17/20] L14_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:13:56]     [OK] score=70% nodes=4 33.5s
+[08:13:56]   [18/20] L14_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:14:46]     [OK] score=94% nodes=7 49.8s
+[08:14:46]   [19/20] L14_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:16:02]     [OK] score=27% nodes=9 75.6s
+[08:16:02]   [20/20] L14_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:17:12]     [OK] score=83% nodes=9 70.2s
+[08:17:12]   => lesson_14: syntax=100.0% sim=80.5%
+[08:17:12] === [9/9] lesson_15: Corrective Training: Weak Similarity Patterns (20 prompts) ===
+[08:17:12]   [1/20] L15_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:18:06]     ERROR on L15_01: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:18:06]   [2/20] L15_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:19:29]     ERROR on L15_02: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:19:29]   [3/20] L15_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:20:33]     ERROR on L15_03: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:20:33]   [4/20] L15_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:21:49]     ERROR on L15_04: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:21:49]   [5/20] L15_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:22:39]     ERROR on L15_05: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:22:39]   [6/20] L15_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:23:25]     ERROR on L15_06: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:23:25]   [7/20] L15_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:24:16]     ERROR on L15_07: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:24:16]   [8/20] L15_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:24:57]     ERROR on L15_08: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:24:57]   [9/20] L15_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:26:08]     ERROR on L15_09: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:26:08]   [10/20] L15_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:27:33]     ERROR on L15_10: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:27:33]   [11/20] L15_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:28:37]     ERROR on L15_11: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:28:37]   [12/20] L15_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:30:06]     ERROR on L15_12: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:30:06]   [13/20] L15_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:30:59]     ERROR on L15_13: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:30:59]   [14/20] L15_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:32:12]     ERROR on L15_14: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:32:12]   [15/20] L15_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:33:35]     ERROR on L15_15: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:33:35]   [16/20] L15_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:34:54]     ERROR on L15_16: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:34:54]   [17/20] L15_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:35:49]     ERROR on L15_17: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:35:49]   [18/20] L15_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:36:55]     ERROR on L15_18: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:36:55]   [19/20] L15_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:37:49]     ERROR on L15_19: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:37:49]   [20/20] L15_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:39:20]     ERROR on L15_20: 'expected_dsl'
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\run_v10_exam_L07_L15.py", line 74, in main
+    comparison = exam_mod.compare_outputs(prompt["expected_dsl"], cleaned_dsl)
+                                          ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'expected_dsl'
+[08:39:20]   => lesson_15: syntax=0.0% sim=0.0%
+[08:39:20] Combined saved: results\exams\exam_all_summaries_v10_L07_L15_20260305_083920.json
+[08:39:20] Suite complete.

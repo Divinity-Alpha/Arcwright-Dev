@@ -1,0 +1,507 @@
+{
+  "timestamp": "2026-03-04T09:48:12.870169",
+  "server_version": "1.0",
+  "ir_directory": "test_ir",
+  "total_tests": 33,
+  "passed": 0,
+  "partial": 0,
+  "failed": 33,
+  "total_duration_seconds": 2.07,
+  "results": [
+    {
+      "file": "L01_custom_event.blueprint.json",
+      "ir_path": "test_ir\\L01_custom_event.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 2,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L01_custom_event.blueprint.json"
+      ],
+      "blueprint_name": "BP_CustomEventExample",
+      "duration_seconds": 0.33
+    },
+    {
+      "file": "L01_flipflop.blueprint.json",
+      "ir_path": "test_ir\\L01_flipflop.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 3,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L01_flipflop.blueprint.json"
+      ],
+      "blueprint_name": "BP_ToggleVisibility",
+      "duration_seconds": 0.33
+    },
+    {
+      "file": "L01_gate.blueprint.json",
+      "ir_path": "test_ir\\L01_gate.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 4,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L01_gate.blueprint.json"
+      ],
+      "blueprint_name": "BP_GateExample",
+      "duration_seconds": 0.33
+    },
+    {
+      "file": "L01_overlap_event.blueprint.json",
+      "ir_path": "test_ir\\L01_overlap_event.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 2,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L01_overlap_event.blueprint.json"
+      ],
+      "blueprint_name": "BP_OverlapZone",
+      "duration_seconds": 0.33
+    },
+    {
+      "file": "L02_branch.blueprint.json",
+      "ir_path": "test_ir\\L02_branch.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 4,
+        "variables_expected": 1
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L02_branch.blueprint.json"
+      ],
+      "blueprint_name": "BP_BranchCheck",
+      "duration_seconds": 0.28
+    },
+    {
+      "file": "L02_sequence.blueprint.json",
+      "ir_path": "test_ir\\L02_sequence.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 4,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L02_sequence.blueprint.json"
+      ],
+      "blueprint_name": "BP_SequenceSteps",
+      "duration_seconds": 0.01
+    },
+    {
+      "file": "L04_physics_impulse.blueprint.json",
+      "ir_path": "test_ir\\L04_physics_impulse.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 2,
+        "connections_expected": 1,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L04_physics_impulse.blueprint.json"
+      ],
+      "blueprint_name": "BP_Launcher",
+      "duration_seconds": 0.01
+    },
+    {
+      "file": "L05_01.blueprint.json",
+      "ir_path": "test_ir\\L05_01.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 1
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L05_01.blueprint.json"
+      ],
+      "blueprint_name": "BP_TargetCheck",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L05_02.blueprint.json",
+      "ir_path": "test_ir\\L05_02.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 1,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L05_02.blueprint.json"
+      ],
+      "blueprint_name": "BP_CastToCharacter",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L05_isvalid_basic.blueprint.json",
+      "ir_path": "test_ir\\L05_isvalid_basic.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 1
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L05_isvalid_basic.blueprint.json"
+      ],
+      "blueprint_name": "BP_ValidCheck",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L05_isvalid_cast.blueprint.json",
+      "ir_path": "test_ir\\L05_isvalid_cast.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 4,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L05_isvalid_cast.blueprint.json"
+      ],
+      "blueprint_name": "BP_CastCheck",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L05_isvalid_complete_pattern.blueprint.json",
+      "ir_path": "test_ir\\L05_isvalid_complete_pattern.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 8,
+        "connections_expected": 9,
+        "variables_expected": 1
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L05_isvalid_complete_pattern.blueprint.json"
+      ],
+      "blueprint_name": "BP_FullValidation",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L06_forloop_spawn.blueprint.json",
+      "ir_path": "test_ir\\L06_forloop_spawn.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 5,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L06_forloop_spawn.blueprint.json"
+      ],
+      "blueprint_name": "BP_RowSpawner",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L06_whileloop_basic.blueprint.json",
+      "ir_path": "test_ir\\L06_whileloop_basic.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 8,
+        "connections_expected": 8,
+        "variables_expected": 1
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L06_whileloop_basic.blueprint.json"
+      ],
+      "blueprint_name": "BP_WhileCount",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L07_string_overlap_name.blueprint.json",
+      "ir_path": "test_ir\\L07_string_overlap_name.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 4,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L07_string_overlap_name.blueprint.json"
+      ],
+      "blueprint_name": "BP_NameOverlap",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L08_ui_create_basic.blueprint.json",
+      "ir_path": "test_ir\\L08_ui_create_basic.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 3,
+        "connections_expected": 3,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L08_ui_create_basic.blueprint.json"
+      ],
+      "blueprint_name": "BP_ShowHUD",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L08_ui_toggle.blueprint.json",
+      "ir_path": "test_ir\\L08_ui_toggle.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 10,
+        "connections_expected": 11,
+        "variables_expected": 2
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L08_ui_toggle.blueprint.json"
+      ],
+      "blueprint_name": "BP_ToggleMenu",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L09_switch_int.blueprint.json",
+      "ir_path": "test_ir\\L09_switch_int.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 7,
+        "connections_expected": 6,
+        "variables_expected": 1
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L09_switch_int.blueprint.json"
+      ],
+      "blueprint_name": "BP_DifficultySwitch",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L10_hud_health.blueprint.json",
+      "ir_path": "test_ir\\L10_hud_health.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 13,
+        "connections_expected": 15,
+        "variables_expected": 2
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L10_hud_health.blueprint.json"
+      ],
+      "blueprint_name": "BP_HealthHUD",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L11_array_add.blueprint.json",
+      "ir_path": "test_ir\\L11_array_add.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 5,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L11_array_add.blueprint.json"
+      ],
+      "blueprint_name": "BP_AddToArray",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L11_array_contains.blueprint.json",
+      "ir_path": "test_ir\\L11_array_contains.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L11_array_contains.blueprint.json"
+      ],
+      "blueprint_name": "BP_TagCheck",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L11_array_foreach_print.blueprint.json",
+      "ir_path": "test_ir\\L11_array_foreach_print.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 4,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L11_array_foreach_print.blueprint.json"
+      ],
+      "blueprint_name": "BP_PrintNames",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L12_02.blueprint.json",
+      "ir_path": "test_ir\\L12_02.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L12_02.blueprint.json"
+      ],
+      "blueprint_name": "BP_SequenceExample",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L12_08.blueprint.json",
+      "ir_path": "test_ir\\L12_08.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 1
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L12_08.blueprint.json"
+      ],
+      "blueprint_name": "BP_ToggleState",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L12_14.blueprint.json",
+      "ir_path": "test_ir\\L12_14.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 4,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L12_14.blueprint.json"
+      ],
+      "blueprint_name": "BP_CycleColors",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L12_19.blueprint.json",
+      "ir_path": "test_ir\\L12_19.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 12,
+        "connections_expected": 17,
+        "variables_expected": 2
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L12_19.blueprint.json"
+      ],
+      "blueprint_name": "BP_MathExample",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L12_20.blueprint.json",
+      "ir_path": "test_ir\\L12_20.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 13,
+        "connections_expected": 14,
+        "variables_expected": 2
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L12_20.blueprint.json"
+      ],
+      "blueprint_name": "BP_HealthSystem",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L12_deep_chain.blueprint.json",
+      "ir_path": "test_ir\\L12_deep_chain.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 2,
+        "connections_expected": 1,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L12_deep_chain.blueprint.json"
+      ],
+      "blueprint_name": "BP_ImmediateDestroy",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L12_multigate_cycle.blueprint.json",
+      "ir_path": "test_ir\\L12_multigate_cycle.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 4,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L12_multigate_cycle.blueprint.json"
+      ],
+      "blueprint_name": "BP_ColorCycle",
+      "duration_seconds": 0.01
+    },
+    {
+      "file": "L13_sequence_fanout.blueprint.json",
+      "ir_path": "test_ir\\L13_sequence_fanout.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 11,
+        "connections_expected": 13,
+        "variables_expected": 3
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L13_sequence_fanout.blueprint.json"
+      ],
+      "blueprint_name": "BP_PrintCoords",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L14_data_completion_cast.blueprint.json",
+      "ir_path": "test_ir\\L14_data_completion_cast.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 7,
+        "variables_expected": 1
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L14_data_completion_cast.blueprint.json"
+      ],
+      "blueprint_name": "BP_CastDamage",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "L14_data_completion_complex.blueprint.json",
+      "ir_path": "test_ir\\L14_data_completion_complex.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 9,
+        "connections_expected": 9,
+        "variables_expected": 1
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\L14_data_completion_complex.blueprint.json"
+      ],
+      "blueprint_name": "BP_CollectAll",
+      "duration_seconds": 0.02
+    },
+    {
+      "file": "T1_01_HelloWorld.blueprint.json",
+      "ir_path": "test_ir\\T1_01_HelloWorld.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 2,
+        "connections_expected": 1,
+        "variables_expected": 0
+      },
+      "errors": [
+        "Import failed: File not found: test_ir\\T1_01_HelloWorld.blueprint.json"
+      ],
+      "blueprint_name": "BP_HelloWorld",
+      "duration_seconds": 0.02
+    }
+  ]
+}

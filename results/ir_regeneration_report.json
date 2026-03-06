@@ -1,0 +1,259 @@
+{
+  "source": "v9_fixed_stopping_criteria",
+  "exam_timestamps": "20260304_18xxxx-21xxxx",
+  "total_tests": 25,
+  "generated": 25,
+  "failed": 0,
+  "results": [
+    {
+      "test_id": "L01_gate",
+      "status": "ok",
+      "prompt_id": "L01_11",
+      "nodes": 5,
+      "connections": 4,
+      "mapped": 5,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L02_branch",
+      "status": "ok",
+      "prompt_id": "L02_01",
+      "nodes": 5,
+      "connections": 4,
+      "mapped": 5,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L02_sequence",
+      "status": "ok",
+      "prompt_id": "L02_17",
+      "nodes": 5,
+      "connections": 4,
+      "mapped": 5,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L01_overlap_event",
+      "status": "ok",
+      "prompt_id": "L01_03",
+      "nodes": 4,
+      "connections": 2,
+      "mapped": 4,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L01_flipflop",
+      "status": "ok",
+      "prompt_id": "L01_07",
+      "nodes": 4,
+      "connections": 3,
+      "mapped": 4,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L01_custom_event",
+      "status": "ok",
+      "prompt_id": "L01_12",
+      "nodes": 4,
+      "connections": 2,
+      "mapped": 4,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L05_isvalid_basic",
+      "status": "ok",
+      "prompt_id": "L05_01",
+      "nodes": 6,
+      "connections": 5,
+      "mapped": 6,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L05_isvalid_cast",
+      "status": "ok",
+      "prompt_id": "L05_02",
+      "nodes": 4,
+      "connections": 4,
+      "mapped": 4,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L10_hud_health",
+      "status": "ok",
+      "prompt_id": "L10_13",
+      "nodes": 13,
+      "connections": 15,
+      "mapped": 13,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L11_array_add",
+      "status": "ok",
+      "prompt_id": "L11_01",
+      "nodes": 5,
+      "connections": 5,
+      "mapped": 5,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L11_array_foreach_print",
+      "status": "ok",
+      "prompt_id": "L11_06",
+      "nodes": 4,
+      "connections": 4,
+      "mapped": 4,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L08_ui_create_basic",
+      "status": "ok",
+      "prompt_id": "L08_01",
+      "nodes": 3,
+      "connections": 3,
+      "mapped": 3,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L11_array_contains",
+      "status": "ok",
+      "prompt_id": "L11_04",
+      "nodes": 6,
+      "connections": 5,
+      "mapped": 6,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L08_ui_toggle",
+      "status": "ok",
+      "prompt_id": "L08_03",
+      "nodes": 10,
+      "connections": 11,
+      "mapped": 10,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L13_sequence_fanout",
+      "status": "ok",
+      "prompt_id": "L13_05",
+      "nodes": 11,
+      "connections": 13,
+      "mapped": 11,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L14_data_completion_complex",
+      "status": "ok",
+      "prompt_id": "L14_20",
+      "nodes": 9,
+      "connections": 9,
+      "mapped": 9,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L14_data_completion_cast",
+      "status": "ok",
+      "prompt_id": "L14_13",
+      "nodes": 6,
+      "connections": 7,
+      "mapped": 6,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L12_multigate_cycle",
+      "status": "ok",
+      "prompt_id": "L12_14",
+      "nodes": 5,
+      "connections": 4,
+      "mapped": 5,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L12_deep_chain",
+      "status": "ok",
+      "prompt_id": "L12_07",
+      "nodes": 2,
+      "connections": 1,
+      "mapped": 2,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L04_physics_impulse",
+      "status": "ok",
+      "prompt_id": "L04_01",
+      "nodes": 2,
+      "connections": 1,
+      "mapped": 2,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L06_forloop_spawn",
+      "status": "ok",
+      "prompt_id": "L06_02",
+      "nodes": 5,
+      "connections": 5,
+      "mapped": 5,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L07_string_overlap_name",
+      "status": "ok",
+      "prompt_id": "L07_05",
+      "nodes": 4,
+      "connections": 4,
+      "mapped": 4,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L05_isvalid_complete_pattern",
+      "status": "ok",
+      "prompt_id": "L05_20",
+      "nodes": 8,
+      "connections": 9,
+      "mapped": 8,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L06_whileloop_basic",
+      "status": "ok",
+      "prompt_id": "L06_04",
+      "nodes": 8,
+      "connections": 8,
+      "mapped": 8,
+      "unmapped": 0,
+      "errors": []
+    },
+    {
+      "test_id": "L09_switch_int",
+      "status": "ok",
+      "prompt_id": "L09_03",
+      "nodes": 7,
+      "connections": 6,
+      "mapped": 7,
+      "unmapped": 0,
+      "errors": []
+    }
+  ]
+}

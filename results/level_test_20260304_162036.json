@@ -1,0 +1,68 @@
+{
+  "timestamp": "20260304_162036",
+  "passed": 10,
+  "failed": 0,
+  "total": 10,
+  "results": [
+    {
+      "step": 1,
+      "name": "connect + health_check",
+      "status": "PASS",
+      "detail": "BlueprintLLM"
+    },
+    {
+      "step": 2,
+      "name": "get_actors (baseline)",
+      "status": "PASS",
+      "detail": "count=138"
+    },
+    {
+      "step": 3,
+      "name": "spawn_actor_at (BPLLM_Test)",
+      "status": "PASS",
+      "detail": "label=BPLLM_Test, class=StaticMeshActor"
+    },
+    {
+      "step": 4,
+      "name": "get_actors (verify spawn)",
+      "status": "PASS",
+      "detail": "count=139 (was 138), found=True"
+    },
+    {
+      "step": 5,
+      "name": "set_actor_transform",
+      "status": "PASS",
+      "detail": "loc=(500,500,100) yaw=90"
+    },
+    {
+      "step": 6,
+      "name": "get_actors (verify transform)",
+      "status": "PASS",
+      "detail": "loc=(500,500,100)"
+    },
+    {
+      "step": 7,
+      "name": "delete_actor",
+      "status": "PASS",
+      "detail": "deleted=True"
+    },
+    {
+      "step": 8,
+      "name": "get_actors (verify deletion)",
+      "status": "PASS",
+      "detail": "count=138 (baseline=138)"
+    },
+    {
+      "step": 9,
+      "name": "delete_actor (idempotent)",
+      "status": "PASS",
+      "detail": "deleted=False"
+    },
+    {
+      "step": 10,
+      "name": "spawn Blueprint actor",
+      "status": "PASS",
+      "detail": "SKIP (no BP available): Could not resolve actor class: /Game/BlueprintLLM/Generated/BP_HelloWorld"
+    }
+  ]
+}

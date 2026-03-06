@@ -1,0 +1,535 @@
+{
+  "timestamp": "2026-03-04T10:17:39.716973",
+  "server_version": "1.0",
+  "ir_directory": "C:\\BlueprintLLM\\test_ir",
+  "total_tests": 33,
+  "passed": 6,
+  "partial": 4,
+  "failed": 23,
+  "total_duration_seconds": 15.3,
+  "results": [
+    {
+      "file": "L01_custom_event.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L01_custom_event.blueprint.json",
+      "status": "PARTIAL",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 2,
+        "variables_expected": 0,
+        "nodes_created": 6,
+        "connections_wired": 0,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_CustomEventExample",
+        "query_nodes": 6,
+        "query_connections": 0,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [
+        "Connections: 0/2"
+      ],
+      "blueprint_name": "BP_CustomEventExample",
+      "duration_seconds": 0.38
+    },
+    {
+      "file": "L01_flipflop.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L01_flipflop.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 3,
+        "variables_expected": 0,
+        "nodes_created": 7,
+        "connections_wired": 3,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_ToggleVisibility",
+        "query_nodes": 7,
+        "query_connections": 3,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_ToggleVisibility",
+      "duration_seconds": 0.92
+    },
+    {
+      "file": "L01_gate.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L01_gate.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 4,
+        "variables_expected": 0,
+        "nodes_created": 6,
+        "connections_wired": 4,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_GateExample",
+        "query_nodes": 6,
+        "query_connections": 4,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_GateExample",
+      "duration_seconds": 0.65
+    },
+    {
+      "file": "L01_overlap_event.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L01_overlap_event.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 2,
+        "variables_expected": 0,
+        "nodes_created": 6,
+        "connections_wired": 2,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_OverlapZone",
+        "query_nodes": 6,
+        "query_connections": 2,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_OverlapZone",
+      "duration_seconds": 0.64
+    },
+    {
+      "file": "L02_branch.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L02_branch.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 4,
+        "variables_expected": 1,
+        "nodes_created": 7,
+        "connections_wired": 4,
+        "variables_created": 1,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_BranchCheck",
+        "query_nodes": 7,
+        "query_connections": 4,
+        "query_variables": 1,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_BranchCheck",
+      "duration_seconds": 1.34
+    },
+    {
+      "file": "L02_sequence.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L02_sequence.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 4,
+        "variables_expected": 0,
+        "nodes_created": 7,
+        "connections_wired": 4,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_SequenceSteps",
+        "query_nodes": 7,
+        "query_connections": 4,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_SequenceSteps",
+      "duration_seconds": 0.53
+    },
+    {
+      "file": "L04_physics_impulse.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L04_physics_impulse.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 2,
+        "connections_expected": 1,
+        "variables_expected": 0,
+        "nodes_created": 4,
+        "connections_wired": 1,
+        "variables_created": 0,
+        "compiled": false,
+        "compile_errors": [
+          "Node Add Impulse\nTarget is Primitive Component: compiler error"
+        ],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_Launcher",
+        "query_nodes": 4,
+        "query_connections": 1,
+        "query_variables": 0,
+        "query_compiled": false
+      },
+      "errors": [
+        "Compilation failed"
+      ],
+      "blueprint_name": "BP_Launcher",
+      "duration_seconds": 0.55
+    },
+    {
+      "file": "L05_01.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L05_01.blueprint.json",
+      "status": "PARTIAL",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 1,
+        "nodes_created": 8,
+        "connections_wired": 4,
+        "variables_created": 1,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_TargetCheck",
+        "query_nodes": 8,
+        "query_connections": 4,
+        "query_variables": 1,
+        "query_compiled": true
+      },
+      "errors": [
+        "Connections: 4/5"
+      ],
+      "blueprint_name": "BP_TargetCheck",
+      "duration_seconds": 0.57
+    },
+    {
+      "file": "L05_02.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L05_02.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 1,
+        "variables_expected": 0,
+        "nodes_created": 6,
+        "connections_wired": 1,
+        "variables_created": 0,
+        "compiled": false,
+        "compile_errors": [
+          "Node Cast To Character: compiler error"
+        ],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_CastToCharacter",
+        "query_nodes": 6,
+        "query_connections": 1,
+        "query_variables": 0,
+        "query_compiled": false
+      },
+      "errors": [
+        "Compilation failed"
+      ],
+      "blueprint_name": "BP_CastToCharacter",
+      "duration_seconds": 0.63
+    },
+    {
+      "file": "L05_isvalid_basic.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L05_isvalid_basic.blueprint.json",
+      "status": "PARTIAL",
+      "details": {
+        "nodes_expected": 6,
+        "connections_expected": 5,
+        "variables_expected": 1,
+        "nodes_created": 8,
+        "connections_wired": 4,
+        "variables_created": 1,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_ValidCheck",
+        "query_nodes": 8,
+        "query_connections": 4,
+        "query_variables": 1,
+        "query_compiled": true
+      },
+      "errors": [
+        "Connections: 4/5"
+      ],
+      "blueprint_name": "BP_ValidCheck",
+      "duration_seconds": 0.55
+    },
+    {
+      "file": "L05_isvalid_cast.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L05_isvalid_cast.blueprint.json",
+      "status": "PASS",
+      "details": {
+        "nodes_expected": 4,
+        "connections_expected": 4,
+        "variables_expected": 0,
+        "nodes_created": 6,
+        "connections_wired": 4,
+        "variables_created": 0,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_CastCheck",
+        "query_nodes": 6,
+        "query_connections": 4,
+        "query_variables": 0,
+        "query_compiled": true
+      },
+      "errors": [],
+      "blueprint_name": "BP_CastCheck",
+      "duration_seconds": 0.62
+    },
+    {
+      "file": "L05_isvalid_complete_pattern.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L05_isvalid_complete_pattern.blueprint.json",
+      "status": "PARTIAL",
+      "details": {
+        "nodes_expected": 8,
+        "connections_expected": 9,
+        "variables_expected": 1,
+        "nodes_created": 10,
+        "connections_wired": 8,
+        "variables_created": 1,
+        "compiled": true,
+        "compile_errors": [],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_FullValidation",
+        "query_nodes": 10,
+        "query_connections": 8,
+        "query_variables": 1,
+        "query_compiled": true
+      },
+      "errors": [
+        "Connections: 8/9"
+      ],
+      "blueprint_name": "BP_FullValidation",
+      "duration_seconds": 0.75
+    },
+    {
+      "file": "L06_forloop_spawn.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L06_forloop_spawn.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 5,
+        "connections_expected": 5,
+        "variables_expected": 0,
+        "nodes_created": 8,
+        "connections_wired": 4,
+        "variables_created": 0,
+        "compiled": false,
+        "compile_errors": [
+          "Node Multiply Float Float: compiler error",
+          "Node SpawnActor NONE: compiler error"
+        ],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_RowSpawner",
+        "query_nodes": 8,
+        "query_connections": 4,
+        "query_variables": 0,
+        "query_compiled": false
+      },
+      "errors": [
+        "Connections: 4/5",
+        "Compilation failed"
+      ],
+      "blueprint_name": "BP_RowSpawner",
+      "duration_seconds": 0.57
+    },
+    {
+      "file": "L06_whileloop_basic.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L06_whileloop_basic.blueprint.json",
+      "status": "FAIL",
+      "details": {
+        "nodes_expected": 8,
+        "connections_expected": 8,
+        "variables_expected": 1,
+        "nodes_created": 10,
+        "connections_wired": 5,
+        "variables_created": 1,
+        "compiled": false,
+        "compile_errors": [
+          "Node Less Float Float: compiler error",
+          "Node Set Count: compiler error",
+          "Node Print String: compiler error"
+        ],
+        "asset_path": "/Game/BlueprintLLM/Generated/BP_WhileCount",
+        "query_nodes": 10,
+        "query_connections": 5,
+        "query_variables": 1,
+        "query_compiled": false
+      },
+      "errors": [
+        "Connections: 5/8",
+        "Compilation failed"
+      ],
+      "blueprint_name": "BP_WhileCount",
+      "duration_seconds": 0.98
+    },
+    {
+      "file": "L07_string_overlap_name.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L07_string_overlap_name.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "Connection lost: [WinError 10054] An existing connection was forcibly closed by the remote host",
+        "Editor crashed"
+      ]
+    },
+    {
+      "file": "L08_ui_create_basic.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L08_ui_create_basic.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L08_ui_toggle.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L08_ui_toggle.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L09_switch_int.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L09_switch_int.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L10_hud_health.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L10_hud_health.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L11_array_add.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L11_array_add.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L11_array_contains.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L11_array_contains.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L11_array_foreach_print.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L11_array_foreach_print.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L12_02.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_02.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L12_08.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_08.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L12_14.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_14.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L12_19.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_19.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L12_20.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_20.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L12_deep_chain.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_deep_chain.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L12_multigate_cycle.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L12_multigate_cycle.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L13_sequence_fanout.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L13_sequence_fanout.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L14_data_completion_cast.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L14_data_completion_cast.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "L14_data_completion_complex.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\L14_data_completion_complex.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    },
+    {
+      "file": "T1_01_HelloWorld.blueprint.json",
+      "ir_path": "C:\\BlueprintLLM\\test_ir\\T1_01_HelloWorld.blueprint.json",
+      "status": "FAIL",
+      "details": {},
+      "errors": [
+        "SKIPPED \u2014 editor not running"
+      ]
+    }
+  ]
+}

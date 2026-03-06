@@ -1,0 +1,111 @@
+{
+  "suite": "v9_fixed_stopping_criteria",
+  "model": "models/blueprint-lora-v9/final",
+  "timestamp": "20260304_221247",
+  "total_lessons": 14,
+  "total_prompts": 284,
+  "total_valid": 279,
+  "overall_syntax_pct": 98.2,
+  "overall_similarity": 89.9,
+  "suite_time_seconds": 14403.0,
+  "per_lesson": [
+    {
+      "lesson_id": "lesson_01",
+      "syntax_pct": 100.0,
+      "similarity": 91.2,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_02",
+      "syntax_pct": 91.7,
+      "similarity": 94.7,
+      "valid": 22,
+      "total": 24
+    },
+    {
+      "lesson_id": "lesson_03",
+      "syntax_pct": 100.0,
+      "similarity": 91.9,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_04",
+      "syntax_pct": 100.0,
+      "similarity": 83.5,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_05",
+      "syntax_pct": 100.0,
+      "similarity": 86.0,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_06",
+      "syntax_pct": 100.0,
+      "similarity": 91.4,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_07",
+      "syntax_pct": 100.0,
+      "similarity": 88.8,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_08",
+      "syntax_pct": 95.0,
+      "similarity": 96.9,
+      "valid": 19,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_09",
+      "syntax_pct": 100.0,
+      "similarity": 92.5,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_10",
+      "syntax_pct": 90.0,
+      "similarity": 81.4,
+      "valid": 18,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_11",
+      "syntax_pct": 100.0,
+      "similarity": 94.9,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_12",
+      "syntax_pct": 100.0,
+      "similarity": 89.0,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_13",
+      "syntax_pct": 100.0,
+      "similarity": 90.1,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_14",
+      "syntax_pct": 100.0,
+      "similarity": 85.9,
+      "valid": 20,
+      "total": 20
+    }
+  ]
+}

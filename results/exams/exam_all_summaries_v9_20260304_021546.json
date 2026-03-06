@@ -1,0 +1,1400 @@
+{
+  "model": "v9 (continuation from v8)",
+  "training_mode": "continuation",
+  "continuation_parent": "models/blueprint-lora-v8/final",
+  "continuation_lr": 5e-05,
+  "continuation_epochs": 2,
+  "dataset_size": 64,
+  "train_loss": 0.246,
+  "train_time_seconds": 398,
+  "timestamp": "20260304_021546",
+  "total_lessons": 14,
+  "total_prompts": 284,
+  "total_valid_syntax": 267,
+  "avg_syntax_pct": 94.05,
+  "avg_similarity_pct": 89.3,
+  "per_lesson": {
+    "lesson_01": {
+      "syntax_pct": 80.0,
+      "similarity_pct": 83.3,
+      "valid": 16,
+      "total": 20,
+      "categories": {
+        "print_hello": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "rotating_actor": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 63.6
+        },
+        "overlap_event": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "branch": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 41.7
+        },
+        "delay": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "sequence": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 91.7
+        },
+        "flipflop": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "doonce": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "cast": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 88.9
+        },
+        "foreach": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 36.4
+        },
+        "gate": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "custom_event": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "variable_set_get": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 71.4
+        },
+        "spawn_actor": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 50.0
+        },
+        "play_sound": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 75.0
+        },
+        "distance_check": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 78.6
+        },
+        "multi_event": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "set_visibility": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 78.6
+        },
+        "math_chain": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.0
+        },
+        "delay_chain": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        }
+      }
+    },
+    "lesson_02": {
+      "syntax_pct": 91.7,
+      "similarity_pct": 95.6,
+      "valid": 22,
+      "total": 24,
+      "categories": {
+        "branch": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 100.0
+        },
+        "variable_set_get": {
+          "count": 2,
+          "valid": 1,
+          "avg_score": 87.5
+        },
+        "custom_event": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 83.4
+        },
+        "gate": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 100.0
+        },
+        "spawn_actor": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 93.8
+        },
+        "foreach": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 95.9
+        },
+        "distance_check": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 96.5
+        },
+        "set_visibility": {
+          "count": 2,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "sequence": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "rotating_actor": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "overlap_event": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "play_sound": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "doonce": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "math_chain": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 80.0
+        },
+        "multi_event": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 100.0
+        }
+      }
+    },
+    "lesson_03": {
+      "syntax_pct": 95.0,
+      "similarity_pct": 90.4,
+      "valid": 19,
+      "total": 20,
+      "categories": {
+        "timer_basic": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "timer_clear": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "timer_oneshot": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "retriggerable_delay": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 87.5
+        },
+        "timer_with_branch": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 75.0
+        },
+        "delay_sequence": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "timer_counter": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 87.5
+        },
+        "delay_with_visibility": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "timer_toggle": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 50.0
+        },
+        "delay_overlap": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "timer_spawner": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.9
+        },
+        "delay_chain_branch": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 88.2
+        },
+        "timer_health_regen": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 84.6
+        },
+        "retriggerable_interaction": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 80.0
+        },
+        "timer_with_sound": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "delay_destroy_sequence": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "timer_with_gate": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 78.6
+        },
+        "delay_flipflop": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "timer_overlap_clear": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 92.9
+        },
+        "delay_multi_event": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.8
+        }
+      }
+    },
+    "lesson_04": {
+      "syntax_pct": 100.0,
+      "similarity_pct": 85.4,
+      "valid": 20,
+      "total": 20,
+      "categories": {
+        "physics_impulse": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "physics_force": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 70.0
+        },
+        "physics_toggle": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 50.0
+        },
+        "movement_offset": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 66.7
+        },
+        "movement_teleport": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "physics_overlap_launch": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "movement_lerp": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 92.3
+        },
+        "movement_input": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.0
+        },
+        "physics_bounce": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "movement_patrol": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 30.8
+        },
+        "physics_delayed": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "movement_rotate_and_move": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 75.0
+        },
+        "physics_conditional_force": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 92.3
+        },
+        "movement_speed_variable": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "physics_gravity_zone": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 41.7
+        },
+        "movement_clamp": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "physics_multigate": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "movement_sine_wave": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "physics_projectile": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "movement_scale_speed": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        }
+      }
+    },
+    "lesson_05": {
+      "syntax_pct": 100.0,
+      "similarity_pct": 86.8,
+      "valid": 20,
+      "total": 20,
+      "categories": {
+        "isvalid_basic": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.3
+        },
+        "isvalid_cast": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.9
+        },
+        "isvalid_destroy": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 87.5
+        },
+        "isvalid_overlap_cast": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.8
+        },
+        "isvalid_timer_check": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.2
+        },
+        "isvalid_array": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 84.2
+        },
+        "isvalid_spawn_check": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 29.4
+        },
+        "isvalid_get_player": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 94.1
+        },
+        "isvalid_before_distance": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.0
+        },
+        "isvalid_doonce_cast": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "cast_to_controller": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "isvalid_sequence_checks": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "isvalid_set_after_spawn": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 26.3
+        },
+        "cast_with_variable": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "isvalid_conditional_destroy": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 81.0
+        },
+        "isvalid_gate_pattern": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 88.2
+        },
+        "isvalid_multi_cast": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 87.5
+        },
+        "isvalid_foreach_destroy": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 94.1
+        },
+        "isvalid_safe_distance": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 94.7
+        },
+        "isvalid_complete_pattern": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        }
+      }
+    },
+    "lesson_06": {
+      "syntax_pct": 100.0,
+      "similarity_pct": 93.1,
+      "valid": 20,
+      "total": 20,
+      "categories": {
+        "forloop_basic": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 88.9
+        },
+        "forloop_spawn": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "forloop_sum": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 94.4
+        },
+        "whileloop_basic": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "forloop_even": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "foreach_destroy": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "forloop_grid": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "forloop_delay_after": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "foreach_filter": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.2
+        },
+        "forloop_countdown": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "foreach_toggle_vis": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 91.7
+        },
+        "whileloop_halving": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "forloop_random_spawn": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "foreach_max": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.2
+        },
+        "whileloop_damage": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 77.3
+        },
+        "foreach_closest": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 34.4
+        },
+        "forloop_sequence": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "foreach_doonce": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "forloop_health_bars": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 92.9
+        },
+        "forloop_complete": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 92.3
+        }
+      }
+    },
+    "lesson_07": {
+      "syntax_pct": 95.0,
+      "similarity_pct": 88.6,
+      "valid": 19,
+      "total": 20,
+      "categories": {
+        "string_concat": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 81.8
+        },
+        "string_score": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 81.2
+        },
+        "string_health": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 88.2
+        },
+        "debug_location": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "string_overlap_name": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "debug_distance": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "string_counter": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 87.5
+        },
+        "debug_fps": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "string_timer_log": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "string_cast_result": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "string_multi_var": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.8
+        },
+        "debug_spawn_log": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "string_loop_index": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "debug_branch_path": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 92.3
+        },
+        "string_damage_log": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 31.6
+        },
+        "debug_array_count": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "string_time_display": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.0
+        },
+        "debug_gate_status": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 25.0
+        },
+        "string_random_log": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "debug_lifecycle": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        }
+      }
+    },
+    "lesson_08": {
+      "syntax_pct": 95.0,
+      "similarity_pct": 96.9,
+      "valid": 19,
+      "total": 20,
+      "categories": {
+        "ui_create_basic": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_remove": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_toggle": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 85.7
+        },
+        "ui_delayed": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_overlap_show": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_with_cast": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 91.7
+        },
+        "ui_doonce": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.9
+        },
+        "ui_branch_show": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.8
+        },
+        "ui_sequence_multi": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_valid_remove": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 94.1
+        },
+        "ui_timer_show": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_flipflop_swap": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.8
+        },
+        "ui_distance_trigger": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_create_store": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_endplay_cleanup": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.7
+        },
+        "ui_gate_controlled": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.5
+        },
+        "ui_foreach_create": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_input_close": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_multigate": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ui_complete_flow": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        }
+      }
+    },
+    "lesson_09": {
+      "syntax_pct": 95.0,
+      "similarity_pct": 91.7,
+      "valid": 19,
+      "total": 20,
+      "categories": {
+        "nested_branch_basic": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.0
+        },
+        "nested_branch_three": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.5
+        },
+        "switch_int": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "switch_string": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "branch_and_or": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 88.9
+        },
+        "branch_not": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 84.6
+        },
+        "nested_overlap_cast": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "branch_compare_vars": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 88.9
+        },
+        "switch_int_action": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.3
+        },
+        "nested_timer_branch": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 87.5
+        },
+        "branch_equal": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.3
+        },
+        "nested_three_vars": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 81.5
+        },
+        "switch_with_timer": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "branch_clamp": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 71.4
+        },
+        "branch_or_pattern": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 72.2
+        },
+        "nested_damage_type": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "switch_spawn": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "branch_range_check": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.5
+        },
+        "nested_valid_branch": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.8
+        },
+        "switch_with_ui": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 95.8
+        }
+      }
+    },
+    "lesson_10": {
+      "syntax_pct": 85.0,
+      "similarity_pct": 80.2,
+      "valid": 17,
+      "total": 20,
+      "categories": {
+        "pickup_full": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 46.7
+        },
+        "trap_floor": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "door_interact": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "spawner_waves": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "checkpoint": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "damage_zone": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 40.0
+        },
+        "collectible_counter": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 78.3
+        },
+        "timed_platform": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.3
+        },
+        "enemy_proximity": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "power_up": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 75.0
+        },
+        "multi_pickup": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "turret_basic": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "hud_health": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 72.7
+        },
+        "projectile_full": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "pressure_plate": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 50.0
+        },
+        "respawn_system": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.8
+        },
+        "moving_platform": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 58.1
+        },
+        "trigger_sequence": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 59.1
+        },
+        "loading_screen": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 47.6
+        },
+        "full_game_loop": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 89.1
+        }
+      }
+    },
+    "lesson_11": {
+      "syntax_pct": 100.0,
+      "similarity_pct": 94.9,
+      "valid": 20,
+      "total": 20,
+      "categories": {
+        "array_add": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_remove": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_get": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.9
+        },
+        "array_contains": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.3
+        },
+        "array_length_check": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 94.1
+        },
+        "array_foreach_print": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_clear": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_add_overlap": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_foreach_destroy": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_find_nearest": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 40.6
+        },
+        "array_random": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_loop_spawn": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 94.4
+        },
+        "array_remove_overlap": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_timer_add": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_last_element": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_filter_distance": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 96.4
+        },
+        "array_switch_add": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_empty_check": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_foreach_valid": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "array_build_inventory": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 88.5
+        }
+      }
+    },
+    "lesson_12": {
+      "syntax_pct": 90.0,
+      "similarity_pct": 89.5,
+      "valid": 18,
+      "total": 20,
+      "categories": {
+        "minimal_bp": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "many_prints": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 71.4
+        },
+        "double_delay": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "no_variables": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "multi_var_types": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 91.7
+        },
+        "event_only": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "deep_chain": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 83.3
+        },
+        "flipflop_three_times": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 100.0
+        },
+        "doonce_reset": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 90.0
+        },
+        "data_only": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 85.7
+        },
+        "ambiguous_light": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "ambiguous_pickup": {
+          "count": 1,
+          "valid": 0,
+          "avg_score": 57.1
+        },
+        "gate_full": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 92.9
+        },
+        "multigate_cycle": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "two_inputs": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "self_reference": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "cast_both": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.8
+        },
+        "nested_doonce": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        },
+        "math_heavy": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 41.2
+        },
+        "complete_character": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 82.4
+        }
+      }
+    },
+    "lesson_13": {
+      "syntax_pct": 100.0,
+      "similarity_pct": 90.1,
+      "valid": 20,
+      "total": 20,
+      "categories": {
+        "cast_complete": {
+          "count": 3,
+          "valid": 3,
+          "avg_score": 94.7
+        },
+        "sequence_fanout": {
+          "count": 3,
+          "valid": 3,
+          "avg_score": 96.7
+        },
+        "math_compare_branch": {
+          "count": 3,
+          "valid": 3,
+          "avg_score": 90.3
+        },
+        "event_pin_wiring": {
+          "count": 3,
+          "valid": 3,
+          "avg_score": 70.4
+        },
+        "complete_exec_chains": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 84.0
+        },
+        "forloop_proper": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 94.5
+        },
+        "foreach_proper": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 94.7
+        },
+        "switch_new": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 96.7
+        },
+        "select_new": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 100.0
+        }
+      }
+    },
+    "lesson_14": {
+      "syntax_pct": 90.0,
+      "similarity_pct": 83.7,
+      "valid": 18,
+      "total": 20,
+      "categories": {
+        "data_completion_branch": {
+          "count": 3,
+          "valid": 2,
+          "avg_score": 92.3
+        },
+        "data_completion_math": {
+          "count": 3,
+          "valid": 3,
+          "avg_score": 100.0
+        },
+        "data_completion_foreach": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 95.9
+        },
+        "data_completion_rotate": {
+          "count": 3,
+          "valid": 3,
+          "avg_score": 63.6
+        },
+        "data_completion_cast": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 90.0
+        },
+        "data_completion_damage": {
+          "count": 2,
+          "valid": 1,
+          "avg_score": 78.8
+        },
+        "data_completion_visibility": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 85.7
+        },
+        "data_completion_spawn": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 70.0
+        },
+        "data_completion_gate": {
+          "count": 1,
+          "valid": 1,
+          "avg_score": 93.8
+        },
+        "data_completion_complex": {
+          "count": 2,
+          "valid": 2,
+          "avg_score": 63.5
+        }
+      }
+    }
+  }
+}

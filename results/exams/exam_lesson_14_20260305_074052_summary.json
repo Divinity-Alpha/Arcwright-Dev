@@ -1,0 +1,63 @@
+{
+  "lesson_id": "lesson_14",
+  "lesson_name": "Corrective Training: DATA Line Completion + Core Pattern Consistency",
+  "model": "models/blueprint-lora-v10/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260305_074052",
+  "total_prompts": 20,
+  "valid_syntax": 20,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 80.5,
+  "per_category": {
+    "data_completion_branch": {
+      "count": 3,
+      "valid": 3,
+      "avg_score": 76.9
+    },
+    "data_completion_math": {
+      "count": 3,
+      "valid": 3,
+      "avg_score": 93.3
+    },
+    "data_completion_foreach": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 86.1
+    },
+    "data_completion_rotate": {
+      "count": 3,
+      "valid": 3,
+      "avg_score": 72.7
+    },
+    "data_completion_cast": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 86.7
+    },
+    "data_completion_damage": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 95.5
+    },
+    "data_completion_visibility": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 71.4
+    },
+    "data_completion_spawn": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 70.0
+    },
+    "data_completion_gate": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.8
+    },
+    "data_completion_complex": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 54.8
+    }
+  }
+}

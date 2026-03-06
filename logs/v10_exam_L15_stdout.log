@@ -1,0 +1,70 @@
+[08:41:12] v10 Exam L15 Only
+[08:41:14] Loading model...
+Loaded system prompt from models\blueprint-lora-v10\system_prompt.txt (463 chars)
+Loading base model: meta-llama/Meta-Llama-3.1-70B
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|3         | 1/30 [00:03<01:55,  3.99s/it]Loading checkpoint shards:   7%|6         | 2/30 [00:08<01:53,  4.07s/it]Loading checkpoint shards:  10%|#         | 3/30 [00:12<01:54,  4.23s/it]Loading checkpoint shards:  13%|#3        | 4/30 [00:16<01:52,  4.31s/it]Loading checkpoint shards:  17%|#6        | 5/30 [00:21<01:46,  4.27s/it]Loading checkpoint shards:  20%|##        | 6/30 [00:25<01:41,  4.24s/it]Loading checkpoint shards:  23%|##3       | 7/30 [00:29<01:37,  4.23s/it]Loading checkpoint shards:  27%|##6       | 8/30 [00:33<01:34,  4.29s/it]Loading checkpoint shards:  30%|###       | 9/30 [00:38<01:30,  4.30s/it]Loading checkpoint shards:  33%|###3      | 10/30 [00:42<01:24,  4.24s/it]Loading checkpoint shards:  37%|###6      | 11/30 [00:46<01:19,  4.19s/it]Loading checkpoint shards:  40%|####      | 12/30 [00:50<01:15,  4.17s/it]Loading checkpoint shards:  43%|####3     | 13/30 [00:55<01:12,  4.25s/it]Loading checkpoint shards:  47%|####6     | 14/30 [00:59<01:08,  4.25s/it]Loading checkpoint shards:  50%|#####     | 15/30 [01:03<01:02,  4.18s/it]Loading checkpoint shards:  53%|#####3    | 16/30 [01:07<00:58,  4.19s/it]Loading checkpoint shards:  57%|#####6    | 17/30 [01:11<00:54,  4.20s/it]Loading checkpoint shards:  60%|######    | 18/30 [01:16<00:51,  4.30s/it]Loading checkpoint shards:  63%|######3   | 19/30 [01:20<00:47,  4.36s/it]Loading checkpoint shards:  67%|######6   | 20/30 [01:24<00:42,  4.30s/it]Loading checkpoint shards:  70%|#######   | 21/30 [01:29<00:38,  4.25s/it]Loading checkpoint shards:  73%|#######3  | 22/30 [01:33<00:33,  4.22s/it]Loading checkpoint shards:  77%|#######6  | 23/30 [01:37<00:29,  4.28s/it]Loading checkpoint shards:  80%|########  | 24/30 [01:41<00:25,  4.31s/it]Loading checkpoint shards:  83%|########3 | 25/30 [01:46<00:21,  4.25s/it]Loading checkpoint shards:  87%|########6 | 26/30 [01:50<00:16,  4.19s/it]Loading checkpoint shards:  90%|######### | 27/30 [01:54<00:12,  4.15s/it]Loading checkpoint shards:  93%|#########3| 28/30 [01:58<00:08,  4.27s/it]Loading checkpoint shards:  97%|#########6| 29/30 [02:03<00:04,  4.35s/it]Loading checkpoint shards: 100%|##########| 30/30 [02:04<00:00,  3.43s/it]Loading checkpoint shards: 100%|##########| 30/30 [02:04<00:00,  4.15s/it]
+Loading LoRA adapter: models/blueprint-lora-v10/final
+[08:44:51] Model loaded in 216s
+[08:44:51] L15: Corrective Training: Weak Similarity Patterns (20 prompts)
+[08:44:51]   [1/20] L15_01
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:45:43]     [OK] score=94% nodes=7 52.3s
+[08:45:43]   [2/20] L15_02
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:47:02]     [OK] score=85% nodes=10 79.0s
+[08:47:02]   [3/20] L15_03
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:48:07]     [OK] score=59% nodes=7 65.1s
+[08:48:07]   [4/20] L15_04
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:49:22]     [OK] score=100% nodes=9 74.4s
+[08:49:22]   [5/20] L15_05
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:50:10]     [OK] score=100% nodes=7 48.0s
+[08:50:10]   [6/20] L15_06
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:50:52]     [OK] score=100% nodes=6 42.3s
+[08:50:52]   [7/20] L15_07
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:51:39]     [OK] score=100% nodes=7 47.2s
+[08:51:39]   [8/20] L15_08
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:52:18]     [OK] score=100% nodes=6 38.9s
+[08:52:18]   [9/20] L15_09
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:53:25]     [OK] score=100% nodes=9 66.5s
+[08:53:25]   [10/20] L15_10
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:54:50]     [OK] score=100% nodes=11 85.7s
+[08:54:50]   [11/20] L15_11
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:55:51]     [OK] score=95% nodes=8 60.6s
+[08:55:51]   [12/20] L15_12
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:57:15]     [OK] score=96% nodes=11 83.9s
+[08:57:15]   [13/20] L15_13
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:58:05]     [OK] score=94% nodes=7 50.1s
+[08:58:05]   [14/20] L15_14
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[08:59:14]     [OK] score=96% nodes=10 69.3s
+[08:59:14]   [15/20] L15_15
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[09:00:32]     [OK] score=92% nodes=11 77.8s
+[09:00:32]   [16/20] L15_16
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[09:01:37]     [OK] score=100% nodes=9 64.9s
+[09:01:37]   [17/20] L15_17
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[09:02:22]     [OK] score=100% nodes=6 45.4s
+[09:02:22]   [18/20] L15_18
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[09:03:24]     [OK] score=100% nodes=8 61.7s
+[09:03:24]   [19/20] L15_19
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[09:04:16]     [OK] score=100% nodes=7 51.8s
+[09:04:16]   [20/20] L15_20
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[09:05:43]     [OK] score=100% nodes=11 87.3s
+[09:05:43] L15 RESULT: syntax=100.0% sim=95.6%
+[09:05:43] Done.

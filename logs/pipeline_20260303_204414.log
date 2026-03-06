@@ -1,0 +1,291 @@
+[20:44:15] [INFO] ============================================================
+[20:44:15] [INFO]   BLUEPRINT LLM PIPELINE — FULL
+[20:44:15] [INFO] ============================================================
+[20:44:15] [INFO] Root: C:\BlueprintLLM
+[20:44:15] [INFO] Time: 2026-03-03 20:44:15
+[20:44:15] [INFO] Last run: 2026-03-02T00:00:25.182399
+[20:44:15] [INFO] Model: v8
+[20:44:15] [INFO] ============================================================
+[20:44:15] [INFO]   STEP 1: Data Foundation
+[20:44:15] [INFO] ============================================================
+[20:44:15] [STEP 1] STARTING: Data Foundation
+[20:44:15] [INFO] No new exports found.
+[20:44:15] [INFO] Running: Generating 500 synthetic examples
+[20:44:15] [INFO]   Cmd: C:\BlueprintLLM\venv\Scripts\python.exe C:\BlueprintLLM\scripts\03_generate_synthetic_data.py --count 500 --output C:\BlueprintLLM\datasets\synthetic_train.jsonl --seed 42
+[20:44:15] [INFO]   | [20:44:15] [STEP 1.3] STARTING: Generate synthetic data | ETA: 0.0s
+[20:44:15] [INFO]   |            count=500
+[20:44:15] [INFO]   | Generated 295 unique examples from 2500 attempts
+[20:44:15] [INFO]   | Saved 265 examples to C:\BlueprintLLM\datasets\synthetic_train.jsonl
+[20:44:15] [INFO]   | Saved 30 examples to C:\BlueprintLLM\datasets\validation.jsonl
+[20:44:15] [INFO]   | 
+[20:44:15] [INFO]   | Pattern distribution:
+[20:44:15] [INFO]   |   pattern_delay_sequence: 163 (55.3%)
+[20:44:15] [INFO]   |   pattern_key_press_action: 35 (11.9%)
+[20:44:15] [INFO]   |   pattern_health_system: 20 (6.8%)
+[20:44:15] [INFO]   |   pattern_toggle_visibility: 16 (5.4%)
+[20:44:15] [INFO]   |   pattern_branch_condition: 16 (5.4%)
+[20:44:15] [INFO]   |   pattern_rotating_actor: 15 (5.1%)
+[20:44:15] [INFO]   |   pattern_timer_loop: 15 (5.1%)
+[20:44:15] [INFO]   |   pattern_print_on_begin_play: 6 (2.0%)
+[20:44:15] [INFO]   |   pattern_pickup_item: 5 (1.7%)
+[20:44:15] [INFO]   |   pattern_overlap_trigger: 4 (1.4%)
+[20:44:15] [INFO]   | [20:44:15] [STEP 1.3] COMPLETE: Generate synthetic data (0.0s)
+[20:44:15] [INFO]   |            295 examples
+[20:44:15] [INFO] Running: Converting lessons to training data
+[20:44:15] [INFO]   Cmd: C:\BlueprintLLM\venv\Scripts\python.exe C:\BlueprintLLM\scripts\13_lesson_to_training.py --lesson-dir C:\BlueprintLLM\lessons --output C:\BlueprintLLM\datasets\lesson_data.jsonl --no-append
+[20:44:25] [INFO]   | [20:44:15] [STEP 1.4] STARTING: Convert lessons to training data | ETA: 2.6s
+[20:44:25] [INFO]   | Wrote 48 training entries from lesson_01 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_01_lesson_merged_20260303_204415
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_01_lesson_merged_20260303_204415
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_01_lesson_merged_20260303_204415 (205 files)
+[20:44:25] [INFO]   | Wrote 54 training entries from lesson_02 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (24 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_02_lesson_merged_20260303_204416
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_02_lesson_merged_20260303_204416
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_02_lesson_merged_20260303_204416 (205 files)
+[20:44:25] [INFO]   | Wrote 46 training entries from lesson_03 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_03_lesson_merged_20260303_204417
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_03_lesson_merged_20260303_204417
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_03_lesson_merged_20260303_204417 (205 files)
+[20:44:25] [INFO]   | Wrote 40 training entries from lesson_04 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_04_lesson_merged_20260303_204417
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_04_lesson_merged_20260303_204417
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_04_lesson_merged_20260303_204417 (205 files)
+[20:44:25] [INFO]   | Wrote 42 training entries from lesson_05 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_05_lesson_merged_20260303_204418
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_05_lesson_merged_20260303_204418
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_05_lesson_merged_20260303_204418 (205 files)
+[20:44:25] [INFO]   | Wrote 46 training entries from lesson_06 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_06_lesson_merged_20260303_204419
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_06_lesson_merged_20260303_204419
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_06_lesson_merged_20260303_204419 (205 files)
+[20:44:25] [INFO]   | Wrote 52 training entries from lesson_07 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_07_lesson_merged_20260303_204420
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_07_lesson_merged_20260303_204420
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_07_lesson_merged_20260303_204420 (205 files)
+[20:44:25] [INFO]   | Wrote 40 training entries from lesson_08 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_08_lesson_merged_20260303_204420
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_08_lesson_merged_20260303_204420
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_08_lesson_merged_20260303_204420 (205 files)
+[20:44:25] [INFO]   | Wrote 44 training entries from lesson_09 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_09_lesson_merged_20260303_204421
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_09_lesson_merged_20260303_204421
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_09_lesson_merged_20260303_204421 (205 files)
+[20:44:25] [INFO]   | Wrote 43 training entries from lesson_10 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_10_lesson_merged_20260303_204422
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_10_lesson_merged_20260303_204422
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_10_lesson_merged_20260303_204422 (205 files)
+[20:44:25] [INFO]   | Wrote 40 training entries from lesson_11 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_11_lesson_merged_20260303_204423
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_11_lesson_merged_20260303_204423
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_11_lesson_merged_20260303_204423 (205 files)
+[20:44:25] [INFO]   | Wrote 45 training entries from lesson_12 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_12_lesson_merged_20260303_204423
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_12_lesson_merged_20260303_204423
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_12_lesson_merged_20260303_204423 (205 files)
+[20:44:25] [INFO]   | Wrote 47 training entries from lesson_13 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_13_lesson_merged_20260303_204424
+[20:44:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_13_lesson_merged_20260303_204424
+[20:44:25] [INFO]   | [Backup] Done: milestone_lesson_13_lesson_merged_20260303_204424 (205 files)
+[20:44:25] [ERROR]   FAILED (exit 1, category=unknown)
+[20:44:25] [ERROR]   ERR| Traceback (most recent call last):
+[20:44:25] [ERROR]   ERR|   File "C:\BlueprintLLM\scripts\13_lesson_to_training.py", line 137, in <module>
+[20:44:25] [ERROR]   ERR|     main()
+[20:44:25] [ERROR]   ERR|   File "C:\BlueprintLLM\scripts\13_lesson_to_training.py", line 130, in main
+[20:44:25] [ERROR]   ERR|     lesson_to_training(str(lf), args.output, append=True)
+[20:44:25] [ERROR]   ERR|   File "C:\BlueprintLLM\scripts\13_lesson_to_training.py", line 83, in lesson_to_training
+[20:44:25] [ERROR]   ERR|     "output": prompt["expected_dsl"],
+[20:44:25] [ERROR]   ERR|               ~~~~~~^^^^^^^^^^^^^^^^
+[20:44:25] [ERROR]   ERR| KeyError: 'expected_dsl'
+[20:44:25] [INFO]   Error is retryable (unknown). Will retry.
+[20:44:25] [INFO]   [RETRY 1/2] Waiting 10s before retry...
+[20:44:45] [INFO]   | [20:44:35] [STEP 1.4] STARTING: Convert lessons to training data | ETA: 2.6s
+[20:44:45] [INFO]   | Wrote 48 training entries from lesson_01 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_01_lesson_merged_20260303_204435
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_01_lesson_merged_20260303_204435
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_01_lesson_merged_20260303_204435 (205 files)
+[20:44:45] [INFO]   | Wrote 54 training entries from lesson_02 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (24 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_02_lesson_merged_20260303_204436
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_02_lesson_merged_20260303_204436
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_02_lesson_merged_20260303_204436 (205 files)
+[20:44:45] [INFO]   | Wrote 46 training entries from lesson_03 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_03_lesson_merged_20260303_204436
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_03_lesson_merged_20260303_204436
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_03_lesson_merged_20260303_204436 (205 files)
+[20:44:45] [INFO]   | Wrote 40 training entries from lesson_04 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_04_lesson_merged_20260303_204437
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_04_lesson_merged_20260303_204437
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_04_lesson_merged_20260303_204437 (205 files)
+[20:44:45] [INFO]   | Wrote 42 training entries from lesson_05 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_05_lesson_merged_20260303_204438
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_05_lesson_merged_20260303_204438
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_05_lesson_merged_20260303_204438 (205 files)
+[20:44:45] [INFO]   | Wrote 46 training entries from lesson_06 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_06_lesson_merged_20260303_204439
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_06_lesson_merged_20260303_204439
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_06_lesson_merged_20260303_204439 (205 files)
+[20:44:45] [INFO]   | Wrote 52 training entries from lesson_07 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_07_lesson_merged_20260303_204439
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_07_lesson_merged_20260303_204439
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_07_lesson_merged_20260303_204439 (205 files)
+[20:44:45] [INFO]   | Wrote 40 training entries from lesson_08 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_08_lesson_merged_20260303_204440
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_08_lesson_merged_20260303_204440
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_08_lesson_merged_20260303_204440 (205 files)
+[20:44:45] [INFO]   | Wrote 44 training entries from lesson_09 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_09_lesson_merged_20260303_204441
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_09_lesson_merged_20260303_204441
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_09_lesson_merged_20260303_204441 (205 files)
+[20:44:45] [INFO]   | Wrote 43 training entries from lesson_10 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_10_lesson_merged_20260303_204442
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_10_lesson_merged_20260303_204442
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_10_lesson_merged_20260303_204442 (205 files)
+[20:44:45] [INFO]   | Wrote 40 training entries from lesson_11 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_11_lesson_merged_20260303_204442
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_11_lesson_merged_20260303_204442
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_11_lesson_merged_20260303_204442 (205 files)
+[20:44:45] [INFO]   | Wrote 45 training entries from lesson_12 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_12_lesson_merged_20260303_204443
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_12_lesson_merged_20260303_204443
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_12_lesson_merged_20260303_204443 (205 files)
+[20:44:45] [INFO]   | Wrote 47 training entries from lesson_13 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:44:45] [INFO]   |   (20 prompts x ~2 variations each)
+[20:44:45] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_13_lesson_merged_20260303_204444
+[20:44:45] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_13_lesson_merged_20260303_204444
+[20:44:45] [INFO]   | [Backup] Done: milestone_lesson_13_lesson_merged_20260303_204444 (205 files)
+[20:44:45] [ERROR]   FAILED (exit 1, category=unknown)
+[20:44:45] [ERROR]   ERR| Traceback (most recent call last):
+[20:44:45] [ERROR]   ERR|   File "C:\BlueprintLLM\scripts\13_lesson_to_training.py", line 137, in <module>
+[20:44:45] [ERROR]   ERR|     main()
+[20:44:45] [ERROR]   ERR|   File "C:\BlueprintLLM\scripts\13_lesson_to_training.py", line 130, in main
+[20:44:45] [ERROR]   ERR|     lesson_to_training(str(lf), args.output, append=True)
+[20:44:45] [ERROR]   ERR|   File "C:\BlueprintLLM\scripts\13_lesson_to_training.py", line 83, in lesson_to_training
+[20:44:45] [ERROR]   ERR|     "output": prompt["expected_dsl"],
+[20:44:45] [ERROR]   EXCEPTION: [Errno 22] Invalid argument
+[20:44:45] [INFO]   [RETRY 2/2] Waiting 30s before retry...
+[20:45:25] [INFO]   | [20:45:15] [STEP 1.4] STARTING: Convert lessons to training data | ETA: 2.6s
+[20:45:25] [INFO]   | Wrote 48 training entries from lesson_01 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_01_lesson_merged_20260303_204515
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_01_lesson_merged_20260303_204515
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_01_lesson_merged_20260303_204515 (205 files)
+[20:45:25] [INFO]   | Wrote 54 training entries from lesson_02 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (24 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_02_lesson_merged_20260303_204515
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_02_lesson_merged_20260303_204515
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_02_lesson_merged_20260303_204515 (205 files)
+[20:45:25] [INFO]   | Wrote 46 training entries from lesson_03 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_03_lesson_merged_20260303_204516
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_03_lesson_merged_20260303_204516
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_03_lesson_merged_20260303_204516 (205 files)
+[20:45:25] [INFO]   | Wrote 40 training entries from lesson_04 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_04_lesson_merged_20260303_204517
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_04_lesson_merged_20260303_204517
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_04_lesson_merged_20260303_204517 (205 files)
+[20:45:25] [INFO]   | Wrote 42 training entries from lesson_05 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_05_lesson_merged_20260303_204518
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_05_lesson_merged_20260303_204518
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_05_lesson_merged_20260303_204518 (205 files)
+[20:45:25] [INFO]   | Wrote 46 training entries from lesson_06 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_06_lesson_merged_20260303_204518
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_06_lesson_merged_20260303_204518
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_06_lesson_merged_20260303_204518 (205 files)
+[20:45:25] [INFO]   | Wrote 52 training entries from lesson_07 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_07_lesson_merged_20260303_204519
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_07_lesson_merged_20260303_204519
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_07_lesson_merged_20260303_204519 (205 files)
+[20:45:25] [INFO]   | Wrote 40 training entries from lesson_08 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_08_lesson_merged_20260303_204520
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_08_lesson_merged_20260303_204520
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_08_lesson_merged_20260303_204520 (205 files)
+[20:45:25] [INFO]   | Wrote 44 training entries from lesson_09 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_09_lesson_merged_20260303_204521
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_09_lesson_merged_20260303_204521
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_09_lesson_merged_20260303_204521 (205 files)
+[20:45:25] [INFO]   | Wrote 43 training entries from lesson_10 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_10_lesson_merged_20260303_204521
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_10_lesson_merged_20260303_204521
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_10_lesson_merged_20260303_204521 (205 files)
+[20:45:25] [INFO]   | Wrote 40 training entries from lesson_11 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_11_lesson_merged_20260303_204522
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_11_lesson_merged_20260303_204522
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_11_lesson_merged_20260303_204522 (205 files)
+[20:45:25] [INFO]   | Wrote 45 training entries from lesson_12 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_12_lesson_merged_20260303_204523
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_12_lesson_merged_20260303_204523
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_12_lesson_merged_20260303_204523 (205 files)
+[20:45:25] [INFO]   | Wrote 47 training entries from lesson_13 to C:\BlueprintLLM\datasets\lesson_data.jsonl
+[20:45:25] [INFO]   |   (20 prompts x ~2 variations each)
+[20:45:25] [INFO]   | [Backup] Creating milestone backup: milestone_lesson_13_lesson_merged_20260303_204524
+[20:45:25] [INFO]   | [Backup] Mirrored to D:\BlueprintLLMBackup\milestone_lesson_13_lesson_merged_20260303_204524
+[20:45:25] [INFO]   | [Backup] Done: milestone_lesson_13_lesson_merged_20260303_204524 (205 files)
+[20:45:25] [ERROR]   FAILED (exit 1, category=unknown)
+[20:45:25] [ERROR]   ERR| Traceback (most recent call last):
+[20:45:25] [ERROR]   ERR|   File "C:\BlueprintLLM\scripts\13_lesson_to_training.py", line 137, in <module>
+[20:45:25] [ERROR]   ERR|     main()
+[20:45:25] [ERROR]   ERR|   File "C:\BlueprintLLM\scripts\13_lesson_to_training.py", line 130, in main
+[20:45:25] [ERROR]   ERR|     lesson_to_training(str(lf), args.output, append=True)
+[20:45:25] [ERROR]   ERR|   File "C:\BlueprintLLM\scripts\13_lesson_to_training.py", line 83, in lesson_to_training
+[20:45:25] [ERROR]   ERR|     "output": prompt["expected_dsl"],
+[20:45:25] [ERROR]   ERR|               ~~~~~~^^^^^^^^^^^^^^^^
+[20:45:25] [ERROR]   ERR| KeyError: 'expected_dsl'
+[20:45:25] [INFO]   265 synthetic examples
+[20:45:25] [INFO]   1128 auto-translated examples
+[20:45:25] [INFO]   679 lesson examples
+[20:45:25] [INFO]   Dedup: 2072 -> 609 (removed 1336 exact, 127 structural)
+[20:45:25] [INFO]   Reinforced 44 entries from ['lesson_01', 'lesson_02']
+[20:45:25] [INFO]   Total: 653 training examples
+[20:45:25] [ERROR] Pipeline exception: [Errno 22] Invalid argument
+[20:45:25] [ERROR] Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\11_pipeline_orchestrator.py", line 1242, in run_pipeline
+    step_data_foundation(cfg, log, dry_run)
+  File "C:\BlueprintLLM\scripts\11_pipeline_orchestrator.py", line 723, in step_data_foundation
+    log.complete_step("1", "Data Foundation")
+  File "C:\BlueprintLLM\scripts\11_pipeline_orchestrator.py", line 318, in complete_step
+    self.plog.complete_step(step_id, description, details)
+  File "C:\BlueprintLLM\scripts\pipeline_logger.py", line 334, in complete_step
+    print(line, flush=True)
+OSError: [Errno 22] Invalid argument
+
+[20:45:25] [INFO] Resume state saved. Re-run with --resume to continue.
+[20:45:25] [INFO] ============================================================
+[20:45:25] [INFO]   PIPELINE COMPLETE
+[20:45:25] [INFO] ============================================================
+[20:45:25] [INFO] Time: 1m 10s
+[20:45:25] [INFO] Version: v8
+[20:45:25] [INFO] Errors: 31
+[20:45:25] [INFO] Error categories: unknown

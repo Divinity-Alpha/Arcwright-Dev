@@ -1,0 +1,113 @@
+{
+  "lesson_id": "lesson_10",
+  "lesson_name": "Complex Real-World Blueprints",
+  "model": "models/blueprint-lora-v9/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260304_203042",
+  "total_prompts": 20,
+  "valid_syntax": 18,
+  "valid_syntax_pct": 90.0,
+  "avg_similarity_score": 81.4,
+  "per_category": {
+    "pickup_full": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 53.3
+    },
+    "trap_floor": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "door_interact": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "spawner_waves": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "checkpoint": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "damage_zone": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 40.0
+    },
+    "collectible_counter": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "timed_platform": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "enemy_proximity": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "power_up": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 75.0
+    },
+    "multi_pickup": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "turret_basic": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "hud_health": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 87.9
+    },
+    "projectile_full": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "pressure_plate": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 50.0
+    },
+    "respawn_system": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 96.9
+    },
+    "moving_platform": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 29.0
+    },
+    "trigger_sequence": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 59.1
+    },
+    "loading_screen": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 47.6
+    },
+    "full_game_loop": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 89.1
+    }
+  }
+}

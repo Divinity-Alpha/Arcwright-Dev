@@ -328,3 +328,129 @@ Health Check — 2026-03-02 03:09:04
              metric=duplicate_count value=44
 
 Total: 7 alerts
+
+============================================================
+Health Check — 2026-03-02 08:38:05
+============================================================
+[INFO      ] [epoch_efficiency] Training completed
+             Version v7: 52 steps, 3 epochs, 470.5 minutes, 700 examples.
+             metric=training_time_seconds value=28229
+[INFO      ] [overfitting] Generalization: healthy
+             Train accuracy 95.0% vs eval accuracy 96.1% (gap: -1.2%).
+             metric=accuracy_gap value=-0.011664190888404868
+[INFO      ] [learning_rate] Learning rate configuration
+             LR: 0.0002, total steps: 52, loss range: 3.1348 -> 0.2405.
+             metric=learning_rate value=0.0002
+[INFO      ] [dataset_quality] Dataset composition
+             Total: 700 | Synthetic: 695 | Lesson: 0 | Auto-translated: 0 | Manual: 0 | Duplicates: 44
+             metric=dataset_total value=700
+[INFO      ] [node_mastery] Node mastery snapshot
+             31 nodes scored: 27 mastered (>=85%), 1 learning (60-84%), 3 struggling (<60%).
+             metric=nodes_mastered value=27
+[INFO      ] [resource_usage] Training throughput
+             40.33s per training example, 470.5 minutes total for 700 examples.
+             metric=time_per_example value=40.32714285714286
+[SUGGESTION] [dataset_quality] Missing node types in training data
+             7 key node types have zero training examples: CastTo, SetTimer, Timeline, CustomEvent, EventTick, OnOverlap, OnHit. Consider adding synthetic examples for these.
+             metric=missing_key_nodes value=7
+[WARNING   ] [overfitting] Accuracy plateau
+             Accuracy has changed less than 0.5% over the last 3 cycles (95.9%, 96.1%, 96.1%). Consider curriculum changes, learning rate adjustments, or new training data.
+             metric=accuracy_plateau_range value=0.0027381330728530884 (threshold: 0.005)
+[WARNING   ] [dataset_quality] Duplicate training examples
+             Found 44 duplicate outputs (6.3% of dataset). Duplicates cause the model to over-weight those patterns.
+             metric=duplicate_count value=44
+[CRITICAL  ] [node_mastery] Node regression: CastToPawn
+             CastToPawn score dropped from 94% to 44% (-50%). Possible catastrophic forgetting. Check if new lesson data displaced training for this node type.
+             metric=node_regression_CastToPawn value=-0.49999999999999994 (threshold: -0.1)
+[CRITICAL  ] [node_mastery] Node regression: Event_InputAction
+             Event_InputAction score dropped from 100% to 90% (-10%). Possible catastrophic forgetting. Check if new lesson data displaced training for this node type.
+             metric=node_regression_Event_InputAction value=-0.10299999999999998 (threshold: -0.1)
+
+Total: 11 alerts
+
+============================================================
+Health Check — 2026-03-02 08:38:15
+============================================================
+[INFO      ] [epoch_efficiency] Training completed
+             Version v7: 52 steps, 3 epochs, 470.5 minutes, 700 examples.
+             metric=training_time_seconds value=28229
+[INFO      ] [overfitting] Generalization: healthy
+             Train accuracy 95.0% vs eval accuracy 96.1% (gap: -1.2%).
+             metric=accuracy_gap value=-0.011664190888404868
+[INFO      ] [learning_rate] Learning rate configuration
+             LR: 0.0002, total steps: 52, loss range: 3.1348 -> 0.2405.
+             metric=learning_rate value=0.0002
+[INFO      ] [dataset_quality] Dataset composition
+             Total: 700 | Synthetic: 695 | Lesson: 0 | Auto-translated: 0 | Manual: 0 | Duplicates: 44
+             metric=dataset_total value=700
+[INFO      ] [node_mastery] Node mastery snapshot
+             31 nodes scored: 27 mastered (>=85%), 1 learning (60-84%), 3 struggling (<60%).
+             metric=nodes_mastered value=27
+[INFO      ] [resource_usage] Training throughput
+             40.33s per training example, 470.5 minutes total for 700 examples.
+             metric=time_per_example value=40.32714285714286
+[SUGGESTION] [dataset_quality] Missing node types in training data
+             7 key node types have zero training examples: CastTo, SetTimer, Timeline, CustomEvent, EventTick, OnOverlap, OnHit. Consider adding synthetic examples for these.
+             metric=missing_key_nodes value=7
+[WARNING   ] [overfitting] Accuracy plateau
+             Accuracy has changed less than 0.5% over the last 3 cycles (95.9%, 96.1%, 96.1%). Consider curriculum changes, learning rate adjustments, or new training data.
+             metric=accuracy_plateau_range value=0.0027381330728530884 (threshold: 0.005)
+[WARNING   ] [dataset_quality] Duplicate training examples
+             Found 44 duplicate outputs (6.3% of dataset). Duplicates cause the model to over-weight those patterns.
+             metric=duplicate_count value=44
+
+Total: 9 alerts
+
+============================================================
+Health Check — 2026-03-03 05:22:04
+============================================================
+[INFO      ] [overfitting] Generalization: healthy
+             Train accuracy 94.5% vs eval accuracy 96.2% (gap: -1.6%).
+             metric=accuracy_gap value=-0.01631357073783879
+[INFO      ] [learning_rate] Learning rate configuration
+             LR: 0.0002, total steps: 105, loss range: 3.2591 -> 0.2606.
+             metric=learning_rate value=0.0002
+[INFO      ] [dataset_quality] Dataset composition
+             Total: 700 | Synthetic: 695 | Lesson: 0 | Auto-translated: 0 | Manual: 0 | Duplicates: 44
+             metric=dataset_total value=700
+[INFO      ] [node_mastery] Node mastery snapshot
+             31 nodes scored: 27 mastered (>=85%), 1 learning (60-84%), 3 struggling (<60%).
+             metric=nodes_mastered value=27
+[SUGGESTION] [dataset_quality] Missing node types in training data
+             7 key node types have zero training examples: CastTo, SetTimer, Timeline, CustomEvent, EventTick, OnOverlap, OnHit. Consider adding synthetic examples for these.
+             metric=missing_key_nodes value=7
+[WARNING   ] [overfitting] Accuracy plateau
+             Accuracy has changed less than 0.5% over the last 3 cycles (95.9%, 96.1%, 96.2%). Consider curriculum changes, learning rate adjustments, or new training data.
+             metric=accuracy_plateau_range value=0.002844512462615967 (threshold: 0.005)
+[WARNING   ] [dataset_quality] Duplicate training examples
+             Found 44 duplicate outputs (6.3% of dataset). Duplicates cause the model to over-weight those patterns.
+             metric=duplicate_count value=44
+
+Total: 7 alerts
+
+============================================================
+Health Check — 2026-03-06 08:24:09
+============================================================
+[INFO      ] [overfitting] Generalization: healthy
+             Train accuracy 95.2% vs eval accuracy 96.2% (gap: -1.0%).
+             metric=accuracy_gap value=-0.009669426083564803
+[INFO      ] [learning_rate] Learning rate configuration
+             LR: 0.0002, total steps: 114, loss range: 2.9052 -> 0.2337.
+             metric=learning_rate value=0.0002
+[INFO      ] [dataset_quality] Dataset composition
+             Total: 760 | Synthetic: 739 | Lesson: 0 | Auto-translated: 0 | Manual: 0 | Duplicates: 44
+             metric=dataset_total value=760
+[INFO      ] [node_mastery] Node mastery snapshot
+             40 nodes scored: 39 mastered (>=85%), 0 learning (60-84%), 1 struggling (<60%).
+             metric=nodes_mastered value=39
+[SUGGESTION] [dataset_quality] Missing node types in training data
+             7 key node types have zero training examples: CastTo, SetTimer, Timeline, CustomEvent, EventTick, OnOverlap, OnHit. Consider adding synthetic examples for these.
+             metric=missing_key_nodes value=7
+[WARNING   ] [overfitting] Accuracy plateau
+             Accuracy has changed less than 0.5% over the last 3 cycles (96.1%, 96.2%, 96.2%). Consider curriculum changes, learning rate adjustments, or new training data.
+             metric=accuracy_plateau_range value=0.0006853193044662476 (threshold: 0.005)
+[WARNING   ] [dataset_quality] Duplicate training examples
+             Found 44 duplicate outputs (5.8% of dataset). Duplicates cause the model to over-weight those patterns.
+             metric=duplicate_count value=44
+
+Total: 7 alerts

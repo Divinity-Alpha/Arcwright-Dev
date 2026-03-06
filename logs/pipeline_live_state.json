@@ -1,16 +1,22 @@
 {
-  "status": "idle",
-  "run_id": "82fd56d8",
+  "status": "running",
+  "run_id": "56b58daa",
   "step_id": "",
   "description": "",
-  "timestamp": "2026-03-02T07:50:54.197546",
-  "cycle_start_time": 1772431225.1823995,
-  "elapsed_seconds": 28229.0,
+  "timestamp": "2026-03-06T14:24:20.000332",
+  "cycle_start_time": 1772780417.6243088,
+  "elapsed_seconds": 48242.4,
   "completed_steps": [
     {
       "step": "1",
       "name": "Data Foundation",
-      "duration": 10.05,
+      "duration": 26.53,
+      "status": "complete"
+    },
+    {
+      "step": "2.2a",
+      "name": "Kill zombie GPU processes",
+      "duration": 0.04,
       "status": "complete"
     },
     {
@@ -22,7 +28,7 @@
     {
       "step": "2",
       "name": "Pre-Flight Checks",
-      "duration": 3.2,
+      "duration": 3.36,
       "status": "complete"
     },
     {
@@ -34,31 +40,31 @@
     {
       "step": "5",
       "name": "Post-Training",
-      "duration": 20.37,
+      "duration": 10.26,
       "status": "complete"
     },
     {
       "step": "6",
       "name": "Exam",
-      "duration": 16172.85,
+      "duration": 20898.61,
       "status": "complete"
     },
     {
       "step": "7",
       "name": "Evaluation",
-      "duration": 722.84,
+      "duration": 683.74,
       "status": "complete"
     },
     {
       "step": "8",
       "name": "Lesson Integration",
-      "duration": 10.75,
+      "duration": 27.97,
       "status": "complete"
     },
     {
       "step": "9",
       "name": "Dashboard & Finalize",
-      "duration": 0.11,
+      "duration": 0.13,
       "status": "complete"
     }
   ],
@@ -81,7 +87,7 @@
     {
       "step": "1.4",
       "name": "Convert lessons",
-      "eta_seconds": 2.6
+      "eta_seconds": 16.0
     },
     {
       "step": "1.5",
@@ -106,7 +112,7 @@
     {
       "step": "3",
       "name": "Model Setup",
-      "eta_seconds": null
+      "eta_seconds": 0.0
     },
     {
       "step": "3.1",
@@ -126,7 +132,7 @@
     {
       "step": "3.4",
       "name": "Load base model + quantize",
-      "eta_seconds": 176.4
+      "eta_seconds": 182.1
     },
     {
       "step": "3.5",
@@ -136,17 +142,17 @@
     {
       "step": "3.6",
       "name": "Configure SFT Trainer",
-      "eta_seconds": 1.2
+      "eta_seconds": 1.1
     },
     {
       "step": "4",
       "name": "Training",
-      "eta_seconds": null
+      "eta_seconds": 0.0
     },
     {
       "step": "4.1",
       "name": "Pre-training backup",
-      "eta_seconds": 1.9
+      "eta_seconds": 2.4
     },
     {
       "step": "4.2",
@@ -206,17 +212,17 @@
     {
       "step": "6.1",
       "name": "Load lesson",
-      "eta_seconds": null
+      "eta_seconds": 0.0
     },
     {
       "step": "6.2",
       "name": "Load model for exam",
-      "eta_seconds": null
+      "eta_seconds": 197.4
     },
     {
       "step": "6.3",
       "name": "Run prompts",
-      "eta_seconds": null
+      "eta_seconds": 938.3
     },
     {
       "step": "6.4",
@@ -231,12 +237,12 @@
     {
       "step": "6.6",
       "name": "Save exam results",
-      "eta_seconds": null
+      "eta_seconds": 0.0
     },
     {
       "step": "6.7",
       "name": "Post-exam backup",
-      "eta_seconds": null
+      "eta_seconds": 0.7
     },
     {
       "step": "7.1",
@@ -349,6 +355,11 @@
       "step": "2",
       "name": "Pre-Flight Checks",
       "parent": null
+    },
+    {
+      "step": "2.2a",
+      "name": "Kill zombie GPU processes",
+      "parent": "2"
     },
     {
       "step": "2.1",
@@ -614,48 +625,30 @@
   "latest_metrics": {},
   "loss_history": [],
   "error_info": {
-    "step_id": "6",
-    "category": "unknown",
-    "message": "exit 1: unknown",
-    "timestamp": "2026-03-02T07:38:37.326847"
+    "step_id": "",
+    "category": "encoding",
+    "message": "exit 1: encoding",
+    "timestamp": "2026-03-06T08:24:09.427266"
   },
   "retry_info": {
-    "step_id": "6",
+    "step_id": "",
     "attempt": 1,
     "max_retries": 1,
-    "timestamp": "2026-03-02T07:38:05.268304"
+    "timestamp": "2026-03-06T08:23:59.360466"
   },
   "error_history": [
     {
       "step_id": "",
       "category": "encoding",
       "message": "exit 1: encoding",
-      "timestamp": "2026-03-02T03:08:44.212709"
+      "timestamp": "2026-03-06T08:23:59.360466"
     },
     {
       "step_id": "",
       "category": "encoding",
       "message": "exit 1: encoding",
-      "timestamp": "2026-03-02T03:08:54.274096"
-    },
-    {
-      "step_id": "",
-      "category": "unknown",
-      "message": "exit 2: unknown",
-      "timestamp": "2026-03-02T03:08:54.387437"
-    },
-    {
-      "step_id": "6",
-      "category": "unknown",
-      "message": "exit 1: unknown",
-      "timestamp": "2026-03-02T07:38:05.268304"
-    },
-    {
-      "step_id": "6",
-      "category": "unknown",
-      "message": "exit 1: unknown",
-      "timestamp": "2026-03-02T07:38:37.326847"
+      "timestamp": "2026-03-06T08:24:09.427266"
     }
   ],
-  "eta_remaining_seconds": 182.2
+  "eta_remaining_seconds": 1338.1
 }

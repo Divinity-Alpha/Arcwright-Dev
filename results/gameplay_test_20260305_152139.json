@@ -1,0 +1,42 @@
+{
+  "test": "gameplay_verification",
+  "timestamp": "20260305_152139",
+  "results": [
+    {
+      "test": "health_check",
+      "status": "PASS",
+      "detail": "1.0"
+    },
+    {
+      "test": "level_has_game_bps",
+      "status": "FAIL",
+      "detail": "5 actors, NO game BPs"
+    },
+    {
+      "test": "baseline_log",
+      "status": "PASS",
+      "detail": "0 existing lines"
+    },
+    {
+      "test": "play_in_editor_request",
+      "status": "PASS",
+      "detail": "Request queued"
+    },
+    {
+      "test": "pie_log_output",
+      "status": "KNOWN_LIMITATION",
+      "detail": "No new BlueprintUserMessages -- PIE likely didn't start"
+    },
+    {
+      "test": "stop_play",
+      "status": "PASS",
+      "detail": "No PIE session was running"
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "pass": 4,
+    "fail": 1,
+    "known_limitation": 1
+  }
+}

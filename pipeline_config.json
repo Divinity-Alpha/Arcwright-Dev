@@ -36,5 +36,11 @@
     },
     "synthetic": {
         "synthetic_count": 500
+    },
+    "training_mode": {
+        "mode": "full",
+        "continuation_lr": 5e-5,
+        "continuation_epochs": 2,
+        "new_lessons_only": false
     }
 }
