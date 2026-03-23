@@ -826,6 +826,21 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	if (Command == TEXT("teleport_player"))     { return HandleTeleportPlayer(Params); }
 	if (Command == TEXT("get_player_location"))  { return HandleGetPlayerLocation(Params); }
 	if (Command == TEXT("look_at"))              { return HandleLookAt(Params); }
+	if (Command == TEXT("run_console_command"))
+	{
+		FString Cmd = Params->GetStringField(TEXT("command"));
+		if (Cmd.IsEmpty()) return FCommandResult::Error(TEXT("Missing 'command' param"));
+		if (!GEditor || !GEditor->PlayWorld)
+			return FCommandResult::Error(TEXT("PIE not running — console commands need a game world"));
+		APlayerController* PC = GEditor->PlayWorld->GetFirstPlayerController();
+		if (!PC) return FCommandResult::Error(TEXT("No player controller"));
+		FString Result;
+		PC->ConsoleCommand(Cmd);
+		TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+		Data->SetStringField(TEXT("command"), Cmd);
+		Data->SetBoolField(TEXT("executed"), true);
+		return FCommandResult::Ok(Data);
+	}
 	if (Command == TEXT("get_player_view"))      { return HandleGetPlayerView(Params); }
 	if (Command == TEXT("teleport_to_actor"))    { return HandleTeleportToActor(Params); }
 	if (Command == TEXT("capture_full_screen"))  { return HandleCaptureFullScreen(Params); }
