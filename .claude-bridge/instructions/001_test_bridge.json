@@ -1,0 +1,21 @@
+{
+  "id": "001",
+  "timestamp": "2026-03-23T15:00:00Z",
+  "from": "claude.ai",
+  "priority": "low",
+  "type": "test",
+  "title": "Test bridge communication",
+  "instructions": "This is a test instruction. Verify the bridge is working by:\n1. Reading this instruction\n2. Printing 'Bridge test received'\n3. Marking it complete with --complete 001",
+  "verification": {
+    "type": "manual",
+    "steps": [
+      "Read instruction",
+      "Print confirmation",
+      "Mark complete"
+    ],
+    "success_criteria": "001_result.json exists in results/"
+  },
+  "constraints": [],
+  "status": "completed",
+  "completed_at": "2026-03-23T15:20:51Z"
+}
