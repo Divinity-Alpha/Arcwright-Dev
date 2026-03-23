@@ -989,6 +989,8 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	if (Command == TEXT("get_widget_screenshot"))    { return HandleGetWidgetScreenshot(Params); }
 	if (Command == TEXT("get_viewport_widgets"))     { return HandleGetViewportWidgets(Params); }
 	if (Command == TEXT("reparent_widget_blueprint")) { return HandleReparentWidgetBlueprint(Params); }
+	if (Command == TEXT("validate_widget_layout"))   { return HandleValidateWidgetLayout(Params); }
+	if (Command == TEXT("auto_fix_widget_layout"))    { return HandleAutoFixWidgetLayout(Params); }
 
 	// Generic DSL config commands (Input, SmartObject, Sound, Replication, ControlRig, StateTree, Vehicle, WorldPartition, Landscape, Foliage, MassEntity)
 	if (Command == TEXT("create_input_config") || Command == TEXT("create_smartobject_config") ||
@@ -8068,6 +8070,311 @@ FCommandResult FCommandServer::HandleReparentWidgetBlueprint(const TSharedPtr<FJ
 
 	UE_LOG(LogBlueprintLLM, Log, TEXT("Reparented widget '%s': %s -> %s (%d conflicts resolved, compiled=%d)"),
 		*WBPName, *OldParent, *NewParentClass->GetName(), FunctionsToRemove.Num(), bCompiled);
+
+	return FCommandResult::Ok(Data);
+}
+
+// ════════════════════════════════════════════════════════════════════
+//  validate_widget_layout — inspect a widget for common layout problems
+// ════════════════════════════════════════════════════════════════════
+FCommandResult FCommandServer::HandleValidateWidgetLayout(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WBPName = Params->GetStringField(TEXT("name"));
+	if (WBPName.IsEmpty())
+		return FCommandResult::Error(TEXT("Missing 'name' param"));
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(WBPName);
+	if (!WBP)
+		return FCommandResult::Error(FString::Printf(TEXT("Widget Blueprint not found: %s"), *WBPName));
+
+	UWidget* RootWidget = WBP->WidgetTree ? WBP->WidgetTree->RootWidget : nullptr;
+	if (!RootWidget)
+		return FCommandResult::Error(TEXT("Widget has no root"));
+
+	TArray<TSharedPtr<FJsonValue>> Issues;
+	int32 Score = 100;
+
+	// Collect all children with their slot info
+	struct FWidgetInfo
+	{
+		UWidget* Widget;
+		FString Name;
+		FString Type;
+		int32 FontSize;
+		FVector2D Position;
+		bool bHasExplicitPosition;
+	};
+	TArray<FWidgetInfo> Children;
+
+	UPanelWidget* RootPanel = Cast<UPanelWidget>(RootWidget);
+	if (RootPanel)
+	{
+		for (int32 i = 0; i < RootPanel->GetChildrenCount(); i++)
+		{
+			UWidget* Child = RootPanel->GetChildAt(i);
+			if (!Child) continue;
+
+			FWidgetInfo Info;
+			Info.Widget = Child;
+			Info.Name = Child->GetName();
+			Info.Type = Child->GetClass()->GetName();
+			Info.FontSize = 0;
+			Info.Position = FVector2D::ZeroVector;
+			Info.bHasExplicitPosition = false;
+
+			// Check font size for TextBlock
+			if (UTextBlock* TB = Cast<UTextBlock>(Child))
+			{
+				Info.FontSize = static_cast<int32>(TB->GetFont().Size);
+			}
+
+			// Check canvas slot position
+			if (UCanvasPanel* Canvas = Cast<UCanvasPanel>(RootPanel))
+			{
+				if (UCanvasPanelSlot* Slot = Cast<UCanvasPanelSlot>(Child->Slot))
+				{
+					FMargin Offsets = Slot->GetOffsets();
+					Info.Position = FVector2D(Offsets.Left, Offsets.Top);
+					FAnchors Anchors = Slot->GetAnchors();
+					Info.bHasExplicitPosition = (Offsets.Left != 0 || Offsets.Top != 0 ||
+						Anchors.Minimum != FVector2D::ZeroVector || Anchors.Maximum != FVector2D::ZeroVector);
+				}
+			}
+
+			Children.Add(Info);
+		}
+	}
+
+	// ── Check 1: Overlapping elements (same position) ──
+	TMap<FString, TArray<FString>> PositionGroups;
+	for (const FWidgetInfo& Info : Children)
+	{
+		FString PosKey = FString::Printf(TEXT("%.0f,%.0f"), Info.Position.X, Info.Position.Y);
+		PositionGroups.FindOrAdd(PosKey).Add(Info.Name);
+	}
+	for (const auto& Pair : PositionGroups)
+	{
+		if (Pair.Value.Num() > 1)
+		{
+			TSharedPtr<FJsonObject> Issue = MakeShareable(new FJsonObject());
+			Issue->SetStringField(TEXT("type"), TEXT("overlap"));
+			Issue->SetStringField(TEXT("detail"),
+				FString::Printf(TEXT("%d elements at same position (%s): %s"),
+					Pair.Value.Num(), *Pair.Key, *FString::Join(Pair.Value, TEXT(", "))));
+			Issues.Add(MakeShareable(new FJsonValueObject(Issue)));
+			Score -= 15 * (Pair.Value.Num() - 1);
+		}
+	}
+
+	// ── Check 2: No explicit positioning ──
+	int32 UnpositionedCount = 0;
+	for (const FWidgetInfo& Info : Children)
+	{
+		if (!Info.bHasExplicitPosition && Info.Type != TEXT("CanvasPanelSlot"))
+		{
+			++UnpositionedCount;
+		}
+	}
+	if (UnpositionedCount > 1)
+	{
+		TSharedPtr<FJsonObject> Issue = MakeShareable(new FJsonObject());
+		Issue->SetStringField(TEXT("type"), TEXT("no_anchoring"));
+		Issue->SetStringField(TEXT("detail"),
+			FString::Printf(TEXT("%d elements have no explicit position or anchor — will pile up at (0,0)"),
+				UnpositionedCount));
+		Issues.Add(MakeShareable(new FJsonValueObject(Issue)));
+		Score -= 10 * UnpositionedCount;
+	}
+
+	// ── Check 3: Font too small ──
+	for (const FWidgetInfo& Info : Children)
+	{
+		if (Info.FontSize > 0 && Info.FontSize < 14)
+		{
+			TSharedPtr<FJsonObject> Issue = MakeShareable(new FJsonObject());
+			Issue->SetStringField(TEXT("type"), TEXT("text_too_small"));
+			Issue->SetStringField(TEXT("element"), Info.Name);
+			Issue->SetStringField(TEXT("detail"),
+				FString::Printf(TEXT("Font size %d < minimum 14"), Info.FontSize));
+			Issues.Add(MakeShareable(new FJsonValueObject(Issue)));
+			Score -= 5;
+		}
+	}
+
+	// ── Check 4: No background on CanvasPanel root ──
+	if (Cast<UCanvasPanel>(RootWidget))
+	{
+		bool bHasBackground = false;
+		// Check if any child is a Border or Image that could serve as background
+		if (RootPanel)
+		{
+			for (int32 i = 0; i < RootPanel->GetChildrenCount(); i++)
+			{
+				if (RootPanel->GetChildAt(i)->IsA(UBorder::StaticClass()) ||
+					RootPanel->GetChildAt(i)->IsA(UImage::StaticClass()))
+				{
+					bHasBackground = true;
+					break;
+				}
+			}
+		}
+		if (!bHasBackground)
+		{
+			TSharedPtr<FJsonObject> Issue = MakeShareable(new FJsonObject());
+			Issue->SetStringField(TEXT("type"), TEXT("no_background"));
+			Issue->SetStringField(TEXT("detail"),
+				TEXT("Root CanvasPanel has no Border/Image background — text may be unreadable over 3D scene"));
+			Issues.Add(MakeShareable(new FJsonValueObject(Issue)));
+			Score -= 10;
+		}
+	}
+
+	// ── Check 5: Direct children on CanvasPanel without VerticalBox ──
+	if (Cast<UCanvasPanel>(RootWidget) && Children.Num() > 3)
+	{
+		bool bHasLayoutBox = false;
+		for (const FWidgetInfo& Info : Children)
+		{
+			if (Info.Type.Contains(TEXT("VerticalBox")) || Info.Type.Contains(TEXT("HorizontalBox")))
+			{
+				bHasLayoutBox = true;
+				break;
+			}
+		}
+		if (!bHasLayoutBox)
+		{
+			TSharedPtr<FJsonObject> Issue = MakeShareable(new FJsonObject());
+			Issue->SetStringField(TEXT("type"), TEXT("no_layout_box"));
+			Issue->SetStringField(TEXT("detail"),
+				FString::Printf(TEXT("%d children directly on CanvasPanel without VerticalBox/HorizontalBox — consider using auto-layout"),
+					Children.Num()));
+			Issues.Add(MakeShareable(new FJsonValueObject(Issue)));
+			Score -= 5;
+		}
+	}
+
+	Score = FMath::Clamp(Score, 0, 100);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("name"), WBPName);
+	Data->SetArrayField(TEXT("issues"), Issues);
+	Data->SetNumberField(TEXT("score"), Score);
+	Data->SetNumberField(TEXT("child_count"), Children.Num());
+
+	if (Score >= 80)
+		Data->SetStringField(TEXT("recommendation"), TEXT("Layout looks acceptable"));
+	else if (Score >= 50)
+		Data->SetStringField(TEXT("recommendation"), TEXT("Consider running auto_fix_widget_layout to improve readability"));
+	else
+		Data->SetStringField(TEXT("recommendation"), TEXT("Run auto_fix_widget_layout — multiple layout issues detected"));
+
+	return FCommandResult::Ok(Data);
+}
+
+// ════════════════════════════════════════════════════════════════════
+//  auto_fix_widget_layout — automatically fix common layout problems
+// ════════════════════════════════════════════════════════════════════
+FCommandResult FCommandServer::HandleAutoFixWidgetLayout(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WBPName = Params->GetStringField(TEXT("name"));
+	if (WBPName.IsEmpty())
+		return FCommandResult::Error(TEXT("Missing 'name' param"));
+
+	// Safety check: only fix Arcwright-created widgets
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(WBPName);
+	if (!WBP)
+		return FCommandResult::Error(FString::Printf(TEXT("Widget Blueprint not found: %s"), *WBPName));
+
+	FString PackagePath = WBP->GetPackage()->GetName();
+	if (!PackagePath.StartsWith(TEXT("/Game/UI/")) && !PackagePath.StartsWith(TEXT("/Game/BlueprintLLM/")))
+	{
+		bool bForce = Params->HasField(TEXT("force")) && Params->GetBoolField(TEXT("force"));
+		if (!bForce)
+			return FCommandResult::Error(FString::Printf(
+				TEXT("Widget '%s' not created by Arcwright. Use force=true to override."), *WBPName));
+	}
+
+	UWidget* RootWidget = WBP->WidgetTree ? WBP->WidgetTree->RootWidget : nullptr;
+	if (!RootWidget)
+		return FCommandResult::Error(TEXT("Widget has no root"));
+
+	UCanvasPanel* Canvas = Cast<UCanvasPanel>(RootWidget);
+	if (!Canvas)
+		return FCommandResult::Error(TEXT("Root widget is not a CanvasPanel — auto-fix only works on CanvasPanel roots"));
+
+	int32 FixCount = 0;
+	TArray<FString> FixesApplied;
+
+	// ── Fix 1: Set positions on direct children to avoid overlap ──
+	// Distribute children vertically with 30px spacing, right-aligned panel
+	float YOffset = 20.0f;
+	for (int32 i = 0; i < Canvas->GetChildrenCount(); i++)
+	{
+		UWidget* Child = Canvas->GetChildAt(i);
+		if (!Child) continue;
+
+		UCanvasPanelSlot* Slot = Cast<UCanvasPanelSlot>(Child->Slot);
+		if (!Slot) continue;
+
+		// Set anchors to right panel (60%-98% width)
+		FAnchors Anchors;
+		Anchors.Minimum = FVector2D(0.6f, 0.0f);
+		Anchors.Maximum = FVector2D(0.98f, 0.0f);
+
+		// Last 2 children: anchor to bottom
+		if (i >= Canvas->GetChildrenCount() - 2)
+		{
+			Anchors.Minimum = FVector2D(0.6f, 1.0f);
+			Anchors.Maximum = FVector2D(0.98f, 1.0f);
+			float BottomOffset = -60.0f + ((i - (Canvas->GetChildrenCount() - 2)) * 28.0f);
+			Slot->SetOffsets(FMargin(15.0f, BottomOffset, 0.0f, 20.0f));
+		}
+		else
+		{
+			Slot->SetOffsets(FMargin(15.0f, YOffset, 0.0f, 0.0f));
+		}
+
+		Slot->SetAnchors(Anchors);
+		Slot->SetAutoSize(true);
+
+		// ── Fix 2: Enforce minimum font size ──
+		if (UTextBlock* TB = Cast<UTextBlock>(Child))
+		{
+			FSlateFontInfo Font = TB->GetFont();
+			if (Font.Size < 14)
+			{
+				Font.Size = 14;
+				TB->SetFont(Font);
+				FixesApplied.Add(FString::Printf(TEXT("Set %s font to 14"), *Child->GetName()));
+				++FixCount;
+			}
+		}
+
+		++FixCount;
+		YOffset += 35.0f; // 35px between items
+
+		// Add extra spacing after certain elements
+		if (i == 0) YOffset += 5.0f;  // Extra after title
+		if (i == 1) YOffset += 15.0f; // Extra after description (before content)
+	}
+
+	FixesApplied.Add(FString::Printf(TEXT("Positioned %d children with 35px spacing"), Canvas->GetChildrenCount()));
+
+	// Mark modified and compile
+	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(WBP);
+	FKismetEditorUtilities::CompileBlueprint(WBP);
+	WBP->GetPackage()->MarkPackageDirty();
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("name"), WBPName);
+	Data->SetNumberField(TEXT("fixes_applied"), FixCount);
+
+	TArray<TSharedPtr<FJsonValue>> FixArr;
+	for (const FString& Fix : FixesApplied)
+	{
+		FixArr.Add(MakeShareable(new FJsonValueString(Fix)));
+	}
+	Data->SetArrayField(TEXT("fixes"), FixArr);
 
 	return FCommandResult::Ok(Data);
 }

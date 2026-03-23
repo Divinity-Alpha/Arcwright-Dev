@@ -348,6 +348,25 @@ Phase 8: Final Verification
 
 ---
 
+## Widget Layout Validation (after creating/modifying widgets)
+
+After creating any widget with `create_widget_blueprint` + `add_widget_child`:
+
+1. `validate_widget_layout` — check for layout issues
+2. If score < 70, run `auto_fix_widget_layout`
+3. Re-validate to confirm score >= 80
+4. If still low, manually fix with `set_widget_property` (Arcwright widgets only)
+
+```python
+r = cmd("validate_widget_layout", name="WBP_MyWidget")
+if r["data"]["score"] < 70:
+    cmd("auto_fix_widget_layout", name="WBP_MyWidget")
+    r = cmd("validate_widget_layout", name="WBP_MyWidget")
+    assert r["data"]["score"] >= 70, "Layout still broken after auto-fix"
+```
+
+---
+
 ## Widget Modification Safety Check
 
 Before calling `set_widget_property`, verify:

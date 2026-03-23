@@ -89,6 +89,38 @@ incompatible Blueprint functions and removes them before compiling.
 
 ---
 
+## Widget Layout Rules
+
+- **ALWAYS** use `auto_fix_widget_layout` after creating any widget with `create_widget_blueprint`
+- **ALWAYS** use VerticalBox or HorizontalBox for lists — never place multiple children directly on CanvasPanel
+- **ALWAYS** set font size >= 14 for body text, >= 18 for headers
+- **ALWAYS** add a dark background (Border with #12161CFF) behind text for contrast
+- **ALWAYS** anchor elements explicitly — unanchored elements pile up at (0,0)
+- **ALWAYS** run `validate_widget_layout` after creating/modifying a widget:
+
+```python
+# After creating a widget
+cmd("create_widget_blueprint", name="WBP_MyWidget", parent_class="BSStationWidget")
+cmd("add_widget_child", ...)
+# ... add children ...
+
+# Validate layout
+r = cmd("validate_widget_layout", name="WBP_MyWidget")
+score = r["data"]["score"]
+if score < 70:
+    cmd("auto_fix_widget_layout", name="WBP_MyWidget")
+    # Re-validate
+    r = cmd("validate_widget_layout", name="WBP_MyWidget")
+    print(f"Fixed: score {r['data']['score']}")
+```
+
+`validate_widget_layout` checks: overlap, missing anchors, small fonts, no background, missing layout boxes.
+`auto_fix_widget_layout` fixes: positions children with 35px spacing, enforces min font 14, sets right-panel anchors.
+
+GDD Section 17.5 colors: `#0A0E1A` background, `#E8A624` amber headers, `#D0D4DC` body text.
+
+---
+
 ## Rule Zero: Check Before Create
 
 **NEVER create an asset without checking if it exists.**

@@ -177,6 +177,8 @@ private:
 	FCommandResult HandleRemoveWidget(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleGetViewportWidgets(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleReparentWidgetBlueprint(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleValidateWidgetLayout(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleAutoFixWidgetLayout(const TSharedPtr<FJsonObject>& Params);
 
 	// Widget DSL v2 commands (Phase 2)
 	FCommandResult HandleSetWidgetAnchor(const TSharedPtr<FJsonObject>& Params);
