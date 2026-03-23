@@ -42,7 +42,8 @@ The core innovation is the **teaching loop** — train → examine → grade →
 
 1. Print: `[SESSION START] CLAUDE.md v{version} loaded. Autonomous mode active.`
 2. Check `logs/pipeline_heartbeat` age for any active training
-3. **Check Claude Bridge for pending instructions:** `python scripts/claude_bridge.py --check`
+3. **Check Claude Bridge for pending instructions:** `python scripts/claude_bridge.py --check --project bore-and-stroke`
+   - Bridge repo: `C:\Projects\claude-bridge\` (multi-project: bore-and-stroke, arcwright)
    - If pending instructions exist, execute them in priority order before other work
 4. Resume the most logical next step **without asking permission**
 5. UE launch: `scripts/launch_ue.bat` (forces 5070 Ti). Start crash reporter killer loop after launch.

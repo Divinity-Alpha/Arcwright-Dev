@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
 """
-Bridge Watcher — monitors Downloads folder for instruction files from Claude.ai.
+Bridge Watcher -- monitors Downloads for instruction files, routes to project folders.
 
-Flow:
-1. Claude.ai creates a JSON file artifact → Scott downloads it (or it auto-downloads)
-2. This script detects the file in Downloads → copies to .claude-bridge/instructions/
-3. claude_bridge.py --check picks it up → Claude Code executes
-4. Result saved to .claude-bridge/results/ → git pushed automatically
+Uses the centralized bridge repo at C:\\Projects\\claude-bridge\\.
+Routes files to the correct project based on filename or content.
 
 Usage:
-    python scripts/bridge_watcher.py                  # Watch ~/Downloads (default)
-    python scripts/bridge_watcher.py --dir C:\custom  # Watch custom folder
-    python scripts/bridge_watcher.py --once            # Single check, no loop
+    python scripts/bridge_watcher.py                                # Watch ~/Downloads
+    python scripts/bridge_watcher.py --project arcwright            # Force project
+    python scripts/bridge_watcher.py --dir C:\\custom --once         # Single check
 """
 
 import argparse
@@ -24,13 +21,24 @@ import sys
 import time
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-BRIDGE_DIR = PROJECT_ROOT / ".claude-bridge"
-INSTRUCTIONS_DIR = BRIDGE_DIR / "instructions"
-RESULTS_DIR = BRIDGE_DIR / "results"
+BRIDGE_ROOT = Path(r"C:\Projects\claude-bridge")
+DEFAULT_PROJECT = "bore-and-stroke"
 
-# Track processed files to avoid re-copying
-PROCESSED_FILE = BRIDGE_DIR / ".processed_downloads"
+PROCESSED_FILE = BRIDGE_ROOT / ".processed_downloads"
+
+# Filename patterns that map to projects
+PROJECT_PATTERNS = {
+    "bore": "bore-and-stroke",
+    "stroke": "bore-and-stroke",
+    "station": "bore-and-stroke",
+    "hud": "bore-and-stroke",
+    "engine": "bore-and-stroke",
+    "arcwright": "arcwright",
+    "blueprint": "arcwright",
+    "plugin": "arcwright",
+    "training": "arcwright",
+    "lora": "arcwright",
+}
 
 
 def load_processed():
@@ -40,15 +48,40 @@ def load_processed():
 
 
 def save_processed(processed: set):
+    PROCESSED_FILE.parent.mkdir(parents=True, exist_ok=True)
     PROCESSED_FILE.write_text("\n".join(sorted(processed)), encoding="utf-8")
 
 
-def is_bridge_instruction(filepath: str) -> dict | None:
-    """Check if a file is a valid bridge instruction JSON."""
+def detect_project(filepath: str, data: dict, forced_project: str = None) -> str:
+    """Determine which project an instruction belongs to."""
+    if forced_project:
+        return forced_project
+
+    # Check explicit project field in JSON
+    if data.get("project"):
+        return data["project"]
+
+    # Check filename for project hints
+    basename = os.path.basename(filepath).lower()
+    for keyword, project in PROJECT_PATTERNS.items():
+        if keyword in basename:
+            return project
+
+    # Check instruction text for hints
+    instructions = data.get("instructions", "").lower()
+    title = data.get("title", "").lower()
+    combined = f"{title} {instructions}"
+    for keyword, project in PROJECT_PATTERNS.items():
+        if keyword in combined:
+            return project
+
+    return DEFAULT_PROJECT
+
+
+def is_bridge_instruction(filepath: str):
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             data = json.load(f)
-        # Must have id and instructions fields
         if isinstance(data, dict) and "id" in data and "instructions" in data:
             return data
     except (json.JSONDecodeError, OSError, UnicodeDecodeError):
@@ -56,193 +89,137 @@ def is_bridge_instruction(filepath: str) -> dict | None:
     return None
 
 
-def find_instruction_files(watch_dir: str) -> list[tuple[str, dict]]:
-    """Find bridge instruction files in the watch directory."""
+def find_instruction_files(watch_dir: str):
     found = []
     patterns = [
         os.path.join(watch_dir, "*bridge*.json"),
         os.path.join(watch_dir, "*instruction*.json"),
-        os.path.join(watch_dir, "0*.json"),  # 001_task.json, 002_fix.json, etc.
+        os.path.join(watch_dir, "0*.json"),
     ]
-    seen_paths = set()
+    seen = set()
     for pattern in patterns:
-        for filepath in glob.glob(pattern):
-            if filepath in seen_paths:
-                continue
-            seen_paths.add(filepath)
-            data = is_bridge_instruction(filepath)
-            if data:
-                found.append((filepath, data))
+        for fp in glob.glob(pattern):
+            if fp not in seen:
+                seen.add(fp)
+                data = is_bridge_instruction(fp)
+                if data:
+                    found.append((fp, data))
     return found
 
 
-def copy_to_bridge(filepath: str, data: dict) -> str | None:
-    """Copy an instruction file to the bridge instructions directory."""
-    INSTRUCTIONS_DIR.mkdir(parents=True, exist_ok=True)
+def copy_to_bridge(filepath: str, data: dict, project: str) -> str | None:
+    inst_dir = BRIDGE_ROOT / "instructions" / project
+    inst_dir.mkdir(parents=True, exist_ok=True)
+
     dest_name = os.path.basename(filepath)
-    # Ensure filename starts with the instruction ID
     inst_id = data.get("id", "unknown")
     if not dest_name.startswith(inst_id):
         dest_name = f"{inst_id}_{dest_name}"
-    dest = INSTRUCTIONS_DIR / dest_name
+    dest = inst_dir / dest_name
 
-    # Don't overwrite existing instructions
     if dest.exists():
         existing = json.loads(dest.read_text(encoding="utf-8"))
-        if existing.get("status") == "completed":
-            return None  # Already processed
-        if existing.get("id") == data.get("id"):
-            return None  # Same instruction
+        if existing.get("status") == "completed" or existing.get("id") == data.get("id"):
+            return None
 
     shutil.copy2(filepath, dest)
     return str(dest)
 
 
-def git_push_results():
-    """Commit and push results to GitHub."""
-    os.chdir(PROJECT_ROOT)
+def git_push():
+    os.chdir(BRIDGE_ROOT)
     try:
-        # Check if there are results to push
-        result = subprocess.run(
-            ["git", "status", "--porcelain", ".claude-bridge/results/"],
-            capture_output=True, text=True, timeout=10
-        )
-        if not result.stdout.strip():
-            return False  # Nothing to push
-
-        # Stage results
-        subprocess.run(
-            ["git", "add", ".claude-bridge/results/"],
-            capture_output=True, timeout=10
-        )
-
-        # Find which instruction IDs have new results
-        result_files = list(RESULTS_DIR.glob("*_result.json"))
-        ids = [f.stem.replace("_result", "") for f in result_files]
-        ids_str = ", ".join(ids[-3:])  # Last 3
-
-        subprocess.run(
-            ["git", "commit", "-m", f"Bridge results: {ids_str}"],
-            capture_output=True, timeout=10
-        )
-
-        push_result = subprocess.run(
-            ["git", "push"],
-            capture_output=True, text=True, timeout=30
-        )
-        if push_result.returncode == 0:
-            print(f"  Git pushed results for: {ids_str}")
-            return True
+        subprocess.run(["git", "add", "-A"], capture_output=True, timeout=10)
+        st = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True, timeout=10)
+        if not st.stdout.strip():
+            return
+        subprocess.run(["git", "commit", "-m", "Bridge: new instructions detected"],
+                       capture_output=True, timeout=10)
+        push = subprocess.run(["git", "push"], capture_output=True, text=True, timeout=30)
+        if push.returncode == 0:
+            print("  Pushed to claude-bridge repo")
         else:
-            print(f"  Git push failed: {push_result.stderr[:200]}")
-            return False
-
-    except subprocess.TimeoutExpired:
-        print("  Git operation timed out")
-        return False
+            print(f"  Push failed: {push.stderr[:150]}")
     except Exception as e:
         print(f"  Git error: {e}")
-        return False
 
 
-def check_for_new_results():
-    """Check if there are completed results to push."""
-    if not RESULTS_DIR.exists():
-        return
-    result_files = list(RESULTS_DIR.glob("*_result.json"))
-    if result_files:
-        git_push_results()
-
-
-def watch_loop(watch_dir: str, interval: float = 5.0):
-    """Main watch loop."""
-    INSTRUCTIONS_DIR.mkdir(parents=True, exist_ok=True)
+def watch_loop(watch_dir: str, forced_project: str, interval: float):
     processed = load_processed()
-
-    print(f"Bridge Watcher: Monitoring {watch_dir}")
-    print(f"  Instructions → {INSTRUCTIONS_DIR}")
-    print(f"  Results → {RESULTS_DIR}")
-    print(f"  Already processed: {len(processed)} file(s)")
+    print(f"Bridge Watcher: monitoring {watch_dir}")
+    print(f"  Bridge repo: {BRIDGE_ROOT}")
+    print(f"  Default project: {forced_project or DEFAULT_PROJECT}")
     print(f"  Polling every {interval}s (Ctrl+C to stop)")
     print()
 
     try:
         while True:
-            # Check Downloads for new instruction files
             found = find_instruction_files(watch_dir)
-            for filepath, data in found:
-                if filepath in processed:
+            new_count = 0
+            for fp, data in found:
+                if fp in processed:
                     continue
-
+                project = detect_project(fp, data, forced_project)
                 inst_id = data.get("id", "?")
                 title = data.get("title", "Untitled")
-                print(f"  Found: [{inst_id}] {title}")
 
-                dest = copy_to_bridge(filepath, data)
+                dest = copy_to_bridge(fp, data, project)
                 if dest:
-                    print(f"  Copied to bridge: {dest}")
-                    processed.add(filepath)
-                    save_processed(processed)
-                else:
-                    print(f"  Skipped (already in bridge)")
-                    processed.add(filepath)
-                    save_processed(processed)
+                    print(f"  [{project}] {inst_id}: {title} -> {dest}")
+                    new_count += 1
+                processed.add(fp)
+                save_processed(processed)
 
-            # Check for completed results to push
-            check_for_new_results()
+            if new_count > 0:
+                git_push()
 
             time.sleep(interval)
-
     except KeyboardInterrupt:
-        print("\nWatcher stopped.")
+        print("\nStopped.")
 
 
-def single_check(watch_dir: str):
-    """Single check — no loop."""
+def single_check(watch_dir: str, forced_project: str):
     processed = load_processed()
     found = find_instruction_files(watch_dir)
     new_count = 0
-    for filepath, data in found:
-        if filepath in processed:
+    for fp, data in found:
+        if fp in processed:
             continue
+        project = detect_project(fp, data, forced_project)
         inst_id = data.get("id", "?")
         title = data.get("title", "Untitled")
-        dest = copy_to_bridge(filepath, data)
+
+        dest = copy_to_bridge(fp, data, project)
         if dest:
-            print(f"  Copied: [{inst_id}] {title} -> {dest}")
-            processed.add(filepath)
+            print(f"  [{project}] {inst_id}: {title} -> {dest}")
             new_count += 1
-        else:
-            processed.add(filepath)
+        processed.add(fp)
 
     save_processed(processed)
-
     if new_count == 0:
         print("No new instruction files found.")
     else:
-        print(f"{new_count} new instruction(s) copied to bridge.")
-
-    check_for_new_results()
+        print(f"{new_count} new instruction(s) copied.")
+        git_push()
 
 
 def main():
-    default_downloads = str(Path.home() / "Downloads")
+    default_dl = str(Path.home() / "Downloads")
+    p = argparse.ArgumentParser(description="Bridge Watcher -- monitors Downloads for instructions")
+    p.add_argument("--dir", default=default_dl, help=f"Watch directory (default: {default_dl})")
+    p.add_argument("--project", default=None, help="Force project (default: auto-detect)")
+    p.add_argument("--once", action="store_true", help="Single check")
+    p.add_argument("--interval", type=float, default=5.0, help="Poll interval (default: 5s)")
 
-    parser = argparse.ArgumentParser(description="Bridge Watcher — monitors Downloads for instruction files")
-    parser.add_argument("--dir", default=default_downloads, help=f"Directory to watch (default: {default_downloads})")
-    parser.add_argument("--once", action="store_true", help="Single check, no loop")
-    parser.add_argument("--interval", type=float, default=5.0, help="Poll interval in seconds (default: 5)")
-
-    args = parser.parse_args()
-
+    args = p.parse_args()
     if not os.path.isdir(args.dir):
-        print(f"Watch directory not found: {args.dir}", file=sys.stderr)
+        print(f"Directory not found: {args.dir}", file=sys.stderr)
         sys.exit(1)
 
     if args.once:
-        single_check(args.dir)
+        single_check(args.dir, args.project)
     else:
-        watch_loop(args.dir, args.interval)
+        watch_loop(args.dir, args.project, args.interval)
 
 
 if __name__ == "__main__":
