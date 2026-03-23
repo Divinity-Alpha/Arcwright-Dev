@@ -69,6 +69,26 @@ and requires `force: true` to override. This prevents accidental destruction.
 
 ---
 
+## Widget Reparenting for C++ Subclass Features
+
+When a widget Blueprint needs access to C++ subclass functions (e.g., BSOfficeWidget's
+`GetActiveNPCs()`, `BuyEngineFromSeller()`), use `reparent_widget_blueprint`:
+
+```python
+cmd("reparent_widget_blueprint", name="WBP_Station_Office",
+    new_parent="/Script/BoreAndStroke.BSOfficeWidget")
+# Returns: {"old_parent": "BSStationWidget", "new_parent": "BSOfficeWidget",
+#           "compiled": true, "conflicts_resolved": [], "functions_removed": 0}
+```
+
+**Always use full /Script/Module.ClassName path** for the new parent. Short names may
+resolve to the wrong class.
+
+`reparent_widget_blueprint` is SAFE — it has conflict resolution that scans for
+incompatible Blueprint functions and removes them before compiling.
+
+---
+
 ## Rule Zero: Check Before Create
 
 **NEVER create an asset without checking if it exists.**
