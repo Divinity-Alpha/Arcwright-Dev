@@ -7266,7 +7266,11 @@ FCommandResult FCommandServer::HandleCreateWidgetBlueprint(const TSharedPtr<FJso
 	Data->SetBoolField(TEXT("saved"), bSaved);
 	Data->SetBoolField(TEXT("has_widget_tree"), WBP->WidgetTree != nullptr);
 
-	UE_LOG(LogBlueprintLLM, Log, TEXT("Created Widget Blueprint: %s at %s (saved=%d)"), *Name, *PackagePath, bSaved);
+	// Auto-validate layout on creation
+	int32 LayoutScore = ComputeLayoutScore(WBP);
+	Data->SetNumberField(TEXT("layout_score"), LayoutScore);
+
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Created Widget Blueprint: %s at %s (saved=%d, layout=%d)"), *Name, *PackagePath, bSaved, LayoutScore);
 	return FCommandResult::Ok(Data);
 }
 
@@ -7394,7 +7398,17 @@ FCommandResult FCommandServer::HandleAddWidgetChild(const TSharedPtr<FJsonObject
 	Data->SetStringField(TEXT("parent"), ParentWidgetName.IsEmpty() ? TEXT("(root)") : ParentWidgetName);
 	Data->SetBoolField(TEXT("compiled"), true);
 
-	UE_LOG(LogBlueprintLLM, Log, TEXT("Added widget '%s' (%s) to %s"), *WidgetName, *WidgetType, *WBPName);
+	// Auto-validate layout after adding child
+	int32 LayoutScore = ComputeLayoutScore(WBP);
+	Data->SetNumberField(TEXT("layout_score"), LayoutScore);
+	if (LayoutScore >= 0 && LayoutScore < 50)
+	{
+		Data->SetBoolField(TEXT("layout_critical"), true);
+		Data->SetStringField(TEXT("layout_warning"),
+			FString::Printf(TEXT("Layout score %d/100 — run auto_fix_widget_layout before adding more elements"), LayoutScore));
+	}
+
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Added widget '%s' (%s) to %s (layout score: %d)"), *WidgetName, *WidgetType, *WBPName, LayoutScore);
 	return FCommandResult::Ok(Data);
 }
 
@@ -7804,7 +7818,17 @@ FCommandResult FCommandServer::HandleSetWidgetProperty(const TSharedPtr<FJsonObj
 	Data->SetStringField(TEXT("property"), PropertyName);
 	Data->SetBoolField(TEXT("compiled"), true);
 
-	UE_LOG(LogBlueprintLLM, Log, TEXT("Set property '%s' on widget '%s' in %s"), *PropertyName, *WidgetName, *WBPName);
+	// Auto-validate layout after property change
+	int32 LayoutScore = ComputeLayoutScore(WBP);
+	Data->SetNumberField(TEXT("layout_score"), LayoutScore);
+	if (LayoutScore >= 0 && LayoutScore < 50)
+	{
+		Data->SetBoolField(TEXT("layout_critical"), true);
+		Data->SetStringField(TEXT("layout_warning"),
+			FString::Printf(TEXT("Layout score %d/100 — run auto_fix_widget_layout"), LayoutScore));
+	}
+
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Set property '%s' on widget '%s' in %s (layout: %d)"), *PropertyName, *WidgetName, *WBPName, LayoutScore);
 	return FCommandResult::Ok(Data);
 }
 
@@ -8360,10 +8384,21 @@ FCommandResult FCommandServer::HandleAutoFixWidgetLayout(const TSharedPtr<FJsonO
 
 	FixesApplied.Add(FString::Printf(TEXT("Positioned %d children with 35px spacing"), Canvas->GetChildrenCount()));
 
-	// Mark modified and compile
+	// Mark modified, compile, and SAVE TO DISK
 	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(WBP);
 	FKismetEditorUtilities::CompileBlueprint(WBP);
-	WBP->GetPackage()->MarkPackageDirty();
+
+	// Explicit save — this is why fixes weren't persisting between editor restarts
+	UPackage* Pkg = WBP->GetPackage();
+	if (Pkg)
+	{
+		FString PkgFilename = FPackageName::LongPackageNameToFilename(
+			Pkg->GetName(), FPackageName::GetAssetPackageExtension());
+		IFileManager::Get().MakeDirectory(*FPaths::GetPath(PkgFilename), true);
+		FSavePackageArgs SaveArgs;
+		SafeSavePackage(Pkg, WBP, PkgFilename, SaveArgs);
+		FixesApplied.Add(TEXT("Saved to disk"));
+	}
 
 	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
 	Data->SetStringField(TEXT("name"), WBPName);
@@ -8376,7 +8411,32 @@ FCommandResult FCommandServer::HandleAutoFixWidgetLayout(const TSharedPtr<FJsonO
 	}
 	Data->SetArrayField(TEXT("fixes"), FixArr);
 
+	// Auto-validate after fix
+	TSharedPtr<FJsonObject> ValidateParams = MakeShareable(new FJsonObject());
+	ValidateParams->SetStringField(TEXT("name"), WBPName);
+	FCommandResult ValidateResult = HandleValidateWidgetLayout(ValidateParams);
+	if (ValidateResult.bSuccess && ValidateResult.Data.IsValid())
+	{
+		Data->SetNumberField(TEXT("layout_score"), ValidateResult.Data->GetNumberField(TEXT("score")));
+	}
+
 	return FCommandResult::Ok(Data);
+}
+
+// ════════════════════════════════════════════════════════════════════
+//  Helper: compute layout score for a widget (used by auto-validation)
+// ════════════════════════════════════════════════════════════════════
+int32 FCommandServer::ComputeLayoutScore(UWidgetBlueprint* WBP)
+{
+	if (!WBP) return -1;
+	TSharedPtr<FJsonObject> Params = MakeShareable(new FJsonObject());
+	Params->SetStringField(TEXT("name"), WBP->GetName());
+	FCommandResult Result = HandleValidateWidgetLayout(Params);
+	if (Result.bSuccess && Result.Data.IsValid())
+	{
+		return static_cast<int32>(Result.Data->GetNumberField(TEXT("score")));
+	}
+	return -1;
 }
 
 FCommandResult FCommandServer::HandleRemoveWidget(const TSharedPtr<FJsonObject>& Params)

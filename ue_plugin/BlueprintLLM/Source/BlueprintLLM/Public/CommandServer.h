@@ -471,6 +471,7 @@ private:
 	bool ApplyComponentProperty(UActorComponent* Template, const FString& PropertyName, const TSharedPtr<FJsonValue>& Value, FString& OutError);
 
 	// Widget helpers
+	int32 ComputeLayoutScore(class UWidgetBlueprint* WBP);
 	class UWidgetBlueprint* FindWidgetBlueprintByName(const FString& Name);
 	class UWidget* FindWidgetByName(class UWidgetBlueprint* WBP, const FString& WidgetName);
 	UClass* ResolveWidgetClass(const FString& FriendlyName);

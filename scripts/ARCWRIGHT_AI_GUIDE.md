@@ -89,9 +89,19 @@ incompatible Blueprint functions and removes them before compiling.
 
 ---
 
-## Widget Layout Rules
+## MANDATORY: Widget Layout Validation
 
-- **ALWAYS** use `auto_fix_widget_layout` after creating any widget with `create_widget_blueprint`
+Every widget creation or modification MUST be followed by `validate_widget_layout`.
+If score < 70, run `auto_fix_widget_layout` BEFORE moving on.
+**This is not optional. Unreadable UI is a broken feature.**
+
+The commands `add_widget_child`, `set_widget_property`, and `create_widget_blueprint`
+now return `layout_score` automatically. **If `layout_score` < 50, STOP and fix
+the layout before adding more elements.** If `layout_critical: true` appears in
+the response, the widget is unreadable.
+
+**Rules:**
+- **ALWAYS** run `auto_fix_widget_layout` after creating a widget with children
 - **ALWAYS** use VerticalBox or HorizontalBox for lists — never place multiple children directly on CanvasPanel
 - **ALWAYS** set font size >= 14 for body text, >= 18 for headers
 - **ALWAYS** add a dark background (Border with #12161CFF) behind text for contrast
