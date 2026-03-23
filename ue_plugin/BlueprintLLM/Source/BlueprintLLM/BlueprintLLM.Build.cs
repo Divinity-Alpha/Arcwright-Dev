@@ -30,7 +30,30 @@ public class BlueprintLLM : ModuleRules
 			"EditorStyle",
 			"ToolMenus",
 			"AssetTools",
-			"ContentBrowser"
+			"ContentBrowser",
+			"UMG",
+			"UMGEditor",
+			"EnhancedInput",
+			"LevelEditor",
+			"Niagara",
+			"NiagaraCore",
+			"AIModule",
+			"GameplayTasks",
+			"LevelSequence",
+			"MovieScene",
+			"MovieSceneTracks",
+			"Landscape",
+			"Foliage",
+			"DataTableEditor",
+			"RenderCore",
+			"ApplicationCore",
+			"NavigationSystem",
+			"AnimGraph",
+			"AnimGraphRuntime",
+			"AnimationBlueprintLibrary",
+			"HTTP",
+			"Projects",
+			"AppFramework"
 		});
 	}
 }

@@ -3,6 +3,13 @@
 #include "CoreMinimal.h"
 #include "Dom/JsonObject.h"
 
+// Typed parameter for CustomEvent nodes
+struct FDSLEventParam
+{
+	FString Name;
+	FString Type;  // Float, Int, Bool, String, Vector, Rotator, Name
+};
+
 // Represents a single node from the IR
 struct FDSLNode
 {
@@ -14,6 +21,7 @@ struct FDSLNode
 	FString CastClass;   // For DynamicCast nodes
 	FString ParamKey;    // For Variable/CustomEvent nodes
 	TMap<FString, FString> Params;
+	TArray<FDSLEventParam> EventParams;  // Typed output pins for CustomEvent
 	FVector2D Position;
 };
 

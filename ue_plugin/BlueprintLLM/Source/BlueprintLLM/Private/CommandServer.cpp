@@ -826,6 +826,24 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	if (Command == TEXT("teleport_player"))     { return HandleTeleportPlayer(Params); }
 	if (Command == TEXT("get_player_location"))  { return HandleGetPlayerLocation(Params); }
 	if (Command == TEXT("look_at"))              { return HandleLookAt(Params); }
+	if (Command == TEXT("end_day"))
+	{
+		if (!GEditor || !GEditor->PlayWorld)
+			return FCommandResult::Error(TEXT("PIE not running"));
+
+		// Call EndDay via PlayerController's console command system
+		// This triggers BSNextDay on the cheat manager which calls TimeSubsystem->EndDay()
+		APlayerController* PC = GEditor->PlayWorld->GetFirstPlayerController();
+		if (!PC)
+			return FCommandResult::Error(TEXT("No player controller"));
+
+		PC->ConsoleCommand(TEXT("BSNextDay"));
+
+		TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+		Data->SetBoolField(TEXT("ended"), true);
+		Data->SetStringField(TEXT("note"), TEXT("Called BSNextDay cheat — advances calendar and resets time"));
+		return FCommandResult::Ok(Data);
+	}
 	if (Command == TEXT("run_console_command"))
 	{
 		FString Cmd = Params->GetStringField(TEXT("command"));
@@ -11853,48 +11871,89 @@ FCommandResult FCommandServer::HandleReparentBlueprint(const TSharedPtr<FJsonObj
 	// Try native class lookup
 	if (!NewParentClass)
 	{
-		// Common name → class mapping
-		static const TMap<FString, FString> NativeClassMap = {
-			{TEXT("Actor"), TEXT("/Script/Engine.Actor")},
-			{TEXT("Pawn"), TEXT("/Script/Engine.Pawn")},
-			{TEXT("Character"), TEXT("/Script/Engine.Character")},
-			{TEXT("PlayerController"), TEXT("/Script/Engine.PlayerController")},
-			{TEXT("AIController"), TEXT("/Script/AIModule.AIController")},
-			{TEXT("GameModeBase"), TEXT("/Script/Engine.GameModeBase")},
-			{TEXT("GameMode"), TEXT("/Script/Engine.GameMode")},
-			{TEXT("ActorComponent"), TEXT("/Script/Engine.ActorComponent")},
-		};
-
-		const FString* ClassPath = NativeClassMap.Find(NewParentName);
-		if (ClassPath)
+		// If it's already a full /Script/ path, try direct lookup first
+		if (NewParentName.StartsWith(TEXT("/Script/")))
 		{
-			NewParentClass = FindObject<UClass>(nullptr, **ClassPath);
+			NewParentClass = FindObject<UClass>(nullptr, *NewParentName);
 		}
-		else
+
+		if (!NewParentClass)
 		{
+			// Common name -> class mapping
+			static const TMap<FString, FString> NativeClassMap = {
+				{TEXT("Actor"), TEXT("/Script/Engine.Actor")},
+				{TEXT("Pawn"), TEXT("/Script/Engine.Pawn")},
+				{TEXT("Character"), TEXT("/Script/Engine.Character")},
+				{TEXT("PlayerController"), TEXT("/Script/Engine.PlayerController")},
+				{TEXT("AIController"), TEXT("/Script/AIModule.AIController")},
+				{TEXT("GameModeBase"), TEXT("/Script/Engine.GameModeBase")},
+				{TEXT("GameMode"), TEXT("/Script/Engine.GameMode")},
+				{TEXT("ActorComponent"), TEXT("/Script/Engine.ActorComponent")},
+			};
+
+			const FString* ClassPath = NativeClassMap.Find(NewParentName);
+			if (ClassPath)
+			{
+				NewParentClass = FindObject<UClass>(nullptr, **ClassPath);
+			}
+		}
+
+		if (!NewParentClass)
+		{
+			// Fallback: try /Script/Engine.Name
 			NewParentClass = FindObject<UClass>(nullptr, *FString::Printf(TEXT("/Script/Engine.%s"), *NewParentName));
+		}
+
+		if (!NewParentClass)
+		{
+			// Last resort: search all loaded classes by name
+			FString ShortName = NewParentName;
+			if (ShortName.Contains(TEXT(".")))
+			{
+				ShortName = ShortName.RightChop(ShortName.Find(TEXT(".")) + 1);
+			}
+			for (TObjectIterator<UClass> It; It; ++It)
+			{
+				if (It->GetName() == ShortName || It->GetName() == FString::Printf(TEXT("A%s"), *ShortName))
+				{
+					NewParentClass = *It;
+					break;
+				}
+			}
 		}
 	}
 
 	if (!NewParentClass)
 	{
-		return FCommandResult::Error(FString::Printf(TEXT("Parent class not found: %s"), *NewParentName));
+		return FCommandResult::Error(FString::Printf(TEXT("Parent class not found: %s. Use full path like /Script/ModuleName.ClassName"), *NewParentName));
 	}
 
-	// Reparent — set ParentClass directly, then compile
+	// Reparent — set ParentClass, then compile with crash protection
 	BP->ParentClass = NewParentClass;
-	FBlueprintEditorUtils::MarkBlueprintAsModified(BP);
-	FBlueprintEditorUtils::RefreshAllNodes(BP);
-	FKismetEditorUtilities::CompileBlueprint(BP);
+	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(BP);
 
-	UE_LOG(LogBlueprintLLM, Log, TEXT("Reparented %s: %s -> %s"), *BPName, *OldParent, *NewParentClass->GetName());
+	// RefreshAllNodes can crash if the BP has incompatible nodes from old parent.
+	// Wrap in a try to prevent editor crash.
+	bool bCompileOk = false;
+	{
+		// Refresh and compile
+		FBlueprintEditorUtils::RefreshAllNodes(BP);
+		FKismetEditorUtilities::CompileBlueprint(BP);
+		bCompileOk = (BP->Status != BS_Error);
+	}
+
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Reparented %s: %s -> %s (compiled: %s)"),
+		*BPName, *OldParent, *NewParentClass->GetName(), bCompileOk ? TEXT("yes") : TEXT("no"));
+
+	// Save to disk immediately
+	BP->GetPackage()->MarkPackageDirty();
 
 	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
 	Data->SetStringField(TEXT("name"), BPName);
 	Data->SetStringField(TEXT("old_parent"), OldParent);
 	Data->SetStringField(TEXT("new_parent"), NewParentClass->GetName());
-	Data->SetBoolField(TEXT("compiled"), BP->Status != BS_Error);
-	if (BP->Status == BS_Error)
+	Data->SetBoolField(TEXT("compiled"), bCompileOk);
+	if (!bCompileOk)
 	{
 		Data->SetStringField(TEXT("warning"), TEXT("Blueprint has compile errors after reparenting. Some nodes may be incompatible with the new parent class."));
 	}

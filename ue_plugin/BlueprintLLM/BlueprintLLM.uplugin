@@ -2,13 +2,23 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "0.1.0",
-	"FriendlyName": "BlueprintLLM",
-	"Description": "Import LLM-generated DSL into Blueprint graphs",
+	"FriendlyName": "Arcwright",
+	"Description": "Architect Your Game from Language — AI-driven Blueprint generation for Unreal Engine",
 	"Category": "Editor",
-	"CreatedBy": "BlueprintLLM",
+	"CreatedBy": "Arcwright",
 	"EnabledByDefault": true,
 	"CanContainContent": true,
 	"IsBetaVersion": true,
+	"Plugins": [
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
+		}
+	],
 	"Modules": [
 		{
 			"Name": "BlueprintLLM",
