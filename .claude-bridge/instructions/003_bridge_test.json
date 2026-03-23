@@ -1,0 +1,16 @@
+{
+  "id": "003",
+  "timestamp": "2026-03-23T15:30:00Z",
+  "from": "claude.ai",
+  "priority": "low",
+  "type": "test",
+  "title": "Downloads watcher test",
+  "instructions": "This tests the Downloads folder watcher. If you can read this, the bridge_watcher.py successfully detected and copied this file from ~/Downloads to .claude-bridge/instructions/.",
+  "verification": {
+    "type": "manual",
+    "success_criteria": "File appears in .claude-bridge/instructions/"
+  },
+  "constraints": [],
+  "status": "completed",
+  "completed_at": "2026-03-23T17:07:46Z"
+}

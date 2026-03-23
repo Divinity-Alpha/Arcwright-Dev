@@ -1,2 +1,6 @@
 [2026-03-23T15:20:42Z] CHECK: Found 1 pending instruction(s)
 [2026-03-23T15:20:51Z] COMPLETED: 001 — Bridge test passed — instruction read, check/status/complete all work
+[2026-03-23T15:35:05Z] CHECK: Found 1 pending instruction(s)
+[2026-03-23T15:36:28Z] COMPLETED: 002 — Station actions functional. Enter Bore station: shows [1] Stock (45 min), [2] Performance (75 min), [3] Race (120 min). Press 1 executes bore: quality 50->52.5, time 480->390 min. Auto-selects first eligible part. Git commit 302ea13.
+[2026-03-23T17:07:16Z] CHECK: Found 1 pending instruction(s)
+[2026-03-23T17:07:46Z] COMPLETED: 003 — Downloads watcher works. File detected in ~/Downloads, copied to bridge, appeared in --check.

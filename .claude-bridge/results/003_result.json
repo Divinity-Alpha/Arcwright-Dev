@@ -1,0 +1,8 @@
+{
+  "id": "003",
+  "status": "completed",
+  "summary": "Downloads watcher works. File detected in ~/Downloads, copied to bridge, appeared in --check.",
+  "instruction_id": "003",
+  "timestamp": "2026-03-23T17:07:46Z",
+  "from": "claude_code"
+}
