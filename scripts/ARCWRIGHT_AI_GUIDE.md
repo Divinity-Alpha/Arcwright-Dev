@@ -131,6 +131,21 @@ GDD Section 17.5 colors: `#0A0E1A` background, `#E8A624` amber headers, `#D0D4DC
 
 ---
 
+## spawn_actor_at Path Format
+
+Blueprint actors require the full `/Game/BPName.BPName` path (NOT `BPName_C`):
+```python
+# CORRECT:
+cmd("spawn_actor_at", class="/Game/BP_Station_Inspection.BP_Station_Inspection",
+    label="InspectionStation", x=-800, y=800, z=0)
+
+# WRONG — will fail:
+cmd("spawn_actor_at", class="BP_Station_Inspection", ...)
+cmd("spawn_actor_at", class="/Game/BP_Station_Inspection.BP_Station_Inspection_C", ...)
+```
+
+---
+
 ## Rule Zero: Check Before Create
 
 **NEVER create an asset without checking if it exists.**
