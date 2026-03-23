@@ -8,6 +8,32 @@
 
 ---
 
+## CRITICAL: Never reparent_blueprint on GameMode or PlayerController BPs
+
+`reparent_blueprint` on Blueprints with **active world instances** (GameMode,
+PlayerController, GameState) **crashes the editor**. The RefreshAllNodes +
+CompileBlueprint cycle fails because the CDO is in use by the running world.
+
+**Crashes:**
+- `reparent_blueprint` on `BP_BSGameMode` (active GameMode) -- editor dies
+- `set_game_mode` on WorldSettings -- editor dies
+- Any BP reparent where instances exist in the level
+
+**Safe alternatives:**
+1. Set the C++ class directly in `DefaultEngine.ini`:
+   ```ini
+   GlobalDefaultGameMode=/Script/YourModule.YourGameMode
+   ```
+2. Move critical logic to GameInstanceSubsystems (always active):
+   ```cpp
+   // Instead of relying on GameMode, put ProcessEndOfDay in TimeSubsystem
+   void UBSTimeSubsystem::EndDay() { ProcessEndOfDay(); AdvanceDay(); }
+   ```
+3. Use `reparent_widget_blueprint` for widgets (has conflict resolution, safer)
+4. Reparent non-instanced BPs only (e.g., data-only BPs not placed in levels)
+
+---
+
 ## CRITICAL: Never Modify Artist-Created Widget Blueprints
 
 `set_widget_property` **OVERWRITES** the widget's serialized data. When used on
