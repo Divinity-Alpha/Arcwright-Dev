@@ -35,7 +35,7 @@ struct FCommandResult
 };
 
 /**
- * TCP command server for BlueprintLLM.
+ * TCP command server for Arcwright.
  * Listens on localhost:13377 for JSON commands.
  * Dispatches to handlers on the game thread.
  */
@@ -151,6 +151,7 @@ private:
 	// Viewport commands (B30)
 	FCommandResult HandleSetViewportCamera(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleTakeScreenshot(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleSetPirWidget(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleGetViewportInfo(const TSharedPtr<FJsonObject>& Params);
 
 	// Niagara commands (B25)
@@ -173,12 +174,15 @@ private:
 	FCommandResult HandleCreateWidgetBlueprint(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleAddWidgetChild(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleSetWidgetProperty(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleGetWidgetProperty(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleGetWidgetTree(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleRemoveWidget(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleGetViewportWidgets(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleReparentWidgetBlueprint(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleValidateWidgetLayout(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleAutoFixWidgetLayout(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleSetWidgetDesignSize(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleProtectWidgetLayout(const TSharedPtr<FJsonObject>& Params);
 
 	// Widget DSL v2 commands (Phase 2)
 	FCommandResult HandleSetWidgetAnchor(const TSharedPtr<FJsonObject>& Params);
@@ -189,6 +193,24 @@ private:
 	FCommandResult HandleSetWidgetFont(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandlePreviewWidget(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleGetWidgetScreenshot(const TSharedPtr<FJsonObject>& Params);
+
+	// Media texture command
+	FCommandResult HandleAssignMediaTexture(const TSharedPtr<FJsonObject>& Params);
+
+	// Widget variable / binding commands
+	FCommandResult HandleSetWidgetIsVariable(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleAddWidgetVariable(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleSetWidgetEntryClass(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleAddScrollSync(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleBindTextToVariable(const TSharedPtr<FJsonObject>& Params);
+
+	// Font pipeline commands
+	FCommandResult HandleImportFontFace(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleCreateFontAsset(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleAddFontTypeface(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleGetFontInfo(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleListFontAssets(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleImportFontFamily(const TSharedPtr<FJsonObject>& Params);
 
 	// Asset import commands (B31-B33)
 	FCommandResult HandleImportStaticMesh(const TSharedPtr<FJsonObject>& Params);

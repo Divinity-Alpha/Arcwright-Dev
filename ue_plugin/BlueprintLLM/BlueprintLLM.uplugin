@@ -1,9 +1,9 @@
 {
 	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "0.1.0",
+	"Version": 2,
+	"VersionName": "1.0.2",
 	"FriendlyName": "Arcwright",
-	"Description": "Architect Your Game from Language — AI-driven Blueprint generation for Unreal Engine",
+	"Description": "The Bridge Between AI and Unreal Engine",
 	"Category": "Editor",
 	"CreatedBy": "Arcwright",
 	"EnabledByDefault": true,

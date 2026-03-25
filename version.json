@@ -1,0 +1,57 @@
+{
+  "latest": "1.0.2",
+  "minimum_supported": "1.0.0",
+  "released": "2026-03-24",
+  "channel": "stable",
+  "changelog": [
+    {
+      "version": "1.0.2",
+      "date": "2026-03-24",
+      "summary": "Remove DSL Import UI, fix hex: color rebuild, complete Arcwright rename.",
+      "highlights": [
+        "Removed 'Import DSL Blueprint' menu item from plugin UI",
+        "All user-visible 'BlueprintLLM' strings renamed to 'Arcwright'",
+        "Screenshot directory uses Arcwright name",
+        "Comment paths updated to /Game/Arcwright/"
+      ],
+      "breaking_changes": [],
+      "upgrade_notes": "DSL import is still available via the import_from_ir TCP command. The menu UI shortcut has been removed."
+    },
+    {
+      "version": "1.0.1",
+      "date": "2026-03-24",
+      "summary": "Color fixes, layout protection, design size control, HTML translator.",
+      "highlights": [
+        "hex: and srgb: color prefixes — auto sRGB-to-linear conversion",
+        "set_widget_design_size command — control UMG designer canvas",
+        "create_widget_blueprint defaults to 1920x1080",
+        "protect_widget_layout — lock visual layer from C++ interference",
+        "Root CanvasPanel auto-clips to prevent child overflow",
+        "Content paths moved to /Game/Arcwright/",
+        "HTML-to-Arcwright translator (scripts/html_to_arcwright/)"
+      ],
+      "breaking_changes": [
+        "Default content path changed from /Game/BlueprintLLM/ to /Game/Arcwright/"
+      ],
+      "upgrade_notes": "Existing projects with assets at /Game/BlueprintLLM/ should move them to /Game/Arcwright/ or update paths in scripts."
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-03-24",
+      "summary": "Initial release. Full HTML-to-UMG pipeline, Widget DSL, 5 B&S screens.",
+      "highlights": [
+        "267 TCP commands",
+        "Widget DSL — build UIs from declarative language",
+        "Complete Bore & Stroke HUD suite (5 screens, 228/228 audit)",
+        "Font import pipeline (import_font_family)",
+        "7+ widget types: Grid, WrapBox, SizeBox, ListView, TileView",
+        "Visual verification harness (verify_widget_visual.py)"
+      ],
+      "breaking_changes": [],
+      "upgrade_notes": ""
+    }
+  ],
+  "download_url": "https://www.fab.com/listings/arcwright",
+  "docs_url": "https://docs.arcwright.io",
+  "changelog_url": "https://arcwright.io/changelog"
+}

@@ -8,7 +8,7 @@ bool FDSLImporter::ParseIR(const FString& JsonPath, FDSLBlueprint& OutBlueprint)
 	FString JsonString;
 	if (!FFileHelper::LoadFileToString(JsonString, *JsonPath))
 	{
-		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: Failed to read file: %s"), *JsonPath);
+		UE_LOG(LogTemp, Error, TEXT("Arcwright: Failed to read file: %s"), *JsonPath);
 		return false;
 	}
 
@@ -22,7 +22,7 @@ bool FDSLImporter::ParseIRFromString(const FString& JsonString, FDSLBlueprint& O
 
 	if (!FJsonSerializer::Deserialize(Reader, RootObj) || !RootObj.IsValid())
 	{
-		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: Invalid JSON"));
+		UE_LOG(LogTemp, Error, TEXT("Arcwright: Invalid JSON"));
 		return false;
 	}
 
@@ -87,7 +87,7 @@ bool FDSLImporter::ParseIRFromString(const FString& JsonString, FDSLBlueprint& O
 		}
 	}
 
-	UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Parsed '%s' - %d nodes, %d connections, %d variables"),
+	UE_LOG(LogTemp, Log, TEXT("Arcwright: Parsed '%s' - %d nodes, %d connections, %d variables"),
 		*OutBlueprint.Name, OutBlueprint.Nodes.Num(),
 		OutBlueprint.Connections.Num(), OutBlueprint.Variables.Num());
 

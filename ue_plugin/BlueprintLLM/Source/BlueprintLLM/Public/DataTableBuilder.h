@@ -27,7 +27,7 @@ public:
 	/**
 	 * Create a DataTable + UserDefinedStruct from parsed IR JSON.
 	 * @param IRJson - The root IR object (metadata, columns, rows)
-	 * @param PackagePath - Content Browser path (e.g. "/Game/BlueprintLLM/DataTables")
+	 * @param PackagePath - Content Browser path (e.g. "/Game/Arcwright/DataTables")
 	 * @return Build result with asset paths and counts
 	 */
 	static FDTBuildResult CreateFromIR(const TSharedPtr<FJsonObject>& IRJson, const FString& PackagePath);

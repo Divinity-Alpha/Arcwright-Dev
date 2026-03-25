@@ -29,7 +29,7 @@ public:
 	/**
 	 * Create a BehaviorTree + Blackboard from parsed IR JSON.
 	 * @param IRJson - The root IR object (metadata, blackboard_keys, tree)
-	 * @param PackagePath - Content Browser path (e.g. "/Game/BlueprintLLM/BehaviorTrees")
+	 * @param PackagePath - Content Browser path (e.g. "/Game/Arcwright/BehaviorTrees")
 	 * @return Build result with asset paths and node counts
 	 */
 	static FBTBuildResult CreateFromIR(const TSharedPtr<FJsonObject>& IRJson, const FString& PackagePath);

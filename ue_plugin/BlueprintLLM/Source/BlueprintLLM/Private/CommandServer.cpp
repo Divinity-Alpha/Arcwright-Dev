@@ -104,6 +104,10 @@
 #include "AnimGraphNode_SequencePlayer.h"
 #include "AnimationStateGraph.h"
 #include "Components/Border.h"
+#include "Engine/Font.h"
+#include "Engine/FontFace.h"
+#include "Factories/FontFileImportFactory.h"
+#include "AutomatedAssetImportData.h"
 #include "Engine/TextureRenderTarget2D.h"
 #include "Slate/WidgetRenderer.h"
 #include "Subsystems/AssetEditorSubsystem.h"
@@ -169,6 +173,10 @@
 #include "K2Node_CallFunction.h"
 #include "K2Node_InputAction.h"
 #include "K2Node_CustomEvent.h"
+#include "K2Node_FunctionEntry.h"
+#include "K2Node_FunctionResult.h"
+#include "K2Node_VariableGet.h"
+#include "K2Node_DynamicCast.h"
 
 // Camera / Spring Arm (Phase 2)
 #include "Camera/CameraComponent.h"
@@ -258,11 +266,21 @@
 #include "Components/ProgressBar.h"
 #include "Components/Image.h"
 #include "Components/Button.h"
+#include "Components/ScrollBox.h"
+#include "Components/UniformGridPanel.h"
+#include "Components/UniformGridSlot.h"
+#include "Components/GridPanel.h"
+#include "Components/GridSlot.h"
+#include "Components/WrapBox.h"
+#include "Components/WrapBoxSlot.h"
+#include "Components/ListView.h"
+#include "Components/TileView.h"
 #include "Blueprint/UserWidget.h"
+#include "Misc/DefaultValueHelper.h"
 
 DEFINE_LOG_CATEGORY(LogBlueprintLLM);
 
-const FString FCommandServer::SERVER_VERSION = TEXT("1.0");
+const FString FCommandServer::SERVER_VERSION = TEXT("1.0.2");
 
 // ============================================================
 // Error Suggestion Helpers
@@ -912,6 +930,10 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	{
 		return HandleTakeScreenshot(Params);
 	}
+	if (Command == TEXT("set_pir_widget"))
+	{
+		return HandleSetPirWidget(Params);
+	}
 	if (Command == TEXT("get_viewport_info"))
 	{
 		return HandleGetViewportInfo(Params);
@@ -962,6 +984,10 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	{
 		return HandleCreateWidgetBlueprint(Params);
 	}
+	if (Command == TEXT("set_widget_design_size"))
+	{
+		return HandleSetWidgetDesignSize(Params);
+	}
 	if (Command == TEXT("add_widget_child"))
 	{
 		return HandleAddWidgetChild(Params);
@@ -969,6 +995,10 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	if (Command == TEXT("set_widget_property"))
 	{
 		return HandleSetWidgetProperty(Params);
+	}
+	if (Command == TEXT("get_widget_property"))
+	{
+		return HandleGetWidgetProperty(Params);
 	}
 	if (Command == TEXT("get_widget_tree"))
 	{
@@ -991,6 +1021,25 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	if (Command == TEXT("reparent_widget_blueprint")) { return HandleReparentWidgetBlueprint(Params); }
 	if (Command == TEXT("validate_widget_layout"))   { return HandleValidateWidgetLayout(Params); }
 	if (Command == TEXT("auto_fix_widget_layout"))    { return HandleAutoFixWidgetLayout(Params); }
+	if (Command == TEXT("protect_widget_layout"))      { return HandleProtectWidgetLayout(Params); }
+
+	// Media texture command
+	if (Command == TEXT("assign_media_texture")) { return HandleAssignMediaTexture(Params); }
+
+	// Widget variable / binding commands
+	if (Command == TEXT("set_widget_is_variable")) { return HandleSetWidgetIsVariable(Params); }
+	if (Command == TEXT("add_widget_variable"))    { return HandleAddWidgetVariable(Params); }
+	if (Command == TEXT("set_widget_entry_class")) { return HandleSetWidgetEntryClass(Params); }
+	if (Command == TEXT("add_scroll_sync"))         { return HandleAddScrollSync(Params); }
+	if (Command == TEXT("bind_text_to_variable"))   { return HandleBindTextToVariable(Params); }
+
+	// Font pipeline commands
+	if (Command == TEXT("import_font_face"))    { return HandleImportFontFace(Params); }
+	if (Command == TEXT("create_font_asset"))   { return HandleCreateFontAsset(Params); }
+	if (Command == TEXT("add_font_typeface"))   { return HandleAddFontTypeface(Params); }
+	if (Command == TEXT("get_font_info"))       { return HandleGetFontInfo(Params); }
+	if (Command == TEXT("list_font_assets"))    { return HandleListFontAssets(Params); }
+	if (Command == TEXT("import_font_family"))  { return HandleImportFontFamily(Params); }
 
 	// Generic DSL config commands (Input, SmartObject, Sound, Replication, ControlRig, StateTree, Vehicle, WorldPartition, Landscape, Foliage, MassEntity)
 	if (Command == TEXT("create_input_config") || Command == TEXT("create_smartobject_config") ||
@@ -1373,8 +1422,8 @@ FCommandResult FCommandServer::HandleGetCapabilities(const TSharedPtr<FJsonObjec
 	Data->SetStringField(TEXT("server"), TEXT("Arcwright"));
 	Data->SetStringField(TEXT("version"), SERVER_VERSION);
 	Data->SetStringField(TEXT("engine_version"), *FEngineVersion::Current().ToString());
-	Data->SetNumberField(TEXT("tcp_commands"), 156);
-	Data->SetNumberField(TEXT("mcp_tools"), 188);
+	Data->SetNumberField(TEXT("tcp_commands"), 267);
+	Data->SetNumberField(TEXT("mcp_tools"), 267);
 
 	// Categories with command lists
 	TSharedPtr<FJsonObject> Categories = MakeShareable(new FJsonObject());
@@ -1440,7 +1489,18 @@ FCommandResult FCommandServer::HandleGetCapabilities(const TSharedPtr<FJsonObjec
 	});
 	AddCategory(TEXT("widgets"), {
 		TEXT("create_widget_blueprint"), TEXT("add_widget_child"),
-		TEXT("set_widget_property"), TEXT("get_widget_tree"), TEXT("remove_widget")
+		TEXT("set_widget_property"), TEXT("get_widget_property"), TEXT("get_widget_tree"), TEXT("remove_widget")
+	});
+	AddCategory(TEXT("fonts"), {
+		TEXT("import_font_face"), TEXT("create_font_asset"), TEXT("add_font_typeface"),
+		TEXT("get_font_info"), TEXT("list_font_assets"), TEXT("import_font_family")
+	});
+	AddCategory(TEXT("media"), {
+		TEXT("assign_media_texture")
+	});
+	AddCategory(TEXT("binding"), {
+		TEXT("set_widget_is_variable"), TEXT("add_widget_variable"), TEXT("set_widget_entry_class"),
+		TEXT("add_scroll_sync"), TEXT("bind_text_to_variable")
 	});
 	AddCategory(TEXT("input"), {
 		TEXT("add_input_action"), TEXT("add_input_mapping"), TEXT("setup_input_context"),
@@ -1451,7 +1511,7 @@ FCommandResult FCommandServer::HandleGetCapabilities(const TSharedPtr<FJsonObjec
 		TEXT("get_sound_assets"), TEXT("set_audio_properties")
 	});
 	AddCategory(TEXT("viewport"), {
-		TEXT("set_viewport_camera"), TEXT("take_screenshot"), TEXT("get_viewport_info")
+		TEXT("set_viewport_camera"), TEXT("take_screenshot"), TEXT("set_pir_widget"), TEXT("get_viewport_info")
 	});
 	AddCategory(TEXT("niagara"), {
 		TEXT("spawn_niagara_at_location"), TEXT("add_niagara_component"),
@@ -1640,7 +1700,7 @@ FCommandResult FCommandServer::BuildBlueprintFromIR(FDSLBlueprint& DSL)
 	DeleteExistingBlueprint(DSL.Name);
 
 	// Build the Blueprint — SAME code path as the Tools menu import (Rule 17)
-	const FString PackagePath = TEXT("/Game/BlueprintLLM/Generated");
+	const FString PackagePath = TEXT("/Game/Arcwright/Generated");
 	UBlueprint* NewBP = FBlueprintBuilder::CreateBlueprint(DSL, PackagePath);
 
 	if (!NewBP)
@@ -1925,7 +1985,7 @@ FCommandResult FCommandServer::HandleDeleteBlueprint(const TSharedPtr<FJsonObjec
 UBlueprint* FCommandServer::FindBlueprintByName(const FString& Name)
 {
 	// Search in our generated path first
-	FString AssetPath = FString::Printf(TEXT("/Game/BlueprintLLM/Generated/%s.%s"), *Name, *Name);
+	FString AssetPath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"), *Name, *Name);
 	UBlueprint* BP = LoadObject<UBlueprint>(nullptr, *AssetPath);
 	if (BP)
 	{
@@ -3206,7 +3266,7 @@ UClass* FCommandServer::ResolveActorClass(const FString& ClassName)
 			return BP->GeneratedClass;
 		}
 		// Try as generated blueprint name in our folder
-		FString FullPath = FString::Printf(TEXT("/Game/BlueprintLLM/Generated/%s.%s"),
+		FString FullPath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"),
 			*FPaths::GetBaseFilename(ClassName), *FPaths::GetBaseFilename(ClassName));
 		BP = LoadObject<UBlueprint>(nullptr, *FullPath);
 		if (BP && BP->GeneratedClass)
@@ -3234,9 +3294,9 @@ UClass* FCommandServer::ResolveActorClass(const FString& ClassName)
 		return *Found;
 	}
 
-	// Try as a Blueprint in our Generated folder (e.g. "BP_SimpleEnemy" → /Game/BlueprintLLM/Generated/BP_SimpleEnemy)
+	// Try as a Blueprint in our Generated folder (e.g. "BP_SimpleEnemy" → /Game/Arcwright/Generated/BP_SimpleEnemy)
 	{
-		FString BPPath = FString::Printf(TEXT("/Game/BlueprintLLM/Generated/%s.%s"), *ClassName, *ClassName);
+		FString BPPath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"), *ClassName, *ClassName);
 		UBlueprint* BP = LoadObject<UBlueprint>(nullptr, *BPPath);
 		if (BP && BP->GeneratedClass)
 		{
@@ -3277,7 +3337,7 @@ FCommandResult FCommandServer::HandleSpawnActorAt(const TSharedPtr<FJsonObject>&
 		{ FString ClassErr = FString::Printf(TEXT("Could not resolve actor class: %s."), *ClassName);
 			TArray<FString> ClassSuggestions = GetSuggestions(ClassName, GetAvailableBlueprintNames());
 			if (ClassSuggestions.Num() > 0) ClassErr += TEXT(" Similar blueprints: ") + FString::Join(ClassSuggestions, TEXT(", "));
-			else ClassErr += TEXT(" Tip: use full path like /Game/BlueprintLLM/Generated/BP_MyActor for Blueprint classes, or native class names like StaticMeshActor, PointLight, Character.");
+			else ClassErr += TEXT(" Tip: use full path like /Game/Arcwright/Generated/BP_MyActor for Blueprint classes, or native class names like StaticMeshActor, PointLight, Character.");
 			return FCommandResult::Error(ClassErr); }
 	}
 
@@ -4273,7 +4333,7 @@ FCommandResult FCommandServer::HandleCreateMaterialInstance(const TSharedPtr<FJs
 	}
 
 	// Delete existing material instance if present (prevents "partially loaded" crash — Lesson #37)
-	FString PackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *Name);
+	FString PackagePath = FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *Name);
 	{
 		FString FullAssetPath = FString::Printf(TEXT("%s.%s"), *PackagePath, *Name);
 		UObject* ExistingObj = LoadObject<UObject>(nullptr, *FullAssetPath);
@@ -4374,21 +4434,30 @@ FCommandResult FCommandServer::HandleCreateSimpleMaterial(const TSharedPtr<FJson
 		return FCommandResult::Error(TEXT("Missing required param: name"));
 	}
 
-	// Get color (r,g,b 0-1 range)
+	// Get color (r,g,b 0-1 range) — optional for UI materials
+	float R = 0.5f, G = 0.5f, B = 0.5f;
+	bool bHasColor = false;
 	const TSharedPtr<FJsonObject>* ColorPtr;
-	if (!Params->TryGetObjectField(TEXT("color"), ColorPtr))
+	if (Params->TryGetObjectField(TEXT("color"), ColorPtr))
 	{
-		return FCommandResult::Error(TEXT("Missing required param: color {r,g,b}"));
+		R = (*ColorPtr)->GetNumberField(TEXT("r"));
+		G = (*ColorPtr)->GetNumberField(TEXT("g"));
+		B = (*ColorPtr)->GetNumberField(TEXT("b"));
+		bHasColor = true;
 	}
-	float R = (*ColorPtr)->GetNumberField(TEXT("r"));
-	float G = (*ColorPtr)->GetNumberField(TEXT("g"));
-	float B = (*ColorPtr)->GetNumberField(TEXT("b"));
+	else if (!Params->HasField(TEXT("material_domain")))
+	{
+		return FCommandResult::Error(TEXT("Missing required param: color {r,g,b} (optional for UI materials)"));
+	}
 
 	// Optional emissive strength (> 0 makes it glow)
 	float EmissiveStrength = Params->HasField(TEXT("emissive")) ? Params->GetNumberField(TEXT("emissive")) : 0.0f;
 
 	// Delete existing material if present (prevents "partially loaded" crash — Lesson #37)
-	FString PackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *Name);
+	FString BasePath = Params->HasField(TEXT("path"))
+		? Params->GetStringField(TEXT("path"))
+		: TEXT("/Game/Arcwright/Materials");
+	FString PackagePath = BasePath / Name;
 	{
 		FString FullAssetPath = FString::Printf(TEXT("%s.%s"), *PackagePath, *Name);
 		UMaterial* ExistingMat = LoadObject<UMaterial>(nullptr, *FullAssetPath);
@@ -4411,6 +4480,27 @@ FCommandResult FCommandServer::HandleCreateSimpleMaterial(const TSharedPtr<FJson
 
 	// Create UMaterial
 	UMaterial* NewMat = NewObject<UMaterial>(Package, FName(*Name), RF_Public | RF_Standalone);
+
+	// Set material domain if specified
+	FString Domain = Params->HasField(TEXT("material_domain"))
+		? Params->GetStringField(TEXT("material_domain")) : TEXT("Surface");
+	if (Domain == TEXT("UI") || Domain == TEXT("UserInterface"))
+	{
+		NewMat->MaterialDomain = MD_UI;
+		NewMat->BlendMode = BLEND_Translucent;
+		NewMat->SetShadingModel(MSM_Unlit);
+	}
+	else if (Domain == TEXT("PostProcess"))
+	{
+		NewMat->MaterialDomain = MD_PostProcess;
+	}
+
+	// Allow custom path override
+	if (Params->HasField(TEXT("path")))
+	{
+		// Path was specified — material was already created at PackagePath which uses Name
+		// No action needed here, path is used for logging
+	}
 
 	// Create a Constant3Vector expression for the color
 	UMaterialExpressionConstant3Vector* ColorExpr = NewObject<UMaterialExpressionConstant3Vector>(NewMat);
@@ -4491,7 +4581,7 @@ FCommandResult FCommandServer::HandleCreateTexturedMaterial(const TSharedPtr<FJs
 		}
 	}
 
-	FString PackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *Name);
+	FString PackagePath = FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *Name);
 
 	// Delete existing material if present (Lesson #37 — prevents "partially loaded" crash)
 	{
@@ -4586,8 +4676,8 @@ UMaterialInterface* FCommandServer::ResolveMaterialByName(const FString& NameOrP
 
 	// 2. Try common prefixed paths
 	TArray<FString> SearchPaths;
-	SearchPaths.Add(FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s.%s"), *NameOrPath, *NameOrPath));
-	SearchPaths.Add(FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *NameOrPath));
+	SearchPaths.Add(FString::Printf(TEXT("/Game/Arcwright/Materials/%s.%s"), *NameOrPath, *NameOrPath));
+	SearchPaths.Add(FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *NameOrPath));
 	for (const FString& Path : SearchPaths)
 	{
 		Mat = LoadObject<UMaterialInterface>(nullptr, *Path);
@@ -5149,7 +5239,7 @@ FCommandResult FCommandServer::HandleDuplicateBlueprint(const TSharedPtr<FJsonOb
 	FAssetToolsModule& AssetToolsModule = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools");
 	IAssetTools& AssetTools = AssetToolsModule.Get();
 
-	FString DestPath = TEXT("/Game/BlueprintLLM/Generated");
+	FString DestPath = TEXT("/Game/Arcwright/Generated");
 	UObject* DuplicatedAsset = AssetTools.DuplicateAsset(NewName, DestPath, SourceBP);
 
 	if (!DuplicatedAsset)
@@ -5327,13 +5417,13 @@ FCommandResult FCommandServer::HandlePlayAndCapture(const TSharedPtr<FJsonObject
 
 FCommandResult FCommandServer::HandleVerifyAllBlueprints(const TSharedPtr<FJsonObject>& Params)
 {
-	// Find all Blueprints in /Game/BlueprintLLM/Generated/
+	// Find all Blueprints in /Game/Arcwright/Generated/
 	FAssetRegistryModule& AssetReg = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
 	IAssetRegistry& Registry = AssetReg.Get();
 
 	FARFilter Filter;
 	Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
-	Filter.PackagePaths.Add(TEXT("/Game/BlueprintLLM/Generated"));
+	Filter.PackagePaths.Add(TEXT("/Game/Arcwright/Generated"));
 	Filter.bRecursivePaths = true;
 
 	TArray<FAssetData> Assets;
@@ -5527,7 +5617,7 @@ FCommandResult FCommandServer::HandleRunMapCheck(const TSharedPtr<FJsonObject>& 
 	FAssetRegistryModule& AssetReg = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
 	FARFilter Filter;
 	Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
-	Filter.PackagePaths.Add(TEXT("/Game/BlueprintLLM/Generated"));
+	Filter.PackagePaths.Add(TEXT("/Game/Arcwright/Generated"));
 	Filter.bRecursivePaths = true;
 	TArray<FAssetData> BPAssets;
 	AssetReg.Get().GetAssets(Filter, BPAssets);
@@ -5839,7 +5929,7 @@ FCommandResult FCommandServer::HandleSetupInputContext(const TSharedPtr<FJsonObj
 		return FCommandResult::Error(TEXT("Missing 'name' parameter"));
 	}
 
-	FString PackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Input/%s"), *Name);
+	FString PackagePath = FString::Printf(TEXT("/Game/Arcwright/Input/%s"), *Name);
 	UPackage* Package = CreatePackage(*PackagePath);
 	if (!Package)
 	{
@@ -5878,7 +5968,7 @@ FCommandResult FCommandServer::HandleAddInputAction(const TSharedPtr<FJsonObject
 		? Params->GetStringField(TEXT("value_type"))
 		: TEXT("bool");
 
-	FString PackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Input/%s"), *Name);
+	FString PackagePath = FString::Printf(TEXT("/Game/Arcwright/Input/%s"), *Name);
 	UPackage* Package = CreatePackage(*PackagePath);
 	if (!Package)
 	{
@@ -5935,11 +6025,11 @@ FCommandResult FCommandServer::HandleAddInputMapping(const TSharedPtr<FJsonObjec
 		return FCommandResult::Error(TEXT("Missing 'context', 'action', or 'key' parameter"));
 	}
 
-	// Resolve context — try as path first, then by name in /Game/BlueprintLLM/Input/
+	// Resolve context — try as path first, then by name in /Game/Arcwright/Input/
 	UInputMappingContext* Context = LoadObject<UInputMappingContext>(nullptr, *ContextName);
 	if (!Context)
 	{
-		FString ContextPath = FString::Printf(TEXT("/Game/BlueprintLLM/Input/%s.%s"), *ContextName, *ContextName);
+		FString ContextPath = FString::Printf(TEXT("/Game/Arcwright/Input/%s.%s"), *ContextName, *ContextName);
 		Context = LoadObject<UInputMappingContext>(nullptr, *ContextPath);
 	}
 	if (!Context)
@@ -5951,7 +6041,7 @@ FCommandResult FCommandServer::HandleAddInputMapping(const TSharedPtr<FJsonObjec
 	UInputAction* Action = LoadObject<UInputAction>(nullptr, *ActionName);
 	if (!Action)
 	{
-		FString ActionPath = FString::Printf(TEXT("/Game/BlueprintLLM/Input/%s.%s"), *ActionName, *ActionName);
+		FString ActionPath = FString::Printf(TEXT("/Game/Arcwright/Input/%s.%s"), *ActionName, *ActionName);
 		Action = LoadObject<UInputAction>(nullptr, *ActionPath);
 	}
 	if (!Action)
@@ -5987,7 +6077,7 @@ FCommandResult FCommandServer::HandleGetInputActions(const TSharedPtr<FJsonObjec
 {
 	FString SearchPath = Params->HasField(TEXT("path"))
 		? Params->GetStringField(TEXT("path"))
-		: TEXT("/Game/BlueprintLLM/Input");
+		: TEXT("/Game/Arcwright/Input");
 
 	FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
 	IAssetRegistry& AssetRegistry = AssetRegistryModule.Get();
@@ -6265,7 +6355,7 @@ FCommandResult FCommandServer::HandleTakeScreenshot(const TSharedPtr<FJsonObject
 
 	// Build the full output path
 	FString OutputDir = FPaths::ConvertRelativePathToFull(
-		FPaths::Combine(FPaths::ProjectSavedDir(), TEXT("Screenshots"), TEXT("BlueprintLLM")));
+		FPaths::Combine(FPaths::ProjectSavedDir(), TEXT("Screenshots"), TEXT("Arcwright")));
 	FString FullPath = FPaths::Combine(OutputDir, Filename);
 
 	// Ensure directory exists
@@ -6352,7 +6442,7 @@ FCommandResult FCommandServer::HandleCaptureFullScreen(const TSharedPtr<FJsonObj
 		Filename += TEXT(".png");
 
 	FString OutputDir = FPaths::ConvertRelativePathToFull(
-		FPaths::Combine(FPaths::ProjectSavedDir(), TEXT("Screenshots"), TEXT("BlueprintLLM")));
+		FPaths::Combine(FPaths::ProjectSavedDir(), TEXT("Screenshots"), TEXT("Arcwright")));
 	FString FullPath = FPaths::Combine(OutputDir, Filename);
 	IFileManager::Get().MakeDirectory(*OutputDir, true);
 
@@ -6693,6 +6783,29 @@ FCommandResult FCommandServer::HandleSimulateWalkTo(const TSharedPtr<FJsonObject
 	Data->SetNumberField(TEXT("target_z"), TargetLoc.Z);
 	Data->SetNumberField(TEXT("distance"), Distance);
 	Data->SetStringField(TEXT("method"), TEXT("AddMovementInput_single_frame"));
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleSetPirWidget(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	if (WidgetName.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("set_pir_widget: widget_name is required"));
+	}
+
+	FString ConfigPath = FPaths::ProjectDir() / TEXT("Config/WidgetPreview.ini");
+	FString Content = FString::Printf(TEXT("[Preview]\nWidgetName=%s\n"), *WidgetName);
+
+	if (!FFileHelper::SaveStringToFile(Content, *ConfigPath))
+	{
+		return FCommandResult::Error(TEXT("set_pir_widget: failed to write config: ") + ConfigPath);
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("widget_name"), WidgetName);
+	Data->SetStringField(TEXT("config_path"), ConfigPath);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("set_pir_widget: %s -> %s"), *WidgetName, *ConfigPath);
 	return FCommandResult::Ok(Data);
 }
 
@@ -7095,6 +7208,13 @@ UClass* FCommandServer::ResolveWidgetClass(const FString& FriendlyName)
 		WidgetClassMap.Add(TEXT("CanvasPanel"), UCanvasPanel::StaticClass());
 		WidgetClassMap.Add(TEXT("Overlay"), UOverlay::StaticClass());
 		WidgetClassMap.Add(TEXT("SizeBox"), USizeBox::StaticClass());
+		WidgetClassMap.Add(TEXT("ScrollBox"), UScrollBox::StaticClass());
+		WidgetClassMap.Add(TEXT("Border"), UBorder::StaticClass());
+		WidgetClassMap.Add(TEXT("UniformGridPanel"), UUniformGridPanel::StaticClass());
+		WidgetClassMap.Add(TEXT("GridPanel"), UGridPanel::StaticClass());
+		WidgetClassMap.Add(TEXT("WrapBox"), UWrapBox::StaticClass());
+		WidgetClassMap.Add(TEXT("ListView"), UListView::StaticClass());
+		WidgetClassMap.Add(TEXT("TileView"), UTileView::StaticClass());
 	}
 
 	UClass** Found = WidgetClassMap.Find(FriendlyName);
@@ -7244,6 +7364,18 @@ FCommandResult FCommandServer::HandleCreateWidgetBlueprint(const TSharedPtr<FJso
 		return FCommandResult::Error(TEXT("Failed to create Widget Blueprint"));
 	}
 
+	// Set design-time size (default 1920x1080 unless overridden)
+	int32 DesignWidth = Params->HasField(TEXT("design_width")) ? (int32)Params->GetNumberField(TEXT("design_width")) : 1920;
+	int32 DesignHeight = Params->HasField(TEXT("design_height")) ? (int32)Params->GetNumberField(TEXT("design_height")) : 1080;
+#if WITH_EDITORONLY_DATA
+	if (UUserWidget* CDO = Cast<UUserWidget>(WBP->GeneratedClass->GetDefaultObject()))
+	{
+		CDO->DesignTimeSize = FVector2D(DesignWidth, DesignHeight);
+		CDO->DesignSizeMode = EDesignPreviewSizeMode::Custom;
+		UE_LOG(LogBlueprintLLM, Log, TEXT("CreateWidgetBP DesignTimeSize: %dx%d (Custom mode)"), DesignWidth, DesignHeight);
+	}
+#endif
+
 	// Compile
 	FKismetEditorUtilities::CompileBlueprint(WBP);
 
@@ -7265,12 +7397,138 @@ FCommandResult FCommandServer::HandleCreateWidgetBlueprint(const TSharedPtr<FJso
 	Data->SetBoolField(TEXT("compiled"), true);
 	Data->SetBoolField(TEXT("saved"), bSaved);
 	Data->SetBoolField(TEXT("has_widget_tree"), WBP->WidgetTree != nullptr);
+	Data->SetNumberField(TEXT("design_width"), DesignWidth);
+	Data->SetNumberField(TEXT("design_height"), DesignHeight);
 
 	// Auto-validate layout on creation
 	int32 LayoutScore = ComputeLayoutScore(WBP);
 	Data->SetNumberField(TEXT("layout_score"), LayoutScore);
 
-	UE_LOG(LogBlueprintLLM, Log, TEXT("Created Widget Blueprint: %s at %s (saved=%d, layout=%d)"), *Name, *PackagePath, bSaved, LayoutScore);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Created Widget Blueprint: %s at %s (saved=%d, layout=%d, design=%dx%d)"), *Name, *PackagePath, bSaved, LayoutScore, DesignWidth, DesignHeight);
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleSetWidgetDesignSize(const TSharedPtr<FJsonObject>& Params)
+{
+	FString Name = Params->GetStringField(TEXT("name"));
+	if (Name.IsEmpty())
+	{
+		Name = Params->GetStringField(TEXT("widget_blueprint"));
+	}
+	if (Name.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("Missing required param: name (widget blueprint name)"));
+	}
+
+	int32 Width = Params->HasField(TEXT("width")) ? (int32)Params->GetNumberField(TEXT("width")) : 0;
+	int32 Height = Params->HasField(TEXT("height")) ? (int32)Params->GetNumberField(TEXT("height")) : 0;
+	if (Width <= 0 || Height <= 0)
+	{
+		return FCommandResult::Error(TEXT("Missing or invalid params: width and height must be positive integers"));
+	}
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(Name);
+	if (!WBP)
+	{
+		return FCommandResult::Error(FString::Printf(TEXT("Widget Blueprint not found: %s"), *Name));
+	}
+
+#if WITH_EDITORONLY_DATA
+	if (UUserWidget* CDO = Cast<UUserWidget>(WBP->GeneratedClass->GetDefaultObject()))
+	{
+		CDO->DesignTimeSize = FVector2D(Width, Height);
+		CDO->DesignSizeMode = EDesignPreviewSizeMode::Custom;
+	}
+	else
+	{
+		return FCommandResult::Error(TEXT("Failed to get widget CDO to set DesignTimeSize"));
+	}
+#endif
+	WBP->MarkPackageDirty();
+
+	// Save immediately
+	FString PackagePath = WBP->GetPackage()->GetName();
+	FString PackageFilename = FPackageName::LongPackageNameToFilename(PackagePath, FPackageName::GetAssetPackageExtension());
+	FSavePackageArgs SaveArgs;
+	bool bSaved = SafeSavePackage(WBP->GetPackage(), WBP, PackageFilename, SaveArgs);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("name"), Name);
+	Data->SetNumberField(TEXT("width"), Width);
+	Data->SetNumberField(TEXT("height"), Height);
+	Data->SetBoolField(TEXT("saved"), bSaved);
+
+	UE_LOG(LogBlueprintLLM, Log, TEXT("SetWidgetDesignSize: %s -> %dx%d (saved=%d)"), *Name, Width, Height, bSaved);
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleProtectWidgetLayout(const TSharedPtr<FJsonObject>& Params)
+{
+	FString Name = Params->GetStringField(TEXT("name"));
+	if (Name.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("Missing required param: name"));
+	}
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(Name);
+	if (!WBP || !WBP->WidgetTree)
+	{
+		return FCommandResult::Error(FString::Printf(TEXT("Widget Blueprint not found: %s"), *Name));
+	}
+
+	int32 ProtectedCount = 0;
+	int32 AccessibleCount = 0;
+
+	WBP->WidgetTree->ForEachWidget([&](UWidget* Widget)
+	{
+		if (!Widget) return;
+		FString WidgetName = Widget->GetName();
+
+		// txt_* and Btn_* prefixed widgets stay accessible to C++
+		if (WidgetName.StartsWith(TEXT("txt_")) || WidgetName.StartsWith(TEXT("Btn_")) ||
+		    WidgetName.StartsWith(TEXT("Text_Btn")))
+		{
+			// Keep bIsVariable = true so C++ can find these
+			Widget->bIsVariable = true;
+			AccessibleCount++;
+			return;
+		}
+
+		// Root widget stays as-is
+		if (Widget == WBP->WidgetTree->RootWidget)
+		{
+			return;
+		}
+
+		// Everything else in the visual layer: protect
+		Widget->bIsVariable = false;
+
+		// Set decorative borders/panels to HitTestInvisible
+		if (Cast<UBorder>(Widget) || Cast<UCanvasPanel>(Widget))
+		{
+			Widget->SetVisibility(ESlateVisibility::HitTestInvisible);
+		}
+
+		ProtectedCount++;
+	});
+
+	// Mark modified and save
+	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(WBP);
+	WBP->MarkPackageDirty();
+
+	FString PackagePath = WBP->GetPackage()->GetName();
+	FString PackageFilename = FPackageName::LongPackageNameToFilename(PackagePath, FPackageName::GetAssetPackageExtension());
+	FSavePackageArgs SaveArgs;
+	bool bSaved = SafeSavePackage(WBP->GetPackage(), WBP, PackageFilename, SaveArgs);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("name"), Name);
+	Data->SetNumberField(TEXT("protected_widgets"), ProtectedCount);
+	Data->SetNumberField(TEXT("accessible_widgets"), AccessibleCount);
+	Data->SetBoolField(TEXT("saved"), bSaved);
+
+	UE_LOG(LogBlueprintLLM, Log, TEXT("ProtectWidgetLayout: %s — %d protected, %d accessible (txt_*/Btn_*)"),
+		*Name, ProtectedCount, AccessibleCount);
 	return FCommandResult::Ok(Data);
 }
 
@@ -7357,6 +7615,12 @@ FCommandResult FCommandServer::HandleAddWidgetChild(const TSharedPtr<FJsonObject
 		{
 			// This widget becomes root
 			WBP->WidgetTree->RootWidget = NewWidget;
+			// Auto-clip root CanvasPanel to prevent child overflow
+			if (UCanvasPanel* RootCanvas = Cast<UCanvasPanel>(NewWidget))
+			{
+				RootCanvas->SetClipping(EWidgetClipping::ClipToBounds);
+				UE_LOG(LogBlueprintLLM, Log, TEXT("AddWidgetChild: Set ClipToBounds on root CanvasPanel '%s'"), *WidgetName);
+			}
 		}
 		else
 		{
@@ -7412,6 +7676,106 @@ FCommandResult FCommandServer::HandleAddWidgetChild(const TSharedPtr<FJsonObject
 	return FCommandResult::Ok(Data);
 }
 
+// ── Widget Property Surface helpers ───────────────────────────
+// Parse (R=x,G=x,B=x,A=x) format directly — values treated as-is
+static FLinearColor ParseLinearColorRaw(const FString& Value)
+{
+	FLinearColor Result = FLinearColor::White;
+	FString Clean = Value.TrimStartAndEnd()
+		.Replace(TEXT("("), TEXT(""))
+		.Replace(TEXT(")"), TEXT(""));
+	TArray<FString> Parts;
+	Clean.ParseIntoArray(Parts, TEXT(","));
+	for (const FString& Part : Parts)
+	{
+		FString Key, Val;
+		Part.Split(TEXT("="), &Key, &Val);
+		Key.TrimStartAndEndInline();
+		Val.TrimStartAndEndInline();
+		float F = FCString::Atof(*Val);
+		if      (Key == TEXT("R")) Result.R = F;
+		else if (Key == TEXT("G")) Result.G = F;
+		else if (Key == TEXT("B")) Result.B = F;
+		else if (Key == TEXT("A")) Result.A = F;
+	}
+	return Result;
+}
+
+// sRGB gamma to linear conversion (per IEC 61966-2-1)
+static float SRGBToLinear(float C)
+{
+	return C <= 0.04045f ? C / 12.92f : FMath::Pow((C + 0.055f) / 1.055f, 2.4f);
+}
+
+// Parse color with srgb:, hex:, or raw linear (R=,G=,B=,A=) formats
+static FLinearColor ParseLinearColor(const FString& Value)
+{
+	FString Trimmed = Value.TrimStartAndEnd();
+
+	// "srgb:(R=0.9,G=0.6,B=0.1,A=1.0)" — parse then convert sRGB→linear
+	if (Trimmed.StartsWith(TEXT("srgb:"), ESearchCase::IgnoreCase))
+	{
+		FLinearColor sRGB = ParseLinearColorRaw(Trimmed.Mid(5));
+		return FLinearColor(SRGBToLinear(sRGB.R), SRGBToLinear(sRGB.G), SRGBToLinear(sRGB.B), sRGB.A);
+	}
+
+	// "hex:#E8A624" or "hex:#E8A624FF" — parse hex then convert sRGB→linear
+	if (Trimmed.StartsWith(TEXT("hex:"), ESearchCase::IgnoreCase))
+	{
+		FString Hex = Trimmed.Mid(4).TrimStartAndEnd();
+		if (Hex.StartsWith(TEXT("#"))) Hex = Hex.Mid(1);
+		if (Hex.Len() >= 6)
+		{
+			uint32 R = FParse::HexNumber(*Hex.Mid(0, 2));
+			uint32 G = FParse::HexNumber(*Hex.Mid(2, 2));
+			uint32 B = FParse::HexNumber(*Hex.Mid(4, 2));
+			float A = 1.0f;
+			if (Hex.Len() >= 8)
+			{
+				A = FParse::HexNumber(*Hex.Mid(6, 2)) / 255.0f;
+			}
+			return FLinearColor(
+				SRGBToLinear(R / 255.0f),
+				SRGBToLinear(G / 255.0f),
+				SRGBToLinear(B / 255.0f),
+				A
+			);
+		}
+		UE_LOG(LogBlueprintLLM, Warning, TEXT("ParseLinearColor: invalid hex format '%s', need >=6 hex chars"), *Hex);
+	}
+
+	// Raw linear: (R=0.807,G=0.381,B=0.018,A=1.0)
+	return ParseLinearColorRaw(Trimmed);
+}
+
+static FMargin ParseMargin(const FString& Value)
+{
+	FMargin Result(0.f);
+	float Uniform = 0.f;
+	if (FDefaultValueHelper::ParseFloat(Value, Uniform))
+	{
+		return FMargin(Uniform);
+	}
+	FString Clean = Value.TrimStartAndEnd()
+		.Replace(TEXT("("), TEXT(""))
+		.Replace(TEXT(")"), TEXT(""));
+	TArray<FString> Parts;
+	Clean.ParseIntoArray(Parts, TEXT(","));
+	for (const FString& Part : Parts)
+	{
+		FString Key, Val;
+		Part.Split(TEXT("="), &Key, &Val);
+		Key.TrimStartAndEndInline();
+		Val.TrimStartAndEndInline();
+		float F = FCString::Atof(*Val);
+		if      (Key == TEXT("Left"))   Result.Left   = F;
+		else if (Key == TEXT("Top"))    Result.Top    = F;
+		else if (Key == TEXT("Right"))  Result.Right  = F;
+		else if (Key == TEXT("Bottom")) Result.Bottom = F;
+	}
+	return Result;
+}
+
 FCommandResult FCommandServer::HandleSetWidgetProperty(const TSharedPtr<FJsonObject>& Params)
 {
 	FString WBPName = Params->GetStringField(TEXT("widget_blueprint"));
@@ -7443,7 +7807,7 @@ FCommandResult FCommandServer::HandleSetWidgetProperty(const TSharedPtr<FJsonObj
 	{
 		FString PackagePath = WBP->GetPackage()->GetName();
 		bool bIsArcwrightWidget = PackagePath.StartsWith(TEXT("/Game/UI/")) ||
-								  PackagePath.StartsWith(TEXT("/Game/BlueprintLLM/"));
+								  PackagePath.StartsWith(TEXT("/Game/Arcwright/"));
 		if (!bIsArcwrightWidget)
 		{
 			bool bForce = Params->HasField(TEXT("force")) && Params->GetBoolField(TEXT("force"));
@@ -7790,6 +8154,749 @@ FCommandResult FCommandServer::HandleSetWidgetProperty(const TSharedPtr<FJsonObj
 		bHandled = true;
 	}
 
+	// ── Extended Widget Property Surface (PascalCase dot-notation) ─────────
+	// Target Surface properties from HTML→UMG translation pipeline.
+	// Uses string-format values: colors as "(R=f,G=f,B=f,A=f)", margins as
+	// "(Left=f,Top=f,Right=f,Bottom=f)", enums/bools/floats as plain strings.
+	if (!bHandled)
+	{
+		ValueStr = Value->AsString();
+
+		// ── Universal ─────────────────────────────────────────────
+		if (PropertyName == TEXT("Visibility"))
+		{
+			ESlateVisibility V = ESlateVisibility::Visible;
+			if      (ValueStr == TEXT("Hidden"))    V = ESlateVisibility::Hidden;
+			else if (ValueStr == TEXT("Collapsed")) V = ESlateVisibility::Collapsed;
+			Widget->SetVisibility(V);
+			bHandled = true;
+		}
+		else if (PropertyName == TEXT("RenderOpacity"))
+		{
+			Widget->SetRenderOpacity(FCString::Atof(*ValueStr));
+			bHandled = true;
+		}
+		else if (PropertyName == TEXT("IsEnabled"))
+		{
+			Widget->SetIsEnabled(ValueStr == TEXT("true"));
+			bHandled = true;
+		}
+		else if (PropertyName == TEXT("ToolTipText"))
+		{
+			Widget->SetToolTipText(FText::FromString(ValueStr));
+			bHandled = true;
+		}
+
+		// ── TextBlock ─────────────────────────────────────────────
+		else if (PropertyName == TEXT("Text"))
+		{
+			if (UTextBlock* W = Cast<UTextBlock>(Widget))
+			{
+				W->SetText(FText::FromString(ValueStr));
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Text: widget is not a TextBlock"));
+		}
+		else if (PropertyName == TEXT("Font.Size"))
+		{
+			if (UTextBlock* W = Cast<UTextBlock>(Widget))
+			{
+				FSlateFontInfo F = W->GetFont();
+				F.Size = FCString::Atoi(*ValueStr);
+				W->SetFont(F);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Font.Size: widget is not a TextBlock"));
+		}
+		else if (PropertyName == TEXT("Font.Typeface"))
+		{
+			if (UTextBlock* W = Cast<UTextBlock>(Widget))
+			{
+				FSlateFontInfo F = W->GetFont();
+				F.TypefaceFontName = FName(*ValueStr);
+				W->SetFont(F);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Font.Typeface: widget is not a TextBlock"));
+		}
+		else if (PropertyName == TEXT("Font.Family"))
+		{
+			if (UTextBlock* W = Cast<UTextBlock>(Widget))
+			{
+				FSlateFontInfo F = W->GetFont();
+				UObject* FontAsset = LoadObject<UObject>(nullptr, *ValueStr);
+				if (FontAsset)
+				{
+					F.FontObject = FontAsset;
+					W->SetFont(F);
+					bHandled = true;
+				}
+				else return FCommandResult::Error(TEXT("Font.Family: asset not found: ") + ValueStr);
+			}
+			else return FCommandResult::Error(TEXT("Font.Family: widget is not a TextBlock"));
+		}
+		else if (PropertyName == TEXT("Font.LetterSpacing"))
+		{
+			if (UTextBlock* W = Cast<UTextBlock>(Widget))
+			{
+				FSlateFontInfo F = W->GetFont();
+				F.LetterSpacing = FCString::Atoi(*ValueStr);
+				W->SetFont(F);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Font.LetterSpacing: widget is not a TextBlock"));
+		}
+		else if (PropertyName == TEXT("ColorAndOpacity"))
+		{
+			if (UTextBlock* TB2 = Cast<UTextBlock>(Widget))
+			{
+				TB2->SetColorAndOpacity(FSlateColor(ParseLinearColor(ValueStr)));
+				bHandled = true;
+			}
+			else if (UImage* Img2 = Cast<UImage>(Widget))
+			{
+				Img2->SetColorAndOpacity(ParseLinearColor(ValueStr));
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("ColorAndOpacity: widget is not a TextBlock or Image"));
+		}
+		else if (PropertyName == TEXT("Justification"))
+		{
+			if (UTextBlock* W = Cast<UTextBlock>(Widget))
+			{
+				ETextJustify::Type J = ETextJustify::Left;
+				if      (ValueStr == TEXT("Center")) J = ETextJustify::Center;
+				else if (ValueStr == TEXT("Right"))  J = ETextJustify::Right;
+				W->SetJustification(J);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Justification: widget is not a TextBlock"));
+		}
+		else if (PropertyName == TEXT("AutoWrapText"))
+		{
+			if (UTextBlock* W = Cast<UTextBlock>(Widget))
+			{
+				W->SetAutoWrapText(ValueStr == TEXT("true"));
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("AutoWrapText: widget is not a TextBlock"));
+		}
+		else if (PropertyName == TEXT("WrapTextAt"))
+		{
+			if (UTextBlock* W = Cast<UTextBlock>(Widget))
+			{
+				W->SetWrapTextAt(FCString::Atof(*ValueStr));
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("WrapTextAt: widget is not a TextBlock"));
+		}
+
+		// ── Border ────────────────────────────────────────────────
+		else if (PropertyName == TEXT("BrushColor"))
+		{
+			if (UBorder* W = Cast<UBorder>(Widget))
+			{
+				W->SetBrushColor(ParseLinearColor(ValueStr));
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("BrushColor: widget is not a Border"));
+		}
+		else if (PropertyName == TEXT("Brush.DrawType"))
+		{
+			auto ParseDrawType = [](const FString& V) -> ESlateBrushDrawType::Type
+			{
+				if      (V == TEXT("NoDrawType"))  return ESlateBrushDrawType::NoDrawType;
+				else if (V == TEXT("Box"))          return ESlateBrushDrawType::Box;
+				else if (V == TEXT("Border"))       return ESlateBrushDrawType::Border;
+				else if (V == TEXT("Image"))        return ESlateBrushDrawType::Image;
+				else if (V == TEXT("RoundedBox"))   return ESlateBrushDrawType::RoundedBox;
+				return ESlateBrushDrawType::Image;
+			};
+			if (UBorder* Bdr = Cast<UBorder>(Widget))
+			{
+				FSlateBrush Brush = Bdr->Background;
+				Brush.DrawAs = ParseDrawType(ValueStr);
+				Bdr->SetBrush(Brush);
+				bHandled = true;
+			}
+			else if (UImage* Img2 = Cast<UImage>(Widget))
+			{
+				FSlateBrush Brush = Img2->GetBrush();
+				Brush.DrawAs = ParseDrawType(ValueStr);
+				Img2->SetBrush(Brush);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Brush.DrawType: widget is not a Border or Image"));
+		}
+		else if (PropertyName == TEXT("Brush.Margin"))
+		{
+			if (UBorder* W = Cast<UBorder>(Widget))
+			{
+				FSlateBrush Brush = W->Background;
+				Brush.Margin = ParseMargin(ValueStr);
+				W->SetBrush(Brush);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Brush.Margin: widget is not a Border"));
+		}
+		else if (PropertyName == TEXT("Padding"))
+		{
+			if (UBorder* W = Cast<UBorder>(Widget))
+			{
+				W->SetPadding(ParseMargin(ValueStr));
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Padding: widget is not a Border"));
+		}
+		else if (PropertyName == TEXT("HAlign"))
+		{
+			if (UBorder* W = Cast<UBorder>(Widget))
+			{
+				EHorizontalAlignment A = HAlign_Left;
+				if      (ValueStr == TEXT("Center")) A = HAlign_Center;
+				else if (ValueStr == TEXT("Right"))  A = HAlign_Right;
+				else if (ValueStr == TEXT("Fill"))   A = HAlign_Fill;
+				W->SetHorizontalAlignment(A);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("HAlign: widget is not a Border"));
+		}
+		else if (PropertyName == TEXT("VAlign"))
+		{
+			if (UBorder* W = Cast<UBorder>(Widget))
+			{
+				EVerticalAlignment A = VAlign_Top;
+				if      (ValueStr == TEXT("Center")) A = VAlign_Center;
+				else if (ValueStr == TEXT("Bottom")) A = VAlign_Bottom;
+				else if (ValueStr == TEXT("Fill"))   A = VAlign_Fill;
+				W->SetVerticalAlignment(A);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("VAlign: widget is not a Border"));
+		}
+
+		// ── Image ─────────────────────────────────────────────────
+		else if (PropertyName == TEXT("Brush.ResourceObject"))
+		{
+			if (UImage* W = Cast<UImage>(Widget))
+			{
+				UTexture2D* Tex = LoadObject<UTexture2D>(nullptr, *ValueStr);
+				if (Tex)
+				{
+					W->SetBrushFromTexture(Tex);
+					bHandled = true;
+				}
+				else return FCommandResult::Error(TEXT("Brush.ResourceObject: texture not found: ") + ValueStr);
+			}
+			else return FCommandResult::Error(TEXT("Brush.ResourceObject: widget is not an Image"));
+		}
+		else if (PropertyName == TEXT("Brush.TintColor"))
+		{
+			if (UImage* W = Cast<UImage>(Widget))
+			{
+				FSlateBrush Brush = W->GetBrush();
+				Brush.TintColor = FSlateColor(ParseLinearColor(ValueStr));
+				W->SetBrush(Brush);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Brush.TintColor: widget is not an Image"));
+		}
+
+		// ── Button ────────────────────────────────────────────────
+		else if (PropertyName == TEXT("Style.Normal.TintColor"))
+		{
+			if (UButton* W = Cast<UButton>(Widget))
+			{
+				FButtonStyle Style = W->GetStyle();
+				Style.Normal.TintColor = FSlateColor(ParseLinearColor(ValueStr));
+				W->SetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.Normal.TintColor: widget is not a Button"));
+		}
+		else if (PropertyName == TEXT("Style.Hovered.TintColor"))
+		{
+			if (UButton* W = Cast<UButton>(Widget))
+			{
+				FButtonStyle Style = W->GetStyle();
+				Style.Hovered.TintColor = FSlateColor(ParseLinearColor(ValueStr));
+				W->SetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.Hovered.TintColor: widget is not a Button"));
+		}
+		else if (PropertyName == TEXT("Style.Pressed.TintColor"))
+		{
+			if (UButton* W = Cast<UButton>(Widget))
+			{
+				FButtonStyle Style = W->GetStyle();
+				Style.Pressed.TintColor = FSlateColor(ParseLinearColor(ValueStr));
+				W->SetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.Pressed.TintColor: widget is not a Button"));
+		}
+		else if (PropertyName == TEXT("Style.Disabled.TintColor"))
+		{
+			if (UButton* W = Cast<UButton>(Widget))
+			{
+				FButtonStyle Style = W->GetStyle();
+				Style.Disabled.TintColor = FSlateColor(ParseLinearColor(ValueStr));
+				W->SetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.Disabled.TintColor: widget is not a Button"));
+		}
+		else if (PropertyName == TEXT("Style.Normal.DrawType"))
+		{
+			if (UButton* W = Cast<UButton>(Widget))
+			{
+				FButtonStyle Style = W->GetStyle();
+				if      (ValueStr == TEXT("RoundedBox")) Style.Normal.DrawAs = ESlateBrushDrawType::RoundedBox;
+				else if (ValueStr == TEXT("Box"))        Style.Normal.DrawAs = ESlateBrushDrawType::Box;
+				else if (ValueStr == TEXT("Image"))      Style.Normal.DrawAs = ESlateBrushDrawType::Image;
+				W->SetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.Normal.DrawType: widget is not a Button"));
+		}
+		else if (PropertyName == TEXT("Style.Normal.OutlineSettings.Width"))
+		{
+			if (UButton* W = Cast<UButton>(Widget))
+			{
+				FButtonStyle Style = W->GetStyle();
+				Style.Normal.OutlineSettings.Width = FCString::Atof(*ValueStr);
+				W->SetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.Normal.OutlineSettings.Width: widget is not a Button"));
+		}
+		else if (PropertyName == TEXT("Style.Normal.OutlineSettings.Color"))
+		{
+			if (UButton* W = Cast<UButton>(Widget))
+			{
+				FButtonStyle Style = W->GetStyle();
+				Style.Normal.OutlineSettings.Color = FSlateColor(ParseLinearColor(ValueStr));
+				W->SetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.Normal.OutlineSettings.Color: widget is not a Button"));
+		}
+		else if (PropertyName == TEXT("Style.Padding"))
+		{
+			if (UButton* W = Cast<UButton>(Widget))
+			{
+				FButtonStyle Style = W->GetStyle();
+				FMargin M = ParseMargin(ValueStr);
+				Style.SetNormalPadding(M);
+				Style.SetPressedPadding(M);
+				W->SetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.Padding: widget is not a Button"));
+		}
+		else if (PropertyName == TEXT("IsFocusable"))
+		{
+			if (UButton* W = Cast<UButton>(Widget))
+			{
+				PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				W->IsFocusable = (ValueStr == TEXT("true"));
+				PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("IsFocusable: widget is not a Button"));
+		}
+
+		// ── ProgressBar ───────────────────────────────────────────
+		else if (PropertyName == TEXT("Percent"))
+		{
+			if (UProgressBar* W = Cast<UProgressBar>(Widget))
+			{
+				W->SetPercent(FCString::Atof(*ValueStr));
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Percent: widget is not a ProgressBar"));
+		}
+		else if (PropertyName == TEXT("FillColorAndOpacity"))
+		{
+			if (UProgressBar* W = Cast<UProgressBar>(Widget))
+			{
+				W->SetFillColorAndOpacity(ParseLinearColor(ValueStr));
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("FillColorAndOpacity: widget is not a ProgressBar"));
+		}
+		else if (PropertyName == TEXT("Style.BackgroundImage.TintColor"))
+		{
+			if (UProgressBar* W = Cast<UProgressBar>(Widget))
+			{
+				FProgressBarStyle Style = W->GetWidgetStyle();
+				Style.BackgroundImage.TintColor = FSlateColor(ParseLinearColor(ValueStr));
+				W->SetWidgetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.BackgroundImage.TintColor: widget is not a ProgressBar"));
+		}
+		else if (PropertyName == TEXT("Style.FillImage.TintColor"))
+		{
+			if (UProgressBar* W = Cast<UProgressBar>(Widget))
+			{
+				FProgressBarStyle Style = W->GetWidgetStyle();
+				Style.FillImage.TintColor = FSlateColor(ParseLinearColor(ValueStr));
+				W->SetWidgetStyle(Style);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Style.FillImage.TintColor: widget is not a ProgressBar"));
+		}
+		else if (PropertyName == TEXT("BarFillType"))
+		{
+			if (UProgressBar* W = Cast<UProgressBar>(Widget))
+			{
+				EProgressBarFillType::Type T = EProgressBarFillType::LeftToRight;
+				if      (ValueStr == TEXT("RightToLeft")) T = EProgressBarFillType::RightToLeft;
+				else if (ValueStr == TEXT("TopToBottom")) T = EProgressBarFillType::TopToBottom;
+				else if (ValueStr == TEXT("BottomToTop")) T = EProgressBarFillType::BottomToTop;
+				W->SetBarFillType(T);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("BarFillType: widget is not a ProgressBar"));
+		}
+
+		// ── ScrollBox ─────────────────────────────────────────────
+		else if (PropertyName == TEXT("Orientation"))
+		{
+			if (UScrollBox* W = Cast<UScrollBox>(Widget))
+			{
+				EOrientation O = Orient_Vertical;
+				if (ValueStr == TEXT("Orient_Horizontal")) O = Orient_Horizontal;
+				W->SetOrientation(O);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("Orientation: widget is not a ScrollBox"));
+		}
+		else if (PropertyName == TEXT("ScrollBarVisibility"))
+		{
+			if (UScrollBox* W = Cast<UScrollBox>(Widget))
+			{
+				ESlateVisibility V = ESlateVisibility::Visible;
+				if      (ValueStr == TEXT("Auto"))   V = ESlateVisibility::SelfHitTestInvisible;
+				else if (ValueStr == TEXT("Hidden")) V = ESlateVisibility::Hidden;
+				W->SetScrollBarVisibility(V);
+				bHandled = true;
+			}
+			else return FCommandResult::Error(TEXT("ScrollBarVisibility: widget is not a ScrollBox"));
+		}
+
+		// ── Canvas Panel Slot ─────────────────────────────────────
+		else if (PropertyName == TEXT("Slot.Position.X"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				FVector2D Pos = CSlot->GetPosition();
+				Pos.X = FCString::Atof(*ValueStr);
+				CSlot->SetPosition(Pos);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.Position.Y"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				FVector2D Pos = CSlot->GetPosition();
+				Pos.Y = FCString::Atof(*ValueStr);
+				CSlot->SetPosition(Pos);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.Size.X"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				FVector2D Sz = CSlot->GetSize();
+				Sz.X = FCString::Atof(*ValueStr);
+				CSlot->SetSize(Sz);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.Size.Y"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				FVector2D Sz = CSlot->GetSize();
+				Sz.Y = FCString::Atof(*ValueStr);
+				CSlot->SetSize(Sz);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.ZOrder"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				CSlot->SetZOrder(FCString::Atoi(*ValueStr));
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.AutoSize"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				CSlot->SetAutoSize(ValueStr == TEXT("true"));
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.Anchors.Min.X"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				FAnchorData A = CSlot->GetLayout();
+				A.Anchors.Minimum.X = FCString::Atof(*ValueStr);
+				CSlot->SetLayout(A);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.Anchors.Min.Y"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				FAnchorData A = CSlot->GetLayout();
+				A.Anchors.Minimum.Y = FCString::Atof(*ValueStr);
+				CSlot->SetLayout(A);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.Anchors.Max.X"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				FAnchorData A = CSlot->GetLayout();
+				A.Anchors.Maximum.X = FCString::Atof(*ValueStr);
+				CSlot->SetLayout(A);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.Anchors.Max.Y"))
+		{
+			if (UCanvasPanelSlot* CSlot = Cast<UCanvasPanelSlot>(Widget->Slot))
+			{
+				FAnchorData A = CSlot->GetLayout();
+				A.Anchors.Maximum.Y = FCString::Atof(*ValueStr);
+				CSlot->SetLayout(A);
+				bHandled = true;
+			}
+		}
+
+		// ── HBox / VBox Slots ─────────────────────────────────────
+		else if (PropertyName == TEXT("Slot.Padding"))
+		{
+			if (UHorizontalBoxSlot* HSlot = Cast<UHorizontalBoxSlot>(Widget->Slot))
+			{
+				HSlot->SetPadding(ParseMargin(ValueStr));
+				bHandled = true;
+			}
+			else if (UVerticalBoxSlot* VSlot = Cast<UVerticalBoxSlot>(Widget->Slot))
+			{
+				VSlot->SetPadding(ParseMargin(ValueStr));
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.FillWidth"))
+		{
+			if (UHorizontalBoxSlot* HSlot = Cast<UHorizontalBoxSlot>(Widget->Slot))
+			{
+				FSlateChildSize ChildSize;
+				ChildSize.SizeRule = ESlateSizeRule::Fill;
+				ChildSize.Value = FCString::Atof(*ValueStr);
+				HSlot->SetSize(ChildSize);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.FillHeight"))
+		{
+			if (UVerticalBoxSlot* VSlot = Cast<UVerticalBoxSlot>(Widget->Slot))
+			{
+				FSlateChildSize ChildSize;
+				ChildSize.SizeRule = ESlateSizeRule::Fill;
+				ChildSize.Value = FCString::Atof(*ValueStr);
+				VSlot->SetSize(ChildSize);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.HAlign"))
+		{
+			EHorizontalAlignment HA = HAlign_Left;
+			if      (ValueStr == TEXT("Center")) HA = HAlign_Center;
+			else if (ValueStr == TEXT("Right"))  HA = HAlign_Right;
+			else if (ValueStr == TEXT("Fill"))   HA = HAlign_Fill;
+			if (UHorizontalBoxSlot* HSlot = Cast<UHorizontalBoxSlot>(Widget->Slot))
+			{
+				HSlot->SetHorizontalAlignment(HA);
+				bHandled = true;
+			}
+			else if (UVerticalBoxSlot* VSlot = Cast<UVerticalBoxSlot>(Widget->Slot))
+			{
+				VSlot->SetHorizontalAlignment(HA);
+				bHandled = true;
+			}
+			else if (UOverlaySlot* OSlot = Cast<UOverlaySlot>(Widget->Slot))
+			{
+				OSlot->SetHorizontalAlignment(HA);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.VAlign"))
+		{
+			EVerticalAlignment VA = VAlign_Top;
+			if      (ValueStr == TEXT("Center")) VA = VAlign_Center;
+			else if (ValueStr == TEXT("Bottom")) VA = VAlign_Bottom;
+			else if (ValueStr == TEXT("Fill"))   VA = VAlign_Fill;
+			if (UHorizontalBoxSlot* HSlot = Cast<UHorizontalBoxSlot>(Widget->Slot))
+			{
+				HSlot->SetVerticalAlignment(VA);
+				bHandled = true;
+			}
+			else if (UVerticalBoxSlot* VSlot = Cast<UVerticalBoxSlot>(Widget->Slot))
+			{
+				VSlot->SetVerticalAlignment(VA);
+				bHandled = true;
+			}
+			else if (UOverlaySlot* OSlot = Cast<UOverlaySlot>(Widget->Slot))
+			{
+				OSlot->SetVerticalAlignment(VA);
+				bHandled = true;
+			}
+		}
+
+		// ── UniformGridPanel / GridPanel Slot ──────────────────────
+		else if (PropertyName == TEXT("Slot.Row"))
+		{
+			if (UUniformGridSlot* UGSlot = Cast<UUniformGridSlot>(Widget->Slot))
+			{
+				UGSlot->SetRow(FCString::Atoi(*ValueStr));
+				bHandled = true;
+			}
+			else if (UGridSlot* GSlot = Cast<UGridSlot>(Widget->Slot))
+			{
+				GSlot->SetRow(FCString::Atoi(*ValueStr));
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.Column"))
+		{
+			if (UUniformGridSlot* UGSlot = Cast<UUniformGridSlot>(Widget->Slot))
+			{
+				UGSlot->SetColumn(FCString::Atoi(*ValueStr));
+				bHandled = true;
+			}
+			else if (UGridSlot* GSlot = Cast<UGridSlot>(Widget->Slot))
+			{
+				GSlot->SetColumn(FCString::Atoi(*ValueStr));
+				bHandled = true;
+			}
+		}
+
+		// ── SizeBox ───────────────────────────────────────────────
+		else if (PropertyName == TEXT("WidthOverride"))
+		{
+			if (USizeBox* SB = Cast<USizeBox>(Widget))
+			{
+				SB->SetWidthOverride(FCString::Atof(*ValueStr));
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("HeightOverride"))
+		{
+			if (USizeBox* SB = Cast<USizeBox>(Widget))
+			{
+				SB->SetHeightOverride(FCString::Atof(*ValueStr));
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("MinDesiredWidth"))
+		{
+			if (USizeBox* SB = Cast<USizeBox>(Widget))
+			{
+				SB->SetMinDesiredWidth(FCString::Atof(*ValueStr));
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("MinDesiredHeight"))
+		{
+			if (USizeBox* SB = Cast<USizeBox>(Widget))
+			{
+				SB->SetMinDesiredHeight(FCString::Atof(*ValueStr));
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("MaxDesiredWidth"))
+		{
+			if (USizeBox* SB = Cast<USizeBox>(Widget))
+			{
+				SB->SetMaxDesiredWidth(FCString::Atof(*ValueStr));
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("MaxDesiredHeight"))
+		{
+			if (USizeBox* SB = Cast<USizeBox>(Widget))
+			{
+				SB->SetMaxDesiredHeight(FCString::Atof(*ValueStr));
+				bHandled = true;
+			}
+		}
+
+		// ── Image Brush.ImageSize ─────────────────────────────────
+		else if (PropertyName == TEXT("Brush.ImageSize.X"))
+		{
+			if (UImage* Img = Cast<UImage>(Widget))
+			{
+				FSlateBrush Brush = Img->GetBrush();
+				Brush.ImageSize.X = FCString::Atof(*ValueStr);
+				Img->SetBrush(Brush);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Brush.ImageSize.Y"))
+		{
+			if (UImage* Img = Cast<UImage>(Widget))
+			{
+				FSlateBrush Brush = Img->GetBrush();
+				Brush.ImageSize.Y = FCString::Atof(*ValueStr);
+				Img->SetBrush(Brush);
+				bHandled = true;
+			}
+		}
+
+		// ── WrapBox ───────────────────────────────────────────────
+		else if (PropertyName == TEXT("InnerSlotPadding.X"))
+		{
+			if (UWrapBox* WB = Cast<UWrapBox>(Widget))
+			{
+				FVector2D Pad = WB->GetInnerSlotPadding();
+				Pad.X = FCString::Atof(*ValueStr);
+				WB->SetInnerSlotPadding(Pad);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("InnerSlotPadding.Y"))
+		{
+			if (UWrapBox* WB = Cast<UWrapBox>(Widget))
+			{
+				FVector2D Pad = WB->GetInnerSlotPadding();
+				Pad.Y = FCString::Atof(*ValueStr);
+				WB->SetInnerSlotPadding(Pad);
+				bHandled = true;
+			}
+		}
+		else if (PropertyName == TEXT("Slot.FillEmptySpace"))
+		{
+			if (UWrapBoxSlot* WBSlot = Cast<UWrapBoxSlot>(Widget->Slot))
+			{
+				WBSlot->SetFillEmptySpace(ValueStr == TEXT("true"));
+				bHandled = true;
+			}
+		}
+	}
+
 	if (!bHandled)
 	{
 		return FCommandResult::Error(FString::Printf(
@@ -7829,6 +8936,213 @@ FCommandResult FCommandServer::HandleSetWidgetProperty(const TSharedPtr<FJsonObj
 	}
 
 	UE_LOG(LogBlueprintLLM, Log, TEXT("Set property '%s' on widget '%s' in %s (layout: %d)"), *PropertyName, *WidgetName, *WBPName, LayoutScore);
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleGetWidgetProperty(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WBPName = Params->GetStringField(TEXT("widget_blueprint"));
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	FString PropertyName = Params->GetStringField(TEXT("property"));
+
+	if (WBPName.IsEmpty() || WidgetName.IsEmpty() || PropertyName.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("Missing required params: widget_blueprint, widget_name, property"));
+	}
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(WBPName);
+	if (!WBP)
+	{
+		return FCommandResult::Error(FString::Printf(TEXT("Widget Blueprint not found: %s"), *WBPName));
+	}
+
+	UWidget* Widget = FindWidgetByName(WBP, WidgetName);
+	if (!Widget)
+	{
+		return FCommandResult::Error(FString::Printf(TEXT("Widget not found: %s"), *WidgetName));
+	}
+
+	FString ResultValue;
+	bool bFound = false;
+
+	// ── TextBlock read-back ───────────────────────────────────
+	if (UTextBlock* TB = Cast<UTextBlock>(Widget))
+	{
+		if (PropertyName == TEXT("Text") || PropertyName == TEXT("text"))
+		{
+			ResultValue = TB->GetText().ToString();
+			bFound = true;
+		}
+		else if (PropertyName == TEXT("ColorAndOpacity") || PropertyName == TEXT("color"))
+		{
+			FLinearColor C = TB->GetColorAndOpacity().GetSpecifiedColor();
+			ResultValue = FString::Printf(TEXT("(R=%.4f,G=%.4f,B=%.4f,A=%.4f)"), C.R, C.G, C.B, C.A);
+			bFound = true;
+		}
+		else if (PropertyName == TEXT("Font.Size") || PropertyName == TEXT("font_size"))
+		{
+			ResultValue = FString::FromInt(TB->GetFont().Size);
+			bFound = true;
+		}
+		else if (PropertyName == TEXT("Font.Typeface"))
+		{
+			ResultValue = TB->GetFont().TypefaceFontName.ToString();
+			bFound = true;
+		}
+		else if (PropertyName == TEXT("Font.LetterSpacing"))
+		{
+			ResultValue = FString::FromInt(TB->GetFont().LetterSpacing);
+			bFound = true;
+		}
+		else if (PropertyName == TEXT("Justification") || PropertyName == TEXT("justification"))
+		{
+			ETextJustify::Type CurJustify = ETextJustify::Left;
+			FProperty* JProp = TB->GetClass()->FindPropertyByName(TEXT("Justification"));
+			if (JProp)
+			{
+				const uint8* ValPtr = JProp->ContainerPtrToValuePtr<uint8>(TB);
+				CurJustify = static_cast<ETextJustify::Type>(*ValPtr);
+			}
+			switch (CurJustify)
+			{
+				case ETextJustify::Left:   ResultValue = TEXT("Left"); break;
+				case ETextJustify::Center: ResultValue = TEXT("Center"); break;
+				case ETextJustify::Right:  ResultValue = TEXT("Right"); break;
+			}
+			bFound = true;
+		}
+	}
+
+	// ── Border read-back ──────────────────────────────────────
+	if (!bFound)
+	{
+		if (UBorder* B = Cast<UBorder>(Widget))
+		{
+			if (PropertyName == TEXT("BrushColor"))
+			{
+				FLinearColor C = B->GetBrushColor();
+				ResultValue = FString::Printf(TEXT("(R=%.4f,G=%.4f,B=%.4f,A=%.4f)"), C.R, C.G, C.B, C.A);
+				bFound = true;
+			}
+		}
+	}
+
+	// ── ProgressBar read-back ─────────────────────────────────
+	if (!bFound)
+	{
+		if (UProgressBar* PB = Cast<UProgressBar>(Widget))
+		{
+			if (PropertyName == TEXT("Percent") || PropertyName == TEXT("percent"))
+			{
+				ResultValue = FString::SanitizeFloat(PB->GetPercent());
+				bFound = true;
+			}
+		}
+	}
+
+	// ── Universal read-back ───────────────────────────────────
+	if (!bFound)
+	{
+		if (PropertyName == TEXT("Visibility") || PropertyName == TEXT("visibility"))
+		{
+			switch (Widget->GetVisibility())
+			{
+				case ESlateVisibility::Visible:              ResultValue = TEXT("Visible"); break;
+				case ESlateVisibility::Hidden:                ResultValue = TEXT("Hidden"); break;
+				case ESlateVisibility::Collapsed:             ResultValue = TEXT("Collapsed"); break;
+				case ESlateVisibility::HitTestInvisible:      ResultValue = TEXT("HitTestInvisible"); break;
+				case ESlateVisibility::SelfHitTestInvisible:  ResultValue = TEXT("SelfHitTestInvisible"); break;
+			}
+			bFound = true;
+		}
+		else if (PropertyName == TEXT("RenderOpacity") || PropertyName == TEXT("render_opacity"))
+		{
+			ResultValue = FString::SanitizeFloat(Widget->GetRenderOpacity());
+			bFound = true;
+		}
+	}
+
+	// ── Canvas Slot read-back ─────────────────────────────────
+	if (!bFound)
+	{
+		if (UCanvasPanelSlot* Slot = Cast<UCanvasPanelSlot>(Widget->Slot))
+		{
+			if (PropertyName == TEXT("Slot.Position.X"))
+			{
+				ResultValue = FString::SanitizeFloat(Slot->GetPosition().X);
+				bFound = true;
+			}
+			else if (PropertyName == TEXT("Slot.Position.Y"))
+			{
+				ResultValue = FString::SanitizeFloat(Slot->GetPosition().Y);
+				bFound = true;
+			}
+			else if (PropertyName == TEXT("Slot.Size.X"))
+			{
+				ResultValue = FString::SanitizeFloat(Slot->GetSize().X);
+				bFound = true;
+			}
+			else if (PropertyName == TEXT("Slot.Size.Y"))
+			{
+				ResultValue = FString::SanitizeFloat(Slot->GetSize().Y);
+				bFound = true;
+			}
+			else if (PropertyName == TEXT("Slot.ZOrder"))
+			{
+				ResultValue = FString::FromInt(Slot->GetZOrder());
+				bFound = true;
+			}
+		}
+	}
+
+	// ── UniformGridSlot / GridSlot read-back ──────────────────
+	if (!bFound)
+	{
+		if (UUniformGridSlot* UGSlot = Cast<UUniformGridSlot>(Widget->Slot))
+		{
+			if (PropertyName == TEXT("Slot.Row"))
+			{
+				ResultValue = FString::FromInt(UGSlot->GetRow());
+				bFound = true;
+			}
+			else if (PropertyName == TEXT("Slot.Column"))
+			{
+				ResultValue = FString::FromInt(UGSlot->GetColumn());
+				bFound = true;
+			}
+		}
+	}
+
+	// ── Image Brush.ImageSize read-back ───────────────────────
+	if (!bFound)
+	{
+		if (UImage* Img = Cast<UImage>(Widget))
+		{
+			if (PropertyName == TEXT("Brush.ImageSize.X"))
+			{
+				ResultValue = FString::SanitizeFloat(Img->GetBrush().ImageSize.X);
+				bFound = true;
+			}
+			else if (PropertyName == TEXT("Brush.ImageSize.Y"))
+			{
+				ResultValue = FString::SanitizeFloat(Img->GetBrush().ImageSize.Y);
+				bFound = true;
+			}
+		}
+	}
+
+	if (!bFound)
+	{
+		return FCommandResult::Error(FString::Printf(
+			TEXT("get_widget_property: unsupported property '%s' for widget type %s"),
+			*PropertyName, *Widget->GetClass()->GetName()));
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("property"), PropertyName);
+	Data->SetStringField(TEXT("value"), ResultValue);
+	Data->SetStringField(TEXT("widget_name"), WidgetName);
+	Data->SetStringField(TEXT("widget_blueprint"), WBPName);
 	return FCommandResult::Ok(Data);
 }
 
@@ -8310,7 +9624,7 @@ FCommandResult FCommandServer::HandleAutoFixWidgetLayout(const TSharedPtr<FJsonO
 		return FCommandResult::Error(FString::Printf(TEXT("Widget Blueprint not found: %s"), *WBPName));
 
 	FString PackagePath = WBP->GetPackage()->GetName();
-	if (!PackagePath.StartsWith(TEXT("/Game/UI/")) && !PackagePath.StartsWith(TEXT("/Game/BlueprintLLM/")))
+	if (!PackagePath.StartsWith(TEXT("/Game/UI/")) && !PackagePath.StartsWith(TEXT("/Game/Arcwright/")))
 	{
 		bool bForce = Params->HasField(TEXT("force")) && Params->GetBoolField(TEXT("force"));
 		if (!bForce)
@@ -8532,7 +9846,7 @@ FCommandResult FCommandServer::HandleCreateBehaviorTree(const TSharedPtr<FJsonOb
 		return FCommandResult::Error(TEXT("Missing required param: ir_json (string) or ir (object)"));
 	}
 
-	FString PackagePath = TEXT("/Game/BlueprintLLM/BehaviorTrees");
+	FString PackagePath = TEXT("/Game/Arcwright/BehaviorTrees");
 
 	FBehaviorTreeBuilder::FBTBuildResult BTResult = FBehaviorTreeBuilder::CreateFromIR(IRJson, PackagePath);
 
@@ -8585,7 +9899,7 @@ FCommandResult FCommandServer::HandleSetBlackboardKeyDefault(const TSharedPtr<FJ
 		return FCommandResult::Error(TEXT("Missing required param: key"));
 
 	// Load the BB asset from our folder
-	FString BBPath = FString::Printf(TEXT("/Game/BlueprintLLM/BehaviorTrees/%s.%s"), *BBName, *BBName);
+	FString BBPath = FString::Printf(TEXT("/Game/Arcwright/BehaviorTrees/%s.%s"), *BBName, *BBName);
 	UBlackboardData* BBAsset = LoadObject<UBlackboardData>(nullptr, *BBPath);
 	if (!BBAsset)
 	{
@@ -8723,7 +10037,7 @@ FCommandResult FCommandServer::HandleSetClassDefaults(const TSharedPtr<FJsonObje
 		AAIController* AICDO = Cast<AAIController>(CDO);
 		if (AICDO)
 		{
-			FString BTAssetPath = FString::Printf(TEXT("/Game/BlueprintLLM/BehaviorTrees/%s.%s"), *BehaviorTreeName, *BehaviorTreeName);
+			FString BTAssetPath = FString::Printf(TEXT("/Game/Arcwright/BehaviorTrees/%s.%s"), *BehaviorTreeName, *BehaviorTreeName);
 			UBehaviorTree* BT = LoadObject<UBehaviorTree>(nullptr, *BTAssetPath);
 			if (!BT)
 			{
@@ -9078,7 +10392,7 @@ FCommandResult FCommandServer::HandleSetupAIForPawn(const TSharedPtr<FJsonObject
 	}
 
 	// 2. Verify the BehaviorTree asset exists
-	FString BTAssetPath = FString::Printf(TEXT("/Game/BlueprintLLM/BehaviorTrees/%s.%s"), *BehaviorTreeName, *BehaviorTreeName);
+	FString BTAssetPath = FString::Printf(TEXT("/Game/Arcwright/BehaviorTrees/%s.%s"), *BehaviorTreeName, *BehaviorTreeName);
 	UBehaviorTree* BT = LoadObject<UBehaviorTree>(nullptr, *BTAssetPath);
 	if (!BT)
 	{
@@ -9091,8 +10405,8 @@ FCommandResult FCommandServer::HandleSetupAIForPawn(const TSharedPtr<FJsonObject
 	if (!ControllerBP)
 	{
 		// Create a new AIController Blueprint
-		FString PackagePath = TEXT("/Game/BlueprintLLM/Generated");
-		FString PackageName = FString::Printf(TEXT("/Game/BlueprintLLM/Generated/%s"), *ControllerName);
+		FString PackagePath = TEXT("/Game/Arcwright/Generated");
+		FString PackageName = FString::Printf(TEXT("/Game/Arcwright/Generated/%s"), *ControllerName);
 		UPackage* Package = CreatePackage(*PackageName);
 		if (!Package)
 		{
@@ -9210,7 +10524,7 @@ FCommandResult FCommandServer::HandleSetupAIForPawn(const TSharedPtr<FJsonObject
 		FKismetEditorUtilities::CompileBlueprint(ControllerBP);
 
 		// Save the controller asset
-		FString ControllerPackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Generated/%s"), *ControllerName);
+		FString ControllerPackagePath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s"), *ControllerName);
 		UPackage* ControllerPackage = ControllerBP->GetOutermost();
 		FString ControllerFilePath = FPackageName::LongPackageNameToFilename(ControllerPackagePath, FPackageName::GetAssetPackageExtension());
 		FSavePackageArgs SaveArgs;
@@ -9248,6 +10562,743 @@ FCommandResult FCommandServer::HandleSetupAIForPawn(const TSharedPtr<FJsonObject
 }
 
 // ============================================================
+// Scroll Sync + Property Binding Commands
+// ============================================================
+
+FCommandResult FCommandServer::HandleAddScrollSync(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WBPName = Params->GetStringField(TEXT("widget_blueprint"));
+	FString SourceSB = Params->GetStringField(TEXT("source_scrollbox"));
+
+	TArray<FString> TargetSBs;
+	if (Params->HasTypedField<EJson::Array>(TEXT("target_scrollboxes")))
+	{
+		const TArray<TSharedPtr<FJsonValue>>& TargetArr = Params->GetArrayField(TEXT("target_scrollboxes"));
+		for (const auto& V : TargetArr)
+			TargetSBs.Add(V->AsString());
+	}
+
+	if (WBPName.IsEmpty() || SourceSB.IsEmpty() || TargetSBs.Num() == 0)
+	{
+		return FCommandResult::Error(TEXT("add_scroll_sync: widget_blueprint, source_scrollbox, target_scrollboxes required"));
+	}
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(WBPName);
+	if (!WBP)
+		return FCommandResult::Error(TEXT("add_scroll_sync: WBP not found: ") + WBPName);
+
+	// Verify source ScrollBox exists
+	UWidget* SourceWidget = FindWidgetByName(WBP, SourceSB);
+	if (!Cast<UScrollBox>(SourceWidget))
+		return FCommandResult::Error(TEXT("add_scroll_sync: source ScrollBox not found: ") + SourceSB);
+
+	// Verify all target ScrollBoxes exist
+	for (const FString& Target : TargetSBs)
+	{
+		UWidget* TargetWidget = FindWidgetByName(WBP, Target);
+		if (!Cast<UScrollBox>(TargetWidget))
+			return FCommandResult::Error(TEXT("add_scroll_sync: target ScrollBox not found: ") + Target);
+	}
+
+	// Mark all ScrollBoxes as variables so they're accessible from Blueprint
+	SourceWidget->bIsVariable = true;
+	for (const FString& Target : TargetSBs)
+	{
+		UWidget* TargetWidget = FindWidgetByName(WBP, Target);
+		if (TargetWidget) TargetWidget->bIsVariable = true;
+	}
+
+	FBlueprintEditorUtils::MarkBlueprintAsModified(WBP);
+	FKismetEditorUtilities::CompileBlueprint(WBP);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("source"), SourceSB);
+	TArray<TSharedPtr<FJsonValue>> TargetArr;
+	for (const FString& T : TargetSBs)
+		TargetArr.Add(MakeShareable(new FJsonValueString(T)));
+	Data->SetArrayField(TEXT("targets"), TargetArr);
+	Data->SetStringField(TEXT("pattern"),
+		TEXT("ScrollBoxes marked as variables. Wire OnUserScrolled on source to call SetScrollOffset on each target in Blueprint event graph."));
+	UE_LOG(LogBlueprintLLM, Log, TEXT("add_scroll_sync: %s -> %d targets"), *SourceSB, TargetSBs.Num());
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleBindTextToVariable(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WBPName = Params->GetStringField(TEXT("widget_blueprint"));
+	FString TextWidget = Params->GetStringField(TEXT("textblock_name"));
+	FString VarName = Params->GetStringField(TEXT("variable_name"));
+
+	if (WBPName.IsEmpty() || TextWidget.IsEmpty() || VarName.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("bind_text_to_variable: widget_blueprint, textblock_name, variable_name required"));
+	}
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(WBPName);
+	if (!WBP)
+		return FCommandResult::Error(TEXT("bind_text_to_variable: WBP not found: ") + WBPName);
+
+	UWidget* Widget = FindWidgetByName(WBP, TextWidget);
+	UTextBlock* TB = Cast<UTextBlock>(Widget);
+	if (!TB)
+		return FCommandResult::Error(TEXT("bind_text_to_variable: TextBlock not found: ") + TextWidget);
+
+	// Create a binding function name
+	FString BindFuncName = FString::Printf(TEXT("Get_%s_For_%s"), *VarName, *TextWidget);
+
+	// Create the binding function graph
+	UEdGraph* FuncGraph = FBlueprintEditorUtils::CreateNewGraph(
+		WBP, FName(*BindFuncName), UEdGraph::StaticClass(), UEdGraphSchema_K2::StaticClass());
+
+	if (!FuncGraph)
+		return FCommandResult::Error(TEXT("bind_text_to_variable: failed to create function graph"));
+
+	FBlueprintEditorUtils::AddFunctionGraph<UClass>(WBP, FuncGraph, false, nullptr);
+
+	// Register the binding on the TextBlock
+	FDelegateEditorBinding Binding;
+	Binding.ObjectName = TB->GetName();
+	Binding.PropertyName = FName(TEXT("Text"));
+	Binding.FunctionName = FName(*BindFuncName);
+	Binding.Kind = EBindingKind::Function;
+
+	// Add to WBP's bindings array
+	WBP->Bindings.Add(Binding);
+
+	// Mark the TextBlock as a variable for Blueprint access
+	TB->bIsVariable = true;
+
+	FBlueprintEditorUtils::MarkBlueprintAsModified(WBP);
+	FKismetEditorUtilities::CompileBlueprint(WBP);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("binding_function"), BindFuncName);
+	Data->SetStringField(TEXT("textblock"), TextWidget);
+	Data->SetStringField(TEXT("variable"), VarName);
+	Data->SetStringField(TEXT("note"),
+		TEXT("Binding function created. Add a Get node for the variable and connect to the return value in the function graph to complete the binding."));
+	UE_LOG(LogBlueprintLLM, Log, TEXT("bind_text_to_variable: %s.Text -> %s via %s"), *TextWidget, *VarName, *BindFuncName);
+	return FCommandResult::Ok(Data);
+}
+
+// ============================================================
+// Widget Variable / Binding Commands
+// ============================================================
+
+FCommandResult FCommandServer::HandleSetWidgetIsVariable(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WBPName = Params->GetStringField(TEXT("widget_blueprint"));
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	bool bIsVariable = Params->HasField(TEXT("is_variable")) ? Params->GetBoolField(TEXT("is_variable")) : true;
+
+	if (WBPName.IsEmpty() || WidgetName.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("set_widget_is_variable: widget_blueprint and widget_name required"));
+	}
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(WBPName);
+	if (!WBP) return FCommandResult::Error(TEXT("set_widget_is_variable: WBP not found: ") + WBPName);
+
+	UWidget* W = FindWidgetByName(WBP, WidgetName);
+	if (!W) return FCommandResult::Error(TEXT("set_widget_is_variable: widget not found: ") + WidgetName);
+
+	W->bIsVariable = bIsVariable;
+	FBlueprintEditorUtils::MarkBlueprintAsModified(WBP);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("widget_name"), WidgetName);
+	Data->SetBoolField(TEXT("is_variable"), bIsVariable);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("set_widget_is_variable: %s.%s = %s"), *WBPName, *WidgetName, bIsVariable ? TEXT("true") : TEXT("false"));
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleAddWidgetVariable(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WBPName = Params->GetStringField(TEXT("widget_blueprint"));
+	FString VarName = Params->GetStringField(TEXT("variable_name"));
+	FString VarType = Params->HasField(TEXT("variable_type")) ? Params->GetStringField(TEXT("variable_type")) : TEXT("string");
+
+	if (WBPName.IsEmpty() || VarName.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("add_widget_variable: widget_blueprint and variable_name required"));
+	}
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(WBPName);
+	if (!WBP) return FCommandResult::Error(TEXT("add_widget_variable: WBP not found: ") + WBPName);
+
+	FEdGraphPinType PinType;
+	if      (VarType == TEXT("string")) PinType.PinCategory = UEdGraphSchema_K2::PC_String;
+	else if (VarType == TEXT("float"))  PinType.PinCategory = UEdGraphSchema_K2::PC_Real;
+	else if (VarType == TEXT("int"))    PinType.PinCategory = UEdGraphSchema_K2::PC_Int;
+	else if (VarType == TEXT("bool"))   PinType.PinCategory = UEdGraphSchema_K2::PC_Boolean;
+	else if (VarType == TEXT("text"))   PinType.PinCategory = UEdGraphSchema_K2::PC_Text;
+	else PinType.PinCategory = UEdGraphSchema_K2::PC_String;
+
+	FBlueprintEditorUtils::AddMemberVariable(WBP, FName(*VarName), PinType);
+	FBlueprintEditorUtils::MarkBlueprintAsModified(WBP);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("variable_name"), VarName);
+	Data->SetStringField(TEXT("variable_type"), VarType);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("add_widget_variable: %s.%s (%s)"), *WBPName, *VarName, *VarType);
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleSetWidgetEntryClass(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WBPName = Params->GetStringField(TEXT("widget_blueprint"));
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	FString EntryClass = Params->GetStringField(TEXT("entry_class"));
+
+	if (WBPName.IsEmpty() || WidgetName.IsEmpty() || EntryClass.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("set_widget_entry_class: widget_blueprint, widget_name, entry_class required"));
+	}
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(WBPName);
+	if (!WBP) return FCommandResult::Error(TEXT("set_widget_entry_class: WBP not found: ") + WBPName);
+
+	UWidget* Widget = FindWidgetByName(WBP, WidgetName);
+	if (!Widget) return FCommandResult::Error(TEXT("set_widget_entry_class: widget not found: ") + WidgetName);
+
+	UClass* Class = LoadObject<UClass>(nullptr, *EntryClass);
+	if (!Class)
+	{
+		return FCommandResult::Error(TEXT("set_widget_entry_class: entry class not found: ") + EntryClass);
+	}
+
+	// EntryWidgetClass is a protected UPROPERTY — set via FProperty reflection
+	FProperty* EntryProp = Widget->GetClass()->FindPropertyByName(TEXT("EntryWidgetClass"));
+	if (EntryProp)
+	{
+		TSubclassOf<UUserWidget>* ValuePtr = EntryProp->ContainerPtrToValuePtr<TSubclassOf<UUserWidget>>(Widget);
+		if (ValuePtr)
+		{
+			*ValuePtr = TSubclassOf<UUserWidget>(Class);
+			FBlueprintEditorUtils::MarkBlueprintAsModified(WBP);
+		}
+	}
+	else
+	{
+		return FCommandResult::Error(TEXT("set_widget_entry_class: EntryWidgetClass property not found on widget"));
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("entry_class"), EntryClass);
+	Data->SetStringField(TEXT("widget_name"), WidgetName);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("set_widget_entry_class: %s -> %s"), *WidgetName, *EntryClass);
+	return FCommandResult::Ok(Data);
+}
+
+// ============================================================
+// Media Texture Command
+// ============================================================
+
+FCommandResult FCommandServer::HandleAssignMediaTexture(const TSharedPtr<FJsonObject>& Params)
+{
+	FString WBPName = Params->GetStringField(TEXT("widget_blueprint"));
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	FString MediaTexPath = Params->GetStringField(TEXT("media_texture"));
+
+	if (WBPName.IsEmpty() || WidgetName.IsEmpty() || MediaTexPath.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("assign_media_texture: widget_blueprint, widget_name, media_texture required"));
+	}
+
+	UWidgetBlueprint* WBP = FindWidgetBlueprintByName(WBPName);
+	if (!WBP) return FCommandResult::Error(TEXT("assign_media_texture: WBP not found: ") + WBPName);
+
+	UWidget* Widget = FindWidgetByName(WBP, WidgetName);
+	if (!Widget) return FCommandResult::Error(TEXT("assign_media_texture: widget not found: ") + WidgetName);
+
+	UImage* ImgWidget = Cast<UImage>(Widget);
+	if (!ImgWidget) return FCommandResult::Error(TEXT("assign_media_texture: not an Image widget"));
+
+	UTexture2D* Tex = LoadObject<UTexture2D>(nullptr, *MediaTexPath);
+	if (Tex)
+	{
+		ImgWidget->SetBrushFromTexture(Tex);
+	}
+	else
+	{
+		return FCommandResult::Error(TEXT("assign_media_texture: texture not found (may need Material intermediary for MediaTexture): ") + MediaTexPath);
+	}
+
+	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(WBP);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("widget"), WidgetName);
+	Data->SetStringField(TEXT("media_texture"), MediaTexPath);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Assigned media texture: %s -> %s"), *MediaTexPath, *WidgetName);
+	return FCommandResult::Ok(Data);
+}
+
+// ============================================================
+// Font Pipeline Commands
+// ============================================================
+
+FCommandResult FCommandServer::HandleImportFontFace(const TSharedPtr<FJsonObject>& Params)
+{
+	FString TtfPath = Params->GetStringField(TEXT("ttf_path"));
+	FString AssetName = Params->GetStringField(TEXT("asset_name"));
+	FString AssetPath = Params->HasField(TEXT("asset_path"))
+		? Params->GetStringField(TEXT("asset_path")) : TEXT("/Game/UI/Fonts");
+
+	if (TtfPath.IsEmpty() || AssetName.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("import_font_face: ttf_path and asset_name are required"));
+	}
+
+	if (!FPaths::FileExists(TtfPath))
+	{
+		return FCommandResult::Error(TEXT("import_font_face: file not found: ") + TtfPath);
+	}
+
+	// Create UFontFace programmatically from TTF file bytes
+	FString PackagePath = AssetPath / AssetName;
+
+	// Delete existing
+	UObject* Existing = LoadObject<UObject>(nullptr, *PackagePath);
+	if (Existing)
+	{
+		TArray<UObject*> ObjDel;
+		ObjDel.Add(Existing);
+		ObjectTools::ForceDeleteObjects(ObjDel, false);
+	}
+
+	// Load TTF file data
+	TArray<uint8> FontData;
+	if (!FFileHelper::LoadFileToArray(FontData, *TtfPath))
+	{
+		return FCommandResult::Error(TEXT("import_font_face: failed to read file: ") + TtfPath);
+	}
+
+	// Create package and UFontFace
+	UPackage* Package = CreatePackage(*PackagePath);
+	Package->FullyLoad();
+
+	UFontFace* NewFace = NewObject<UFontFace>(Package, *AssetName, RF_Public | RF_Standalone);
+	NewFace->SourceFilename = TtfPath;
+	NewFace->Hinting = EFontHinting::Auto;
+	NewFace->LoadingPolicy = EFontLoadingPolicy::Inline;
+
+	// Initialize from raw TTF data
+	NewFace->InitializeFromBulkData(TtfPath, EFontHinting::Auto, FontData.GetData(), FontData.Num());
+
+	FAssetRegistryModule::AssetCreated(NewFace);
+	Package->MarkPackageDirty();
+
+	FString PackageFilename = FPackageName::LongPackageNameToFilename(
+		Package->GetName(), FPackageName::GetAssetPackageExtension());
+	FSavePackageArgs SaveArgs;
+	SafeSavePackage(Package, NewFace, PackageFilename, SaveArgs);
+
+	FString FinalPath = PackagePath;
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("asset_path"), FinalPath);
+	Data->SetStringField(TEXT("asset_name"), AssetName);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Imported font face: %s -> %s"), *TtfPath, *FinalPath);
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleCreateFontAsset(const TSharedPtr<FJsonObject>& Params)
+{
+	FString FontName = Params->GetStringField(TEXT("font_name"));
+	FString AssetPath = Params->HasField(TEXT("asset_path"))
+		? Params->GetStringField(TEXT("asset_path")) : TEXT("/Game/UI/Fonts");
+
+	if (FontName.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("create_font_asset: font_name is required"));
+	}
+
+	FString PackagePath = AssetPath / FontName;
+
+	// Delete existing asset if present
+	UObject* Existing = LoadObject<UObject>(nullptr, *PackagePath);
+	if (Existing)
+	{
+		TArray<UObject*> ObjectsToDelete;
+		ObjectsToDelete.Add(Existing);
+		ObjectTools::ForceDeleteObjects(ObjectsToDelete, false);
+	}
+
+	// Create package and UFont
+	UPackage* Package = CreatePackage(*PackagePath);
+	if (!Package)
+	{
+		return FCommandResult::Error(TEXT("create_font_asset: failed to create package: ") + PackagePath);
+	}
+	Package->FullyLoad();
+
+	UFont* NewFont = NewObject<UFont>(Package, *FontName, RF_Public | RF_Standalone | RF_MarkAsRootSet);
+	if (!NewFont)
+	{
+		return FCommandResult::Error(TEXT("create_font_asset: failed to create UFont object"));
+	}
+
+	NewFont->FontCacheType = EFontCacheType::Runtime;
+
+	FAssetRegistryModule::AssetCreated(NewFont);
+	Package->MarkPackageDirty();
+
+	FString PackageFilename = FPackageName::LongPackageNameToFilename(
+		Package->GetName(), FPackageName::GetAssetPackageExtension());
+	FSavePackageArgs SaveArgs;
+	SafeSavePackage(Package, NewFont, PackageFilename, SaveArgs);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("asset_path"), PackagePath);
+	Data->SetStringField(TEXT("font_name"), FontName);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Created font asset: %s"), *PackagePath);
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleAddFontTypeface(const TSharedPtr<FJsonObject>& Params)
+{
+	FString FontAsset = Params->GetStringField(TEXT("font_asset"));
+	FString TypefaceName = Params->GetStringField(TEXT("typeface_name"));
+	FString FontFaceAsset = Params->GetStringField(TEXT("font_face_asset"));
+
+	if (FontAsset.IsEmpty() || TypefaceName.IsEmpty() || FontFaceAsset.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("add_font_typeface: font_asset, typeface_name, font_face_asset all required"));
+	}
+
+	UFont* Font = LoadObject<UFont>(nullptr, *FontAsset);
+	if (!Font)
+	{
+		return FCommandResult::Error(TEXT("add_font_typeface: UFont not found: ") + FontAsset);
+	}
+
+	UFontFace* FontFace = LoadObject<UFontFace>(nullptr, *FontFaceAsset);
+	if (!FontFace)
+	{
+		return FCommandResult::Error(TEXT("add_font_typeface: UFontFace not found: ") + FontFaceAsset);
+	}
+
+	// Add or update typeface slot
+	FCompositeFont& CompositeFont = Font->GetMutableInternalCompositeFont();
+	bool bFound = false;
+	for (FTypefaceEntry& Entry : CompositeFont.DefaultTypeface.Fonts)
+	{
+		if (Entry.Name == FName(*TypefaceName))
+		{
+			Entry.Font = FFontData(FontFace);
+			bFound = true;
+			break;
+		}
+	}
+
+	if (!bFound)
+	{
+		FTypefaceEntry NewEntry;
+		NewEntry.Name = FName(*TypefaceName);
+		NewEntry.Font = FFontData(FontFace);
+		CompositeFont.DefaultTypeface.Fonts.Add(NewEntry);
+	}
+
+	// Save
+	Font->MarkPackageDirty();
+	UPackage* Package = Font->GetOutermost();
+	FString PackageFilename = FPackageName::LongPackageNameToFilename(
+		Package->GetName(), FPackageName::GetAssetPackageExtension());
+	FSavePackageArgs SaveArgs;
+	SafeSavePackage(Package, Font, PackageFilename, SaveArgs);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("font_asset"), FontAsset);
+	Data->SetStringField(TEXT("typeface_name"), TypefaceName);
+	Data->SetStringField(TEXT("font_face_asset"), FontFaceAsset);
+	Data->SetBoolField(TEXT("was_update"), bFound);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Added typeface '%s' to %s"), *TypefaceName, *FontAsset);
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleGetFontInfo(const TSharedPtr<FJsonObject>& Params)
+{
+	FString FontAsset = Params->GetStringField(TEXT("font_asset"));
+	if (FontAsset.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("get_font_info: font_asset is required"));
+	}
+
+	UFont* Font = LoadObject<UFont>(nullptr, *FontAsset);
+	if (!Font)
+	{
+		return FCommandResult::Error(TEXT("get_font_info: UFont not found: ") + FontAsset);
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("font_asset"), FontAsset);
+	Data->SetStringField(TEXT("cache_type"),
+		Font->FontCacheType == EFontCacheType::Runtime ? TEXT("Runtime") : TEXT("Offline"));
+
+	TArray<TSharedPtr<FJsonValue>> TypefaceArray;
+	for (const FTypefaceEntry& Entry : Font->GetInternalCompositeFont().DefaultTypeface.Fonts)
+	{
+		TSharedPtr<FJsonObject> EntryObj = MakeShareable(new FJsonObject());
+		EntryObj->SetStringField(TEXT("name"), Entry.Name.ToString());
+
+		FString FacePath;
+		const UFontFace* FaceAsset = Cast<UFontFace>(Entry.Font.GetFontFaceAsset());
+		if (FaceAsset)
+		{
+			FacePath = FaceAsset->GetPathName();
+		}
+		EntryObj->SetStringField(TEXT("font_face"), FacePath);
+
+		TypefaceArray.Add(MakeShareable(new FJsonValueObject(EntryObj)));
+	}
+	Data->SetArrayField(TEXT("typefaces"), TypefaceArray);
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleListFontAssets(const TSharedPtr<FJsonObject>& Params)
+{
+	FString SearchPath = Params->HasField(TEXT("path"))
+		? Params->GetStringField(TEXT("path")) : TEXT("/Game");
+
+	FAssetRegistryModule& AssetRegistryModule =
+		FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+	IAssetRegistry& AssetRegistry = AssetRegistryModule.Get();
+
+	FARFilter Filter;
+	Filter.ClassPaths.Add(UFont::StaticClass()->GetClassPathName());
+	Filter.PackagePaths.Add(FName(*SearchPath));
+	Filter.bRecursivePaths = true;
+
+	TArray<FAssetData> AssetList;
+	AssetRegistry.GetAssets(Filter, AssetList);
+
+	TArray<TSharedPtr<FJsonValue>> FontArray;
+	for (const FAssetData& Asset : AssetList)
+	{
+		TSharedPtr<FJsonObject> FontObj = MakeShareable(new FJsonObject());
+		FontObj->SetStringField(TEXT("name"), Asset.AssetName.ToString());
+		FontObj->SetStringField(TEXT("path"), Asset.GetObjectPathString());
+		FontArray.Add(MakeShareable(new FJsonValueObject(FontObj)));
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetArrayField(TEXT("fonts"), FontArray);
+	Data->SetNumberField(TEXT("count"), FontArray.Num());
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleImportFontFamily(const TSharedPtr<FJsonObject>& Params)
+{
+	FString FamilyName = Params->GetStringField(TEXT("family_name"));
+	FString TtfFolder = Params->GetStringField(TEXT("ttf_folder"));
+	FString AssetPath = Params->HasField(TEXT("asset_path"))
+		? Params->GetStringField(TEXT("asset_path")) : TEXT("/Game/UI/Fonts");
+
+	if (FamilyName.IsEmpty() || TtfFolder.IsEmpty())
+	{
+		return FCommandResult::Error(TEXT("import_font_family: family_name and ttf_folder are required"));
+	}
+
+	if (!FPaths::DirectoryExists(TtfFolder))
+	{
+		return FCommandResult::Error(TEXT("import_font_family: folder not found: ") + TtfFolder);
+	}
+
+	// ── Weight normalization map (order matters) ──────────────
+	TArray<TPair<FString, FString>> WeightNormMap = {
+		{ TEXT("ExtraLight"), TEXT("ExtraLight") },
+		{ TEXT("SemiBold"),   TEXT("SemiBold")   },
+		{ TEXT("Semi"),       TEXT("SemiBold")   },
+		{ TEXT("Bold"),       TEXT("Bold")       },
+		{ TEXT("Black"),      TEXT("Black")      },
+		{ TEXT("Medium"),     TEXT("Medium")     },
+		{ TEXT("Light"),      TEXT("Light")      },
+		{ TEXT("Regular"),    TEXT("Regular")    },
+		{ TEXT("-400"),       TEXT("Regular")    },
+		{ TEXT("-500"),       TEXT("Medium")     },
+		{ TEXT("-600"),       TEXT("SemiBold")   },
+		{ TEXT("-700"),       TEXT("Bold")       },
+		{ TEXT("-300"),       TEXT("Light")      },
+		{ TEXT("-200"),       TEXT("ExtraLight") },
+		{ TEXT("-900"),       TEXT("Black")      },
+	};
+
+	// Apply custom weight_map overrides if provided
+	if (Params->HasTypedField<EJson::Object>(TEXT("weight_map")))
+	{
+		const TSharedPtr<FJsonObject>& CustomMap = Params->GetObjectField(TEXT("weight_map"));
+		for (const auto& Pair : CustomMap->Values)
+		{
+			FString SlotName = Pair.Value->AsString();
+			WeightNormMap.Insert(TPair<FString, FString>(Pair.Key, SlotName), 0);
+		}
+	}
+
+	// ── Find TTF/OTF files (deduplicated for case-insensitive FS) ──
+	TArray<FString> TtfFiles;
+	IFileManager::Get().FindFiles(TtfFiles, *(TtfFolder / TEXT("*.ttf")), true, false);
+	{
+		TArray<FString> OtfFiles;
+		IFileManager::Get().FindFiles(OtfFiles, *(TtfFolder / TEXT("*.otf")), true, false);
+		TtfFiles.Append(OtfFiles);
+	}
+
+	if (TtfFiles.Num() == 0)
+	{
+		return FCommandResult::Error(TEXT("import_font_family: no TTF/OTF files found in: ") + TtfFolder);
+	}
+
+	// ── Create UFont composite asset ─────────────────────────
+	FString FontAssetName = TEXT("F_") + FamilyName;
+	FString FontAssetPath = AssetPath / FontAssetName;
+
+	// Delete existing
+	UObject* ExistingFont = LoadObject<UObject>(nullptr, *FontAssetPath);
+	if (ExistingFont)
+	{
+		TArray<UObject*> ObjectsToDelete;
+		ObjectsToDelete.Add(ExistingFont);
+		ObjectTools::ForceDeleteObjects(ObjectsToDelete, false);
+	}
+
+	UPackage* FontPackage = CreatePackage(*FontAssetPath);
+	FontPackage->FullyLoad();
+	UFont* NewFont = NewObject<UFont>(FontPackage, *FontAssetName,
+		RF_Public | RF_Standalone | RF_MarkAsRootSet);
+	NewFont->FontCacheType = EFontCacheType::Runtime;
+	FAssetRegistryModule::AssetCreated(NewFont);
+
+	// ── Import each TTF and map to typeface slot ─────────────
+	IAssetTools& AssetTools =
+		FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
+
+	TArray<TSharedPtr<FJsonValue>> ImportedArray;
+	TArray<TSharedPtr<FJsonValue>> SkippedArray;
+	TArray<TSharedPtr<FJsonValue>> WarningsArray;
+
+	for (const FString& TtfFile : TtfFiles)
+	{
+		FString FullTtfPath = TtfFolder / TtfFile;
+		FString FileBaseName = FPaths::GetBaseFilename(TtfFile);
+
+		// Determine slot name from filename
+		FString SlotName;
+		bool bIsItalic = FileBaseName.Contains(TEXT("Italic"));
+
+		for (const TPair<FString, FString>& NormPair : WeightNormMap)
+		{
+			if (FileBaseName.Contains(NormPair.Key))
+			{
+				SlotName = NormPair.Value;
+				break;
+			}
+		}
+
+		if (SlotName.IsEmpty())
+		{
+			SlotName = TEXT("Regular");
+		}
+
+		if (bIsItalic && !SlotName.EndsWith(TEXT("Italic")))
+		{
+			SlotName = SlotName + TEXT("Italic");
+		}
+
+		// Import TTF
+		FString FaceName = TEXT("FF_") + FamilyName + TEXT("_") + SlotName;
+		FString FaceAssetPath = AssetPath / FaceName;
+
+		// Delete existing face asset
+		UObject* ExistingFace = LoadObject<UObject>(nullptr, *FaceAssetPath);
+		if (ExistingFace)
+		{
+			TArray<UObject*> ObjDel;
+			ObjDel.Add(ExistingFace);
+			ObjectTools::ForceDeleteObjects(ObjDel, false);
+		}
+
+		// Load TTF file data
+		TArray<uint8> FaceFileData;
+		if (!FFileHelper::LoadFileToArray(FaceFileData, *FullTtfPath))
+		{
+			TSharedPtr<FJsonObject> WarnObj = MakeShareable(new FJsonObject());
+			WarnObj->SetStringField(TEXT("file"), TtfFile);
+			WarnObj->SetStringField(TEXT("reason"), TEXT("failed to read TTF file"));
+			WarningsArray.Add(MakeShareable(new FJsonValueObject(WarnObj)));
+			continue;
+		}
+
+		// Create UFontFace programmatically
+		UPackage* FacePackage = CreatePackage(*FaceAssetPath);
+		FacePackage->FullyLoad();
+		UFontFace* FontFace = NewObject<UFontFace>(FacePackage, *FaceName, RF_Public | RF_Standalone);
+		FontFace->SourceFilename = FullTtfPath;
+		FontFace->Hinting = EFontHinting::Auto;
+		FontFace->LoadingPolicy = EFontLoadingPolicy::Inline;
+		FontFace->InitializeFromBulkData(FullTtfPath, EFontHinting::Auto, FaceFileData.GetData(), FaceFileData.Num());
+		FAssetRegistryModule::AssetCreated(FontFace);
+		FacePackage->MarkPackageDirty();
+		{
+			FString FaceFilename = FPackageName::LongPackageNameToFilename(
+				FacePackage->GetName(), FPackageName::GetAssetPackageExtension());
+			FSavePackageArgs FaceSaveArgs;
+			SafeSavePackage(FacePackage, FontFace, FaceFilename, FaceSaveArgs);
+		}
+
+		if (!FontFace)
+		{
+			TSharedPtr<FJsonObject> WarnObj = MakeShareable(new FJsonObject());
+			WarnObj->SetStringField(TEXT("file"), TtfFile);
+			WarnObj->SetStringField(TEXT("reason"), TEXT("failed to create UFontFace"));
+			WarningsArray.Add(MakeShareable(new FJsonValueObject(WarnObj)));
+			continue;
+		}
+
+		// Add typeface slot
+		bool bSlotFound = false;
+		FCompositeFont& ImportCompositeFont = NewFont->GetMutableInternalCompositeFont();
+		for (FTypefaceEntry& Entry : ImportCompositeFont.DefaultTypeface.Fonts)
+		{
+			if (Entry.Name == FName(*SlotName))
+			{
+				Entry.Font = FFontData(FontFace);
+				bSlotFound = true;
+				break;
+			}
+		}
+		if (!bSlotFound)
+		{
+			FTypefaceEntry NewEntry;
+			NewEntry.Name = FName(*SlotName);
+			NewEntry.Font = FFontData(FontFace);
+			ImportCompositeFont.DefaultTypeface.Fonts.Add(NewEntry);
+		}
+
+		TSharedPtr<FJsonObject> ImportedObj = MakeShareable(new FJsonObject());
+		ImportedObj->SetStringField(TEXT("slot"), SlotName);
+		ImportedObj->SetStringField(TEXT("file"), TtfFile);
+		ImportedObj->SetStringField(TEXT("face_asset"), FaceAssetPath);
+		ImportedArray.Add(MakeShareable(new FJsonValueObject(ImportedObj)));
+	}
+
+	// ── Save UFont ───────────────────────────────────────────
+	FontPackage->MarkPackageDirty();
+	FString FontFilename = FPackageName::LongPackageNameToFilename(
+		FontPackage->GetName(), FPackageName::GetAssetPackageExtension());
+	FSavePackageArgs SaveArgs;
+	SafeSavePackage(FontPackage, NewFont, FontFilename, SaveArgs);
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("font_asset"), FontAssetPath);
+	Data->SetStringField(TEXT("family_name"), FamilyName);
+	Data->SetArrayField(TEXT("typefaces_imported"), ImportedArray);
+	Data->SetArrayField(TEXT("skipped"), SkippedArray);
+	Data->SetArrayField(TEXT("warnings"), WarningsArray);
+	UE_LOG(LogBlueprintLLM, Log, TEXT("Imported font family: %s (%d typefaces)"), *FamilyName, ImportedArray.Num());
+	return FCommandResult::Ok(Data);
+}
+
+// ============================================================
 // Asset Import Commands (B31-B33)
 // ============================================================
 
@@ -9265,7 +11316,7 @@ FCommandResult FCommandServer::HandleImportStaticMesh(const TSharedPtr<FJsonObje
 		return FCommandResult::Error(TEXT("Missing required parameter: asset_name"));
 	}
 
-	FString Destination = TEXT("/Game/BlueprintLLM/Meshes");
+	FString Destination = TEXT("/Game/Arcwright/Meshes");
 	Params->TryGetStringField(TEXT("destination"), Destination);
 
 	if (!FPaths::FileExists(FilePath))
@@ -9383,7 +11434,7 @@ FCommandResult FCommandServer::HandleImportTexture(const TSharedPtr<FJsonObject>
 		return FCommandResult::Error(TEXT("Missing required parameter: asset_name"));
 	}
 
-	FString Destination = TEXT("/Game/BlueprintLLM/Textures");
+	FString Destination = TEXT("/Game/Arcwright/Textures");
 	Params->TryGetStringField(TEXT("destination"), Destination);
 
 	if (!FPaths::FileExists(FilePath))
@@ -9486,7 +11537,7 @@ FCommandResult FCommandServer::HandleImportSound(const TSharedPtr<FJsonObject>& 
 		return FCommandResult::Error(TEXT("Missing required parameter: asset_name"));
 	}
 
-	FString Destination = TEXT("/Game/BlueprintLLM/Sounds");
+	FString Destination = TEXT("/Game/Arcwright/Sounds");
 	Params->TryGetStringField(TEXT("destination"), Destination);
 
 	if (!FPaths::FileExists(FilePath))
@@ -9591,7 +11642,7 @@ FCommandResult FCommandServer::HandleCreateSplineActor(const TSharedPtr<FJsonObj
 
 	DeleteExistingBlueprint(Name);
 
-	FString PackagePath = TEXT("/Game/BlueprintLLM/Generated/") + Name;
+	FString PackagePath = TEXT("/Game/Arcwright/Generated/") + Name;
 	UPackage* Package = CreatePackage(*PackagePath);
 	if (!Package)
 	{
@@ -10197,7 +12248,7 @@ FCommandResult FCommandServer::HandleCreateSequence(const TSharedPtr<FJsonObject
 		Duration = Params->GetNumberField(TEXT("duration"));
 
 	// Create the LevelSequence asset
-	FString PackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Sequences/%s"), *Name);
+	FString PackagePath = FString::Printf(TEXT("/Game/Arcwright/Sequences/%s"), *Name);
 	UPackage* Package = CreatePackage(*PackagePath);
 	if (!Package)
 		return FCommandResult::Error(TEXT("Failed to create package for sequence"));
@@ -10254,7 +12305,7 @@ FCommandResult FCommandServer::HandleAddSequenceTrack(const TSharedPtr<FJsonObje
 	if (TrackType.IsEmpty()) TrackType = TEXT("Transform");
 
 	// Find the sequence asset
-	FString AssetPath = FString::Printf(TEXT("/Game/BlueprintLLM/Sequences/%s"), *SeqName);
+	FString AssetPath = FString::Printf(TEXT("/Game/Arcwright/Sequences/%s"), *SeqName);
 	ULevelSequence* Sequence = LoadObject<ULevelSequence>(nullptr, *AssetPath);
 	if (!Sequence)
 		return FCommandResult::Error(FString::Printf(TEXT("Sequence not found: %s"), *SeqName));
@@ -10372,7 +12423,7 @@ FCommandResult FCommandServer::HandleAddKeyframe(const TSharedPtr<FJsonObject>& 
 		Time = Params->GetNumberField(TEXT("time"));
 
 	// Find the sequence
-	FString AssetPath = FString::Printf(TEXT("/Game/BlueprintLLM/Sequences/%s"), *SeqName);
+	FString AssetPath = FString::Printf(TEXT("/Game/Arcwright/Sequences/%s"), *SeqName);
 	ULevelSequence* Sequence = LoadObject<ULevelSequence>(nullptr, *AssetPath);
 	if (!Sequence) return FCommandResult::Error(FString::Printf(TEXT("Sequence not found: %s"), *SeqName));
 
@@ -10553,7 +12604,7 @@ FCommandResult FCommandServer::HandleGetSequenceInfo(const TSharedPtr<FJsonObjec
 	if (Name.IsEmpty())
 		return FCommandResult::Error(TEXT("Missing required field: name"));
 
-	FString AssetPath = FString::Printf(TEXT("/Game/BlueprintLLM/Sequences/%s"), *Name);
+	FString AssetPath = FString::Printf(TEXT("/Game/Arcwright/Sequences/%s"), *Name);
 	ULevelSequence* Sequence = LoadObject<ULevelSequence>(nullptr, *AssetPath);
 	if (!Sequence)
 		return FCommandResult::Error(FString::Printf(TEXT("Sequence not found: %s"), *Name));
@@ -10748,7 +12799,7 @@ FCommandResult FCommandServer::HandleCreateFoliageType(const TSharedPtr<FJsonObj
 		ScaleMax = Params->GetNumberField(TEXT("scale_max"));
 
 	// Create UFoliageType_InstancedStaticMesh
-	FString PackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Foliage/%s"), *Name);
+	FString PackagePath = FString::Printf(TEXT("/Game/Arcwright/Foliage/%s"), *Name);
 	UPackage* Package = CreatePackage(*PackagePath);
 	if (!Package) return FCommandResult::Error(TEXT("Failed to create package"));
 
@@ -10951,7 +13002,7 @@ FCommandResult FCommandServer::HandleCreateDataTable(const TSharedPtr<FJsonObjec
 		return FCommandResult::Error(TEXT("Missing required param: ir_json (string) or ir (object)"));
 	}
 
-	FString PackagePath = TEXT("/Game/BlueprintLLM/DataTables");
+	FString PackagePath = TEXT("/Game/Arcwright/DataTables");
 
 	FDataTableBuilder::FDTBuildResult DTResult = FDataTableBuilder::CreateFromIR(IRJson, PackagePath);
 
@@ -12801,7 +14852,7 @@ FCommandResult FCommandServer::HandleBindInputToBlueprint(const TSharedPtr<FJson
 	if (!BP) return FCommandResult::Error(FormatBlueprintNotFound(BlueprintName));
 
 	// Find the input action asset
-	FString ActionPath = FString::Printf(TEXT("/Game/BlueprintLLM/Input/%s"), *ActionName);
+	FString ActionPath = FString::Printf(TEXT("/Game/Arcwright/Input/%s"), *ActionName);
 	UInputAction* InputAction = LoadObject<UInputAction>(nullptr, *ActionPath);
 	if (!InputAction)
 	{
@@ -13665,7 +15716,7 @@ FCommandResult FCommandServer::HandleSpawnActorGrid(const TSharedPtr<FJsonObject
 		{ FString ClassErr = FString::Printf(TEXT("Could not resolve actor class: %s."), *ClassName);
 			TArray<FString> ClassSuggestions = GetSuggestions(ClassName, GetAvailableBlueprintNames());
 			if (ClassSuggestions.Num() > 0) ClassErr += TEXT(" Similar blueprints: ") + FString::Join(ClassSuggestions, TEXT(", "));
-			else ClassErr += TEXT(" Tip: use full path like /Game/BlueprintLLM/Generated/BP_MyActor for Blueprint classes, or native class names like StaticMeshActor, PointLight, Character.");
+			else ClassErr += TEXT(" Tip: use full path like /Game/Arcwright/Generated/BP_MyActor for Blueprint classes, or native class names like StaticMeshActor, PointLight, Character.");
 			return FCommandResult::Error(ClassErr); }
 
 	int32 Rows = Params->HasField(TEXT("rows")) ? (int32)Params->GetNumberField(TEXT("rows")) : 3;
@@ -13762,7 +15813,7 @@ FCommandResult FCommandServer::HandleSpawnActorCircle(const TSharedPtr<FJsonObje
 		{ FString ClassErr = FString::Printf(TEXT("Could not resolve actor class: %s."), *ClassName);
 			TArray<FString> ClassSuggestions = GetSuggestions(ClassName, GetAvailableBlueprintNames());
 			if (ClassSuggestions.Num() > 0) ClassErr += TEXT(" Similar blueprints: ") + FString::Join(ClassSuggestions, TEXT(", "));
-			else ClassErr += TEXT(" Tip: use full path like /Game/BlueprintLLM/Generated/BP_MyActor for Blueprint classes, or native class names like StaticMeshActor, PointLight, Character.");
+			else ClassErr += TEXT(" Tip: use full path like /Game/Arcwright/Generated/BP_MyActor for Blueprint classes, or native class names like StaticMeshActor, PointLight, Character.");
 			return FCommandResult::Error(ClassErr); }
 
 	int32 Count = Params->HasField(TEXT("count")) ? (int32)Params->GetNumberField(TEXT("count")) : 8;
@@ -13856,7 +15907,7 @@ FCommandResult FCommandServer::HandleSpawnActorLine(const TSharedPtr<FJsonObject
 		{ FString ClassErr = FString::Printf(TEXT("Could not resolve actor class: %s."), *ClassName);
 			TArray<FString> ClassSuggestions = GetSuggestions(ClassName, GetAvailableBlueprintNames());
 			if (ClassSuggestions.Num() > 0) ClassErr += TEXT(" Similar blueprints: ") + FString::Join(ClassSuggestions, TEXT(", "));
-			else ClassErr += TEXT(" Tip: use full path like /Game/BlueprintLLM/Generated/BP_MyActor for Blueprint classes, or native class names like StaticMeshActor, PointLight, Character.");
+			else ClassErr += TEXT(" Tip: use full path like /Game/Arcwright/Generated/BP_MyActor for Blueprint classes, or native class names like StaticMeshActor, PointLight, Character.");
 			return FCommandResult::Error(ClassErr); }
 
 	int32 Count = Params->HasField(TEXT("count")) ? (int32)Params->GetNumberField(TEXT("count")) : 5;
@@ -14285,7 +16336,7 @@ FCommandResult FCommandServer::HandleCreateSaveGame(const TSharedPtr<FJsonObject
 	FString Name = Params->GetStringField(TEXT("name"));
 	if (Name.IsEmpty()) return FCommandResult::Error(TEXT("Missing 'name'"));
 
-	FString PackagePath = TEXT("/Game/BlueprintLLM/SaveGames/") + Name;
+	FString PackagePath = TEXT("/Game/Arcwright/SaveGames/") + Name;
 	UPackage* Package = CreatePackage(*PackagePath);
 
 	// Create a Blueprint with USaveGame as parent
@@ -14636,7 +16687,7 @@ FCommandResult FCommandServer::HandleCreateAnimBlueprint(const TSharedPtr<FJsonO
 	USkeleton* Skeleton = LoadObject<USkeleton>(nullptr, *SkeletonPath);
 	if (!Skeleton) return FCommandResult::Error(FString::Printf(TEXT("Skeleton not found: %s"), *SkeletonPath));
 
-	FString PackagePath = TEXT("/Game/BlueprintLLM/Animations/") + Name;
+	FString PackagePath = TEXT("/Game/Arcwright/Animations/") + Name;
 	UPackage* Package = CreatePackage(*PackagePath);
 
 	UAnimBlueprintFactory* Factory = NewObject<UAnimBlueprintFactory>();
@@ -14775,7 +16826,7 @@ FCommandResult FCommandServer::HandleCreateAnimMontage(const TSharedPtr<FJsonObj
 	USkeleton* Skeleton = SourceAnim->GetSkeleton();
 	if (!Skeleton) return FCommandResult::Error(TEXT("Source animation has no skeleton"));
 
-	FString PackagePath = TEXT("/Game/BlueprintLLM/Animations/") + Name;
+	FString PackagePath = TEXT("/Game/Arcwright/Animations/") + Name;
 	UPackage* Package = CreatePackage(*PackagePath);
 
 	UAnimMontage* Montage = NewObject<UAnimMontage>(Package, FName(*Name), RF_Public | RF_Standalone);
@@ -14870,7 +16921,7 @@ FCommandResult FCommandServer::HandleCreateBlendSpace(const TSharedPtr<FJsonObje
 		bIs1D = (Dims == 1);
 	}
 
-	FString PackagePath = TEXT("/Game/BlueprintLLM/Animations/") + Name;
+	FString PackagePath = TEXT("/Game/Arcwright/Animations/") + Name;
 	UPackage* Package = CreatePackage(*PackagePath);
 
 	UBlendSpace* BlendSpace = nullptr;
@@ -17293,7 +19344,7 @@ FCommandResult FCommandServer::HandleTestCreateNiagaraSystem(const TSharedPtr<FJ
 	auto Log = [&Steps](const FString& M) { Steps.Add(M); UE_LOG(LogBlueprintLLM, Log, TEXT("Niagara: %s"), *M); };
 
 	// Create system
-	FString Path = FString::Printf(TEXT("/Game/BlueprintLLM/Niagara/%s"), *Name);
+	FString Path = FString::Printf(TEXT("/Game/Arcwright/Niagara/%s"), *Name);
 	UPackage* Pkg = CreatePackage(*Path);
 	if (!Pkg) return FCommandResult::Error(TEXT("Failed to create package"));
 
@@ -17336,7 +19387,7 @@ FCommandResult FCommandServer::HandleCreateNiagaraSystem(const TSharedPtr<FJsonO
 	FString Name = Params->GetStringField(TEXT("name"));
 	if (Name.IsEmpty()) return FCommandResult::Error(TEXT("Missing param: name"));
 
-	FString Path = FString::Printf(TEXT("/Game/BlueprintLLM/Niagara/%s"), *Name);
+	FString Path = FString::Printf(TEXT("/Game/Arcwright/Niagara/%s"), *Name);
 	UPackage* Pkg = CreatePackage(*Path);
 	if (!Pkg) return FCommandResult::Error(TEXT("Failed to create package"));
 
@@ -17359,7 +19410,7 @@ FCommandResult FCommandServer::HandleAddNiagaraEmitter(const TSharedPtr<FJsonObj
 
 	if (SystemName.IsEmpty()) return FCommandResult::Error(TEXT("Missing param: system"));
 
-	FString SysPath = FString::Printf(TEXT("/Game/BlueprintLLM/Niagara/%s"), *SystemName);
+	FString SysPath = FString::Printf(TEXT("/Game/Arcwright/Niagara/%s"), *SystemName);
 	UNiagaraSystem* System = LoadObject<UNiagaraSystem>(nullptr, *SysPath);
 	if (!System) return FCommandResult::Error(FString::Printf(TEXT("System not found: %s"), *SystemName));
 
@@ -17391,7 +19442,7 @@ FCommandResult FCommandServer::HandleCompileNiagaraSystem(const TSharedPtr<FJson
 	FString SystemName = Params->GetStringField(TEXT("system"));
 	if (SystemName.IsEmpty()) return FCommandResult::Error(TEXT("Missing param: system"));
 
-	FString SysPath = FString::Printf(TEXT("/Game/BlueprintLLM/Niagara/%s"), *SystemName);
+	FString SysPath = FString::Printf(TEXT("/Game/Arcwright/Niagara/%s"), *SystemName);
 	UNiagaraSystem* System = LoadObject<UNiagaraSystem>(nullptr, *SysPath);
 	if (!System) return FCommandResult::Error(TEXT("System not found"));
 
@@ -17451,7 +19502,7 @@ FCommandResult FCommandServer::HandleTestCreateMaterialGraph(const TSharedPtr<FJ
 	auto Log = [&Steps](const FString& M) { Steps.Add(M); UE_LOG(LogBlueprintLLM, Log, TEXT("MatGraph: %s"), *M); };
 
 	// Create material
-	FString Path = FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *Name);
+	FString Path = FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *Name);
 	UPackage* Pkg = CreatePackage(*Path);
 	if (!Pkg) return FCommandResult::Error(TEXT("Failed to create package"));
 
@@ -17521,7 +19572,7 @@ FCommandResult FCommandServer::HandleCreateMaterial(const TSharedPtr<FJsonObject
 	FString Name = Params->GetStringField(TEXT("name"));
 	if (Name.IsEmpty()) return FCommandResult::Error(TEXT("Missing param: name"));
 
-	FString Path = FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *Name);
+	FString Path = FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *Name);
 	UPackage* Pkg = CreatePackage(*Path);
 	if (!Pkg) return FCommandResult::Error(TEXT("Failed to create package"));
 
@@ -17549,7 +19600,7 @@ FCommandResult FCommandServer::HandleAddMaterialNode(const TSharedPtr<FJsonObjec
 		return FCommandResult::Error(TEXT("Missing params: material, type"));
 
 	// Find material
-	FString MatPath = FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *MatName);
+	FString MatPath = FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *MatName);
 	UMaterial* Mat = LoadObject<UMaterial>(nullptr, *MatPath);
 	if (!Mat) return FCommandResult::Error(FString::Printf(TEXT("Material not found: %s"), *MatName));
 
@@ -17615,7 +19666,7 @@ FCommandResult FCommandServer::HandleConnectMaterialNodes(const TSharedPtr<FJson
 	int32 SrcOutput = Params->HasField(TEXT("source_output")) ? (int32)Params->GetNumberField(TEXT("source_output")) : 0;
 	FString InputName = Params->HasField(TEXT("input_name")) ? Params->GetStringField(TEXT("input_name")) : TEXT("A");
 
-	FString MatPath = FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *MatName);
+	FString MatPath = FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *MatName);
 	UMaterial* Mat = LoadObject<UMaterial>(nullptr, *MatPath);
 	if (!Mat) return FCommandResult::Error(TEXT("Material not found"));
 
@@ -17682,7 +19733,7 @@ FCommandResult FCommandServer::HandleSetMaterialOutput(const TSharedPtr<FJsonObj
 	FString OutputPin = Params->GetStringField(TEXT("output_pin"));
 	int32 SrcOutput = Params->HasField(TEXT("source_output")) ? (int32)Params->GetNumberField(TEXT("source_output")) : 0;
 
-	FString MatPath = FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *MatName);
+	FString MatPath = FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *MatName);
 	UMaterial* Mat = LoadObject<UMaterial>(nullptr, *MatPath);
 	if (!Mat) return FCommandResult::Error(TEXT("Material not found"));
 
@@ -17716,7 +19767,7 @@ FCommandResult FCommandServer::HandleCompileMaterial(const TSharedPtr<FJsonObjec
 	FString MatName = Params->GetStringField(TEXT("material"));
 	if (MatName.IsEmpty()) return FCommandResult::Error(TEXT("Missing param: material"));
 
-	FString MatPath = FString::Printf(TEXT("/Game/BlueprintLLM/Materials/%s"), *MatName);
+	FString MatPath = FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *MatName);
 	UMaterial* Mat = LoadObject<UMaterial>(nullptr, *MatPath);
 	if (!Mat) return FCommandResult::Error(TEXT("Material not found"));
 
@@ -17797,7 +19848,7 @@ FCommandResult FCommandServer::HandleTestCreateAnimBlueprint(const TSharedPtr<FJ
 	}
 
 	// Step 2: Create AnimBlueprint
-	FString PackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Generated/%s"), *Name);
+	FString PackagePath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s"), *Name);
 	UPackage* Package = CreatePackage(*PackagePath);
 	if (!Package)
 	{
@@ -18036,7 +20087,7 @@ FCommandResult FCommandServer::HandleTestCreateAnimBlueprint(const TSharedPtr<FJ
 
 UAnimBlueprint* FCommandServer::FindAnimBlueprintByName(const FString& Name)
 {
-	FString Path = FString::Printf(TEXT("/Game/BlueprintLLM/Generated/%s.%s"), *Name, *Name);
+	FString Path = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"), *Name, *Name);
 	UAnimBlueprint* ABP = LoadObject<UAnimBlueprint>(nullptr, *Path);
 	if (!ABP)
 	{
@@ -18071,7 +20122,7 @@ FCommandResult FCommandServer::HandleCreateAnimBlueprintDSL(const TSharedPtr<FJs
 		ObjectTools::ForceDeleteObjects(Del, false);
 	}
 
-	FString PackagePath = FString::Printf(TEXT("/Game/BlueprintLLM/Generated/%s"), *Name);
+	FString PackagePath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s"), *Name);
 	UPackage* Package = CreatePackage(*PackagePath);
 	if (!Package) return FCommandResult::Error(TEXT("Failed to create package"));
 

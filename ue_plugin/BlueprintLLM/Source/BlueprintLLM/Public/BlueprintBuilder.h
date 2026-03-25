@@ -18,7 +18,7 @@ public:
 	/**
 	 * Create a Blueprint asset from a parsed DSL blueprint.
 	 * @param DSL - The parsed IR
-	 * @param PackagePath - Content Browser path (e.g. "/Game/BlueprintLLM/Generated")
+	 * @param PackagePath - Content Browser path (e.g. "/Game/Arcwright/Generated")
 	 * @return The created UBlueprint, or nullptr on failure
 	 */
 	static UBlueprint* CreateBlueprint(const FDSLBlueprint& DSL, const FString& PackagePath);

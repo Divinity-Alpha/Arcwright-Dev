@@ -19,7 +19,6 @@ private:
 	void RegisterMenus();
 	void RegisterBrandStyle();
 	void UnregisterBrandStyle();
-	void OnImportDSLClicked();
 	void OnToggleCommandServer();
 	void OnOpenDashboard();
 	bool IsCommandServerRunning() const;

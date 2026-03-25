@@ -42,7 +42,7 @@ UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const F
 	UClass* ParentClass = FindParentClass(DSL.ParentClass);
 	if (!ParentClass)
 	{
-		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: Unknown parent class: %s, defaulting to AActor"), *DSL.ParentClass);
+		UE_LOG(LogTemp, Error, TEXT("Arcwright: Unknown parent class: %s, defaulting to AActor"), *DSL.ParentClass);
 		ParentClass = AActor::StaticClass();
 	}
 
@@ -52,7 +52,7 @@ UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const F
 	UPackage* Package = CreatePackage(*FullPath);
 	if (!Package)
 	{
-		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: Failed to create package: %s"), *FullPath);
+		UE_LOG(LogTemp, Error, TEXT("Arcwright: Failed to create package: %s"), *FullPath);
 		return nullptr;
 	}
 
@@ -64,13 +64,13 @@ UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const F
 	{
 		if (Cast<UObjectRedirector>(ExistingObj))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Removing ObjectRedirector at %s before creating Blueprint"), *FullPath);
+			UE_LOG(LogTemp, Warning, TEXT("Arcwright: Removing ObjectRedirector at %s before creating Blueprint"), *FullPath);
 			ExistingObj->Rename(nullptr, GetTransientPackage(), REN_DontCreateRedirectors | REN_NonTransactional);
 			ExistingObj->MarkAsGarbage();
 		}
 		else if (UBlueprint* ExistingBP = Cast<UBlueprint>(ExistingObj))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Removing existing Blueprint at %s before recreation"), *FullPath);
+			UE_LOG(LogTemp, Warning, TEXT("Arcwright: Removing existing Blueprint at %s before recreation"), *FullPath);
 			ExistingBP->Rename(nullptr, GetTransientPackage(), REN_DontCreateRedirectors | REN_NonTransactional);
 			ExistingBP->MarkAsGarbage();
 		}
@@ -93,7 +93,7 @@ UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const F
 
 	if (!Blueprint)
 	{
-		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: Failed to create Blueprint"));
+		UE_LOG(LogTemp, Error, TEXT("Arcwright: Failed to create Blueprint"));
 		return nullptr;
 	}
 
@@ -111,7 +111,7 @@ UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const F
 	UEdGraph* EventGraph = FBlueprintEditorUtils::FindEventGraph(Blueprint);
 	if (!EventGraph)
 	{
-		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: No EventGraph found"));
+		UE_LOG(LogTemp, Error, TEXT("Arcwright: No EventGraph found"));
 		return nullptr;
 	}
 
@@ -166,7 +166,7 @@ UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const F
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Failed to create node %s (%s / %s)"),
+			UE_LOG(LogTemp, Warning, TEXT("Arcwright: Failed to create node %s (%s / %s)"),
 				*NodeDef.ID, *NodeDef.DSLType, *NodeDef.UEClass);
 		}
 	}
@@ -193,7 +193,7 @@ UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const F
 		CallNode->AllocateDefaultPins();
 		EventGraph->AddNode(CallNode, false, false);
 
-		UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: CustomEvent '%s' node %s created as call (exec pins: %d)"),
+		UE_LOG(LogTemp, Log, TEXT("Arcwright: CustomEvent '%s' node %s created as call (exec pins: %d)"),
 			*EventName, *NodeDef.ID, CallNode->Pins.Num());
 
 		CallNode->CreateNewGuid();
@@ -256,7 +256,7 @@ UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const F
 					{
 						Pin->PinType = ElementType;
 					}
-					UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Resolved wildcard pin '%s' on '%s' to %s (container=%d)"),
+					UE_LOG(LogTemp, Log, TEXT("Arcwright: Resolved wildcard pin '%s' on '%s' to %s (container=%d)"),
 						*Pin->PinName.ToString(), *Node->GetNodeTitle(ENodeTitleType::ListView).ToString(),
 						*Pin->PinType.PinCategory.ToString(), (int32)Pin->PinType.ContainerType);
 				}
@@ -280,7 +280,7 @@ UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const F
 	SaveArgs.TopLevelFlags = RF_Public | RF_Standalone;
 	SafeSavePackage(Package, Blueprint, PackageFilename, SaveArgs);
 
-	UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Successfully created %s with %d nodes"),
+	UE_LOG(LogTemp, Log, TEXT("Arcwright: Successfully created %s with %d nodes"),
 		*AssetName, NodeMap.Num());
 
 	return Blueprint;
@@ -363,7 +363,7 @@ UK2Node* FBlueprintBuilder::CreateNodeFromDef(UBlueprint* BP, UEdGraph* Graph, c
 		Node->AllocateDefaultPins();
 		Graph->AddNode(Node, false, false);
 
-		UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Created InputAxisEvent '%s' with pins:"), *Node->InputAxisName.ToString());
+		UE_LOG(LogTemp, Log, TEXT("Arcwright: Created InputAxisEvent '%s' with pins:"), *Node->InputAxisName.ToString());
 		for (UEdGraphPin* P : Node->Pins)
 		{
 			FString PDir = (P->Direction == EGPD_Input) ? TEXT("IN") : TEXT("OUT");
@@ -379,7 +379,7 @@ UK2Node* FBlueprintBuilder::CreateNodeFromDef(UBlueprint* BP, UEdGraph* Graph, c
 		return CreateFlowControlNode(BP, Graph, NodeDef);
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Unhandled UE class: %s"), *UEClass);
+	UE_LOG(LogTemp, Warning, TEXT("Arcwright: Unhandled UE class: %s"), *UEClass);
 	return nullptr;
 }
 
@@ -414,7 +414,7 @@ UK2Node* FBlueprintBuilder::CreateEventNode(UBlueprint* BP, UEdGraph* Graph, con
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Event function not found: %s"), *NodeDef.UEEvent);
+		UE_LOG(LogTemp, Warning, TEXT("Arcwright: Event function not found: %s"), *NodeDef.UEEvent);
 	}
 
 	EventNode->AllocateDefaultPins();
@@ -446,7 +446,7 @@ UK2Node* FBlueprintBuilder::CreateCustomEventNode(UBlueprint* BP, UEdGraph* Grap
 			CallNode->FunctionReference.SetSelfMember(FName(*EventName));
 			CallNode->AllocateDefaultPins();
 			Graph->AddNode(CallNode, false, false);
-			UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: CustomEvent '%s' already exists, created CallFunction instead"), *EventName);
+			UE_LOG(LogTemp, Log, TEXT("Arcwright: CustomEvent '%s' already exists, created CallFunction instead"), *EventName);
 			return CallNode;
 		}
 	}
@@ -500,11 +500,11 @@ UK2Node* FBlueprintBuilder::CreateCustomEventNode(UBlueprint* BP, UEdGraph* Grap
 		{
 			// Default to string for unknown types
 			PinType.PinCategory = UEdGraphSchema_K2::PC_String;
-			UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Unknown event param type '%s' for '%s', defaulting to String"), *Param.Type, *Param.Name);
+			UE_LOG(LogTemp, Warning, TEXT("Arcwright: Unknown event param type '%s' for '%s', defaulting to String"), *Param.Type, *Param.Name);
 		}
 
 		Node->CreateUserDefinedPin(FName(*Param.Name), PinType, EGPD_Output);
-		UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Added event param '%s' (%s) to CustomEvent '%s'"), *Param.Name, *Param.Type, *EventName);
+		UE_LOG(LogTemp, Log, TEXT("Arcwright: Added event param '%s' (%s) to CustomEvent '%s'"), *Param.Name, *Param.Type, *EventName);
 	}
 
 	return Node;
@@ -528,7 +528,7 @@ UK2Node* FBlueprintBuilder::CreateCallFunctionNode(UBlueprint* BP, UEdGraph* Gra
 		{
 			FuncNode->FunctionReference.SetExternalMember(FName(*FuncName), nullptr);
 		}
-		UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Function not found: %s"), *NodeDef.UEFunction);
+		UE_LOG(LogTemp, Warning, TEXT("Arcwright: Function not found: %s"), *NodeDef.UEFunction);
 	}
 
 	FuncNode->AllocateDefaultPins();
@@ -560,7 +560,7 @@ UK2Node* FBlueprintBuilder::CreateSequenceNode(UBlueprint* BP, UEdGraph* Graph, 
 	for (int32 i = 0; i < 4; i++) { Node->AddInputPin(); }
 
 	// Debug: log actual pin names
-	UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Sequence node pins after creation:"));
+	UE_LOG(LogTemp, Log, TEXT("Arcwright: Sequence node pins after creation:"));
 	for (UEdGraphPin* P : Node->Pins)
 	{
 		FString PDir = (P->Direction == EGPD_Input) ? TEXT("IN") : TEXT("OUT");
@@ -580,7 +580,7 @@ UK2Node* FBlueprintBuilder::CreateFlowControlNode(UBlueprint* BP, UEdGraph* Grap
 		// Add extra output pins — default gives 2, we add more
 		for (int32 i = 0; i < 4; i++) { Node->AddInputPin(); }
 
-		UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: MultiGate native pins:"));
+		UE_LOG(LogTemp, Log, TEXT("Arcwright: MultiGate native pins:"));
 		for (UEdGraphPin* P : Node->Pins)
 		{
 			FString PDir = (P->Direction == EGPD_Input) ? TEXT("IN") : TEXT("OUT");
@@ -612,7 +612,7 @@ UK2Node* FBlueprintBuilder::CreateFlowControlNode(UBlueprint* BP, UEdGraph* Grap
 	Node->AllocateDefaultPins();
 	Graph->AddNode(Node, false, false);
 
-	UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: %s MacroInstance pins:"), *MacroName);
+	UE_LOG(LogTemp, Log, TEXT("Arcwright: %s MacroInstance pins:"), *MacroName);
 	for (UEdGraphPin* P : Node->Pins)
 	{
 		FString PDir = (P->Direction == EGPD_Input) ? TEXT("IN") : TEXT("OUT");
@@ -721,7 +721,7 @@ UK2Node* FBlueprintBuilder::CreateVariableNode(UBlueprint* BP, UEdGraph* Graph, 
 
 	if (VarName.IsEmpty())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Variable node %s has no variable name"), *NodeDef.ID);
+		UE_LOG(LogTemp, Warning, TEXT("Arcwright: Variable node %s has no variable name"), *NodeDef.ID);
 		return nullptr;
 	}
 
@@ -777,7 +777,7 @@ UK2Node* FBlueprintBuilder::CreateVariableNode(UBlueprint* BP, UEdGraph* Graph, 
 		}
 
 		FBlueprintEditorUtils::AddMemberVariable(BP, VarFName, PinType);
-		UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Auto-created variable '%s' (type hint: '%s')"), *VarName, *TypeHint);
+		UE_LOG(LogTemp, Log, TEXT("Arcwright: Auto-created variable '%s' (type hint: '%s')"), *VarName, *TypeHint);
 	}
 
 	// Look up actual variable type from BP for pin type forcing
@@ -810,7 +810,7 @@ UK2Node* FBlueprintBuilder::CreateVariableNode(UBlueprint* BP, UEdGraph* Graph, 
 					if (Pin->PinType.PinCategory == UEdGraphSchema_K2::PC_Wildcard || Pin->PinType.PinCategory.IsNone())
 					{
 						Pin->PinType = VarPinType;
-						UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Forced VariableGet '%s' pin '%s' to type %s (container=%d)"),
+						UE_LOG(LogTemp, Log, TEXT("Arcwright: Forced VariableGet '%s' pin '%s' to type %s (container=%d)"),
 							*VarName, *Pin->PinName.ToString(), *Pin->PinType.PinCategory.ToString(), (int32)Pin->PinType.ContainerType);
 					}
 				}
@@ -835,7 +835,7 @@ UK2Node* FBlueprintBuilder::CreateVariableNode(UBlueprint* BP, UEdGraph* Graph, 
 					if (Pin->PinType.PinCategory == UEdGraphSchema_K2::PC_Wildcard || Pin->PinType.PinCategory.IsNone())
 					{
 						Pin->PinType = VarPinType;
-						UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Forced VariableSet '%s' pin '%s' to type %s (container=%d)"),
+						UE_LOG(LogTemp, Log, TEXT("Arcwright: Forced VariableSet '%s' pin '%s' to type %s (container=%d)"),
 							*VarName, *Pin->PinName.ToString(), *Pin->PinType.PinCategory.ToString(), (int32)Pin->PinType.ContainerType);
 					}
 				}
@@ -899,7 +899,7 @@ void FBlueprintBuilder::CreateBlueprintVariables(UBlueprint* BP, const TArray<FD
 			FProperty* Prop = BP->GeneratedClass->FindPropertyByName(FName(*Var.Name));
 			if (Prop)
 			{
-				UE_LOG(LogTemp, Verbose, TEXT("BlueprintLLM: Created variable %s : %s = %s"),
+				UE_LOG(LogTemp, Verbose, TEXT("Arcwright: Created variable %s : %s = %s"),
 					*Var.Name, *Var.Type, *Var.DefaultValue);
 			}
 		}
@@ -1244,7 +1244,7 @@ UEdGraphPin* FBlueprintBuilder::FindPinByDSLName(UEdGraphNode* Node, const FStri
 
 	// Debug: dump all pins on this node when resolution fails
 	FString DirStr = (Direction == EGPD_Input) ? TEXT("INPUT") : TEXT("OUTPUT");
-	UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: PIN MISS — DSL '%s' (%s) on node %s (%s). Available pins:"),
+	UE_LOG(LogTemp, Warning, TEXT("Arcwright: PIN MISS — DSL '%s' (%s) on node %s (%s). Available pins:"),
 		*DSLName, *DirStr, *Node->GetNodeTitle(ENodeTitleType::ListView).ToString(), *Node->GetClass()->GetName());
 	for (UEdGraphPin* P : Node->Pins)
 	{
@@ -1277,14 +1277,14 @@ bool FBlueprintBuilder::ConnectPins(
 			UEdGraphNode* const* DstNodePtr = NodeMap.Find(Conn.TargetNode);
 			if (!DstNodePtr)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: data_literal target node not found: %s"), *Conn.TargetNode);
+				UE_LOG(LogTemp, Warning, TEXT("Arcwright: data_literal target node not found: %s"), *Conn.TargetNode);
 				FailCount++;
 				continue;
 			}
 			UEdGraphPin* DstPin = FindPinByDSLName(*DstNodePtr, Conn.TargetPin, EGPD_Input);
 			if (!DstPin)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: data_literal pin not found: %s.%s"), *Conn.TargetNode, *Conn.TargetPin);
+				UE_LOG(LogTemp, Warning, TEXT("Arcwright: data_literal pin not found: %s.%s"), *Conn.TargetNode, *Conn.TargetPin);
 				FailCount++;
 				continue;
 			}
@@ -1298,7 +1298,7 @@ bool FBlueprintBuilder::ConnectPins(
 
 		if (!SrcNodePtr || !DstNodePtr)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Connection refs unknown node: %s -> %s"),
+			UE_LOG(LogTemp, Warning, TEXT("Arcwright: Connection refs unknown node: %s -> %s"),
 				*Conn.SourceNode, *Conn.TargetNode);
 			FailCount++;
 			continue;
@@ -1335,7 +1335,7 @@ bool FBlueprintBuilder::ConnectPins(
 			}
 			else
 			{
-				UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Connection failed: %s.%s(%s) -> %s.%s(%s)"),
+				UE_LOG(LogTemp, Warning, TEXT("Arcwright: Connection failed: %s.%s(%s) -> %s.%s(%s)"),
 					*Conn.SourceNode, *Conn.SourcePin, *SrcPin->PinName.ToString(),
 					*Conn.TargetNode, *Conn.TargetPin, *DstPin->PinName.ToString());
 				FailCount++;
@@ -1343,14 +1343,14 @@ bool FBlueprintBuilder::ConnectPins(
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Pin not found: %s.%s(%s) -> %s.%s(%s)"),
+			UE_LOG(LogTemp, Warning, TEXT("Arcwright: Pin not found: %s.%s(%s) -> %s.%s(%s)"),
 				*Conn.SourceNode, *Conn.SourcePin, SrcPin ? TEXT("OK") : TEXT("MISSING"),
 				*Conn.TargetNode, *Conn.TargetPin, DstPin ? TEXT("OK") : TEXT("MISSING"));
 			FailCount++;
 		}
 	}
 
-	UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Wired %d/%d connections (%d failed)"),
+	UE_LOG(LogTemp, Log, TEXT("Arcwright: Wired %d/%d connections (%d failed)"),
 		SuccessCount, SuccessCount + FailCount, FailCount);
 
 	return FailCount == 0;
@@ -1413,7 +1413,7 @@ UFunction* FBlueprintBuilder::FindFunctionByPath(const FString& FunctionPath)
 		Func = OwnerClass->FindFunctionByName(FName(*DoubleName));
 		if (Func)
 		{
-			UE_LOG(LogTemp, Verbose, TEXT("BlueprintLLM: Float→Double remap: %s → %s"), *FuncName, *DoubleName);
+			UE_LOG(LogTemp, Verbose, TEXT("Arcwright: Float→Double remap: %s → %s"), *FuncName, *DoubleName);
 			return Func;
 		}
 	}
