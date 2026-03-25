@@ -1227,46 +1227,52 @@ FReply SArcwrightDashboardPanel::OnSubmitFeedbackClicked()
 	FString UEVersion = FString::Printf(TEXT("%d.%d"), ENGINE_MAJOR_VERSION, ENGINE_MINOR_VERSION);
 	FString Platform = FPlatformProperties::PlatformName();
 
-	// Build JSON payload
-	TSharedRef<FJsonObject> Payload = MakeShared<FJsonObject>();
-	Payload->SetStringField(TEXT("type"), TEXT("feedback"));
-	Payload->SetStringField(TEXT("category"), Category);
-	Payload->SetStringField(TEXT("message"), Message);
-	Payload->SetStringField(TEXT("plugin_version"), PluginVersion);
-	Payload->SetStringField(TEXT("ue_version"), UEVersion);
-	Payload->SetStringField(TEXT("platform"), Platform);
-	Payload->SetStringField(TEXT("timestamp"), FDateTime::UtcNow().ToIso8601());
+	// Build GitHub issue body
+	FString Label = Category.ToLower().Replace(TEXT(" "), TEXT("-"));
+	FString TitleMsg = Message.TrimStartAndEnd().Left(80);
 
-	// Add session stats if available
+	FString StatsBlock;
 	const FArcwrightStats* Stats = GetStats();
 	if (Stats)
 	{
-		TSharedRef<FJsonObject> StatsObj = MakeShared<FJsonObject>();
-		StatsObj->SetNumberField(TEXT("session_commands"), Stats->GetSessionCommands());
-		StatsObj->SetNumberField(TEXT("total_commands"), Stats->GetTotalCommands());
-		StatsObj->SetNumberField(TEXT("total_sessions"), Stats->GetTotalSessions());
-		Payload->SetObjectField(TEXT("session_stats"), StatsObj);
+		StatsBlock = FString::Printf(
+			TEXT("### Session Stats\n| Field | Value |\n|---|---|\n| Commands this session | %d |\n| Total commands | %lld |\n| Total sessions | %lld |\n"),
+			Stats->GetSessionCommands(), Stats->GetTotalCommands(), Stats->GetTotalSessions());
 	}
 
-	// Serialize to string
+	FString Body = FString::Printf(
+		TEXT("## %s\n\n### Description\n%s\n\n### Environment\n| Field | Value |\n|---|---|\n| Plugin Version | %s |\n| UE Version | %s |\n| Platform | %s |\n| Submitted | %s |\n\n%s\n---\n*Submitted anonymously via Arcwright plugin*"),
+		*Category, *Message.TrimStartAndEnd(),
+		*PluginVersion, *UEVersion, *Platform,
+		*FDateTime::UtcNow().ToIso8601(), *StatsBlock);
+
+	// Build GitHub Issues API payload
+	TSharedRef<FJsonObject> Payload = MakeShared<FJsonObject>();
+	Payload->SetStringField(TEXT("title"), FString::Printf(TEXT("[%s] %s"), *Category, *TitleMsg));
+	Payload->SetStringField(TEXT("body"), Body);
+
+	TArray<TSharedPtr<FJsonValue>> Labels;
+	Labels.Add(MakeShared<FJsonValueString>(Label));
+	Payload->SetArrayField(TEXT("labels"), Labels);
+
 	FString JsonString;
 	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonString);
 	FJsonSerializer::Serialize(Payload, Writer);
 
 	LastFeedbackSubmitTime = Now;
 
-	// Fire-and-forget HTTP POST
+	// POST directly to GitHub Issues API
 	FString Endpoint = GetFeedbackEndpoint();
-	if (!Endpoint.IsEmpty())
-	{
-		FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
-		HttpRequest->SetURL(Endpoint);
-		HttpRequest->SetVerb(TEXT("POST"));
-		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
-		HttpRequest->SetContentAsString(JsonString);
-		HttpRequest->OnProcessRequestComplete().BindRaw(this, &SArcwrightDashboardPanel::OnFeedbackHttpComplete);
-		HttpRequest->ProcessRequest();
-	}
+	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
+	HttpRequest->SetURL(Endpoint);
+	HttpRequest->SetVerb(TEXT("POST"));
+	HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
+	HttpRequest->SetHeader(TEXT("Accept"), TEXT("application/vnd.github.v3+json"));
+	HttpRequest->SetHeader(TEXT("User-Agent"), TEXT("Arcwright-Plugin/1.0.2"));
+	HttpRequest->SetHeader(TEXT("Authorization"), FString::Printf(TEXT("token %s"), *GetFeedbackToken()));
+	HttpRequest->SetContentAsString(JsonString);
+	HttpRequest->OnProcessRequestComplete().BindRaw(this, &SArcwrightDashboardPanel::OnFeedbackHttpComplete);
+	HttpRequest->ProcessRequest();
 
 	// Always save locally as fallback
 	SaveFeedbackLocally(JsonString);
@@ -1349,20 +1355,13 @@ void SArcwrightDashboardPanel::SaveFeedbackLocally(const FString& JsonPayload)
 
 FString SArcwrightDashboardPanel::GetFeedbackEndpoint() const
 {
-	FString Endpoint;
-	if (GConfig)
-	{
-		GConfig->GetString(
-			TEXT("/Script/Arcwright.ArcwrightSettings"),
-			TEXT("FeedbackEndpoint"),
-			Endpoint,
-			GEngineIni);
-	}
-	if (Endpoint.IsEmpty())
-	{
-		Endpoint = TEXT("https://arcwright-feedback.arcwright.workers.dev");
-	}
-	return Endpoint;
+	return TEXT("https://api.github.com/repos/Divinity-Alpha/Arcwright-Feedback/issues");
+}
+
+FString SArcwrightDashboardPanel::GetFeedbackToken() const
+{
+	// Fine-grained PAT scoped to Arcwright-Feedback repo, Issues write only
+	return TEXT("github_pat_PLACEHOLDER_TOKEN_HERE");
 }
 
 #undef LOCTEXT_NAMESPACE

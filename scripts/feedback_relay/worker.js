@@ -107,9 +107,12 @@ export default {
     if (!ghResponse.ok) {
       const err = await ghResponse.text();
       console.error('GitHub API error:', err);
-      // Still return 200 to client — don't expose internal errors
       return new Response(
-        JSON.stringify({ status: 'ok', queued: true }),
+        JSON.stringify({
+          status: 'ok',
+          queued: true,
+          debug: err.slice(0, 200)
+        }),
         {
           status: 200,
           headers: { 'Content-Type': 'application/json' }

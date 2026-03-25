@@ -168,4 +168,5 @@ private:
 	FString FormatUptime(double Seconds) const;
 	FString FormatDuration(double Seconds) const;
 	FString GetFeedbackEndpoint() const;
+	FString GetFeedbackToken() const;
 };
