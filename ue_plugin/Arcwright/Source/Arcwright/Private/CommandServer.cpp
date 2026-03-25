@@ -446,7 +446,7 @@ bool FCommandServer::Start(int32 Port)
 	}
 
 	UE_LOG(LogArcwright, Log, TEXT("Arcwright Command Server listening on port %d"), Port);
-	UE_LOG(LogArcwright, Log, TEXT("Arcwright v%s ready — 91 TCP commands, MCP bridge on stdio. Connect any AI assistant via TCP or MCP."), *SERVER_VERSION);
+	UE_LOG(LogArcwright, Log, TEXT("Arcwright v%s ready — 274 TCP commands, MCP bridge on stdio. Connect any AI assistant via TCP or MCP."), *SERVER_VERSION);
 	return true;
 }
 
