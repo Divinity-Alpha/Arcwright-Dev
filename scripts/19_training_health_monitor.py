@@ -907,7 +907,7 @@ def run_health_check(version: str = None, project_root: str = None) -> dict:
         version: Model version string (e.g. "v2"). Auto-detected if None.
         project_root: Project root path. Defaults to C:\\BlueprintLLM.
     """
-    root = Path(project_root or os.environ.get("BLUEPRINT_LLM_ROOT", r"C:\BlueprintLLM"))
+    root = Path(project_root or os.environ.get("BLUEPRINT_LLM_ROOT", r"C:\Arcwright"))
     models_dir = root / "models"
     history_path = root / "logs" / "training_history.json"
 

@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from blueprint_client import ArcwrightClient, BlueprintLLMError
 from blender_mcp.blender_client import BlenderClient, BlenderClientError
 
-EXPORTS_DIR = "C:/BlueprintLLM/exports"
+EXPORTS_DIR = "C:/Arcwright/exports"
 
 
 def run_tests():

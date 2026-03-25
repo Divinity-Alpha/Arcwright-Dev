@@ -14,7 +14,7 @@ import sys
 import tempfile
 
 # Add project scripts to path for parser imports
-PROJECT_ROOT = r"C:\BlueprintLLM"
+PROJECT_ROOT = r"C:\Arcwright"
 sys.path.insert(0, os.path.join(PROJECT_ROOT, "scripts"))
 # dsl_parser submodules use bare imports (e.g. "from node_map import resolve")
 sys.path.insert(0, os.path.join(PROJECT_ROOT, "scripts", "dsl_parser"))

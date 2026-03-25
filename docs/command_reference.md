@@ -326,7 +326,7 @@ Import a `.blueprint.json` IR file from disk into UE5.
 
 ```json
 // Request
-{"command": "import_from_ir", "params": {"path": "C:/BlueprintLLM/test_ir/T1_01_HelloWorld.blueprint.json"}}
+{"command": "import_from_ir", "params": {"path": "C:/Arcwright/test_ir/T1_01_HelloWorld.blueprint.json"}}
 
 // Response
 {"status": "ok", "data": {"blueprint_name": "BP_HelloWorld", "nodes_created": 3, "connections_wired": 2, "compiled": true}}
@@ -2543,7 +2543,7 @@ Import a .fbx or .obj file as a UStaticMesh asset.
 
 ```json
 // Request
-{"command": "import_static_mesh", "params": {"file_path": "C:/BlueprintLLM/exports/crystal.fbx", "asset_name": "SM_Crystal"}}
+{"command": "import_static_mesh", "params": {"file_path": "C:/Arcwright/exports/crystal.fbx", "asset_name": "SM_Crystal"}}
 
 // Response
 {"status": "ok", "data": {"asset_path": "/Game/Arcwright/Meshes/SM_Crystal", "vertices": 2048, "triangles": 3072, "imported_count": 1}}
@@ -2567,7 +2567,7 @@ Import a .png, .jpg, or .tga file as a UTexture2D asset.
 
 ```json
 // Request
-{"command": "import_texture", "params": {"file_path": "C:/BlueprintLLM/exports/stone_wall.png", "asset_name": "T_StoneWall"}}
+{"command": "import_texture", "params": {"file_path": "C:/Arcwright/exports/stone_wall.png", "asset_name": "T_StoneWall"}}
 
 // Response
 {"status": "ok", "data": {"asset_path": "/Game/Arcwright/Textures/T_StoneWall", "width": 1024, "height": 1024, "format": "PF_B8G8R8A8", "imported_count": 1}}
@@ -2587,7 +2587,7 @@ Import a .wav, .ogg, or .mp3 file as a USoundWave asset.
 
 ```json
 // Request
-{"command": "import_sound", "params": {"file_path": "C:/BlueprintLLM/exports/pickup.wav", "asset_name": "SFX_Pickup"}}
+{"command": "import_sound", "params": {"file_path": "C:/Arcwright/exports/pickup.wav", "asset_name": "SFX_Pickup"}}
 
 // Response
 {"status": "ok", "data": {"asset_path": "/Game/Arcwright/Sounds/SFX_Pickup", "duration": 0.5, "channels": 1, "sample_rate": 44100, "imported_count": 1}}

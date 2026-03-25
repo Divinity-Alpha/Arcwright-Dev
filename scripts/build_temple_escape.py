@@ -93,7 +93,7 @@ def phase0b_floor_and_fps(c):
 
     # 2. FPS Player Controller
     r = c.send_command('import_from_ir', {
-        'file_path': 'C:/BlueprintLLM/test_ir/bp_fps_player_controller.blueprint.json'
+        'file_path': 'C:/Arcwright/test_ir/bp_fps_player_controller.blueprint.json'
     })
     print(f"  FPS Controller: {r.get('status', 'error')} ({r.get('data', {}).get('nodes_created', 0)} nodes)")
 
@@ -111,7 +111,7 @@ def phase0b_floor_and_fps(c):
 
     # 3. GameMode
     r = c.send_command('import_from_ir', {
-        'file_path': 'C:/BlueprintLLM/test_ir/bp_temple_game_mode.blueprint.json'
+        'file_path': 'C:/Arcwright/test_ir/bp_temple_game_mode.blueprint.json'
     })
     print(f"  GameMode: {r.get('status', 'error')} ({r.get('data', {}).get('nodes_created', 0)} nodes)")
 

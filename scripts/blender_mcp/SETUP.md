@@ -124,8 +124,8 @@ Claude:
 4. blender_assign_material("Crystal_Base", "CrystalGreen")
 5. blender_add_modifier("Crystal_Base", "SUBSURF", properties={"levels": 1})
 6. blender_smart_uv_project("Crystal_Base")
-7. blender_export_fbx("C:/BlueprintLLM/exports/health_crystal.fbx")
-8. [UE] import_static_mesh("C:/BlueprintLLM/exports/health_crystal.fbx", "SM_HealthCrystal")
+7. blender_export_fbx("C:/Arcwright/exports/health_crystal.fbx")
+8. [UE] import_static_mesh("C:/Arcwright/exports/health_crystal.fbx", "SM_HealthCrystal")
 9. [UE] create_blueprint_from_dsl(pickup_dsl)
 10. [UE] add_component with mesh=SM_HealthCrystal
 11. [UE] spawn_actor_at(...)
@@ -136,7 +136,7 @@ Steps 1-7 use Blender MCP. Steps 8-11 use UE MCP. Claude orchestrates both.
 ## File Structure
 
 ```
-C:\BlueprintLLM\scripts\blender_mcp\
+C:\Arcwright\scripts\blender_mcp\
 ├── blender_addon/
 │   └── blueprintllm_blender_server.py  # Blender addon (TCP server)
 ├── blender_client.py                    # Python TCP client

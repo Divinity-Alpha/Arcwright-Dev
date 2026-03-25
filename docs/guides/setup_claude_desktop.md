@@ -29,7 +29,7 @@ Copy the Arcwright plugin into your UE5 project's `Plugins` folder. If the `Plug
 Open a terminal and run:
 
 ```
-xcopy /E /I /Y C:\BlueprintLLM\ue_plugin\BlueprintLLM "C:\YourProject\Plugins\BlueprintLLM"
+xcopy /E /I /Y C:\Arcwright\ue_plugin\BlueprintLLM "C:\YourProject\Plugins\BlueprintLLM"
 ```
 
 Replace `C:\YourProject` with the actual path to your UE5 project directory.
@@ -82,7 +82,7 @@ If you see this line, the plugin is running and ready to accept connections.
 If you have the Arcwright source repository, you can also run the verification script:
 
 ```
-python C:\BlueprintLLM\scripts\mcp_client\verify.py
+python C:\Arcwright\scripts\mcp_client\verify.py
 ```
 
 This sends a `health_check` command to the plugin and prints the response. A successful output looks like:
@@ -229,8 +229,8 @@ Claude will call `spawn_actor_circle` with the appropriate parameters. Five acto
 | Timeout errors on commands | Windows Firewall may be blocking localhost connections. Add an exception for port 13377, or temporarily disable the firewall for testing. Also try increasing the timeout by adding an `"env"` block to your config (see below). |
 | Commands fail with errors | Open the UE Output Log (**Window > Output Log**) and filter for `LogArcwright`. The log shows every command received and any errors encountered during execution. This is the best place to diagnose issues. |
 | Blueprint not found | Use the Blueprint name without any path prefix. Arcwright searches `/Game/Arcwright/Generated/` and the full asset registry automatically. For example, use `"BP_HealthPickup"`, not `"/Game/Arcwright/Generated/BP_HealthPickup"`. |
-| Tools show in Claude Desktop but every command fails | The MCP server is starting but cannot reach the UE plugin over TCP. Verify the editor is running and the plugin is loaded. Run `python C:\BlueprintLLM\scripts\mcp_client\verify.py` from a terminal to test the TCP connection independently. |
-| Claude says "server disconnected" | The MCP server process crashed. Check that Python 3.11+ is installed and the `mcp` package is available. Run `python C:\BlueprintLLM\scripts\mcp_server\server.py --test` from a terminal to see if the server starts without errors. |
+| Tools show in Claude Desktop but every command fails | The MCP server is starting but cannot reach the UE plugin over TCP. Verify the editor is running and the plugin is loaded. Run `python C:\Arcwright\scripts\mcp_client\verify.py` from a terminal to test the TCP connection independently. |
+| Claude says "server disconnected" | The MCP server process crashed. Check that Python 3.11+ is installed and the `mcp` package is available. Run `python C:\Arcwright\scripts\mcp_server\server.py --test` from a terminal to see if the server starts without errors. |
 
 ### Increasing the timeout
 

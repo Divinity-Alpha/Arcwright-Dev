@@ -15,7 +15,7 @@ DESIGN:
   on BeginPlay so the actor receives input events.
 """
 import sys, time, json, os
-sys.path.insert(0, "C:/BlueprintLLM")
+sys.path.insert(0, "C:/Arcwright")
 from scripts.state_manager import StateManager
 
 sm = StateManager(project_dir="C:/Projects/BoreandStroke")
@@ -331,14 +331,14 @@ if started:
 
     # QA Tour: visit stations (FIX 3 verification)
     print(f"\n  FIX 3 - Station QA Tour:")
-    os.makedirs("C:/BlueprintLLM/screenshots", exist_ok=True)
+    os.makedirs("C:/Arcwright/screenshots", exist_ok=True)
     for station in ["Station_Degriming", "Station_Disassembly", "Station_Inspection", "Station_Cleaning", "Station_Office"]:
         arc.cmd("teleport_to_actor", actor=station, distance=30)
         time.sleep(2)
         r = arc.cmd("get_output_log", lines=30)
         overlap = any("[STATION]" in str(l) and ("Interact" in str(l) or "Ready" in str(l))
                      for l in r.get("data", {}).get("lines", []))
-        arc.cmd("get_player_view", filename=f"C:/BlueprintLLM/screenshots/qa_{station}.png")
+        arc.cmd("get_player_view", filename=f"C:/Arcwright/screenshots/qa_{station}.png")
         print(f"    {station}: overlap={'YES' if overlap else 'no'}")
 
     # Summary messages

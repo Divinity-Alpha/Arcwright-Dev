@@ -59,7 +59,7 @@ Launch/close/restart UE, kill processes, run training/exams/backups/tests.
 ## Project Structure
 
 ```
-C:\BlueprintLLM\
+C:\Arcwright\
 ├── scripts/                    # Pipeline scripts (01-20+), DSL parsers, MCP/TCP
 │   ├── 04_train_blueprint_lora.py      # Training script
 │   ├── 07_inference.py                 # Interactive inference
@@ -245,7 +245,7 @@ All adapters backed up to `D:\ArcwrightBackup\models\`.
 
 ```bash
 # Copy plugin
-cp -r /c/BlueprintLLM/ue_plugin/Arcwright/* /c/Junk/BlueprintLLMTest/Plugins/Arcwright/
+cp -r /c/Arcwright/ue_plugin/Arcwright/* /c/Junk/BlueprintLLMTest/Plugins/Arcwright/
 
 # Build
 "/c/Program Files/Epic Games/UE_5.7/Engine/Build/BatchFiles/Build.bat" \
@@ -271,7 +271,7 @@ python scripts/mcp_client/verify.py
 
 | Tier | Location | What |
 |---|---|---|
-| **Primary** | `C:\BlueprintLLM\backups\` | Milestone backups |
+| **Primary** | `C:\Arcwright\backups\` | Milestone backups |
 | **Secondary** | `D:\ArcwrightBackup\` | Mirror of all models, datasets, lessons, results |
 | **Git** | github.com/Divinity-Alpha/Arcwright | Scripts, docs (not models/datasets) |
 

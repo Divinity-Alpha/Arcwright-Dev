@@ -6,7 +6,7 @@
 #
 # USAGE:
 #   Right-click PowerShell -> Run as administrator
-#   cd C:\BlueprintLLM
+#   cd C:\Arcwright
 #   .\setup_startup_task.ps1
 #
 # TO REMOVE:
@@ -18,7 +18,7 @@ param(
 )
 
 $TaskName    = "BlueprintLLM - Startup Check"
-$ProjectRoot = "C:\BlueprintLLM"
+$ProjectRoot = "C:\Arcwright"
 $PowerShell  = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
 
 # Check admin
@@ -89,7 +89,7 @@ Write-Host "  1. Check Python, GPU, packages, HuggingFace" -ForegroundColor Gray
 Write-Host "  2. Fix missing directories" -ForegroundColor Gray
 Write-Host "  3. Re-enable any disabled scheduled tasks" -ForegroundColor Gray
 Write-Host "  4. Process pending Blueprint exports" -ForegroundColor Gray
-Write-Host "  5. Log results to C:\BlueprintLLM\logs\startup_*.log" -ForegroundColor Gray
+Write-Host "  5. Log results to C:\Arcwright\logs\startup_*.log" -ForegroundColor Gray
 Write-Host ""
 Write-Host "You now have 4 scheduled tasks:" -ForegroundColor Yellow
 Get-ScheduledTask -TaskName "BlueprintLLM*" | Format-Table TaskName, State -AutoSize

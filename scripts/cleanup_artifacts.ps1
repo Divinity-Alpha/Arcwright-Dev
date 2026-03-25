@@ -2,7 +2,7 @@
 # Run this once to clean up .dsl.txt, .analysis.json, and chained .dsl.dsl... files
 # from the clipboard-exports folder left behind by previous pipeline runs.
 
-$inbox = "C:\BlueprintLLM\raw-data\clipboard-exports"
+$inbox = "C:\Arcwright\raw-data\clipboard-exports"
 
 Write-Host "Scanning $inbox for artifact files..." -ForegroundColor Yellow
 

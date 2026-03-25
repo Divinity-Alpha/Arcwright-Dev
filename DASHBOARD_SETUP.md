@@ -10,7 +10,7 @@ serve_dashboard.bat
 python -m http.server 8080
 ```
 
-The server must run from the project root (`C:\BlueprintLLM`) so relative paths to `logs/` resolve correctly.
+The server must run from the project root (`C:\Arcwright`) so relative paths to `logs/` resolve correctly.
 
 ## Dashboard URLs
 

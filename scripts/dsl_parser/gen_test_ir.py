@@ -13,8 +13,8 @@ EXEC n1.Then -> n2.Execute"""
 
 result = parse(dsl)
 
-os.makedirs("C:/BlueprintLLM/test_ir", exist_ok=True)
-save_ir(result, "C:/BlueprintLLM/test_ir/T1_01_HelloWorld.blueprint.json")
+os.makedirs("C:/Arcwright/test_ir", exist_ok=True)
+save_ir(result, "C:/Arcwright/test_ir/T1_01_HelloWorld.blueprint.json")
 
 print("Saved. Errors:", result["errors"])
 print("Stats:", result["stats"])

@@ -18,7 +18,7 @@
 #  10. Kicks off data processing if exports are waiting
 # ============================================================
 
-$ProjectRoot = "C:\BlueprintLLM"
+$ProjectRoot = "C:\Arcwright"
 $VenvPython  = "$ProjectRoot\venv\Scripts\python.exe"
 $LogFile     = "$ProjectRoot\logs\startup_$(Get-Date -Format 'yyyyMMdd_HHmmss').log"
 

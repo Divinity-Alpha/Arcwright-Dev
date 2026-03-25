@@ -18,7 +18,7 @@ cmd = [
 log = open("logs/v11_training.log", "w")
 proc = subprocess.Popen(
     cmd, stdout=log, stderr=subprocess.STDOUT,
-    env=env, cwd=r"C:\BlueprintLLM",
+    env=env, cwd=r"C:\Arcwright",
     creationflags=subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
 )
 print(f"Training started. PID={proc.pid}")

@@ -1,6 +1,6 @@
 """Clean all duplicates, verify clean state."""
 import sys
-sys.path.insert(0, "C:/BlueprintLLM")
+sys.path.insert(0, "C:/Arcwright")
 from scripts.state_manager import StateManager
 
 sm = StateManager(project_dir="C:/Projects/BoreandStroke")

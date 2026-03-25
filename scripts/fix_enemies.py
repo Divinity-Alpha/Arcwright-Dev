@@ -154,7 +154,7 @@ c.send_command("set_viewport_camera", {
 })
 time.sleep(1)
 r = c.send_command("take_screenshot", {
-    "output_path": "C:/BlueprintLLM/exports/enemy_floor_ai.png"
+    "output_path": "C:/Arcwright/exports/enemy_floor_ai.png"
 })
 print(f"Screenshot: {r.get('data', {}).get('file_path', '?')}")
 

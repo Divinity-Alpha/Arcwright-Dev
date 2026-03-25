@@ -33,14 +33,14 @@ Fill in the fields:
 | **Name** | `arcwright` |
 | **Type** | `stdio` |
 | **Command** | `python` (or full path to your Python executable) |
-| **Arguments** | `C:\BlueprintLLM\scripts\mcp_server\server.py` |
+| **Arguments** | `C:\Arcwright\scripts\mcp_server\server.py` |
 
 If using a virtual environment, use the full path to the venv Python:
 
 | Field | Value |
 |---|---|
-| **Command** | `C:\BlueprintLLM\venv\Scripts\python.exe` |
-| **Arguments** | `C:\BlueprintLLM\scripts\mcp_server\server.py` |
+| **Command** | `C:\Arcwright\venv\Scripts\python.exe` |
+| **Arguments** | `C:\Arcwright\scripts\mcp_server\server.py` |
 
 ### Option B: Via the JSON Config File
 
@@ -132,7 +132,7 @@ To set these in Cursor's MCP config:
 
 **Fixes:**
 - Ensure Unreal Editor is running with the Arcwright plugin.
-- Verify Python can run the server: open a terminal and run `python C:\BlueprintLLM\scripts\mcp_server\server.py --test`. This should list available tools and exit.
+- Verify Python can run the server: open a terminal and run `python C:\Arcwright\scripts\mcp_server\server.py --test`. This should list available tools and exit.
 - Check that your Python path is correct in the config. Use the full path to avoid PATH resolution issues.
 - Restart Cursor after config changes.
 

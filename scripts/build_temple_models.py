@@ -11,7 +11,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-EXPORTS = r"C:\BlueprintLLM\exports"
+EXPORTS = r"C:\Arcwright\exports"
 
 
 def blender_model(c, name, build_fn, material_preset, material_params, bake_res=512):
@@ -305,7 +305,7 @@ def main():
     # Final screenshot
     time.sleep(2)
     r = ue.send_command("take_screenshot", {
-        "output_path": "C:/BlueprintLLM/exports/temple_custom_models.png"})
+        "output_path": "C:/Arcwright/exports/temple_custom_models.png"})
     print(f"Screenshot: {r.get('data', {}).get('file_path', '?')}")
 
     bc.close()

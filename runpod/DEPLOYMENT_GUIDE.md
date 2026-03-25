@@ -12,7 +12,7 @@
 ## Step 1: Prepare the Build Directory
 
 ```
-C:\BlueprintLLM\runpod\
+C:\Arcwright\runpod\
 ├── handler.py                        # Serverless worker
 ├── Dockerfile                        # Container definition
 ├── requirements.txt                  # Python dependencies
@@ -46,7 +46,7 @@ xcopy /E /I models\dt-lora-v5\final runpod\models\dt-lora-v5\final
 ## Step 2: Test Locally (Mock — No GPU)
 
 ```powershell
-cd C:\BlueprintLLM\runpod
+cd C:\Arcwright\runpod
 python test_local.py
 ```
 
@@ -57,7 +57,7 @@ This validates prompt formatting, output cleaning, input validation, and domain 
 ## Step 3: Build the Docker Image
 
 ```powershell
-cd C:\BlueprintLLM\runpod
+cd C:\Arcwright\runpod
 docker build -t arcwright-worker:latest .
 ```
 

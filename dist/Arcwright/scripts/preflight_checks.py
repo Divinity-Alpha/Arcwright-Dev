@@ -51,7 +51,7 @@ class PreflightChecker:
     """Automated preflight checks for all pipeline operations."""
     
     def __init__(self, project_root=None):
-        self.project_root = project_root or r"C:\BlueprintLLM"
+        self.project_root = project_root or r"C:\Arcwright"
         self.results = []
     
     def _add(self, status, message, lesson=None, fix=None):
@@ -910,7 +910,7 @@ def main():
     ap.add_argument("--fps", action="store_true", help="FPS controls check")
     ap.add_argument("--session", action="store_true", help="Full session audit")
     ap.add_argument("--all", action="store_true", help="Run all checks")
-    ap.add_argument("--project", default=r"C:\BlueprintLLM", help="Project root path")
+    ap.add_argument("--project", default=r"C:\Arcwright", help="Project root path")
     args = ap.parse_args()
     
     checker = PreflightChecker(args.project)

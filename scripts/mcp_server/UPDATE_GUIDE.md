@@ -34,7 +34,7 @@ Via TCP:
 - Updated when: new UE version support, new TCP commands
 
 ### Layer 2: Python Scripts (Git)
-- Update with: git pull in C:\BlueprintLLM\
+- Update with: git pull in C:\Arcwright\
 - No recompilation needed
 - Updated when: new DSL features, bug fixes, new patterns
 - Restart the MCP server after pulling

@@ -1261,15 +1261,13 @@ FReply SArcwrightDashboardPanel::OnSubmitFeedbackClicked()
 
 	LastFeedbackSubmitTime = Now;
 
-	// POST directly to GitHub Issues API
+	// POST to Cloudflare Worker relay (worker adds GitHub auth)
 	FString Endpoint = GetFeedbackEndpoint();
 	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
 	HttpRequest->SetURL(Endpoint);
 	HttpRequest->SetVerb(TEXT("POST"));
 	HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
-	HttpRequest->SetHeader(TEXT("Accept"), TEXT("application/vnd.github.v3+json"));
 	HttpRequest->SetHeader(TEXT("User-Agent"), TEXT("Arcwright-Plugin/1.0.2"));
-	HttpRequest->SetHeader(TEXT("Authorization"), FString::Printf(TEXT("token %s"), *GetFeedbackToken()));
 	HttpRequest->SetContentAsString(JsonString);
 	HttpRequest->OnProcessRequestComplete().BindRaw(this, &SArcwrightDashboardPanel::OnFeedbackHttpComplete);
 	HttpRequest->ProcessRequest();
@@ -1355,13 +1353,7 @@ void SArcwrightDashboardPanel::SaveFeedbackLocally(const FString& JsonPayload)
 
 FString SArcwrightDashboardPanel::GetFeedbackEndpoint() const
 {
-	return TEXT("https://api.github.com/repos/Divinity-Alpha/Arcwright-Feedback/issues");
-}
-
-FString SArcwrightDashboardPanel::GetFeedbackToken() const
-{
-	// Fine-grained PAT scoped to Arcwright-Feedback repo, Issues write only
-	return TEXT("github_pat_PLACEHOLDER_TOKEN_HERE");
+	return TEXT("https://arcwright-feedback.arcwright.workers.dev");
 }
 
 #undef LOCTEXT_NAMESPACE

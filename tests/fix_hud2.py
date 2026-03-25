@@ -141,8 +141,8 @@ if started:
     for m in hud_msgs[:5]:
         print(f"    {m[:140]}")
 
-    os.makedirs("C:/BlueprintLLM/screenshots", exist_ok=True)
-    cmd("get_player_view", filename="C:/BlueprintLLM/screenshots/hud_final2.png")
+    os.makedirs("C:/Arcwright/screenshots", exist_ok=True)
+    cmd("get_player_view", filename="C:/Arcwright/screenshots/hud_final2.png")
     print("  Screenshot: hud_final2.png")
 
     cmd("stop_play")

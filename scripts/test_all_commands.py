@@ -635,7 +635,7 @@ def test_ai():
             "connections": []
         }
         tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".blueprint.json", delete=False,
-                                           dir="C:/BlueprintLLM/test_ir")
+                                           dir="C:/Arcwright/test_ir")
         json.dump(ir, tmp, indent=2)
         tmp.close()
         try:
@@ -791,7 +791,7 @@ def test_movement():
             "connections": []
         }
         tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".blueprint.json", delete=False,
-                                           dir="C:/BlueprintLLM/test_ir")
+                                           dir="C:/Arcwright/test_ir")
         json.dump(ir, tmp, indent=2)
         tmp.close()
         try:

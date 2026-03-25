@@ -38,7 +38,7 @@ from threading import Lock
 # Paths
 # ---------------------------------------------------------------------------
 
-_PROJECT_ROOT = Path(os.environ.get("BLUEPRINT_LLM_ROOT", r"C:\BlueprintLLM"))
+_PROJECT_ROOT = Path(os.environ.get("BLUEPRINT_LLM_ROOT", r"C:\Arcwright"))
 _LOGS_DIR = _PROJECT_ROOT / "logs"
 _LIVE_LOG = _LOGS_DIR / "pipeline_live.log"
 _LIVE_STATE = _LOGS_DIR / "pipeline_live_state.json"

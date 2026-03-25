@@ -20,7 +20,7 @@ Before connecting any client, you need:
 Verify the command server is live:
 
 ```bash
-cd C:\BlueprintLLM
+cd C:\Arcwright
 .\venv\Scripts\activate
 python scripts/mcp_client/verify.py
 ```
@@ -60,7 +60,7 @@ The MCP server is a standard stdio server built with FastMCP. It is compatible w
 ### Server Location
 
 ```
-C:\BlueprintLLM\scripts\mcp_server\server.py
+C:\Arcwright\scripts\mcp_server\server.py
 ```
 
 ### Configuration Pattern
@@ -78,7 +78,7 @@ Every MCP client needs to know how to launch the server process. The configurati
 }
 ```
 
-On macOS or Linux, adjust the Python path accordingly (e.g., `C:/BlueprintLLM/venv/bin/python`).
+On macOS or Linux, adjust the Python path accordingly (e.g., `C:/Arcwright/venv/bin/python`).
 
 ### Config File Locations by Client
 
@@ -158,7 +158,7 @@ To use them, add an `env` block to your MCP config:
 Run the MCP server in self-test mode to verify tool registration and UE connectivity:
 
 ```bash
-cd C:\BlueprintLLM
+cd C:\Arcwright
 .\venv\Scripts\activate
 python scripts/mcp_server/server.py --test
 ```
@@ -276,7 +276,7 @@ The included client library at `scripts/mcp_client/blueprint_client.py` wraps th
 
 ```python
 import sys
-sys.path.insert(0, "C:/BlueprintLLM/scripts/mcp_client")
+sys.path.insert(0, "C:/Arcwright/scripts/mcp_client")
 from blueprint_client import ArcwrightClient
 
 with ArcwrightClient(host="localhost", port=13377) as client:
@@ -300,7 +300,7 @@ with ArcwrightClient(host="localhost", port=13377) as client:
                          properties={"mesh": "/Engine/BasicShapes/Sphere.Sphere"})
 
     # Import a complete Blueprint from IR (intermediate representation) JSON
-    client.import_from_ir("C:/BlueprintLLM/test_ir/BP_Coin.blueprint.json")
+    client.import_from_ir("C:/Arcwright/test_ir/BP_Coin.blueprint.json")
 
     # Spawn into the level
     client.spawn_actor_at("BP_Coin", label="Coin_1",
@@ -396,7 +396,7 @@ s.close()
 Run the built-in 5-step verification:
 
 ```bash
-cd C:\BlueprintLLM
+cd C:\Arcwright
 .\venv\Scripts\activate
 python scripts/mcp_client/verify.py
 ```
@@ -514,11 +514,11 @@ The UE5 Editor is not running, or the Arcwright plugin did not load.
 
 ### MCP server fails to start
 
-- Ensure the Python virtual environment exists at `C:\BlueprintLLM\venv\` and has the `mcp` package installed:
+- Ensure the Python virtual environment exists at `C:\Arcwright\venv\` and has the `mcp` package installed:
   ```bash
-  C:\BlueprintLLM\venv\Scripts\pip.exe list | findstr mcp
+  C:\Arcwright\venv\Scripts\pip.exe list | findstr mcp
   ```
-- If the `mcp` package is missing: `C:\BlueprintLLM\venv\Scripts\pip.exe install mcp`
+- If the `mcp` package is missing: `C:\Arcwright\venv\Scripts\pip.exe install mcp`
 - Verify the path in your MCP client config uses double backslashes (`\\`) in JSON strings.
 
 ### MCP tools not appearing in AI assistant

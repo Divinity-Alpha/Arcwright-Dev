@@ -160,8 +160,8 @@ if started:
         print(f"  {m[:140]}")
 
     # Screenshot
-    os.makedirs("C:/BlueprintLLM/screenshots", exist_ok=True)
-    cmd("get_player_view", filename="C:/BlueprintLLM/screenshots/bs_hud_final_v2.png")
+    os.makedirs("C:/Arcwright/screenshots", exist_ok=True)
+    cmd("get_player_view", filename="C:/Arcwright/screenshots/bs_hud_final_v2.png")
     print("\nScreenshot: bs_hud_final_v2.png")
 
     cmd("stop_play")

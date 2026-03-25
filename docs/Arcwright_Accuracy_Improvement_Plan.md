@@ -61,7 +61,7 @@ Every cycle produces a scored report. Over time we track the accuracy curve and 
 ### Files
 
 ```
-C:\BlueprintLLM\tests\
+C:\Arcwright\tests\
 ├── accuracy/
 │   ├── test_commands.json          # The 120 commands with metadata
 │   ├── test_runner.py              # Sends commands, scores results

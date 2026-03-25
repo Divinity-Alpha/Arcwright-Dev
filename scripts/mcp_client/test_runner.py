@@ -6,7 +6,7 @@ queries the result, compares to expected values, produces a report.
 
 Usage:
     python scripts/mcp_client/test_runner.py
-    python scripts/mcp_client/test_runner.py --ir-dir C:/BlueprintLLM/test_ir
+    python scripts/mcp_client/test_runner.py --ir-dir C:/Arcwright/test_ir
     python scripts/mcp_client/test_runner.py --ir-dir test_ir --output results/plugin_test.json
 """
 

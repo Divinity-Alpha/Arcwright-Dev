@@ -31,7 +31,7 @@ This guide walks through installation, first connection, and your first AI-drive
 
 ```bash
 # Copy the plugin into your UE project's Plugins directory
-xcopy /E /I /Y C:\BlueprintLLM\ue_plugin\BlueprintLLM "C:\YourProject\Plugins\BlueprintLLM"
+xcopy /E /I /Y C:\Arcwright\ue_plugin\BlueprintLLM "C:\YourProject\Plugins\BlueprintLLM"
 
 # Build the editor target
 "C:\Program Files\Epic Games\UE_5.7\Engine\Build\BatchFiles\Build.bat" ^

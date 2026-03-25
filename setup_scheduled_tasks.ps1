@@ -6,7 +6,7 @@
 #
 # USAGE:
 #   1. Right-click PowerShell → "Run as administrator"
-#   2. cd C:\BlueprintLLM
+#   2. cd C:\Arcwright
 #   3. .\setup_scheduled_tasks.ps1
 #
 # WHAT IT CREATES:
@@ -31,7 +31,7 @@ param(
     [switch]$Remove
 )
 
-$ProjectRoot = "C:\BlueprintLLM"
+$ProjectRoot = "C:\Arcwright"
 $PowerShell  = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
 $TaskPrefix  = "BlueprintLLM"
 

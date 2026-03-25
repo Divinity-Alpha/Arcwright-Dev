@@ -188,8 +188,8 @@ if started:
 
     # Take screenshot to see if HUD is visible
     import os
-    os.makedirs("C:/BlueprintLLM/screenshots", exist_ok=True)
-    cmd("get_player_view", filename="C:/BlueprintLLM/screenshots/hud_test.png")
+    os.makedirs("C:/Arcwright/screenshots", exist_ok=True)
+    cmd("get_player_view", filename="C:/Arcwright/screenshots/hud_test.png")
     print("  Screenshot: screenshots/hud_test.png")
 
     cmd("stop_play")

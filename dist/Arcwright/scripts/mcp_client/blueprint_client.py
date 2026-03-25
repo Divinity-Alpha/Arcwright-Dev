@@ -11,7 +11,7 @@ Usage:
     result = client.health_check()
     print(result)
 
-    result = client.import_from_ir("C:/BlueprintLLM/test_ir/T1_01_HelloWorld.blueprint.json")
+    result = client.import_from_ir("C:/Arcwright/test_ir/T1_01_HelloWorld.blueprint.json")
     print(result)
 
     client.close()

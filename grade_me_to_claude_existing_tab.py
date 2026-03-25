@@ -6,7 +6,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-WATCH_FILE = Path(r"C:\BlueprintLLM\GRADE_ME.txt")
+WATCH_FILE = Path(r"C:\Arcwright\GRADE_ME.txt")
 WATCH_DIR = WATCH_FILE.parent
 PROCESSED_DIR = WATCH_DIR / "_processed"
 FAILED_DIR = WATCH_DIR / "_failed"

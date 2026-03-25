@@ -226,14 +226,14 @@ def import_blueprint_ir(ir_path: str) -> str:
 
     Parameters:
         ir_path (str): Absolute file path to the .blueprint.json file.
-            Example: "C:/BlueprintLLM/test_ir/BP_Coin.blueprint.json"
+            Example: "C:/Arcwright/test_ir/BP_Coin.blueprint.json"
 
     Returns:
         {"status": "ok", "blueprint": "BP_Coin", "nodes_created": 8, "connections_wired": 12,
          "compile_status": "success", "warnings": []}
 
     Example:
-        import_blueprint_ir("C:/BlueprintLLM/test_ir/BP_HealthPickup.blueprint.json")
+        import_blueprint_ir("C:/Arcwright/test_ir/BP_HealthPickup.blueprint.json")
 
     Notes:
         - The IR file must use "src_node"/"src_pin"/"dst_node"/"dst_pin" field names for
@@ -3014,7 +3014,7 @@ def import_static_mesh(file_path: str, asset_name: str, destination: str = "") -
 
     Parameters:
         file_path (str): Absolute Windows file path to the .fbx or .obj file.
-            Example: "C:/BlueprintLLM/exports/Crystal.fbx"
+            Example: "C:/Arcwright/exports/Crystal.fbx"
         asset_name (str): Name for the UE asset. Convention: "SM_" prefix.
             Example: "SM_HealthCrystal", "SM_Rock", "SM_Table"
         destination (str): UE content path for the asset. Default: "/Game/Arcwright/Meshes/".
@@ -3025,7 +3025,7 @@ def import_static_mesh(file_path: str, asset_name: str, destination: str = "") -
          "asset_path": "/Game/Arcwright/Meshes/SM_HealthCrystal"}
 
     Example:
-        import_static_mesh("C:/BlueprintLLM/exports/Crystal.fbx", "SM_HealthCrystal")
+        import_static_mesh("C:/Arcwright/exports/Crystal.fbx", "SM_HealthCrystal")
         import_static_mesh("C:/Models/Table.obj", "SM_Table", "/Game/Props/Meshes/")
 
     Notes:
@@ -3049,7 +3049,7 @@ def import_texture(file_path: str, asset_name: str, destination: str = "") -> st
 
     Parameters:
         file_path (str): Absolute Windows file path to the image file.
-            Example: "C:/BlueprintLLM/exports/T_StoneWall.png"
+            Example: "C:/Arcwright/exports/T_StoneWall.png"
         asset_name (str): Name for the UE asset. Convention: "T_" prefix.
             Example: "T_CrystalNormal", "T_BrickDiffuse", "T_WoodRoughness"
         destination (str): UE content path for the asset. Default: "/Game/Arcwright/Textures/".
@@ -3059,7 +3059,7 @@ def import_texture(file_path: str, asset_name: str, destination: str = "") -> st
          "asset_path": "/Game/Arcwright/Textures/T_StoneWall"}
 
     Example:
-        import_texture("C:/BlueprintLLM/exports/T_StoneWall.png", "T_StoneWall")
+        import_texture("C:/Arcwright/exports/T_StoneWall.png", "T_StoneWall")
 
     Notes:
         - If a texture with the same name exists, returns existing info without re-importing
@@ -3080,7 +3080,7 @@ def import_sound(file_path: str, asset_name: str, destination: str = "") -> str:
 
     Parameters:
         file_path (str): Absolute Windows file path to the audio file.
-            Example: "C:/BlueprintLLM/exports/PickupChime.wav"
+            Example: "C:/Arcwright/exports/PickupChime.wav"
         asset_name (str): Name for the UE asset. Convention: "SFX_" prefix.
             Example: "SFX_PickupChime", "SFX_Explosion", "SFX_Footstep"
         destination (str): UE content path for the asset. Default: "/Game/Arcwright/Sounds/".
@@ -7497,7 +7497,7 @@ def import_and_apply_mesh(mesh_path: str, asset_name: str = "",
 
     Parameters:
         mesh_path (str): Local file path to .fbx or .obj file.
-            Example: "C:/BlueprintLLM/exports/SM_Crystal.fbx". Required.
+            Example: "C:/Arcwright/exports/SM_Crystal.fbx". Required.
         asset_name (str): UE asset name. Derived from filename if empty.
             Imported to /Game/Arcwright/Meshes/. Default: "".
         blueprint_name (str): If non-empty, creates an Actor Blueprint with this mesh as a
@@ -7517,7 +7517,7 @@ def import_and_apply_mesh(mesh_path: str, asset_name: str = "",
          "steps": [{"step": "import_mesh", "path": "...", "status": "ok"}, ...]}
 
     Example:
-        import_and_apply_mesh("C:/BlueprintLLM/exports/SM_Crystal.fbx", "SM_Crystal",
+        import_and_apply_mesh("C:/Arcwright/exports/SM_Crystal.fbx", "SM_Crystal",
                               "BP_Crystal", 0.2, 0.8, 1.0, 0, 0, 100, 2.0)
         import_and_apply_mesh("C:/exports/mesh.fbx")  # import only, no BP/material/spawn
 
@@ -7637,7 +7637,7 @@ def import_texture_and_create_material(texture_path: str, material_name: str = "
     Parameters:
         texture_path (str): Local file path to an image file.
             Supported formats: .png, .jpg, .tga.
-            Example: "C:/BlueprintLLM/exports/T_StoneWall.png". Required.
+            Example: "C:/Arcwright/exports/T_StoneWall.png". Required.
         material_name (str): Name for the material. If empty, derived from the texture filename.
             Auto-prefixed with "MAT_" if not already prefixed. Default: "".
         roughness (float): Material roughness (0.0 = mirror, 1.0 = matte). Default: 0.5.

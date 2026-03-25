@@ -9,9 +9,9 @@ Wire the Mission Control dashboard (blueprint_mission_control.html) to the live 
 ```
 Pipeline (Python scripts)
     │
-    ├── writes → C:\BlueprintLLM\dashboard\state.json          (every state change)
-    ├── writes → C:\BlueprintLLM\dashboard\exam_progress.json   (after each exam prompt)
-    ├── writes → C:\BlueprintLLM\dashboard\version_history.json  (after each pipeline completes)
+    ├── writes → C:\Arcwright\dashboard\state.json          (every state change)
+    ├── writes → C:\Arcwright\dashboard\exam_progress.json   (after each exam prompt)
+    ├── writes → C:\Arcwright\dashboard\version_history.json  (after each pipeline completes)
     │
 Dashboard (HTML served locally)
     │
@@ -20,7 +20,7 @@ Dashboard (HTML served locally)
 
 Serve the dashboard with:
 ```
-cd C:\BlueprintLLM\dashboard
+cd C:\Arcwright\dashboard
 python -m http.server 8080
 ```
 Then open http://localhost:8080/index.html
@@ -129,7 +129,7 @@ Written by the pipeline orchestrator at every step transition and every exam pro
 ```python
 import json, time, os
 
-DASHBOARD_DIR = r"C:\BlueprintLLM\dashboard"
+DASHBOARD_DIR = r"C:\Arcwright\dashboard"
 
 def write_state(state_dict):
     """Atomically write state.json for dashboard consumption."""
@@ -593,7 +593,7 @@ setInterval(pollAndRender, POLL_INTERVAL);
 After implementation, the dashboard directory should look like:
 
 ```
-C:\BlueprintLLM\dashboard\
+C:\Arcwright\dashboard\
 ├── index.html              ← the dashboard (copy from blueprint_mission_control.html)
 ├── state.json              ← written by pipeline, live state
 ├── exam_progress.json      ← written by pipeline, exam results
@@ -606,7 +606,7 @@ C:\BlueprintLLM\dashboard\
 
 ```python
 import shutil, os
-os.makedirs(r"C:\BlueprintLLM\dashboard", exist_ok=True)
+os.makedirs(r"C:\Arcwright\dashboard", exist_ok=True)
 # Copy the HTML file as index.html
 # Replace the demo data script block with the live polling script block above
 ```
@@ -679,7 +679,7 @@ Add to the pipeline orchestrator, at step 1:
 import subprocess
 subprocess.Popen(
     ["python", "-m", "http.server", "8080"],
-    cwd=r"C:\BlueprintLLM\dashboard",
+    cwd=r"C:\Arcwright\dashboard",
     creationflags=subprocess.CREATE_NO_WINDOW
 )
 print("Dashboard: http://localhost:8080")

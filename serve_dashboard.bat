@@ -1,3 +1,3 @@
 @echo off
-cd /d C:\BlueprintLLM
+cd /d C:\Arcwright
 python serve_dashboard.py --background

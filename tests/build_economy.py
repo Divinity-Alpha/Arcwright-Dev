@@ -12,7 +12,7 @@ Design:
   Target: 50+ nodes, 40+ connections
 """
 import sys, os
-sys.path.insert(0, "C:/BlueprintLLM")
+sys.path.insert(0, "C:/Arcwright")
 from scripts.state_manager import StateManager
 
 sm = StateManager(project_dir="C:/Projects/BoreandStroke")

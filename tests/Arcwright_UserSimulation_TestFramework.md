@@ -41,7 +41,7 @@ Create a new UE5 project:
   Template: Blank
   
 Copy the Arcwright plugin into the project:
-  Copy C:\BlueprintLLM\Plugins\ → C:\Junk\ArcwrightTestBed\Plugins\
+  Copy C:\Arcwright\Plugins\ → C:\Junk\ArcwrightTestBed\Plugins\
 
 Build the project:
   & "C:\Program Files\Epic Games\UE_5.7\Engine\Build\BatchFiles\Build.bat" ArcwrightTestBedEditor Win64 Development "C:\Junk\ArcwrightTestBed\ArcwrightTestBed.uproject"
@@ -63,7 +63,7 @@ Create `scripts/tests/test_user_simulation.py` with the full test suite below.
 
 ### Step 3: Create the manual test log
 
-Every command sent gets logged to `C:\BlueprintLLM\tests\manual_test_log.txt` so the user can replay them by hand.
+Every command sent gets logged to `C:\Arcwright\tests\manual_test_log.txt` so the user can replay them by hand.
 
 ---
 
@@ -88,8 +88,8 @@ INTENT_HOST = "127.0.0.1"
 INTENT_PORT = 13380
 UE_HOST = "127.0.0.1"
 UE_PORT = 13377
-LOG_FILE = r"C:\BlueprintLLM\tests\manual_test_log.txt"
-RESULTS_DIR = r"C:\BlueprintLLM\tests\results"
+LOG_FILE = r"C:\Arcwright\tests\manual_test_log.txt"
+RESULTS_DIR = r"C:\Arcwright\tests\results"
 
 class UserSimulator:
     """Simulates a user interacting with the Arcwright Generator Panel."""
@@ -815,7 +815,7 @@ if __name__ == "__main__":
 
 ## MANUAL REPLAY LOG FORMAT
 
-The log file at `C:\BlueprintLLM\tests\manual_test_log.txt` looks like:
+The log file at `C:\Arcwright\tests\manual_test_log.txt` looks like:
 
 ```
 # Arcwright Manual Test Log

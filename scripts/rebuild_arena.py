@@ -45,7 +45,7 @@ def main():
 
     # == Step 3: Import BPs with gameplay logic ==
     print("\n=== Step 3: Import Blueprints ===")
-    ir_dir = 'C:/BlueprintLLM/test_ir'
+    ir_dir = 'C:/Arcwright/test_ir'
     ir_files = {
         'BP_HealthPickup': f'{ir_dir}/game_health_pickup.blueprint.json',
         'BP_ScorePickup':  f'{ir_dir}/game_score_pickup.blueprint.json',

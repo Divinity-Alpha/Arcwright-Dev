@@ -205,12 +205,12 @@ def load_model_for_domain(domain: str):
     adapter_path = Path(ADAPTERS[domain])
     if not adapter_path.exists():
         # Try absolute path
-        adapter_path = Path("C:/BlueprintLLM") / ADAPTERS[domain]
+        adapter_path = Path("C:/Arcwright") / ADAPTERS[domain]
     if not adapter_path.exists():
         raise FileNotFoundError(f"Adapter not found: {ADAPTERS[domain]}")
 
     # Load system prompt
-    prompt_path = Path("C:/BlueprintLLM") / SYSTEM_PROMPTS[domain]
+    prompt_path = Path("C:/Arcwright") / SYSTEM_PROMPTS[domain]
     if prompt_path.exists():
         system_prompt = prompt_path.read_text(encoding='utf-8').strip()
     else:
@@ -292,7 +292,7 @@ def generate_dsl(model, tokenizer, system_prompt: str, user_prompt: str,
 def run_tests(args):
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
-    project_root = Path("C:/BlueprintLLM")
+    project_root = Path("C:/Arcwright")
     os.chdir(project_root)
 
     # Load test suite

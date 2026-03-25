@@ -16,7 +16,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-DASHBOARD_DIR = Path(r"C:\BlueprintLLM\dashboard")
+DASHBOARD_DIR = Path(r"C:\Arcwright\dashboard")
 
 # ---------------------------------------------------------------------------
 # Atomic write helper

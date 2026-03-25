@@ -159,7 +159,7 @@ STEP_PLANS = {
 
 class PipelineConfig:
     def __init__(self, root=None):
-        self.root = Path(root or os.environ.get("BLUEPRINT_LLM_ROOT", r"C:\BlueprintLLM"))
+        self.root = Path(root or os.environ.get("BLUEPRINT_LLM_ROOT", r"C:\Arcwright"))
         self.venv_python = self.root / "venv" / "Scripts" / "python.exe"
         self.scripts = self.root / "scripts"
         self.clipboard_inbox = self.root / "raw-data" / "clipboard-exports"

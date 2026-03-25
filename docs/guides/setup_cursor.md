@@ -51,7 +51,7 @@ Use the same JSON format as Option A. The global config applies to every project
 
 ### Adjusting Paths
 
-The paths above assume the default Arcwright installation at `C:\BlueprintLLM`. If you installed elsewhere, update both `command` (the Python executable inside the Arcwright venv) and `args` (the MCP server script path) accordingly.
+The paths above assume the default Arcwright installation at `C:\Arcwright`. If you installed elsewhere, update both `command` (the Python executable inside the Arcwright venv) and `args` (the MCP server script path) accordingly.
 
 On macOS or Linux, the Python path changes to the platform equivalent:
 
@@ -229,10 +229,10 @@ The same example prompts from Step 4 work in Windsurf's AI chat.
 - **UE Editor is not running.** The MCP server starts successfully (it is a standalone Python process) but cannot reach the Arcwright plugin. Launch UE with your project and verify the Output Log shows the command server listening on port 13377.
 - **Verify manually.** Open a terminal and run:
   ```
-  C:\BlueprintLLM\venv\Scripts\python.exe C:\BlueprintLLM\scripts\mcp_server\server.py --test
+  C:\Arcwright\venv\Scripts\python.exe C:\Arcwright\scripts\mcp_server\server.py --test
   ```
   This lists all registered tools and attempts a health check against UE. If it reports a connection error, the issue is between the MCP server and UE, not between Cursor and the MCP server.
-- **Check verify script.** Run `python C:\BlueprintLLM\scripts\mcp_client\verify.py` to test the raw TCP connection to port 13377 independently of MCP.
+- **Check verify script.** Run `python C:\Arcwright\scripts\mcp_client\verify.py` to test the raw TCP connection to port 13377 independently of MCP.
 
 ### "Connection refused" on port 13377
 
@@ -249,10 +249,10 @@ The same example prompts from Step 4 work in Windsurf's AI chat.
 
 ### Python or venv errors
 
-- If you see errors about missing modules (`ModuleNotFoundError`), the config is pointing to the wrong Python executable. It must be the one inside the Arcwright venv (`C:\BlueprintLLM\venv\Scripts\python.exe`), not the system Python.
+- If you see errors about missing modules (`ModuleNotFoundError`), the config is pointing to the wrong Python executable. It must be the one inside the Arcwright venv (`C:\Arcwright\venv\Scripts\python.exe`), not the system Python.
 - If the venv does not exist, create it:
   ```
-  cd C:\BlueprintLLM
+  cd C:\Arcwright
   python -m venv venv
   venv\Scripts\pip install -r requirements.txt
   ```

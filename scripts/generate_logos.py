@@ -146,7 +146,7 @@ def main():
     out_dir = r"C:\Junk\BlueprintLLMTest\Plugins\BlueprintLLM\Resources"
     os.makedirs(out_dir, exist_ok=True)
 
-    src_dir = r"C:\BlueprintLLM\ue_plugin\BlueprintLLM\Resources"
+    src_dir = r"C:\Arcwright\ue_plugin\BlueprintLLM\Resources"
     os.makedirs(src_dir, exist_ok=True)
 
     print("Generating Arcwright branded PNGs...")

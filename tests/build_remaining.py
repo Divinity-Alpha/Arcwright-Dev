@@ -2,7 +2,7 @@
 SYSTEMS 3-8: StationBase, HUDManager, EngineInstance, GameMode, WBP_GameHUD, Level Setup
 """
 import sys, time, json, os
-sys.path.insert(0, "C:/BlueprintLLM")
+sys.path.insert(0, "C:/Arcwright")
 from scripts.state_manager import StateManager
 
 sm = StateManager(project_dir="C:/Projects/BoreandStroke")
@@ -563,14 +563,14 @@ if started:
         print(f"    {w.get('class')}: visible={w.get('visible')}, children={w.get('child_count')}")
 
     # QA Tour: visit each station
-    os.makedirs("C:/BlueprintLLM/screenshots", exist_ok=True)
+    os.makedirs("C:/Arcwright/screenshots", exist_ok=True)
     print("\n  QA TOUR:")
     for station in ["Station_Degriming", "Station_Disassembly", "Station_Inspection", "Station_Cleaning", "Station_Office"]:
         arc.cmd("teleport_to_actor", actor=station, distance=50)
         time.sleep(1.5)
         r = arc.cmd("get_output_log", lines=20)
         overlap = any("[STATION]" in str(l) or "Interact" in str(l) for l in r.get("data", {}).get("lines", []))
-        arc.cmd("get_player_view", filename=f"C:/BlueprintLLM/screenshots/qa_{station}.png")
+        arc.cmd("get_player_view", filename=f"C:/Arcwright/screenshots/qa_{station}.png")
         print(f"    {station}: overlap={'YES' if overlap else 'NO'}")
 
     arc.cmd("stop_play")

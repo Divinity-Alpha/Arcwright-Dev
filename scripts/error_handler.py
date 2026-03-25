@@ -137,7 +137,7 @@ STEP_RETRY_CONFIGS = {
 # ---------------------------------------------------------------------------
 
 _HEARTBEAT_FILE = Path(os.environ.get(
-    "BLUEPRINT_LLM_ROOT", r"C:\BlueprintLLM"
+    "BLUEPRINT_LLM_ROOT", r"C:\Arcwright"
 )) / "logs" / "pipeline_heartbeat"
 
 
@@ -357,7 +357,7 @@ def cuda_oom_retry(func, config: dict, max_retries: int = 2, log_func=None):
 # ---------------------------------------------------------------------------
 
 _RESUME_STATE_FILE = Path(os.environ.get(
-    "BLUEPRINT_LLM_ROOT", r"C:\BlueprintLLM"
+    "BLUEPRINT_LLM_ROOT", r"C:\Arcwright"
 )) / "logs" / "pipeline_resume_state.json"
 
 

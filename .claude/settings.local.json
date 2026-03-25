@@ -16,7 +16,7 @@
       "Bash(while read pid)",
       "Bash(do echo \"Killing remaining python PID $pid\" taskkill //F //PID $pid done echo \"Cleanup done\")",
       "Bash(# Kill any remaining python processes tasklist)",
-      "Bash(do taskkill //F //PID $pid done sleep 5 rm -rf C:/BlueprintLLM/models/blueprint-lora-v2 nvidia-smi --query-gpu=index,name,memory.used --format=csv,noheader)",
+      "Bash(do taskkill //F //PID $pid done sleep 5 rm -rf C:/Arcwright/models/blueprint-lora-v2 nvidia-smi --query-gpu=index,name,memory.used --format=csv,noheader)",
       "Bash(CUDA_VISIBLE_DEVICES=0 python:*)",
       "Bash(curl:*)",
       "Bash(start:*)"

@@ -71,7 +71,7 @@ The long-term vision is a platform that trains validated AI models for ANY struc
 | Visual Studio 2022 | Community | C++ build tools for CUDA compilation |
 
 ### Virtual Environment
-- Location: `C:\BlueprintLLM\venv\`
+- Location: `C:\Arcwright\venv\`
 - Always activate before running: `.\venv\Scripts\activate`
 - Python on PATH requires disabling Windows app execution aliases
 
@@ -80,7 +80,7 @@ The long-term vision is a platform that trains validated AI models for ANY struc
 ## Project Structure
 
 ```
-C:\BlueprintLLM\
+C:\Arcwright\
 ├── scripts/                    # All pipeline scripts (numbered 01-20+)
 │   ├── utils/                  # Shared utilities
 │   ├── 01_analyze_blueprint_clipboard.py
@@ -254,7 +254,7 @@ Format: `[STEP X.Y] STARTING/COMPLETE/PROGRESS: Description`
 
 ### Three-Tier Architecture
 
-**Tier 1: Local Backups (C:\BlueprintLLM\backups\)**
+**Tier 1: Local Backups (C:\Arcwright\backups\)**
 - Milestone backups after training/exam completion (NEVER auto-deleted)
 - Pre-training safety backups (keep last 3)
 - Scheduled watchdog backups every 6 hours (keep last 5)
@@ -282,14 +282,14 @@ Format: `[STEP X.Y] STARTING/COMPLETE/PROGRESS: Description`
 ### Backup Implementation
 
 Every backup script MUST:
-1. Save to `C:\BlueprintLLM\backups\` (primary)
+1. Save to `C:\Arcwright\backups\` (primary)
 2. Mirror to `D:\ArcwrightBackup\` (secondary SSD)
 3. Include SHA256 checksums in backup_manifest.json
 4. Log the backup to `logs/backup_log.txt`
 
 ```python
 # Standard backup paths
-PRIMARY_BACKUP = r"C:\BlueprintLLM\backups"
+PRIMARY_BACKUP = r"C:\Arcwright\backups"
 SECONDARY_BACKUP = r"D:\ArcwrightBackup"
 
 # After any backup to PRIMARY_BACKUP:

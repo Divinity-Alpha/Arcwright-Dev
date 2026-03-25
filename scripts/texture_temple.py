@@ -18,7 +18,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-EXPORTS_DIR = r"C:\BlueprintLLM\exports"
+EXPORTS_DIR = r"C:\Arcwright\exports"
 
 # ═══════════════════════════════════════════════════════════════════
 # Texture Definitions -- what to create and where to apply

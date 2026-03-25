@@ -5,7 +5,7 @@
 # Task Scheduler calls this script, which activates the venv
 # and runs the pipeline orchestrator.
 #
-# SETUP: Place this file at C:\BlueprintLLM\run_pipeline.ps1
+# SETUP: Place this file at C:\Arcwright\run_pipeline.ps1
 #
 # Arguments (passed from Task Scheduler):
 #   -Mode       full | data-only | train-only | eval-only
@@ -26,7 +26,7 @@ param(
 )
 
 # --- Configuration ---
-$ProjectRoot = "C:\BlueprintLLM"
+$ProjectRoot = "C:\Arcwright"
 $VenvPython  = "$ProjectRoot\venv\Scripts\python.exe"
 $Script      = "$ProjectRoot\scripts\11_pipeline_orchestrator.py"
 $LogDir      = "$ProjectRoot\logs"

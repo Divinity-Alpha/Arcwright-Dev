@@ -2,7 +2,7 @@
 Final fixes: Widget save, Station E-key, HUD live data.
 """
 import sys, time, json, os, subprocess
-sys.path.insert(0, "C:/BlueprintLLM")
+sys.path.insert(0, "C:/Arcwright")
 from scripts.state_manager import StateManager
 
 sm = StateManager(project_dir="C:/Projects/BoreandStroke")
@@ -278,7 +278,7 @@ if started:
 
     # FIX 2: Station QA Tour
     print(f"\n  FIX 2 - Station QA Tour:")
-    os.makedirs("C:/BlueprintLLM/screenshots", exist_ok=True)
+    os.makedirs("C:/Arcwright/screenshots", exist_ok=True)
     for station in ["Station_Degriming", "Station_Disassembly", "Station_Inspection", "Station_Cleaning", "Station_Office"]:
         arc.cmd("teleport_to_actor", actor=station, distance=30)
         time.sleep(2)
@@ -286,7 +286,7 @@ if started:
         overlap_msgs = [str(l) for l in r.get("data", {}).get("lines", [])
                        if "[STATION]" in str(l) or "[E]" in str(l)]
         has_overlap = len(overlap_msgs) > 0
-        arc.cmd("get_player_view", filename=f"C:/BlueprintLLM/screenshots/final_{station}.png")
+        arc.cmd("get_player_view", filename=f"C:/Arcwright/screenshots/final_{station}.png")
         print(f"    {station}: overlap={'YES' if has_overlap else 'no'}")
 
     # Full message summary

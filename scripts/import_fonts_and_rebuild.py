@@ -36,7 +36,7 @@ FB = "/Game/UI/Fonts/F_Barlow"
 FM = "/Game/UI/Fonts/F_ShareTechMono"
 
 # ── TTF source folders ────────────────────────────────────────
-TTF_BASE = r"C:\BlueprintLLM\assets\fonts"
+TTF_BASE = r"C:\Arcwright\assets\fonts"
 
 # ── Colors (approved B&S palette) ─────────────────────────────
 BG_PANEL      = "(R=0.071,G=0.086,B=0.110,A=1.0)"

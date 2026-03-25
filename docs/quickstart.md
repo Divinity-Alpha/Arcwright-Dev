@@ -21,7 +21,7 @@ These steps are the same regardless of which AI client you use.
 ### Step 1: Copy the plugin
 
 ```
-xcopy /E /I /Y C:\BlueprintLLM\ue_plugin\BlueprintLLM "<YourProject>\Plugins\BlueprintLLM"
+xcopy /E /I /Y C:\Arcwright\ue_plugin\BlueprintLLM "<YourProject>\Plugins\BlueprintLLM"
 ```
 
 Replace `<YourProject>` with your UE project root (e.g. `C:\MyGame`).
@@ -197,7 +197,7 @@ The client is a single Python file with zero external dependencies:
 
 ```bash
 # Copy the client into your project
-cp C:\BlueprintLLM\scripts\mcp_client\blueprint_client.py ./
+cp C:\Arcwright\scripts\mcp_client\blueprint_client.py ./
 
 # Or add the scripts directory to your Python path
 ```

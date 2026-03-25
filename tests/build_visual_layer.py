@@ -4,7 +4,7 @@ Does NOT touch C++ game logic. Only visual elements via Arcwright.
 Uses StateManager + post_phase_check.
 """
 import sys, time, json, os
-sys.path.insert(0, "C:/BlueprintLLM")
+sys.path.insert(0, "C:/Arcwright")
 from scripts.state_manager import StateManager
 from scripts.check_and_confirm import CheckAndConfirm
 
@@ -142,11 +142,11 @@ if started:
         print(f"  Data: {data_msg[0][:120]}")
 
     # QA Tour
-    os.makedirs("C:/BlueprintLLM/screenshots", exist_ok=True)
+    os.makedirs("C:/Arcwright/screenshots", exist_ok=True)
     print("\n  QA TOUR:")
 
     # Start from player spawn
-    arc.cmd("get_player_view", filename="C:/BlueprintLLM/screenshots/bs_spawn.png")
+    arc.cmd("get_player_view", filename="C:/Arcwright/screenshots/bs_spawn.png")
     print("    Spawn point captured")
 
     # Visit each station
@@ -155,13 +155,13 @@ if started:
         if "Station" in s.get("class", ""):
             arc.cmd("teleport_to_actor", actor=label, distance=200)
             time.sleep(1.5)
-            arc.cmd("get_player_view", filename=f"C:/BlueprintLLM/screenshots/bs_{label}.png")
+            arc.cmd("get_player_view", filename=f"C:/Arcwright/screenshots/bs_{label}.png")
             print(f"    {label}: captured")
 
     # Overview from center high
     arc.cmd("teleport_player", x=400, y=200, z=400, pitch=-30, yaw=0)
     time.sleep(1)
-    arc.cmd("get_player_view", filename="C:/BlueprintLLM/screenshots/bs_overview.png")
+    arc.cmd("get_player_view", filename="C:/Arcwright/screenshots/bs_overview.png")
     print("    Overview captured")
 
     # Final summary
