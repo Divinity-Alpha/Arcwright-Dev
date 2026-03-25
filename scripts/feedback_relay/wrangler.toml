@@ -1,0 +1,10 @@
+name = "arcwright-feedback"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "ARCWRIGHT_RL"
+id = "56a84700a8ef429c90441f4edc1adb2a"
+
+[vars]
+# GITHUB_TOKEN_SECRET set via: wrangler secret put GITHUB_TOKEN_SECRET

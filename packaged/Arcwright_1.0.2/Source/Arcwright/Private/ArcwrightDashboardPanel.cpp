@@ -1221,14 +1221,20 @@ FReply SArcwrightDashboardPanel::OnSubmitFeedbackClicked()
 
 	FString Category = SelectedCategory.IsValid() ? *SelectedCategory : TEXT("Feature Request");
 
+	// Resolve dynamic values
+	TSharedPtr<IPlugin> Plugin = IPluginManager::Get().FindPlugin(TEXT("Arcwright"));
+	FString PluginVersion = Plugin.IsValid() ? Plugin->GetDescriptor().VersionName : TEXT("unknown");
+	FString UEVersion = FString::Printf(TEXT("%d.%d"), ENGINE_MAJOR_VERSION, ENGINE_MINOR_VERSION);
+	FString Platform = FPlatformProperties::PlatformName();
+
 	// Build JSON payload
 	TSharedRef<FJsonObject> Payload = MakeShared<FJsonObject>();
 	Payload->SetStringField(TEXT("type"), TEXT("feedback"));
 	Payload->SetStringField(TEXT("category"), Category);
 	Payload->SetStringField(TEXT("message"), Message);
-	Payload->SetStringField(TEXT("plugin_version"), TEXT("1.0.0"));
-	Payload->SetStringField(TEXT("ue_version"), TEXT("5.7"));
-	Payload->SetStringField(TEXT("platform"), TEXT("Win64"));
+	Payload->SetStringField(TEXT("plugin_version"), PluginVersion);
+	Payload->SetStringField(TEXT("ue_version"), UEVersion);
+	Payload->SetStringField(TEXT("platform"), Platform);
 	Payload->SetStringField(TEXT("timestamp"), FDateTime::UtcNow().ToIso8601());
 
 	// Add session stats if available
@@ -1354,7 +1360,7 @@ FString SArcwrightDashboardPanel::GetFeedbackEndpoint() const
 	}
 	if (Endpoint.IsEmpty())
 	{
-		Endpoint = TEXT("https://api.arcwright.app/v1/feedback");
+		Endpoint = TEXT("https://arcwright-feedback.arcwright.workers.dev");
 	}
 	return Endpoint;
 }
