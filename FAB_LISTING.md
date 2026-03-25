@@ -4,7 +4,7 @@
 Arcwright — AI Bridge for Unreal Engine 5
 
 ## Short Description (160 chars)
-Connect any AI assistant to Unreal Engine 5. 267 TCP commands, 289 MCP tools. Your AI builds — Arcwright executes.
+Connect any AI assistant to Unreal Engine 5. 274 TCP commands, 289 MCP tools. Your AI builds — Arcwright executes.
 
 ## Full Description
 
@@ -61,12 +61,24 @@ One `build_widget_ui` call. Widget Blueprint ready in seconds.
 
 ### By the Numbers
 
-- 267 TCP commands
+- 274 TCP commands
 - 289 MCP tools
-- 7+ widget container types
-- 55+ widget properties with set + readback
-- 228/228 audit score on reference implementation
-- Works with Claude, GPT-4, Cursor, Windsurf, and any MCP agent
+- 29 DSL parsers (Blueprint, Widget, BehaviorTree, DataTable, Material, and 24 more)
+- `hex:#RRGGBB` color support — matches HTML/CSS exactly
+- Widget design canvas defaults to 1920x1080
+- HTML-to-UMG translator pipeline
+- Built-in feedback system
+- Works with Claude, GPT, Cursor, Windsurf, and any MCP-compatible agent
+
+---
+
+### New in 1.0.2
+
+- **hex: colors** — Use familiar `hex:#E8A624` in any color property. Plugin auto-converts sRGB to linear.
+- **Widget design size** — `set_widget_design_size` command. Defaults to 1920x1080.
+- **HTML translator** — Design UIs in HTML/CSS, translate to UMG widget blueprints.
+- **protect_widget_layout** — Lock visual layers so C++ only touches text and button widgets.
+- **Feedback system** — Submit feature requests and bug reports directly from the plugin dashboard.
 
 ---
 
@@ -77,13 +89,13 @@ One `build_widget_ui` call. Widget Blueprint ready in seconds.
 3. Your AI connects and discovers all available tools
 4. Describe what you want — your AI issues commands — Arcwright executes
 
-No cloud required. Everything runs locally inside your UE project.
+No cloud required. No API keys. No subscription. Everything runs locally inside your UE project.
 
 ---
 
 ### Requirements
 
-- Unreal Engine 5.5+
+- Unreal Engine 5.4+
 - Python 3.9+ (for MCP server)
 - Any MCP-compatible AI assistant
 
@@ -96,6 +108,7 @@ Updates are delivered in two layers:
 - Python tool updates via `git pull` (no recompile needed)
 
 Arcwright checks for updates automatically and notifies your AI when a new version is available.
+Full documentation at github.com/Divinity-Alpha/Arcwright.
 
 ---
 
@@ -109,7 +122,7 @@ Code Plugins > Scripting
 $49.99
 
 ## Supported Engine Versions
-5.5, 5.6, 5.7
+5.4, 5.5, 5.6, 5.7
 
 ## Supported Platforms
 Windows

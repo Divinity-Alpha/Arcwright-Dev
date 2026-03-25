@@ -245,15 +245,15 @@ All adapters backed up to `D:\ArcwrightBackup\models\`.
 
 ```bash
 # Copy plugin
-cp -r /c/Arcwright/ue_plugin/Arcwright/* /c/Junk/BlueprintLLMTest/Plugins/Arcwright/
+cp -r /c/Arcwright/ue_plugin/Arcwright/* /c/Junk/ArcwrightTestBed/Plugins/Arcwright/
 
 # Build
 "/c/Program Files/Epic Games/UE_5.7/Engine/Build/BatchFiles/Build.bat" \
-  BlueprintLLMTestEditor Win64 Development "C:\Junk\BlueprintLLMTest\BlueprintLLMTest.uproject"
+  ArcwrightTestBedEditor Win64 Development "C:\Junk\ArcwrightTestBed\ArcwrightTestBed.uproject"
 
 # Launch (MUST use -skipcompile and -graphicsadapter=0)
 "/c/Program Files/Epic Games/UE_5.7/Engine/Binaries/Win64/UnrealEditor.exe" \
-  "C:\Junk\BlueprintLLMTest\BlueprintLLMTest.uproject" \
+  "C:\Junk\ArcwrightTestBed\ArcwrightTestBed.uproject" \
   -skipcompile -graphicsadapter=0 -nosplash -unattended -nopause &
 
 # Kill crash reporter popups
