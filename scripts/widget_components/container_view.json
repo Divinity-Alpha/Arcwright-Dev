@@ -1,0 +1,97 @@
+{
+  "id": "container_view",
+  "name": "Container View",
+  "category": "inventory",
+  "description": "Split view: container top, player bottom, transfer arrows",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    400,
+    500
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "ContainerRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "ContainerTitle",
+        "properties": {
+          "text": "BIND:\"{ContainerName}\"",
+          "font_size": "18",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "GRID",
+        "name": "ContainerGrid",
+        "properties": {
+          "columns": "4",
+          "col_spacing": "4",
+          "row_spacing": "4"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "CSlot1",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "56",
+              "size_y": "56"
+            }
+          }
+        ]
+      },
+      {
+        "type": "TEXT",
+        "name": "TransferArrows",
+        "properties": {
+          "text": "<< >>",
+          "font_size": "20",
+          "color": "$accent",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "InventoryLabel",
+        "properties": {
+          "text": "YOUR INVENTORY",
+          "font_size": "14",
+          "color": "$text_muted",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "GRID",
+        "name": "PlayerGrid",
+        "properties": {
+          "columns": "4",
+          "col_spacing": "4",
+          "row_spacing": "4"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "PSlot1",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "56",
+              "size_y": "56"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

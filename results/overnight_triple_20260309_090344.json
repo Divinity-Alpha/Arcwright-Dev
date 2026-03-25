@@ -1,0 +1,31 @@
+{
+  "started": 1773022378.1576312,
+  "total_elapsed_seconds": 42645.95898747444,
+  "jobs": {
+    "DT v3": {
+      "exam_results": [
+        {
+          "lesson": "dt_lesson_01",
+          "status": "OK",
+          "syntax_pct": 100.0,
+          "similarity_pct": 84.1
+        },
+        {
+          "lesson": "dt_lesson_02",
+          "status": "OK",
+          "syntax_pct": 95.0,
+          "similarity_pct": 70.4
+        },
+        {
+          "lesson": "dt_lesson_03",
+          "status": "OK",
+          "syntax_pct": 95.0,
+          "similarity_pct": 66.6
+        }
+      ],
+      "elapsed_seconds": 6434.482477426529,
+      "adapter": "models/dt-lora-v3/final"
+    }
+  },
+  "below_60_pct": []
+}

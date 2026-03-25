@@ -1,0 +1,6 @@
+2026/03/01-14:31:01.611 d3c Creating DB C:\BlueprintLLM\ChromeDebugProfile\Default\WebStorage\4\IndexedDB\indexeddb.leveldb since it was missing.
+2026/03/01-14:31:01.613 d3c Reusing MANIFEST C:\BlueprintLLM\ChromeDebugProfile\Default\WebStorage\4\IndexedDB\indexeddb.leveldb/MANIFEST-000001
+2026/03/01-14:31:05.657 53a8 Level-0 table #5: started
+2026/03/01-14:31:05.657 53a8 Level-0 table #5: 8381 bytes OK
+2026/03/01-14:31:05.658 53a8 Delete type=0 #3
+2026/03/01-14:31:05.658 53a8 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

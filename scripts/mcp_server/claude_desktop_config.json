@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "blueprint-llm": {
+      "command": "C:\\Arcwright\\venv\\Scripts\\python.exe",
+      "args": ["C:\\Arcwright\\scripts\\mcp_server\\server.py"],
+      "env": {
+        "BLUEPRINTLLM_HOST": "localhost",
+        "BLUEPRINTLLM_PORT": "13377",
+        "BLUEPRINTLLM_TIMEOUT": "60"
+      }
+    }
+  }
+}

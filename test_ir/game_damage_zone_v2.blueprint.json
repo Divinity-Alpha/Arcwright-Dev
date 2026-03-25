@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "name": "BP_DamageZone",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1", "dsl_type": "Event_ActorBeginOverlap", "params": {},
+      "ue_class": "UK2Node_Event", "ue_event": "ReceiveActorBeginOverlap",
+      "position": [0, 0]
+    },
+    {
+      "id": "n2", "dsl_type": "PrintString", "params": {"InString": "-5 HP! Damage Zone!"},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [300, 0]
+    }
+  ],
+  "connections": [
+    {"src_node": "n1", "src_pin": "Then", "dst_node": "n2", "dst_pin": "Execute", "type": "exec"}
+  ]
+}

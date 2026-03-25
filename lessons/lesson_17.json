@@ -1,0 +1,128 @@
+{
+  "lesson_id": "lesson_17",
+  "lesson_name": "Complex Systems: UI Flows, Movement, Math Chains, Multi-Step Patterns",
+  "version": "v1",
+  "description": "Targets the 18 categories below 50% similarity in v11. Focuses on: UI widget flows, movement/physics, math chains, timer management, complex multi-step systems. Varied phrasing for generalization.",
+  "prompts": [
+    {
+      "id": "L17_01",
+      "category": "branch_v2",
+      "instruction": "Create a Blueprint with a Health variable at 100. On BeginPlay, check if Health is greater than 50 with a Branch. If true, print Healthy. If false, print Wounded.",
+      "expected_dsl": "BLUEPRINT: BP_HealthCheck\nPARENT: Actor\n\nVAR Health: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetVar [Variable=Health]\nNODE n3: GreaterThan [B=50.0]\nNODE n4: Branch\nNODE n5: PrintString [InString=\"Healthy\"]\nNODE n6: PrintString [InString=\"Wounded\"]\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.True -> n5.Execute\nEXEC n4.False -> n6.Execute\n\nDATA n2.Value -> n3.A [Float]\nDATA n3.ReturnValue -> n4.Condition [Bool]"
+    },
+    {
+      "id": "L17_02",
+      "category": "foreach_v2",
+      "instruction": "Make a Blueprint with an actor array called Targets. On BeginPlay, use ForEachLoop to iterate through all targets and print each one's display name.",
+      "expected_dsl": "BLUEPRINT: BP_ListTargets\nPARENT: Actor\n\nVAR Targets: Array<Actor>\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetVar [Variable=Targets]\nNODE n3: ForEachLoop\nNODE n4: GetDisplayName\nNODE n5: PrintString\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.LoopBody -> n5.Execute\n\nDATA n2.Value -> n3.Array [Array]\nDATA n3.ArrayElement -> n4.Object [Actor]\nDATA n4.ReturnValue -> n5.InString [String]"
+    },
+    {
+      "id": "L17_03",
+      "category": "timer_clear_v2",
+      "instruction": "Create a Blueprint that starts a looping timer called Pulse every 2 seconds on BeginPlay. The Pulse event prints Pulse!. After a 10 second delay, clear the Pulse timer and print Stopped.",
+      "expected_dsl": "BLUEPRINT: BP_TimedPulse\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Pulse\", Time=2.0, Looping=true]\nNODE n3: Delay [Duration=10.0]\nNODE n4: ClearTimerByFunctionName [FunctionName=\"Pulse\"]\nNODE n5: PrintString [InString=\"Stopped\"]\nNODE n6: Event_CustomEvent [EventName=\"Pulse\"]\nNODE n7: PrintString [InString=\"Pulse!\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Completed -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n6.Then -> n7.Execute"
+    },
+    {
+      "id": "L17_04",
+      "category": "math_chain_v2",
+      "instruction": "Build a Blueprint that on BeginPlay takes the value 100, divides by 3, adds 15, multiplies by 2, and prints the final result.",
+      "expected_dsl": "BLUEPRINT: BP_MathChain\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: DivideFloat [A=100.0, B=3.0]\nNODE n3: AddFloat [B=15.0]\nNODE n4: MultiplyFloat [B=2.0]\nNODE n5: PrintString\n\nEXEC n1.Then -> n5.Execute\n\nDATA n2.ReturnValue -> n3.A [Float]\nDATA n3.ReturnValue -> n4.A [Float]\nDATA n4.ReturnValue -> n5.InString [String]"
+    },
+    {
+      "id": "L17_05",
+      "category": "string_format_v2",
+      "instruction": "Create a Blueprint with a PlayerName string variable defaulting to Hero and a Score integer at 0. On BeginPlay, print a message combining both: the player name and the score.",
+      "expected_dsl": "BLUEPRINT: BP_NameScore\nPARENT: Actor\n\nVAR PlayerName: String = \"Hero\"\nVAR Score: Int = 0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetVar [Variable=PlayerName]\nNODE n3: GetVar [Variable=Score]\nNODE n4: PrintString\n\nEXEC n1.Then -> n4.Execute\n\nDATA n2.Value -> n4.InString [String]"
+    },
+    {
+      "id": "L17_06",
+      "category": "movement_clamp_v2",
+      "instruction": "Make a Blueprint that on Tick gets the actor location, clamps the X value between -500 and 500, and sets the actor location to the clamped position.",
+      "expected_dsl": "BLUEPRINT: BP_ClampedMove\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: GetActorLocation\nNODE n3: ClampFloat [Min=-500.0, Max=500.0]\nNODE n4: MakeVector [Y=0, Z=0]\nNODE n5: SetActorLocation\n\nEXEC n1.Then -> n5.Execute\n\nDATA n2.ReturnValue -> n3.A [Float]\nDATA n3.ReturnValue -> n4.X [Float]\nDATA n4.ReturnValue -> n5.NewLocation [Vector]"
+    },
+    {
+      "id": "L17_07",
+      "category": "physics_force_v2",
+      "instruction": "Create a Blueprint that on BeginPlay enables physics simulation, then on Tick applies an upward force of 500 units using AddForce with a vector of (0,0,500).",
+      "expected_dsl": "BLUEPRINT: BP_FloatForce\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetSimulatePhysics [bSimulate=true]\nNODE n3: Event_Tick\nNODE n4: MakeVector [X=0, Y=0, Z=500]\nNODE n5: AddForce\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n5.Execute\n\nDATA n4.ReturnValue -> n5.Force [Vector]"
+    },
+    {
+      "id": "L17_08",
+      "category": "movement_patrol_v4",
+      "instruction": "Build an actor that patrols between two points. Use a boolean GoingToB to track direction. On a 3-second looping timer, if GoingToB is true, set location to (500,0,100) and flip GoingToB. If false, set location to (-500,0,100) and flip GoingToB.",
+      "expected_dsl": "BLUEPRINT: BP_SimplePatrol\nPARENT: Actor\n\nVAR GoingToB: Bool = true\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"DoMove\", Time=3.0, Looping=true]\nNODE n3: Event_CustomEvent [EventName=\"DoMove\"]\nNODE n4: GetVar [Variable=GoingToB]\nNODE n5: Branch\nNODE n6: SetActorLocation\nNODE n7: SetVar [Variable=GoingToB, Value=false]\nNODE n8: SetActorLocation\nNODE n9: SetVar [Variable=GoingToB, Value=true]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n5.Execute\nEXEC n5.True -> n6.Execute\nEXEC n6.Then -> n7.Execute\nEXEC n5.False -> n8.Execute\nEXEC n8.Then -> n9.Execute\n\nDATA n4.Value -> n5.Condition [Bool]"
+    },
+    {
+      "id": "L17_09",
+      "category": "ui_create_show_v2",
+      "instruction": "Create a Blueprint that on BeginPlay creates a widget of class WBP_HUD, adds it to the viewport, and prints HUD Active.",
+      "expected_dsl": "BLUEPRINT: BP_HUDManager\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: CreateWidget [WidgetClass=WBP_HUD]\nNODE n3: AddToViewport\nNODE n4: PrintString [InString=\"HUD Active\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\n\nDATA n2.ReturnValue -> n3.Target [Widget]"
+    },
+    {
+      "id": "L17_10",
+      "category": "ui_toggle_v2",
+      "instruction": "Make a Blueprint that creates a widget on BeginPlay and stores it. On a Toggle input action, use FlipFlop to either remove the widget from parent or add it back to viewport.",
+      "expected_dsl": "BLUEPRINT: BP_ToggleUI\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: CreateWidget [WidgetClass=WBP_Menu]\nNODE n3: AddToViewport\nNODE n4: Event_InputAction [ActionName=\"Toggle\"]\nNODE n5: FlipFlop\nNODE n6: RemoveFromParent\nNODE n7: AddToViewport\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n4.Pressed -> n5.Execute\nEXEC n5.A -> n6.Execute\nEXEC n5.B -> n7.Execute\n\nDATA n2.ReturnValue -> n3.Target [Widget]\nDATA n2.ReturnValue -> n6.Target [Widget]\nDATA n2.ReturnValue -> n7.Target [Widget]"
+    },
+    {
+      "id": "L17_11",
+      "category": "ui_flow_v2",
+      "instruction": "Build a Blueprint that on BeginPlay shows a loading widget, waits 3 seconds, removes it, shows a game widget, and prints Ready.",
+      "expected_dsl": "BLUEPRINT: BP_LoadingFlow\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: CreateWidget [WidgetClass=WBP_Loading]\nNODE n3: AddToViewport\nNODE n4: Delay [Duration=3.0]\nNODE n5: RemoveFromParent\nNODE n6: CreateWidget [WidgetClass=WBP_Game]\nNODE n7: AddToViewport\nNODE n8: PrintString [InString=\"Ready\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Completed -> n5.Execute\nEXEC n5.Then -> n6.Execute\nEXEC n6.Then -> n7.Execute\nEXEC n7.Then -> n8.Execute\n\nDATA n2.ReturnValue -> n3.Target [Widget]\nDATA n2.ReturnValue -> n5.Target [Widget]\nDATA n6.ReturnValue -> n7.Target [Widget]"
+    },
+    {
+      "id": "L17_12",
+      "category": "moving_platform_v2",
+      "instruction": "Create a moving platform that oscillates up and down using a sine wave. Use a Timer float variable incremented each tick by DeltaSeconds. The Z position is sine of Timer multiplied by 200.",
+      "expected_dsl": "BLUEPRINT: BP_Elevator\nPARENT: Actor\n\nVAR Timer: Float = 0.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: GetVar [Variable=Timer]\nNODE n3: AddFloat\nNODE n4: SetVar [Variable=Timer]\nNODE n5: Sin\nNODE n6: MultiplyFloat [B=200.0]\nNODE n7: MakeVector [X=0, Y=0]\nNODE n8: SetActorLocation\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.Then -> n8.Execute\n\nDATA n2.Value -> n3.A [Float]\nDATA n1.DeltaSeconds -> n3.B [Float]\nDATA n3.ReturnValue -> n4.Value [Float]\nDATA n3.ReturnValue -> n5.A [Float]\nDATA n5.ReturnValue -> n6.A [Float]\nDATA n6.ReturnValue -> n7.Z [Float]\nDATA n7.ReturnValue -> n8.NewLocation [Vector]"
+    },
+    {
+      "id": "L17_13",
+      "category": "pressure_plate_v4",
+      "instruction": "Make a pressure plate. When a character steps on it, set Activated to true and print Plate Down. When they step off, set Activated to false and print Plate Up. Use overlap begin and end events.",
+      "expected_dsl": "BLUEPRINT: BP_Plate\nPARENT: Actor\n\nVAR Activated: Bool = false\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetVar [Variable=Activated, Value=true]\nNODE n3: PrintString [InString=\"Plate Down\"]\nNODE n4: Event_ActorEndOverlap\nNODE n5: SetVar [Variable=Activated, Value=false]\nNODE n6: PrintString [InString=\"Plate Up\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute"
+    },
+    {
+      "id": "L17_14",
+      "category": "pickup_complete_v2",
+      "instruction": "Create a pickup Blueprint. On overlap, add 1 to a Score variable, print the new score, play a sound, and destroy the actor.",
+      "expected_dsl": "BLUEPRINT: BP_PickupItem\nPARENT: Actor\n\nVAR Score: Int = 0\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Score]\nNODE n3: AddFloat [B=1]\nNODE n4: SetVar [Variable=Score]\nNODE n5: PrintString\nNODE n6: DestroyActor\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\n\nDATA n2.Value -> n3.A [Int]\nDATA n3.ReturnValue -> n4.Value [Int]\nDATA n3.ReturnValue -> n5.InString [String]"
+    },
+    {
+      "id": "L17_15",
+      "category": "multi_pickup_v2",
+      "instruction": "Build a collectible system. The Blueprint has ItemCount starting at 0 and RequiredItems at 5. On overlap, increment ItemCount. If ItemCount equals RequiredItems, print All items collected!. Otherwise print the count.",
+      "expected_dsl": "BLUEPRINT: BP_Collector\nPARENT: Actor\n\nVAR ItemCount: Int = 0\nVAR RequiredItems: Int = 5\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=ItemCount]\nNODE n3: AddFloat [B=1]\nNODE n4: SetVar [Variable=ItemCount]\nNODE n5: GetVar [Variable=RequiredItems]\nNODE n6: EqualEqual\nNODE n7: Branch\nNODE n8: PrintString [InString=\"All items collected!\"]\nNODE n9: PrintString\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.Then -> n7.Execute\nEXEC n7.True -> n8.Execute\nEXEC n7.False -> n9.Execute\n\nDATA n2.Value -> n3.A [Int]\nDATA n3.ReturnValue -> n4.Value [Int]\nDATA n3.ReturnValue -> n6.A [Int]\nDATA n5.Value -> n6.B [Int]\nDATA n6.ReturnValue -> n7.Condition [Bool]\nDATA n3.ReturnValue -> n9.InString [String]"
+    },
+    {
+      "id": "L17_16",
+      "category": "spawn_pattern_v2",
+      "instruction": "Create a spawner Blueprint. On a 5-second looping timer, spawn an actor of class BP_Enemy at the spawner's location and print Spawned!.",
+      "expected_dsl": "BLUEPRINT: BP_Spawner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"DoSpawn\", Time=5.0, Looping=true]\nNODE n3: Event_CustomEvent [EventName=\"DoSpawn\"]\nNODE n4: GetActorLocation\nNODE n5: SpawnActorFromClass [ActorClass=BP_Enemy]\nNODE n6: PrintString [InString=\"Spawned!\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\n\nDATA n4.ReturnValue -> n5.SpawnTransform [Vector]"
+    },
+    {
+      "id": "L17_17",
+      "category": "hud_health_v2",
+      "instruction": "Create a Blueprint with Health at 100 and MaxHealth at 100. On any damage event, subtract the damage from Health. Then calculate health percent as Health divided by MaxHealth. Print the percent.",
+      "expected_dsl": "BLUEPRINT: BP_HealthTracker\nPARENT: Actor\n\nVAR Health: Float = 100.0\nVAR MaxHealth: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_AnyDamage\nNODE n2: GetVar [Variable=Health]\nNODE n3: SubtractFloat\nNODE n4: SetVar [Variable=Health]\nNODE n5: GetVar [Variable=MaxHealth]\nNODE n6: DivideFloat\nNODE n7: PrintString\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.Then -> n7.Execute\n\nDATA n2.Value -> n3.A [Float]\nDATA n1.Damage -> n3.B [Float]\nDATA n3.ReturnValue -> n4.Value [Float]\nDATA n3.ReturnValue -> n6.A [Float]\nDATA n5.Value -> n6.B [Float]\nDATA n6.ReturnValue -> n7.InString [String]"
+    },
+    {
+      "id": "L17_18",
+      "category": "gate_controlled_v2",
+      "instruction": "Build a Blueprint with a Gate node. BeginPlay opens the gate. A Toggle input toggles the gate. On Tick, send execution through the gate. If it passes through, print Active.",
+      "expected_dsl": "BLUEPRINT: BP_GateControl\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: Gate\nNODE n3: Event_InputAction [ActionName=\"Toggle\"]\nNODE n4: Event_Tick\nNODE n5: PrintString [InString=\"Active\"]\n\nEXEC n1.Then -> n2.Open\nEXEC n3.Pressed -> n2.Toggle\nEXEC n4.Then -> n2.Enter\nEXEC n2.Exit -> n5.Execute"
+    },
+    {
+      "id": "L17_19",
+      "category": "damage_health_system_v2",
+      "instruction": "Create a health system Blueprint. Has Health at 100. On overlap begin, start a looping timer DamageLoop every 0.5 seconds. On overlap end, clear the timer. The DamageLoop event subtracts 10 from Health. If Health drops below 0, print Dead and destroy the actor.",
+      "expected_dsl": "BLUEPRINT: BP_HealthSystem\nPARENT: Actor\n\nVAR Health: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetTimerByFunctionName [FunctionName=\"DamageLoop\", Time=0.5, Looping=true]\nNODE n3: Event_ActorEndOverlap\nNODE n4: ClearTimerByFunctionName [FunctionName=\"DamageLoop\"]\nNODE n5: Event_CustomEvent [EventName=\"DamageLoop\"]\nNODE n6: GetVar [Variable=Health]\nNODE n7: SubtractFloat [B=10.0]\nNODE n8: SetVar [Variable=Health]\nNODE n9: LessThan [B=0.0]\nNODE n10: Branch\nNODE n11: PrintString [InString=\"Dead\"]\nNODE n12: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n5.Then -> n8.Execute\nEXEC n8.Then -> n10.Execute\nEXEC n10.True -> n11.Execute\nEXEC n11.Then -> n12.Execute\n\nDATA n6.Value -> n7.A [Float]\nDATA n7.ReturnValue -> n8.Value [Float]\nDATA n7.ReturnValue -> n9.A [Float]\nDATA n9.ReturnValue -> n10.Condition [Bool]"
+    },
+    {
+      "id": "L17_20",
+      "category": "full_game_loop_v2",
+      "instruction": "Build a game manager. On BeginPlay, create and show a HUD widget, set Score to 0, print Game Started. Expose an AddScore custom event that increments Score by 1. Expose a TakeDamage custom event that subtracts from Health. When Health reaches 0, print Game Over.",
+      "expected_dsl": "BLUEPRINT: BP_GameManager\nPARENT: Actor\n\nVAR Score: Int = 0\nVAR Health: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: CreateWidget [WidgetClass=WBP_HUD]\nNODE n3: AddToViewport\nNODE n4: PrintString [InString=\"Game Started\"]\nNODE n5: Event_CustomEvent [EventName=\"AddScore\"]\nNODE n6: GetVar [Variable=Score]\nNODE n7: AddFloat [B=1]\nNODE n8: SetVar [Variable=Score]\nNODE n9: Event_CustomEvent [EventName=\"TakeDamage\"]\nNODE n10: GetVar [Variable=Health]\nNODE n11: SubtractFloat [B=10.0]\nNODE n12: SetVar [Variable=Health]\nNODE n13: LessThan [B=0.0]\nNODE n14: Branch\nNODE n15: PrintString [InString=\"Game Over\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n5.Then -> n8.Execute\nEXEC n9.Then -> n12.Execute\nEXEC n12.Then -> n14.Execute\nEXEC n14.True -> n15.Execute\n\nDATA n2.ReturnValue -> n3.Target [Widget]\nDATA n6.Value -> n7.A [Int]\nDATA n7.ReturnValue -> n8.Value [Int]\nDATA n10.Value -> n11.A [Float]\nDATA n11.ReturnValue -> n12.Value [Float]\nDATA n11.ReturnValue -> n13.A [Float]\nDATA n13.ReturnValue -> n14.Condition [Bool]"
+    }
+  ]
+}

@@ -647,9 +647,14 @@ The C++ handler calls `SetFromFunction()` which auto-creates ALL pins. You don't
 
 ### The correct workflow:
 
-**Step 1: Create the Widget Blueprint**
+**Step 1: Create the Widget Blueprint (always 1920x1080)**
 ```json
 {"command": "create_widget_blueprint", "params": {"name": "WBP_MyHUD"}}
+```
+Design size defaults to 1920x1080. Override with `design_width`/`design_height` params if needed.
+To change an existing widget's design size:
+```json
+{"command": "set_widget_design_size", "params": {"name": "WBP_MyHUD", "width": 1920, "height": 1080}}
 ```
 
 **Step 2: Add a root Canvas Panel**
@@ -666,6 +671,52 @@ The C++ handler calls `SetFromFunction()` which auto-creates ALL pins. You don't
 ```json
 {"command": "set_widget_property", "params": {"widget_name": "WBP_MyHUD", "target": "TitleText", "property": "Text", "value": "My Game"}}
 ```
+
+### Protecting Widget Layouts from Runtime Overwrite
+
+When building widgets that will be used with C++ parent classes that call `RefreshUI` or similar functions:
+
+1. Name C++ bridge widgets with `txt_*` or `Btn_*` prefix
+2. Set all bridge widgets to `Visibility=Collapsed`
+3. Build visual layer with different names (e.g. `Text_StationName`, `Border_Panel`)
+4. Call `protect_widget_layout` after building
+5. The visual layer is now immune to C++ interference
+
+```json
+{"command": "protect_widget_layout", "params": {"name": "WBP_Station_Bore"}}
+```
+
+Response: `{"protected_widgets": 45, "accessible_widgets": 7}` — only `txt_*`/`Btn_*` widgets remain as variables accessible to C++ `FindWidget`.
+
+Root CanvasPanel automatically gets `ClipToBounds` on creation — no child can render outside the panel boundaries.
+
+### Widget Color Formats
+Three ways to specify colors in `set_widget_property` (BrushColor, ColorAndOpacity, FillColorAndOpacity, etc.):
+
+**`hex:#RRGGBB` (recommended)** — easiest, most accurate. Auto-converts sRGB hex to linear:
+```json
+{"command": "set_widget_property", "params": {"widget_blueprint": "WBP_MyHUD", "widget_name": "MyBorder", "property": "BrushColor", "value": "hex:#E8A624"}}
+```
+Supports optional alpha: `hex:#E8A624CC` (CC = 80% alpha).
+
+**`srgb:(R=0.91,G=0.65,B=0.14,A=1.0)`** — sRGB floats, auto-converts to linear:
+```json
+{"value": "srgb:(R=0.910,G=0.647,B=0.141,A=1.0)"}
+```
+
+**`(R=0.807,G=0.381,B=0.018,A=1.0)`** — raw linear (existing, no conversion):
+```json
+{"value": "(R=0.807,G=0.381,B=0.018,A=1.0)"}
+```
+
+**Rule: Always use `hex:` for new code.** Never pass sRGB floats without the `srgb:` prefix — they'll be treated as linear and appear washed out.
+
+### Widget Design Size
+Always create widget blueprints at 1920x1080. `create_widget_blueprint` defaults to this automatically. If you need to change an existing widget's design size, use `set_widget_design_size`:
+```json
+{"command": "set_widget_design_size", "params": {"name": "WBP_MyWidget", "width": 1920, "height": 1080}}
+```
+Never leave widget blueprints at UE default (1280x720). The design size controls the UMG designer preview canvas and affects how anchor-based layouts render.
 
 ### Widget types supported:
 TextBlock, ProgressBar, Image, Button, VerticalBox, HorizontalBox, CanvasPanel, Overlay, SizeBox, Border, Spacer, ScrollBox, CheckBox, EditableTextBox
@@ -806,7 +857,7 @@ you MUST spawn it as a Blueprint instance, not a plain mesh:
 **RIGHT** (Blueprint logic is active — overlap events, variables, BeginPlay all fire):
 ```json
 {"command": "spawn_actor_at", "params": {
-  "class": "/Game/BlueprintLLM/Generated/BP_StationBase.BP_StationBase_C",
+  "class": "/Game/Arcwright/Generated/BP_StationBase.BP_StationBase_C",
   "label": "Station_X", "x": 0, "y": 0, "z": 50
 }}
 ```

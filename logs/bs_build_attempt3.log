@@ -1,0 +1,48 @@
+Using bundled DotNet SDK version: 8.0.412 win-x64
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" BoreAndStrokeEditor Win64 Development C:\Projects\BoreAndStroke_Original\BoreandStroke.uproject
+Log file: C:\Users\sparu\AppData\Local\UnrealBuildTool\Log.txt
+Using 'git status' to determine working set for adaptive non-unity build (C:\Projects\BoreAndStroke_Original).
+Creating makefile for BoreAndStrokeEditor (no existing makefile)
+Available x64 toolchains (2):
+ * C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\VC\Tools\MSVC\14.50.35717
+    (Family=14.50.35717, FamilyRank=1, Version=14.50.35725, HostArchitecture=x64, ReleaseChannel=Latest, Architecture=x64)
+ * C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717
+    (Family=14.50.35717, FamilyRank=1, Version=14.50.35725, HostArchitecture=x64, ReleaseChannel=Latest, Architecture=x64)
+Visual Studio 2026 compiler version 14.50.35725 is not a preferred version. Please use the latest preferred version 14.44.35207
+UHT compiled-in object format Default
+Parsing headers for BoreAndStrokeEditor
+  Running Internal UnrealHeaderTool C:\Projects\BoreAndStroke_Original\BoreAndStroke.uproject C:\Projects\BoreAndStroke_Original\Intermediate\Build\Win64\BoreAndStrokeEditor\Development\BoreAndStrokeEditor.uhtmanifest -WarningsAsErrors -installed
+UHT processed BoreAndStrokeEditor in 0.979944 seconds (138 files written)
+Building BoreAndStrokeEditor...
+Using Visual Studio 2026 14.50.35725 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\VC\Tools\MSVC\14.50.35717) and Windows 10.0.26100.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+Warning: Visual Studio 2026 compiler is not a preferred version
+Determining max actions to execute in parallel (24 physical cores, 32 logical cores)
+  Executing up to 24 processes, one per physical core
+Using Unreal Build Accelerator local executor to run 18 action(s)
+  Storage capacity 40Gb
+---- Starting trace: 260322_195746 ----
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+[1/18] Resource Default.rc2
+[2/18] Compile [x64] SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.cpp
+[3/18] Compile [x64] Module.BoreAndStroke.4.cpp
+[4/18] Compile [x64] Module.BoreAndStroke.3.cpp
+[5/18] Compile [x64] Module.BoreAndStroke.1.cpp
+[6/18] Compile [x64] Module.BoreAndStroke.2.cpp
+[7/18] Compile [x64] Module.BoreAndStroke.5.cpp
+[8/18] Compile [x64] Module.BoreAndStroke.9.cpp
+[9/18] Compile [x64] Module.BoreAndStroke.7.cpp
+[10/18] Compile [x64] Module.BoreAndStroke.8.cpp
+[11/18] Compile [x64] Module.BoreAndStroke.10.cpp
+[12/18] Compile [x64] Module.BoreAndStroke.6.cpp
+[13/18] Compile [x64] Module.BoreAndStroke.12.cpp
+[14/18] Compile [x64] Module.BoreAndStroke.11.cpp
+[15/18] Compile [x64] Module.BoreAndStroke.13.cpp
+[16/18] Link [x64] UnrealEditor-BoreAndStroke.lib
+[17/18] Link [x64] UnrealEditor-BoreAndStroke.dll
+[18/18] WriteMetadata BoreAndStrokeEditor.target [NoUba]
+
+Trace written to file C:/Users/sparu/AppData/Local/UnrealBuildTool/Log.uba with size 9.4kb
+Total time in Unreal Build Accelerator local executor: 40.49 seconds
+
+Result: Succeeded
+Total execution time: 59.66 seconds

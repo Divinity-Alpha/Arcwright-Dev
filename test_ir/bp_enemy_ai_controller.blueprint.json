@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "name": "BP_EnemyAIController",
+    "parent_class": "AIController",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay",
+      "position": [0, 0]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "PrintString",
+      "params": { "InString": "Enemy AI Controller Active" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [300, 0]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "MoveToLocation_A",
+      "params": { "AcceptanceRadius": "100.0", "bUsePathfinding": "false", "bCanStrafe": "true" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/AIModule.AIController:MoveToLocation",
+      "position": [600, 0]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "MakeVector_A",
+      "params": { "X": "300.0", "Y": "-400.0", "Z": "50.0" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:MakeVector",
+      "position": [400, 200]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "Delay_A",
+      "params": { "Duration": "2.0" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:Delay",
+      "position": [900, 0]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "MoveToLocation_B",
+      "params": { "AcceptanceRadius": "100.0", "bUsePathfinding": "false", "bCanStrafe": "true" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/AIModule.AIController:MoveToLocation",
+      "position": [1200, 0]
+    },
+    {
+      "id": "n7",
+      "dsl_type": "MakeVector_B",
+      "params": { "X": "-300.0", "Y": "400.0", "Z": "50.0" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:MakeVector",
+      "position": [1000, 200]
+    },
+    {
+      "id": "n8",
+      "dsl_type": "Delay_B",
+      "params": { "Duration": "2.0" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:Delay",
+      "position": [1500, 0]
+    },
+    {
+      "id": "n9",
+      "dsl_type": "Event_Tick",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveTick",
+      "position": [0, 500]
+    },
+    {
+      "id": "n10",
+      "dsl_type": "GetPlayerPawn",
+      "params": { "PlayerIndex": "0" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.GameplayStatics:GetPlayerPawn",
+      "position": [200, 700]
+    },
+    {
+      "id": "n11",
+      "dsl_type": "GetDistanceTo",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:GetDistanceTo",
+      "position": [500, 700]
+    },
+    {
+      "id": "n12",
+      "dsl_type": "Less_DoubleDouble",
+      "params": { "B": "800.0" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Less_DoubleDouble",
+      "position": [750, 700]
+    },
+    {
+      "id": "n13",
+      "dsl_type": "Branch",
+      "params": {},
+      "ue_class": "UK2Node_IfThenElse",
+      "position": [400, 500]
+    },
+    {
+      "id": "n14",
+      "dsl_type": "PrintString_Chase",
+      "params": { "InString": "CHASING PLAYER!" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [700, 500]
+    },
+    {
+      "id": "n15",
+      "dsl_type": "GetActorLocation_Player",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_GetActorLocation",
+      "position": [700, 800]
+    },
+    {
+      "id": "n16",
+      "dsl_type": "MoveToLocation_Chase",
+      "params": { "AcceptanceRadius": "50.0", "bUsePathfinding": "false", "bCanStrafe": "true" },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/AIModule.AIController:MoveToLocation",
+      "position": [1000, 500]
+    }
+  ],
+  "connections": [
+    { "src_node": "n1", "src_pin": "Then", "dst_node": "n2", "dst_pin": "Execute", "type": "exec" },
+    { "src_node": "n2", "src_pin": "Then", "dst_node": "n3", "dst_pin": "Execute", "type": "exec" },
+    { "src_node": "n4", "src_pin": "ReturnValue", "dst_node": "n3", "dst_pin": "Dest", "type": "data" },
+    { "src_node": "n3", "src_pin": "Then", "dst_node": "n5", "dst_pin": "Execute", "type": "exec" },
+    { "src_node": "n5", "src_pin": "Then", "dst_node": "n6", "dst_pin": "Execute", "type": "exec" },
+    { "src_node": "n7", "src_pin": "ReturnValue", "dst_node": "n6", "dst_pin": "Dest", "type": "data" },
+    { "src_node": "n6", "src_pin": "Then", "dst_node": "n8", "dst_pin": "Execute", "type": "exec" },
+    { "src_node": "n8", "src_pin": "Then", "dst_node": "n3", "dst_pin": "Execute", "type": "exec" },
+
+    { "src_node": "n9", "src_pin": "Then", "dst_node": "n13", "dst_pin": "Execute", "type": "exec" },
+    { "src_node": "n10", "src_pin": "ReturnValue", "dst_node": "n11", "dst_pin": "OtherActor", "type": "data" },
+    { "src_node": "n11", "src_pin": "ReturnValue", "dst_node": "n12", "dst_pin": "A", "type": "data" },
+    { "src_node": "n12", "src_pin": "ReturnValue", "dst_node": "n13", "dst_pin": "Condition", "type": "data" },
+    { "src_node": "n13", "src_pin": "Then", "dst_node": "n14", "dst_pin": "Execute", "type": "exec" },
+    { "src_node": "n14", "src_pin": "Then", "dst_node": "n16", "dst_pin": "Execute", "type": "exec" },
+    { "src_node": "n10", "src_pin": "ReturnValue", "dst_node": "n15", "dst_pin": "T", "type": "data" },
+    { "src_node": "n15", "src_pin": "ReturnValue", "dst_node": "n16", "dst_pin": "Dest", "type": "data" }
+  ]
+}

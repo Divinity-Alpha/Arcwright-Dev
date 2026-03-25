@@ -1,0 +1,65 @@
+{
+  "lesson_id": "dt_lesson_01",
+  "lesson_name": "Core Data Table Patterns: Weapons, Items, Enemies, Abilities, Waves",
+  "domain": "data_table",
+  "model": "models/dt-lora-v4/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260310_181844",
+  "total_prompts": 20,
+  "valid_syntax": 20,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 97.0,
+  "timeout_count": 0,
+  "per_category": {
+    "weapons_basic": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "items_inventory": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "enemies": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 95.5
+    },
+    "abilities": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "waves": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 90.9
+    },
+    "dialogue": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "crafting": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 95.5
+    },
+    "shop": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "character_stats": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 88.5
+    },
+    "game_config": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    }
+  }
+}

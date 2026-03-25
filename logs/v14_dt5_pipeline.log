@@ -1,0 +1,857 @@
+[14:13:14] ============================================================
+[14:13:14] POST-TRAINING PIPELINE: v14 exam ? backup ? DT v5 ? exam ? backup
+[14:13:14] ============================================================
+[14:13:14] Waiting for v14 training to complete...
+[14:53:44] V14 adapter saved: 1,656,902,648 bytes
+[14:54:14] ============================================================
+[14:54:14] STARTING V14 EXAM SUITE (23 lessons)
+[14:54:14] ============================================================
+============================================================
+  FULL EXAM SUITE — v14
+  23 lessons, model: models/blueprint-lora-v14/final
+  2026-03-15 14:54:14
+============================================================
+
+Loading model...
+Loaded system prompt from models\blueprint-lora-v14\system_prompt.txt (463 chars)
+Loading base model: meta-llama/Meta-Llama-3.1-70B
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:05<02:51,  5.93s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:11<02:32,  5.46s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:16<02:26,  5.43s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:21<02:20,  5.40s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:27<02:14,  5.36s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:32<02:08,  5.34s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:37<02:02,  5.33s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:43<02:00,  5.47s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:49<01:56,  5.56s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:54<01:49,  5.50s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:59<01:43,  5.44s/it]Loading checkpoint shards:  40%|████      | 12/30 [01:05<01:37,  5.41s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [01:10<01:32,  5.45s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [01:16<01:27,  5.44s/it]Loading checkpoint shards:  50%|█████     | 15/30 [01:21<01:20,  5.34s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [01:26<01:14,  5.34s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:32<01:09,  5.35s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:37<01:05,  5.46s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:43<01:00,  5.53s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:48<00:54,  5.47s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:54<00:48,  5.43s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:59<00:42,  5.36s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [02:04<00:38,  5.44s/it]Loading checkpoint shards:  80%|████████  | 24/30 [02:10<00:32,  5.43s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [02:15<00:26,  5.34s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [02:20<00:21,  5.30s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [02:26<00:16,  5.35s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [02:31<00:10,  5.46s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [02:37<00:05,  5.53s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:39<00:00,  4.39s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:39<00:00,  5.31s/it]
+Loading LoRA adapter: models/blueprint-lora-v14/final
+Model loaded in 256s
+
+
+============================================================
+  [1/23] lesson_01: Core Pattern Gaps (20 prompts)
+============================================================
+  [1/20] L01_01: Create a Blueprint that prints Hello World when the gam...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 2 | 25.3s
+  [2/20] L01_02: Create a Blueprint for an actor that continuously rotat...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 82% | Nodes: 4 | 48.7s
+  [3/20] L01_03: Create a Blueprint that prints Entered when another act...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 30.3s
+  [4/20] L01_04: Create a Blueprint with a boolean variable IsActive. On...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 33% | Nodes: 5 | 43.2s
+  [5/20] L01_05: Create a Blueprint that waits 3 seconds after the game ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 24.3s
+  [6/20] L01_06: Create a Blueprint that on BeginPlay uses a Sequence no...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 67% | Nodes: 5 | 43.1s
+  [7/20] L01_07: Create a Blueprint that toggles an actor's visibility e...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 80% | Nodes: 4 | 37.5s
+  [8/20] L01_08: Create a Blueprint that prints Welcome only the first t...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 25.0s
+  [9/20] L01_09: Create a Blueprint that on overlap, casts the other act...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 89% | Nodes: 3 | 30.3s
+  [10/20] L01_10: Create a Blueprint with an array of Actors called Targe...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 27% | Nodes: 4 | 39.7s
+  [11/20] L01_11: Create a Blueprint with a Gate node. On BeginPlay, open...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 38.0s
+  [12/20] L01_12: Create a Blueprint with a custom event called OnActivat...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 30.8s
+  [13/20] L01_13: Create a Blueprint with an integer variable Score start...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 71% | Nodes: 5 | 49.1s
+  [14/20] L01_14: Create a Blueprint that spawns a projectile actor at th...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 50% | Nodes: 3 | 30.0s
+  [15/20] L01_15: Create a Blueprint that plays a sound effect when the a...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 27.1s
+  [16/20] L01_16: Create a Blueprint that on Tick, gets the distance to a...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 46.7s
+  [17/20] L01_17: Create a Blueprint that prints Started on BeginPlay, pr...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 40.6s
+  [18/20] L01_18: Create a Blueprint with a boolean variable IsVisible st...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 71% | Nodes: 5 | 51.2s
+  [19/20] L01_19: Create a Blueprint that on BeginPlay calculates the res...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 90% | Nodes: 4 | 37.5s
+  [20/20] L01_20: Create a Blueprint that on BeginPlay prints Ready, wait...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 49.2s
+  => syntax=100.0% sim=83.0%
+
+============================================================
+  [2/23] lesson_02: Corrections: Variables, Events, Complex Nodes (24 prompts)
+============================================================
+  [1/24] L02_01: Create a Blueprint with a boolean variable IsActive. On...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 41.8s
+  [2/24] L02_02: Create a Blueprint that on overlap checks if the overla...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 44.8s
+  [3/24] L02_03: Create a Blueprint with an integer variable Score set t...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [X] Score: 67% | Nodes: 0 | 34.7s
+  [4/24] L02_04: Create a Blueprint with a float variable Health startin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 58% | Nodes: 4 | 41.8s
+  [5/24] L02_05: Create a Blueprint with a custom event called OnActivat...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 67% | Nodes: 4 | 32.2s
+  [6/24] L02_06: Create a Blueprint with a custom event TakeDamage that ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 2 | 22.8s
+  [7/24] L02_07: Create a Blueprint with a Gate node. On BeginPlay, open...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 33.4s
+  [8/24] L02_08: Create a Blueprint where pressing Interact opens a gate...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 31.5s
+  [9/24] L02_09: Create a Blueprint that spawns a projectile actor at th...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 75% | Nodes: 3 | 30.6s
+  [10/24] L02_10: Create a Blueprint that on BeginPlay spawns 3 enemy act...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 43.5s
+  [11/24] L02_11: Create a Blueprint with an array of Actors called Targe...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 92% | Nodes: 4 | 40.1s
+  [12/24] L02_12: Create a Blueprint that on BeginPlay loops through an a...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 41.9s
+  [13/24] L02_13: Create a Blueprint that on Tick gets the distance to th...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 47.6s
+  [14/24] L02_14: Create a Blueprint that on Tick checks distance to the ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 79.5s
+  [15/24] L02_15: Create a Blueprint with a boolean variable IsVisible st...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 80% | Nodes: 3 | 30.3s
+  [16/24] L02_16: Create a Blueprint that toggles visibility each time th...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 35.6s
+  [17/24] L02_17: Create a Blueprint that on BeginPlay uses a Sequence no...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 67% | Nodes: 5 | 44.0s
+  [18/24] L02_18: Create a Blueprint that on Tick adds a rotation of 1.0 ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 2 | 24.5s
+  [19/24] L02_19: Create a Blueprint that when another actor overlaps, pr...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 29.2s
+  [20/24] L02_20: Create a Blueprint that plays a sound at the actor's lo...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 27.5s
+  [21/24] L02_21: Create a Blueprint that prints Welcome only the first t...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 25.2s
+  [22/24] L02_22: Create a Blueprint that on BeginPlay multiplies 5 times...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 70% | Nodes: 4 | 35.1s
+  [23/24] L02_23: Create a Blueprint that prints Started on BeginPlay and...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 29.6s
+  [24/24] L02_24: Create a Blueprint with three events: BeginPlay prints ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 45.2s
+  => syntax=95.8% sim=90.6%
+
+============================================================
+  [3/23] lesson_03: Timers and Delayed Actions (20 prompts)
+============================================================
+  [1/20] L03_01: Create a Blueprint that on BeginPlay sets a timer calle...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 38.2s
+  [2/20] L03_02: Create a Blueprint that starts a looping timer on Begin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 52.1s
+  [3/20] L03_03: Create a Blueprint that on BeginPlay sets a one-shot ti...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 34.3s
+  [4/20] L03_04: Create a Blueprint that on overlap starts a retriggerab...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 28.8s
+  [5/20] L03_05: Create a Blueprint with a boolean variable IsActive. On...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 81% | Nodes: 7 | 61.2s
+  [6/20] L03_06: Create a Blueprint that on BeginPlay prints Phase 1, wa...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 65.8s
+  [7/20] L03_07: Create a Blueprint with an integer variable Count start...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 85.5s
+  [8/20] L03_08: Create a Blueprint that on BeginPlay hides the actor, w...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 36.5s
+  [9/20] L03_09: Create a Blueprint where pressing Interact toggles a ti...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [X] Score: 100% | Nodes: 0 | 88.3s
+  [10/20] L03_10: Create a Blueprint that when overlapped, prints Entered...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 40.1s
+  [11/20] L03_11: Create a Blueprint that on BeginPlay sets a looping tim...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 91% | Nodes: 5 | 49.8s
+  [12/20] L03_12: Create a Blueprint that on BeginPlay checks a boolean I...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 94% | Nodes: 7 | 63.7s
+  [13/20] L03_13: Create a Blueprint with a float variable Health at 50.0...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 11 | 104.2s
+  [14/20] L03_14: Create a Blueprint that when the player presses Interac...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 37.9s
+  [15/20] L03_15: Create a Blueprint that on BeginPlay starts a looping t...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 43.3s
+  [16/20] L03_16: Create a Blueprint that on BeginPlay uses a Sequence no...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 38.1s
+  [17/20] L03_17: Create a Blueprint with a Gate node. On BeginPlay, open...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 50.1s
+  [18/20] L03_18: Create a Blueprint where pressing Interact uses a FlipF...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 50.5s
+  [19/20] L03_19: Create a Blueprint that starts a 5-second self-destruct...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 53.0s
+  [20/20] L03_20: Create a Blueprint that on BeginPlay prints Initializin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 54.9s
+  => syntax=95.0% sim=98.3%
+
+============================================================
+  [4/23] lesson_04: Physics and Movement (20 prompts)
+============================================================
+  [1/20] L04_01: Create a Blueprint that on BeginPlay adds an upward imp...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 2 | 21.9s
+  [2/20] L04_02: Create a Blueprint that on Tick adds a constant forward...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 33.3s
+  [3/20] L04_03: Create a Blueprint that pressing Interact toggles physi...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 70% | Nodes: 4 | 35.7s
+  [4/20] L04_04: Create a Blueprint that on Tick moves the actor forward...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 2 | 20.2s
+  [5/20] L04_05: Create a Blueprint that on overlap teleports the overla...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 32.9s
+  [6/20] L04_06: Create a Blueprint that when overlapped, enables physic...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 28.1s
+  [7/20] L04_07: Create a Blueprint with a vector variable TargetLocatio...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 42.9s
+  [8/20] L04_08: Create a Blueprint that on Tick reads the MoveForward i...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 37.3s
+  [9/20] L04_09: Create a Blueprint that on Hit adds an impulse in the o...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 28.5s
+  [10/20] L04_10: Create a Blueprint with two vector variables PointA and...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 87.5s
+  [11/20] L04_11: Create a Blueprint that on BeginPlay waits 3 seconds, t...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 90% | Nodes: 4 | 34.3s
+  [12/20] L04_12: Create a Blueprint that on Tick rotates 1 degree on Yaw...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 88% | Nodes: 3 | 35.3s
+  [13/20] L04_13: Create a Blueprint with a boolean IsHeavy. On overlap, ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 48.3s
+  [14/20] L04_14: Create a Blueprint with a float variable Speed set to 5...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 48.7s
+  [15/20] L04_15: Create a Blueprint that on overlap adds a downward forc...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [X] Score: 100% | Nodes: 0 | 40.3s
+  [16/20] L04_16: Create a Blueprint that on Tick gets the actor location...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 68.8s
+  [17/20] L04_17: Create a Blueprint where pressing Fire uses a MultiGate...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 51.4s
+  [18/20] L04_18: Create a Blueprint that on Tick moves the actor up and ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 64.5s
+  [19/20] L04_19: Create a Blueprint that on BeginPlay enables physics an...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 54.1s
+  [20/20] L04_20: Create a Blueprint with a float variable Speed at 100. ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 80.4s
+  => syntax=95.0% sim=97.4%
+
+============================================================
+  [5/23] lesson_05: IsValid Checks and Defensive Patterns (20 prompts)
+============================================================
+  [1/20] L05_01: Create a Blueprint with an actor variable Target. On Be...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 48.4s
+  [2/20] L05_02: Create a Blueprint that on overlap casts to Character. ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 40.7s
+  [3/20] L05_03: Create a Blueprint with an actor variable Target. On pr...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 53.4s
+  [4/20] L05_04: Create a Blueprint that on overlap, casts to Pawn. If t...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 53.7s
+  [5/20] L05_05: Create a Blueprint that starts a timer on BeginPlay. Th...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 78.9s
+  [6/20] L05_06: Create a Blueprint with an array variable Items. On Beg...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 61.6s
+  [7/20] L05_07: Create a Blueprint that on pressing Fire spawns an acto...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 59.8s
+  [8/20] L05_08: Create a Blueprint that on BeginPlay gets the player ch...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 94% | Nodes: 7 | 55.2s
+  [9/20] L05_09: Create a Blueprint with an actor variable Enemy. On Tic...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 67.2s
+  [10/20] L05_10: Create a Blueprint that on overlap uses DoOnce, then ca...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 36.4s
+  [11/20] L05_11: Create a Blueprint that on overlap casts the other acto...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 30.8s
+  [12/20] L05_12: Create a Blueprint that on BeginPlay uses a Sequence. F...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 12 | 96.5s
+  [13/20] L05_13: Create a Blueprint that on BeginPlay spawns an actor, c...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 90% | Nodes: 7 | 65.1s
+  [14/20] L05_14: Create a Blueprint that on overlap casts to Character. ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 43.6s
+  [15/20] L05_15: Create a Blueprint that on pressing Fire checks if vari...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [X] Score: 100% | Nodes: 0 | 70.5s
+  [16/20] L05_16: Create a Blueprint with a Gate. On BeginPlay check if v...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 53.1s
+  [17/20] L05_17: Create a Blueprint that on overlap first tries CastToCh...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 58.0s
+  [18/20] L05_18: Create a Blueprint with an actor array Enemies. On pres...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 94% | Nodes: 6 | 55.2s
+  [19/20] L05_19: Create a Blueprint that on Tick gets the player pawn, c...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 63.6s
+  [20/20] L05_20: Create a Blueprint that on BeginPlay gets player pawn, ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 72.6s
+  => syntax=95.0% sim=98.9%
+
+============================================================
+  [6/23] lesson_06: While Loops, For Loops, and Iteration (20 prompts)
+============================================================
+  [1/20] L06_01: Create a Blueprint that on BeginPlay runs a ForLoop fro...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 29.2s
+  [2/20] L06_02: Create a Blueprint that on BeginPlay uses a ForLoop 0 t...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 52.8s
+  [3/20] L06_03: Create a Blueprint with integer Total at 0. On BeginPla...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 67.7s
+  [4/20] L06_04: Create a Blueprint with integer Count at 0. On BeginPla...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 71.3s
+  [5/20] L06_05: Create a Blueprint that loops 0 to 19. For each index c...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 57.1s
+  [6/20] L06_06: Create a Blueprint with actor array Targets. On pressin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 48.4s
+  [7/20] L06_07: Create a Blueprint that on BeginPlay uses two nested Fo...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 73.2s
+  [8/20] L06_08: Create a Blueprint that on BeginPlay runs ForLoop 1 to ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 47.2s
+  [9/20] L06_09: Create a Blueprint with actor array AllActors. On Begin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 76.2s
+  [10/20] L06_10: Create a Blueprint that on BeginPlay uses ForLoop from ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 38.8s
+  [11/20] L06_11: Create a Blueprint with actor array Lights. On pressing...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 39.9s
+  [12/20] L06_12: Create a Blueprint with float Value at 1000. Use WhileL...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 76.0s
+  [13/20] L06_13: Create a Blueprint that on BeginPlay loops 10 times. Ea...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 59.7s
+  [14/20] L06_14: Create a Blueprint with float array Values and float Ma...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 73.4s
+  [15/20] L06_15: Create a Blueprint with float Health at 100. Use WhileL...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 84.7s
+  [16/20] L06_16: Create a Blueprint with actor array Targets. Loop throu...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 12 | 118.1s
+  [17/20] L06_17: Create a Blueprint that on BeginPlay uses Sequence. Fir...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 44.5s
+  [18/20] L06_18: Create a Blueprint with string array Messages. On overl...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 43.5s
+  [19/20] L06_19: Create a Blueprint with actor array Enemies. On BeginPl...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 44.7s
+  [20/20] L06_20: Create a Blueprint that on BeginPlay runs ForLoop 0 to ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 46.3s
+  => syntax=100.0% sim=100.0%
+
+============================================================
+  [7/23] lesson_07: String Operations and Debug Patterns (20 prompts)
+============================================================
+  [1/20] L07_01: Create a Blueprint with a string variable PlayerName se...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 38.4s
+  [2/20] L07_02: Create a Blueprint with an integer variable Score at 0....
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 57.9s
+  [3/20] L07_03: Create a Blueprint with float Health at 100. On AnyDama...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 94% | Nodes: 6 | 61.4s
+  [4/20] L07_04: Create a Blueprint that on Tick gets actor location, br...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 22.2s
+  [5/20] L07_05: Create a Blueprint that on overlap gets the display nam...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 39.4s
+  [6/20] L07_06: Create a Blueprint that on Tick gets distance to the pl...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 41.8s
+  [7/20] L07_07: Create a Blueprint with integer Count at 0. On overlap ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 58.1s
+  [8/20] L07_08: Create a Blueprint that on Tick calculates FPS by divid...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 40.4s
+  [9/20] L07_09: Create a Blueprint that starts a 3-second timer on Begi...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 61.8s
+  [10/20] L07_10: Create a Blueprint that on overlap casts to Character. ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 55.7s
+  [11/20] L07_11: Create a Blueprint with string Name set to Player and i...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 54.9s
+  [12/20] L07_12: Create a Blueprint that on pressing Fire spawns an acto...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 58.0s
+  [13/20] L07_13: Create a Blueprint that on BeginPlay runs a ForLoop 1 t...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 37.8s
+  [14/20] L07_14: Create a Blueprint with bool IsReady. On BeginPlay bran...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 43.1s
+  [15/20] L07_15: Create a Blueprint that on AnyDamage prints Took X dama...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 72.9s
+  [16/20] L07_16: Create a Blueprint with an actor array Items. On BeginP...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 44.7s
+  [17/20] L07_17: Create a Blueprint that on BeginPlay gets game time in ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 32.5s
+  [18/20] L07_18: Create a Blueprint with a Gate. When the gate opens pri...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 58.1s
+  [19/20] L07_19: Create a Blueprint that on BeginPlay generates a random...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 35.3s
+  [20/20] L07_20: Create a Blueprint that on BeginPlay prints BEGIN at: w...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 59.5s
+  => syntax=100.0% sim=99.7%
+
+============================================================
+  [8/23] lesson_08: UI Widgets and HUD Patterns (20 prompts)
+============================================================
+  [1/20] L08_01: Create a Blueprint that on BeginPlay creates a widget o...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 27.7s
+  [2/20] L08_02: Create a Blueprint with a widget variable HUDWidget. On...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 30.1s
+  [3/20] L08_03: Create a Blueprint with a widget variable MenuWidget an...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [X] Score: 100% | Nodes: 0 | 105.2s
+  [4/20] L08_04: Create a Blueprint that on BeginPlay waits 3 seconds, t...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 54.8s
+  [5/20] L08_05: Create a Blueprint that on overlap creates a widget WBP...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 63.8s
+  [6/20] L08_06: Create a Blueprint that on overlap casts to Character. ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 39.1s
+  [7/20] L08_07: Create a Blueprint that on overlap uses DoOnce, creates...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 34.5s
+  [8/20] L08_08: Create a Blueprint with bool ShowHUD. On BeginPlay, if ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 52.9s
+  [9/20] L08_09: Create a Blueprint that on BeginPlay uses a Sequence. F...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 57.5s
+  [10/20] L08_10: Create a Blueprint with widget variable CurrentUI. On p...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [X] Score: 94% | Nodes: 0 | 59.4s
+  [11/20] L08_11: Create a Blueprint that on BeginPlay sets a 5-second ti...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 53.5s
+  [12/20] L08_12: Create a Blueprint with two widget variables ScreenA an...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 84.4s
+  [13/20] L08_13: Create a Blueprint that on Tick checks distance to play...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 64.9s
+  [14/20] L08_14: Create a Blueprint that on BeginPlay creates WBP_HUD, s...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 52.7s
+  [15/20] L08_15: Create a Blueprint that creates WBP_HUD on BeginPlay. O...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 80.6s
+  [16/20] L08_16: Create a Blueprint with a Gate. Opening the gate create...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 73.9s
+  [17/20] L08_17: Create a Blueprint with a string array MenuItems. On Be...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 57.7s
+  [18/20] L08_18: Create a Blueprint that on BeginPlay creates WBP_Dialog...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 72.5s
+  [19/20] L08_19: Create a Blueprint where pressing Next uses MultiGate w...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 77.9s
+  [20/20] L08_20: Create a Blueprint that on BeginPlay creates WBP_Loadin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 38% | Nodes: 8 | 77.6s
+  => syntax=90.0% sim=96.6%
+
+============================================================
+  [9/23] lesson_09: Nested Branches and Switch Patterns (20 prompts)
+============================================================
+  [1/20] L09_01: Create a Blueprint with bool IsAlive and bool HasWeapon...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 68.5s
+  [2/20] L09_02: Create a Blueprint with float Health. On BeginPlay if H...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 78.7s
+  [3/20] L09_03: Create a Blueprint with integer Level. On BeginPlay use...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 64.5s
+  [4/20] L09_04: Create a Blueprint with string Command. On BeginPlay us...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 65.9s
+  [5/20] L09_05: Create a Blueprint with bool HasKey and bool DoorUnlock...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 64.6s
+  [6/20] L09_06: Create a Blueprint with bool IsInvisible. On Tick, if N...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 42.9s
+  [7/20] L09_07: Create a Blueprint that on overlap casts to Character. ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 73.1s
+  [8/20] L09_08: Create a Blueprint with float PlayerHealth and float En...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 94% | Nodes: 7 | 64.9s
+  [9/20] L09_09: Create a Blueprint with integer WeaponSlot. On pressing...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 60.1s
+  [10/20] L09_10: Create a Blueprint with float Health at 100. Start a lo...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 14 | 129.9s
+  [11/20] L09_11: Create a Blueprint with integer Score. On BeginPlay if ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 52.0s
+  [12/20] L09_12: Create a Blueprint with bool A, bool B, bool C. On Begi...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 11 | 91.1s
+  [13/20] L09_13: Create a Blueprint with integer Mode. On BeginPlay swit...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 68.0s
+  [14/20] L09_14: Create a Blueprint with float Value. On BeginPlay if Va...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 100.6s
+  [15/20] L09_15: Create a Blueprint with bool IsDay and bool HasTorch. O...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 66.3s
+  [16/20] L09_16: Create a Blueprint with string DamageType and float Arm...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 75.3s
+  [17/20] L09_17: Create a Blueprint with integer EnemyType. On BeginPlay...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 76.7s
+  [18/20] L09_18: Create a Blueprint with float Temperature. On BeginPlay...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 79.2s
+  [19/20] L09_19: Create a Blueprint with actor variable Target. On Tick ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 84.8s
+  [20/20] L09_20: Create a Blueprint with integer Screen. On pressing Men...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 92.7s
+  => syntax=100.0% sim=99.7%
+
+============================================================
+  [10/23] lesson_10: Complex Real-World Blueprints (20 prompts)
+============================================================
+  [1/20] L10_01: Create a Blueprint for a health pickup. On overlap cast...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 52.6s
+  [2/20] L10_02: Create a Blueprint for a trap. On overlap enable physic...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 46.2s
+  [3/20] L10_03: Create a Blueprint for an interactive door. On pressing...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 88.7s
+  [4/20] L10_04: Create a Blueprint that spawns enemies in waves. On Beg...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 12 | 115.5s
+  [5/20] L10_05: Create a Blueprint for a checkpoint. On overlap cast to...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 65.3s
+  [6/20] L10_06: Create a Blueprint for a damage zone. On overlap start ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 80.2s
+  [7/20] L10_07: Create a Blueprint for a collectible coin. On overlap c...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 86.8s
+  [8/20] L10_08: Create a Blueprint for a disappearing platform. On Begi...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 62.4s
+  [9/20] L10_09: Create a Blueprint for a simple enemy. On Tick get dist...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 81.0s
+  [10/20] L10_10: Create a Blueprint for a speed power-up. On overlap cas...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [X] Score: 100% | Nodes: 0 | 68.8s
+  [11/20] L10_11: Create a Blueprint with integer PickupType. On overlap ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 87.4s
+  [12/20] L10_12: Create a Blueprint for a turret. On BeginPlay set a loo...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 87.9s
+  [13/20] L10_13: Create a Blueprint that on BeginPlay creates WBP_Health...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 97% | Nodes: 13 | 124.3s
+  [14/20] L10_14: Create a Blueprint for a projectile. On BeginPlay enabl...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 11 | 82.4s
+  [15/20] L10_15: Create a Blueprint for a pressure plate. On overlap ope...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 58.5s
+  [16/20] L10_16: Create a Blueprint with vector SpawnPoint. On BeginPlay...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 97% | Nodes: 13 | 115.8s
+  [17/20] L10_17: Create a Blueprint for a platform that moves between tw...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 11 | 117.1s
+  [18/20] L10_18: Create a Blueprint that requires 3 overlaps in sequence...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 96% | Nodes: 9 | 80.4s
+  [19/20] L10_19: Create a Blueprint that on BeginPlay creates WBP_Loadin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 95% | Nodes: 8 | 76.2s
+  [20/20] L10_20: Create a Blueprint with int Score at 0 and float Health...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 19 | 176.1s
+  => syntax=95.0% sim=99.2%
+
+============================================================
+  [11/23] lesson_11: Arrays and Data Structures (20 prompts)
+============================================================
+  [1/20] L11_01: Create a Blueprint with a string array Inventory. On Be...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 45.1s
+  [2/20] L11_02: Create a Blueprint with actor array Enemies. On pressin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 37.7s
+  [3/20] L11_03: Create a Blueprint with string array Items. On BeginPla...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 34.9s
+  [4/20] L11_04: Create a Blueprint with string array Tags. On BeginPlay...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 49.8s
+  [5/20] L11_05: Create a Blueprint with actor array Items. On BeginPlay...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 56.5s
+  [6/20] L11_06: Create a Blueprint with string array Names. On BeginPla...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 37.8s
+  [7/20] L11_07: Create a Blueprint with actor array Targets. On pressin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 37.7s
+  [8/20] L11_08: Create a Blueprint with actor array Visitors. On overla...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 51.6s
+  [9/20] L11_09: Create a Blueprint with actor array Enemies. On pressin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 49.0s
+  [10/20] L11_10: Create a Blueprint with actor array Targets. On BeginPl...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 12 | 116.3s
+  [11/20] L11_11: Create a Blueprint with string array Quotes. On pressin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 56.1s
+  [12/20] L11_12: Create a Blueprint with vector array SpawnPoints. On Be...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 64.7s
+  [13/20] L11_13: Create a Blueprint with actor array TrackedActors. On o...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 95.0s
+  [14/20] L11_14: Create a Blueprint with int array Scores. Start a loopi...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 11 | 98.7s
+  [15/20] L11_15: Create a Blueprint with string array Log. On BeginPlay ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 53.2s
+  [16/20] L11_16: Create a Blueprint with actor array AllActors. On Begin...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 11 | 101.9s
+  [17/20] L11_17: Create a Blueprint with int PickupType and string array...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 103.1s
+  [18/20] L11_18: Create a Blueprint with actor array Queue. On pressing ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 10 | 90.1s
+  [19/20] L11_19: Create a Blueprint with actor array Targets. On BeginPl...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 8 | 69.1s
+  [20/20] L11_20: Create a Blueprint with string array Inventory. On Begi...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 9 | 89.4s
+  => syntax=100.0% sim=100.0%
+
+============================================================
+  [12/23] lesson_12: Edge Cases and Unusual Patterns (20 prompts)
+============================================================
+  [1/20] L12_01: Create the simplest possible Blueprint. Just an actor w...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 2 | 17.1s
+  [2/20] L12_02: Create a Blueprint that on BeginPlay uses a Sequence wi...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 71% | Nodes: 6 | 47.3s
+  [3/20] L12_03: Create a Blueprint that on BeginPlay waits 1 second, pr...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 55.2s
+  [4/20] L12_04: Create a Blueprint with no variables. On overlap print ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 38.9s
+  [5/20] L12_05: Create a Blueprint with string Name set to Player, int ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 3 | 38.0s
+  [6/20] L12_06: Create a Blueprint with three custom events: OnAttack, ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 45.7s
+  [7/20] L12_07: Create a Blueprint that on BeginPlay calls DestroyActor...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 2 | 15.5s
+  [8/20] L12_08: Create a Blueprint that on pressing Toggle uses FlipFlo...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [X] Score: 100% | Nodes: 0 | 57.4s
+  [9/20] L12_09: Create a Blueprint that on overlap uses DoOnce to print...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 31.8s
+  [10/20] L12_10: Create a Blueprint with float Speed at 10 and float Mul...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 48.8s
+  [11/20] L12_11: Make a light switch. When pressed it turns the light on...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 80% | Nodes: 4 | 35.9s
+  [12/20] L12_12: Make something the player can pick up that gives them p...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 57% | Nodes: 10 | 86.9s
+  [13/20] L12_13: Create a Blueprint with a Gate. On pressing Open, open ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 49.5s
+  [14/20] L12_14: Create a Blueprint that on pressing Next uses MultiGate...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 43.1s
+  [15/20] L12_15: Create a Blueprint that on pressing Jump prints Jumped....
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 35.3s
+  [16/20] L12_16: Create a Blueprint that on BeginPlay gets its own locat...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 36.0s
+  [17/20] L12_17: Create a Blueprint that on overlap tries CastToCharacte...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 6 | 56.9s
+  [18/20] L12_18: Create a Blueprint that on overlap uses DoOnce. Inside ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 39.7s
+  [19/20] L12_19: Create a Blueprint with float A at 10, float B at 3. On...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 12 | 123.7s
+  [20/20] L12_20: Create a character Blueprint with Health at 100, string...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 15 | 124.2s
+  => syntax=95.0% sim=95.4%
+
+============================================================
+  [13/23] lesson_13: Corrective Training: Connection Patterns + New Node Types (20 prompts)
+============================================================
+  [1/20] L13_01: Create a Blueprint that on overlap casts to Character. ...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 4 | 36.7s
+  [2/20] L13_02: Create a Blueprint that on overlap casts the other acto...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 94% | Nodes: 6 | 55.2s
+  [3/20] L13_03: Create a Blueprint with a float variable Speed. On over...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 55.7s
+  [4/20] L13_04: Create a Blueprint that on BeginPlay uses a Sequence wi...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 5 | 39.8s
+  [5/20] L13_05: Create a Blueprint with float variables X, Y, Z. On Beg...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 11 | 102.7s
+  [6/20] L13_06: Create a Blueprint that on BeginPlay uses a Sequence wi...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+    [OK] Score: 100% | Nodes: 7 | 56.1s
+  [7/20] L13_07: Create a Blueprint with float Health at 100. On AnyDama...
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\v14_dt5_pipeline.py", line 259, in <module>
+    main()
+  File "C:\BlueprintLLM\scripts\v14_dt5_pipeline.py", line 238, in main
+    run_v14_exam()
+  File "C:\BlueprintLLM\scripts\v14_dt5_pipeline.py", line 52, in run_v14_exam
+    proc = subprocess.run(cmd, capture_output=False, timeout=14400)  # 4h max
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python311\Lib\subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python311\Lib\subprocess.py", line 1228, in communicate
+    sts = self.wait(timeout=self._remaining_time(endtime))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python311\Lib\subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python311\Lib\subprocess.py", line 1593, in _wait
+    raise TimeoutExpired(self.args, timeout)
+subprocess.TimeoutExpired: Command '['C:\\BlueprintLLM\\venv\\Scripts\\python.exe', 'scripts/run_full_exam_suite.py', '--model', 'models/blueprint-lora-v14/final', '--version', 'v14']' timed out after 14400.0 seconds

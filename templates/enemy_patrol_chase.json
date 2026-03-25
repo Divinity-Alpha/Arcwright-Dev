@@ -1,0 +1,78 @@
+{
+  "template_id": "enemy_patrol_chase",
+  "name": "Patrol + Chase Enemy",
+  "category": "enemies",
+  "description": "An AI enemy that patrols between two points and chases the player when within detection range. Uses Pawn + FloatingPawnMovement + AIController with timer-based distance checks. Proven working without NavMesh (bUsePathfinding=false).",
+  "version": "1.0",
+  "proven_in": "Arena Collector",
+  "requires": ["NavMeshBoundsVolume in level (optional — works without via bUsePathfinding=false)"],
+  "known_constraints": [
+    "Uses MoveToLocation with bUsePathfinding=false — enemy moves in straight lines, no obstacle avoidance",
+    "Character class causes SCS component issues — use Pawn with FloatingPawnMovement instead",
+    "BT MoveTo requires NavMesh which may not build in World Partition — direct movement used as fallback",
+    "set_class_defaults must use full /Game/ path for Blueprint classes",
+    "Spawning must use full /Game/ path for the class parameter"
+  ],
+  "assets": {
+    "enemy_pawn": {
+      "blueprint_dsl": "BLUEPRINT: {{pawn_name|BP_SimpleEnemy}}\nPARENT: Pawn\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: PrintString [InString=\"Enemy Spawned\"]\n\nEXEC n1.Then -> n2.Execute",
+      "components": [
+        {
+          "type": "StaticMesh",
+          "name": "EnemyMesh",
+          "properties": {
+            "mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+            "scale": {"x": 1, "y": 1, "z": 2}
+          }
+        }
+      ],
+      "material": {
+        "name": "MI_EnemyRed",
+        "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+        "vector_params": {
+          "BaseColor": {"r": 1.0, "g": 0.1, "b": 0.1, "a": 1.0}
+        }
+      },
+      "additional_setup": [
+        "Add FloatingPawnMovement component (may need manual add or via add_component if supported)",
+        "set_class_defaults: AIControllerClass = BP_EnemyAIController (full /Game/ path)",
+        "set_class_defaults: AutoPossessAI = PlacedInWorldOrSpawned"
+      ]
+    },
+    "ai_controller": {
+      "blueprint_dsl": "BLUEPRINT: {{controller_name|BP_EnemyAIController}}\nPARENT: AIController\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: PrintString [InString=\"Enemy AI Active\"]\n\nEXEC n1.Then -> n2.Execute",
+      "node_editing_required": {
+        "description": "The patrol + chase logic is too complex for DSL alone. After creating the base Blueprint, use node editing commands to build the Tick/Timer logic.",
+        "patrol_logic": [
+          "SetTimerByFunctionName [FunctionName=DoPatrol, Time=3.0, Looping=true] on BeginPlay",
+          "CustomEvent DoPatrol: alternate MoveToLocation between PatrolPointA and PatrolPointB",
+          "MoveToLocation with bUsePathfinding=false"
+        ],
+        "chase_logic": [
+          "SetTimerByFunctionName [FunctionName=CheckDistance, Time=0.5, Looping=true] on BeginPlay",
+          "CustomEvent CheckDistance: GetPlayerPawn → GetDistanceTo → if < chase_range, MoveToLocation toward player",
+          "When chasing, pause patrol timer. When player leaves range, resume patrol."
+        ]
+      }
+    },
+    "behavior_tree": {
+      "description": "Optional — BT asset for future use when NavMesh is available",
+      "bt_dsl": "BEHAVIORTREE: {{bt_name|BT_EnemyPatrol}}\nBLACKBOARD: {{bb_name|BB_EnemyPatrol}}\n\nKEY PatrolPointA: Vector\nKEY PatrolPointB: Vector\nKEY GoingToB: Bool = true\nKEY TargetActor: Object\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=150]\n    TASK: PrintString [Message=\"Caught you!\"]\n    TASK: Wait [Duration=1.0]\n  SEQUENCE: PatrolToB\n    DECORATOR: BlackboardBased [Key=GoingToB, Condition=Equals, Value=true]\n    TASK: MoveTo [Key=PatrolPointB, AcceptableRadius=100]\n    TASK: SetBlackboardValue [Key=GoingToB, Value=false]\n    TASK: Wait [Duration=1.0]\n  SEQUENCE: PatrolToA\n    DECORATOR: BlackboardBased [Key=GoingToB, Condition=Equals, Value=false]\n    TASK: MoveTo [Key=PatrolPointA, AcceptableRadius=100]\n    TASK: SetBlackboardValue [Key=GoingToB, Value=true]\n    TASK: Wait [Duration=1.0]"
+    }
+  },
+  "customizable": {
+    "pawn_name": "Enemy pawn Blueprint name (default: BP_SimpleEnemy)",
+    "controller_name": "AI Controller Blueprint name (default: BP_EnemyAIController)",
+    "patrol_point_a": "First patrol point (default: 300,-400,50)",
+    "patrol_point_b": "Second patrol point (default: -300,400,50)",
+    "chase_range": "Distance at which enemy starts chasing (default: 800)",
+    "move_speed": "Movement speed (default: FloatingPawnMovement default)",
+    "mesh": "Enemy visual mesh (default: Cylinder)",
+    "color": "Enemy color (default: red)"
+  },
+  "spawn_example": {
+    "class": "/Game/Arcwright/Generated/BP_SimpleEnemy",
+    "location": {"x": 0, "y": 300, "z": 50},
+    "label": "Enemy_Patrol"
+  }
+}

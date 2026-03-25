@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "name": "BP_FPSCharacter",
+    "parent_class": "Character"
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "node_0",
+      "dsl_type": "InputAxis_MoveForward",
+      "ue_class": "UK2Node_InputAxisEvent",
+      "params": {
+        "InputAxisName": "MoveForward"
+      }
+    },
+    {
+      "id": "node_1",
+      "dsl_type": "GetActorForwardVector",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:GetActorForwardVector"
+    },
+    {
+      "id": "node_2",
+      "dsl_type": "AddMovementInput_Forward",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Pawn:AddMovementInput"
+    },
+    {
+      "id": "node_3",
+      "dsl_type": "InputAxis_MoveRight",
+      "ue_class": "UK2Node_InputAxisEvent",
+      "params": {
+        "InputAxisName": "MoveRight"
+      }
+    },
+    {
+      "id": "node_4",
+      "dsl_type": "GetActorRightVector",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:GetActorRightVector"
+    },
+    {
+      "id": "node_5",
+      "dsl_type": "AddMovementInput_Right",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Pawn:AddMovementInput"
+    },
+    {
+      "id": "node_6",
+      "dsl_type": "InputAction_Jump",
+      "ue_class": "UK2Node_InputAction",
+      "params": {
+        "ActionName": "Jump"
+      }
+    },
+    {
+      "id": "node_7",
+      "dsl_type": "Jump",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Character:Jump"
+    },
+    {
+      "id": "node_8",
+      "dsl_type": "StopJumping",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Character:StopJumping"
+    }
+  ],
+  "connections": [
+    {
+      "src_node": "node_0",
+      "src_pin": "Then",
+      "dst_node": "node_2",
+      "dst_pin": "Execute"
+    },
+    {
+      "src_node": "node_1",
+      "src_pin": "ReturnValue",
+      "dst_node": "node_2",
+      "dst_pin": "WorldDirection"
+    },
+    {
+      "src_node": "node_0",
+      "src_pin": "AxisValue",
+      "dst_node": "node_2",
+      "dst_pin": "ScaleValue"
+    },
+    {
+      "src_node": "node_3",
+      "src_pin": "Then",
+      "dst_node": "node_5",
+      "dst_pin": "Execute"
+    },
+    {
+      "src_node": "node_4",
+      "src_pin": "ReturnValue",
+      "dst_node": "node_5",
+      "dst_pin": "WorldDirection"
+    },
+    {
+      "src_node": "node_3",
+      "src_pin": "AxisValue",
+      "dst_node": "node_5",
+      "dst_pin": "ScaleValue"
+    },
+    {
+      "src_node": "node_6",
+      "src_pin": "Pressed",
+      "dst_node": "node_7",
+      "dst_pin": "Execute"
+    },
+    {
+      "src_node": "node_6",
+      "src_pin": "Released",
+      "dst_node": "node_8",
+      "dst_pin": "Execute"
+    }
+  ]
+}

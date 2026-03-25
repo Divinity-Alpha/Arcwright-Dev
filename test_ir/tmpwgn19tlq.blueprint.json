@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "name": "BP_Torch",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [
+    {
+      "name": "LightColor",
+      "type": "Color",
+      "default": "White"
+    },
+    {
+      "name": "LightIntensity",
+      "type": "Float",
+      "default": "1000.0"
+    },
+    {
+      "name": "LightRadius",
+      "type": "Float",
+      "default": "500.0"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "SetPointLightColor",
+      "params": {
+        "Color": "White"
+      },
+      "ue_class": "UNMAPPED",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "SetPointLightIntensity",
+      "params": {
+        "Intensity": "1000.0"
+      },
+      "ue_class": "UNMAPPED",
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "SetPointLightRadius",
+      "params": {
+        "Radius": "500.0"
+      },
+      "ue_class": "UNMAPPED",
+      "position": [
+        900,
+        0
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "Then",
+      "dst_node": "n3",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n3",
+      "src_pin": "Then",
+      "dst_node": "n4",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n1",
+      "src_pin": "LightColor",
+      "dst_node": "n2",
+      "dst_pin": "C",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n1",
+      "src_pin": "LightIntensity",
+      "dst_node": "n3",
+      "dst_pin": "I",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n1",
+      "src_pin": "LightRadius",
+      "dst_node": "n4",
+      "dst_pin": "R",
+      "data_type": null
+    }
+  ]
+}

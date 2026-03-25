@@ -1,0 +1,1490 @@
+{
+  "run": 2,
+  "timestamp": "20260312_221219",
+  "date": "2026-03-12",
+  "total_score": 121,
+  "max_score": 125,
+  "pct": 96.8,
+  "test_count": 25,
+  "categories": {
+    "create": {
+      "intent": 25,
+      "plan": 23,
+      "exec": 25,
+      "verify": 23,
+      "quality": 25,
+      "count": 25
+    }
+  },
+  "failure_counts": {
+    "P2": 2,
+    "V1": 2
+  },
+  "results": {
+    "C.01": {
+      "test_id": "C.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create health pickup BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "health pickup that restores|25 HP when the player touches it"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_HealthPickup",
+            "asset_path": "/Game/Arcwright/Generated/BP_HealthPickup",
+            "nodes_created": 9,
+            "nodes_expected": 7,
+            "connections_wired": 6,
+            "connections_expected": 9,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_HealthPickup\nPARENT: Actor\n\nCATEGORY: Pickups\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE n3: GetVar [Variable=Health]\nNODE n4: AddFloat [B=25]\nNODE n5: SetVar [Variable=Health]\nNODE n6: PlaySound [Sound=\"PickupSound\"]\nNODE n7: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.CastSucceeded -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\nEXEC n6.Then -> n7.Execute\n\nDATA n1.OtherActor -> n2.Object [...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_HealthPickup"
+        },
+        {
+          "type": "blueprint_has_variable",
+          "passed": true,
+          "detail": "Found variable 'Health' on BP_HealthPickup"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 93.28
+    },
+    "C.02": {
+      "test_id": "C.02",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create coin BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "coin that adds|10 points to the score and destroys itself"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_Coin",
+            "asset_path": "/Game/Arcwright/Generated/BP_Coin",
+            "nodes_created": 7,
+            "nodes_expected": 5,
+            "connections_wired": 4,
+            "connections_expected": 4,
+            "compiled": false,
+            "compile_errors": [
+              "Node Get Score: compiler error",
+              "Node float + float: compiler error",
+              "Node Set Score: compiler error"
+            ],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_Coin\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Score]\nNODE n3: AddFloat [B=10]\nNODE n4: SetVar [Variable=Score]\nNODE n5: DestroyActor\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n2.Value -> n3.A [Int]\nDATA n3.ReturnValue -> n4.Value [Int]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_Coin"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 63.57
+    },
+    "C.03": {
+      "test_id": "C.03",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create door BP with key check",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "a door that opens when the player has a key"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_DoorCheck",
+            "asset_path": "/Game/Arcwright/Generated/BP_DoorCheck",
+            "nodes_created": 7,
+            "nodes_expected": 5,
+            "connections_wired": 4,
+            "connections_expected": 4,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 1
+          },
+          "dsl": "BLUEPRINT: BP_DoorCheck\nPARENT: Actor\n\nVAR HasKey: Bool = false\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=HasKey]\nNODE n3: Branch\nNODE n4: SetActorHiddenInGame [bNewHidden=false]\nNODE n5: PrintString [InString=\"Condition Met\"]\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.True -> n4.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n2.Value -> n3.Condition [Bool]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_DoorCheck"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 66.37
+    },
+    "C.04": {
+      "test_id": "C.04",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create pressure plate BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "pressure plate that activates when something stands on it"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_PressurePlate",
+            "asset_path": "/Game/Arcwright/Generated/BP_PressurePlate",
+            "nodes_created": 6,
+            "nodes_expected": 4,
+            "connections_wired": 3,
+            "connections_expected": 3,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_PressurePlate\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetActorHiddenInGame [bNewHidden=false]\nNODE n3: Event_ActorEndOverlap\nNODE n4: SetActorHiddenInGame [bNewHidden=true]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute\n\nDATA n1.OtherActor -> n2.Target [Actor]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_PressurePlate"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 55.86
+    },
+    "C.05": {
+      "test_id": "C.05",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create timed bomb BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "timed bomb that explodes after|5 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_TimedBomb",
+            "asset_path": "/Game/Arcwright/Generated/BP_TimedBomb",
+            "nodes_created": 6,
+            "nodes_expected": 4,
+            "connections_wired": 2,
+            "connections_expected": 2,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_TimedBomb\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Explode\", Time=5.0, bLooping=false]\nNODE n3: Event_CustomEvent [EventName=\"Explode\"]\nNODE n4: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_TimedBomb"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 51.75
+    },
+    "C.06": {
+      "test_id": "C.06",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create checkpoint BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "checkpoint that saves the player's position"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_Checkpoint",
+            "asset_path": "/Game/Arcwright/Generated/BP_Checkpoint",
+            "nodes_created": 6,
+            "nodes_expected": 3,
+            "connections_wired": 2,
+            "connections_expected": 2,
+            "compiled": false,
+            "compile_errors": [
+              "Node InputAction Save: compiler error",
+              "Node Get Actor Location\nTarget is Actor: compiler error",
+              "Node Set SavedPosition: compiler error"
+            ],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_Checkpoint\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Save\"]\nNODE n2: GetActorLocation\nNODE n3: SetVar [Variable=SavedPosition]\n\nEXEC n1.Pressed -> n3.Execute\n\nDATA n2.ReturnValue -> n3.Value [Vector]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_Checkpoint"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 44.24
+    },
+    "C.07": {
+      "test_id": "C.07",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create turret BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "turret that fires at the player every|2 seconds when in range"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_Turret",
+            "asset_path": "/Game/Arcwright/Generated/BP_Turret",
+            "nodes_created": 11,
+            "nodes_expected": 9,
+            "connections_wired": 6,
+            "connections_expected": 8,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_Turret\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Fire\", Time=2.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"Fire\"]\nNODE n4: GetPlayerPawn\nNODE n5: GetDistanceTo\nNODE n6: LessThan [B=1000.0]\nNODE n7: Branch\nNODE n8: DestroyActor\nNODE n9: PrintString [InString=\"Turret Fired\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n7.Execute\nEXEC n7.True -> n8.Execute\nEXEC n8.Then -> n9.Execute\n\nDATA n4.ReturnValue -> n5...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_Turret"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 99.47
+    },
+    "C.08": {
+      "test_id": "C.08",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create moving platform BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "moving platform that goes up|300 units and comes back down"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_MovingPlatform",
+            "asset_path": "/Game/Arcwright/Generated/BP_MovingPlatform",
+            "nodes_created": 10,
+            "nodes_expected": 12,
+            "connections_wired": 7,
+            "connections_expected": 17,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_MovingPlatform\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: GetVar\nNODE n3: AddFloat\nNODE n4: SetVar\nNODE n5: GreaterThan\nNODE n6: Branch\nNODE n7: SubtractFloat\nNODE n8: SetVar\nNODE n9: LessThan\nNODE n10: Branch\nNODE n11: AddFloat\nNODE n12: SetVar\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.Then -> n6.Execute\nEXEC n6.True -> n8.Execute\nEXEC n8.Then -> n6.Execute\nEXEC n6.False -> n12.Execute\nEXEC n12.Then -> n6.Execute\n\nDATA n1.DeltaSeconds -> n3.A [Float]\nDATA n2.Value ->...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_MovingPlatform"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 129.22
+    },
+    "C.09": {
+      "test_id": "C.09",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create score manager BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "score manager that tracks points and high score"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_ScoreManager",
+            "asset_path": "/Game/Arcwright/Generated/BP_ScoreManager",
+            "nodes_created": 13,
+            "nodes_expected": 9,
+            "connections_wired": 11,
+            "connections_expected": 9,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 2
+          },
+          "dsl": "BLUEPRINT: BP_ScoreManager\nPARENT: Actor\n\nVAR Score: Int = 0\nVAR HighScore: Int = 0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetVar [Variable=HighScore]\nNODE n3: PrintString [InString=\"High Score: \"]\nNODE n4: SetVar [Variable=Score, Value=10]\nNODE n5: GetVar [Variable=Score]\nNODE n6: GreaterThan\nNODE n7: Branch\nNODE n8: SetVar [Variable=HighScore]\nNODE n9: PrintString [InString=\"New High Score!\"]\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n7.Execute\nEXEC ...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_ScoreManager"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 101.04
+    },
+    "C.10": {
+      "test_id": "C.10",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create wave spawner BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "wave spawner that sends enemies every|15 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_WaveSpawner",
+            "asset_path": "/Game/Arcwright/Generated/BP_WaveSpawner",
+            "nodes_created": 6,
+            "nodes_expected": 4,
+            "connections_wired": 2,
+            "connections_expected": 2,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_WaveSpawner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"SpawnEnemy\", Time=15.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"SpawnEnemy\"]\nNODE n4: PrintString [InString=\"Enemy Spawned\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_WaveSpawner"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 55.65
+    },
+    "C.11": {
+      "test_id": "C.11",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create day night cycle BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "day night cycle that toggles every|60 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_DayNightCycle",
+            "asset_path": "/Game/Arcwright/Generated/BP_DayNightCycle",
+            "nodes_created": 8,
+            "nodes_expected": 6,
+            "connections_wired": 4,
+            "connections_expected": 4,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_DayNightCycle\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"ToggleDay\", Time=60.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"ToggleDay\"]\nNODE n4: Branch\nNODE n5: SetActorHiddenInGame [bNewHidden=false]\nNODE n6: SetActorHiddenInGame [bNewHidden=true]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.True -> n5.Execute\nEXEC n4.False -> n6.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_DayNightCycle"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 72.15
+    },
+    "C.12": {
+      "test_id": "C.12",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create respawn system BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "respawn system that resets the player after|3 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_TimedRespawn",
+            "asset_path": "/Game/Arcwright/Generated/BP_TimedRespawn",
+            "nodes_created": 10,
+            "nodes_expected": 14,
+            "connections_wired": 0,
+            "connections_expected": 0,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_TimedRespawn\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"ExecuteRespawn\", Time=3.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"ExecuteRespawn\"]\nNODE n4: GetPlayerPawn\nNODE n5: DestroyActor\nNODE n6: SpawnSystemAtLocation [SpawnTransform=(X=0,Y=0,Z=200)]\nNODE n7: AddMappingContext\nNODE n8: Sequence\nNODE n9: IsLocalPlayerController\nNODE n10: Branch\nNODE n11: AddToPlayerScreen\nNODE n12: AddMappingContext\nNODE n13:...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_TimedRespawn"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 86.67
+    },
+    "C.13": {
+      "test_id": "C.13",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create treasure chest BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "treasure chest that gives random gold between|10 and|50"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_TreasureChest",
+            "asset_path": "/Game/Arcwright/Generated/BP_TreasureChest",
+            "nodes_created": 7,
+            "nodes_expected": 4,
+            "connections_wired": 4,
+            "connections_expected": 3,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_TreasureChest\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: RandomInteger [Min=10, Max=50]\nNODE n3: PrintString [InString=\"Gold: \"]\nNODE n4: DestroyActor []\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\n\nDATA n2.ReturnValue -> n3.InString [String]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_TreasureChest"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 55.55
+    },
+    "C.14": {
+      "test_id": "C.14",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create lever BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "lever that toggles between on and off"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_ToggleLever",
+            "asset_path": "/Game/Arcwright/Generated/BP_ToggleLever",
+            "nodes_created": 9,
+            "nodes_expected": 6,
+            "connections_wired": 5,
+            "connections_expected": 5,
+            "compiled": false,
+            "compile_errors": [
+              "Node InputAction Use: compiler error",
+              "Node Set Visibility\nTarget is Scene Component: compiler error",
+              "Node Set Visibility\nTarget is Scene Component: compiler error",
+              "Node Set Visibility\nTarget is Scene Component: compiler error",
+              "Node Set Visibility\nTarget is Scene Component: compiler error"
+            ],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_ToggleLever\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Use\"]\nNODE n2: FlipFlop\nNODE n3: SetVisibility [Target=ToggleOn, NewVisibility=true]\nNODE n4: SetVisibility [Target=ToggleOff, NewVisibility=false]\nNODE n5: SetVisibility [Target=ToggleOn, NewVisibility=false]\nNODE n6: SetVisibility [Target=ToggleOff, NewVisibility=true]\n\nEXEC n1.Pressed -> n2.Execute\nEXEC n2.A -> n3.Execute\nEXEC n2.B -> n5.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n5.Then -> n6.Exe...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_ToggleLever"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 73.51
+    },
+    "C.15": {
+      "test_id": "C.15",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create damage zone BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "damage zone that hurts|10 HP per second"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_DamageZone",
+            "asset_path": "/Game/Arcwright/Generated/BP_DamageZone",
+            "nodes_created": 14,
+            "nodes_expected": 13,
+            "connections_wired": 11,
+            "connections_expected": 13,
+            "compiled": false,
+            "compile_errors": [
+              "Node Clear Timer by Event: compiler error",
+              "Node float - float: compiler error",
+              "Node Set Health: compiler error"
+            ],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_DamageZone\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetTimerByFunctionName [FunctionName=\"DealDamage\", Time=1.0, bLooping=true]\nNODE n3: Event_ActorEndOverlap\nNODE n4: ClearTimerByFunctionName [FunctionName=\"DealDamage\"]\nNODE n5: Event_CustomEvent [EventName=\"DealDamage\"]\nNODE n6: GetOverlappingActors [bIncludePlayer=true]\nNODE n7: ForEachLoop\nNODE n8: SubtractFloat [B=10.0]\nNODE n9: SetVar [Variable=Health]\nNODE n10: LessThan [B=25.0]\nNODE n11: B...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_DamageZone"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 135.83
+    },
+    "C.16": {
+      "test_id": "C.16",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create teleporter BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "teleporter that moves the player to a target point"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_Teleporter",
+            "asset_path": "/Game/Arcwright/Generated/BP_Teleporter",
+            "nodes_created": 6,
+            "nodes_expected": 3,
+            "connections_wired": 1,
+            "connections_expected": 2,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_Teleporter\nPARENT: Actor\n\nVAR TargetLocation: Vector\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Teleport\"]\nNODE n2: GetVar [Variable=TargetLocation]\nNODE n3: SetActorLocation\n\nEXEC n1.Pressed -> n3.Execute\n\nDATA n2.Value -> n3.NewLocation [Vector]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_Teleporter"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 52.69
+    },
+    "C.17": {
+      "test_id": "C.17",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create blinking light BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "blinking light that turns on and off every|3 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_BlinkLight",
+            "asset_path": "/Game/Arcwright/Generated/BP_BlinkLight",
+            "nodes_created": 8,
+            "nodes_expected": 6,
+            "connections_wired": 4,
+            "connections_expected": 4,
+            "compiled": false,
+            "compile_errors": [
+              "Node Set Visibility\nTarget is Scene Component: compiler error",
+              "Node Set Visibility\nTarget is Scene Component: compiler error"
+            ],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_BlinkLight\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Blink\", Time=3.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=Blink]\nNODE n4: FlipFlop\nNODE n5: SetVisibility [Target=LightComponent, NewVisibility=true]\nNODE n6: SetVisibility [Target=LightComponent, NewVisibility=false]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.A -> n5.Execute\nEXEC n4.B -> n6.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_BlinkLight"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 71.72
+    },
+    "C.18": {
+      "test_id": "C.18",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create spinning BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "spinning actor that rotates on its Z axis"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_Spinner",
+            "asset_path": "/Game/Arcwright/Generated/BP_Spinner",
+            "nodes_created": 5,
+            "nodes_expected": 3,
+            "connections_wired": 1,
+            "connections_expected": 3,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_Spinner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: MakeRotator [Roll=0, Pitch=0, Yaw=10]\nNODE n3: AddActorLocalRotation\n\nEXEC n1.Then -> n3.Execute\n\nDATA n1.DeltaSeconds -> n2.Yaw [Float]\nDATA n2.ReturnValue -> n3.DeltaRotation [Rotator]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_Spinner"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 56.18
+    },
+    "C.19": {
+      "test_id": "C.19",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create spring pad BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "spring pad that launches the player upward"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_SpringPad",
+            "asset_path": "/Game/Arcwright/Generated/BP_SpringPad",
+            "nodes_created": 7,
+            "nodes_expected": 5,
+            "connections_wired": 3,
+            "connections_expected": 4,
+            "compiled": false,
+            "compile_errors": [
+              "Node Add Impulse\nTarget is Primitive Component: compiler error"
+            ],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_SpringPad\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetActorHiddenInGame [bNewHidden=true]\nNODE n3: AddImpulse [Impulse=(X=0,Y=0,Z=2000)]\nNODE n4: Delay [Duration=1.0]\nNODE n5: SetActorHiddenInGame [bNewHidden=false]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Completed -> n5.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_SpringPad"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 65.49
+    },
+    "C.20": {
+      "test_id": "C.20",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create game manager BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "game manager that initializes score and health"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_GameManager",
+            "asset_path": "/Game/Arcwright/Generated/BP_GameManager",
+            "nodes_created": 5,
+            "nodes_expected": 3,
+            "connections_wired": 2,
+            "connections_expected": 4,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 2
+          },
+          "dsl": "BLUEPRINT: BP_GameManager\nPARENT: Actor\n\nVAR Score: Int = 0\nVAR Health: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetVar [Variable=Score]\nNODE n3: SetVar [Variable=Health]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\n\nDATA 0 -> n2.Value [Int]\nDATA 100.0 -> n3.Value [Float]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_FirstPersonGameMode"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 55.75
+    },
+    "C.21": {
+      "test_id": "C.21",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_behavior_tree"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create patrol AI behavior tree",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_behavior_tree",
+            "params": {
+              "prompt": "patrol AI that walks between two waypoints"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "tree_asset_path": "/Game/Arcwright/BehaviorTrees/BT_Patrol.BT_Patrol",
+            "blackboard_asset_path": "/Game/Arcwright/BehaviorTrees/BB_Patrol.BB_Patrol",
+            "composite_count": 1,
+            "task_count": 4,
+            "decorator_count": 0,
+            "service_count": 0,
+            "total_node_count": 5
+          },
+          "dsl": "BEHAVIORTREE: BT_Patrol\nBLACKBOARD: BB_Patrol\n\nKEY WaypointA: Vector\nKEY WaypointB: Vector\n\nTREE:\n\nSEQUENCE: PatrolAB\n  TASK: MoveTo [Key=WaypointA, AcceptableRadius=100]\n  TASK: Wait [Duration=3.0]\n  TASK: MoveTo [Key=WaypointB, AcceptableRadius=100]\n  TASK: Wait [Duration=3.0]",
+          "step": 1,
+          "command": "create_behavior_tree"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Patrol|AI' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "V1"
+      ],
+      "duration_s": 56.63
+    },
+    "C.22": {
+      "test_id": "C.22",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_behavior_tree"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create boss AI behavior tree",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_behavior_tree",
+            "params": {
+              "prompt": "boss AI with three phases based on health"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "tree_asset_path": "/Game/Arcwright/BehaviorTrees/BT_BossAI.BT_BossAI",
+            "blackboard_asset_path": "/Game/Arcwright/BehaviorTrees/BB_BossAI.BB_BossAI",
+            "composite_count": 4,
+            "task_count": 10,
+            "decorator_count": 2,
+            "service_count": 0,
+            "total_node_count": 16
+          },
+          "dsl": "BEHAVIORTREE: BT_BossAI\nBLACKBOARD: BB_BossAI\n\nKEY TargetActor: Object\nKEY BossHealth: Float = 1000.0\nKEY SpawnPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Phase1\n    DECORATOR: BlackboardBased [Key=BossHealth, Condition=GreaterThan, Value=600]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: ApplyDamage [Key=TargetActor, Damage=20]\n    TASK: Wait [Duration=1.0]\n  SEQUENCE: Phase2\n    DECORATOR: BlackboardBased [Key=BossHealth, Condition=LessThan, Value=300]\n    TASK: MoveT...",
+          "step": 1,
+          "command": "create_behavior_tree"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Boss' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "V1"
+      ],
+      "duration_s": 122.56
+    },
+    "C.23": {
+      "test_id": "C.23",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_data_table"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create weapons data table",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_data_table",
+            "params": {
+              "prompt": "weapons table with name damage fire rate and ammo"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "table_asset_path": "/Game/Arcwright/DataTables/DT_Weapons",
+            "struct_asset_path": "/Game/Arcwright/DataTables/FWeaponData",
+            "column_count": 4,
+            "row_count": 4
+          },
+          "dsl": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN AmmoCount: Int = 0\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12\nROW SMG: \"SMG\", 10.0, 0.08, 30\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8\nROW Sniper: \"Sniper\", 90.0, 2.0, 5",
+          "step": 1,
+          "command": "create_data_table"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "asset_exists",
+          "passed": true,
+          "detail": "Found asset: DT_Weapons"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 64.38
+    },
+    "C.24": {
+      "test_id": "C.24",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_data_table"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create enemy stats table",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_data_table",
+            "params": {
+              "prompt": "enemy stats table with name health damage and XP reward"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "table_asset_path": "/Game/Arcwright/DataTables/DT_Enemies",
+            "struct_asset_path": "/Game/Arcwright/DataTables/FEnemyData",
+            "column_count": 4,
+            "row_count": 4
+          },
+          "dsl": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN EnemyName: String\nCOLUMN Health: Float\nCOLUMN Damage: Float\nCOLUMN XPReward: Int\n\nROW Goblin: \"Goblin\", 50.0, 8.0, 25\nROW Skeleton: \"Skeleton\", 80.0, 12.0, 40\nROW Troll: \"Troll\", 150.0, 20.0, 100\nROW Dragon: \"Dragon\", 500.0, 60.0, 500",
+          "step": 1,
+          "command": "create_data_table"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "asset_exists",
+          "passed": true,
+          "detail": "Found asset: FEnemyData"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 62.08
+    },
+    "C.25": {
+      "test_id": "C.25",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_data_table"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create difficulty settings table",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_data_table",
+            "params": {
+              "prompt": "difficulty settings table with multipliers for health and damage"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "table_asset_path": "/Game/Arcwright/DataTables/DT_Difficulty",
+            "struct_asset_path": "/Game/Arcwright/DataTables/FDifficultySettings",
+            "column_count": 3,
+            "row_count": 4
+          },
+          "dsl": "DATATABLE: DT_Difficulty\nSTRUCT: FDifficultySettings\n\nCOLUMN DifficultyLevel: String\nCOLUMN HealthMultiplier: Float = 1.0\nCOLUMN DamageMultiplier: Float = 1.0\n\nROW Easy: \"Easy\", 1.5, 0.8\nROW Normal: \"Normal\", 1.0, 1.0\nROW Hard: \"Hard\", 0.75, 1.25\nROW Nightmare: \"Nightmare\", 0.5, 1.5",
+          "step": 1,
+          "command": "create_data_table"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "asset_exists",
+          "passed": true,
+          "detail": "Found asset: DT_Difficulty"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 57.26
+    }
+  }
+}

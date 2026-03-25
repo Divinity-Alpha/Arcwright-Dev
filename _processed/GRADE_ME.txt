@@ -1,0 +1,10 @@
+Grade these v4 results:
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_10_20260227_181859.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_10_20260227_181859_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_09_20260227_175403.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_09_20260227_175403_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_08_20260227_173510.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_08_20260227_173510_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_07_20260227_171844.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_07_20260227_171844_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/eval_v4_20260227.json

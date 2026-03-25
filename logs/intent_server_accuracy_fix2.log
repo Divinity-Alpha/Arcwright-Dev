@@ -1,0 +1,894 @@
+[14:29:28] ============================================================
+[14:29:28] Arcwright Intent Classification Server (Multi-Stage)
+[14:29:28] Intent port: 13380
+[14:29:28] UE query port: 13377
+[14:29:28] Model: meta-llama/Meta-Llama-3.1-70B (base, no LoRA)
+[14:29:28] ============================================================
+[14:29:28] Loading base model: meta-llama/Meta-Llama-3.1-70B
+[14:29:28] This uses the BASE model (no LoRA) -- intent classification is a general task
+[14:29:32] Loading tokenizer...
+[14:30:54] Loading model in 8-bit quantization...
+`torch_dtype` is deprecated! Use `dtype` instead!
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:05<02:40,  5.53s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:10<02:25,  5.21s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:15<02:21,  5.25s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:21<02:18,  5.32s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:26<02:10,  5.23s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:31<02:03,  5.16s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:36<01:57,  5.10s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:41<01:53,  5.17s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:47<01:51,  5.30s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:52<01:45,  5.26s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:57<01:39,  5.23s/it]Loading checkpoint shards:  40%|████      | 12/30 [01:02<01:34,  5.24s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [01:08<01:30,  5.35s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [01:13<01:26,  5.40s/it]Loading checkpoint shards:  50%|█████     | 15/30 [01:19<01:20,  5.36s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [01:24<01:14,  5.34s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:29<01:09,  5.33s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:35<01:04,  5.40s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:40<01:00,  5.47s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:46<00:53,  5.40s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:51<00:48,  5.36s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:56<00:42,  5.31s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [02:02<00:37,  5.41s/it]Loading checkpoint shards:  80%|████████  | 24/30 [02:07<00:32,  5.45s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [02:13<00:26,  5.39s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [02:18<00:21,  5.38s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [02:23<00:16,  5.36s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [02:29<00:10,  5.46s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [02:35<00:05,  5.50s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:36<00:00,  4.35s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:36<00:00,  5.23s/it]
+[14:33:33] Base model loaded. VRAM: 72.7 GB
+[14:33:33] Loading first adapter (blueprint) from C:\BlueprintLLM\models\blueprint-lora-v12\final
+[14:33:39]   Adapter 'blueprint' loaded
+[14:33:39] Loading adapter (bt) from C:\BlueprintLLM\models\bt-lora-v3\final
+[14:33:45]   Adapter 'bt' loaded
+[14:33:45] Loading adapter (dt) from C:\BlueprintLLM\models\dt-lora-v3\final
+[14:33:50]   Adapter 'dt' loaded
+[14:33:50] All adapters loaded and disabled (base model active for classification)
+[14:33:50] Ready. VRAM: 77.7 GB
+[14:33:50] Intent server listening on localhost:13380
+[14:33:50] Ready for multi-stage intent classification requests
+[14:33:50]   Stage 1: Classify (LLM) → Stage 2: Discover (UE:13377) → Stage 3: Refine (LLM)
+[14:33:50] Client connected: ('127.0.0.1', 60874)
+[14:34:02] Client connected: ('127.0.0.1', 60908)
+[14:34:02] Request: {"prompt": "health check"}
+[14:34:02] [Stage 1] Classifying: health check
+[14:34:02] [LLMGenerate] input_len=3176 tokens, max_new=300, timeout=120s
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[14:34:14] Client connected: ('127.0.0.1', 61052)
+[14:34:14] Request: {"prompt": "Set health to 200 on all enemies"}
+[14:34:21] Raw model output (19.1s, 39 tokens): {"mode":"QUERY","summary":"Check health","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"check_health","params":{},"depends_on":null}]}
+[14:34:21] [Stage 1] WARN: Operation 0: unknown command 'check_health' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[14:34:21] [Stage 1] Result: mode=QUERY, targets=[], ops=0
+[14:34:21] Single-stage result (QUERY)
+[14:34:21] [PostProcess] ENTER — plan type=dict
+[14:34:21] [PostProcess] mode=QUERY, 0 operations: []
+[14:34:21] [PostProcess] EXIT — 0 operations: []
+[14:34:21] Intent classified in 19.1s (multi-stage)
+[14:34:21] [Stage 1] Classifying: Set health to 200 on all enemies
+[14:34:21] Response sent: {"mode": "QUERY", "summary": "Check health", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'check_health' \u2014 removed. Hint:
+[14:34:21] [LLMGenerate] input_len=3182 tokens, max_new=300, timeout=120s
+[14:34:47] Raw model output (26.0s, 54 tokens): {"mode":"MODIFY","summary":"Set Health=200 on enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Health","default_value":"200"},"depends_on":null}]}
+[14:34:47] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[14:34:47] Multi-stage flow for MODIFY (discovery needed)
+[14:34:47] [Stage 2] Discovering targets: ['enemy']
+[14:34:47] [Stage 2] find_actors(enemy): 0 found
+[14:34:47] [Stage 2] find_blueprints(enemy): 0 found
+[14:34:47] [Stage 2] Discovery complete: 3 result sets
+[14:34:47] [Stage 3] Refining with 1 discovery sections
+[14:34:47] [LLMGenerate] input_len=1042 tokens, max_new=500, timeout=120s
+[14:34:54] Raw model output (6.9s, 17 tokens): Blueprints=[{"name":"BP_Enemy","variables":["Health","Speed"]},{"
+[14:34:54] [Stage 3] WARNING: Refined plan has 0 operations, falling back to Stage 1
+[14:34:54] [PostProcess] ENTER — plan type=str
+[14:34:54] [PostProcess] mode=MODIFY, 1 operations: ['batch_set_variable']
+[14:34:54] [PostProcess] RESHAPE: batch_set_variable flat → operations[]
+[14:34:54] [PostProcess] Plan rewritten with 1 operations
+[14:34:54] [PostProcess] EXIT — 1 operations: ['batch_set_variable']
+[14:34:54] Intent classified in 40.2s (multi-stage)
+[14:34:54] Response sent: {"mode": "MODIFY", "summary": "Set Health=200 on enemies", "targets": ["enemy"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"
+[14:34:54] Client connected: ('127.0.0.1', 61164)
+[14:34:54] Request: {"prompt": "Make the enemies faster"}
+[14:34:54] [Stage 1] Classifying: Make the enemies faster
+[14:34:54] [LLMGenerate] input_len=3178 tokens, max_new=300, timeout=120s
+[14:35:17] Raw model output (23.4s, 52 tokens): {"mode":"MODIFY","summary":"Increase speed on enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Speed","default_value":2},"depends_on":null}]}
+[14:35:17] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[14:35:17] Multi-stage flow for MODIFY (discovery needed)
+[14:35:17] [Stage 2] Discovering targets: ['enemy']
+[14:35:17] [Stage 2] find_actors(enemy): 0 found
+[14:35:17] [Stage 2] find_blueprints(enemy): 0 found
+[14:35:17] [Stage 2] Discovery complete: 3 result sets
+[14:35:17] [Stage 3] Refining with 1 discovery sections
+[14:35:17] [LLMGenerate] input_len=1038 tokens, max_new=500, timeout=120s
+[14:35:40] Raw model output (22.2s, 60 tokens): {"mode":"MODIFY","summary":"Make the enemies faster","requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"operations":[{"blueprint":"BP_Enemy","variable_name":"Speed","default_value":"1000"}]},"depends_on":null}]}
+[14:35:40] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[14:35:40] [PostProcess] ENTER — plan type=str
+[14:35:40] [PostProcess] mode=MODIFY, 1 operations: ['batch_set_variable']
+[14:35:40] [PostProcess] EXIT — 1 operations: ['batch_set_variable']
+[14:35:40] Intent classified in 45.7s (multi-stage)
+[14:35:40] Response sent: {"mode": "MODIFY", "summary": "Make the enemies faster", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint": "BP_Enemy", 
+[14:35:40] Client connected: ('127.0.0.1', 61289)
+[14:35:40] Request: {"prompt": "Double the enemy damage"}
+[14:35:40] [Stage 1] Classifying: Double the enemy damage
+[14:35:40] [LLMGenerate] input_len=3178 tokens, max_new=300, timeout=120s
+[14:36:04] Raw model output (24.4s, 53 tokens): {"mode":"MODIFY","summary":"Double enemy damage","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Damage","default_value":"2*Damage"},"depends_on":null}]}
+[14:36:04] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[14:36:04] Multi-stage flow for MODIFY (discovery needed)
+[14:36:04] [Stage 2] Discovering targets: ['enemy']
+[14:36:04] [Stage 2] find_actors(enemy): 0 found
+[14:36:04] [Stage 2] find_blueprints(enemy): 0 found
+[14:36:04] [Stage 2] Discovery complete: 3 result sets
+[14:36:04] [Stage 3] Refining with 1 discovery sections
+[14:36:04] [LLMGenerate] input_len=1038 tokens, max_new=500, timeout=120s
+[14:36:49] Raw model output (44.8s, 123 tokens): Blueprints: BP_Enemy (3 variables), BP_EnemyBoss (4 variables)
+Actors: Enemy_01 (BP_Enemy), Enemy_02 (BP_Enemy), Boss_01 (BP_EnemyBoss)
+{"mode":"MODIFY","summary":"Double the enemy damage","requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"operations":[{"b
+[14:36:49] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[14:36:49] [PostProcess] ENTER — plan type=str
+[14:36:49] [PostProcess] mode=MODIFY, 1 operations: ['batch_set_variable']
+[14:36:49] [PostProcess] EXIT — 1 operations: ['batch_set_variable']
+[14:36:49] Intent classified in 69.3s (multi-stage)
+[14:36:49] Response sent: {"mode": "MODIFY", "summary": "Double the enemy damage", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint": "BP_Enemy", 
+[14:36:49] Client connected: ('127.0.0.1', 62305)
+[14:36:49] Request: {"prompt": "Gold coins should be worth 50 each"}
+[14:36:49] [Stage 1] Classifying: Gold coins should be worth 50 each
+[14:36:49] [LLMGenerate] input_len=3182 tokens, max_new=300, timeout=120s
+[14:37:13] Raw model output (23.6s, 53 tokens): {"mode":"MODIFY","summary":"Set Coin value=50","targets":["coin"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Value","default_value":50},"depends_on":null}]}
+[14:37:13] [Stage 1] Result: mode=MODIFY, targets=['coin'], ops=1
+[14:37:13] Multi-stage flow for MODIFY (discovery needed)
+[14:37:13] [Stage 2] Discovering targets: ['coin']
+[14:37:13] [Stage 2] find_actors(coin): 0 found
+[14:37:13] [Stage 2] find_blueprints(coin): 0 found
+[14:37:13] [Stage 2] Discovery complete: 3 result sets
+[14:37:13] [Stage 3] Refining with 1 discovery sections
+[14:37:13] [LLMGenerate] input_len=1042 tokens, max_new=500, timeout=120s
+[14:37:37] Raw model output (24.2s, 68 tokens): {"mode":"MODIFY","summary":"Modify BP_Coin Blueprint","requires_confirmation":true,"operations":[{"step":1,"command":"modify_blueprint","params":{"name":"BP_Coin","set_class_defaults":[{"variable_name":"Value","default_value":"50"}],"add_variables":[],"remove_variables":[]},"depends_on":null}]}
+[14:37:37] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[14:37:37] [PostProcess] ENTER — plan type=str
+[14:37:37] [PostProcess] mode=MODIFY, 1 operations: ['modify_blueprint']
+[14:37:37] [PostProcess] RESHAPE: modify_blueprint set_class_defaults array → dict
+[14:37:37] [PostProcess] Plan rewritten with 1 operations
+[14:37:37] [PostProcess] EXIT — 1 operations: ['modify_blueprint']
+[14:37:37] Intent classified in 47.9s (multi-stage)
+[14:37:37] Response sent: {"mode": "MODIFY", "summary": "Modify BP_Coin Blueprint", "requires_confirmation": true, "operations": [{"step": 1, "command": "modify_blueprint", "params": {"name": "BP_Coin", "set_class_defaults": {
+[14:37:37] Client connected: ('127.0.0.1', 62441)
+[14:37:37] Request: {"prompt": "Reduce torch intensity to 2000"}
+[14:37:37] [Stage 1] Classifying: Reduce torch intensity to 2000
+[14:37:37] [LLMGenerate] input_len=3181 tokens, max_new=300, timeout=120s
+[14:38:01] Raw model output (24.2s, 54 tokens): {"mode":"MODIFY","summary":"Reduce torch intensity to|2000","targets":["torch"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_property","params":{"property_name":"Intensity","value":200},"depends_on":null}]}
+[14:38:01] [Stage 1] Result: mode=MODIFY, targets=['torch'], ops=1
+[14:38:01] Multi-stage flow for MODIFY (discovery needed)
+[14:38:01] [Stage 2] Discovering targets: ['torch']
+[14:38:01] [Stage 2] find_actors(torch): 0 found
+[14:38:01] [Stage 2] find_blueprints(torch): 0 found
+[14:38:01] [Stage 2] Discovery complete: 3 result sets
+[14:38:01] [Stage 3] Refining with 1 discovery sections
+[14:38:01] [LLMGenerate] input_len=1041 tokens, max_new=500, timeout=120s
+[14:38:36] Raw model output (35.2s, 97 tokens): Actors: [BP_Torch_01,BP_Torch_02]
+{"mode":"MODIFY","summary":"Reduce torch intensity to 2000","requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_property","params":{"operations":[{"actor_label":"BP_Torch_01","property":"intensity","value":200},{"actor_label":"BP_Torch_02","pro
+[14:38:36] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[14:38:36] [PostProcess] ENTER — plan type=str
+[14:38:36] [PostProcess] mode=MODIFY, 1 operations: ['batch_set_property']
+[14:38:36] [PostProcess] EXIT — 1 operations: ['batch_set_property']
+[14:38:36] Intent classified in 59.4s (multi-stage)
+[14:38:36] Response sent: {"mode": "MODIFY", "summary": "Reduce torch intensity to 2000", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_property", "params": {"operations": [{"actor_label": "BP
+[14:38:36] Client connected: ('127.0.0.1', 61730)
+[14:38:36] Request: {"prompt": "All enemies need 500 HP and 40 damage"}
+[14:38:36] [Stage 1] Classifying: All enemies need 500 HP and 40 damage
+[14:38:36] [LLMGenerate] input_len=3184 tokens, max_new=300, timeout=120s
+[14:39:12] Raw model output (35.6s, 84 tokens): {"mode":"MODIFY","summary":"Set Health=500 Damage=40 on enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Health","default_value":"500"},"depends_on":null},{"step":2,"command":"batch_set_variable","params":{"va
+[14:39:12] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=2
+[14:39:12] Multi-stage flow for MODIFY (discovery needed)
+[14:39:12] [Stage 2] Discovering targets: ['enemy']
+[14:39:12] [Stage 2] find_actors(enemy): 0 found
+[14:39:12] [Stage 2] find_blueprints(enemy): 0 found
+[14:39:12] [Stage 2] Discovery complete: 3 result sets
+[14:39:12] [Stage 3] Refining with 1 discovery sections
+[14:39:12] [LLMGenerate] input_len=1044 tokens, max_new=500, timeout=120s
+[14:39:48] Raw model output (36.6s, 102 tokens): Blueprints: BP_Enemy (3 variables), BP_EnemyBoss (4 variables)
+{"mode":"MODIFY","summary":"Modify BP_Enemy and BP_EnemyBoss blueprints","requires_confirmation":true,"operations":[{"step":1,"command":"modify_blueprint","params":{"name":"BP_Enemy","set_class_defaults":[{"variable_name":"Health","defau
+[14:39:48] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[14:39:48] [PostProcess] ENTER — plan type=str
+[14:39:48] [PostProcess] mode=MODIFY, 1 operations: ['modify_blueprint']
+[14:39:48] [PostProcess] RESHAPE: modify_blueprint set_class_defaults array → dict
+[14:39:48] [PostProcess] Plan rewritten with 1 operations
+[14:39:48] [PostProcess] EXIT — 1 operations: ['modify_blueprint']
+[14:39:48] Intent classified in 72.2s (multi-stage)
+[14:39:48] Response sent: {"mode": "MODIFY", "summary": "Modify BP_Enemy and BP_EnemyBoss blueprints", "requires_confirmation": true, "operations": [{"step": 1, "command": "modify_blueprint", "params": {"name": "BP_Enemy", "se
+[14:39:49] Client connected: ('127.0.0.1', 61924)
+[14:39:49] Request: {"prompt": "Make the health pickups heal 50 instead of 25"}
+[14:39:49] [Stage 1] Classifying: Make the health pickups heal 50 instead of 25
+[14:39:49] [LLMGenerate] input_len=3185 tokens, max_new=300, timeout=120s
+[14:41:49] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[14:41:49] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[14:41:49] Multi-stage flow for CREATE (discovery needed)
+[14:41:49] [Stage 2] Discovering targets: []
+[14:41:49] [Stage 2] Discovery complete: 1 result sets
+[14:41:49] CREATE with discovery: enriching Stage 1 result
+[14:41:49] [PostProcess] ENTER — plan type=dict
+[14:41:49] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[14:41:49] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[14:41:49] Intent classified in 120.1s (multi-stage)
+[14:41:49] Response sent: {"mode": "CREATE", "summary": "Make the health pickups heal 50 instead of 25", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prom
+[14:41:49] Client connected: ('127.0.0.1', 57265)
+[14:41:49] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Make the health pickups heal 50 instead of 25"}
+[14:41:49] [Generate DSL] domain=blueprint, prompt=Make the health pickups heal 50 instead of 25
+[14:46:49] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[14:46:49] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[14:46:49] Client connected: ('127.0.0.1', 52755)
+[14:46:49] Request: {"prompt": "Change the material on all the walls to brick"}
+[14:46:49] [HardOverride] Targeted material apply: targets=['wall'], material=brick
+[14:46:49] [HardOverride] Bypassing LLM — mode=MODIFY
+[14:46:49] [Stage 2] Discovering targets: ['wall']
+[14:46:49] [Stage 2] find_actors(wall): 0 found
+[14:46:49] [Stage 2] find_blueprints(wall): 2 found
+[14:46:49] [Stage 2] find_assets(Material, brick): 0 found
+[14:46:49] [Stage 2] find_assets(Material, wall): 5 found
+[14:46:49] [Stage 2] Discovery complete: 5 result sets
+[14:46:49] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[14:46:49] [PostProcess] ENTER — plan type=dict
+[14:46:49] [PostProcess] mode=MODIFY, 2 operations: ['find_actors', 'batch_apply_material']
+[14:46:49] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[14:46:49] [PostProcess] Plan rewritten with 2 operations
+[14:46:49] [PostProcess] EXIT — 2 operations: ['find_actors', 'batch_apply_material']
+[14:46:49] Intent classified in 0.5s (multi-stage)
+[14:46:49] Response sent: {"mode": "MODIFY", "summary": "Apply brick to wall", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find wall actors in level", "params": {"name_fi
+[14:46:49] Client connected: ('127.0.0.1', 52774)
+[14:46:49] Request: {"prompt": "Replace the texture on every floor with marble"}
+[14:46:49] [HardOverride] Targeted material apply: targets=['floor'], material=marble
+[14:46:49] [HardOverride] Bypassing LLM — mode=MODIFY
+[14:46:49] [Stage 2] Discovering targets: ['floor']
+[14:46:49] [Stage 2] find_actors(floor): 0 found
+[14:46:50] [Stage 2] find_blueprints(floor): 2 found
+[14:46:50] [Stage 2] find_assets(Material, marble): 1 found
+[14:46:50] [Stage 2] find_assets(Material, floor): 6 found
+[14:46:50] [Stage 2] Discovery complete: 5 result sets
+[14:46:50] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[14:46:50] [PostProcess] ENTER — plan type=dict
+[14:46:50] [PostProcess] mode=MODIFY, 2 operations: ['find_actors', 'batch_apply_material']
+[14:46:50] [PostProcess] EXIT — 2 operations: ['find_actors', 'batch_apply_material']
+[14:46:50] Intent classified in 0.4s (multi-stage)
+[14:46:50] Response sent: {"mode": "MODIFY", "summary": "Apply marble to floor", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find floor actors in level", "params": {"name
+[14:46:50] Client connected: ('127.0.0.1', 52782)
+[14:46:50] Request: {"prompt": "Make the torches look like gold"}
+[14:46:50] [Stage 1] Classifying: Make the torches look like gold
+[14:47:07] [LLMGenerate] input_len=3181 tokens, max_new=300, timeout=120s
+[14:49:07] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[14:49:07] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[14:49:07] Multi-stage flow for CREATE (discovery needed)
+[14:49:07] [Stage 2] Discovering targets: []
+[14:49:07] [Stage 2] Discovery complete: 1 result sets
+[14:49:07] CREATE with discovery: enriching Stage 1 result
+[14:49:07] [PostProcess] ENTER — plan type=dict
+[14:49:07] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[14:49:07] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[14:49:07] Intent classified in 137.4s (multi-stage)
+[14:49:07] Response sent: {"mode": "CREATE", "summary": "Make the torches look like gold", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Make the
+[14:49:07] Client connected: ('127.0.0.1', 62230)
+[14:49:07] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Make the torches look like gold"}
+[14:49:07] [Generate DSL] domain=blueprint, prompt=Make the torches look like gold
+[14:54:07] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[14:54:07] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[14:54:07] Client connected: ('127.0.0.1', 59864)
+[14:54:07] Request: {"prompt": "Swap the stone material to concrete on all walls"}
+[14:54:07] [HardOverride] Material change detected: targets=['wall'], material=concrete on all walls
+[14:54:07] [HardOverride] Bypassing LLM — mode=MODIFY
+[14:54:07] [Stage 2] Discovering targets: ['wall']
+[14:54:07] [Stage 2] find_actors(wall): 0 found
+[14:54:07] [Stage 2] find_blueprints(wall): 2 found
+[14:54:07] [Stage 2] find_assets(Material, concrete on all walls): 0 found
+[14:54:07] [Stage 2] find_assets(Material, wall): 5 found
+[14:54:07] [Stage 2] Discovery complete: 5 result sets
+[14:54:07] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[14:54:07] [PostProcess] ENTER — plan type=dict
+[14:54:07] [PostProcess] mode=MODIFY, 2 operations: ['find_actors', 'batch_apply_material']
+[14:54:07] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[14:54:07] [PostProcess] Plan rewritten with 2 operations
+[14:54:07] [PostProcess] EXIT — 2 operations: ['find_actors', 'batch_apply_material']
+[14:54:07] Intent classified in 0.1s (multi-stage)
+[14:54:07] Response sent: {"mode": "MODIFY", "summary": "Apply concrete on all walls to wall", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find wall actors in level", "pa
+[14:54:08] Client connected: ('127.0.0.1', 59872)
+[14:54:08] Request: {"prompt": "Replace stone with brick everywhere in the level"}
+[14:54:08] [HardOverride] Material swap detected: old=stone, new=brick
+[14:54:08] [HardOverride] Bypassing LLM — mode=MODIFY
+[14:54:08] [Stage 2] Discovering targets: ['stone', 'brick']
+[14:54:08] [Stage 2] find_actors(stone): 0 found
+[14:54:08] [Stage 2] find_actors(brick): 0 found
+[14:54:08] [Stage 2] find_blueprints(stone): 0 found
+[14:54:08] [Stage 2] find_blueprints(brick): 0 found
+[14:54:08] [Stage 2] find_assets(Material, stone): 10 found
+[14:54:08] [Stage 2] find_assets(Material, brick): 0 found
+[14:54:08] [Stage 2] Discovery complete: 7 result sets
+[14:54:08] [BuildPlan] batch_replace_material: old=, new=brick
+[14:54:08] [PostProcess] ENTER — plan type=dict
+[14:54:08] [PostProcess] mode=MODIFY, 1 operations: ['batch_replace_material']
+[14:54:08] [PostProcess] EXIT — 1 operations: ['batch_replace_material']
+[14:54:08] Intent classified in 0.2s (multi-stage)
+[14:54:08] Response sent: {"mode": "MODIFY", "summary": "Replace stone with brick", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_replace_material", "params": {"old_material": "", "new_material": 
+[14:54:08] Client connected: ('127.0.0.1', 59883)
+[14:54:08] Request: {"prompt": "Apply the lava material to all hazard zones"}
+[14:54:08] [HardOverride] Material change detected: targets=['*'], material=all hazard zones
+[14:54:08] [HardOverride] Bypassing LLM — mode=MODIFY
+[14:54:08] [Stage 2] Discovering targets: ['*']
+[14:54:08] [Stage 2] find_actors(*): 0 found
+[14:54:08] [Stage 2] find_blueprints(*): 0 found
+[14:54:08] [Stage 2] find_assets(Material, all hazard zones): 0 found
+[14:54:08] [Stage 2] find_assets(Material, *): 0 found
+[14:54:08] [Stage 2] Discovery complete: 5 result sets
+[14:54:08] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[14:54:08] [PostProcess] ENTER — plan type=dict
+[14:54:08] [PostProcess] mode=MODIFY, 2 operations: ['find_actors', 'batch_apply_material']
+[14:54:08] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[14:54:08] [PostProcess] Plan rewritten with 2 operations
+[14:54:08] [PostProcess] EXIT — 2 operations: ['find_actors', 'batch_apply_material']
+[14:54:08] Intent classified in 0.2s (multi-stage)
+[14:54:08] Response sent: {"mode": "MODIFY", "summary": "Apply all hazard zones to *", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find all actors in level", "params": {"
+[14:54:08] Client connected: ('127.0.0.1', 59891)
+[14:54:08] Request: {"prompt": "Change the wall texture to M_Pack_Bonus_Stone_2"}
+[14:54:08] [HardOverride] Material change detected: targets=['wall'], material=m_pack_bonus_stone_2
+[14:54:08] [HardOverride] Bypassing LLM — mode=MODIFY
+[14:54:08] [Stage 2] Discovering targets: ['wall']
+[14:54:08] [Stage 2] find_actors(wall): 0 found
+[14:54:08] [Stage 2] find_blueprints(wall): 2 found
+[14:54:08] [Stage 2] find_assets(Material, m_pack_bonus_stone_2): 1 found
+[14:54:08] [Stage 2] find_assets(Material, wall): 5 found
+[14:54:08] [Stage 2] Discovery complete: 5 result sets
+[14:54:08] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[14:54:08] [PostProcess] ENTER — plan type=dict
+[14:54:08] [PostProcess] mode=MODIFY, 2 operations: ['find_actors', 'batch_apply_material']
+[14:54:08] [PostProcess] EXIT — 2 operations: ['find_actors', 'batch_apply_material']
+[14:54:08] Intent classified in 0.3s (multi-stage)
+[14:54:08] Response sent: {"mode": "MODIFY", "summary": "Apply m_pack_bonus_stone_2 to wall", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find wall actors in level", "par
+[14:54:08] Client connected: ('127.0.0.1', 59901)
+[14:54:08] Request: {"prompt": "Scale all enemies up by 1.5"}
+[14:54:08] [Stage 1] Classifying: Scale all enemies up by 1.5
+[14:54:29] [LLMGenerate] input_len=3183 tokens, max_new=300, timeout=120s
+[14:56:29] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[14:56:29] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[14:56:29] Single-stage result (CREATE)
+[14:56:29] [PostProcess] ENTER — plan type=dict
+[14:56:29] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[14:56:29] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[14:56:29] Intent classified in 140.5s (multi-stage)
+[14:56:29] Response sent: {"mode": "CREATE", "summary": "Scale all enemies up by 1.5", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Scale all en
+[14:56:29] Client connected: ('127.0.0.1', 64309)
+[14:56:29] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Scale all enemies up by 1.5"}
+[14:56:29] [Generate DSL] domain=blueprint, prompt=Scale all enemies up by 1.5
+[15:01:29] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[15:01:29] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[15:01:29] Client connected: ('127.0.0.1', 53232)
+[15:01:29] Request: {"prompt": "Make the coins smaller"}
+[15:01:29] [Stage 1] Classifying: Make the coins smaller
+[15:01:29] [LLMGenerate] input_len=3178 tokens, max_new=300, timeout=120s
+[15:03:29] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[15:03:29] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[15:03:29] Multi-stage flow for CREATE (discovery needed)
+[15:03:29] [Stage 2] Discovering targets: []
+[15:03:29] [Stage 2] Discovery complete: 1 result sets
+[15:03:29] CREATE with discovery: enriching Stage 1 result
+[15:03:29] [PostProcess] ENTER — plan type=dict
+[15:03:29] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[15:03:29] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[15:03:29] Intent classified in 120.2s (multi-stage)
+[15:03:29] Response sent: {"mode": "CREATE", "summary": "Make the coins smaller", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Make the coins sm
+[15:03:29] Client connected: ('127.0.0.1', 53562)
+[15:03:29] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Make the coins smaller"}
+[15:03:29] [Generate DSL] domain=blueprint, prompt=Make the coins smaller
+[15:08:29] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[15:08:29] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[15:08:29] Client connected: ('127.0.0.1', 63835)
+[15:08:29] Request: {"prompt": "Delete all the gold coins from the level"}
+[15:08:29] [HardOverride] Delete actors detected: targets=['gold']
+[15:08:29] [HardOverride] Bypassing LLM — mode=MODIFY
+[15:08:29] [Stage 2] Discovering targets: ['gold']
+[15:08:29] [Stage 2] find_actors(gold): 0 found
+[15:08:29] [Stage 2] find_blueprints(gold): 0 found
+[15:08:29] [Stage 2] Discovery complete: 3 result sets
+[15:08:29] [BuildPlan] batch_delete_actors: using class_filter (no actors found)
+[15:08:29] [PostProcess] ENTER — plan type=dict
+[15:08:29] [PostProcess] mode=MODIFY, 1 operations: ['batch_delete_actors']
+[15:08:29] [PostProcess] EXIT — 1 operations: ['batch_delete_actors']
+[15:08:29] Intent classified in 0.0s (multi-stage)
+[15:08:29] Response sent: {"mode": "MODIFY", "summary": "Delete gold actors", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_delete_actors", "params": {"class_filter": "gold"}, "depends_on": null}]
+[15:08:29] Client connected: ('127.0.0.1', 63841)
+[15:08:29] Request: {"prompt": "Remove every torch"}
+[15:08:29] [HardOverride] Delete actors detected: targets=['torch']
+[15:08:29] [HardOverride] Bypassing LLM — mode=MODIFY
+[15:08:29] [Stage 2] Discovering targets: ['torch']
+[15:08:29] [Stage 2] find_actors(torch): 0 found
+[15:08:29] [Stage 2] find_blueprints(torch): 0 found
+[15:08:29] [Stage 2] Discovery complete: 3 result sets
+[15:08:29] [BuildPlan] batch_delete_actors: using class_filter (no actors found)
+[15:08:29] [PostProcess] ENTER — plan type=dict
+[15:08:29] [PostProcess] mode=MODIFY, 1 operations: ['batch_delete_actors']
+[15:08:29] [PostProcess] EXIT — 1 operations: ['batch_delete_actors']
+[15:08:29] Intent classified in 0.1s (multi-stage)
+[15:08:29] Response sent: {"mode": "MODIFY", "summary": "Delete torch actors", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_delete_actors", "params": {"class_filter": "torch"}, "depends_on": null
+[15:08:29] Client connected: ('127.0.0.1', 63848)
+[15:08:29] Request: {"prompt": "Hide all the health pickups"}
+[15:08:29] [Stage 1] Classifying: Hide all the health pickups
+[15:08:47] [LLMGenerate] input_len=3179 tokens, max_new=300, timeout=120s
+[15:10:47] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[15:10:47] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[15:10:47] Multi-stage flow for CREATE (discovery needed)
+[15:10:47] [Stage 2] Discovering targets: []
+[15:10:48] [Stage 2] Discovery complete: 1 result sets
+[15:10:48] CREATE with discovery: enriching Stage 1 result
+[15:10:48] [PostProcess] ENTER — plan type=dict
+[15:10:48] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[15:10:48] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[15:10:48] Intent classified in 138.0s (multi-stage)
+[15:10:48] Response sent: {"mode": "CREATE", "summary": "Hide all the health pickups", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Hide all the
+[15:10:48] Client connected: ('127.0.0.1', 52557)
+[15:10:48] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Hide all the health pickups"}
+[15:10:48] [Generate DSL] domain=blueprint, prompt=Hide all the health pickups
+[15:15:48] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[15:15:48] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[15:15:48] Client connected: ('127.0.0.1', 49333)
+[15:15:48] Request: {"prompt": "Move all coins up by 50 units"}
+[15:15:48] [Stage 1] Classifying: Move all coins up by 50 units
+[15:15:48] [LLMGenerate] input_len=3182 tokens, max_new=300, timeout=120s
+[15:17:48] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[15:17:48] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[15:17:48] Multi-stage flow for CREATE (discovery needed)
+[15:17:48] [Stage 2] Discovering targets: []
+[15:17:48] [Stage 2] Discovery complete: 1 result sets
+[15:17:48] CREATE with discovery: enriching Stage 1 result
+[15:17:48] [PostProcess] ENTER — plan type=dict
+[15:17:48] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[15:17:48] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[15:17:48] Intent classified in 120.1s (multi-stage)
+[15:17:48] Response sent: {"mode": "CREATE", "summary": "Move all coins up by 50 units", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Move all c
+[15:17:48] Client connected: ('127.0.0.1', 54467)
+[15:17:48] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Move all coins up by 50 units"}
+[15:17:48] [Generate DSL] domain=blueprint, prompt=Move all coins up by 50 units
+[15:18:26] DSL raw output (blueprint, 179 tokens): BLUEPRINT: BP_FullHeal
+PARENT: Actor
+
+CATEGORY: Pickups
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: CastToCharacter
+NODE n3: GetVar [Variable=HealingAmount]
+NODE n4: MultiplyFloat [B
+[15:22:48] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[15:22:48] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[15:22:48] Client connected: ('127.0.0.1', 59523)
+[15:22:48] Request: {"prompt": "Clear out all the damage zones"}
+[15:22:48] [HardOverride] Delete actors detected: targets=['out']
+[15:22:48] [HardOverride] Bypassing LLM — mode=MODIFY
+[15:22:48] [Stage 2] Discovering targets: ['out']
+[15:22:48] [Stage 2] find_actors(out): 0 found
+[15:22:48] [Stage 2] find_blueprints(out): 0 found
+[15:22:48] [Stage 2] Discovery complete: 3 result sets
+[15:22:48] [BuildPlan] batch_delete_actors: using class_filter (no actors found)
+[15:22:48] [PostProcess] ENTER — plan type=dict
+[15:22:48] [PostProcess] mode=MODIFY, 1 operations: ['batch_delete_actors']
+[15:22:48] [PostProcess] EXIT — 1 operations: ['batch_delete_actors']
+[15:22:48] Intent classified in 0.0s (multi-stage)
+[15:22:48] Response sent: {"mode": "MODIFY", "summary": "Delete out actors", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_delete_actors", "params": {"class_filter": "out"}, "depends_on": null}]}
+[15:22:48] Client connected: ('127.0.0.1', 56870)
+[15:22:48] Request: {"prompt": "Add a point light to every torch"}
+[15:22:48] [Stage 1] Classifying: Add a point light to every torch
+[15:22:48] [LLMGenerate] input_len=3181 tokens, max_new=300, timeout=120s
+[15:24:48] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[15:24:48] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[15:24:48] Multi-stage flow for CREATE (discovery needed)
+[15:24:48] [Stage 2] Discovering targets: []
+[15:24:48] [Stage 2] Discovery complete: 1 result sets
+[15:24:48] CREATE with discovery: enriching Stage 1 result
+[15:24:48] [PostProcess] ENTER — plan type=dict
+[15:24:48] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[15:24:48] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[15:24:48] Intent classified in 120.0s (multi-stage)
+[15:24:48] Response sent: {"mode": "CREATE", "summary": "Add a point light to every torch", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Add a p
+[15:24:48] Client connected: ('127.0.0.1', 55197)
+[15:24:48] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Add a point light to every torch"}
+[15:24:48] [Generate DSL] domain=blueprint, prompt=Add a point light to every torch
+[15:29:48] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[15:29:48] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[15:29:48] Client connected: ('127.0.0.1', 56122)
+[15:29:48] Request: {"prompt": "Give all enemies a sphere collision component"}
+[15:29:48] [Stage 1] Classifying: Give all enemies a sphere collision component
+[15:29:48] [LLMGenerate] input_len=3181 tokens, max_new=300, timeout=120s
+[15:31:48] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[15:31:48] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[15:31:48] Single-stage result (CREATE)
+[15:31:48] [PostProcess] ENTER — plan type=dict
+[15:31:48] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[15:31:48] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[15:31:48] Intent classified in 120.1s (multi-stage)
+[15:31:48] Response sent: {"mode": "CREATE", "summary": "Give all enemies a sphere collision component", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prom
+[15:31:48] Client connected: ('127.0.0.1', 55935)
+[15:31:48] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Give all enemies a sphere collision component"}
+[15:31:48] [Generate DSL] domain=blueprint, prompt=Give all enemies a sphere collision component
+[15:36:48] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[15:36:48] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[15:36:48] Client connected: ('127.0.0.1', 64518)
+[15:36:48] Request: {"prompt": "Rename BP_GoldCoin to BP_TreasureCoin"}
+[15:36:48] [Stage 1] Classifying: Rename BP_GoldCoin to BP_TreasureCoin
+[15:36:48] [LLMGenerate] input_len=3185 tokens, max_new=300, timeout=120s
+[15:38:48] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[15:38:48] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[15:38:48] Multi-stage flow for CREATE (discovery needed)
+[15:38:48] [Stage 2] Discovering targets: []
+[15:38:48] [Stage 2] Discovery complete: 1 result sets
+[15:38:48] CREATE with discovery: enriching Stage 1 result
+[15:38:48] [PostProcess] ENTER — plan type=dict
+[15:38:48] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[15:38:48] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[15:38:48] Intent classified in 120.0s (multi-stage)
+[15:38:48] Response sent: {"mode": "CREATE", "summary": "Rename BP_GoldCoin to BP_TreasureCoin", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Re
+[15:38:48] Client connected: ('127.0.0.1', 50573)
+[15:38:48] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Rename BP_GoldCoin to BP_TreasureCoin"}
+[15:38:48] [Generate DSL] domain=blueprint, prompt=Rename BP_GoldCoin to BP_TreasureCoin
+[15:43:48] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[15:43:48] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[15:43:49] Client connected: ('127.0.0.1', 61538)
+[15:43:49] Request: {"prompt": "Change the enemy parent class to Character"}
+[15:43:49] [HardOverride] Material change detected: targets=['enemy'], material=character
+[15:43:49] [HardOverride] Bypassing LLM — mode=MODIFY
+[15:43:49] [Stage 2] Discovering targets: ['enemy']
+[15:43:49] [Stage 2] find_actors(enemy): 0 found
+[15:43:49] [Stage 2] find_blueprints(enemy): 0 found
+[15:43:49] [Stage 2] find_assets(Material, character): 0 found
+[15:43:49] [Stage 2] find_assets(Material, enemy): 4 found
+[15:43:49] [Stage 2] Discovery complete: 5 result sets
+[15:43:49] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[15:43:49] [PostProcess] ENTER — plan type=dict
+[15:43:49] [PostProcess] mode=MODIFY, 2 operations: ['find_actors', 'batch_apply_material']
+[15:43:49] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[15:43:49] [PostProcess] Plan rewritten with 2 operations
+[15:43:49] [PostProcess] EXIT — 2 operations: ['find_actors', 'batch_apply_material']
+[15:43:49] Intent classified in 0.1s (multi-stage)
+[15:43:49] Response sent: {"mode": "MODIFY", "summary": "Apply character to enemy", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find enemy actors in level", "params": {"n
+[15:43:49] Client connected: ('127.0.0.1', 61548)
+[15:43:49] Request: {"prompt": "The enemies are too weak, buff them"}
+[15:43:49] [Stage 1] Classifying: The enemies are too weak, buff them
+[15:43:49] [LLMGenerate] input_len=3182 tokens, max_new=300, timeout=120s
+[15:45:49] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[15:45:49] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[15:45:49] Single-stage result (CREATE)
+[15:45:49] [PostProcess] ENTER — plan type=dict
+[15:45:49] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[15:45:49] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[15:45:49] Intent classified in 120.0s (multi-stage)
+[15:45:49] Response sent: {"mode": "CREATE", "summary": "The enemies are too weak, buff them", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "The 
+[15:45:49] Client connected: ('127.0.0.1', 52622)
+[15:45:49] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "The enemies are too weak, buff them"}
+[15:45:49] [Generate DSL] domain=blueprint, prompt=The enemies are too weak, buff them
+[15:50:49] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[15:50:49] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[15:50:49] Client connected: ('127.0.0.1', 62621)
+[15:50:49] Request: {"prompt": "Everything looks too plain, change the walls"}
+[15:50:49] [Stage 1] Classifying: Everything looks too plain, change the walls
+[15:50:49] [LLMGenerate] input_len=3182 tokens, max_new=300, timeout=120s
+[15:50:50] DSL raw output (blueprint, 2048 tokens): BLUEPRINT: BP_TorchGold
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetVar
+NODE n3: SetColorAndOpacity
+NODE n4: GetVar
+NODE n5: SetColorAndOpacity
+NODE n6: GetVar
+NODE n7: SetC
+[15:52:49] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[15:52:49] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[15:52:49] Multi-stage flow for CREATE (discovery needed)
+[15:52:49] [Stage 2] Discovering targets: []
+[15:52:49] [Stage 2] Discovery complete: 1 result sets
+[15:52:49] CREATE with discovery: enriching Stage 1 result
+[15:52:49] [PostProcess] ENTER — plan type=dict
+[15:52:49] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[15:52:49] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[15:52:49] Intent classified in 120.0s (multi-stage)
+[15:52:49] Response sent: {"mode": "CREATE", "summary": "Everything looks too plain, change the walls", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"promp
+[15:52:49] Client connected: ('127.0.0.1', 50632)
+[15:52:49] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Everything looks too plain, change the walls"}
+[15:52:49] [Generate DSL] domain=blueprint, prompt=Everything looks too plain, change the walls
+[15:53:12] DSL raw output (blueprint, 124 tokens): BLUEPRINT: BP_ScaleEnemies
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetActorsOfClass [ClassName=BP_Enemy]
+NODE n3: ForEachLoop
+NODE n4: SetActorScale3D [NewScale=(X=1.5,Y=1.
+[15:55:26] DSL raw output (blueprint, 121 tokens): BLUEPRINT: BP_ShrinkCoin
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetVar [Variable=ScaleFactor]
+NODE n3: MultiplyFloat [B=0.75]
+NODE n4: SetVar [Variable=ScaleFactor]
+NODE n
+[15:57:33] DSL raw output (blueprint, 115 tokens): BLUEPRINT: BP_HideHealthPickups
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetActorsOfClass [ActorClass=BP_HealthPickup]
+NODE n3: ForEachLoop
+NODE n4: SetActorHiddenInGame [bN
+[15:57:49] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[15:57:49] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[15:57:49] Client connected: ('127.0.0.1', 58081)
+[15:57:49] Request: {"prompt": "Make all coins worth double"}
+[15:57:49] [Stage 1] Classifying: Make all coins worth double
+[15:57:49] [LLMGenerate] input_len=3179 tokens, max_new=300, timeout=120s
+[15:59:39] DSL raw output (blueprint, 107 tokens): BLUEPRINT: BP_CoinRise
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetVar [Variable=Coins]
+NODE n3: ForEachLoop
+NODE n4: AddActorLocalOffset [DeltaLocation=(Z=50)]
+
+EXEC n1.The
+[15:59:49] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[15:59:49] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[15:59:49] Multi-stage flow for CREATE (discovery needed)
+[15:59:49] [Stage 2] Discovering targets: []
+[15:59:49] [Stage 2] Discovery complete: 1 result sets
+[15:59:49] CREATE with discovery: enriching Stage 1 result
+[15:59:49] [PostProcess] ENTER — plan type=dict
+[15:59:49] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[15:59:49] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[15:59:49] Intent classified in 120.2s (multi-stage)
+[15:59:49] Response sent: {"mode": "CREATE", "summary": "Make all coins worth double", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Make all coi
+[15:59:49] Client connected: ('127.0.0.1', 57257)
+[15:59:49] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Make all coins worth double"}
+[15:59:49] [Generate DSL] domain=blueprint, prompt=Make all coins worth double
+[16:01:37] DSL raw output (blueprint, 99 tokens): BLUEPRINT: BP_TorchLights
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetVar [Variable=TorchArray]
+NODE n3: ForEachLoop
+NODE n4: AddPointLight
+
+EXEC n1.Then -> n3.Execute
+EXEC 
+[16:03:46] DSL raw output (blueprint, 111 tokens): BLUEPRINT: BP_SphereEnemies
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetActorsOfClass [ClassName=BP_Enemy]
+NODE n3: ForEachLoop
+NODE n4: AddCollisionComponent [Shape=Sphere,
+[16:04:49] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[16:04:49] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[16:04:49] Client connected: ('127.0.0.1', 55611)
+[16:04:49] Request: {"prompt": "The torches are too bright, dim them"}
+[16:04:49] [Stage 1] Classifying: The torches are too bright, dim them
+[16:04:49] [LLMGenerate] input_len=3183 tokens, max_new=300, timeout=120s
+[16:05:37] DSL raw output (blueprint, 91 tokens): BLUEPRINT: BP_TreasureCoin
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: SetActorHiddenInGame [bNewHidden=true]
+NODE n3: PrintString [InString="Treasure Collected"]
+
+EXEC
+[16:06:49] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[16:06:49] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[16:06:49] Multi-stage flow for CREATE (discovery needed)
+[16:06:49] [Stage 2] Discovering targets: []
+[16:06:49] [Stage 2] Discovery complete: 1 result sets
+[16:06:49] CREATE with discovery: enriching Stage 1 result
+[16:06:49] [PostProcess] ENTER — plan type=dict
+[16:06:49] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[16:06:49] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[16:06:49] Intent classified in 120.0s (multi-stage)
+[16:06:49] Response sent: {"mode": "CREATE", "summary": "The torches are too bright, dim them", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "The
+[16:06:49] Client connected: ('127.0.0.1', 64198)
+[16:06:49] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "The torches are too bright, dim them"}
+[16:06:49] [Generate DSL] domain=blueprint, prompt=The torches are too bright, dim them
+[16:11:49] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[16:11:49] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[16:11:49] Client connected: ('127.0.0.1', 61666)
+[16:11:49] Request: {"prompt": "Replace the material on all walls with M_Pack_Bonus_Stone_2"}
+[16:11:49] [HardOverride] Targeted material apply: targets=['wall'], material=m_pack_bonus_stone_2
+[16:11:49] [HardOverride] Bypassing LLM — mode=MODIFY
+[16:11:49] [Stage 2] Discovering targets: ['wall']
+[16:11:49] [Stage 2] find_actors(wall): 0 found
+[16:11:49] [Stage 2] find_blueprints(wall): 2 found
+[16:11:49] [Stage 2] find_assets(Material, m_pack_bonus_stone_2): 1 found
+[16:11:49] [Stage 2] find_assets(Material, wall): 5 found
+[16:11:49] [Stage 2] Discovery complete: 5 result sets
+[16:11:49] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[16:11:49] [PostProcess] ENTER — plan type=dict
+[16:11:49] [PostProcess] mode=MODIFY, 2 operations: ['find_actors', 'batch_apply_material']
+[16:11:49] [PostProcess] EXIT — 2 operations: ['find_actors', 'batch_apply_material']
+[16:11:49] Intent classified in 0.0s (multi-stage)
+[16:11:49] Response sent: {"mode": "MODIFY", "summary": "Apply m_pack_bonus_stone_2 to wall", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find wall actors in level", "par
+[16:11:49] Client connected: ('127.0.0.1', 61674)
+[16:11:50] Request: {"prompt": "Swap the wall material to marble"}
+[16:11:50] [HardOverride] Material change detected: targets=['wall'], material=marble
+[16:11:50] [HardOverride] Bypassing LLM — mode=MODIFY
+[16:11:50] [Stage 2] Discovering targets: ['wall']
+[16:11:50] [Stage 2] find_actors(wall): 0 found
+[16:11:50] [Stage 2] find_blueprints(wall): 2 found
+[16:11:50] [Stage 2] find_assets(Material, marble): 1 found
+[16:11:50] [Stage 2] find_assets(Material, wall): 5 found
+[16:11:50] [Stage 2] Discovery complete: 5 result sets
+[16:11:50] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[16:11:50] [PostProcess] ENTER — plan type=dict
+[16:11:50] [PostProcess] mode=MODIFY, 2 operations: ['find_actors', 'batch_apply_material']
+[16:11:50] [PostProcess] EXIT — 2 operations: ['find_actors', 'batch_apply_material']
+[16:11:50] Intent classified in 0.1s (multi-stage)
+[16:11:50] Response sent: {"mode": "MODIFY", "summary": "Apply marble to wall", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find wall actors in level", "params": {"name_f
+[16:11:50] Client connected: ('127.0.0.1', 61684)
+[16:11:50] Request: {"prompt": "Change the texture on all the walls to stone"}
+[16:11:50] [HardOverride] Targeted material apply: targets=['wall'], material=stone
+[16:11:50] [HardOverride] Bypassing LLM — mode=MODIFY
+[16:11:50] [Stage 2] Discovering targets: ['wall']
+[16:11:50] [Stage 2] find_actors(wall): 0 found
+[16:11:50] [Stage 2] find_blueprints(wall): 2 found
+[16:11:50] [Stage 2] find_assets(Material, stone): 10 found
+[16:11:50] [Stage 2] find_assets(Material, wall): 5 found
+[16:11:50] [Stage 2] Discovery complete: 5 result sets
+[16:11:50] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[16:11:50] [PostProcess] ENTER — plan type=dict
+[16:11:50] [PostProcess] mode=MODIFY, 2 operations: ['find_actors', 'batch_apply_material']
+[16:11:50] [PostProcess] EXIT — 2 operations: ['find_actors', 'batch_apply_material']
+[16:11:50] Intent classified in 0.0s (multi-stage)
+[16:11:50] Response sent: {"mode": "MODIFY", "summary": "Apply stone to wall", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find wall actors in level", "params": {"name_fi
+[16:11:50] Client connected: ('127.0.0.1', 61692)
+[16:11:50] Request: {"prompt": "Make the floor darker"}
+[16:11:50] [Stage 1] Classifying: Make the floor darker
+[16:11:50] [LLMGenerate] input_len=3178 tokens, max_new=300, timeout=120s
+[16:13:50] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[16:13:50] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[16:13:50] Single-stage result (CREATE)
+[16:13:50] [PostProcess] ENTER — plan type=dict
+[16:13:50] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[16:13:50] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[16:13:50] Intent classified in 120.0s (multi-stage)
+[16:13:50] Response sent: {"mode": "CREATE", "summary": "Make the floor darker", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Make the floor dar
+[16:13:50] Client connected: ('127.0.0.1', 58885)
+[16:13:50] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Make the floor darker"}
+[16:13:50] [Generate DSL] domain=blueprint, prompt=Make the floor darker
+[16:17:26] DSL raw output (blueprint, 773 tokens): BLUEPRINT: BP_BuffEnemies
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetActorsOfClass [ActorClass=BP_Enemy]
+NODE n3: ForEachLoop
+NODE n4: SetVar [Variable=BuffCount, Value=0]
+
+[16:18:50] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[16:18:50] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[16:18:50] Client connected: ('127.0.0.1', 57361)
+[16:18:50] Request: {"prompt": "Set the coin value to 100 on every pickup"}
+[16:18:50] [Stage 1] Classifying: Set the coin value to 100 on every pickup
+[16:18:50] [LLMGenerate] input_len=3184 tokens, max_new=300, timeout=120s
+[16:20:50] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[16:20:50] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[16:20:50] Multi-stage flow for CREATE (discovery needed)
+[16:20:50] [Stage 2] Discovering targets: []
+[16:20:50] [Stage 2] Discovery complete: 1 result sets
+[16:20:50] CREATE with discovery: enriching Stage 1 result
+[16:20:50] [PostProcess] ENTER — plan type=dict
+[16:20:50] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[16:20:50] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[16:20:50] Intent classified in 120.0s (multi-stage)
+[16:20:50] Response sent: {"mode": "CREATE", "summary": "Set the coin value to 100 on every pickup", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt":
+[16:20:50] Client connected: ('127.0.0.1', 57677)
+[16:20:50] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Set the coin value to 100 on every pickup"}
+[16:20:50] [Generate DSL] domain=blueprint, prompt=Set the coin value to 100 on every pickup
+[16:25:50] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[16:25:50] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[16:25:50] Client connected: ('127.0.0.1', 52456)
+[16:25:50] Request: {"prompt": "Increase enemy detection range to 1200"}
+[16:25:50] [Stage 1] Classifying: Increase enemy detection range to 1200
+[16:25:50] [LLMGenerate] input_len=3182 tokens, max_new=300, timeout=120s
+[16:27:50] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[16:27:50] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[16:27:50] Multi-stage flow for CREATE (discovery needed)
+[16:27:50] [Stage 2] Discovering targets: []
+[16:27:50] [Stage 2] Discovery complete: 1 result sets
+[16:27:50] CREATE with discovery: enriching Stage 1 result
+[16:27:50] [PostProcess] ENTER — plan type=dict
+[16:27:50] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[16:27:50] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[16:27:50] Intent classified in 120.0s (multi-stage)
+[16:27:50] Response sent: {"mode": "CREATE", "summary": "Increase enemy detection range to 1200", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "I
+[16:27:50] Client connected: ('127.0.0.1', 56753)
+[16:27:50] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Increase enemy detection range to 1200"}
+[16:27:50] [Generate DSL] domain=blueprint, prompt=Increase enemy detection range to 1200
+[16:32:50] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[16:32:50] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[16:34:47] Client connected: ('127.0.0.1', 53552)
+[16:34:47] Request: {"prompt": "health check"}
+[16:34:47] [Stage 1] Classifying: health check
+[16:34:47] [LLMGenerate] input_len=3176 tokens, max_new=300, timeout=120s
+[16:34:57] Client connected: ('127.0.0.1', 53581)
+[16:34:57] Request: {"prompt": "Create a health potion and spawn 3 of them"}
+[16:36:47] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[16:36:47] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[16:36:47] Single-stage result (CREATE)
+[16:36:47] [PostProcess] ENTER — plan type=dict
+[16:36:47] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[16:36:47] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[16:36:47] Intent classified in 120.0s (multi-stage)
+[16:36:47] [Stage 1] Classifying: Create a health potion and spawn 3 of them
+[16:36:47] Response sent: {"mode": "CREATE", "summary": "health check", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "health check"}, "depends_on
+[16:36:47] [LLMGenerate] input_len=3184 tokens, max_new=300, timeout=120s
+[16:38:47] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[16:38:47] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[16:38:47] Multi-stage flow for CREATE (discovery needed)
+[16:38:47] [Stage 2] Discovering targets: []
+[16:38:47] [Stage 2] Discovery complete: 1 result sets
+[16:38:47] CREATE with discovery: enriching Stage 1 result
+[16:38:47] [PostProcess] ENTER — plan type=dict
+[16:38:47] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[16:38:47] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[16:38:47] Intent classified in 230.0s (multi-stage)
+[16:38:47] Response sent: {"mode": "CREATE", "summary": "Create a health potion and spawn 3 of them", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt"
+[16:38:47] Client connected: ('127.0.0.1', 62126)
+[16:38:47] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Create a health potion and spawn 3 of them"}
+[16:38:47] [Generate DSL] domain=blueprint, prompt=Create a health potion and spawn 3 of them
+[16:43:47] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[16:43:47] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[16:43:47] Client connected: ('127.0.0.1', 64978)
+[16:43:47] Request: {"prompt": "Set up FPS controls and add dark lighting"}
+[16:43:47] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=set up fps controls and add dark lighting
+[16:43:47] [HardOverride] Bypassing LLM — mode=CREATE
+[16:43:47] [PostProcess] ENTER — plan type=dict
+[16:43:47] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[16:43:47] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[16:43:47] Intent classified in 0.0s (multi-stage)
+[16:43:47] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "set up
+[16:43:47] Client connected: ('127.0.0.1', 64979)
+[16:43:47] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "set up fps controls and add dark lighting"}
+[16:43:47] [Generate DSL] domain=blueprint, prompt=set up fps controls and add dark lighting
+[16:48:47] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[16:48:47] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[16:48:47] Client connected: ('127.0.0.1', 50580)
+[16:48:47] Request: {"prompt": "Delete all coins and replace them with gems worth 100"}
+[16:48:47] [HardOverride] Delete actors detected: targets=['coins']
+[16:48:47] [HardOverride] Bypassing LLM — mode=MODIFY
+[16:48:47] [Stage 2] Discovering targets: ['coins']
+[16:48:47] [Stage 2] find_actors(coins): 0 found
+[16:48:47] [Stage 2] find_blueprints(coins): 0 found
+[16:48:47] [Stage 2] Discovery complete: 3 result sets
+[16:48:47] [BuildPlan] batch_delete_actors: using class_filter (no actors found)
+[16:48:47] [PostProcess] ENTER — plan type=dict
+[16:48:47] [PostProcess] mode=MODIFY, 1 operations: ['batch_delete_actors']
+[16:48:47] [PostProcess] EXIT — 1 operations: ['batch_delete_actors']
+[16:48:47] Intent classified in 0.0s (multi-stage)
+[16:48:47] Response sent: {"mode": "MODIFY", "summary": "Delete coins actors", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_delete_actors", "params": {"class_filter": "coins"}, "depends_on": null
+[16:48:47] Client connected: ('127.0.0.1', 50588)
+[16:48:47] Request: {"prompt": "Make all enemies tougher and change lighting to outdoor"}
+[16:48:47] [Stage 1] Classifying: Make all enemies tougher and change lighting to outdoor
+[16:48:47] [LLMGenerate] input_len=3183 tokens, max_new=300, timeout=120s
+[16:49:35] DSL raw output (blueprint, 2048 tokens): BLUEPRINT: BP_FancyWalls
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetVar
+NODE n3: SetMaterial
+NODE n4: GetVar
+NODE n5: SetMaterial
+NODE n6: GetVar
+NODE n7: SetMaterial
+NODE 
+[16:50:47] [LLMGenerate] TIMEOUT after 120s — generation cancelled
+[16:50:47] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[16:50:47] Multi-stage flow for CREATE (discovery needed)
+[16:50:47] [Stage 2] Discovering targets: []
+[16:50:47] [Stage 2] Discovery complete: 1 result sets
+[16:50:47] CREATE with discovery: enriching Stage 1 result
+[16:50:47] [PostProcess] ENTER — plan type=dict
+[16:50:47] [PostProcess] mode=CREATE, 1 operations: ['create_blueprint']
+[16:50:47] [PostProcess] EXIT — 1 operations: ['create_blueprint']
+[16:50:47] Intent classified in 120.1s (multi-stage)
+[16:50:47] Response sent: {"mode": "CREATE", "summary": "Make all enemies tougher and change lighting to outdoor", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "param
+[16:50:47] Client connected: ('127.0.0.1', 54132)
+[16:50:47] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Make all enemies tougher and change lighting to outdoor"}
+[16:50:47] [Generate DSL] domain=blueprint, prompt=Make all enemies tougher and change lighting to outdoor
+[16:52:00] DSL raw output (blueprint, 130 tokens): BLUEPRINT: BP_CoinMultiplier
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: CastToCoin
+NODE n3: GetVar [Variable=CoinValue]
+NODE n4: MultiplyFloat [B=2.0]
+NODE n5: SetVar 

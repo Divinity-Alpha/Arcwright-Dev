@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\source\\arcwright\\private\\dslimporter.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\junk\\blueprintllmtest\\intermediate\\build\\win64\\x64\\blueprintllmtesteditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\arcwright\\definitions.arcwright.h",
+            "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\source\\arcwright\\public\\dslimporter.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

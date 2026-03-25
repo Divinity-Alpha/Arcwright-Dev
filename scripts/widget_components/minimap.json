@@ -1,0 +1,48 @@
+{
+  "id": "minimap",
+  "name": "Minimap",
+  "category": "hud",
+  "description": "Bordered square with player arrow",
+  "default_anchor": "TopRight",
+  "default_offset": [
+    -20,
+    20
+  ],
+  "default_size": [
+    180,
+    180
+  ],
+  "variables": [],
+  "options": {
+    "show_border": {
+      "type": "bool",
+      "default": true
+    }
+  },
+  "tree": {
+    "type": "OVERLAY",
+    "name": "MinimapFrame",
+    "properties": {},
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "MinimapImage",
+        "properties": {
+          "tint": "$text",
+          "size_x": "180",
+          "size_y": "180"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "PlayerArrow",
+        "properties": {
+          "text": "^",
+          "font_size": "20",
+          "color": "$accent",
+          "justification": "Center"
+        }
+      }
+    ]
+  }
+}

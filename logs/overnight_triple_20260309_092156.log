@@ -1,0 +1,61 @@
+[09:21:56] ======================================================================
+[09:21:56] OVERNIGHT TRAINING RUN
+[09:21:56] Started: 2026-03-09 09:21:56
+[09:21:56] Jobs: BT v3 -> Blueprint v12
+[09:21:56] Stall detection: HEARTBEAT-ONLY (threshold=1800s)
+[09:21:56] Log: C:\BlueprintLLM\logs\overnight_triple_20260309_092156.log
+[09:21:56] ======================================================================
+[09:21:56] 
+
+######################################################################
+[09:21:56] JOB 1/2: BT v3
+[09:21:56] Started: 2026-03-09 09:21:56
+[09:21:56] ######################################################################
+[09:21:56] 
+============================================================
+[09:21:56] PRE-FLIGHT: BT v3
+[09:21:56] ============================================================
+[09:21:56]   Killing zombie GPU processes...
+[09:21:56]   CMD: nvidia-smi --query-compute-apps=pid,name --format=csv,noheader -i 1
+[09:21:56]   No zombie processes found.
+[09:21:56]   CMD: nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1
+[09:21:56]   VRAM used on PRO 6000: 1.2 GB
+[09:21:56]   Golden Config Verification:
+[09:21:56]     epochs: 3 — OK
+[09:21:56]     learning_rate: 0.0002 — OK
+[09:21:56]     batch_size: 1 — OK
+[09:21:56]     gradient_accumulation_steps: 4 — OK
+[09:21:56]     lora_r: 32 — OK
+[09:21:56]     lora_alpha: 64 — OK
+[09:21:56]     max_seq_length: 1024 — OK
+[09:21:56]     use_8bit: True
+[09:21:56]     base_model: meta-llama/Meta-Llama-3.1-70B
+[09:21:56]   Backing up bt-lora-v2 to D:...
+[09:21:57]   Backup verified: bt-lora-v2 (790 MB)
+[09:21:57] 
+DATASET PREP: BT v3
+[09:21:57]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/bt_lesson_to_training.py --lesson lessons/bt_lesson_01.json --output datasets/bt_train.jsonl --no-append
+[09:21:57]   Wrote 52 BT training entries from bt_lesson_01 to datasets\bt_train.jsonl
+  (20 prompts x ~2 variations each)
+[09:21:57]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/bt_lesson_to_training.py --lesson lessons/bt_lesson_02.json --output datasets/bt_train.jsonl 
+[09:21:57]   Wrote 44 BT training entries from bt_lesson_02 to datasets\bt_train.jsonl
+  (20 prompts x ~2 variations each)
+[09:21:57]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/bt_lesson_to_training.py --lesson lessons/bt_lesson_03.json --output datasets/bt_train.jsonl 
+[09:21:57]   Wrote 39 BT training entries from bt_lesson_03 to datasets\bt_train.jsonl
+  (20 prompts x ~1 variations each)
+[09:21:57]   Final dataset: datasets/bt_train.jsonl = 135 training examples
+[09:21:57] 
+TRAINING: BT v3
+[09:21:57]   Domain: bt
+[09:21:57]   Dataset: datasets/bt_train.jsonl
+[09:21:57]   Output: models/bt-lora-v3
+[09:21:57]   Mode: FULL (golden config, 3 epochs)
+[09:21:57]   Training command: python scripts/04_train_blueprint_lora.py --domain bt --dataset datasets/bt_train.jsonl --output models/bt-lora-v3 --epochs 3 --lr 0.0002 --lora_r 32 --max_seq_length 1024 --batch_size 1
+[09:21:57]   Started at: 2026-03-09 09:21:57
+[09:21:57]   Stall detection: HEARTBEAT-ONLY (threshold=1800s)
+[09:21:57]   NOTE: 70B full retrain takes 7-10h. No stdout for hours is NORMAL.
+[09:22:02]   TRAIN: GPU: NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition
+[09:22:02]   TRAIN: VRAM: 95.6 GB
+[09:22:02]   TRAIN:   VRAM cap: none (full 95.6 GB available)
+[09:22:02]   TRAIN:   Precision: bf16 (Ampere+ GPU detected)
+[09:22:02]   TRAIN: NOTE: 96 GB VRAM detected. Full 70B config supported.

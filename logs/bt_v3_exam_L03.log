@@ -1,0 +1,83 @@
+
+============================================================
+  BT EXAM: Nested Trees, Blackboard Operations, Abort Modes, and Result Handling
+  20 prompts
+  Model: models/bt-lora-v3/final
+============================================================
+
+Loaded BT system prompt from models\bt-lora-v3\system_prompt.txt (2,226 chars)
+Loading base model: meta-llama/Meta-Llama-3.1-70B
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:04<01:59,  4.13s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:08<01:55,  4.12s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:12<01:53,  4.22s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:17<01:57,  4.53s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:21<01:50,  4.43s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:26<01:45,  4.39s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:30<01:41,  4.39s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:34<01:37,  4.41s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:39<01:35,  4.54s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:44<01:28,  4.45s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:48<01:23,  4.41s/it]Loading checkpoint shards:  40%|████      | 12/30 [00:52<01:17,  4.33s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [00:57<01:16,  4.52s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [01:01<01:11,  4.45s/it]Loading checkpoint shards:  50%|█████     | 15/30 [01:06<01:06,  4.46s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [01:10<01:00,  4.33s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:14<00:55,  4.29s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:19<00:52,  4.37s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:23<00:49,  4.46s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:27<00:43,  4.39s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:32<00:38,  4.33s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:36<00:34,  4.28s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [01:40<00:30,  4.33s/it]Loading checkpoint shards:  80%|████████  | 24/30 [01:45<00:26,  4.44s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [01:49<00:21,  4.35s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [01:53<00:17,  4.28s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [01:57<00:12,  4.21s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [02:02<00:08,  4.25s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [02:06<00:04,  4.31s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:08<00:00,  3.49s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:08<00:00,  4.27s/it]
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Loading BT LoRA adapter: models/bt-lora-v3/final
+[1/20] BT03_01: Create a behavior tree where the root is a Selector. The fir...
+  [OK] Score: 96% | Nodes: 18 | BB Keys: 3 | 93.6s
+[2/20] BT03_02: Build an AI with a nested decision tree. The outer Selector ...
+  [OK] Score: 70% | Nodes: 21 | BB Keys: 3 | 108.5s
+[3/20] BT03_03: Make a behavior tree with a Sequence root. First task moves ...
+  [X] Score: 59% | Nodes: 7 | BB Keys: 2 | 41.8s
+  Error: Invalid tree line: WAIT: 3.0
+[4/20] BT03_04: Create a behavior tree where the AI sets AlertLevel to 1 whe...
+  [OK] Score: 90% | Nodes: 18 | BB Keys: 4 | 102.5s
+[5/20] BT03_05: Build a behavior tree for a guard. When the guard spots a ta...
+  [OK] Score: 81% | Nodes: 14 | BB Keys: 4 | 87.2s
+[6/20] BT03_06: Make an AI that tracks a kill count. Every time it attacks, ...
+  [OK] Score: 100% | Nodes: 12 | BB Keys: 2 | 70.9s
+[7/20] BT03_07: Create a behavior tree where the chase branch uses Self abor...
+  [OK] Score: 93% | Nodes: 10 | BB Keys: 2 | 52.7s
+[8/20] BT03_08: Build a behavior tree with Both abort mode on the attack dec...
+  [OK] Score: 100% | Nodes: 15 | BB Keys: 3 | 89.1s
+[9/20] BT03_09: Make a behavior tree where finding a target interrupts patro...
+  [OK] Score: 88% | Nodes: 11 | BB Keys: 3 | 62.3s
+[10/20] BT03_10: Create a behavior tree where one branch always succeeds usin...
+  [OK] Score: 100% | Nodes: 7 | BB Keys: 0 | 28.8s
+[11/20] BT03_11: Build a behavior tree where the AI tries to move to a target...
+  [OK] Score: 82% | Nodes: 6 | BB Keys: 1 | 30.5s
+[12/20] BT03_12: Make a behavior tree for a test dummy. It runs three sequenc...
+  [OK] Score: 100% | Nodes: 6 | BB Keys: 0 | 24.7s
+[13/20] BT03_13: Create a behavior tree with 3 levels of nesting. Root Select...
+  [OK] Score: 88% | Nodes: 20 | BB Keys: 3 | 103.7s
+[14/20] BT03_14: Build a boss AI with deeply nested behavior. The boss has 3 ...
+  [OK] Score: 83% | Nodes: 23 | BB Keys: 3 | 114.7s
+[15/20] BT03_15: Create an AI that uses blackboard as a state machine. Set St...
+  [OK] Score: 88% | Nodes: 17 | BB Keys: 4 | 102.2s
+[16/20] BT03_16: Build an AI that manages a hunt sequence using blackboard fl...
+  [OK] Score: 88% | Nodes: 18 | BB Keys: 4 | 101.7s
+[17/20] BT03_17: Create a behavior tree with all three abort modes in use. Th...
+  [OK] Score: 96% | Nodes: 16 | BB Keys: 3 | 97.4s
+[18/20] BT03_18: Build a behavior tree where the root has a FindNearestActor ...
+  [OK] Score: 90% | Nodes: 15 | BB Keys: 2 | 74.4s
+[19/20] BT03_19: Create an AI where the root Selector has two services (find ...
+  [OK] Score: 56% | Nodes: 16 | BB Keys: 3 | 87.3s
+[20/20] BT03_20: Make a behavior tree with 4 branches in the root Selector: a...
+  [OK] Score: 96% | Nodes: 21 | BB Keys: 4 | 118.7s
+
+============================================================
+  BT EXAM RESULTS
+============================================================
+  Valid syntax:     19/20 (95.0%)
+  Avg similarity:   87.2%
+  Timeouts:         0
+  Results:          results\bt_exams\bt_exam_bt_lesson_03_20260309_192341.jsonl
+  Summary:          results\bt_exams\bt_exam_bt_lesson_03_20260309_192341_summary.json
+============================================================
+

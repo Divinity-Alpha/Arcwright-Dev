@@ -1,0 +1,90 @@
+{
+  "name": "Cartoon",
+  "description": "Cartoon/casual theme — bright colors, very rounded, thick outlines, bouncy animations",
+  "version": "1.0",
+
+  "colors": {
+    "primary": "#4488FF",
+    "secondary": "#3366DD",
+    "accent": "#FF8844",
+    "warning": "#FFCC00",
+    "danger": "#FF4444",
+
+    "panel_bg": "#FFFFFF",
+    "card_bg": "#F0F4F8",
+    "surface": "#E8ECF2",
+
+    "text": "#222222",
+    "text_secondary": "#556677",
+    "text_muted": "#8899AA",
+
+    "border": "#222222",
+    "divider": "#CCDDEE",
+
+    "health": "#44DD66",
+    "health_low": "#FF4444",
+    "mana": "#4488FF",
+    "stamina": "#FFCC00",
+    "xp": "#AA66FF",
+
+    "shadow": "rgba(0,0,0,0.1)"
+  },
+
+  "fonts": {
+    "heading": {"family": "Fredoka", "weight": "Bold"},
+    "body": {"family": "Comic Neue", "weight": "Regular"},
+    "mono": {"family": "Bubblegum Sans", "weight": "Regular"},
+    "ui": {"family": "Fredoka", "weight": "SemiBold"}
+  },
+
+  "sizes": {
+    "h1": 40,
+    "h2": 32,
+    "h3": 26,
+    "h4": 20,
+    "body": 18,
+    "small": 15,
+    "tiny": 13,
+    "icon_small": 28,
+    "icon_medium": 38,
+    "icon_large": 54,
+    "corner_radius": 16,
+    "border_width": 3,
+    "spacing_xs": 6,
+    "spacing_sm": 10,
+    "spacing_md": 18,
+    "spacing_lg": 28,
+    "spacing_xl": 38
+  },
+
+  "defaults": {
+    "TEXT": {
+      "color": "#222222",
+      "font_size": 18,
+      "font": "Comic Neue"
+    },
+    "PROGRESS_BAR": {
+      "fill_color": "#4488FF",
+      "bar_color": "#E8ECF2",
+      "percent": 100
+    },
+    "BUTTON": {
+      "font_size": 18,
+      "normal_color": "#4488FF",
+      "hovered_color": "#5599FF",
+      "pressed_color": "#3366DD"
+    },
+    "BORDER": {
+      "border_color": "#222222",
+      "corner_radius": 16,
+      "background": "#F0F4F8"
+    },
+    "CANVAS": {},
+    "VBOX": {
+      "spacing": 10
+    },
+    "HBOX": {
+      "spacing": 10
+    }
+  }
+}

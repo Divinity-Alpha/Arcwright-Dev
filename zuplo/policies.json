@@ -1,0 +1,99 @@
+{
+  "policies": [
+    {
+      "name": "api-key-auth",
+      "policyType": "api-key-inbound",
+      "handler": {
+        "export": "ApiKeyInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "allowUnauthenticatedRequests": false,
+          "cacheTtlSeconds": 60
+        }
+      }
+    },
+
+    {
+      "name": "rate-limit-generate",
+      "policyType": "rate-limit-inbound",
+      "handler": {
+        "export": "RateLimitInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "rateLimitBy": "user",
+          "requestsAllowed": 10,
+          "timeWindowMinutes": 1,
+          "identifier": {
+            "func": "$import(./modules/rate-limit-by-tier)",
+            "export": "rateLimitByTier"
+          }
+        }
+      }
+    },
+
+    {
+      "name": "rate-limit-validate",
+      "policyType": "rate-limit-inbound",
+      "handler": {
+        "export": "RateLimitInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "rateLimitBy": "user",
+          "requestsAllowed": 30,
+          "timeWindowMinutes": 1
+        }
+      }
+    },
+
+    {
+      "name": "rate-limit-batch",
+      "policyType": "rate-limit-inbound",
+      "handler": {
+        "export": "RateLimitInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "rateLimitBy": "user",
+          "requestsAllowed": 5,
+          "timeWindowMinutes": 1
+        }
+      }
+    },
+
+    {
+      "name": "request-validation",
+      "policyType": "request-validation-inbound",
+      "handler": {
+        "export": "RequestValidationInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "includeRequestInLogs": false,
+          "logLevel": "info"
+        }
+      }
+    },
+
+    {
+      "name": "tier-check-pro",
+      "policyType": "custom-code-inbound",
+      "handler": {
+        "export": "default",
+        "module": "$import(./modules/tier-check)",
+        "options": {
+          "requiredTier": "pro"
+        }
+      }
+    },
+
+    {
+      "name": "tier-check-studio",
+      "policyType": "custom-code-inbound",
+      "handler": {
+        "export": "default",
+        "module": "$import(./modules/tier-check)",
+        "options": {
+          "requiredTier": "studio"
+        }
+      }
+    }
+  ]
+}

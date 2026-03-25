@@ -30,9 +30,19 @@ bool FDSLImporter::ParseIRFromString(const FString& JsonString, FDSLBlueprint& O
 	const TSharedPtr<FJsonObject>* MetaObj;
 	if (RootObj->TryGetObjectField(TEXT("metadata"), MetaObj))
 	{
-		OutBlueprint.Name = (*MetaObj)->GetStringField(TEXT("name"));
-		OutBlueprint.ParentClass = (*MetaObj)->GetStringField(TEXT("parent_class"));
+		(*MetaObj)->TryGetStringField(TEXT("name"), OutBlueprint.Name);
+		(*MetaObj)->TryGetStringField(TEXT("parent_class"), OutBlueprint.ParentClass);
 		(*MetaObj)->TryGetStringField(TEXT("category"), OutBlueprint.Category);
+	}
+
+	// Fallback: check top-level fields if metadata is missing or incomplete
+	if (OutBlueprint.Name.IsEmpty())
+	{
+		RootObj->TryGetStringField(TEXT("name"), OutBlueprint.Name);
+	}
+	if (OutBlueprint.Name.IsEmpty())
+	{
+		RootObj->TryGetStringField(TEXT("blueprint_name"), OutBlueprint.Name);
 	}
 
 	// Parse variables

@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1.0",
+	"FriendlyName": "Arcwright",
+	"Description": "The Bridge Between AI and Unreal Engine — 267 TCP commands for AI-driven Blueprint, Widget, and Asset creation",
+	"Category": "Editor",
+	"CreatedBy": "Arcwright",
+	"EnabledByDefault": true,
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"Plugins": [
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
+		}
+	],
+	"Modules": [
+		{
+			"Name": "BlueprintLLM",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}

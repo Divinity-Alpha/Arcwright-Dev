@@ -1,0 +1,39 @@
+{
+  "id": "lap_counter",
+  "name": "Lap Counter",
+  "category": "hud",
+  "description": "LAP X/Y for racing",
+  "default_anchor": "TopLeft",
+  "default_offset": [
+    20,
+    20
+  ],
+  "default_size": [
+    140,
+    40
+  ],
+  "variables": [
+    {
+      "name": "CurrentLap",
+      "type": "Integer",
+      "default": 1
+    },
+    {
+      "name": "TotalLaps",
+      "type": "Integer",
+      "default": 3
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "TEXT",
+    "name": "LapText",
+    "properties": {
+      "text": "BIND:\"LAP {CurrentLap}/{TotalLaps}\"",
+      "font_size": "22",
+      "color": "$text",
+      "bold": "true"
+    },
+    "children": []
+  }
+}

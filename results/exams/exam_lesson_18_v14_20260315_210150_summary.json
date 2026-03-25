@@ -1,0 +1,73 @@
+{
+  "lesson_id": "lesson_18",
+  "lesson_name": "Showcase Prompts: Marketing-Ready Blueprint Patterns",
+  "model": "models/blueprint-lora-v14/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260315_210150",
+  "total_prompts": 12,
+  "valid_syntax": 12,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 98.6,
+  "per_category": {
+    "showcase_collectible": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "showcase_explosive": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "showcase_hazard": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 94.1
+    },
+    "showcase_lighting": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "showcase_interaction": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "showcase_health": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "showcase_sequence": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "showcase_gate": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "showcase_movement": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "showcase_alarm": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 88.9
+    },
+    "showcase_trap": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "showcase_score": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    }
+  }
+}

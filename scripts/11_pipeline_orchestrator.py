@@ -54,6 +54,7 @@ STEP_PLANS = {
         {"step": "1.4", "name": "Convert lessons", "parent": "1"},
         {"step": "1.5", "name": "Merge + Deduplicate", "parent": "1"},
         {"step": "2", "name": "Pre-Flight Checks", "parent": None},
+        {"step": "2.2a", "name": "Kill zombie GPU processes", "parent": "2"},
         {"step": "2.1", "name": "Validate DSL files", "parent": "2"},
         {"step": "2.2", "name": "Validate merged dataset", "parent": "2"},
         {"step": "2.3", "name": "Generate system prompt", "parent": "2"},
@@ -115,6 +116,7 @@ STEP_PLANS = {
         {"step": "1.4", "name": "Convert lessons", "parent": "1"},
         {"step": "1.5", "name": "Merge + Deduplicate", "parent": "1"},
         {"step": "2", "name": "Pre-Flight Checks", "parent": None},
+        {"step": "2.2a", "name": "Kill zombie GPU processes", "parent": "2"},
         {"step": "2.1", "name": "Validate DSL files", "parent": "2"},
         {"step": "2.2", "name": "Validate merged dataset", "parent": "2"},
         {"step": "2.3", "name": "Generate system prompt", "parent": "2"},
@@ -202,6 +204,13 @@ class PipelineConfig:
         self.lora_r = lora_cfg.get("lora_r", 64)
         self.learning_rate = train_cfg.get("learning_rate", 2e-4)
         self.synthetic_count = pcfg.get("synthetic", {}).get("synthetic_count", 500)
+
+        # Training mode (full vs continuation)
+        mode_cfg = pcfg.get("training_mode", {})
+        self.training_mode = mode_cfg.get("mode", "full")
+        self.continuation_lr = mode_cfg.get("continuation_lr", 5e-5)
+        self.continuation_epochs = mode_cfg.get("continuation_epochs", 2)
+        self.continuation_new_lessons_only = mode_cfg.get("new_lessons_only", True)
 
         # Error handling / stall detection
         stall_cfg = pcfg.get("stall_detection", {})
@@ -356,6 +365,117 @@ def hash_file(path):
         for chunk in iter(lambda: f.read(8192), b""):
             h.update(chunk)
     return h.hexdigest()[:16]
+
+
+def kill_zombie_gpu_processes(cfg, log, dry_run=False):
+    """Step 2.2a: Kill zombie GPU processes before training.
+
+    Queries nvidia-smi for Python processes on the training GPU that are NOT
+    the current orchestrator PID.  Kills them, waits for VRAM to free, and
+    aborts if >5 GB is still in use after cleanup.
+    """
+    log.start_step("2.2a", "Kill zombie GPU processes")
+    my_pid = os.getpid()
+
+    # Determine which nvidia-smi GPU index corresponds to the training GPU.
+    # CUDA_VISIBLE_DEVICES=0 maps to PRO 6000, which is nvidia-smi index 1.
+    smi_gpu_index = "1"  # PRO 6000 in nvidia-smi ordering
+
+    # --- Query compute processes on the training GPU ---
+    try:
+        result = subprocess.run(
+            ["nvidia-smi", "--query-compute-apps=pid,name,used_memory",
+             "--format=csv,noheader,nounits", "-i", smi_gpu_index],
+            capture_output=True, text=True, timeout=30)
+        if result.returncode != 0:
+            log.log(f"WARNING: nvidia-smi query failed (rc={result.returncode}): {result.stderr.strip()}")
+            log.complete_step("2.2a", "Kill zombie GPU processes", "nvidia-smi query failed — skipping")
+            return
+    except subprocess.TimeoutExpired:
+        log.log("CRITICAL: nvidia-smi hung (30s timeout). GPU driver may be stuck. Reboot required.")
+        log.complete_step("2.2a", "Kill zombie GPU processes", "nvidia-smi hung — ABORT")
+        raise RuntimeError("nvidia-smi hung — GPU driver stuck. Reboot the machine and retry.")
+    except FileNotFoundError:
+        log.log("WARNING: nvidia-smi not found on PATH — skipping zombie check")
+        log.complete_step("2.2a", "Kill zombie GPU processes", "nvidia-smi not found")
+        return
+
+    # --- Parse processes ---
+    zombies = []
+    for line in result.stdout.strip().splitlines():
+        parts = [p.strip() for p in line.split(",")]
+        if len(parts) < 2:
+            continue
+        try:
+            pid = int(parts[0])
+        except ValueError:
+            continue
+        proc_name = parts[1]
+        mem_str = parts[2] if len(parts) > 2 else "?"
+        # Skip ourselves and non-Python processes
+        if pid == my_pid:
+            log.log(f"  PID {pid} is this orchestrator — skipping")
+            continue
+        if "python" in proc_name.lower():
+            zombies.append({"pid": pid, "name": proc_name, "mem": mem_str})
+
+    if not zombies:
+        log.log("  No zombie Python processes on training GPU")
+        log.complete_step("2.2a", "Kill zombie GPU processes", "Clean — no zombies found")
+        return
+
+    # --- Kill zombies ---
+    log.log(f"  Found {len(zombies)} zombie Python process(es) on GPU {smi_gpu_index}:")
+    for z in zombies:
+        log.log(f"    PID {z['pid']} ({z['name']}) using {z['mem']} MiB")
+
+    if dry_run:
+        log.log("  [DRY RUN] Would kill these processes")
+        log.complete_step("2.2a", "Kill zombie GPU processes", f"DRY RUN — {len(zombies)} zombies found")
+        return
+
+    killed = []
+    for z in zombies:
+        try:
+            subprocess.run(["taskkill", "/F", "/PID", str(z["pid"])],
+                           capture_output=True, text=True, timeout=10)
+            killed.append(z["pid"])
+            log.log(f"    Killed PID {z['pid']}")
+        except Exception as e:
+            log.log(f"    WARNING: Failed to kill PID {z['pid']}: {e}")
+
+    # --- Wait and verify VRAM freed ---
+    log.log("  Waiting 5 seconds for VRAM to free...")
+    time.sleep(5)
+
+    try:
+        result = subprocess.run(
+            ["nvidia-smi", "--query-gpu=memory.used", "--format=csv,noheader,nounits",
+             "-i", smi_gpu_index],
+            capture_output=True, text=True, timeout=30)
+        if result.returncode == 0:
+            vram_used_mb = float(result.stdout.strip())
+            vram_used_gb = vram_used_mb / 1024
+            log.log(f"  VRAM after cleanup: {vram_used_gb:.1f} GB ({vram_used_mb:.0f} MiB)")
+
+            if vram_used_gb > 5.0:
+                log.log(f"CRITICAL: VRAM still at {vram_used_gb:.1f} GB after killing {len(killed)} zombies.")
+                log.log(f"  Something else is holding the GPU. Aborting to prevent v11-style hang.")
+                log.complete_step("2.2a", "Kill zombie GPU processes",
+                                  f"ABORT — {vram_used_gb:.1f} GB still used after cleanup")
+                raise RuntimeError(
+                    f"GPU VRAM still at {vram_used_gb:.1f} GB after zombie cleanup. "
+                    f"Expected <5 GB. Check for non-Python processes or reboot.")
+            else:
+                log.log(f"  VRAM is clean ({vram_used_gb:.1f} GB)")
+        else:
+            log.log(f"  WARNING: Could not verify VRAM (nvidia-smi rc={result.returncode})")
+    except subprocess.TimeoutExpired:
+        log.log("  WARNING: nvidia-smi hung during verification. Driver may be unstable.")
+        log.log("  Proceeding cautiously — training may fail if VRAM isn't actually free.")
+
+    log.complete_step("2.2a", "Kill zombie GPU processes",
+                      f"Killed {len(killed)} zombies")
 
 
 def run_script(cfg, log, script, args, desc, dry_run=False, allow_fail=False,
@@ -724,14 +844,113 @@ def step_data_foundation(cfg, log, dry_run):
     return True
 
 
+def step_data_foundation_continuation(cfg, log, dry_run):
+    """Steps 1.x (continuation mode): Build dataset from lessons + replay only.
+
+    Skips synthetic generation, auto-translated data, and manual examples.
+    Produces a smaller, focused dataset for continuation training.
+    """
+    log.section("STEP 1: Data Foundation (CONTINUATION MODE)")
+    log.start_step("1", "Data Foundation (continuation)")
+
+    # 1.4: Convert lessons (same as full mode)
+    lesson_dir = cfg.root / "lessons"
+    if lesson_dir.exists() and (list(lesson_dir.glob("lesson_*.json")) or list(lesson_dir.glob("correction_*.json"))):
+        run_script(cfg, log, "13_lesson_to_training.py",
+                   ["--lesson-dir", str(lesson_dir), "--output", str(cfg.lesson_data), "--no-append"],
+                   "Converting lessons to training data", dry_run, allow_fail=True,
+                   extra_env={"PIPELINE_STEP_CONTEXT": "1"}, step_category="data")
+
+    # 1.5: Build continuation dataset (lessons + replay buffer only)
+    if not dry_run:
+        entries = []
+
+        # Load lesson data
+        lc = 0
+        if cfg.lesson_data.exists():
+            with open(cfg.lesson_data) as f:
+                for l in f:
+                    if l.strip():
+                        entries.append(l.strip())
+                        lc += 1
+            log.log(f"  {lc} lesson examples")
+
+        # Deduplicate
+        entries = _dedup_entries(entries, cfg.struct_dedup_cap, log)
+
+        # Reinforce foundational lessons (same as full mode — prevents catastrophic forgetting)
+        if cfg.reinforce_lessons and cfg.lesson_data.exists():
+            reinforce_ids = set(cfg.reinforce_lessons)
+            dupes = []
+            with open(cfg.lesson_data) as f:
+                for l in f:
+                    l = l.strip()
+                    if not l:
+                        continue
+                    try:
+                        obj = json.loads(l)
+                        src = obj.get("source", "")
+                        parts = src.split(":")
+                        if len(parts) >= 2 and parts[1] in reinforce_ids:
+                            dupes.append(l)
+                    except (json.JSONDecodeError, AttributeError):
+                        continue
+            if dupes:
+                seen = set()
+                unique_dupes = []
+                for d in dupes:
+                    h = hashlib.md5(json.loads(d).get("output", "").encode()).hexdigest()
+                    if h not in seen:
+                        seen.add(h)
+                        unique_dupes.append(d)
+                entries.extend(unique_dupes)
+                log.log(f"  Reinforced {len(unique_dupes)} entries from {sorted(reinforce_ids)}")
+
+        with open(cfg.train_data, "w") as f:
+            f.write("\n".join(entries) + "\n")
+        log.log(f"  Total (continuation): {len(entries)} training examples")
+    else:
+        log.log("  [DRY RUN] Would build continuation dataset from lessons + replay")
+
+    log.complete_step("1", "Data Foundation (continuation)")
+    return True
+
+
 # ===========================================================================
 # STEP 2: Pre-Flight Checks
 # ===========================================================================
 
 def step_preflight(cfg, log, state, dry_run):
-    """Steps 2.x: Validate DSL, validate dataset, generate prompt, compute hash."""
+    """Steps 2.x: Zombie cleanup, validate DSL, validate dataset, generate prompt, compute hash."""
     log.section("STEP 2: Pre-Flight Checks")
     log.start_step("2", "Pre-Flight Checks")
+
+    # 2.0: Automated pre-flight validation (codified lessons learned)
+    log.start_step("2.0", "Automated pre-flight validation")
+    try:
+        from preflight_checks import check_training
+        report = check_training(skip_ue=True)  # skip UE check — training may run headless
+        for r in report.results:
+            log.log(f"  {r}")
+        if not report.passed:
+            log.log(f"PREFLIGHT BLOCKED: {report.fail_count} failure(s)")
+            if not dry_run:
+                log.complete_step("2.0", "Automated pre-flight validation",
+                                  f"BLOCKED — {report.fail_count} failure(s)")
+                raise RuntimeError(
+                    f"Pre-flight blocked: {report.fail_count} check(s) failed. "
+                    "Fix issues above before training."
+                )
+        status = "PASSED"
+        if report.has_warnings:
+            status = f"PASSED with {report.warn_count} warning(s)"
+        log.complete_step("2.0", "Automated pre-flight validation", status)
+    except ImportError:
+        log.log("  WARNING: preflight_checks.py not found — skipping")
+        log.complete_step("2.0", "Automated pre-flight validation", "Skipped (module not found)")
+
+    # 2.2a: Kill zombie GPU processes (MUST run before GPU availability check)
+    kill_zombie_gpu_processes(cfg, log, dry_run)
 
     # 2.1: Validate DSL files
     dsl_files = list(cfg.dsl_dir.glob("*.dsl"))
@@ -784,13 +1003,43 @@ def step_train(cfg, log, state, dry_run, force, data_hash=None):
         return str(m) if m else None
     ver = state.get("last_model_version", 0) + 1
     model_dir = cfg.models_dir / f"blueprint-lora-v{ver}"
-    log.log(f"Training v{ver} (data hash: {cur_hash})")
-    ok = run_script(cfg, log, "04_train_blueprint_lora.py", [
+
+    # Determine training mode and build command args
+    train_args = [
         "--base_model", cfg.base_model, "--dataset", str(cfg.train_data),
-        "--output", str(model_dir), "--epochs", str(cfg.epochs),
-        "--batch_size", str(cfg.batch_size), "--lr", str(cfg.learning_rate),
-        "--lora_r", str(cfg.lora_r)
-    ], f"Fine-tuning v{ver}", dry_run, step_category="training")
+        "--output", str(model_dir), "--batch_size", str(cfg.batch_size),
+        "--lora_r", str(cfg.lora_r),
+    ]
+
+    is_continuation = cfg.training_mode == "continuation"
+    if is_continuation:
+        # Find previous version's adapter
+        prev_ver = ver - 1
+        prev_adapter = cfg.models_dir / f"blueprint-lora-v{prev_ver}" / "final"
+        if prev_adapter.exists():
+            train_args.extend([
+                "--resume_from", str(prev_adapter),
+                "--continuation_lr", str(cfg.continuation_lr),
+                "--epochs", str(cfg.continuation_epochs),
+                "--lr", str(cfg.continuation_lr),
+            ])
+            log.log(f"CONTINUATION training v{ver} from v{prev_ver} adapter")
+            log.log(f"  LR: {cfg.continuation_lr}, Epochs: {cfg.continuation_epochs}")
+        else:
+            log.log(f"WARNING: Previous adapter v{prev_ver} not found at {prev_adapter}")
+            log.log(f"  Falling back to FULL training mode")
+            is_continuation = False
+
+    if not is_continuation:
+        train_args.extend([
+            "--epochs", str(cfg.epochs),
+            "--lr", str(cfg.learning_rate),
+        ])
+        log.log(f"FULL training v{ver}")
+
+    log.log(f"Training v{ver} (data hash: {cur_hash})")
+    ok = run_script(cfg, log, "04_train_blueprint_lora.py", train_args,
+                    f"Fine-tuning v{ver}", dry_run, step_category="training")
     if ok or dry_run:
         state["last_training_data_hash"] = cur_hash
         state["last_model_version"] = ver
@@ -1124,7 +1373,7 @@ def step_notify_complete(cfg, log, state, dry_run):
             ["powershell", "-Command",
              f'if (Get-Module -ListAvailable -Name BurntToast) {{ '
              f'Import-Module BurntToast; '
-             f"New-BurntToastNotification -Text 'BlueprintLLM', '{msg}' "
+             f"New-BurntToastNotification -Text 'Arcwright', '{msg}' "
              f'}} else {{ exit 1 }}'],
             capture_output=True, text=True, timeout=15,
         )
@@ -1140,7 +1389,7 @@ def step_notify_complete(cfg, log, state, dry_run):
             ["powershell", "-Command",
              "Add-Type -AssemblyName System.Windows.Forms; "
              "[System.Windows.Forms.MessageBox]::Show("
-             f"'{msg}', 'BlueprintLLM', 'OK', 'Information')"],
+             f"'{msg}', 'Arcwright', 'OK', 'Information')"],
             creationflags=0x00000008,  # DETACHED_PROCESS
         )
         log.log("Desktop notification sent (MessageBox).")
@@ -1239,7 +1488,11 @@ def run_pipeline(mode, dry_run=False, force=False, root=None, resume=False):
         if mode in ("full", "data-only"):
             if not should_skip("step_data_foundation"):
                 _dw(dw.step_start, 1)
-                step_data_foundation(cfg, log, dry_run)
+                if cfg.training_mode == "continuation":
+                    log.log(f"Training mode: CONTINUATION (lessons + replay only)")
+                    step_data_foundation_continuation(cfg, log, dry_run)
+                else:
+                    step_data_foundation(cfg, log, dry_run)
                 _dw(dw.step_done, 1)
                 mark_completed("step_data_foundation")
             else:

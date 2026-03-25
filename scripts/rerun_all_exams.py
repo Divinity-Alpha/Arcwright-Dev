@@ -228,7 +228,7 @@ def notify():
              "[System.Windows.Forms.MessageBox]::Show("
              "'v5 exams re-run complete with fixed early stopping! "
              "Results pushed. Open GRADE_ME.txt.', "
-             "'BlueprintLLM', 'OK', 'Information')"],
+             "'Arcwright', 'OK', 'Information')"],
             creationflags=0x00000008,
         )
     except Exception:

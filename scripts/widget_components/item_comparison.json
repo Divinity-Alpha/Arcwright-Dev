@@ -1,0 +1,121 @@
+{
+  "id": "item_comparison",
+  "name": "Item Comparison",
+  "category": "inventory",
+  "description": "Side-by-side: equipped vs new with stat arrows",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    500,
+    300
+  ],
+  "variables": [
+    {
+      "name": "EquippedName",
+      "type": "String",
+      "default": ""
+    },
+    {
+      "name": "NewName",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "CompareRoot",
+    "properties": {
+      "spacing": "16"
+    },
+    "children": [
+      {
+        "type": "VBOX",
+        "name": "EquippedCard",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "EqLabel",
+            "properties": {
+              "text": "EQUIPPED",
+              "font_size": "12",
+              "color": "$text_muted"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "EqName",
+            "properties": {
+              "text": "BIND:\"{EquippedName}\"",
+              "font_size": "16",
+              "color": "$text",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "EqStat1",
+            "properties": {
+              "text": "BIND:\"ATK: {EqAtk}\"",
+              "font_size": "14",
+              "color": "$text"
+            }
+          }
+        ]
+      },
+      {
+        "type": "TEXT",
+        "name": "VsText",
+        "properties": {
+          "text": "VS",
+          "font_size": "24",
+          "color": "$accent",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "NewCard",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "NewLabel",
+            "properties": {
+              "text": "NEW",
+              "font_size": "12",
+              "color": "$accent"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "NewName",
+            "properties": {
+              "text": "BIND:\"{NewName}\"",
+              "font_size": "16",
+              "color": "$accent",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "NewStat1",
+            "properties": {
+              "text": "BIND:\"ATK: {NewAtk}\"",
+              "font_size": "14",
+              "color": "$accent"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

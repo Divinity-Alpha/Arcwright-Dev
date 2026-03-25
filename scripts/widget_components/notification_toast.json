@@ -1,0 +1,71 @@
+{
+  "id": "notification_toast",
+  "name": "Notification Toast",
+  "category": "system",
+  "description": "Slide-in card with icon, title, message, auto-dismiss",
+  "default_anchor": "TopCenter",
+  "default_offset": [
+    0,
+    20
+  ],
+  "default_size": [
+    350,
+    80
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "ToastRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "ToastIcon",
+        "properties": {
+          "tint": "$accent",
+          "size_x": "32",
+          "size_y": "32"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "ToastContent",
+        "properties": {
+          "spacing": "2"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "ToastTitle",
+            "properties": {
+              "text": "BIND:\"{ToastTitle}\"",
+              "font_size": "14",
+              "color": "$text",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "ToastMsg",
+            "properties": {
+              "text": "BIND:\"{ToastMessage}\"",
+              "font_size": "12",
+              "color": "$text_muted"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BUTTON",
+        "name": "DismissBtn",
+        "properties": {
+          "text": "X",
+          "font_size": "12"
+        }
+      }
+    ]
+  }
+}

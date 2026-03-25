@@ -1,0 +1,1652 @@
+[
+  {
+    "command": "create_widget_blueprint",
+    "params": {
+      "name": "WBP_TranslatorTest",
+      "path": "C:/Program Files/Git/Game/Arcwright/Generated",
+      "design_width": 1920,
+      "design_height": 1080
+    }
+  },
+  {
+    "command": "set_widget_design_size",
+    "params": {
+      "name": "WBP_TranslatorTest",
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "",
+      "widget_type": "CanvasPanel",
+      "widget_name": "CanvasPanel_Root"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "CanvasPanel_Root",
+      "widget_type": "Border",
+      "widget_name": "Border"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "CanvasPanel_Root",
+      "widget_type": "Border",
+      "widget_name": "Border_hud_root"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "Slot.Anchors.Min.X",
+      "value": "0.0000"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "Slot.Anchors.Min.Y",
+      "value": "0.0000"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "Slot.Anchors.Max.X",
+      "value": "1.0000"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "Slot.Anchors.Max.Y",
+      "value": "1.0000"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "Slot.Position.X",
+      "value": "0"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "Slot.Position.Y",
+      "value": "0"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "Slot.Size.X",
+      "value": "0"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "Slot.Size.Y",
+      "value": "0"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "Slot.ZOrder",
+      "value": "0"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_hud_root",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_hud_root",
+      "widget_type": "Border",
+      "widget_name": "Border_health_section"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_section",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_section",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_health_section",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_health_label"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_health_label",
+      "property": "ColorAndOpacity",
+      "value": "hex:#00ff88"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_health_label",
+      "property": "Font.Typeface",
+      "value": "Bold"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_health_label",
+      "property": "Font.Size",
+      "value": "14"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_health_label",
+      "property": "Text",
+      "value": "HEALTH"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_health_section",
+      "widget_type": "Border",
+      "widget_name": "Border_health_bar"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_bar",
+      "property": "BrushColor",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.10)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_bar",
+      "property": "Brush.DrawType",
+      "value": "Box"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_bar",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_bar",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_health_bar",
+      "widget_type": "Border",
+      "widget_name": "Border_health_fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_fill",
+      "property": "BrushColor",
+      "value": "hex:#00ff88"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_fill",
+      "property": "Brush.DrawType",
+      "value": "Box"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_fill",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_health_fill",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_health_section",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_health_text"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_health_text",
+      "property": "ColorAndOpacity",
+      "value": "hex:#FFFFFF"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_health_text",
+      "property": "Font.Typeface",
+      "value": "Bold"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_health_text",
+      "property": "Font.Size",
+      "value": "18"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_health_text",
+      "property": "Text",
+      "value": "75 / 100"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_hud_root",
+      "widget_type": "Border",
+      "widget_name": "Border_score_section"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_score_section",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_score_section",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_score_section",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_score_label"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_score_label",
+      "property": "ColorAndOpacity",
+      "value": "hex:#ffb800"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_score_label",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_score_label",
+      "property": "Font.Size",
+      "value": "14"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_score_label",
+      "property": "Text",
+      "value": "SCORE"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_score_section",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_score_value"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_score_value",
+      "property": "ColorAndOpacity",
+      "value": "hex:#ffb800"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_score_value",
+      "property": "Font.Typeface",
+      "value": "Bold"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_score_value",
+      "property": "Font.Size",
+      "value": "36"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_score_value",
+      "property": "Justification",
+      "value": "Right"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_score_value",
+      "property": "Text",
+      "value": "12,450"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_hud_root",
+      "widget_type": "Border",
+      "widget_name": "Border_wave_info"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_wave_info",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_wave_info",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_wave_info",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_wave_text"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_text",
+      "property": "ColorAndOpacity",
+      "value": "hex:#a855f7"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_text",
+      "property": "Font.Typeface",
+      "value": "Bold"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_text",
+      "property": "Font.Size",
+      "value": "20"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_text",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_text",
+      "property": "Text",
+      "value": "WAVE 3"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_wave_info",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_wave_sub"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_sub",
+      "property": "ColorAndOpacity",
+      "value": "(R=0.3916,G=0.0908,B=0.9301,A=0.60)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_sub",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_sub",
+      "property": "Font.Size",
+      "value": "12"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_sub",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_wave_sub",
+      "property": "Text",
+      "value": "Enemies Remaining: 8"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_hud_root",
+      "widget_type": "Border",
+      "widget_name": "Border_crosshair"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_crosshair",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_crosshair",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_crosshair",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_crosshair_dot"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_crosshair_dot",
+      "property": "ColorAndOpacity",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.70)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_crosshair_dot",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_crosshair_dot",
+      "property": "Font.Size",
+      "value": "20"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_crosshair_dot",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_crosshair_dot",
+      "property": "Text",
+      "value": "+"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_hud_root",
+      "widget_type": "Border",
+      "widget_name": "Border_message_area"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_message_area",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_message_area",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_message_area",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_message_text"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_message_text",
+      "property": "ColorAndOpacity",
+      "value": "hex:#00d4ff"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_message_text",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_message_text",
+      "property": "Font.Size",
+      "value": "24"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_message_text",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_message_text",
+      "property": "Text",
+      "value": "Key Collected! 2/3"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_hud_root",
+      "widget_type": "Border",
+      "widget_name": "Border_minimap_frame"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_minimap_frame",
+      "property": "BrushColor",
+      "value": "(R=0.0000,G=0.0000,B=0.0000,A=0.60)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_minimap_frame",
+      "property": "Brush.DrawType",
+      "value": "Box"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_minimap_frame",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_minimap_frame",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_minimap_frame",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_minimap_label"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_minimap_label",
+      "property": "ColorAndOpacity",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.40)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_minimap_label",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_minimap_label",
+      "property": "Font.Size",
+      "value": "10"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_minimap_label",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_minimap_label",
+      "property": "Text",
+      "value": "MAP"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_hud_root",
+      "widget_type": "Border",
+      "widget_name": "Border_ammo_section"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ammo_section",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ammo_section",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ammo_section",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ammo_count"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_count",
+      "property": "ColorAndOpacity",
+      "value": "hex:#FFFFFF"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_count",
+      "property": "Font.Typeface",
+      "value": "Bold"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_count",
+      "property": "Font.Size",
+      "value": "48"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_count",
+      "property": "Justification",
+      "value": "Right"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_count",
+      "property": "Text",
+      "value": "24"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ammo_section",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ammo_label"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_label",
+      "property": "ColorAndOpacity",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.50)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_label",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_label",
+      "property": "Font.Size",
+      "value": "12"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_label",
+      "property": "Justification",
+      "value": "Right"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ammo_label",
+      "property": "Text",
+      "value": "RIFLE AMMO"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_hud_root",
+      "widget_type": "HorizontalBox",
+      "widget_name": "HBox_ability_bar"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "HBox_ability_bar",
+      "widget_type": "Border",
+      "widget_name": "Border_ability_slot"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot",
+      "property": "BrushColor",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.08)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot",
+      "property": "Brush.DrawType",
+      "value": "Box"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ability_slot",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ability_key"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key",
+      "property": "ColorAndOpacity",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.50)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key",
+      "property": "Font.Size",
+      "value": "11"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key",
+      "property": "Text",
+      "value": "Q"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ability_slot",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ability_icon"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon",
+      "property": "ColorAndOpacity",
+      "value": "hex:#00d4ff"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon",
+      "property": "Font.Size",
+      "value": "24"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon",
+      "property": "Text",
+      "value": "\u26a1"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "HBox_ability_bar",
+      "widget_type": "Border",
+      "widget_name": "Border_ability_slot_2"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_2",
+      "property": "BrushColor",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.08)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_2",
+      "property": "Brush.DrawType",
+      "value": "Box"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_2",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_2",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ability_slot_2",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ability_key_2"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_2",
+      "property": "ColorAndOpacity",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.50)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_2",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_2",
+      "property": "Font.Size",
+      "value": "11"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_2",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_2",
+      "property": "Text",
+      "value": "E"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ability_slot_2",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ability_icon_2"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_2",
+      "property": "ColorAndOpacity",
+      "value": "hex:#00d4ff"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_2",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_2",
+      "property": "Font.Size",
+      "value": "24"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_2",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_2",
+      "property": "Text",
+      "value": "\ud83d\udee1"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "HBox_ability_bar",
+      "widget_type": "Border",
+      "widget_name": "Border_ability_slot_3"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_3",
+      "property": "BrushColor",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.08)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_3",
+      "property": "Brush.DrawType",
+      "value": "Box"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_3",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_3",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ability_slot_3",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ability_key_3"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_3",
+      "property": "ColorAndOpacity",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.50)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_3",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_3",
+      "property": "Font.Size",
+      "value": "11"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_3",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_3",
+      "property": "Text",
+      "value": "R"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ability_slot_3",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ability_icon_3"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_3",
+      "property": "ColorAndOpacity",
+      "value": "hex:#00d4ff"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_3",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_3",
+      "property": "Font.Size",
+      "value": "24"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_3",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_3",
+      "property": "Text",
+      "value": "\ud83d\udd25"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "HBox_ability_bar",
+      "widget_type": "Border",
+      "widget_name": "Border_ability_slot_4"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_4",
+      "property": "BrushColor",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.08)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_4",
+      "property": "Brush.DrawType",
+      "value": "Box"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_4",
+      "property": "HAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Border_ability_slot_4",
+      "property": "VAlign",
+      "value": "Fill"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ability_slot_4",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ability_key_4"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_4",
+      "property": "ColorAndOpacity",
+      "value": "(R=1.0000,G=1.0000,B=1.0000,A=0.50)"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_4",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_4",
+      "property": "Font.Size",
+      "value": "11"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_4",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_key_4",
+      "property": "Text",
+      "value": "F"
+    }
+  },
+  {
+    "command": "add_widget_child",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "parent_widget": "Border_ability_slot_4",
+      "widget_type": "TextBlock",
+      "widget_name": "Text_ability_icon_4"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_4",
+      "property": "ColorAndOpacity",
+      "value": "hex:#00d4ff"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_4",
+      "property": "Font.Typeface",
+      "value": "Regular"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_4",
+      "property": "Font.Size",
+      "value": "24"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_4",
+      "property": "Justification",
+      "value": "Center"
+    }
+  },
+  {
+    "command": "set_widget_property",
+    "params": {
+      "widget_blueprint": "WBP_TranslatorTest",
+      "widget_name": "Text_ability_icon_4",
+      "property": "Text",
+      "value": "\ud83d\udc8a"
+    }
+  },
+  {
+    "command": "save_all",
+    "params": {}
+  }
+]

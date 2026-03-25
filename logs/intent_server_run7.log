@@ -1,0 +1,2096 @@
+[11:30:09] ============================================================
+[11:30:09] Arcwright Intent Classification Server (Multi-Stage)
+[11:30:09] Intent port: 13380
+[11:30:09] UE query port: 13377
+[11:30:09] Model: meta-llama/Meta-Llama-3.1-70B (base, no LoRA)
+[11:30:09] ============================================================
+[11:30:09] Loading base model: meta-llama/Meta-Llama-3.1-70B
+[11:30:09] This uses the BASE model (no LoRA) -- intent classification is a general task
+[11:30:14] Loading tokenizer...
+[11:31:35] Loading model in 8-bit quantization...
+`torch_dtype` is deprecated! Use `dtype` instead!
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:05<02:42,  5.59s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:11<02:36,  5.57s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:17<02:34,  5.71s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:22<02:29,  5.76s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:28<02:20,  5.62s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:33<02:12,  5.51s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:38<02:05,  5.44s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:44<02:01,  5.50s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:50<01:58,  5.65s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:55<01:52,  5.61s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [01:01<01:47,  5.66s/it]Loading checkpoint shards:  40%|████      | 12/30 [01:07<01:42,  5.70s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [01:13<01:39,  5.85s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [01:19<01:35,  5.97s/it]Loading checkpoint shards:  50%|█████     | 15/30 [01:25<01:28,  5.89s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [01:31<01:21,  5.84s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:36<01:14,  5.75s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:41<01:06,  5.54s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:46<00:59,  5.38s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:51<00:51,  5.17s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:56<00:45,  5.04s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [02:01<00:39,  4.96s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [02:06<00:35,  5.02s/it]Loading checkpoint shards:  80%|████████  | 24/30 [02:11<00:30,  5.03s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [02:16<00:24,  4.96s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [02:20<00:19,  4.89s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [02:25<00:14,  4.84s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [02:30<00:09,  4.90s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [02:35<00:04,  4.93s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:37<00:00,  3.90s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:37<00:00,  5.24s/it]
+[11:34:15] Base model loaded. VRAM: 72.7 GB
+[11:34:15] Loading first adapter (blueprint) from C:\BlueprintLLM\models\blueprint-lora-v12\final
+[11:34:22]   Adapter 'blueprint' loaded
+[11:34:22] Loading adapter (bt) from C:\BlueprintLLM\models\bt-lora-v3\final
+[11:34:28]   Adapter 'bt' loaded
+[11:34:28] Loading adapter (dt) from C:\BlueprintLLM\models\dt-lora-v3\final
+[11:34:34]   Adapter 'dt' loaded
+[11:34:34] All adapters loaded and disabled (base model active for classification)
+[11:34:34] Ready. VRAM: 77.7 GB
+[11:34:34] Intent server listening on localhost:13380
+[11:34:34] Ready for multi-stage intent classification requests
+[11:34:34]   Stage 1: Classify (LLM) → Stage 2: Discover (UE:13377) → Stage 3: Refine (LLM)
+[11:34:34] Client connected: ('127.0.0.1', 49862)
+[11:34:34] Request: {"command": "health_check", "params": {}}
+[11:34:34] Response sent: {"mode": "CLARIFY", "summary": "Empty prompt received.", "requires_confirmation": false, "operations": []}
+[11:34:45] Client connected: ('127.0.0.1', 49893)
+[11:34:45] Request: {"prompt": "health check"}
+[11:34:45] [Stage 1] Classifying: health check
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[11:34:59] Client connected: ('127.0.0.1', 49933)
+[11:34:59] Request: {"prompt": "Set up FPS controls for the game"}
+[11:35:01] Raw model output: {"mode":"QUERY","summary":"Check health","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"check_health","params":{},"depends_on":null}]}
+[11:35:01] [Stage 1] WARN: Operation 0: unknown command 'check_health' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[11:35:01] [Stage 1] Result: mode=QUERY, targets=[], ops=0
+[11:35:01] Single-stage result (QUERY)
+[11:35:01] Intent classified in 16.6s (multi-stage)
+[11:35:01] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=set up fps controls for the game
+[11:35:01] Response sent: {"mode": "QUERY", "summary": "Check health", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'check_health' \u2014 removed. Hint:
+[11:35:01] [HardOverride] Bypassing LLM — mode=CREATE
+[11:35:01] Intent classified in 2.6s (multi-stage)
+[11:35:01] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "set up
+[11:35:01] Client connected: ('127.0.0.1', 49941)
+[11:35:01] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "set up fps controls for the game"}
+[11:35:01] [Generate DSL] domain=blueprint, prompt=set up fps controls for the game
+[11:35:53] DSL raw output (blueprint, 149 tokens): BLUEPRINT: BP_FpsControls
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_InputAction [ActionName="IncreaseFPS"]
+NODE n2: PrintString [InString="FPS Increased"]
+NODE n3: SetVar [Variable=TargetFPS, V
+[11:35:53] [Generate DSL] Done in 51.2s, DSL length=476
+[11:35:53] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_FpsControls\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"IncreaseFPS\"]\nNODE n2: PrintString [InString
+[11:35:53] Client connected: ('127.0.0.1', 50110)
+[11:35:53] Request: {"prompt": "Add dark indoor lighting to the level"}
+[11:35:53] [Stage 1] Classifying: Add dark indoor lighting to the level
+[11:36:12] Raw model output: {"mode":"MODIFY","summary":"Setup scene lighting","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"setup_scene_lighting","params":{"preset":"indoor_dark"},"depends_on":null}]}
+[11:36:12] [Stage 1] Result: mode=MODIFY, targets=[], ops=1
+[11:36:12] Multi-stage flow for MODIFY (discovery needed)
+[11:36:12] [Stage 2] Discovering targets: []
+[11:36:12] [Stage 2] Discovery complete: 1 result sets
+[11:36:12] [Stage 3] Refining with 1 discovery sections
+[11:36:32] Raw model output: {"mode":"MODIFY","summary":"Add dark indoor lighting to the level","requires_confirmation":true,"operations":[{"step":1,"command":"batch_add_component","params":{"operations":[{"blueprint":"Untiled_1","component_type":"SkyLight","component_name":"Indoor_Light"}]},"depends_on":null}]}
+[11:36:32] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[11:36:32] Intent classified in 39.7s (multi-stage)
+[11:36:32] Response sent: {"mode": "MODIFY", "summary": "Add dark indoor lighting to the level", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_add_component", "params": {"operations": [{"blueprint
+[11:36:33] Client connected: ('127.0.0.1', 54121)
+[11:36:33] Request: {"prompt": "Create a ground floor with stone texture"}
+[11:36:33] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a ground floor with stone texture
+[11:36:33] [HardOverride] Bypassing LLM — mode=CREATE
+[11:36:33] Intent classified in 0.0s (multi-stage)
+[11:36:33] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[11:36:33] Client connected: ('127.0.0.1', 54122)
+[11:36:33] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a ground floor with stone texture"}
+[11:36:33] [Generate DSL] domain=blueprint, prompt=create a ground floor with stone texture
+[11:37:00] DSL raw output (blueprint, 78 tokens): BLUEPRINT: BP_GroundFloor
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: AddActorLocalRotation [DeltaRotation=(Pitch=90)]
+NODE n3: SetMaterial [Target=MeshComponent, Material=Ston
+[11:37:00] [Generate DSL] Done in 27.2s, DSL length=260
+[11:37:00] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_GroundFloor\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: AddActorLocalRotation [DeltaRotation=(Pitch=90)]\nNO
+[11:37:01] Client connected: ('127.0.0.1', 54186)
+[11:37:01] Request: {"prompt": "Create an enemy with 100 health, 15 damage, and 300 speed"}
+[11:37:01] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create an enemy with 100 health, 15 damage, and 300 speed
+[11:37:01] [HardOverride] Bypassing LLM — mode=CREATE
+[11:37:01] Intent classified in 0.0s (multi-stage)
+[11:37:01] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[11:37:01] Client connected: ('127.0.0.1', 54187)
+[11:37:01] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create an enemy with 100 health, 15 damage, and 300 speed"}
+[11:37:01] [Generate DSL] domain=blueprint, prompt=create an enemy with 100 health, 15 damage, and 300 speed
+[11:37:49] DSL raw output (blueprint, 153 tokens): BLUEPRINT: BP_Enemy
+PARENT: Actor
+
+VAR Health: Float = 100.0
+VAR Damage: Float = 15.0
+VAR Speed: Float = 300.0
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetVar [Variable=Health]
+NODE n3: S
+[11:37:49] [Generate DSL] Done in 48.5s, DSL length=431
+[11:37:49] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Enemy\nPARENT: Actor\n\nVAR Health: Float = 100.0\nVAR Damage: Float = 15.0\nVAR Speed: Float = 300.0\n\nGRAPH: EventGraph\n\nNODE n1: Eve
+[11:37:50] Client connected: ('127.0.0.1', 54301)
+[11:37:50] Request: {"prompt": "Create a gold coin pickup worth 10 points"}
+[11:37:50] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a gold coin pickup worth 10 points
+[11:37:50] [HardOverride] Bypassing LLM — mode=CREATE
+[11:37:50] Intent classified in 0.0s (multi-stage)
+[11:37:50] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[11:37:50] Client connected: ('127.0.0.1', 54302)
+[11:37:50] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a gold coin pickup worth 10 points"}
+[11:37:50] [Generate DSL] domain=blueprint, prompt=create a gold coin pickup worth 10 points
+[11:38:34] DSL raw output (blueprint, 141 tokens): BLUEPRINT: BP_Coin
+PARENT: Actor
+
+VAR PointValue: Int = 10
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: GetVar [Variable=PointValue]
+NODE n3: PrintString [InString="Coin Worth: "]
+NOD
+[11:38:34] [Generate DSL] Done in 43.9s, DSL length=426
+[11:38:34] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Coin\nPARENT: Actor\n\nVAR PointValue: Int = 10\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=PointV
+[11:38:34] Client connected: ('127.0.0.1', 54400)
+[11:38:34] Request: {"prompt": "Create a torch with a point light"}
+[11:38:34] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a torch with a point light
+[11:38:34] [HardOverride] Bypassing LLM — mode=CREATE
+[11:38:34] Intent classified in 0.0s (multi-stage)
+[11:38:34] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[11:38:34] Client connected: ('127.0.0.1', 54401)
+[11:38:34] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a torch with a point light"}
+[11:38:34] [Generate DSL] domain=blueprint, prompt=create a torch with a point light
+[11:39:13] DSL raw output (blueprint, 122 tokens): BLUEPRINT: BP_Torch
+PARENT: Actor
+
+VAR LightColor: Color = White
+VAR LightIntensity: Float = 1000.0
+VAR Radius: Float = 500.0
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetPointLightColor [
+[11:39:13] [Generate DSL] Done in 38.6s, DSL length=393
+[11:39:13] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Torch\nPARENT: Actor\n\nVAR LightColor: Color = White\nVAR LightIntensity: Float = 1000.0\nVAR Radius: Float = 500.0\n\nGRAPH: EventGraph\
+[11:39:13] Client connected: ('127.0.0.1', 54486)
+[11:39:13] Request: {"prompt": "Create a health pickup that heals 25 HP"}
+[11:39:13] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a health pickup that heals 25 hp
+[11:39:13] [HardOverride] Bypassing LLM — mode=CREATE
+[11:39:13] Intent classified in 0.0s (multi-stage)
+[11:39:13] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[11:39:13] Client connected: ('127.0.0.1', 54487)
+[11:39:13] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a health pickup that heals 25 hp"}
+[11:39:13] [Generate DSL] domain=blueprint, prompt=create a health pickup that heals 25 hp
+[11:40:12] DSL raw output (blueprint, 190 tokens): BLUEPRINT: BP_HealthPickup
+PARENT: Actor
+
+CATEGORY: Pickups
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: CastToCharacter
+NODE n3: GetVar [Variable=CurrentHealth]
+NODE n4: AddFloat [B=
+[11:40:12] [Generate DSL] Done in 58.7s, DSL length=586
+[11:40:12] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_HealthPickup\nPARENT: Actor\n\nCATEGORY: Pickups\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE 
+[11:40:12] Client connected: ('127.0.0.1', 57006)
+[11:40:12] Request: {"prompt": "Spawn 5 enemies around the level"}
+[11:40:12] [Stage 1] Classifying: Spawn 5 enemies around the level
+[11:41:18] Raw model output: {"mode":"MULTI","summary":"Spawn|5 enemies","targets":["enemy"],"requires_confirmation":false,"operations":[{"step":1,"command":"spawn_actor_at","params":{"class":"BP_Enemy","location":{"x":-200,"y":0,"z":0}},"depends_on":null},{"step":2,"command":"spawn_actor_at","params":{"class":"BP_Enemy","locat
+[11:41:18] [Stage 1] Result: mode=MULTI, targets=['enemy'], ops=5
+[11:41:18] Multi-stage flow for MULTI (discovery needed)
+[11:41:18] [Stage 2] Discovering targets: ['enemy']
+[11:41:18] [Stage 2] find_actors(enemy): 0 found
+[11:41:18] [Stage 2] find_blueprints(enemy): 1 found
+[11:41:18] [Stage 2] Discovery complete: 3 result sets
+[11:41:18] [Stage 3] Refining with 2 discovery sections
+[11:41:41] Raw model output: {"mode":"MULTI","summary":"Spawn 5 enemies around the level","requires_confirmation":true,"operations":[{"step":1,"command":"spawn_actor","params":{"blueprint":"BP_Enemy","location":{"x":0,"y":0,"z":0},"rotation":{"pitch":0,"yaw":0,"roll":0},"number_of_copies":5},"depends_on":null}]}
+[11:41:41] [Stage 3] Refined plan: mode=MULTI, ops=1
+[11:41:41] Intent classified in 88.4s (multi-stage)
+[11:41:41] Response sent: {"mode": "MULTI", "summary": "Spawn 5 enemies around the level", "requires_confirmation": true, "operations": [{"step": 1, "command": "spawn_actor", "params": {"location": {"x": 0, "y": 0, "z": 0}, "r
+[11:41:41] Client connected: ('127.0.0.1', 60823)
+[11:41:41] Request: {"prompt": "Spawn 8 coins around the level"}
+[11:41:41] [Stage 1] Classifying: Spawn 8 coins around the level
+[11:43:13] Raw model output: {"mode":"MULTI","summary":"Spawn|8 coins","targets":["coin"],"requires_confirmation":false,"operations":[{"step":1,"command":"spawn_actor_at","params":{"class":"BP_Coin","location":{"x":-200,"y":0,"z":0}},"depends_on":null},{"step":2,"command":"spawn_actor_at","params":{"class":"BP_Coin","location":
+[11:43:13] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[11:43:13] Multi-stage flow for CREATE (discovery needed)
+[11:43:13] [Stage 2] Discovering targets: []
+[11:43:13] [Stage 2] Discovery complete: 1 result sets
+[11:43:13] CREATE with discovery: enriching Stage 1 result
+[11:43:13] Intent classified in 92.3s (multi-stage)
+[11:43:13] Response sent: {"mode": "CREATE", "summary": "Spawn 8 coins around the level", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Spawn 8 c
+[11:43:13] Client connected: ('127.0.0.1', 59387)
+[11:43:13] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Spawn 8 coins around the level"}
+[11:43:13] [Generate DSL] domain=blueprint, prompt=Spawn 8 coins around the level
+[11:48:13] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[11:48:13] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[11:48:13] Client connected: ('127.0.0.1', 57322)
+[11:48:13] Request: {"prompt": "Spawn 4 torches along the walls"}
+[11:48:13] [Stage 1] Classifying: Spawn 4 torches along the walls
+[11:50:02] Raw model output: {"mode":"MULTI","summary":"Spawn 4 torches","targets":["torch"],"requires_confirmation":false,"operations":[{"step":1,"command":"spawn_actor_at","params":{"class":"BP_Torch","location":{"x":-300,"y":0,"z":0}},"depends_on":null},{"step":2,"command":"spawn_actor_at","params":{"class":"BP_Torch","locat
+[11:50:02] [Stage 1] Result: mode=MULTI, targets=['torch'], ops=4
+[11:50:02] Multi-stage flow for MULTI (discovery needed)
+[11:50:02] [Stage 2] Discovering targets: ['torch']
+[11:50:02] [Stage 2] find_actors(torch): 0 found
+[11:50:02] [Stage 2] find_blueprints(torch): 1 found
+[11:50:02] [Stage 2] Discovery complete: 3 result sets
+[11:50:02] [Stage 3] Refining with 2 discovery sections
+[11:52:00] Raw model output: {"mode":"MULTI","summary":"Spawn 4 torches","requires_confirmation":true,"operations":[{"step":1,"command":"spawn_actor_from_blueprint","params":{"blueprint":"BP_Torch","transform":{"location":[0,0,100],"rotation":[0,90,0]}},"depends_on":null},{"step":2,"command":"spawn_actor_from_blueprint","params
+[11:52:00] [Stage 3] WARN: Operation 0: unknown command 'spawn_actor_from_blueprint' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[11:52:00] [Stage 3] WARN: Operation 1: unknown command 'spawn_actor_from_blueprint' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[11:52:00] [Stage 3] WARN: Operation 2: unknown command 'spawn_actor_from_blueprint' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[11:52:00] [Stage 3] WARN: Operation 3: unknown command 'spawn_actor_from_blueprint' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[11:52:00] [Stage 3] Refined plan: mode=MULTI, ops=0
+[11:52:00] Intent classified in 226.7s (multi-stage)
+[11:52:00] Response sent: {"mode": "MULTI", "summary": "Spawn 4 torches", "requires_confirmation": true, "operations": [], "validation_warnings": ["Operation 0: unknown command 'spawn_actor_from_blueprint' \u2014 removed. Hint
+[11:52:00] Client connected: ('127.0.0.1', 56595)
+[11:52:00] Request: {"prompt": "Create a health pickup that restores 25 HP when the player touches it"}
+[11:52:00] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a health pickup that restores 25 hp when the player touches it
+[11:52:00] [HardOverride] Bypassing LLM — mode=CREATE
+[11:52:00] Intent classified in 0.0s (multi-stage)
+[11:52:00] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[11:52:00] Client connected: ('127.0.0.1', 56596)
+[11:52:00] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a health pickup that restores 25 hp when the player touches it"}
+[11:52:00] [Generate DSL] domain=blueprint, prompt=create a health pickup that restores 25 hp when the player touches it
+[11:56:30] DSL raw output (blueprint, 2048 tokens): BLUEPRINT: BP_CoinSpawner
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetActorLocation
+NODE n3: AddFloat [B=100]
+NODE n4: SetActorLocation
+NODE n5: Delay [Duration=1.0]
+NODE n6
+[11:57:00] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[11:57:00] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[11:57:01] Client connected: ('127.0.0.1', 65471)
+[11:57:01] Request: {"prompt": "Make a coin that adds 10 points to the score and destroys itself"}
+[11:57:01] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=make a coin that adds 10 points to the score and destroys itself
+[11:57:01] [HardOverride] Bypassing LLM — mode=CREATE
+[11:57:01] Intent classified in 0.0s (multi-stage)
+[11:57:01] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "make a
+[11:57:01] Client connected: ('127.0.0.1', 65474)
+[11:57:01] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "make a coin that adds 10 points to the score and destroys itself"}
+[11:57:01] [Generate DSL] domain=blueprint, prompt=make a coin that adds 10 points to the score and destroys itself
+[11:57:29] DSL raw output (blueprint, 190 tokens): BLUEPRINT: BP_HealthPickup
+PARENT: Actor
+
+CATEGORY: Pickups
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: CastToCharacter
+NODE n3: GetVar [Variable=CurrentHealth]
+NODE n4: AddFloat [B=
+[11:58:03] DSL raw output (blueprint, 110 tokens): BLUEPRINT: BP_Coin
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: GetVar [Variable=Score]
+NODE n3: AddFloat [B=10]
+NODE n4: SetVar [Variable=Score]
+NODE n5: DestroyActor
+
+
+[11:58:03] [Generate DSL] Done in 62.1s, DSL length=320
+[11:58:03] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Coin\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Score]\nNODE n3: AddFloat [B=10]\n
+[11:58:04] Client connected: ('127.0.0.1', 60523)
+[11:58:04] Request: {"prompt": "Build a door that opens when the player has a key"}
+[11:58:04] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=build a door that opens when the player has a key
+[11:58:04] [HardOverride] Bypassing LLM — mode=CREATE
+[11:58:04] Intent classified in 0.0s (multi-stage)
+[11:58:04] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "build 
+[11:58:04] Client connected: ('127.0.0.1', 60524)
+[11:58:04] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "build a door that opens when the player has a key"}
+[11:58:04] [Generate DSL] domain=blueprint, prompt=build a door that opens when the player has a key
+[11:58:46] DSL raw output (blueprint, 134 tokens): BLUEPRINT: BP_DoorCheck
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: GetVar [Variable=KeyItem]
+NODE n3: BooleanAND
+NODE n4: Branch
+NODE n5: SetActorHiddenInGame [bNewHid
+[11:58:46] [Generate DSL] Done in 41.5s, DSL length=413
+[11:58:46] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_DoorCheck\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=KeyItem]\nNODE n3: BooleanAND
+[11:58:46] Client connected: ('127.0.0.1', 60617)
+[11:58:46] Request: {"prompt": "Create a pressure plate that activates when something stands on it"}
+[11:58:46] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a pressure plate that activates when something stands on it
+[11:58:46] [HardOverride] Bypassing LLM — mode=CREATE
+[11:58:46] Intent classified in 0.0s (multi-stage)
+[11:58:46] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[11:58:46] Client connected: ('127.0.0.1', 60618)
+[11:58:46] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a pressure plate that activates when something stands on it"}
+[11:58:46] [Generate DSL] domain=blueprint, prompt=create a pressure plate that activates when something stands on it
+[11:59:37] DSL raw output (blueprint, 147 tokens): BLUEPRINT: BP_PressurePlate
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: SetVar [Variable=IsActivated, Value=true]
+NODE n3: PrintString [InString="Plate Activated"]
+NODE
+[11:59:37] [Generate DSL] Done in 50.9s, DSL length=480
+[11:59:37] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_PressurePlate\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetVar [Variable=IsActivated, Value=true]\
+[11:59:37] Client connected: ('127.0.0.1', 60728)
+[11:59:37] Request: {"prompt": "Make a timed bomb that explodes after 5 seconds"}
+[11:59:37] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=make a timed bomb that explodes after 5 seconds
+[11:59:37] [HardOverride] Bypassing LLM — mode=CREATE
+[11:59:37] Intent classified in 0.0s (multi-stage)
+[11:59:37] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "make a
+[11:59:37] Client connected: ('127.0.0.1', 60729)
+[11:59:37] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "make a timed bomb that explodes after 5 seconds"}
+[11:59:37] [Generate DSL] domain=blueprint, prompt=make a timed bomb that explodes after 5 seconds
+[12:00:18] DSL raw output (blueprint, 93 tokens): BLUEPRINT: BP_TimedBomb
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="Explode", Time=5.0, bLooping=false]
+NODE n3: Event_CustomEvent [EventN
+[12:00:18] [Generate DSL] Done in 40.7s, DSL length=291
+[12:00:18] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_TimedBomb\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Explode\", Time
+[12:00:18] Client connected: ('127.0.0.1', 60836)
+[12:00:18] Request: {"prompt": "Build a checkpoint that saves the player's position"}
+[12:00:18] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=build a checkpoint that saves the player's position
+[12:00:18] [HardOverride] Bypassing LLM — mode=CREATE
+[12:00:18] Intent classified in 0.0s (multi-stage)
+[12:00:18] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "build 
+[12:00:18] Client connected: ('127.0.0.1', 60837)
+[12:00:18] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "build a checkpoint that saves the player's position"}
+[12:00:18] [Generate DSL] domain=blueprint, prompt=build a checkpoint that saves the player's position
+[12:00:51] DSL raw output (blueprint, 104 tokens): BLUEPRINT: BP_Checkpoint
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: GetActorLocation
+NODE n3: SetVar [Variable=SavedPosition]
+NODE n4: PrintString [InString="Checkpoin
+[12:00:51] [Generate DSL] Done in 32.9s, DSL length=346
+[12:00:51] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Checkpoint\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetActorLocation\nNODE n3: SetVar [Variable=S
+[12:00:52] Client connected: ('127.0.0.1', 63662)
+[12:00:52] Request: {"prompt": "Create a turret that fires at the player every 2 seconds when in range"}
+[12:00:52] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a turret that fires at the player every 2 seconds when in range
+[12:00:52] [HardOverride] Bypassing LLM — mode=CREATE
+[12:00:52] Intent classified in 0.0s (multi-stage)
+[12:00:52] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[12:00:52] Client connected: ('127.0.0.1', 63663)
+[12:00:52] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a turret that fires at the player every 2 seconds when in range"}
+[12:00:52] [Generate DSL] domain=blueprint, prompt=create a turret that fires at the player every 2 seconds when in range
+[12:01:53] DSL raw output (blueprint, 195 tokens): BLUEPRINT: BP_Turret
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="Fire", Time=2.0, bLooping=true]
+NODE n3: Event_CustomEvent [EventName="Fi
+[12:01:53] [Generate DSL] Done in 60.9s, DSL length=592
+[12:01:53] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Turret\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Fire\", Time=2.0, 
+[12:01:53] Client connected: ('127.0.0.1', 63797)
+[12:01:53] Request: {"prompt": "Make a moving platform that goes up 300 units and comes back down"}
+[12:01:53] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=make a moving platform that goes up 300 units and comes back down
+[12:01:53] [HardOverride] Bypassing LLM — mode=CREATE
+[12:01:53] Intent classified in 0.0s (multi-stage)
+[12:01:53] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "make a
+[12:01:53] Client connected: ('127.0.0.1', 63798)
+[12:01:53] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "make a moving platform that goes up 300 units and comes back down"}
+[12:01:53] [Generate DSL] domain=blueprint, prompt=make a moving platform that goes up 300 units and comes back down
+[12:02:28] DSL raw output (blueprint, 111 tokens): BLUEPRINT: BP_MovingPlatform
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_Tick
+NODE n2: GetWorldDeltaSeconds
+NODE n3: MultiplyFloat [B=0.25]
+NODE n4: AddFloat
+NODE n5: SetActorLocation
+
+EXEC n1.Th
+[12:02:28] [Generate DSL] Done in 34.7s, DSL length=337
+[12:02:28] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_MovingPlatform\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: GetWorldDeltaSeconds\nNODE n3: MultiplyFloat [B=0.25]\
+[12:02:28] Client connected: ('127.0.0.1', 63891)
+[12:02:28] Request: {"prompt": "Build a score manager that tracks points and high score"}
+[12:02:28] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=build a score manager that tracks points and high score
+[12:02:28] [HardOverride] Bypassing LLM — mode=CREATE
+[12:02:28] Intent classified in 0.0s (multi-stage)
+[12:02:28] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "build 
+[12:02:28] Client connected: ('127.0.0.1', 63892)
+[12:02:28] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "build a score manager that tracks points and high score"}
+[12:02:28] [Generate DSL] domain=blueprint, prompt=build a score manager that tracks points and high score
+[12:03:03] DSL raw output (blueprint, 111 tokens): BLUEPRINT: BP_ScoreManager
+PARENT: Actor
+
+VAR Points: Int = 0
+VAR HighScore: Int = 0
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetVar [Variable=Points]
+NODE n3: SetVar [Variable=HighScore]
+[12:03:03] [Generate DSL] Done in 34.3s, DSL length=339
+[12:03:03] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_ScoreManager\nPARENT: Actor\n\nVAR Points: Int = 0\nVAR HighScore: Int = 0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetV
+[12:03:03] Client connected: ('127.0.0.1', 65132)
+[12:03:03] Request: {"prompt": "Create a wave spawner that sends enemies every 15 seconds"}
+[12:03:03] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a wave spawner that sends enemies every 15 seconds
+[12:03:03] [HardOverride] Bypassing LLM — mode=CREATE
+[12:03:03] Intent classified in 0.0s (multi-stage)
+[12:03:03] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[12:03:03] Client connected: ('127.0.0.1', 65133)
+[12:03:03] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a wave spawner that sends enemies every 15 seconds"}
+[12:03:03] [Generate DSL] domain=blueprint, prompt=create a wave spawner that sends enemies every 15 seconds
+[12:03:35] DSL raw output (blueprint, 101 tokens): BLUEPRINT: BP_WaveSpawner
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="SpawnWave", Time=15.0, bLooping=true]
+NODE n3: Event_CustomEvent [Ev
+[12:03:35] [Generate DSL] Done in 31.9s, DSL length=322
+[12:03:35] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_WaveSpawner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"SpawnWave\", 
+[12:03:36] Client connected: ('127.0.0.1', 65209)
+[12:03:36] Request: {"prompt": "Make a day night cycle that toggles every 60 seconds"}
+[12:03:36] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=make a day night cycle that toggles every 60 seconds
+[12:03:36] [HardOverride] Bypassing LLM — mode=CREATE
+[12:03:36] Intent classified in 0.0s (multi-stage)
+[12:03:36] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "make a
+[12:03:36] Client connected: ('127.0.0.1', 65210)
+[12:03:36] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "make a day night cycle that toggles every 60 seconds"}
+[12:03:36] [Generate DSL] domain=blueprint, prompt=make a day night cycle that toggles every 60 seconds
+[12:04:24] DSL raw output (blueprint, 154 tokens): BLUEPRINT: BP_DayNightCycle
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="ToggleDay", Time=60.0, bLooping=true]
+NODE n3: Event_CustomEvent [
+[12:04:24] [Generate DSL] Done in 48.5s, DSL length=477
+[12:04:24] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_DayNightCycle\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"ToggleDay\"
+[12:04:25] Client connected: ('127.0.0.1', 65317)
+[12:04:25] Request: {"prompt": "Build a respawn system that resets the player after 3 seconds"}
+[12:04:25] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=build a respawn system that resets the player after 3 seconds
+[12:04:25] [HardOverride] Bypassing LLM — mode=CREATE
+[12:04:25] Intent classified in 0.0s (multi-stage)
+[12:04:25] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "build 
+[12:04:25] Client connected: ('127.0.0.1', 65318)
+[12:04:25] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "build a respawn system that resets the player after 3 seconds"}
+[12:04:25] [Generate DSL] domain=blueprint, prompt=build a respawn system that resets the player after 3 seconds
+[12:05:18] DSL raw output (blueprint, 165 tokens): BLUEPRINT: BP_RestartSystem
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="Respawn", Time=3.0, bLooping=false]
+NODE n3: Event_CustomEvent [Ev
+[12:05:18] [Generate DSL] Done in 52.9s, DSL length=537
+[12:05:18] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_RestartSystem\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Respawn\", 
+[12:05:18] Client connected: ('127.0.0.1', 65434)
+[12:05:18] Request: {"prompt": "Create a treasure chest that gives random gold between 10 and 50"}
+[12:05:18] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a treasure chest that gives random gold between 10 and 50
+[12:05:18] [HardOverride] Bypassing LLM — mode=CREATE
+[12:05:18] Intent classified in 0.0s (multi-stage)
+[12:05:18] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[12:05:18] Client connected: ('127.0.0.1', 65435)
+[12:05:18] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a treasure chest that gives random gold between 10 and 50"}
+[12:05:18] [Generate DSL] domain=blueprint, prompt=create a treasure chest that gives random gold between 10 and 50
+[12:05:59] DSL raw output (blueprint, 100 tokens): BLUEPRINT: BP_TreasureChest
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: GetRandomInt [Min=10, Max=50]
+NODE n3: PrintString [InString="Gold: "]
+NODE n4: DestroyActor []
+
+[12:05:59] [Generate DSL] Done in 40.8s, DSL length=299
+[12:05:59] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_TreasureChest\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetRandomInt [Min=10, Max=50]\nNODE n3: Pr
+[12:05:59] Client connected: ('127.0.0.1', 58079)
+[12:05:59] Request: {"prompt": "Make a lever that toggles between on and off"}
+[12:05:59] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=make a lever that toggles between on and off
+[12:05:59] [HardOverride] Bypassing LLM — mode=CREATE
+[12:05:59] Intent classified in 0.0s (multi-stage)
+[12:05:59] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "make a
+[12:05:59] Client connected: ('127.0.0.1', 58080)
+[12:05:59] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "make a lever that toggles between on and off"}
+[12:05:59] [Generate DSL] domain=blueprint, prompt=make a lever that toggles between on and off
+[12:06:47] DSL raw output (blueprint, 143 tokens): BLUEPRINT: BP_Lever
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_InputAction [ActionName="Use"]
+NODE n2: FlipFlop
+NODE n3: SetVar [Variable=IsOn, Value=true]
+NODE n4: PrintString [InString="Lever 
+[12:06:47] [Generate DSL] Done in 47.8s, DSL length=426
+[12:06:47] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Lever\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Use\"]\nNODE n2: FlipFlop\nNODE n3: SetVar [Variable
+[12:06:47] Client connected: ('127.0.0.1', 58183)
+[12:06:48] Request: {"prompt": "Build a damage zone that hurts 10 HP per second"}
+[12:06:48] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=build a damage zone that hurts 10 hp per second
+[12:06:48] [HardOverride] Bypassing LLM — mode=CREATE
+[12:06:48] Intent classified in 0.0s (multi-stage)
+[12:06:48] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "build 
+[12:06:48] Client connected: ('127.0.0.1', 58184)
+[12:06:48] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "build a damage zone that hurts 10 hp per second"}
+[12:06:48] [Generate DSL] domain=blueprint, prompt=build a damage zone that hurts 10 hp per second
+[12:08:26] DSL raw output (blueprint, 319 tokens): BLUEPRINT: BP_DamageZone
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: SetTimerByFunctionName [FunctionName="DealDamage", Time=1.0, bLooping=true]
+NODE n3: Event_ActorEnd
+[12:08:26] [Generate DSL] Done in 98.7s, DSL length=1015
+[12:08:26] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_DamageZone\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetTimerByFunctionName [FunctionName=\"DealDa
+[12:08:27] Client connected: ('127.0.0.1', 58402)
+[12:08:27] Request: {"prompt": "Create a teleporter that moves the player to a target point"}
+[12:08:27] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a teleporter that moves the player to a target point
+[12:08:27] [HardOverride] Bypassing LLM — mode=CREATE
+[12:08:27] Intent classified in 0.0s (multi-stage)
+[12:08:27] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[12:08:27] Client connected: ('127.0.0.1', 58403)
+[12:08:27] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a teleporter that moves the player to a target point"}
+[12:08:27] [Generate DSL] domain=blueprint, prompt=create a teleporter that moves the player to a target point
+[12:08:53] DSL raw output (blueprint, 82 tokens): BLUEPRINT: BP_Teleporter
+PARENT: Actor
+
+VAR TargetPoint: Vector
+
+GRAPH: EventGraph
+
+NODE n1: Event_InputAction [ActionName="Teleport"]
+NODE n2: GetVar [Variable=TargetPoint]
+NODE n3: SetActorLocation
+
+[12:08:53] [Generate DSL] Done in 26.1s, DSL length=272
+[12:08:53] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Teleporter\nPARENT: Actor\n\nVAR TargetPoint: Vector\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Teleport\"]\nNODE n2
+[12:08:53] Client connected: ('127.0.0.1', 58462)
+[12:08:53] Request: {"prompt": "Make a blinking light that turns on and off every 3 seconds"}
+[12:08:53] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=make a blinking light that turns on and off every 3 seconds
+[12:08:53] [HardOverride] Bypassing LLM — mode=CREATE
+[12:08:53] Intent classified in 0.0s (multi-stage)
+[12:08:53] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "make a
+[12:08:53] Client connected: ('127.0.0.1', 58463)
+[12:08:53] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "make a blinking light that turns on and off every 3 seconds"}
+[12:08:53] [Generate DSL] domain=blueprint, prompt=make a blinking light that turns on and off every 3 seconds
+[12:09:37] DSL raw output (blueprint, 139 tokens): BLUEPRINT: BP_BlinkLight
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="Blink", Time=3.0, bLooping=true]
+NODE n3: Event_CustomEvent [EventNam
+[12:09:37] [Generate DSL] Done in 43.3s, DSL length=444
+[12:09:37] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_BlinkLight\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Blink\", Time=
+[12:09:37] Client connected: ('127.0.0.1', 50229)
+[12:09:37] Request: {"prompt": "Create a spinning actor that rotates on its Z axis"}
+[12:09:37] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a spinning actor that rotates on its z axis
+[12:09:37] [HardOverride] Bypassing LLM — mode=CREATE
+[12:09:37] Intent classified in 0.0s (multi-stage)
+[12:09:37] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[12:09:37] Client connected: ('127.0.0.1', 50230)
+[12:09:37] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a spinning actor that rotates on its z axis"}
+[12:09:37] [Generate DSL] domain=blueprint, prompt=create a spinning actor that rotates on its z axis
+[12:10:07] DSL raw output (blueprint, 95 tokens): BLUEPRINT: BP_Spinner
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_Tick
+NODE n2: MakeRotator [Roll=0, Pitch=0, Yaw=10]
+NODE n3: AddActorLocalRotation
+
+EXEC n1.Then -> n3.Execute
+
+DATA n1.DeltaSeco
+[12:10:07] [Generate DSL] Done in 30.1s, DSL length=271
+[12:10:07] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Spinner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: MakeRotator [Roll=0, Pitch=0, Yaw=10]\nNODE n3: AddActorLocal
+[12:10:08] Client connected: ('127.0.0.1', 50299)
+[12:10:08] Request: {"prompt": "Build a spring pad that launches the player upward"}
+[12:10:08] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=build a spring pad that launches the player upward
+[12:10:08] [HardOverride] Bypassing LLM — mode=CREATE
+[12:10:08] Intent classified in 0.0s (multi-stage)
+[12:10:08] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "build 
+[12:10:08] Client connected: ('127.0.0.1', 50300)
+[12:10:08] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "build a spring pad that launches the player upward"}
+[12:10:08] [Generate DSL] domain=blueprint, prompt=build a spring pad that launches the player upward
+[12:10:48] DSL raw output (blueprint, 129 tokens): BLUEPRINT: BP_SpringPad
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: SetActorHiddenInGame [bNewHidden=true]
+NODE n3: AddImpulse [Impulse=(X=0,Y=0,Z=2000)]
+NODE n4: Delay
+[12:10:48] [Generate DSL] Done in 40.3s, DSL length=379
+[12:10:48] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_SpringPad\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetActorHiddenInGame [bNewHidden=true]\nNODE n
+[12:10:49] Client connected: ('127.0.0.1', 50388)
+[12:10:49] Request: {"prompt": "Create a game manager that initializes score and health"}
+[12:10:49] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a game manager that initializes score and health
+[12:10:49] [HardOverride] Bypassing LLM — mode=CREATE
+[12:10:49] Intent classified in 0.0s (multi-stage)
+[12:10:49] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[12:10:49] Client connected: ('127.0.0.1', 50389)
+[12:10:49] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a game manager that initializes score and health"}
+[12:10:49] [Generate DSL] domain=blueprint, prompt=create a game manager that initializes score and health
+[12:11:25] DSL raw output (blueprint, 107 tokens): BLUEPRINT: BP_GameManager
+PARENT: Actor
+
+VAR Score: Int = 0
+VAR Health: Float = 100.0
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetVar [Variable=Score]
+NODE n3: SetVar [Variable=Health]
+
+E
+[12:11:25] [Generate DSL] Done in 36.8s, DSL length=309
+[12:11:25] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_GameManager\nPARENT: Actor\n\nVAR Score: Int = 0\nVAR Health: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: Set
+[12:11:26] Client connected: ('127.0.0.1', 50470)
+[12:11:26] Request: {"prompt": "Make a patrol AI that walks between two waypoints"}
+[12:11:26] [HardOverride] Complex CREATE detected: domain=bt, prompt=make a patrol ai that walks between two waypoints
+[12:11:26] [HardOverride] Bypassing LLM — mode=CREATE
+[12:11:26] Intent classified in 0.0s (multi-stage)
+[12:11:26] Response sent: {"mode": "CREATE", "summary": "Create bt from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_behavior_tree", "params": {"prompt": "make a pa
+[12:11:26] Client connected: ('127.0.0.1', 50471)
+[12:11:26] Request: {"command": "generate_dsl", "domain": "bt", "prompt": "make a patrol ai that walks between two waypoints"}
+[12:11:26] [Generate DSL] domain=bt, prompt=make a patrol ai that walks between two waypoints
+[12:12:09] DSL raw output (bt, 102 tokens): BEHAVIORTREE: BT_PatrolAB
+BLACKBOARD: BB_PatrolAB
+
+KEY WaypointA: Vector
+KEY WaypointB: Vector
+
+TREE:
+
+SEQUENCE: Patrol
+  TASK: MoveTo [Key=WaypointA, AcceptableRadius=100]
+  TASK: Wait [Duration=3.0]
+[12:12:09] [Generate DSL] Done in 43.2s, DSL length=281
+[12:12:09] Response sent: {"status": "ok", "domain": "bt", "dsl": "BEHAVIORTREE: BT_PatrolAB\nBLACKBOARD: BB_PatrolAB\n\nKEY WaypointA: Vector\nKEY WaypointB: Vector\n\nTREE:\n\nSEQUENCE: Patrol\n  TASK: MoveTo [Key=WaypointA,
+[12:12:10] Client connected: ('127.0.0.1', 52337)
+[12:12:10] Request: {"prompt": "Build a boss AI with three phases based on health"}
+[12:12:10] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=build a boss ai with three phases based on health
+[12:12:10] [HardOverride] Bypassing LLM — mode=CREATE
+[12:12:10] Intent classified in 0.0s (multi-stage)
+[12:12:10] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "build 
+[12:12:10] Client connected: ('127.0.0.1', 52338)
+[12:12:10] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "build a boss ai with three phases based on health"}
+[12:12:10] [Generate DSL] domain=blueprint, prompt=build a boss ai with three phases based on health
+[12:13:52] DSL raw output (blueprint, 329 tokens): BLUEPRINT: BP_BossAI
+PARENT: Actor
+
+VAR Health: Float = 100.0
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="Attack", Time=2.0, bLooping=true]
+NODE n3: Eve
+[12:13:52] [Generate DSL] Done in 102.4s, DSL length=1004
+[12:13:52] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_BossAI\nPARENT: Actor\n\nVAR Health: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [Func
+[12:13:53] Client connected: ('127.0.0.1', 58733)
+[12:13:53] Request: {"prompt": "Create a weapons table with name, damage, fire rate, and ammo"}
+[12:13:53] [HardOverride] Complex CREATE detected: domain=dt, prompt=create a weapons table with name, damage, fire rate, and ammo
+[12:13:53] [HardOverride] Bypassing LLM — mode=CREATE
+[12:13:53] Intent classified in 0.0s (multi-stage)
+[12:13:53] Response sent: {"mode": "CREATE", "summary": "Create dt from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_data_table", "params": {"prompt": "create a wea
+[12:13:53] Client connected: ('127.0.0.1', 58734)
+[12:13:53] Request: {"command": "generate_dsl", "domain": "dt", "prompt": "create a weapons table with name, damage, fire rate, and ammo"}
+[12:13:53] [Generate DSL] domain=dt, prompt=create a weapons table with name, damage, fire rate, and ammo
+[12:14:31] DSL raw output (dt, 122 tokens): DATATABLE: DT_Weapons
+STRUCT: FWeaponData
+
+COLUMN WeaponName: String
+COLUMN Damage: Float
+COLUMN FireRate: Float
+COLUMN AmmoCapacity: Int = 30
+
+ROW Pistol: "Pistol", 15.0, 0.5, 12
+ROW SMG: "SMG", 10.0
+[12:14:31] [Generate DSL] Done in 38.4s, DSL length=282
+[12:14:31] Response sent: {"status": "ok", "domain": "dt", "dsl": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN AmmoCapacity: Int = 30\n\nROW Pis
+[12:14:32] Client connected: ('127.0.0.1', 58822)
+[12:14:32] Request: {"prompt": "Make an enemy stats table with name, health, damage, and XP reward"}
+[12:14:32] [HardOverride] Complex CREATE detected: domain=dt, prompt=make an enemy stats table with name, health, damage, and xp reward
+[12:14:32] [HardOverride] Bypassing LLM — mode=CREATE
+[12:14:32] Intent classified in 0.0s (multi-stage)
+[12:14:32] Response sent: {"mode": "CREATE", "summary": "Create dt from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_data_table", "params": {"prompt": "make an enem
+[12:14:32] Client connected: ('127.0.0.1', 58823)
+[12:14:32] Request: {"command": "generate_dsl", "domain": "dt", "prompt": "make an enemy stats table with name, health, damage, and xp reward"}
+[12:14:32] [Generate DSL] domain=dt, prompt=make an enemy stats table with name, health, damage, and xp reward
+[12:15:08] DSL raw output (dt, 115 tokens): DATATABLE: DT_Enemies
+STRUCT: FEnemyData
+
+COLUMN Name: String
+COLUMN Health: Float
+COLUMN Damage: Float
+COLUMN XPReward: Int
+
+ROW Goblin: "Goblin", 50.0, 8.0, 25
+ROW Skeleton: "Skeleton", 80.0, 12.0, 
+[12:15:08] [Generate DSL] Done in 36.1s, DSL length=278
+[12:15:08] Response sent: {"status": "ok", "domain": "dt", "dsl": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN Name: String\nCOLUMN Health: Float\nCOLUMN Damage: Float\nCOLUMN XPReward: Int\n\nROW Goblin: \"Goblin\", 5
+[12:15:08] Client connected: ('127.0.0.1', 58904)
+[12:15:08] Request: {"prompt": "Build a difficulty settings table with multipliers for health and damage"}
+[12:15:08] [HardOverride] Complex CREATE detected: domain=dt, prompt=build a difficulty settings table with multipliers for health and damage
+[12:15:08] [HardOverride] Bypassing LLM — mode=CREATE
+[12:15:08] Intent classified in 0.0s (multi-stage)
+[12:15:08] Response sent: {"mode": "CREATE", "summary": "Create dt from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_data_table", "params": {"prompt": "build a diff
+[12:15:08] Client connected: ('127.0.0.1', 58905)
+[12:15:08] Request: {"command": "generate_dsl", "domain": "dt", "prompt": "build a difficulty settings table with multipliers for health and damage"}
+[12:15:08] [Generate DSL] domain=dt, prompt=build a difficulty settings table with multipliers for health and damage
+[12:15:42] DSL raw output (dt, 109 tokens): DATATABLE: DT_Difficulty
+STRUCT: FDifficultySettings
+
+COLUMN DifficultyLevel: String
+COLUMN HealthMultiplier: Float = 1.0
+COLUMN DamageMultiplier: Float = 1.0
+
+ROW Easy: "Easy", 1.5, 0.8
+ROW Normal: "
+[12:15:42] [Generate DSL] Done in 33.7s, DSL length=283
+[12:15:42] Response sent: {"status": "ok", "domain": "dt", "dsl": "DATATABLE: DT_Difficulty\nSTRUCT: FDifficultySettings\n\nCOLUMN DifficultyLevel: String\nCOLUMN HealthMultiplier: Float = 1.0\nCOLUMN DamageMultiplier: Float =
+[12:15:43] Client connected: ('127.0.0.1', 58981)
+[12:15:43] Request: {"prompt": "Set health to 200 on all enemies"}
+[12:15:43] [Stage 1] Classifying: Set health to 200 on all enemies
+[12:16:01] Raw model output: {"mode":"MODIFY","summary":"Set Health=200 on enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Health","default_value":"200"},"depends_on":null}]}
+[12:16:01] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[12:16:01] Multi-stage flow for MODIFY (discovery needed)
+[12:16:01] [Stage 2] Discovering targets: ['enemy']
+[12:16:01] [Stage 2] find_actors(enemy): 0 found
+[12:16:01] [Stage 2] find_blueprints(enemy): 1 found
+[12:16:01] [Stage 2] Discovery complete: 3 result sets
+[12:16:01] [Stage 3] Refining with 2 discovery sections
+[12:16:18] Raw model output: {"mode":"MODIFY","summary":"Set Health=200 on BP_Enemy","requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"operations":[{"blueprint":"BP_Enemy","variable_name":"Health","default_value":"200"}]},"depends_on":null}]}
+[12:16:18] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[12:16:18] Intent classified in 35.7s (multi-stage)
+[12:16:18] Response sent: {"mode": "MODIFY", "summary": "Set Health=200 on BP_Enemy", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint": "BP_Enemy
+[12:16:19] Client connected: ('127.0.0.1', 59062)
+[12:16:19] Request: {"prompt": "Make the enemies faster"}
+[12:16:19] [Stage 1] Classifying: Make the enemies faster
+[12:16:36] Raw model output: {"mode":"MODIFY","summary":"Increase speed on enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Speed","default_value":2},"depends_on":null}]}
+[12:16:36] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[12:16:36] Multi-stage flow for MODIFY (discovery needed)
+[12:16:36] [Stage 2] Discovering targets: ['enemy']
+[12:16:36] [Stage 2] find_actors(enemy): 0 found
+[12:16:36] [Stage 2] find_blueprints(enemy): 1 found
+[12:16:37] [Stage 2] Discovery complete: 3 result sets
+[12:16:37] [Stage 3] Refining with 2 discovery sections
+[12:16:56] Raw model output: {"mode":"MODIFY","summary":"Increase Speed by 0.25 on BP_Enemy","requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"operations":[{"blueprint":"BP_Enemy","variable_name":"Speed","default_value":"+0.25"}]},"depends_on":null}]}
+[12:16:56] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[12:16:56] Intent classified in 37.6s (multi-stage)
+[12:16:56] Response sent: {"mode": "MODIFY", "summary": "Increase Speed by 0.25 on BP_Enemy", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint": "
+[12:16:56] Client connected: ('127.0.0.1', 59145)
+[12:16:56] Request: {"prompt": "Double the enemy damage"}
+[12:16:56] [Stage 1] Classifying: Double the enemy damage
+[12:17:18] Raw model output: {"mode":"MODIFY","summary":"Double enemy damage","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Damage","default_value":"2*Damage"},"depends_on":null}]}
+[12:17:18] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[12:17:18] Multi-stage flow for MODIFY (discovery needed)
+[12:17:18] [Stage 2] Discovering targets: ['enemy']
+[12:17:18] [Stage 2] find_actors(enemy): 0 found
+[12:17:18] [Stage 2] find_blueprints(enemy): 1 found
+[12:17:19] [Stage 2] Discovery complete: 3 result sets
+[12:17:19] [Stage 3] Refining with 2 discovery sections
+[12:17:38] Raw model output: {"mode":"MODIFY","summary":"Double the enemy damage","requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"operations":[{"blueprint":"BP_Enemy","variable_name":"Damage","default_value":"*2"}]},"depends_on":null}]}
+[12:17:38] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[12:17:38] Intent classified in 41.7s (multi-stage)
+[12:17:38] Response sent: {"mode": "MODIFY", "summary": "Double the enemy damage", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint": "BP_Enemy", 
+[12:17:38] Client connected: ('127.0.0.1', 56491)
+[12:17:38] Request: {"prompt": "Gold coins should be worth 50 each"}
+[12:17:38] [Stage 1] Classifying: Gold coins should be worth 50 each
+[12:17:57] Raw model output: {"mode":"MODIFY","summary":"Set Coin value=50","targets":["coin"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Value","default_value":50},"depends_on":null}]}
+[12:17:57] [Stage 1] Result: mode=MODIFY, targets=['coin'], ops=1
+[12:17:57] Multi-stage flow for MODIFY (discovery needed)
+[12:17:57] [Stage 2] Discovering targets: ['coin']
+[12:17:58] [Stage 2] find_actors(coin): 0 found
+[12:17:58] [Stage 2] find_blueprints(coin): 1 found
+[12:17:58] [Stage 2] Discovery complete: 3 result sets
+[12:17:58] [Stage 3] Refining with 2 discovery sections
+[12:18:20] Raw model output: {"mode":"MODIFY","summary":"Modify BP_Coin blueprint","requires_confirmation":true,"operations":[{"step":1,"command":"modify_blueprint","params":{"name":"BP_Coin","set_class_defaults":[{"variable_name":"Score","default_value":"50"}],"add_variables":[],"remove_variables":[]},"depends_on":null}]}
+[12:18:20] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[12:18:20] [PostProcess] RESHAPE: modify_blueprint set_class_defaults array → dict
+[12:18:20] [PostProcess] Plan rewritten with 1 operations
+[12:18:20] Intent classified in 41.9s (multi-stage)
+[12:18:20] Response sent: {"mode": "MODIFY", "summary": "Modify BP_Coin blueprint", "requires_confirmation": true, "operations": [{"step": 1, "command": "modify_blueprint", "params": {"name": "BP_Coin", "set_class_defaults": {
+[12:18:20] Client connected: ('127.0.0.1', 58258)
+[12:18:20] Request: {"prompt": "Reduce torch intensity to 2000"}
+[12:18:20] [Stage 1] Classifying: Reduce torch intensity to 2000
+[12:18:42] Raw model output: {"mode":"MODIFY","summary":"Reduce torch intensity to|2000","targets":["torch"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_property","params":{"property_name":"Intensity","value":200},"depends_on":null}]}
+[12:18:42] [Stage 1] Result: mode=MODIFY, targets=['torch'], ops=1
+[12:18:42] Multi-stage flow for MODIFY (discovery needed)
+[12:18:42] [Stage 2] Discovering targets: ['torch']
+[12:18:42] [Stage 2] find_actors(torch): 0 found
+[12:18:42] [Stage 2] find_blueprints(torch): 1 found
+[12:18:42] [Stage 2] Discovery complete: 3 result sets
+[12:18:42] [Stage 3] Refining with 2 discovery sections
+[12:19:00] Raw model output: {"mode":"MODIFY","summary":"Reduce torch intensity to 20%","requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"operations":[{"blueprint":"BP_Torch","variable_name":"LightIntensity","default_value":"0.2"}]},"depends_on":null}]}
+[12:19:00] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[12:19:00] Intent classified in 40.0s (multi-stage)
+[12:19:00] Response sent: {"mode": "MODIFY", "summary": "Reduce torch intensity to 20%", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint": "BP_To
+[12:19:00] Client connected: ('127.0.0.1', 58347)
+[12:19:00] Request: {"prompt": "All enemies need 500 HP and 40 damage"}
+[12:19:00] [Stage 1] Classifying: All enemies need 500 HP and 40 damage
+[12:19:29] Raw model output: {"mode":"MODIFY","summary":"Set Health=500 Damage=40 on enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Health","default_value":"500"},"depends_on":null},{"step":2,"command":"batch_set_variable","params":{"va
+[12:19:29] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=2
+[12:19:29] Multi-stage flow for MODIFY (discovery needed)
+[12:19:29] [Stage 2] Discovering targets: ['enemy']
+[12:19:29] [Stage 2] find_actors(enemy): 0 found
+[12:19:30] [Stage 2] find_blueprints(enemy): 1 found
+[12:19:30] [Stage 2] Discovery complete: 3 result sets
+[12:19:30] [Stage 3] Refining with 2 discovery sections
+[12:19:51] Raw model output: {"mode":"MODIFY","summary":"Modify BP_Enemy blueprint","requires_confirmation":true,"operations":[{"step":1,"command":"modify_blueprint","params":{"name":"BP_Enemy","set_class_defaults":[{"variable_name":"Health","default_value":"500"},{"variable_name":"Damage","default_value":"40"}],"add_variables"
+[12:19:51] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[12:19:51] [PostProcess] RESHAPE: modify_blueprint set_class_defaults array → dict
+[12:19:51] [PostProcess] Plan rewritten with 1 operations
+[12:19:51] Intent classified in 50.8s (multi-stage)
+[12:19:51] Response sent: {"mode": "MODIFY", "summary": "Modify BP_Enemy blueprint", "requires_confirmation": true, "operations": [{"step": 1, "command": "modify_blueprint", "params": {"name": "BP_Enemy", "set_class_defaults":
+[12:19:51] Client connected: ('127.0.0.1', 58458)
+[12:19:51] Request: {"prompt": "Make the health pickups heal 50 instead of 25"}
+[12:19:51] [Stage 1] Classifying: Make the health pickups heal 50 instead of 25
+[12:21:23] Raw model output: {"mode":"MODIFY","summary":"Set HealAmount=50 on health pickups","targets":["health_pickup"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"HealAmount","default_value":"50"},"depends_on":null}]}
+[12:21:23] [Stage 1] Result: mode=MODIFY, targets=['health_pickup'], ops=1
+[12:21:23] Multi-stage flow for MODIFY (discovery needed)
+[12:21:23] [Stage 2] Discovering targets: ['health_pickup']
+[12:21:23] [Stage 2] find_actors(health_pickup): 0 found
+[12:21:23] [Stage 2] find_blueprints(health_pickup): 0 found
+[12:21:24] [Stage 2] Discovery complete: 3 result sets
+[12:21:24] [Stage 3] Refining with 1 discovery sections
+[12:21:44] Raw model output: {"mode":"MODIFY","summary":"Modify BP_HealthPickup_C blueprint","requires_confirmation":true,"operations":[{"step":1,"command":"modify_blueprint","params":{"name":"BP_HealthPickup_C","set_class_defaults":[{"variable_name":"HealAmount","default_value":"50"}],"add_variables":[],"remove_variables":[]},
+[12:21:44] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[12:21:44] [PostProcess] RESHAPE: modify_blueprint set_class_defaults array → dict
+[12:21:44] [PostProcess] Plan rewritten with 1 operations
+[12:21:44] Intent classified in 113.0s (multi-stage)
+[12:21:44] Response sent: {"mode": "MODIFY", "summary": "Modify BP_HealthPickup_C blueprint", "requires_confirmation": true, "operations": [{"step": 1, "command": "modify_blueprint", "params": {"name": "BP_HealthPickup_C", "se
+[12:21:45] Client connected: ('127.0.0.1', 65105)
+[12:21:45] Request: {"prompt": "Change the material on all the walls to brick"}
+[12:21:45] [HardOverride] Targeted material apply: targets=['wall'], material=brick
+[12:21:45] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:21:45] [Stage 2] Discovering targets: ['wall']
+[12:21:45] [Stage 2] find_actors(wall): 0 found
+[12:21:45] [Stage 2] find_blueprints(wall): 0 found
+[12:21:45] [Stage 2] find_assets(Material, brick): 0 found
+[12:21:46] [Stage 2] find_assets(Material, wall): 0 found
+[12:21:46] [Stage 2] Discovery complete: 5 result sets
+[12:21:46] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[12:21:46] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:21:46] [PostProcess] Plan rewritten with 2 operations
+[12:21:46] Intent classified in 1.3s (multi-stage)
+[12:21:46] Response sent: {"mode": "MODIFY", "summary": "Apply brick to wall", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find wall actors in level", "params": {"name_fi
+[12:21:46] Client connected: ('127.0.0.1', 65117)
+[12:21:46] Request: {"prompt": "Replace the texture on every floor with marble"}
+[12:21:46] [HardOverride] Targeted material apply: targets=['floor'], material=marble
+[12:21:46] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:21:46] [Stage 2] Discovering targets: ['floor']
+[12:21:47] [Stage 2] find_actors(floor): 0 found
+[12:21:47] [Stage 2] find_blueprints(floor): 1 found
+[12:21:47] [Stage 2] find_assets(Material, marble): 0 found
+[12:21:48] [Stage 2] find_assets(Material, floor): 0 found
+[12:21:48] [Stage 2] Discovery complete: 5 result sets
+[12:21:48] [BuildPlan] No actors found in discovery — returning deferred 2-step plan
+[12:21:48] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:21:48] [PostProcess] Plan rewritten with 2 operations
+[12:21:48] Intent classified in 1.7s (multi-stage)
+[12:21:48] Response sent: {"mode": "MODIFY", "summary": "Apply marble to floor", "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "description": "Find floor actors in level", "params": {"name
+[12:21:49] Client connected: ('127.0.0.1', 65130)
+[12:21:49] Request: {"prompt": "Make the torches look like gold"}
+[12:21:49] [Stage 1] Classifying: Make the torches look like gold
+[12:22:13] Raw model output: {"mode":"MODIFY","summary":"Apply gold material to torches","targets":["torch"],"requires_confirmation":true,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"torch"},"depends_on":null},{"step":2,"command":"batch_apply_material","params":{"operations":[]},"depends_on":1}]}
+[12:22:13] [Stage 1] Result: mode=MODIFY, targets=['torch'], ops=2
+[12:22:13] Multi-stage flow for MODIFY (discovery needed)
+[12:22:13] [Stage 2] Discovering targets: ['torch']
+[12:22:13] [Stage 2] find_actors(torch): 0 found
+[12:22:13] [Stage 2] find_blueprints(torch): 1 found
+[12:22:13] [Stage 2] find_assets(Material, torch): 0 found
+[12:22:13] [Stage 2] Discovery complete: 4 result sets
+[12:22:13] [Stage 3] Refining with 2 discovery sections
+[12:22:31] Raw model output: {"mode":"MODIFY","summary":"Change material on all torches","requires_confirmation":true,"operations":[{"step":1,"command":"batch_apply_material","params":{"operations":[{"actor_label":"Torch_01","material_path":"/Game/Materials/Gold_Material.mat"}]},"depends_on":null}]}
+[12:22:31] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[12:22:31] Intent classified in 42.5s (multi-stage)
+[12:22:31] Response sent: {"mode": "MODIFY", "summary": "Change material on all torches", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_apply_material", "params": {"operations": [{"actor_label": "
+[12:22:34] Client connected: ('127.0.0.1', 56307)
+[12:22:34] Request: {"prompt": "Swap the stone material to concrete on all walls"}
+[12:22:34] [HardOverride] Material change detected: targets=['wall'], material=concrete on all walls
+[12:22:34] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:22:34] [Stage 2] Discovering targets: ['wall']
+[12:22:34] UE query error (find_actors): [WinError 10054] An existing connection was forcibly closed by the remote host
+[12:22:36] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:38] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:40] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:42] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:44] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:46] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:46] [Stage 2] No discovery results
+[12:22:46] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:22:46] [PostProcess] Plan rewritten with 2 operations
+[12:22:46] Intent classified in 12.2s (multi-stage)
+[12:22:46] Response sent: {"mode": "MODIFY", "summary": "Apply concrete on all walls to wall", "targets": ["wall"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": 
+[12:22:48] Client connected: ('127.0.0.1', 56320)
+[12:22:48] Request: {"prompt": "Replace stone with brick everywhere in the level"}
+[12:22:48] [HardOverride] Material swap detected: old=stone, new=brick
+[12:22:48] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:22:48] [Stage 2] Discovering targets: ['stone', 'brick']
+[12:22:50] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:52] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:54] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:56] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:22:58] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:00] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:02] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:04] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:06] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:08] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:08] [Stage 2] No discovery results
+[12:23:08] Intent classified in 20.3s (multi-stage)
+[12:23:08] Response sent: {"mode": "MODIFY", "summary": "Replace stone with brick", "targets": ["stone", "brick"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_replace_material", "params": {"old_
+[12:23:10] Client connected: ('127.0.0.1', 56357)
+[12:23:10] Request: {"prompt": "Apply the lava material to all hazard zones"}
+[12:23:10] [HardOverride] Material change detected: targets=['*'], material=all hazard zones
+[12:23:10] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:23:10] [Stage 2] Discovering targets: ['*']
+[12:23:12] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:14] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:16] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:18] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:20] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:22] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:24] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:24] [Stage 2] No discovery results
+[12:23:24] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:23:24] [PostProcess] Plan rewritten with 2 operations
+[12:23:24] Intent classified in 14.2s (multi-stage)
+[12:23:24] Response sent: {"mode": "MODIFY", "summary": "Apply all hazard zones to *", "targets": ["*"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": ""}, "depen
+[12:23:26] Client connected: ('127.0.0.1', 56368)
+[12:23:26] Request: {"prompt": "Change the wall texture to M_Pack_Bonus_Stone_2"}
+[12:23:26] [HardOverride] Material change detected: targets=['wall'], material=m_pack_bonus_stone_2
+[12:23:26] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:23:26] [Stage 2] Discovering targets: ['wall']
+[12:23:28] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:31] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:33] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:35] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:37] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:39] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:41] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:23:41] [Stage 2] No discovery results
+[12:23:41] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:23:41] [PostProcess] Plan rewritten with 2 operations
+[12:23:41] Intent classified in 14.2s (multi-stage)
+[12:23:41] Response sent: {"mode": "MODIFY", "summary": "Apply m_pack_bonus_stone_2 to wall", "targets": ["wall"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "
+[12:23:43] Client connected: ('127.0.0.1', 56378)
+[12:23:43] Request: {"prompt": "Scale all enemies up by 1.5"}
+[12:23:43] [Stage 1] Classifying: Scale all enemies up by 1.5
+[12:24:04] Raw model output: {"mode":"MODIFY","summary":"Scale enemies up by|1.5","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_scale_up","params":{"scale_factor":1.5},"depends_on":null}]}
+[12:24:04] [Stage 1] WARN: Operation 0: 'batch_scale_up' → aliased to 'batch_set_property'
+[12:24:04] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[12:24:04] Multi-stage flow for MODIFY (discovery needed)
+[12:24:04] [Stage 2] Discovering targets: ['enemy']
+[12:24:06] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:08] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:10] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:10] [Stage 2] No discovery results
+[12:24:10] Stage 2 returned no results, returning Stage 1 plan
+[12:24:10] Intent classified in 27.4s (multi-stage)
+[12:24:10] Response sent: {"mode": "MODIFY", "summary": "Scale enemies up by|1.5", "targets": ["enemy"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_property", "params": {"scale_factor": 1.5
+[12:24:12] Client connected: ('127.0.0.1', 56386)
+[12:24:12] Request: {"prompt": "Make the coins smaller"}
+[12:24:12] [Stage 1] Classifying: Make the coins smaller
+[12:24:31] Raw model output: {"mode":"MODIFY","summary":"Scale coin actors","targets":["coin"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_scale","params":{"scale_factor":0.5},"depends_on":null}]}
+[12:24:31] [Stage 1] WARN: Operation 0: 'batch_scale' → aliased to 'batch_set_property'
+[12:24:31] [Stage 1] Result: mode=MODIFY, targets=['coin'], ops=1
+[12:24:31] Multi-stage flow for MODIFY (discovery needed)
+[12:24:31] [Stage 2] Discovering targets: ['coin']
+[12:24:33] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:35] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:37] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:37] [Stage 2] No discovery results
+[12:24:37] Stage 2 returned no results, returning Stage 1 plan
+[12:24:37] Intent classified in 24.7s (multi-stage)
+[12:24:37] Response sent: {"mode": "MODIFY", "summary": "Scale coin actors", "targets": ["coin"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_property", "params": {"scale_factor": 0.5}, "dep
+[12:24:39] Client connected: ('127.0.0.1', 56398)
+[12:24:39] Request: {"prompt": "Delete all the gold coins from the level"}
+[12:24:39] [HardOverride] Delete actors detected: targets=['gold']
+[12:24:39] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:24:39] [Stage 2] Discovering targets: ['gold']
+[12:24:41] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:43] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:45] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:47] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:47] [Stage 2] No discovery results
+[12:24:47] Intent classified in 8.1s (multi-stage)
+[12:24:47] Response sent: {"mode": "MODIFY", "summary": "Delete gold actors", "targets": ["gold"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_delete_actors", "params": {}, "depends_on": null}]}
+[12:24:51] Client connected: ('127.0.0.1', 56406)
+[12:24:51] Request: {"prompt": "Remove every torch"}
+[12:24:51] [HardOverride] Delete actors detected: targets=['torch']
+[12:24:51] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:24:51] [Stage 2] Discovering targets: ['torch']
+[12:24:53] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:55] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:57] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:59] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:24:59] [Stage 2] No discovery results
+[12:24:59] Intent classified in 8.1s (multi-stage)
+[12:24:59] Response sent: {"mode": "MODIFY", "summary": "Delete torch actors", "targets": ["torch"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_delete_actors", "params": {}, "depends_on": null}
+[12:25:03] Client connected: ('127.0.0.1', 56414)
+[12:25:03] Request: {"prompt": "Hide all the health pickups"}
+[12:25:03] [Stage 1] Classifying: Hide all the health pickups
+[12:25:22] Raw model output: {"mode":"MODIFY","summary":"Hide health pickups","targets":["health_pickup"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_visibility","params":{"visible":false},"depends_on":null}]}
+[12:25:22] [Stage 1] WARN: Operation 0: 'batch_set_visibility' → aliased to 'batch_set_property'
+[12:25:22] [Stage 1] Result: mode=MODIFY, targets=['health_pickup'], ops=1
+[12:25:22] Multi-stage flow for MODIFY (discovery needed)
+[12:25:22] [Stage 2] Discovering targets: ['health_pickup']
+[12:25:24] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:25:26] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:25:28] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:25:28] [Stage 2] No discovery results
+[12:25:28] Stage 2 returned no results, returning Stage 1 plan
+[12:25:28] Intent classified in 25.0s (multi-stage)
+[12:25:28] Response sent: {"mode": "MODIFY", "summary": "Hide health pickups", "targets": ["health_pickup"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_property", "params": {"visible": fals
+[12:25:30] Client connected: ('127.0.0.1', 56421)
+[12:25:30] Request: {"prompt": "Move all coins up by 50 units"}
+[12:25:30] [Stage 1] Classifying: Move all coins up by 50 units
+[12:25:55] Raw model output: {"mode":"MODIFY","summary":"Move coins up by|50","targets":["coin"],"requires_confirmation":true,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"coin"},"depends_on":null},{"step":2,"command":"batch_move_by","params":{"direction":"up","distance":50},"depends_on":1}]}
+[12:25:55] [Stage 1] WARN: Operation 1: 'batch_move_by' → aliased to 'batch_set_property'
+[12:25:55] [Stage 1] Result: mode=MODIFY, targets=['coin'], ops=2
+[12:25:55] Multi-stage flow for MODIFY (discovery needed)
+[12:25:55] [Stage 2] Discovering targets: ['coin']
+[12:25:57] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:25:59] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:01] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:03] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:03] [Stage 2] No discovery results
+[12:26:03] Stage 2 returned no results, returning Stage 1 plan
+[12:26:03] Intent classified in 32.7s (multi-stage)
+[12:26:03] Response sent: {"mode": "MODIFY", "summary": "Move coins up by|50", "targets": ["coin"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "coin"}, "depend
+[12:26:05] Client connected: ('127.0.0.1', 62880)
+[12:26:05] Request: {"prompt": "Clear out all the damage zones"}
+[12:26:05] [HardOverride] Delete actors detected: targets=['out']
+[12:26:05] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:26:05] [Stage 2] Discovering targets: ['out']
+[12:26:07] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:09] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:11] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:13] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:13] [Stage 2] No discovery results
+[12:26:13] Intent classified in 8.1s (multi-stage)
+[12:26:13] Response sent: {"mode": "MODIFY", "summary": "Delete out actors", "targets": ["out"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_delete_actors", "params": {}, "depends_on": null}]}
+[12:26:17] Client connected: ('127.0.0.1', 62888)
+[12:26:17] Request: {"prompt": "Add a point light to every torch"}
+[12:26:17] [Stage 1] Classifying: Add a point light to every torch
+[12:26:41] Raw model output: {"mode":"MODIFY","summary":"Add PointLight to torch BPs","targets":["torch"],"requires_confirmation":true,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"torch"},"depends_on":null},{"step":2,"command":"batch_add_component","params":{"component_type":"PointLight"},"depends_on
+[12:26:41] [Stage 1] Result: mode=MODIFY, targets=['torch'], ops=2
+[12:26:41] Multi-stage flow for MODIFY (discovery needed)
+[12:26:41] [Stage 2] Discovering targets: ['torch']
+[12:26:43] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:45] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:47] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:49] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:51] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:26:51] [Stage 2] No discovery results
+[12:26:51] Stage 2 returned no results, returning Stage 1 plan
+[12:26:51] Intent classified in 34.0s (multi-stage)
+[12:26:51] Response sent: {"mode": "MODIFY", "summary": "Add PointLight to torch BPs", "targets": ["torch"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "torch"
+[12:26:53] Client connected: ('127.0.0.1', 62898)
+[12:26:53] Request: {"prompt": "Give all enemies a sphere collision component"}
+[12:26:53] [Stage 1] Classifying: Give all enemies a sphere collision component
+[12:27:17] Raw model output: {"mode":"MODIFY","summary":"Add SphereCollision to enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"enemy"},"depends_on":null},{"step":2,"command":"batch_add_component","params":{"component_type":"SphereCollision"},"de
+[12:27:17] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=2
+[12:27:17] Multi-stage flow for MODIFY (discovery needed)
+[12:27:17] [Stage 2] Discovering targets: ['enemy']
+[12:27:19] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:27:21] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:27:23] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:27:25] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:27:27] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:27:27] [Stage 2] No discovery results
+[12:27:27] Stage 2 returned no results, returning Stage 1 plan
+[12:27:27] Intent classified in 33.6s (multi-stage)
+[12:27:27] Response sent: {"mode": "MODIFY", "summary": "Add SphereCollision to enemies", "targets": ["enemy"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "ene
+[12:27:29] Client connected: ('127.0.0.1', 62912)
+[12:27:29] Request: {"prompt": "Rename BP_GoldCoin to BP_TreasureCoin"}
+[12:27:29] [Stage 1] Classifying: Rename BP_GoldCoin to BP_TreasureCoin
+[12:28:57] Raw model output: {"mode":"MODIFY","summary":"Rename BP_GoldCoin to BP_TreasureCoin","targets":[],"requires_confirmation":true,"operations":[{"step":1,"command":"rename_asset","params":{"old_name":"BP_GoldCoin","new_name":"BP_TreasureCoin"},"depends_on":null}]}
+[12:28:57] [Stage 1] Result: mode=MODIFY, targets=[], ops=1
+[12:28:57] Multi-stage flow for MODIFY (discovery needed)
+[12:28:57] [Stage 2] Discovering targets: []
+[12:28:59] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:28:59] [Stage 2] No discovery results
+[12:28:59] Stage 2 returned no results, returning Stage 1 plan
+[12:28:59] Intent classified in 89.9s (multi-stage)
+[12:28:59] Response sent: {"mode": "MODIFY", "summary": "Rename BP_GoldCoin to BP_TreasureCoin", "targets": [], "requires_confirmation": true, "operations": [{"step": 1, "command": "rename_asset", "params": {"old_name": "BP_Go
+[12:29:03] Client connected: ('127.0.0.1', 59312)
+[12:29:03] Request: {"prompt": "Change the enemy parent class to Character"}
+[12:29:03] [HardOverride] Material change detected: targets=['enemy'], material=character
+[12:29:03] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:29:03] [Stage 2] Discovering targets: ['enemy']
+[12:29:05] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:07] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:09] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:11] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:13] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:15] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:17] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:17] [Stage 2] No discovery results
+[12:29:17] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:29:17] [PostProcess] Plan rewritten with 2 operations
+[12:29:17] Intent classified in 14.2s (multi-stage)
+[12:29:17] Response sent: {"mode": "MODIFY", "summary": "Apply character to enemy", "targets": ["enemy"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "enemy"}, 
+[12:29:19] Client connected: ('127.0.0.1', 59323)
+[12:29:19] Request: {"prompt": "The enemies are too weak, buff them"}
+[12:29:19] [Stage 1] Classifying: The enemies are too weak, buff them
+[12:29:39] Raw model output: {"mode":"MODIFY","summary":"Buff enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Health","default_value":"200"},"depends_on":null}]}
+[12:29:39] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[12:29:39] Multi-stage flow for MODIFY (discovery needed)
+[12:29:39] [Stage 2] Discovering targets: ['enemy']
+[12:29:41] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:43] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:45] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:47] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:29:47] [Stage 2] No discovery results
+[12:29:47] Stage 2 returned no results, returning Stage 1 plan
+[12:29:47] [PostProcess] RESHAPE: batch_set_variable flat → operations[]
+[12:29:47] [PostProcess] Plan rewritten with 1 operations
+[12:29:47] Intent classified in 27.5s (multi-stage)
+[12:29:47] Response sent: {"mode": "MODIFY", "summary": "Buff enemies", "targets": ["enemy"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint": "
+[12:29:49] Client connected: ('127.0.0.1', 59332)
+[12:29:49] Request: {"prompt": "Everything looks too plain, change the walls"}
+[12:29:49] [Stage 1] Classifying: Everything looks too plain, change the walls
+[12:30:00] Raw model output: {"mode":"CLARIFY","summary":"Change the walls","targets":[],"requires_confirmation":false,"operations":[]}
+[12:30:00] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[12:30:00] Single-stage result (CLARIFY)
+[12:30:00] Intent classified in 11.7s (multi-stage)
+[12:30:00] Response sent: {"mode": "CLARIFY", "summary": "Change the walls", "targets": [], "requires_confirmation": false, "operations": []}
+[12:30:00] Client connected: ('127.0.0.1', 59334)
+[12:30:00] Request: {"prompt": "Make all coins worth double"}
+[12:30:00] [Stage 1] Classifying: Make all coins worth double
+[12:30:19] Raw model output: {"mode":"MODIFY","summary":"Double coin value","targets":["coin"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Value","default_value":2},"depends_on":null}]}
+[12:30:19] [Stage 1] Result: mode=MODIFY, targets=['coin'], ops=1
+[12:30:19] Multi-stage flow for MODIFY (discovery needed)
+[12:30:19] [Stage 2] Discovering targets: ['coin']
+[12:30:21] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:30:23] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:30:25] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:30:27] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:30:27] [Stage 2] No discovery results
+[12:30:27] Stage 2 returned no results, returning Stage 1 plan
+[12:30:27] [PostProcess] RESHAPE: batch_set_variable flat → operations[]
+[12:30:27] [PostProcess] Plan rewritten with 1 operations
+[12:30:27] Intent classified in 27.1s (multi-stage)
+[12:30:27] Response sent: {"mode": "MODIFY", "summary": "Double coin value", "targets": ["coin"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint
+[12:30:29] Client connected: ('127.0.0.1', 59342)
+[12:30:29] Request: {"prompt": "The torches are too bright, dim them"}
+[12:30:29] [Stage 1] Classifying: The torches are too bright, dim them
+[12:30:57] Raw model output: {"mode":"MODIFY","summary":"Dim torches","targets":["torch"],"requires_confirmation":true,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"torch"},"depends_on":null},{"step":2,"command":"batch_set_property","params":{"property_name":"Intensity","value":0.5},"depends_on":1}]}
+[12:30:57] [Stage 1] Result: mode=MODIFY, targets=['torch'], ops=2
+[12:30:57] Multi-stage flow for MODIFY (discovery needed)
+[12:30:57] [Stage 2] Discovering targets: ['torch']
+[12:30:59] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:01] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:03] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:05] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:05] [Stage 2] No discovery results
+[12:31:05] Stage 2 returned no results, returning Stage 1 plan
+[12:31:05] Intent classified in 35.7s (multi-stage)
+[12:31:05] Response sent: {"mode": "MODIFY", "summary": "Dim torches", "targets": ["torch"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "torch"}, "depends_on":
+[12:31:07] Client connected: ('127.0.0.1', 59352)
+[12:31:07] Request: {"prompt": "Replace the material on all walls with M_Pack_Bonus_Stone_2"}
+[12:31:07] [HardOverride] Targeted material apply: targets=['wall'], material=m_pack_bonus_stone_2
+[12:31:07] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:31:07] [Stage 2] Discovering targets: ['wall']
+[12:31:09] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:11] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:13] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:15] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:17] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:19] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:21] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:21] [Stage 2] No discovery results
+[12:31:21] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:31:21] [PostProcess] Plan rewritten with 2 operations
+[12:31:21] Intent classified in 14.2s (multi-stage)
+[12:31:21] Response sent: {"mode": "MODIFY", "summary": "Apply m_pack_bonus_stone_2 to wall", "targets": ["wall"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "
+[12:31:23] Client connected: ('127.0.0.1', 59363)
+[12:31:23] Request: {"prompt": "Swap the wall material to marble"}
+[12:31:23] [HardOverride] Material change detected: targets=['wall'], material=marble
+[12:31:23] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:31:23] [Stage 2] Discovering targets: ['wall']
+[12:31:26] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:28] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:30] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:32] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:34] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:36] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:38] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:38] [Stage 2] No discovery results
+[12:31:38] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:31:38] [PostProcess] Plan rewritten with 2 operations
+[12:31:38] Intent classified in 14.2s (multi-stage)
+[12:31:38] Response sent: {"mode": "MODIFY", "summary": "Apply marble to wall", "targets": ["wall"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "wall"}, "depen
+[12:31:40] Client connected: ('127.0.0.1', 59373)
+[12:31:40] Request: {"prompt": "Change the texture on all the walls to stone"}
+[12:31:40] [HardOverride] Targeted material apply: targets=['wall'], material=stone
+[12:31:40] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:31:40] [Stage 2] Discovering targets: ['wall']
+[12:31:42] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:44] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:46] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:48] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:50] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:52] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:54] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:31:54] [Stage 2] No discovery results
+[12:31:54] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:31:54] [PostProcess] Plan rewritten with 2 operations
+[12:31:54] Intent classified in 14.2s (multi-stage)
+[12:31:54] Response sent: {"mode": "MODIFY", "summary": "Apply stone to wall", "targets": ["wall"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "wall"}, "depend
+[12:31:56] Client connected: ('127.0.0.1', 53265)
+[12:31:56] Request: {"prompt": "Make the floor darker"}
+[12:31:56] [Stage 1] Classifying: Make the floor darker
+[12:32:20] Raw model output: {"mode":"MODIFY","summary":"Change floor color to black","targets":["floor"],"requires_confirmation":true,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"floor"},"depends_on":null},{"step":2,"command":"batch_set_property","params":{"property_name":"color","value":"black"},"d
+[12:32:20] [Stage 1] Result: mode=MODIFY, targets=['floor'], ops=2
+[12:32:20] Multi-stage flow for MODIFY (discovery needed)
+[12:32:20] [Stage 2] Discovering targets: ['floor']
+[12:32:22] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:32:24] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:32:26] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:32:28] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:32:28] [Stage 2] No discovery results
+[12:32:28] Stage 2 returned no results, returning Stage 1 plan
+[12:32:28] Intent classified in 32.2s (multi-stage)
+[12:32:28] Response sent: {"mode": "MODIFY", "summary": "Change floor color to black", "targets": ["floor"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "floor"
+[12:32:30] Client connected: ('127.0.0.1', 53292)
+[12:32:30] Request: {"prompt": "Set the coin value to 100 on every pickup"}
+[12:32:30] [Stage 1] Classifying: Set the coin value to 100 on every pickup
+[12:32:49] Raw model output: {"mode":"MODIFY","summary":"Set CoinValue=100 on pickups","targets":["pickup"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"CoinValue","default_value":"100"},"depends_on":null}]}
+[12:32:49] [Stage 1] Result: mode=MODIFY, targets=['pickup'], ops=1
+[12:32:49] Multi-stage flow for MODIFY (discovery needed)
+[12:32:49] [Stage 2] Discovering targets: ['pickup']
+[12:32:51] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:32:53] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:32:55] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:32:57] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:32:57] [Stage 2] No discovery results
+[12:32:57] Stage 2 returned no results, returning Stage 1 plan
+[12:32:57] [PostProcess] RESHAPE: batch_set_variable flat → operations[]
+[12:32:57] [PostProcess] Plan rewritten with 1 operations
+[12:32:57] Intent classified in 27.1s (multi-stage)
+[12:32:57] Response sent: {"mode": "MODIFY", "summary": "Set CoinValue=100 on pickups", "targets": ["pickup"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations":
+[12:32:59] Client connected: ('127.0.0.1', 53302)
+[12:32:59] Request: {"prompt": "Increase enemy detection range to 1200"}
+[12:32:59] [Stage 1] Classifying: Increase enemy detection range to 1200
+[12:33:19] Raw model output: {"mode":"MODIFY","summary":"Increase enemy detection range to|1200","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"DetectionRange","default_value":"1200"},"depends_on":null}]}
+[12:33:19] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[12:33:19] Multi-stage flow for MODIFY (discovery needed)
+[12:33:19] [Stage 2] Discovering targets: ['enemy']
+[12:33:21] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:33:23] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:33:25] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:33:27] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:33:27] [Stage 2] No discovery results
+[12:33:27] Stage 2 returned no results, returning Stage 1 plan
+[12:33:27] [PostProcess] RESHAPE: batch_set_variable flat → operations[]
+[12:33:27] [PostProcess] Plan rewritten with 1 operations
+[12:33:27] Intent classified in 27.4s (multi-stage)
+[12:33:27] Response sent: {"mode": "MODIFY", "summary": "Increase enemy detection range to|1200", "targets": ["enemy"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"ope
+[12:33:29] Client connected: ('127.0.0.1', 49987)
+[12:33:29] Request: {"prompt": "How many enemies are in the level?"}
+[12:33:29] [Stage 1] Classifying: How many enemies are in the level?
+[12:33:44] Raw model output: {"mode":"QUERY","summary":"Count enemies","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"enemy"},"depends_on":null}]}
+[12:33:44] [Stage 1] Result: mode=QUERY, targets=[], ops=1
+[12:33:44] Single-stage result (QUERY)
+[12:33:44] Intent classified in 15.5s (multi-stage)
+[12:33:44] Response sent: {"mode": "QUERY", "summary": "Count enemies", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "enemy"}, "depends_on": null
+[12:33:46] Client connected: ('127.0.0.1', 54267)
+[12:33:46] Request: {"prompt": "Show me all the blueprints in the project"}
+[12:33:46] [Stage 1] Classifying: Show me all the blueprints in the project
+[12:34:01] Raw model output: {"mode":"QUERY","summary":"List blueprints","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"list_assets","params":{"type_filter":"blueprint"},"depends_on":null}]}
+[12:34:01] [Stage 1] WARN: Operation 0: unknown command 'list_assets' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[12:34:01] [Stage 1] Result: mode=QUERY, targets=[], ops=0
+[12:34:01] Single-stage result (QUERY)
+[12:34:01] Intent classified in 15.0s (multi-stage)
+[12:34:01] Response sent: {"mode": "QUERY", "summary": "List blueprints", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'list_assets' \u2014 removed. Hin
+[12:34:01] Client connected: ('127.0.0.1', 54269)
+[12:34:01] Request: {"prompt": "What's in the level right now?"}
+[12:34:01] [Stage 1] Classifying: What's in the level right now?
+[12:34:16] Raw model output: {"mode":"QUERY","summary":"List actors","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"find_actors","params":{},"depends_on":null}]}
+[12:34:16] [Stage 1] Result: mode=QUERY, targets=[], ops=1
+[12:34:16] Single-stage result (QUERY)
+[12:34:16] Intent classified in 14.3s (multi-stage)
+[12:34:16] Response sent: {"mode": "QUERY", "summary": "List actors", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "find_actors", "params": {}, "depends_on": null}]}
+[12:34:18] Client connected: ('127.0.0.1', 54273)
+[12:34:18] Request: {"prompt": "Which blueprints have a Health variable?"}
+[12:34:18] [Stage 1] Classifying: Which blueprints have a Health variable?
+[12:34:33] Raw model output: {"mode":"QUERY","summary":"Find blueprints with Health variable","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"find_blueprints","params":{"filter":"Health"},"depends_on":null}]}
+[12:34:33] [Stage 1] Result: mode=QUERY, targets=[], ops=1
+[12:34:33] Single-stage result (QUERY)
+[12:34:33] Intent classified in 15.9s (multi-stage)
+[12:34:33] Response sent: {"mode": "QUERY", "summary": "Find blueprints with Health variable", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "find_blueprints", "params": {"filter": "Healt
+[12:34:35] Client connected: ('127.0.0.1', 54277)
+[12:34:35] Request: {"prompt": "How many coins did I place?"}
+[12:34:35] [Stage 1] Classifying: How many coins did I place?
+[12:34:51] Raw model output: {"mode":"QUERY","summary":"Count coins","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"coin"},"depends_on":null}]}
+[12:34:51] [Stage 1] Result: mode=QUERY, targets=[], ops=1
+[12:34:51] Single-stage result (QUERY)
+[12:34:51] Intent classified in 15.3s (multi-stage)
+[12:34:51] Response sent: {"mode": "QUERY", "summary": "Count coins", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "coin"}, "depends_on": null}]}
+[12:34:53] Client connected: ('127.0.0.1', 54280)
+[12:34:53] Request: {"prompt": "List all the materials in the project"}
+[12:34:53] [Stage 1] Classifying: List all the materials in the project
+[12:35:09] Raw model output: {"mode":"QUERY","summary":"List materials","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"list_assets","params":{"type":"material"},"depends_on":null}]}
+[12:35:09] [Stage 1] WARN: Operation 0: unknown command 'list_assets' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[12:35:09] [Stage 1] Result: mode=QUERY, targets=[], ops=0
+[12:35:09] Single-stage result (QUERY)
+[12:35:09] Intent classified in 16.6s (multi-stage)
+[12:35:09] Response sent: {"mode": "QUERY", "summary": "List materials", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'list_assets' \u2014 removed. Hint
+[12:35:09] Client connected: ('127.0.0.1', 54283)
+[12:35:09] Request: {"prompt": "What components does the enemy blueprint have?"}
+[12:35:09] [Stage 1] Classifying: What components does the enemy blueprint have?
+[12:35:28] Raw model output: {"mode":"QUERY","summary":"List enemy components","targets":["enemy"],"requires_confirmation":false,"operations":[{"step":1,"command":"find_components","params":{"actor_class":"BP_Enemy"},"depends_on":null}]}
+[12:35:28] [Stage 1] WARN: Operation 0: unknown command 'find_components' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[12:35:28] [Stage 1] Result: mode=QUERY, targets=['enemy'], ops=0
+[12:35:28] Single-stage result (QUERY)
+[12:35:28] Intent classified in 18.4s (multi-stage)
+[12:35:28] Response sent: {"mode": "QUERY", "summary": "List enemy components", "targets": ["enemy"], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'find_components' \u
+[12:35:28] Client connected: ('127.0.0.1', 54292)
+[12:35:28] Request: {"prompt": "How many actors total are in the level?"}
+[12:35:28] [Stage 1] Classifying: How many actors total are in the level?
+[12:35:45] Raw model output: {"mode":"QUERY","summary":"Count all actors","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":""},"depends_on":null}]}
+[12:35:45] [Stage 1] Result: mode=QUERY, targets=[], ops=1
+[12:35:45] Single-stage result (QUERY)
+[12:35:45] Intent classified in 17.5s (multi-stage)
+[12:35:45] Response sent: {"mode": "QUERY", "summary": "Count all actors", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": ""}, "depends_on": null}]
+[12:35:47] Client connected: ('127.0.0.1', 54295)
+[12:35:47] Request: {"prompt": "Show me all the data tables I've created"}
+[12:35:47] [Stage 1] Classifying: Show me all the data tables I've created
+[12:36:04] Raw model output: {"mode":"QUERY","summary":"List data tables","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"list_assets","params":{"type":"data_table"},"depends_on":null}]}
+[12:36:04] [Stage 1] WARN: Operation 0: unknown command 'list_assets' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[12:36:04] [Stage 1] Result: mode=QUERY, targets=[], ops=0
+[12:36:04] Single-stage result (QUERY)
+[12:36:04] Intent classified in 17.1s (multi-stage)
+[12:36:04] Response sent: {"mode": "QUERY", "summary": "List data tables", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'list_assets' \u2014 removed. Hi
+[12:36:04] Client connected: ('127.0.0.1', 54298)
+[12:36:04] Request: {"prompt": "What variables does BP_Enemy have?"}
+[12:36:04] [Stage 1] Classifying: What variables does BP_Enemy have?
+[12:36:25] Raw model output: {"mode":"QUERY","summary":"List variables on BP_Enemy","targets":["BP_Enemy"],"requires_confirmation":false,"operations":[{"step":1,"command":"get_variables","params":{"target_class":"BP_Enemy"},"depends_on":null}]}
+[12:36:25] [Stage 1] WARN: Operation 0: unknown command 'get_variables' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[12:36:25] [Stage 1] Result: mode=QUERY, targets=['BP_Enemy'], ops=0
+[12:36:25] Single-stage result (QUERY)
+[12:36:25] Intent classified in 20.1s (multi-stage)
+[12:36:25] Response sent: {"mode": "QUERY", "summary": "List variables on BP_Enemy", "targets": ["BP_Enemy"], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'get_variabl
+[12:36:25] Client connected: ('127.0.0.1', 56086)
+[12:36:25] Request: {"prompt": "Are there any torches in the level?"}
+[12:36:25] [Stage 1] Classifying: Are there any torches in the level?
+[12:36:41] Raw model output: {"mode":"QUERY","summary":"Check if torches exist","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"check_if_exist","params":{"actor_class":"BP_Torch"},"depends_on":null}]}
+[12:36:41] [Stage 1] WARN: Operation 0: unknown command 'check_if_exist' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[12:36:41] [Stage 1] Result: mode=QUERY, targets=[], ops=0
+[12:36:41] Single-stage result (QUERY)
+[12:36:41] Intent classified in 16.3s (multi-stage)
+[12:36:41] Response sent: {"mode": "QUERY", "summary": "Check if torches exist", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'check_if_exist' \u2014 re
+[12:36:41] Client connected: ('127.0.0.1', 63138)
+[12:36:41] Request: {"prompt": "How many health pickups are placed?"}
+[12:36:41] [Stage 1] Classifying: How many health pickups are placed?
+[12:36:59] Raw model output: {"mode":"QUERY","summary":"Count health pickups","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"health_pickup"},"depends_on":null}]}
+[12:36:59] [Stage 1] Result: mode=QUERY, targets=[], ops=1
+[12:36:59] Single-stage result (QUERY)
+[12:36:59] Intent classified in 18.1s (multi-stage)
+[12:36:59] Response sent: {"mode": "QUERY", "summary": "Count health pickups", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "health_pickup"}, "de
+[12:37:01] Client connected: ('127.0.0.1', 63141)
+[12:37:01] Request: {"prompt": "What's the current lighting setup?"}
+[12:37:01] [Stage 1] Classifying: What's the current lighting setup?
+[12:37:16] Raw model output: {"mode":"QUERY","summary":"Get scene lighting preset","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"get_scene_lighting","params":{},"depends_on":null}]}
+[12:37:16] [Stage 1] WARN: Operation 0: unknown command 'get_scene_lighting' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[12:37:16] [Stage 1] Result: mode=QUERY, targets=[], ops=0
+[12:37:16] Single-stage result (QUERY)
+[12:37:16] Intent classified in 15.3s (multi-stage)
+[12:37:16] Response sent: {"mode": "QUERY", "summary": "Get scene lighting preset", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'get_scene_lighting' \u
+[12:37:16] Client connected: ('127.0.0.1', 63150)
+[12:37:16] Request: {"prompt": "List all behavior trees in the project"}
+[12:37:16] [Stage 1] Classifying: List all behavior trees in the project
+[12:37:32] Raw model output: {"mode":"QUERY","summary":"List behavior trees","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"list_assets","params":{"type":"behavior_tree"},"depends_on":null}]}
+[12:37:32] [Stage 1] WARN: Operation 0: unknown command 'list_assets' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[12:37:32] [Stage 1] Result: mode=QUERY, targets=[], ops=0
+[12:37:32] Single-stage result (QUERY)
+[12:37:32] Intent classified in 15.8s (multi-stage)
+[12:37:32] Response sent: {"mode": "QUERY", "summary": "List behavior trees", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'list_assets' \u2014 removed.
+[12:37:32] Client connected: ('127.0.0.1', 53822)
+[12:37:32] Request: {"prompt": "Show me everything matching 'wall'"}
+[12:37:32] [Stage 1] Classifying: Show me everything matching 'wall'
+[12:37:50] Raw model output: {"mode":"QUERY","summary":"Find actors matching 'wall'","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"wall"},"depends_on":null}]}
+[12:37:50] [Stage 1] Result: mode=QUERY, targets=[], ops=1
+[12:37:50] Single-stage result (QUERY)
+[12:37:50] Intent classified in 17.8s (multi-stage)
+[12:37:50] Response sent: {"mode": "QUERY", "summary": "Find actors matching 'wall'", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "wall"}, "depe
+[12:37:52] Client connected: ('127.0.0.1', 53826)
+[12:37:52] Request: {"prompt": "Create a health potion and spawn 3 of them"}
+[12:37:52] [Stage 1] Classifying: Create a health potion and spawn 3 of them
+[12:38:15] Raw model output: {"mode":"MULTI","summary":"Create health potions and spawn|3","targets":["health_potion"],"requires_confirmation":true,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"health potion"},"depends_on":null},{"step":2,"command":"spawn_actor_at","params":{"count":3},"depends_on":1}
+[12:38:15] [Stage 1] Result: mode=MULTI, targets=['health_potion'], ops=2
+[12:38:15] Multi-stage flow for MULTI (discovery needed)
+[12:38:15] [Stage 2] Discovering targets: ['health_potion']
+[12:38:17] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:38:19] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:38:21] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:38:21] [Stage 2] No discovery results
+[12:38:21] Stage 2 returned no results, returning Stage 1 plan
+[12:38:21] Intent classified in 29.1s (multi-stage)
+[12:38:21] Response sent: {"mode": "MULTI", "summary": "Create health potions and spawn|3", "targets": ["health_potion"], "requires_confirmation": true, "operations": [{"step": 1, "command": "create_blueprint", "params": {"pro
+[12:38:21] Client connected: ('127.0.0.1', 53833)
+[12:38:21] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "health potion"}
+[12:38:21] [Generate DSL] domain=blueprint, prompt=health potion
+[12:39:19] DSL raw output (blueprint, 189 tokens): BLUEPRINT: BP_HealthPotion
+PARENT: Actor
+
+CATEGORY: Pickups
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: CastToCharacter
+NODE n3: GetVar [Variable=Health]
+NODE n4: AddFloat [B=25]
+NOD
+[12:39:19] [Generate DSL] Done in 58.1s, DSL length=576
+[12:39:19] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_HealthPotion\nPARENT: Actor\n\nCATEGORY: Pickups\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE 
+[12:39:25] Client connected: ('127.0.0.1', 53844)
+[12:39:25] Request: {"prompt": "Set up FPS controls and add dark lighting"}
+[12:39:25] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=set up fps controls and add dark lighting
+[12:39:25] [HardOverride] Bypassing LLM — mode=CREATE
+[12:39:25] Intent classified in 0.0s (multi-stage)
+[12:39:25] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "set up
+[12:39:25] Client connected: ('127.0.0.1', 53845)
+[12:39:25] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "set up fps controls and add dark lighting"}
+[12:39:25] [Generate DSL] domain=blueprint, prompt=set up fps controls and add dark lighting
+[12:40:09] DSL raw output (blueprint, 143 tokens): BLUEPRINT: BP_FpsControls
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_InputAction [ActionName="ToggleFPS"]
+NODE n2: FlipFlop
+NODE n3: SetVar [Variable=ShowFPS, Value=true]
+NODE n4: PrintString [I
+[12:40:09] [Generate DSL] Done in 44.1s, DSL length=440
+[12:40:09] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_FpsControls\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"ToggleFPS\"]\nNODE n2: FlipFlop\nNODE n3: SetV
+[12:40:14] Client connected: ('127.0.0.1', 53855)
+[12:40:14] Request: {"prompt": "Delete all coins and replace them with gems worth 100"}
+[12:40:14] [HardOverride] Delete actors detected: targets=['coins']
+[12:40:14] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:40:14] [Stage 2] Discovering targets: ['coins']
+[12:40:16] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:40:18] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:40:20] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:40:22] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:40:22] [Stage 2] No discovery results
+[12:40:22] Intent classified in 8.1s (multi-stage)
+[12:40:22] Response sent: {"mode": "MODIFY", "summary": "Delete coins actors", "targets": ["coins"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_delete_actors", "params": {}, "depends_on": null}
+[12:40:26] Client connected: ('127.0.0.1', 53864)
+[12:40:26] Request: {"prompt": "Make all enemies tougher and change lighting to outdoor"}
+[12:40:26] [Stage 1] Classifying: Make all enemies tougher and change lighting to outdoor
+[12:40:51] Raw model output: {"mode":"MULTI","summary":"Modify enemies and setup lighting","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"setup_scene_lighting","params":{"preset":"outdor_day"},"depends_on":null},{"step":2,"command":"batch_set_variable","params":{"variable_name":"Health","def
+[12:40:51] [Stage 1] Result: mode=MULTI, targets=['enemy'], ops=2
+[12:40:51] Multi-stage flow for MULTI (discovery needed)
+[12:40:51] [Stage 2] Discovering targets: ['enemy']
+[12:40:53] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:40:55] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:40:57] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:40:59] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:40:59] [Stage 2] No discovery results
+[12:40:59] Stage 2 returned no results, returning Stage 1 plan
+[12:40:59] [PostProcess] RESHAPE: batch_set_variable flat → operations[]
+[12:40:59] [PostProcess] Plan rewritten with 2 operations
+[12:40:59] Intent classified in 33.6s (multi-stage)
+[12:40:59] Response sent: {"mode": "MULTI", "summary": "Modify enemies and setup lighting", "targets": ["enemy"], "requires_confirmation": true, "operations": [{"step": 1, "command": "setup_scene_lighting", "params": {"preset"
+[12:41:01] Client connected: ('127.0.0.1', 53874)
+[12:41:01] Request: {"prompt": "Build a boss room with one strong enemy and health pickups"}
+[12:41:01] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=build a boss room with one strong enemy and health pickups
+[12:41:01] [HardOverride] Bypassing LLM — mode=CREATE
+[12:41:01] Intent classified in 0.0s (multi-stage)
+[12:41:01] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "build 
+[12:41:01] Client connected: ('127.0.0.1', 53875)
+[12:41:01] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "build a boss room with one strong enemy and health pickups"}
+[12:41:01] [Generate DSL] domain=blueprint, prompt=build a boss room with one strong enemy and health pickups
+[12:42:00] DSL raw output (blueprint, 184 tokens): BLUEPRINT: BP_BossRoom
+PARENT: Room
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetActorLocation
+NODE n3: SpawnEnemyFromClass [EnemyClass=BP_StrongEnemy]
+NODE n4: PrintString [InString="Stro
+[12:42:00] [Generate DSL] Done in 58.3s, DSL length=603
+[12:42:00] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_BossRoom\nPARENT: Room\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetActorLocation\nNODE n3: SpawnEnemyFromClass [EnemyCla
+[12:42:04] Client connected: ('127.0.0.1', 51139)
+[12:42:04] Request: {"prompt": "Create a patrol enemy, set health to 200, spawn 5 of them"}
+[12:42:04] [HardOverride] Complex CREATE detected: domain=bt, prompt=create a patrol enemy, set health to 200, spawn 5 of them
+[12:42:04] [HardOverride] Bypassing LLM — mode=CREATE
+[12:42:04] Intent classified in 0.0s (multi-stage)
+[12:42:04] Response sent: {"mode": "CREATE", "summary": "Create bt from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_behavior_tree", "params": {"prompt": "create a 
+[12:42:04] Client connected: ('127.0.0.1', 51140)
+[12:42:04] Request: {"command": "generate_dsl", "domain": "bt", "prompt": "create a patrol enemy, set health to 200, spawn 5 of them"}
+[12:42:04] [Generate DSL] domain=bt, prompt=create a patrol enemy, set health to 200, spawn 5 of them
+[12:42:32] DSL raw output (bt, 81 tokens): BEHAVIORTREE: BT_PatrolEnemy
+BLACKBOARD: BB_PatrolEnemy
+
+KEY TargetActor: Object
+KEY PatrolPoint: Vector
+KEY Health: Float = 200.0
+
+TREE:
+
+SEQUENCE: Patrol
+  TASK: MoveTo [Key=PatrolPoint, AcceptableR
+[12:42:32] [Generate DSL] Done in 28.5s, DSL length=237
+[12:42:32] Response sent: {"status": "ok", "domain": "bt", "dsl": "BEHAVIORTREE: BT_PatrolEnemy\nBLACKBOARD: BB_PatrolEnemy\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\nKEY Health: Float = 200.0\n\nTREE:\n\nSEQUENCE: P
+[12:42:36] Client connected: ('127.0.0.1', 57364)
+[12:42:36] Request: {"prompt": "Add torches to the hallway and make them glow warm"}
+[12:42:36] [Stage 1] Classifying: Add torches to the hallway and make them glow warm
+[12:44:26] Raw model output: {"mode":"MULTI","summary":"Add torches to hallway with warm glow","targets":["hallway","torch"],"requires_confirmation":true,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"hallway"},"depends_on":null},{"step":2,"command":"batch_add_component","params":{"component_type":"Poi
+[12:44:26] [Stage 1] Result: mode=MULTI, targets=['hallway', 'torch'], ops=3
+[12:44:26] Multi-stage flow for MULTI (discovery needed)
+[12:44:26] [Stage 2] Discovering targets: ['hallway', 'torch']
+[12:44:28] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:44:30] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:44:33] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:44:35] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:44:37] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:44:39] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:44:41] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:44:43] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:44:45] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:44:45] [Stage 2] No discovery results
+[12:44:45] Stage 2 returned no results, returning Stage 1 plan
+[12:44:45] Intent classified in 128.3s (multi-stage)
+[12:44:45] Response sent: {"mode": "MULTI", "summary": "Add torches to hallway with warm glow", "targets": ["hallway", "torch"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"n
+[12:44:49] Client connected: ('127.0.0.1', 49359)
+[12:44:49] Request: {"prompt": "Create an enemy and a behavior tree and wire them together"}
+[12:44:49] [HardOverride] Complex CREATE detected: domain=bt, prompt=create an enemy and a behavior tree and wire them together
+[12:44:49] [HardOverride] Bypassing LLM — mode=CREATE
+[12:44:49] Intent classified in 0.0s (multi-stage)
+[12:44:49] Response sent: {"mode": "CREATE", "summary": "Create bt from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_behavior_tree", "params": {"prompt": "create an
+[12:44:49] Client connected: ('127.0.0.1', 49360)
+[12:44:49] Request: {"command": "generate_dsl", "domain": "bt", "prompt": "create an enemy and a behavior tree and wire them together"}
+[12:44:49] [Generate DSL] domain=bt, prompt=create an enemy and a behavior tree and wire them together
+[12:45:52] DSL raw output (bt, 201 tokens): BEHAVIORTREE: BT_EnemyAI
+BLACKBOARD: BB_EnemyAI
+
+KEY TargetActor: Object
+KEY PatrolPoint: Vector
+
+TREE:
+
+SEQUENCE: Attack
+  DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=Lowe
+[12:45:52] [Generate DSL] Done in 62.9s, DSL length=641
+[12:45:52] Response sent: {"status": "ok", "domain": "bt", "dsl": "BEHAVIORTREE: BT_EnemyAI\nBLACKBOARD: BB_EnemyAI\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\n\nTREE:\n\nSEQUENCE: Attack\n  DECORATOR: BlackboardBased
+[12:45:56] Client connected: ('127.0.0.1', 49369)
+[12:45:56] Request: {"prompt": "Replace all wall materials with brick and add bloom"}
+[12:45:56] [HardOverride] Material swap detected: old=wall materials, new=brick and add bloom
+[12:45:56] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:45:56] [Stage 2] Discovering targets: ['wall materials', 'brick and add bloom']
+[12:45:58] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:00] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:02] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:04] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:06] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:08] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:10] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:12] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:14] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:16] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:46:16] [Stage 2] No discovery results
+[12:46:16] Intent classified in 20.2s (multi-stage)
+[12:46:16] Response sent: {"mode": "MODIFY", "summary": "Replace wall materials with brick and add bloom", "targets": ["wall materials", "brick and add bloom"], "requires_confirmation": true, "operations": [{"step": 1, "comman
+[12:46:18] Client connected: ('127.0.0.1', 49383)
+[12:46:18] Request: {"prompt": "Create weapons, enemy stats, and difficulty tables for my game"}
+[12:46:18] [Stage 1] Classifying: Create weapons, enemy stats, and difficulty tables for my game
+[12:50:43] Raw model output: {"mode":"MULTI","summary":"Create weapons and enemy data tables","targets":[],"requires_confirmation":true,"operations":[{"step":1,"command":"create_data_table","params":{"prompt":"weapons table"},"depends_on":null},{"step":2,"command":"create_data_table","params":{"prompt":"enemy stats table"},"dep
+[12:50:43] [Stage 1] Result: mode=MULTI, targets=[], ops=3
+[12:50:43] Multi-stage flow for MULTI (discovery needed)
+[12:50:43] [Stage 2] Discovering targets: []
+[12:50:45] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:50:45] [Stage 2] No discovery results
+[12:50:45] Stage 2 returned no results, returning Stage 1 plan
+[12:50:45] Intent classified in 267.4s (multi-stage)
+[12:50:45] Response sent: {"mode": "MULTI", "summary": "Create weapons and enemy data tables", "targets": [], "requires_confirmation": true, "operations": [{"step": 1, "command": "create_data_table", "params": {"prompt": "weap
+[12:50:45] Client connected: ('127.0.0.1', 50944)
+[12:50:45] Request: {"command": "generate_dsl", "domain": "dt", "prompt": "weapons table"}
+[12:50:45] [Generate DSL] domain=dt, prompt=weapons table
+[12:52:06] DSL raw output (dt, 254 tokens): DATATABLE: DT_Weapons
+STRUCT: FWeaponData
+
+COLUMN WeaponName: String
+COLUMN Damage: Float
+COLUMN FireRate: Float
+COLUMN MagazineSize: Int
+COLUMN AmmoReserve: Int = -1
+COLUMN IsAutomatic: Bool = false
+
+[12:52:06] [Generate DSL] Done in 80.8s, DSL length=556
+[12:52:06] Response sent: {"status": "ok", "domain": "dt", "dsl": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN MagazineSize: Int\nCOLUMN AmmoRes
+[12:52:08] Client connected: ('127.0.0.1', 50864)
+[12:52:08] Request: {"command": "generate_dsl", "domain": "dt", "prompt": "enemy stats table"}
+[12:52:08] [Generate DSL] domain=dt, prompt=enemy stats table
+[12:53:06] DSL raw output (dt, 183 tokens): DATATABLE: DT_Enemies
+STRUCT: FEnemyData
+
+COLUMN EnemyName: String
+COLUMN MaxHealth: Float
+COLUMN Damage: Float
+COLUMN MoveSpeed: Float = 300.0
+COLUMN DetectionRange: Float = 1000.0
+COLUMN XPValue: In
+[12:53:06] [Generate DSL] Done in 57.4s, DSL length=416
+[12:53:06] Response sent: {"status": "ok", "domain": "dt", "dsl": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN EnemyName: String\nCOLUMN MaxHealth: Float\nCOLUMN Damage: Float\nCOLUMN MoveSpeed: Float = 300.0\nCOLUMN D
+[12:53:08] Client connected: ('127.0.0.1', 58781)
+[12:53:08] Request: {"command": "generate_dsl", "domain": "dt", "prompt": "difficulty table"}
+[12:53:08] [Generate DSL] domain=dt, prompt=difficulty table
+[12:54:13] DSL raw output (dt, 205 tokens): DATATABLE: DT_Difficulty
+STRUCT: FDifficultySettings
+
+COLUMN DifficultyLevel: String
+COLUMN EnemyHealthMult: Float = 1.0
+COLUMN EnemyDamageMult: Float = 1.0
+COLUMN PlayerHealthMult: Float = 1.0
+COLUMN
+[12:54:13] [Generate DSL] Done in 64.8s, DSL length=448
+[12:54:13] Response sent: {"status": "ok", "domain": "dt", "dsl": "DATATABLE: DT_Difficulty\nSTRUCT: FDifficultySettings\n\nCOLUMN DifficultyLevel: String\nCOLUMN EnemyHealthMult: Float = 1.0\nCOLUMN EnemyDamageMult: Float = 1
+[12:54:17] Client connected: ('127.0.0.1', 64505)
+[12:54:17] Request: {"prompt": "Delete all enemies, create a stronger version, spawn 3"}
+[12:54:17] [Stage 1] Classifying: Delete all enemies, create a stronger version, spawn 3
+[12:58:39] Raw model output: {"mode":"MULTI","summary":"Create|3 strong enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_delete_actors","params":{},"depends_on":null},{"step":2,"command":"create_blueprint","params":{"prompt":"stronger enemy"},"depends_on":null},{"step":3,"comman
+[12:58:39] [Stage 1] WARN: Operation 0: command 'batch_delete_actors' missing required params: ['labels'] — removed
+[12:58:39] [Stage 1] Result: mode=MULTI, targets=['enemy'], ops=2
+[12:58:39] Multi-stage flow for MULTI (discovery needed)
+[12:58:39] [Stage 2] Discovering targets: ['enemy']
+[12:58:41] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:58:43] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:58:45] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:58:45] [Stage 2] No discovery results
+[12:58:45] Stage 2 returned no results, returning Stage 1 plan
+[12:58:45] Intent classified in 268.7s (multi-stage)
+[12:58:45] Response sent: {"mode": "MULTI", "summary": "Create|3 strong enemies", "targets": ["enemy"], "requires_confirmation": true, "operations": [{"step": 2, "command": "create_blueprint", "params": {"prompt": "stronger en
+[12:58:45] Client connected: ('127.0.0.1', 49924)
+[12:58:45] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "stronger enemy"}
+[12:58:45] [Generate DSL] domain=blueprint, prompt=stronger enemy
+[12:59:10] DSL raw output (blueprint, 75 tokens): BLUEPRINT: BP_StrongEnemy
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetVar [Variable=Health, Value=200]
+NODE n3: PrintString [InString="Strong Enemy Spawned"]
+
+EXEC n1.Then -
+[12:59:10] [Generate DSL] Done in 24.8s, DSL length=239
+[12:59:10] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_StrongEnemy\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetVar [Variable=Health, Value=200]\nNODE n3: PrintS
+[12:59:14] Client connected: ('127.0.0.1', 49931)
+[12:59:14] Request: {"prompt": "Change walls to marble and make the room brighter"}
+[12:59:14] [HardOverride] Material change detected: targets=['wall'], material=marble and make the room brighter
+[12:59:14] [HardOverride] Bypassing LLM — mode=MODIFY
+[12:59:14] [Stage 2] Discovering targets: ['wall']
+[12:59:16] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:59:18] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:59:20] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:59:22] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:59:24] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:59:26] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:59:28] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[12:59:28] [Stage 2] No discovery results
+[12:59:28] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[12:59:28] [PostProcess] Plan rewritten with 2 operations
+[12:59:28] Intent classified in 14.2s (multi-stage)
+[12:59:28] Response sent: {"mode": "MODIFY", "summary": "Apply marble and make the room brighter to wall", "targets": ["wall"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"na
+[12:59:30] Client connected: ('127.0.0.1', 60307)
+[12:59:30] Request: {"prompt": "Create a key, a locked door, and place them in the level"}
+[12:59:30] [Stage 1] Classifying: Create a key, a locked door, and place them in the level
+[13:08:47] Raw model output: {"mode":"MULTI","summary":"Create key and door BPs","targets":[],"requires_confirmation":true,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"key"},"depends_on":null},{"step":2,"command":"create_blueprint","params":{"prompt":"locked door"},"depends_on":null},{"step":3,"comma
+[13:08:47] [Stage 1] Result: mode=MULTI, targets=[], ops=3
+[13:08:47] Multi-stage flow for MULTI (discovery needed)
+[13:08:47] [Stage 2] Discovering targets: []
+[13:08:49] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:08:49] [Stage 2] No discovery results
+[13:08:49] Stage 2 returned no results, returning Stage 1 plan
+[13:08:49] Intent classified in 558.5s (multi-stage)
+[13:08:49] Response sent: {"mode": "MULTI", "summary": "Create key and door BPs", "targets": [], "requires_confirmation": true, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "key"}, "depends_on
+[13:08:49] Client connected: ('127.0.0.1', 52001)
+[13:08:49] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "key"}
+[13:08:49] [Generate DSL] domain=blueprint, prompt=key
+[13:08:59] DSL raw output (blueprint, 28 tokens): BLUEPRINT: BP_Demo119.Dsl.Dsl.Dsl.Dsl
+PARENT: Actor
+
+GRAPH: EventGraph
+[13:08:59] [Generate DSL] Done in 9.7s, DSL length=70
+[13:08:59] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Demo119.Dsl.Dsl.Dsl.Dsl\nPARENT: Actor\n\nGRAPH: EventGraph"}
+[13:09:01] Client connected: ('127.0.0.1', 52004)
+[13:09:01] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "locked door"}
+[13:09:01] [Generate DSL] domain=blueprint, prompt=locked door
+[13:09:54] DSL raw output (blueprint, 175 tokens): BLUEPRINT: BP_LockedDoor
+PARENT: Actor
+
+var DoorOpen: bool = false
+var KeyCard: actor = none
+
+graph: EventGraph
+
+node n1: Event_ActorBeginOverlap
+node n2: SetVar [Variable=KeyCard]
+node n3: Branch
+nod
+[13:09:54] [Generate DSL] Done in 53.7s, DSL length=553
+[13:09:54] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_LockedDoor\nPARENT: Actor\n\nvar DoorOpen: bool = false\nvar KeyCard: actor = none\n\ngraph: EventGraph\n\nnode n1: Event_ActorBeginOverla
+[13:09:58] Client connected: ('127.0.0.1', 52013)
+[13:09:58] Request: {"prompt": "Add 6 torches along the corridor and apply gold material"}
+[13:09:58] [Stage 1] Classifying: Add 6 torches along the corridor and apply gold material
+[13:14:33] Raw model output: {"mode":"MULTI","summary":"Place|6 torches and apply gold material","targets":["torch"],"requires_confirmation":true,"operations":[{"step":1,"command":"place_along_path","params":{"path":[{"x":-200,"y":0,"z":0},{"x":0,"y":0,"z":0},{"x":200,"y":0,"z":0}]},"depends_on":null},{"step":2,"command":"batch
+[13:14:33] [Stage 1] WARN: Operation 0: unknown command 'place_along_path' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[13:14:33] [Stage 1] Result: mode=MULTI, targets=['torch'], ops=1
+[13:14:33] Multi-stage flow for MULTI (discovery needed)
+[13:14:33] [Stage 2] Discovering targets: ['torch']
+[13:14:35] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:14:37] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:14:39] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:14:41] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:14:43] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:14:45] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:14:45] [Stage 2] No discovery results
+[13:14:45] Stage 2 returned no results, returning Stage 1 plan
+[13:14:45] Intent classified in 286.4s (multi-stage)
+[13:14:45] Response sent: {"mode": "MULTI", "summary": "Place|6 torches and apply gold material", "targets": ["torch"], "requires_confirmation": true, "operations": [{"step": 2, "command": "batch_apply_material", "params": {"m
+[13:14:49] Client connected: ('127.0.0.1', 54512)
+[13:14:49] Request: {"prompt": "Set up the arena: floor, walls, lighting, enemies, and pickups"}
+[13:14:49] [Stage 1] Classifying: Set up the arena: floor, walls, lighting, enemies, and pickups
+[13:19:52] Raw model output: {"mode":"MULTI","summary":"Set up arena","targets":["floor","wall","light","enemy","pickup"],"requires_confirmation":true,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"floor"},"depends_on":null},{"step":2,"command":"create_blueprint","params":{"prompt":"walls"},"depends_on
+[13:19:52] [Stage 1] Result: mode=MULTI, targets=['floor', 'wall', 'light', 'enemy', 'pickup'], ops=5
+[13:19:52] Multi-stage flow for MULTI (discovery needed)
+[13:19:52] [Stage 2] Discovering targets: ['floor', 'wall', 'light', 'enemy', 'pickup']
+[13:19:54] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:19:56] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:19:58] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:20:00] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:20:02] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:20:04] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:20:06] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:20:08] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:20:10] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:20:12] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:20:14] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:20:14] [Stage 2] No discovery results
+[13:20:14] Stage 2 returned no results, returning Stage 1 plan
+[13:20:14] Intent classified in 325.4s (multi-stage)
+[13:20:14] Response sent: {"mode": "MULTI", "summary": "Set up arena", "targets": ["floor", "wall", "light", "enemy", "pickup"], "requires_confirmation": true, "operations": [{"step": 1, "command": "create_blueprint", "params"
+[13:20:14] Client connected: ('127.0.0.1', 55560)
+[13:20:14] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "floor"}
+[13:20:14] [Generate DSL] domain=blueprint, prompt=floor
+[13:22:55] DSL raw output (blueprint, 505 tokens): BLUEPRINT: BP_FloorTrigger
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: SetActorLocation
+NODE n3: GetActorLocation
+NODE n4: BreakVector
+NODE n5: MakeVector
+NODE n6: Unkn
+[13:22:55] [Generate DSL] Done in 160.4s, DSL length=1600
+[13:22:55] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_FloorTrigger\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetActorLocation\nNODE n3: GetActorLocation
+[13:22:57] Client connected: ('127.0.0.1', 64412)
+[13:22:57] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "walls"}
+[13:22:57] [Generate DSL] domain=blueprint, prompt=walls
+[13:24:04] DSL raw output (blueprint, 211 tokens): BLUEPRINT: BP_Walls
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="OnTick", Time=1.0, bLooping=true]
+NODE n3: Event_CustomEvent [EventName="O
+[13:24:04] [Generate DSL] Done in 66.9s, DSL length=662
+[13:24:04] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Walls\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"OnTick\", Time=1.0,
+[13:24:06] Client connected: ('127.0.0.1', 58208)
+[13:24:06] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "lights"}
+[13:24:06] [Generate DSL] domain=blueprint, prompt=lights
+[13:24:18] DSL raw output (blueprint, 33 tokens): BLUEPRINT: BP_Demo112.Dsl.Dsl.Dsl.Dsl that performs an action an event.game
+
+GRAPH: EventGraph
+[13:24:18] [Generate DSL] Done in 12.7s, DSL length=94
+[13:24:18] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Demo112.Dsl.Dsl.Dsl.Dsl that performs an action an event.game\n\nGRAPH: EventGraph"}
+[13:24:20] Client connected: ('127.0.0.1', 58211)
+[13:24:20] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "enemies"}
+[13:24:20] [Generate DSL] domain=blueprint, prompt=enemies
+[13:24:45] DSL raw output (blueprint, 70 tokens): BLUEPRINT: BP_Demofpscr_Mannequin_Footik.Dsl.Dsl.Dsl.Dsl that performs an action an event.manager
+
+BLUEPRINT: BP_Demofpscr_Mannequin_Footik.Dsl.Dsl.Dsl.Dsl
+PARENT: Actor
+
+GRAPH: EventGraph
+[13:24:45] [Generate DSL] Done in 24.3s, DSL length=188
+[13:24:45] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Demofpscr_Mannequin_Footik.Dsl.Dsl.Dsl.Dsl that performs an action an event.manager\n\nBLUEPRINT: BP_Demofpscr_Mannequin_Footik.Dsl.Dsl.Ds
+[13:24:47] Client connected: ('127.0.0.1', 58217)
+[13:24:47] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "pickups"}
+[13:24:47] [Generate DSL] domain=blueprint, prompt=pickups
+[13:25:23] DSL raw output (blueprint, 113 tokens): BLUEPRINT: BP_PickupItem
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: CastToCharacter
+NODE n3: GetVar
+NODE n4: SetVar
+NODE n5: DestroyActor
+
+EXEC n1.Then -> n2.Execute
+E
+[13:25:23] [Generate DSL] Done in 36.6s, DSL length=337
+[13:25:23] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_PickupItem\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE n3: GetVar\nNODE n4: Se
+[13:25:27] Client connected: ('127.0.0.1', 58226)
+[13:25:27] Request: {"prompt": "The level feels empty"}
+[13:25:27] [Stage 1] Classifying: The level feels empty
+[13:25:39] Raw model output: {"mode":"CLARIFY","summary":"What do you mean by 'empty'?","targets":[],"requires_confirmation":false,"operations":[]}
+[13:25:39] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:25:39] Single-stage result (CLARIFY)
+[13:25:39] Intent classified in 11.8s (multi-stage)
+[13:25:39] Response sent: {"mode": "CLARIFY", "summary": "What do you mean by 'empty'?", "targets": [], "requires_confirmation": false, "operations": []}
+[13:25:39] Client connected: ('127.0.0.1', 58228)
+[13:25:39] Request: {"prompt": "Make it better"}
+[13:25:39] [Stage 1] Classifying: Make it better
+[13:25:51] Raw model output: {"mode":"CLARIFY","summary":"What specifically would you like to improve?","targets":[],"requires_confirmation":false,"operations":[]}
+[13:25:51] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:25:51] Single-stage result (CLARIFY)
+[13:25:51] Intent classified in 12.3s (multi-stage)
+[13:25:51] Response sent: {"mode": "CLARIFY", "summary": "What specifically would you like to improve?", "targets": [], "requires_confirmation": false, "operations": []}
+[13:25:51] Client connected: ('127.0.0.1', 58230)
+[13:25:51] Request: {"prompt": "The game is too easy"}
+[13:25:51] [Stage 1] Classifying: The game is too easy
+[13:26:06] Raw model output: {"mode":"MODIFY","summary":"Increase difficulty","targets":[],"requires_confirmation":true,"operations":[{"step":1,"command":"set_game_difficulty","params":{"difficulty":"hard"},"depends_on":null}]}
+[13:26:06] [Stage 1] WARN: Operation 0: unknown command 'set_game_difficulty' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[13:26:06] [Stage 1] Result: mode=MODIFY, targets=[], ops=0
+[13:26:06] Multi-stage flow for MODIFY (discovery needed)
+[13:26:06] [Stage 2] Discovering targets: []
+[13:26:08] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:26:08] [Stage 2] No discovery results
+[13:26:08] Stage 2 returned no results, returning Stage 1 plan
+[13:26:08] Intent classified in 16.8s (multi-stage)
+[13:26:08] Response sent: {"mode": "MODIFY", "summary": "Increase difficulty", "targets": [], "requires_confirmation": true, "operations": [], "validation_warnings": ["Operation 0: unknown command 'set_game_difficulty' \u2014 
+[13:26:08] Client connected: ('127.0.0.1', 58234)
+[13:26:08] Request: {"prompt": "I'm stuck, help me"}
+[13:26:08] [Stage 1] Classifying: I'm stuck, help me
+[13:26:20] Raw model output: {"mode":"CLARIFY","summary":"What exactly do you need help with?","targets":[],"requires_confirmation":false,"operations":[]}
+[13:26:20] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:26:20] Single-stage result (CLARIFY)
+[13:26:20] Intent classified in 11.4s (multi-stage)
+[13:26:20] Response sent: {"mode": "CLARIFY", "summary": "What exactly do you need help with?", "targets": [], "requires_confirmation": false, "operations": []}
+[13:26:20] Client connected: ('127.0.0.1', 64973)
+[13:26:20] Request: {"prompt": "Can you suggest what to add next?"}
+[13:26:20] [Stage 1] Classifying: Can you suggest what to add next?
+[13:26:31] Raw model output: {"mode":"CLARIFY","summary":"What do you think should be added next?","targets":[],"requires_confirmation":false,"operations":[]}
+[13:26:31] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:26:31] Single-stage result (CLARIFY)
+[13:26:31] Intent classified in 11.5s (multi-stage)
+[13:26:31] Response sent: {"mode": "CLARIFY", "summary": "What do you think should be added next?", "targets": [], "requires_confirmation": false, "operations": []}
+[13:26:31] Client connected: ('127.0.0.1', 57466)
+[13:26:31] Request: {"prompt": "The boss room needs to feel more dramatic"}
+[13:26:31] [Stage 1] Classifying: The boss room needs to feel more dramatic
+[13:26:42] Raw model output: {"mode":"CLARIFY","summary":"What specifically would you like to improve?","targets":[],"requires_confirmation":false,"operations":[]}
+[13:26:42] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:26:42] Single-stage result (CLARIFY)
+[13:26:42] Intent classified in 11.2s (multi-stage)
+[13:26:42] Response sent: {"mode": "CLARIFY", "summary": "What specifically would you like to improve?", "targets": [], "requires_confirmation": false, "operations": []}
+[13:26:42] Client connected: ('127.0.0.1', 57468)
+[13:26:42] Request: {"prompt": "Something doesn't look right about the lighting"}
+[13:26:42] [Stage 1] Classifying: Something doesn't look right about the lighting
+[13:26:54] Raw model output: {"mode":"CLARIFY","summary":"What specifically would you like to improve?","targets":[],"requires_confirmation":false,"operations":[]}
+[13:26:54] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:26:54] Single-stage result (CLARIFY)
+[13:26:54] Intent classified in 11.3s (multi-stage)
+[13:26:54] Response sent: {"mode": "CLARIFY", "summary": "What specifically would you like to improve?", "targets": [], "requires_confirmation": false, "operations": []}
+[13:26:54] Client connected: ('127.0.0.1', 57470)
+[13:26:54] Request: {"prompt": "I need more variety"}
+[13:26:54] [Stage 1] Classifying: I need more variety
+[13:27:05] Raw model output: {"mode":"CLARIFY","summary":"What exactly do you mean by variety?","targets":[],"requires_confirmation":false,"operations":[]}
+[13:27:05] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:27:05] Single-stage result (CLARIFY)
+[13:27:05] Intent classified in 11.2s (multi-stage)
+[13:27:05] Response sent: {"mode": "CLARIFY", "summary": "What exactly do you mean by variety?", "targets": [], "requires_confirmation": false, "operations": []}
+[13:27:05] Client connected: ('127.0.0.1', 57472)
+[13:27:05] Request: {"prompt": "The enemies are boring"}
+[13:27:05] [Stage 1] Classifying: The enemies are boring
+[13:27:16] Raw model output: {"mode":"CLARIFY","summary":"What do you mean by 'boring'?","targets":[],"requires_confirmation":false,"operations":[]}
+[13:27:16] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:27:16] Single-stage result (CLARIFY)
+[13:27:16] Intent classified in 11.4s (multi-stage)
+[13:27:16] Response sent: {"mode": "CLARIFY", "summary": "What do you mean by 'boring'?", "targets": [], "requires_confirmation": false, "operations": []}
+[13:27:16] Client connected: ('127.0.0.1', 57477)
+[13:27:16] Request: {"prompt": "Too many coins"}
+[13:27:16] [Stage 1] Classifying: Too many coins
+[13:27:26] Raw model output: {"mode":"CLARIFY","summary":"Too many coins","targets":[],"requires_confirmation":false,"operations":[]}
+[13:27:26] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:27:26] Single-stage result (CLARIFY)
+[13:27:26] Intent classified in 10.1s (multi-stage)
+[13:27:26] Response sent: {"mode": "CLARIFY", "summary": "Too many coins", "targets": [], "requires_confirmation": false, "operations": []}
+[13:27:26] Client connected: ('127.0.0.1', 57480)
+[13:27:26] Request: {"prompt": "Create a blueprint called BP_Test with no functionality"}
+[13:27:26] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a blueprint called bp_test with no functionality
+[13:27:26] [HardOverride] Bypassing LLM — mode=CREATE
+[13:27:26] Intent classified in 0.0s (multi-stage)
+[13:27:26] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[13:27:26] Client connected: ('127.0.0.1', 57481)
+[13:27:26] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a blueprint called bp_test with no functionality"}
+[13:27:26] [Generate DSL] domain=blueprint, prompt=create a blueprint called bp_test with no functionality
+[13:32:26] [Generate DSL] TIMEOUT: Generation exceeded 300s
+[13:32:26] Response sent: {"status": "error", "message": "Generation timed out after 300s"}
+[13:32:28] Client connected: ('127.0.0.1', 50751)
+[13:32:28] Request: {"prompt": "Delete everything in the level"}
+[13:32:28] [HardOverride] Delete actors detected: targets=['everything']
+[13:32:28] [HardOverride] Bypassing LLM — mode=MODIFY
+[13:32:28] [Stage 2] Discovering targets: ['everything']
+[13:32:30] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:32:32] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:32:34] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:32:37] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:32:37] [Stage 2] No discovery results
+[13:32:37] Intent classified in 8.1s (multi-stage)
+[13:32:37] Response sent: {"mode": "MODIFY", "summary": "Delete everything actors", "targets": ["everything"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_delete_actors", "params": {}, "depends_
+[13:32:39] Client connected: ('127.0.0.1', 50758)
+[13:32:39] Request: {"prompt": "Set health to -50 on all enemies"}
+[13:32:39] [Stage 1] Classifying: Set health to -50 on all enemies
+[13:33:15] Raw model output: {"mode":"MODIFY","summary":"Set Health=-50 on enemies","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Health","default_value":"-50"},"depends_on":null}]}
+[13:33:15] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[13:33:15] Multi-stage flow for MODIFY (discovery needed)
+[13:33:15] [Stage 2] Discovering targets: ['enemy']
+[13:33:17] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:19] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:21] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:23] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:23] [Stage 2] No discovery results
+[13:33:23] Stage 2 returned no results, returning Stage 1 plan
+[13:33:23] [PostProcess] RESHAPE: batch_set_variable flat → operations[]
+[13:33:23] [PostProcess] Plan rewritten with 1 operations
+[13:33:23] Intent classified in 44.7s (multi-stage)
+[13:33:23] Response sent: {"mode": "MODIFY", "summary": "Set Health=-50 on enemies", "targets": ["enemy"], "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"
+[13:33:25] Client connected: ('127.0.0.1', 50766)
+[13:33:25] Request: {"prompt": "Apply a material that doesn't exist to the walls"}
+[13:33:25] [HardOverride] Material change detected: targets=['wall'], material=the walls
+[13:33:25] [HardOverride] Bypassing LLM — mode=MODIFY
+[13:33:25] [Stage 2] Discovering targets: ['wall']
+[13:33:27] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:29] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:31] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:33] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:35] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:37] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:39] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:33:39] [Stage 2] No discovery results
+[13:33:39] [PostProcess] RESHAPE: batch_apply_material flat → operations[]
+[13:33:39] [PostProcess] Plan rewritten with 2 operations
+[13:33:39] Intent classified in 14.2s (multi-stage)
+[13:33:39] Response sent: {"mode": "MODIFY", "summary": "Apply the walls to wall", "targets": ["wall"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "wall"}, "de
+[13:33:41] Client connected: ('127.0.0.1', 50776)
+[13:33:42] Request: {"prompt": "Create 100 enemies"}
+[13:33:42] [Stage 1] Classifying: Create 100 enemies
+[13:34:11] Raw model output: {"mode":"MULTI","summary":"Spawn 100 enemies","targets":["enemy"],"requires_confirmation":false,"operations":[{"step":1,"command":"spawn_actor_at","params":{"count":100},"depends_on":null}]}
+[13:34:11] [Stage 1] Result: mode=MULTI, targets=['enemy'], ops=1
+[13:34:11] Multi-stage flow for MULTI (discovery needed)
+[13:34:11] [Stage 2] Discovering targets: ['enemy']
+[13:34:13] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:34:15] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:34:17] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:34:17] [Stage 2] No discovery results
+[13:34:17] Stage 2 returned no results, returning Stage 1 plan
+[13:34:17] Intent classified in 35.5s (multi-stage)
+[13:34:17] Response sent: {"mode": "MULTI", "summary": "Spawn 100 enemies", "targets": ["enemy"], "requires_confirmation": false, "operations": [{"step": 1, "command": "spawn_actor_at", "params": {"count": 100}, "depends_on": 
+[13:34:19] Client connected: ('127.0.0.1', 50785)
+[13:34:19] Request: {"prompt": "Change the material on actors that don't exist"}
+[13:34:19] [HardOverride] Targeted material apply: targets=['actor'], material=
+[13:34:19] [HardOverride] Bypassing LLM — mode=MODIFY
+[13:34:19] [Stage 2] Discovering targets: ['actor']
+[13:34:21] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:34:23] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:34:25] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:34:27] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:34:29] UE query error (find_assets): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:34:31] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:34:31] [Stage 2] No discovery results
+[13:34:31] Intent classified in 12.2s (multi-stage)
+[13:34:31] Response sent: {"mode": "MODIFY", "summary": "Apply  to actor", "targets": ["actor"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "actor"}, "depends_
+[13:34:33] Client connected: ('127.0.0.1', 50796)
+[13:34:33] Request: {"prompt": "Rename a blueprint that doesn't exist"}
+[13:34:33] [Stage 1] Classifying: Rename a blueprint that doesn't exist
+[13:34:51] Raw model output: {"mode":"CLARIFY","summary":"No such asset","targets":[],"requires_confirmation":false,"operations":[]}
+[13:34:51] [Stage 1] Result: mode=CLARIFY, targets=[], ops=0
+[13:34:51] Single-stage result (CLARIFY)
+[13:34:51] Intent classified in 17.5s (multi-stage)
+[13:34:51] Response sent: {"mode": "CLARIFY", "summary": "No such asset", "targets": [], "requires_confirmation": false, "operations": []}
+[13:34:51] Client connected: ('127.0.0.1', 50799)
+[13:34:51] Request: {"prompt": "Make the walls transparent"}
+[13:34:51] [Stage 1] Classifying: Make the walls transparent
+[13:35:39] Raw model output: {"mode":"MODIFY","summary":"Set transparency on walls","targets":["wall"],"requires_confirmation":true,"operations":[{"step":1,"command":"find_actors","params":{"name_filter":"wall"},"depends_on":null},{"step":2,"command":"batch_set_property","params":{"property_name":"Opacity","value":0.5},"depends
+[13:35:39] [Stage 1] Result: mode=MODIFY, targets=['wall'], ops=2
+[13:35:39] Multi-stage flow for MODIFY (discovery needed)
+[13:35:39] [Stage 2] Discovering targets: ['wall']
+[13:35:41] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:35:43] UE query error (find_blueprints): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:35:45] UE query error (find_actors): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:35:47] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:35:47] [Stage 2] No discovery results
+[13:35:47] Stage 2 returned no results, returning Stage 1 plan
+[13:35:47] Intent classified in 55.9s (multi-stage)
+[13:35:47] Response sent: {"mode": "MODIFY", "summary": "Set transparency on walls", "targets": ["wall"], "requires_confirmation": true, "operations": [{"step": 1, "command": "find_actors", "params": {"name_filter": "wall"}, "
+[13:35:49] Client connected: ('127.0.0.1', 54720)
+[13:35:49] Request: {"prompt": "Create a weapon that does 999999 damage"}
+[13:35:49] [HardOverride] Complex CREATE detected: domain=blueprint, prompt=create a weapon that does 999999 damage
+[13:35:49] [HardOverride] Bypassing LLM — mode=CREATE
+[13:35:49] Intent classified in 0.0s (multi-stage)
+[13:35:49] Response sent: {"mode": "CREATE", "summary": "Create blueprint from description", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "create
+[13:35:49] Client connected: ('127.0.0.1', 54721)
+[13:35:49] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "create a weapon that does 999999 damage"}
+[13:35:49] [Generate DSL] domain=blueprint, prompt=create a weapon that does 999999 damage
+[13:40:04] DSL raw output (blueprint, 2048 tokens): BLUEPRINT: BP_Test
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetActorHiddenInGame
+NODE n3: GetVar
+NODE n4: BooleanNOT
+NODE n5: Branch
+NODE n6: DestroyActor
+NODE n7: PrintStri
+[13:40:37] DSL raw output (blueprint, 108 tokens): BLUEPRINT: BP_GodWeapon
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: GetVar
+NODE n3: SetVar
+NODE n4: DestroyActor
+NODE n5: PrintString
+
+EXEC n1.Then -> n3.Execute
+EXEC n
+[13:40:37] [Generate DSL] Done in 288.4s, DSL length=322
+[13:40:37] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_GodWeapon\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar\nNODE n3: SetVar\nNODE n4: DestroyActor
+[13:40:41] Client connected: ('127.0.0.1', 60852)
+[13:40:41] Request: {"prompt": "Undo the last thing you did"}
+[13:40:41] [Stage 1] Classifying: Undo the last thing you did
+[13:40:57] Raw model output: {"mode":"MODIFY","summary":"Undo last operation","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"undo_last_operation","params":{},"depends_on":null}]}
+[13:40:57] [Stage 1] WARN: Operation 0: unknown command 'undo_last_operation' — removed. Hint: 'add_point_light' → use add_component with component_type='PointLight'
+[13:40:57] [Stage 1] Result: mode=MODIFY, targets=[], ops=0
+[13:40:57] Multi-stage flow for MODIFY (discovery needed)
+[13:40:57] [Stage 2] Discovering targets: []
+[13:40:59] UE query error (get_level_info): [WinError 10061] No connection could be made because the target machine actively refused it
+[13:40:59] [Stage 2] No discovery results
+[13:40:59] Stage 2 returned no results, returning Stage 1 plan
+[13:40:59] Intent classified in 18.4s (multi-stage)
+[13:40:59] Response sent: {"mode": "MODIFY", "summary": "Undo last operation", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'undo_last_operation' \u2014
+[13:58:51] Client connected: ('127.0.0.1', 54351)

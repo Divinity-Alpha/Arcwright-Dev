@@ -1,0 +1,1192 @@
+[
+  {
+    "cmd": "create_widget_blueprint",
+    "name": "WBP_SciFiHUD"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "CanvasPanel",
+    "name": "RootCanvas"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "RootCanvas",
+    "property": "slot_position",
+    "value": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "RootCanvas",
+    "property": "slot_size",
+    "value": {
+      "x": 1920.0,
+      "y": 1080.0
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "ProgressBar",
+    "name": "HealthGroup",
+    "parent": "RootCanvas"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "HealthGroup",
+    "property": "slot_position",
+    "value": {
+      "x": 40.0,
+      "y": 30.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "HealthGroup",
+    "property": "percent",
+    "value": 1.0
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "health_label",
+    "parent": "HealthGroup"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_label",
+    "property": "text",
+    "value": "HEALTH"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_label",
+    "property": "font_size",
+    "value": 14
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_label",
+    "property": "color",
+    "value": {
+      "r": 0.0,
+      "g": 1.0,
+      "b": 0.5333333333333333,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_label",
+    "property": "font_weight",
+    "value": "Bold"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "VerticalBox",
+    "name": "health_bar",
+    "parent": "HealthGroup"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_bar",
+    "property": "slot_size",
+    "value": {
+      "x": 280.0,
+      "y": 24.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_bar",
+    "property": "background_color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.1
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "VerticalBox",
+    "name": "health_fill",
+    "parent": "health_bar"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_fill",
+    "property": "slot_size",
+    "value": {
+      "x": 1440.0,
+      "y": 1920.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_fill",
+    "property": "background_color",
+    "value": {
+      "r": 0.0,
+      "g": 1.0,
+      "b": 0.5333333333333333,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "health_text",
+    "parent": "HealthGroup"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_text",
+    "property": "text",
+    "value": "75 / 100"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_text",
+    "property": "font_size",
+    "value": 18
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_text",
+    "property": "color",
+    "value": {
+      "r": 1,
+      "g": 1,
+      "b": 1,
+      "a": 1
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "health_text",
+    "property": "font_weight",
+    "value": "Bold"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "CanvasPanel",
+    "name": "ScoreGroup",
+    "parent": "RootCanvas"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ScoreGroup",
+    "property": "slot_position",
+    "value": {
+      "x": 1880.0,
+      "y": 30.0
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "score_label",
+    "parent": "ScoreGroup"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "score_label",
+    "property": "text",
+    "value": "SCORE"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "score_label",
+    "property": "font_size",
+    "value": 14
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "score_label",
+    "property": "color",
+    "value": {
+      "r": 1.0,
+      "g": 0.7215686274509804,
+      "b": 0.0,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ScoreValue",
+    "parent": "ScoreGroup"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ScoreValue",
+    "property": "text",
+    "value": "12,450"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ScoreValue",
+    "property": "font_size",
+    "value": 36
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ScoreValue",
+    "property": "color",
+    "value": {
+      "r": 1.0,
+      "g": 0.7215686274509804,
+      "b": 0.0,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ScoreValue",
+    "property": "font_weight",
+    "value": "Bold"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ScoreValue",
+    "property": "justification",
+    "value": "Right"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "CanvasPanel",
+    "name": "WaveGroup",
+    "parent": "RootCanvas"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "WaveGroup",
+    "property": "slot_position",
+    "value": {
+      "x": 860.0,
+      "y": 30.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "WaveGroup",
+    "property": "slot_size",
+    "value": {
+      "x": 200.0,
+      "y": 0
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "WaveText",
+    "parent": "WaveGroup"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "WaveText",
+    "property": "text",
+    "value": "WAVE 3"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "WaveText",
+    "property": "font_size",
+    "value": 20
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "WaveText",
+    "property": "color",
+    "value": {
+      "r": 0.6588235294117647,
+      "g": 0.3333333333333333,
+      "b": 0.9686274509803922,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "WaveText",
+    "property": "font_weight",
+    "value": "Bold"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "WaveText",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "wave_sub",
+    "parent": "WaveGroup"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "wave_sub",
+    "property": "text",
+    "value": "Enemies Remaining: 8"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "wave_sub",
+    "property": "font_size",
+    "value": 12
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "wave_sub",
+    "property": "color",
+    "value": {
+      "r": 0.6588235294117647,
+      "g": 0.3333333333333333,
+      "b": 0.9686274509803922,
+      "a": 0.6
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "wave_sub",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "CanvasPanel",
+    "name": "Crosshair",
+    "parent": "RootCanvas"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Crosshair",
+    "property": "slot_position",
+    "value": {
+      "x": 950.0,
+      "y": 530.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Crosshair",
+    "property": "slot_size",
+    "value": {
+      "x": 20.0,
+      "y": 20.0
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "crosshair_dot",
+    "parent": "Crosshair"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "crosshair_dot",
+    "property": "text",
+    "value": "+"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "crosshair_dot",
+    "property": "font_size",
+    "value": 20
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "crosshair_dot",
+    "property": "color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.7
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "crosshair_dot",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "CanvasPanel",
+    "name": "MessageArea",
+    "parent": "RootCanvas"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "MessageArea",
+    "property": "slot_position",
+    "value": {
+      "x": 660.0,
+      "y": 750.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "MessageArea",
+    "property": "slot_size",
+    "value": {
+      "x": 600.0,
+      "y": 0
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "MessageText",
+    "parent": "MessageArea"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "MessageText",
+    "property": "text",
+    "value": "Key Collected! 2/3"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "MessageText",
+    "property": "font_size",
+    "value": 24
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "MessageText",
+    "property": "color",
+    "value": {
+      "r": 0.0,
+      "g": 0.8313725490196079,
+      "b": 1.0,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "MessageText",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "CanvasPanel",
+    "name": "MinimapFrame",
+    "parent": "RootCanvas"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "MinimapFrame",
+    "property": "slot_position",
+    "value": {
+      "x": 1690.0,
+      "y": 120.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "MinimapFrame",
+    "property": "slot_size",
+    "value": {
+      "x": 200.0,
+      "y": 200.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "MinimapFrame",
+    "property": "background_color",
+    "value": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.6
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "minimap_label",
+    "parent": "MinimapFrame"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "minimap_label",
+    "property": "text",
+    "value": "MAP"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "minimap_label",
+    "property": "font_size",
+    "value": 10
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "minimap_label",
+    "property": "color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.4
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "minimap_label",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "CanvasPanel",
+    "name": "AmmoGroup",
+    "parent": "RootCanvas"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "AmmoGroup",
+    "property": "slot_position",
+    "value": {
+      "x": 1880.0,
+      "y": 1040.0
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "AmmoCount",
+    "parent": "AmmoGroup"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "AmmoCount",
+    "property": "text",
+    "value": "24"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "AmmoCount",
+    "property": "font_size",
+    "value": 48
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "AmmoCount",
+    "property": "color",
+    "value": {
+      "r": 1,
+      "g": 1,
+      "b": 1,
+      "a": 1
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "AmmoCount",
+    "property": "font_weight",
+    "value": "Bold"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "AmmoCount",
+    "property": "justification",
+    "value": "Right"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ammo_label",
+    "parent": "AmmoGroup"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ammo_label",
+    "property": "text",
+    "value": "RIFLE AMMO"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ammo_label",
+    "property": "font_size",
+    "value": 12
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ammo_label",
+    "property": "color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.5
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ammo_label",
+    "property": "justification",
+    "value": "Right"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "ProgressBar",
+    "name": "AbilityBar",
+    "parent": "RootCanvas"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "AbilityBar",
+    "property": "slot_position",
+    "value": {
+      "x": 710.0,
+      "y": 980.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "AbilityBar",
+    "property": "slot_size",
+    "value": {
+      "x": 500.0,
+      "y": 60.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "AbilityBar",
+    "property": "percent",
+    "value": 1.0
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "VerticalBox",
+    "name": "Ability1",
+    "parent": "AbilityBar"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Ability1",
+    "property": "slot_size",
+    "value": {
+      "x": 60.0,
+      "y": 60.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Ability1",
+    "property": "background_color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.08
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ability_key",
+    "parent": "Ability1"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "text",
+    "value": "Q"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "font_size",
+    "value": 11
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.5
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ability_icon",
+    "parent": "Ability1"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "text",
+    "value": "\u26a1"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "font_size",
+    "value": 24
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "color",
+    "value": {
+      "r": 0.0,
+      "g": 0.8313725490196079,
+      "b": 1.0,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "VerticalBox",
+    "name": "Ability2",
+    "parent": "AbilityBar"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Ability2",
+    "property": "slot_size",
+    "value": {
+      "x": 60.0,
+      "y": 60.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Ability2",
+    "property": "background_color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.08
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ability_key",
+    "parent": "Ability2"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "text",
+    "value": "E"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "font_size",
+    "value": 11
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.5
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ability_icon",
+    "parent": "Ability2"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "text",
+    "value": "\ud83d\udee1"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "font_size",
+    "value": 24
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "color",
+    "value": {
+      "r": 0.0,
+      "g": 0.8313725490196079,
+      "b": 1.0,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "VerticalBox",
+    "name": "Ability3",
+    "parent": "AbilityBar"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Ability3",
+    "property": "slot_size",
+    "value": {
+      "x": 60.0,
+      "y": 60.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Ability3",
+    "property": "background_color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.08
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ability_key",
+    "parent": "Ability3"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "text",
+    "value": "R"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "font_size",
+    "value": 11
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.5
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ability_icon",
+    "parent": "Ability3"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "text",
+    "value": "\ud83d\udd25"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "font_size",
+    "value": 24
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "color",
+    "value": {
+      "r": 0.0,
+      "g": 0.8313725490196079,
+      "b": 1.0,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "VerticalBox",
+    "name": "Ability4",
+    "parent": "AbilityBar"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Ability4",
+    "property": "slot_size",
+    "value": {
+      "x": 60.0,
+      "y": 60.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "Ability4",
+    "property": "background_color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.08
+    }
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ability_key",
+    "parent": "Ability4"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "text",
+    "value": "F"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "font_size",
+    "value": 11
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "color",
+    "value": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 0.5
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_key",
+    "property": "justification",
+    "value": "Center"
+  },
+  {
+    "cmd": "add_widget_child",
+    "widget": "WBP_SciFiHUD",
+    "type": "TextBlock",
+    "name": "ability_icon",
+    "parent": "Ability4"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "text",
+    "value": "\ud83d\udc8a"
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "font_size",
+    "value": 24
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "color",
+    "value": {
+      "r": 0.0,
+      "g": 0.8313725490196079,
+      "b": 1.0,
+      "a": 1.0
+    }
+  },
+  {
+    "cmd": "set_widget_property",
+    "widget": "WBP_SciFiHUD",
+    "child": "ability_icon",
+    "property": "justification",
+    "value": "Center"
+  }
+]

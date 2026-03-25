@@ -1,0 +1,82 @@
+  Applied pipeline_config.json overrides (C:\BlueprintLLM\pipeline_config.json)
+Using BT domain system prompt from C:\BlueprintLLM\scripts\bt_system_prompt.txt
+GPU: NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition
+VRAM: 95.6 GB
+Compute capability: 12.0
+  VRAM cap: none (full 95.6 GB available)
+  Precision: bf16 (Ampere+ GPU detected)
+NOTE: 96 GB VRAM detected. Full 70B config supported.
+Loaded 96 examples from datasets/bt_train.jsonl
+
+--- Sample formatted example (first 300 chars) ---
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+You are an AI that generates Unreal Engine 5 Behavior Tree DSL from natural language descriptions. Output ONLY valid BT DSL text with no explanation, no markdown, no code fences. The DSL uses indentation (2 spaces) to define tree hierarchy
+--- End sample ---
+
+Loaded 30 examples from datasets\validation.jsonl
+
+--- Sample formatted example (first 300 chars) ---
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+You are an AI that generates Unreal Engine 5 Behavior Tree DSL from natural language descriptions. Output ONLY valid BT DSL text with no explanation, no markdown, no code fences. The DSL uses indentation (2 spaces) to define tree hierarchy
+--- End sample ---
+
+Loading base model: meta-llama/Meta-Llama-3.1-70B
+Using 8-bit quantization (QLoRA)
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|3         | 1/30 [00:04<02:00,  4.17s/it]Loading checkpoint shards:   7%|6         | 2/30 [00:08<01:58,  4.22s/it]Loading checkpoint shards:  10%|#         | 3/30 [00:14<02:14,  4.97s/it]Loading checkpoint shards:  13%|#3        | 4/30 [00:18<02:04,  4.80s/it]Loading checkpoint shards:  17%|#6        | 5/30 [00:23<01:54,  4.60s/it]Loading checkpoint shards:  20%|##        | 6/30 [00:27<01:47,  4.48s/it]Loading checkpoint shards:  23%|##3       | 7/30 [00:31<01:40,  4.39s/it]Loading checkpoint shards:  27%|##6       | 8/30 [00:36<01:37,  4.45s/it]Loading checkpoint shards:  30%|###       | 9/30 [00:40<01:33,  4.47s/it]Loading checkpoint shards:  33%|###3      | 10/30 [00:44<01:27,  4.39s/it]Loading checkpoint shards:  37%|###6      | 11/30 [00:48<01:22,  4.32s/it]Loading checkpoint shards:  40%|####      | 12/30 [00:53<01:17,  4.28s/it]Loading checkpoint shards:  43%|####3     | 13/30 [00:57<01:13,  4.35s/it]Loading checkpoint shards:  47%|####6     | 14/30 [01:02<01:10,  4.41s/it]Loading checkpoint shards:  50%|#####     | 15/30 [01:06<01:05,  4.35s/it]Loading checkpoint shards:  53%|#####3    | 16/30 [01:10<01:00,  4.31s/it]Loading checkpoint shards:  57%|#####6    | 17/30 [01:14<00:55,  4.28s/it]Loading checkpoint shards:  60%|######    | 18/30 [01:19<00:52,  4.37s/it]Loading checkpoint shards:  63%|######3   | 19/30 [01:23<00:48,  4.40s/it]Loading checkpoint shards:  67%|######6   | 20/30 [01:28<00:43,  4.34s/it]Loading checkpoint shards:  70%|#######   | 21/30 [01:32<00:38,  4.30s/it]Loading checkpoint shards:  73%|#######3  | 22/30 [01:36<00:34,  4.28s/it]Loading checkpoint shards:  77%|#######6  | 23/30 [01:41<00:30,  4.36s/it]Loading checkpoint shards:  80%|########  | 24/30 [02:00<00:52,  8.73s/it]Loading checkpoint shards:  83%|########3 | 25/30 [02:10<00:46,  9.37s/it]Loading checkpoint shards:  87%|########6 | 26/30 [02:21<00:38,  9.73s/it]Loading checkpoint shards:  90%|######### | 27/30 [02:33<00:30, 10.33s/it]Loading checkpoint shards:  93%|#########3| 28/30 [02:45<00:21, 10.81s/it]Loading checkpoint shards:  97%|#########6| 29/30 [02:57<00:11, 11.15s/it]Loading checkpoint shards: 100%|##########| 30/30 [03:00<00:00,  8.77s/it]Loading checkpoint shards: 100%|##########| 30/30 [03:00<00:00,  6.01s/it]
+  Loading existing LoRA adapter from: models/bt-lora-v1/final
+  Resumed adapter: rank=32, alpha=64
+Trainable parameters: 414,187,520 / 70,967,894,016 (0.58%)
+Using TrainingArguments (older trl API)
+SFTTrainer params detected: ['model', 'train_dataset', 'eval_dataset', 'processing_class']
+Adding EOS to train dataset:   0%|          | 0/96 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|##########| 96/96 [00:00<00:00, 10619.61 examples/s]
+Tokenizing train dataset:   0%|          | 0/96 [00:00<?, ? examples/s]Tokenizing train dataset: 100%|##########| 96/96 [00:00<00:00, 927.20 examples/s]Tokenizing train dataset: 100%|##########| 96/96 [00:00<00:00, 918.34 examples/s]
+Truncating train dataset:   0%|          | 0/96 [00:00<?, ? examples/s]Truncating train dataset: 100%|##########| 96/96 [00:00<00:00, 27460.49 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/30 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|##########| 30/30 [00:00<00:00, 29980.73 examples/s]
+Tokenizing eval dataset:   0%|          | 0/30 [00:00<?, ? examples/s]Tokenizing eval dataset: 100%|##########| 30/30 [00:00<00:00, 1066.86 examples/s]
+Truncating eval dataset:   0%|          | 0/30 [00:00<?, ? examples/s]Truncating eval dataset: 100%|##########| 30/30 [00:00<00:00, 15178.42 examples/s]
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+
+============================================================
+STARTING TRAINING
+============================================================
+  Model: meta-llama/Meta-Llama-3.1-70B
+  System prompt: ENHANCED (with node reference)
+  System prompt size: ~556 tokens
+  Dataset: 96 examples
+  Epochs: 2
+  Max sequence length: 1024
+  Effective batch size: 4
+  Learning rate: 5e-05
+  LoRA rank: 32
+  CONTINUATION from: models/bt-lora-v1/final
+  Output: models/bt-lora-v2
+============================================================
+
+[Backup] Creating pre_train backup: pre_train_v2_20260307_183134
+[Backup] Mirrored to D:\BlueprintLLMBackup\pre_train_v2_20260307_183134
+[Backup] Cleaned up 1 old backup(s)
+[Backup] Done: pre_train_v2_20260307_183134 (404 files)
+  0%|          | 0/48 [00:00<?, ?it/s]C:\BlueprintLLM\venv\Lib\site-packages\bitsandbytes\autograd\_functions.py:123: UserWarning: MatMul8bitLt: inputs will be cast from torch.float32 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
+C:\BlueprintLLM\venv\Lib\site-packages\bitsandbytes\autograd\_functions.py:123: UserWarning: MatMul8bitLt: inputs will be cast from torch.bfloat16 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
+  2%|2         | 1/48 [2:41:09<126:14:11, 9669.18s/it]  4%|4         | 2/48 [2:41:53<51:12:15, 4007.29s/it]   6%|6         | 3/48 [2:42:49<27:32:15, 2203.00s/it]  8%|8         | 4/48 [2:43:42<16:33:13, 1354.40s/it] 10%|#         | 5/48 [2:44:36<10:34:35, 885.49s/it]                                                      10%|#         | 5/48 [2:44:36<10:34:35, 885.49s/it] 12%|#2        | 6/48 [2:45:28<7:01:19, 601.90s/it]  15%|#4        | 7/48 [2:46:21<4:48:40, 422.45s/it] 17%|#6        | 8/48 [2:47:14<3:23:25, 305.13s/it] 19%|#8        | 9/48 [2:48:06<2:26:47, 225.82s/it] 21%|##        | 10/48 [2:49:00<1:49:30, 172.92s/it]                                                     21%|##        | 10/48 [2:49:00<1:49:30, 172.92s/it] 23%|##2       | 11/48 [2:49:56<1:24:27, 136.97s/it] 25%|##5       | 12/48 [2:50:48<1:06:42, 111.17s/it] 27%|##7       | 13/48 [2:51:52<56:27, 96.80s/it]    29%|##9       | 14/48 [2:52:48<47:52, 84.50s/it] 31%|###1      | 15/48 [2:53:43<41:41, 75.81s/it]                                                  31%|###1      | 15/48 [2:53:43<41:41, 75.81s/it] 33%|###3      | 16/48 [2:54:47<38:28, 72.13s/it] 35%|###5      | 17/48 [2:55:47<35:27, 68.62s/it] 38%|###7      | 18/48 [2:56:46<32:50, 65.69s/it] 40%|###9      | 19/48 [2:57:47<31:02, 64.22s/it] 42%|####1     | 20/48 [2:58:42<28:40, 61.44s/it]                                                  42%|####1     | 20/48 [2:58:42<28:40, 61.44s/it] 44%|####3     | 21/48 [2:59:43<27:31, 61.16s/it] 46%|####5     | 22/48 [3:00:45<26:39, 61.51s/it] 48%|####7     | 23/48 [3:01:46<25:36, 61.47s/it] 50%|#####     | 24/48 [3:02:47<24:32, 61.34s/it] 52%|#####2    | 25/48 [3:03:44<23:00, 60.02s/it]                                                  52%|#####2    | 25/48 [3:03:44<23:00, 60.02s/it] 54%|#####4    | 26/48 [3:04:46<22:08, 60.39s/it] 56%|#####6    | 27/48 [3:05:52<21:48, 62.30s/it] 58%|#####8    | 28/48 [3:07:03<21:36, 64.83s/it] 60%|######    | 29/48 [3:08:05<20:16, 64.01s/it] 62%|######2   | 30/48 [3:09:25<20:36, 68.70s/it]                                                  62%|######2   | 30/48 [3:09:25<20:36, 68.70s/it] 65%|######4   | 31/48 [3:10:42<20:13, 71.38s/it] 67%|######6   | 32/48 [3:12:14<20:40, 77.51s/it] 69%|######8   | 33/48 [3:13:34<19:34, 78.30s/it] 71%|#######   | 34/48 [3:14:59<18:41, 80.09s/it] 73%|#######2  | 35/48 [3:16:18<17:16, 79.75s/it]                                                  73%|#######2  | 35/48 [3:16:18<17:16, 79.75s/it] 75%|#######5  | 36/48 [3:17:31<15:35, 77.97s/it] 77%|#######7  | 37/48 [3:18:45<14:04, 76.77s/it] 79%|#######9  | 38/48 [3:20:05<12:56, 77.64s/it] 81%|########1 | 39/48 [3:21:23<11:40, 77.78s/it] 83%|########3 | 40/48 [3:22:40<10:20, 77.58s/it]                                                  83%|########3 | 40/48 [3:22:40<10:20, 77.58s/it] 85%|########5 | 41/48 [3:24:06<09:20, 80.05s/it] 88%|########7 | 42/48 [3:25:22<07:52, 78.67s/it] 90%|########9 | 43/48 [3:26:46<06:42, 80.44s/it] 92%|#########1| 44/48 [3:28:04<05:18, 79.63s/it] 94%|#########3| 45/48 [3:29:22<03:57, 79.16s/it]                                                  94%|#########3| 45/48 [3:29:22<03:57, 79.16s/it] 96%|#########5| 46/48 [3:30:30<02:31, 75.84s/it] 98%|#########7| 47/48 [3:31:43<01:14, 74.90s/it]100%|##########| 48/48 [3:32:57<00:00, 74.64s/it]                                                 100%|##########| 48/48 [3:34:24<00:00, 74.64s/it]100%|##########| 48/48 [3:34:24<00:00, 268.00s/it]
+{'loss': 0.1702, 'grad_norm': 0.291015625, 'learning_rate': 2e-05, 'entropy': 0.1232895765453577, 'num_tokens': 15626.0, 'mean_token_accuracy': 0.9689151376485825, 'epoch': 0.21}
+{'loss': 0.1448, 'grad_norm': 0.2216796875, 'learning_rate': 4.5e-05, 'entropy': 0.13144717924296856, 'num_tokens': 30426.0, 'mean_token_accuracy': 0.9733017802238464, 'epoch': 0.42}
+{'loss': 0.153, 'grad_norm': 0.150390625, 'learning_rate': 4.473684210526316e-05, 'entropy': 0.15878229402005672, 'num_tokens': 45555.0, 'mean_token_accuracy': 0.9685155481100083, 'epoch': 0.62}
+{'loss': 0.1649, 'grad_norm': 0.1787109375, 'learning_rate': 3.815789473684211e-05, 'entropy': 0.1642719443887472, 'num_tokens': 60926.0, 'mean_token_accuracy': 0.9663213342428207, 'epoch': 0.83}
+{'loss': 0.143, 'grad_norm': 0.181640625, 'learning_rate': 3.157894736842105e-05, 'entropy': 0.13648397289216518, 'num_tokens': 76515.0, 'mean_token_accuracy': 0.9705342710018158, 'epoch': 1.04}
+{'loss': 0.116, 'grad_norm': 0.259765625, 'learning_rate': 2.5e-05, 'entropy': 0.12575013674795626, 'num_tokens': 92084.0, 'mean_token_accuracy': 0.9771970480680465, 'epoch': 1.25}
+{'loss': 0.1085, 'grad_norm': 0.185546875, 'learning_rate': 1.8421052631578947e-05, 'entropy': 0.11156598590314389, 'num_tokens': 107907.0, 'mean_token_accuracy': 0.9793640494346618, 'epoch': 1.46}
+{'loss': 0.1046, 'grad_norm': 0.240234375, 'learning_rate': 1.1842105263157895e-05, 'entropy': 0.10087896473705768, 'num_tokens': 122302.0, 'mean_token_accuracy': 0.9811960369348526, 'epoch': 1.67}
+{'loss': 0.1124, 'grad_norm': 0.197265625, 'learning_rate': 5.263157894736842e-06, 'entropy': 0.109858513250947, 'num_tokens': 137560.0, 'mean_token_accuracy': 0.9782228261232376, 'epoch': 1.88}
+{'train_runtime': 12864.2071, 'train_samples_per_second': 0.015, 'train_steps_per_second': 0.004, 'train_loss': 0.13322729741533598, 'entropy': 0.10148637803892295, 'num_tokens': 147302.0, 'mean_token_accuracy': 0.9802198906739553, 'epoch': 2.0}
+
+Model saved to: models/bt-lora-v2\final
+Config saved to: models/bt-lora-v2\training_config.json
+System prompt saved to: models/bt-lora-v2\system_prompt.txt
+[Backup] Creating milestone backup: milestone_v2_train_complete_20260307_220611
+[Backup] Mirrored to D:\BlueprintLLMBackup\milestone_v2_train_complete_20260307_220611
+[Backup] Done: milestone_v2_train_complete_20260307_220611 (400 files)

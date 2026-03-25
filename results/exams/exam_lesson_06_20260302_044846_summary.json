@@ -1,7 +1,7 @@
 {
   "lesson_id": "lesson_06",
   "lesson_name": "While Loops, For Loops, and Iteration",
-  "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+  "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
   "base_model": "meta-llama/Meta-Llama-3.1-70B",
   "timestamp": "20260302_044846",
   "total_prompts": 20,

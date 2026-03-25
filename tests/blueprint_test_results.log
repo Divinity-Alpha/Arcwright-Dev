@@ -1,0 +1,15 @@
+Arcwright Blueprint Test Results — 2026-03-21T19:42:45.655454
+======================================================================
+PASS: 11, FAIL: 0
+
+PASS: Test 01: Basic Flow (BeginPlay → PrintString)
+PASS: Test 02: Variables (Float, Int, Bool, String)
+PASS: Test 03: Math Chain (Subtract → Clamp → SetVar)
+PASS: Test 04: Comparison + Branch (LessEqual → Branch)
+PASS: Test 05: Custom Event with Logic
+PASS: Test 06: Multiple Custom Events
+PASS: Test 07: Flow Control (Sequence, DoOnce)
+PASS: Test 08: Overlap Events + Destroy
+PASS: Test 09: Timer (SetTimerDelegate)
+PASS: Test 10: Complex Economy Manager (19 nodes, 17 connections)
+PASS: Test 11: Stress Test (25 nodes, 22+ connections)

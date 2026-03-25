@@ -1,0 +1,319 @@
+Bore & Stroke Full Build Log v2
+Timestamp: 2026-03-21 22:07:18
+Duration: 12.2s
+Total commands: 274
+Succeeded: 274
+Errors: 0
+
+============================================================
+Phase Breakdown:
+============================================================
+  init: 1/1 ok (0 errors)
+  Phase 1: Data Tables: 10/10 ok (0 errors)
+  Phase 2: Gameplay Tags: 5/5 ok (0 errors)
+  Phase 3: Materials: 10/10 ok (0 errors)
+  Phase 7: Blueprints: 60/60 ok (0 errors)
+  Phase 8: Widget UIs: 162/162 ok (0 errors)
+  Phase 10: Level Setup: 26/26 ok (0 errors)
+
+============================================================
+Assets Created:
+============================================================
+  Data Tables: 10 (DT_Difficulty, DT_ShopTiers, DT_Engines, DT_Companies,
+                    DT_Equipment, DT_PartsPricing, DT_Consumables,
+                    DT_Actions, DT_Customers, DT_Tolerances)
+  Tag Hierarchies: 5 (Quality, Engine, Station, Heat, Customer)
+  Materials: 10 (M_ShopFloor, M_ShopWall, M_Workbench, M_EngineBlock,
+                  M_Chrome, M_Rust, M_OilStain, M_CarbonDeposit,
+                  M_CylinderWall, M_BearingJournal)
+  Blueprints: 12 (BP_TimeManager, BP_EconomyManager, BP_StationBase,
+                   BP_HeatManager, BP_ReputationManager, BP_ShopInventory,
+                   BP_QualityCalculator, BP_EngineInstance, BP_ActionApproval,
+                   BP_QuestManager, BP_HUDManager, BP_BoreAndStrokeGameMode)
+  Widget Blueprints: 7 (WBP_GameHUD, WBP_ActionApproval, WBP_StationPanel,
+                        WBP_ShopStorage, WBP_MainMenu, WBP_PauseMenu,
+                        WBP_EndOfDay)
+  Level Actors: floor + 4 walls + 4 stations + 4 lights = 13
+
+============================================================
+Error Details:
+============================================================
+  (none)
+
+============================================================
+Full Command Log:
+============================================================
+  [  1] init                           | health_check                   | ok
+  [  2] Phase 1: Data Tables           | create_data_table              | ok
+  [  3] Phase 1: Data Tables           | create_data_table              | ok
+  [  4] Phase 1: Data Tables           | create_data_table              | ok
+  [  5] Phase 1: Data Tables           | create_data_table              | ok
+  [  6] Phase 1: Data Tables           | create_data_table              | ok
+  [  7] Phase 1: Data Tables           | create_data_table              | ok
+  [  8] Phase 1: Data Tables           | create_data_table              | ok
+  [  9] Phase 1: Data Tables           | create_data_table              | ok
+  [ 10] Phase 1: Data Tables           | create_data_table              | ok
+  [ 11] Phase 1: Data Tables           | create_data_table              | ok
+  [ 12] Phase 2: Gameplay Tags         | create_tag_hierarchy           | ok
+  [ 13] Phase 2: Gameplay Tags         | create_tag_hierarchy           | ok
+  [ 14] Phase 2: Gameplay Tags         | create_tag_hierarchy           | ok
+  [ 15] Phase 2: Gameplay Tags         | create_tag_hierarchy           | ok
+  [ 16] Phase 2: Gameplay Tags         | create_tag_hierarchy           | ok
+  [ 17] Phase 3: Materials             | create_simple_material         | ok
+  [ 18] Phase 3: Materials             | create_simple_material         | ok
+  [ 19] Phase 3: Materials             | create_simple_material         | ok
+  [ 20] Phase 3: Materials             | create_simple_material         | ok
+  [ 21] Phase 3: Materials             | create_simple_material         | ok
+  [ 22] Phase 3: Materials             | create_simple_material         | ok
+  [ 23] Phase 3: Materials             | create_simple_material         | ok
+  [ 24] Phase 3: Materials             | create_simple_material         | ok
+  [ 25] Phase 3: Materials             | create_simple_material         | ok
+  [ 26] Phase 3: Materials             | create_simple_material         | ok
+  [ 27] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 28] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 29] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 30] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 31] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 32] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 33] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 34] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 35] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 36] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 37] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 38] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 39] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 40] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 41] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 42] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 43] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 44] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 45] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 46] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 47] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 48] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 49] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 50] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 51] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 52] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 53] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 54] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 55] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 56] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 57] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 58] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 59] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 60] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 61] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 62] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 63] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 64] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 65] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 66] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 67] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 68] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 69] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 70] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 71] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 72] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 73] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 74] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 75] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 76] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 77] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 78] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 79] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 80] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 81] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 82] Phase 7: Blueprints            | delete_blueprint               | ok
+  [ 83] Phase 7: Blueprints            | create_blueprint               | ok
+  [ 84] Phase 7: Blueprints            | add_nodes_batch                | ok
+  [ 85] Phase 7: Blueprints            | add_connections_batch          | ok
+  [ 86] Phase 7: Blueprints            | compile_blueprint              | ok
+  [ 87] Phase 8: Widget UIs            | create_widget_blueprint        | ok
+  [ 88] Phase 8: Widget UIs            | add_widget_child               | ok
+  [ 89] Phase 8: Widget UIs            | add_widget_child               | ok
+  [ 90] Phase 8: Widget UIs            | set_widget_property            | ok
+  [ 91] Phase 8: Widget UIs            | set_widget_property            | ok
+  [ 92] Phase 8: Widget UIs            | set_widget_property            | ok
+  [ 93] Phase 8: Widget UIs            | set_widget_property            | ok
+  [ 94] Phase 8: Widget UIs            | add_widget_child               | ok
+  [ 95] Phase 8: Widget UIs            | set_widget_property            | ok
+  [ 96] Phase 8: Widget UIs            | set_widget_property            | ok
+  [ 97] Phase 8: Widget UIs            | set_widget_property            | ok
+  [ 98] Phase 8: Widget UIs            | set_widget_property            | ok
+  [ 99] Phase 8: Widget UIs            | add_widget_child               | ok
+  [100] Phase 8: Widget UIs            | set_widget_property            | ok
+  [101] Phase 8: Widget UIs            | set_widget_property            | ok
+  [102] Phase 8: Widget UIs            | set_widget_property            | ok
+  [103] Phase 8: Widget UIs            | add_widget_child               | ok
+  [104] Phase 8: Widget UIs            | set_widget_property            | ok
+  [105] Phase 8: Widget UIs            | set_widget_property            | ok
+  [106] Phase 8: Widget UIs            | set_widget_property            | ok
+  [107] Phase 8: Widget UIs            | set_widget_property            | ok
+  [108] Phase 8: Widget UIs            | create_widget_blueprint        | ok
+  [109] Phase 8: Widget UIs            | add_widget_child               | ok
+  [110] Phase 8: Widget UIs            | add_widget_child               | ok
+  [111] Phase 8: Widget UIs            | set_widget_property            | ok
+  [112] Phase 8: Widget UIs            | set_widget_property            | ok
+  [113] Phase 8: Widget UIs            | set_widget_property            | ok
+  [114] Phase 8: Widget UIs            | set_widget_property            | ok
+  [115] Phase 8: Widget UIs            | add_widget_child               | ok
+  [116] Phase 8: Widget UIs            | set_widget_property            | ok
+  [117] Phase 8: Widget UIs            | set_widget_property            | ok
+  [118] Phase 8: Widget UIs            | set_widget_property            | ok
+  [119] Phase 8: Widget UIs            | set_widget_property            | ok
+  [120] Phase 8: Widget UIs            | add_widget_child               | ok
+  [121] Phase 8: Widget UIs            | set_widget_property            | ok
+  [122] Phase 8: Widget UIs            | set_widget_property            | ok
+  [123] Phase 8: Widget UIs            | set_widget_property            | ok
+  [124] Phase 8: Widget UIs            | set_widget_property            | ok
+  [125] Phase 8: Widget UIs            | add_widget_child               | ok
+  [126] Phase 8: Widget UIs            | set_widget_property            | ok
+  [127] Phase 8: Widget UIs            | set_widget_property            | ok
+  [128] Phase 8: Widget UIs            | set_widget_property            | ok
+  [129] Phase 8: Widget UIs            | set_widget_property            | ok
+  [130] Phase 8: Widget UIs            | add_widget_child               | ok
+  [131] Phase 8: Widget UIs            | set_widget_property            | ok
+  [132] Phase 8: Widget UIs            | set_widget_property            | ok
+  [133] Phase 8: Widget UIs            | set_widget_property            | ok
+  [134] Phase 8: Widget UIs            | set_widget_property            | ok
+  [135] Phase 8: Widget UIs            | create_widget_blueprint        | ok
+  [136] Phase 8: Widget UIs            | add_widget_child               | ok
+  [137] Phase 8: Widget UIs            | add_widget_child               | ok
+  [138] Phase 8: Widget UIs            | set_widget_property            | ok
+  [139] Phase 8: Widget UIs            | set_widget_property            | ok
+  [140] Phase 8: Widget UIs            | set_widget_property            | ok
+  [141] Phase 8: Widget UIs            | set_widget_property            | ok
+  [142] Phase 8: Widget UIs            | add_widget_child               | ok
+  [143] Phase 8: Widget UIs            | set_widget_property            | ok
+  [144] Phase 8: Widget UIs            | set_widget_property            | ok
+  [145] Phase 8: Widget UIs            | set_widget_property            | ok
+  [146] Phase 8: Widget UIs            | set_widget_property            | ok
+  [147] Phase 8: Widget UIs            | add_widget_child               | ok
+  [148] Phase 8: Widget UIs            | set_widget_property            | ok
+  [149] Phase 8: Widget UIs            | add_widget_child               | ok
+  [150] Phase 8: Widget UIs            | set_widget_property            | ok
+  [151] Phase 8: Widget UIs            | set_widget_property            | ok
+  [152] Phase 8: Widget UIs            | set_widget_property            | ok
+  [153] Phase 8: Widget UIs            | set_widget_property            | ok
+  [154] Phase 8: Widget UIs            | create_widget_blueprint        | ok
+  [155] Phase 8: Widget UIs            | add_widget_child               | ok
+  [156] Phase 8: Widget UIs            | add_widget_child               | ok
+  [157] Phase 8: Widget UIs            | set_widget_property            | ok
+  [158] Phase 8: Widget UIs            | set_widget_property            | ok
+  [159] Phase 8: Widget UIs            | set_widget_property            | ok
+  [160] Phase 8: Widget UIs            | set_widget_property            | ok
+  [161] Phase 8: Widget UIs            | add_widget_child               | ok
+  [162] Phase 8: Widget UIs            | set_widget_property            | ok
+  [163] Phase 8: Widget UIs            | set_widget_property            | ok
+  [164] Phase 8: Widget UIs            | set_widget_property            | ok
+  [165] Phase 8: Widget UIs            | set_widget_property            | ok
+  [166] Phase 8: Widget UIs            | add_widget_child               | ok
+  [167] Phase 8: Widget UIs            | set_widget_property            | ok
+  [168] Phase 8: Widget UIs            | create_widget_blueprint        | ok
+  [169] Phase 8: Widget UIs            | add_widget_child               | ok
+  [170] Phase 8: Widget UIs            | add_widget_child               | ok
+  [171] Phase 8: Widget UIs            | set_widget_property            | ok
+  [172] Phase 8: Widget UIs            | set_widget_property            | ok
+  [173] Phase 8: Widget UIs            | set_widget_property            | ok
+  [174] Phase 8: Widget UIs            | set_widget_property            | ok
+  [175] Phase 8: Widget UIs            | add_widget_child               | ok
+  [176] Phase 8: Widget UIs            | set_widget_property            | ok
+  [177] Phase 8: Widget UIs            | set_widget_property            | ok
+  [178] Phase 8: Widget UIs            | set_widget_property            | ok
+  [179] Phase 8: Widget UIs            | set_widget_property            | ok
+  [180] Phase 8: Widget UIs            | add_widget_child               | ok
+  [181] Phase 8: Widget UIs            | set_widget_property            | ok
+  [182] Phase 8: Widget UIs            | set_widget_property            | ok
+  [183] Phase 8: Widget UIs            | set_widget_property            | ok
+  [184] Phase 8: Widget UIs            | set_widget_property            | ok
+  [185] Phase 8: Widget UIs            | add_widget_child               | ok
+  [186] Phase 8: Widget UIs            | set_widget_property            | ok
+  [187] Phase 8: Widget UIs            | set_widget_property            | ok
+  [188] Phase 8: Widget UIs            | set_widget_property            | ok
+  [189] Phase 8: Widget UIs            | set_widget_property            | ok
+  [190] Phase 8: Widget UIs            | add_widget_child               | ok
+  [191] Phase 8: Widget UIs            | set_widget_property            | ok
+  [192] Phase 8: Widget UIs            | set_widget_property            | ok
+  [193] Phase 8: Widget UIs            | set_widget_property            | ok
+  [194] Phase 8: Widget UIs            | set_widget_property            | ok
+  [195] Phase 8: Widget UIs            | create_widget_blueprint        | ok
+  [196] Phase 8: Widget UIs            | add_widget_child               | ok
+  [197] Phase 8: Widget UIs            | add_widget_child               | ok
+  [198] Phase 8: Widget UIs            | set_widget_property            | ok
+  [199] Phase 8: Widget UIs            | set_widget_property            | ok
+  [200] Phase 8: Widget UIs            | set_widget_property            | ok
+  [201] Phase 8: Widget UIs            | set_widget_property            | ok
+  [202] Phase 8: Widget UIs            | add_widget_child               | ok
+  [203] Phase 8: Widget UIs            | set_widget_property            | ok
+  [204] Phase 8: Widget UIs            | set_widget_property            | ok
+  [205] Phase 8: Widget UIs            | set_widget_property            | ok
+  [206] Phase 8: Widget UIs            | set_widget_property            | ok
+  [207] Phase 8: Widget UIs            | add_widget_child               | ok
+  [208] Phase 8: Widget UIs            | set_widget_property            | ok
+  [209] Phase 8: Widget UIs            | set_widget_property            | ok
+  [210] Phase 8: Widget UIs            | set_widget_property            | ok
+  [211] Phase 8: Widget UIs            | set_widget_property            | ok
+  [212] Phase 8: Widget UIs            | add_widget_child               | ok
+  [213] Phase 8: Widget UIs            | set_widget_property            | ok
+  [214] Phase 8: Widget UIs            | set_widget_property            | ok
+  [215] Phase 8: Widget UIs            | set_widget_property            | ok
+  [216] Phase 8: Widget UIs            | set_widget_property            | ok
+  [217] Phase 8: Widget UIs            | add_widget_child               | ok
+  [218] Phase 8: Widget UIs            | set_widget_property            | ok
+  [219] Phase 8: Widget UIs            | set_widget_property            | ok
+  [220] Phase 8: Widget UIs            | set_widget_property            | ok
+  [221] Phase 8: Widget UIs            | set_widget_property            | ok
+  [222] Phase 8: Widget UIs            | create_widget_blueprint        | ok
+  [223] Phase 8: Widget UIs            | add_widget_child               | ok
+  [224] Phase 8: Widget UIs            | add_widget_child               | ok
+  [225] Phase 8: Widget UIs            | set_widget_property            | ok
+  [226] Phase 8: Widget UIs            | set_widget_property            | ok
+  [227] Phase 8: Widget UIs            | set_widget_property            | ok
+  [228] Phase 8: Widget UIs            | set_widget_property            | ok
+  [229] Phase 8: Widget UIs            | add_widget_child               | ok
+  [230] Phase 8: Widget UIs            | set_widget_property            | ok
+  [231] Phase 8: Widget UIs            | set_widget_property            | ok
+  [232] Phase 8: Widget UIs            | set_widget_property            | ok
+  [233] Phase 8: Widget UIs            | set_widget_property            | ok
+  [234] Phase 8: Widget UIs            | add_widget_child               | ok
+  [235] Phase 8: Widget UIs            | set_widget_property            | ok
+  [236] Phase 8: Widget UIs            | set_widget_property            | ok
+  [237] Phase 8: Widget UIs            | set_widget_property            | ok
+  [238] Phase 8: Widget UIs            | set_widget_property            | ok
+  [239] Phase 8: Widget UIs            | add_widget_child               | ok
+  [240] Phase 8: Widget UIs            | set_widget_property            | ok
+  [241] Phase 8: Widget UIs            | set_widget_property            | ok
+  [242] Phase 8: Widget UIs            | set_widget_property            | ok
+  [243] Phase 8: Widget UIs            | set_widget_property            | ok
+  [244] Phase 8: Widget UIs            | add_widget_child               | ok
+  [245] Phase 8: Widget UIs            | set_widget_property            | ok
+  [246] Phase 8: Widget UIs            | set_widget_property            | ok
+  [247] Phase 8: Widget UIs            | set_widget_property            | ok
+  [248] Phase 8: Widget UIs            | set_widget_property            | ok
+  [249] Phase 10: Level Setup          | setup_scene_lighting           | ok
+  [250] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [251] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [252] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [253] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [254] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [255] Phase 10: Level Setup          | set_actor_material             | ok
+  [256] Phase 10: Level Setup          | set_actor_material             | ok
+  [257] Phase 10: Level Setup          | set_actor_material             | ok
+  [258] Phase 10: Level Setup          | set_actor_material             | ok
+  [259] Phase 10: Level Setup          | set_actor_material             | ok
+  [260] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [261] Phase 10: Level Setup          | set_actor_material             | ok
+  [262] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [263] Phase 10: Level Setup          | set_actor_material             | ok
+  [264] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [265] Phase 10: Level Setup          | set_actor_material             | ok
+  [266] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [267] Phase 10: Level Setup          | set_actor_material             | ok
+  [268] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [269] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [270] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [271] Phase 10: Level Setup          | spawn_actor_at                 | ok
+  [272] Phase 10: Level Setup          | set_game_mode                  | ok
+  [273] Phase 10: Level Setup          | save_all                       | ok
+  [274] Phase 10: Level Setup          | save_all                       | ok

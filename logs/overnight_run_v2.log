@@ -1,0 +1,75 @@
+[09:15:01] ======================================================================
+[09:15:01] OVERNIGHT TRAINING RUN
+[09:15:01] Started: 2026-03-09 09:15:01
+[09:15:01] Jobs: BT v3 -> Blueprint v12
+[09:15:01] Stall detection: HEARTBEAT-ONLY (threshold=1800s)
+[09:15:01] Log: C:\BlueprintLLM\logs\overnight_triple_20260309_091501.log
+[09:15:01] ======================================================================
+[09:15:01] 
+
+######################################################################
+[09:15:01] JOB 1/2: BT v3
+[09:15:01] Started: 2026-03-09 09:15:01
+[09:15:01] ######################################################################
+[09:15:01] 
+============================================================
+[09:15:01] PRE-FLIGHT: BT v3
+[09:15:01] ============================================================
+[09:15:01]   Killing zombie GPU processes...
+[09:15:01]   CMD: nvidia-smi --query-compute-apps=pid,name --format=csv,noheader -i 1
+[09:15:01]   No zombie processes found.
+[09:15:01]   CMD: nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1
+[09:15:01]   VRAM used on PRO 6000: 0.9 GB
+[09:15:01]   Golden Config Verification:
+[09:15:01]     epochs: 3 — OK
+[09:15:01]     learning_rate: 0.0002 — OK
+[09:15:01]     batch_size: 1 — OK
+[09:15:01]     gradient_accumulation_steps: 4 — OK
+[09:15:01]     lora_r: 32 — OK
+[09:15:01]     lora_alpha: 64 — OK
+[09:15:01]     max_seq_length: 1024 — OK
+[09:15:01]     use_8bit: True
+[09:15:01]     base_model: meta-llama/Meta-Llama-3.1-70B
+[09:15:01]   Backing up bt-lora-v2 to D:...
+[09:15:03]   Backup verified: bt-lora-v2 (790 MB)
+[09:15:03] 
+DATASET PREP: BT v3
+[09:15:03]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/bt_lesson_to_training.py --lesson lessons/bt_lesson_01.json --output datasets/bt_train.jsonl --no-append
+[09:15:03]   Wrote 52 BT training entries from bt_lesson_01 to datasets\bt_train.jsonl
+  (20 prompts x ~2 variations each)
+[09:15:03]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/bt_lesson_to_training.py --lesson lessons/bt_lesson_02.json --output datasets/bt_train.jsonl 
+[09:15:03]   Wrote 44 BT training entries from bt_lesson_02 to datasets\bt_train.jsonl
+  (20 prompts x ~2 variations each)
+[09:15:03]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/bt_lesson_to_training.py --lesson lessons/bt_lesson_03.json --output datasets/bt_train.jsonl 
+[09:15:04]   Wrote 39 BT training entries from bt_lesson_03 to datasets\bt_train.jsonl
+  (20 prompts x ~1 variations each)
+[09:15:04]   Final dataset: datasets/bt_train.jsonl = 135 training examples
+[09:15:04] 
+TRAINING: BT v3
+[09:15:04]   Domain: bt
+[09:15:04]   Dataset: datasets/bt_train.jsonl
+[09:15:04]   Output: models/bt-lora-v3
+[09:15:04]   Mode: FULL (golden config, 3 epochs)
+[09:15:04]   Training command: python scripts/04_train_blueprint_lora.py --domain bt --dataset datasets/bt_train.jsonl --output models/bt-lora-v3 --epochs 3 --lr 0.0002 --lora_r 32 --max_seq_length 1024 --batch_size 1
+[09:15:04]   Started at: 2026-03-09 09:15:04
+[09:15:04]   Stall detection: HEARTBEAT-ONLY (threshold=1800s)
+[09:15:04]   NOTE: 70B full retrain takes 7-10h. No stdout for hours is NORMAL.
+[09:15:22]   TRAIN: GPU: NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition
+[09:15:22]   TRAIN: VRAM: 95.6 GB
+[09:15:22]   TRAIN:   VRAM cap: none (full 95.6 GB available)
+[09:15:22]   TRAIN:   Precision: bf16 (Ampere+ GPU detected)
+[09:15:22]   TRAIN: NOTE: 96 GB VRAM detected. Full 70B config supported.
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\overnight_triple_train.py", line 838, in <module>
+    main()
+  File "C:\BlueprintLLM\scripts\overnight_triple_train.py", line 755, in main
+    if not run_training(job):
+           ^^^^^^^^^^^^^^^^^
+  File "C:\BlueprintLLM\scripts\overnight_triple_train.py", line 531, in run_training
+    log(f"  TRAIN: {line}")
+  File "C:\BlueprintLLM\scripts\overnight_triple_train.py", line 97, in log
+    print(line, flush=True)
+  File "C:\Program Files\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u258e' in position 119: character maps to <undefined>

@@ -1,0 +1,76 @@
+{
+  "id": "text_input_dialog",
+  "name": "Text Input Dialog",
+  "category": "system",
+  "description": "Modal with title, text input, OK/Cancel",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    350,
+    180
+  ],
+  "variables": [
+    {
+      "name": "InputValue",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "InputRoot",
+    "properties": {
+      "spacing": "10"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "InputTitle",
+        "properties": {
+          "text": "BIND:\"{InputTitle}\"",
+          "font_size": "20",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "INPUT",
+        "name": "TextInput",
+        "properties": {
+          "hint": "Enter text...",
+          "font_size": "14"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "InputBtns",
+        "properties": {
+          "spacing": "12"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "OKBtn",
+            "properties": {
+              "text": "OK",
+              "font_size": "14"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "CancelBtn",
+            "properties": {
+              "text": "Cancel",
+              "font_size": "14"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

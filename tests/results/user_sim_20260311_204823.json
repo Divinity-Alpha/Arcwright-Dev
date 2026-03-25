@@ -1,0 +1,3326 @@
+{
+  "timestamp": "20260311_204823",
+  "total_tests": 48,
+  "total_score": 179,
+  "max_score": 192,
+  "results": [
+    {
+      "test_id": "S.01",
+      "name": "Setup: Create enemy blueprint",
+      "prompt": "Create an enemy with 100 health, 15 damage, and 300 speed",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_Enemy",
+              "asset_path": "/Game/Arcwright/Generated/BP_Enemy",
+              "nodes_created": 6,
+              "nodes_expected": 4,
+              "connections_wired": 3,
+              "connections_expected": 6,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 3
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "BP 'BP_Enemy' exists",
+          "passed": true
+        }
+      ],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.02",
+      "name": "Setup: Create health pickup",
+      "prompt": "Create a health pickup that heals 25 HP when touched and destroys itself",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_HealthPickup",
+              "asset_path": "/Game/Arcwright/Generated/BP_HealthPickup",
+              "nodes_created": 9,
+              "nodes_expected": 7,
+              "connections_wired": 6,
+              "connections_expected": 9,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "BP 'BP_HealthPickup' exists",
+          "passed": true
+        }
+      ],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.03",
+      "name": "Setup: Create coin",
+      "prompt": "Create a gold coin pickup worth 10 points that destroys on collection",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_Coin",
+              "asset_path": "/Game/Arcwright/Generated/BP_Coin",
+              "nodes_created": 7,
+              "nodes_expected": 5,
+              "connections_wired": 4,
+              "connections_expected": 4,
+              "compiled": false,
+              "compile_errors": [
+                "Node Get Score: compiler error",
+                "Node float + float: compiler error",
+                "Node Set Score: compiler error"
+              ],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": false,
+      "verify_results": [
+        {
+          "check": "BP 'BP_GoldCoin' exists",
+          "passed": false
+        }
+      ],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.04",
+      "name": "Setup: Create torch",
+      "prompt": "Create a torch with a point light intensity of 5000",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_TorchLight",
+              "asset_path": "/Game/Arcwright/Generated/BP_TorchLight",
+              "nodes_created": 3,
+              "nodes_expected": 3,
+              "connections_wired": 0,
+              "connections_expected": 3,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "BP 'BP_Torch' exists",
+          "passed": true
+        }
+      ],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.05",
+      "name": "Setup: Add lighting",
+      "prompt": "Set up dark indoor lighting for the level",
+      "expected_mode": "CREATE",
+      "actual_mode": "SETUP",
+      "intent_ok": false,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "setup_scene_lighting",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "preset": "indoor_dark",
+              "actors": [
+                {
+                  "label": "SceneDirectionalLight",
+                  "intensity": 2,
+                  "pitch": -45
+                },
+                {
+                  "label": "SceneSkyLight",
+                  "intensity": 0.5
+                }
+              ],
+              "actors_created": 2
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "Level has actors",
+          "passed": true,
+          "count": 191
+        }
+      ],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.06",
+      "name": "Setup: Spawn enemies",
+      "prompt": "Spawn 3 enemies in the level",
+      "expected_mode": [
+        "CREATE",
+        "MULTI"
+      ],
+      "actual_mode": "MULTI",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 3,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "BP_Enemy",
+              "class": "BP_Enemy_C",
+              "location": {
+                "x": -200,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "BP_Enemy2",
+              "class": "BP_Enemy_C",
+              "location": {
+                "x": 0,
+                "y": 200,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "BP_Enemy3",
+              "class": "BP_Enemy_C",
+              "location": {
+                "x": 200,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "Actor matching 'nemy' exists",
+          "passed": true,
+          "found": 3
+        }
+      ],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.07",
+      "name": "Setup: Spawn coins",
+      "prompt": "Place 5 gold coins around the level",
+      "expected_mode": [
+        "CREATE",
+        "MULTI"
+      ],
+      "actual_mode": "MULTI",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_GoldCoin",
+              "asset_path": "/Game/Arcwright/Generated/BP_GoldCoin",
+              "nodes_created": 7,
+              "nodes_expected": 5,
+              "connections_wired": 5,
+              "connections_expected": 5,
+              "compiled": false,
+              "compile_errors": [
+                "Node Set Owner: compiler error"
+              ],
+              "variables_created": 0
+            }
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "Actor49",
+              "class": "Actor",
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": false,
+      "verify_results": [
+        {
+          "check": "Actor matching 'oin' exists",
+          "passed": false,
+          "found": 0
+        }
+      ],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.08",
+      "name": "Setup: Spawn torches",
+      "prompt": "Put 4 torches in the level",
+      "expected_mode": [
+        "CREATE",
+        "MULTI"
+      ],
+      "actual_mode": "MULTI",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_Torch",
+              "asset_path": "/Game/Arcwright/Generated/BP_Torch",
+              "nodes_created": 10,
+              "nodes_expected": 8,
+              "connections_wired": 4,
+              "connections_expected": 7,
+              "compiled": false,
+              "compile_errors": [
+                "Node Set Visibility\nTarget is Scene Component: compiler error",
+                "Node Add Actor Local Rotation\nTarget is Actor: compiler error"
+              ],
+              "variables_created": 0
+            }
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "Actor50",
+              "class": "Actor",
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": false,
+      "verify_results": [
+        {
+          "check": "Actor matching 'orch' exists",
+          "passed": false,
+          "found": 0
+        }
+      ],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.01",
+      "name": "Create simple pickup",
+      "prompt": "Create a key pickup that sets HasKey to true when collected",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_KeyPickup",
+              "asset_path": "/Game/Arcwright/Generated/BP_KeyPickup",
+              "nodes_created": 5,
+              "nodes_expected": 3,
+              "connections_wired": 3,
+              "connections_expected": 3,
+              "compiled": false,
+              "compile_errors": [
+                "Node Event ActorBeginOverlap: compiler error",
+                "Node Set HasKey: compiler error"
+              ],
+              "variables_created": 1
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "BP 'BP_KeyPickup' exists",
+          "passed": true
+        }
+      ],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.02",
+      "name": "Create door with logic",
+      "prompt": "Make a door that checks if the player has a key before opening",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_DoorCheck",
+              "asset_path": "/Game/Arcwright/Generated/BP_DoorCheck",
+              "nodes_created": 8,
+              "nodes_expected": 6,
+              "connections_wired": 3,
+              "connections_expected": 5,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.03",
+      "name": "Create timer-based hazard",
+      "prompt": "Build a damage zone that hurts the player 10 HP per second while they stand on it",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_DamageZone",
+              "asset_path": "/Game/Arcwright/Generated/BP_DamageZone",
+              "nodes_created": 14,
+              "nodes_expected": 13,
+              "connections_wired": 11,
+              "connections_expected": 13,
+              "compiled": false,
+              "compile_errors": [
+                "Node Clear Timer by Event: compiler error",
+                "Node float - float: compiler error",
+                "Node Set Health: compiler error"
+              ],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.04",
+      "name": "Create score manager",
+      "prompt": "I need a score manager that tracks points and prints New High Score when the record is beaten",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_ScoreManager",
+              "asset_path": "/Game/Arcwright/Generated/BP_ScoreManager",
+              "nodes_created": 11,
+              "nodes_expected": 6,
+              "connections_wired": 9,
+              "connections_expected": 6,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 1
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.05",
+      "name": "Create wave spawner",
+      "prompt": "Create a wave spawner that sends enemies every 15 seconds with increasing counts",
+      "expected_mode": "CREATE",
+      "actual_mode": "MULTI",
+      "intent_ok": false,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_WaveSpawner",
+              "asset_path": "/Game/Arcwright/Generated/BP_WaveSpawner",
+              "nodes_created": 9,
+              "nodes_expected": 7,
+              "connections_wired": 5,
+              "connections_expected": 5,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 1
+            }
+          }
+        },
+        {
+          "command": "create_blueprint",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Failed to build Blueprint: BP_Demo121.Dsl.Dsl.Dsl.Dsl"
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 2,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.06",
+      "name": "Create behavior tree",
+      "prompt": "Make a patrol AI that walks between two points and chases the player when spotted",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "create_behavior_tree",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "DSL parsing failed"
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.07",
+      "name": "Create data table",
+      "prompt": "I need a weapons table with name, damage, fire rate, and ammo count",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "create_data_table",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "DSL parsing failed"
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.08",
+      "name": "Create with casual language",
+      "prompt": "Can you make me a treasure chest that gives random gold between 10 and 50",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_TreasureChest",
+              "asset_path": "/Game/Arcwright/Generated/BP_TreasureChest",
+              "nodes_created": 7,
+              "nodes_expected": 4,
+              "connections_wired": 4,
+              "connections_expected": 3,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.09",
+      "name": "Create checkpoint",
+      "prompt": "I want a checkpoint that saves the player position when they touch it",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_Checkpoint",
+              "asset_path": "/Game/Arcwright/Generated/BP_Checkpoint",
+              "nodes_created": 6,
+              "nodes_expected": 4,
+              "connections_wired": 4,
+              "connections_expected": 4,
+              "compiled": false,
+              "compile_errors": [
+                "Node Get Actor Location\nTarget is Actor: compiler error",
+                "Node Set CheckpointPosition: compiler error"
+              ],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.10",
+      "name": "Create spinning actor",
+      "prompt": "Make something that spins on its Z axis",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_Spinner",
+              "asset_path": "/Game/Arcwright/Generated/BP_Spinner",
+              "nodes_created": 5,
+              "nodes_expected": 3,
+              "connections_wired": 1,
+              "connections_expected": 2,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.01",
+      "name": "Change enemy health",
+      "prompt": "Set health to 200 on all enemies",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_set_variable",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 4,
+              "succeeded": 1,
+              "failed": 3,
+              "results": [
+                {
+                  "blueprint": "",
+                  "variable_name": "Health",
+                  "success": false,
+                  "error": "Blueprint not found: "
+                },
+                {
+                  "blueprint": "",
+                  "variable_name": "Health",
+                  "success": false,
+                  "error": "Blueprint not found: "
+                },
+                {
+                  "blueprint": "",
+                  "variable_name": "Health",
+                  "success": false,
+                  "error": "Blueprint not found: "
+                },
+                {
+                  "blueprint": "BP_PowerEnemy",
+                  "variable_name": "Health",
+                  "success": true
+                }
+              ],
+              "errors": [
+                ": Blueprint not found",
+                ": Blueprint not found",
+                ": Blueprint not found"
+              ]
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.02",
+      "name": "Make enemies faster",
+      "prompt": "Make the enemies faster",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_set_property",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 1,
+              "succeeded": 0,
+              "failed": 1,
+              "errors": [
+                "BP_Enemy: unknown property ''"
+              ]
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.03",
+      "name": "Change coin value",
+      "prompt": "Gold coins should be worth 50 each",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_set_variable",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 2,
+              "succeeded": 2,
+              "failed": 0,
+              "results": [
+                {
+                  "blueprint": "BP_Coin",
+                  "variable_name": "Score",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_CoinGold",
+                  "variable_name": "Score",
+                  "success": true
+                }
+              ],
+              "errors": []
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.04",
+      "name": "Scale enemies up",
+      "prompt": "Scale all enemies up by 1.5",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "batch_set_property",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Missing 'operations' array"
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.05",
+      "name": "Delete coins",
+      "prompt": "Delete all the gold coins",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_delete_actors",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "deleted": 3,
+              "failed": 0,
+              "errors": []
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "No actors matching 'oin'",
+          "passed": true,
+          "found": 0
+        }
+      ],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.06",
+      "name": "Hide torches",
+      "prompt": "Hide all the torches",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_set_property",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 2,
+              "succeeded": 0,
+              "failed": 2,
+              "errors": [
+                "Actor not found: ",
+                "Actor not found: "
+              ]
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.07",
+      "name": "Change material with exact name",
+      "prompt": "Change the material on all enemies to MI_Stone",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_apply_material",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 3,
+              "succeeded": 0,
+              "failed": 3,
+              "errors": [
+                "Material not found: /Game/Materials/MI_Stone",
+                "Material not found: /Game/Materials/MI_Stone",
+                "Material not found: /Game/Materials/MI_Stone"
+              ]
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.08",
+      "name": "Change material with fuzzy name",
+      "prompt": "Make the torches look like gold",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "batch_replace_material",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Missing 'old_material'"
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.09",
+      "name": "Multiple variable changes",
+      "prompt": "All enemies need 500 HP and 40 damage",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_set_variable",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 4,
+              "succeeded": 4,
+              "failed": 0,
+              "results": [
+                {
+                  "blueprint": "BP_Enemy",
+                  "variable_name": "Health",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_Enemy",
+                  "variable_name": "Damage",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_PowerEnemy",
+                  "variable_name": "Health",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_PowerEnemy",
+                  "variable_name": "Damage",
+                  "success": true
+                }
+              ],
+              "errors": []
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.10",
+      "name": "Add component to all",
+      "prompt": "Add a point light to every torch",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 3,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "find_blueprints",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "count": 22,
+              "blueprints": [
+                {
+                  "name": "BP_GoldCoin",
+                  "asset_path": "/Game/Arcwright/Generated/BP_GoldCoin.BP_GoldCoin",
+                  "parent_class": "Actor",
+                  "compiled": false,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Gem",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Gem.BP_Gem",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "GemValue",
+                      "type": "real",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_PowerEnemy",
+                  "asset_path": "/Game/Arcwright/Generated/BP_PowerEnemy.BP_PowerEnemy",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "object",
+                      "default": ""
+                    },
+                    {
+                      "name": "Damage",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_HealthPotion",
+                  "asset_path": "/Game/Arcwright/Generated/BP_HealthPotion.BP_HealthPotion",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_TorchLight",
+                  "asset_path": "/Game/Arcwright/Generated/BP_TorchLight.BP_TorchLight",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_WeaponsTable",
+                  "asset_path": "/Game/Arcwright/Generated/BP_WeaponsTable.BP_WeaponsTable",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Weapons",
+                      "type": "object",
+                      "default": ""
+                    },
+                    {
+                      "name": "SelectedWeapon",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_PatrolAI",
+                  "asset_path": "/Game/Arcwright/Generated/BP_PatrolAI.BP_PatrolAI",
+                  "parent_class": "Actor",
+                  "compiled": false,
+                  "variables": [
+                    {
+                      "name": "Target",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_WaveSpawner",
+                  "asset_path": "/Game/Arcwright/Generated/BP_WaveSpawner.BP_WaveSpawner",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "WaveCount",
+                      "type": "int",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_ScoreManager",
+                  "asset_path": "/Game/Arcwright/Generated/BP_ScoreManager.BP_ScoreManager",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Points",
+                      "type": "int",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_DamageZone",
+                  "asset_path": "/Game/Arcwright/Generated/BP_DamageZone.BP_DamageZone",
+                  "parent_class": "Actor",
+                  "compiled": false,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_KeyCard",
+                  "asset_path": "/Game/Arcwright/Generated/BP_KeyCard.BP_KeyCard",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_DoorCheck",
+                  "asset_path": "/Game/Arcwright/Generated/BP_DoorCheck.BP_DoorCheck",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_DoorFrame",
+                  "asset_path": "/Game/Arcwright/Generated/BP_DoorFrame.BP_DoorFrame",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_KeyPickup",
+                  "asset_path": "/Game/Arcwright/Generated/BP_KeyPickup.BP_KeyPickup",
+                  "parent_class": "Actor",
+                  "compiled": false,
+                  "variables": [
+                    {
+                      "name": "HasKey",
+                      "type": "bool",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Coin",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Coin.BP_Coin",
+                  "parent_class": "Actor",
+                  "compiled": false,
+                  "variables": [
+                    {
+                      "name": "Score",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_CoinGold",
+                  "asset_path": "/Game/Arcwright/Generated/BP_CoinGold.BP_CoinGold",
+                  "parent_class": "Actor",
+                  "compiled": false,
+                  "variables": [
+                    {
+                      "name": "Score",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Torch",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Torch.BP_Torch",
+                  "parent_class": "Actor",
+                  "compiled": false,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_HealthPickup",
+                  "asset_path": "/Game/Arcwright/Generated/BP_HealthPickup.BP_HealthPickup",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Enemy",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Enemy.BP_Enemy",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "real",
+                      "default": ""
+                    },
+                    {
+                      "name": "Damage",
+                      "type": "real",
+                      "default": ""
+                    },
+                    {
+                      "name": "Speed",
+                      "type": "real",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Spinner",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Spinner.BP_Spinner",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Checkpoint",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Checkpoint.BP_Checkpoint",
+                  "parent_class": "Actor",
+                  "compiled": false,
+                  "variables": [
+                    {
+                      "name": "CheckpointPosition",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_TreasureChest",
+                  "asset_path": "/Game/Arcwright/Generated/BP_TreasureChest.BP_TreasureChest",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "DefaultSceneRoot",
+                      "class": "SceneComponent"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "command": "batch_add_component",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 22,
+              "succeeded": 22,
+              "failed": 0,
+              "results": [
+                {
+                  "blueprint": "BP_GoldCoin",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_Gem",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_PowerEnemy",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_HealthPotion",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_TorchLight",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_WeaponsTable",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_PatrolAI",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_WaveSpawner",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_ScoreManager",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_DamageZone",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_KeyCard",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_DoorCheck",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_DoorFrame",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_KeyPickup",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_Coin",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_CoinGold",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_Torch",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_HealthPickup",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_Enemy",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_Spinner",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_Checkpoint",
+                  "component_type": "PointLight",
+                  "success": true
+                },
+                {
+                  "blueprint": "BP_TreasureChest",
+                  "component_type": "PointLight",
+                  "success": true
+                }
+              ],
+              "errors": []
+            }
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "Actor51",
+              "class": "Actor",
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.11",
+      "name": "Rename blueprint",
+      "prompt": "Rename BP_GoldCoin to BP_TreasureCoin",
+      "expected_mode": "MODIFY",
+      "actual_mode": "RENAME",
+      "intent_ok": false,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "rename_asset",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "old_name": "BP_GoldCoin",
+              "new_name": "BP_TreasureCoin",
+              "new_path": "/Game/Arcwright/Generated/BP_TreasureCoin",
+              "warning": "References from other assets are updated via redirectors, but placed actors may need re-spawn."
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.12",
+      "name": "Conversational modify",
+      "prompt": "The enemies are too weak, buff them",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_set_variable",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 3,
+              "succeeded": 0,
+              "failed": 3,
+              "results": [
+                {
+                  "blueprint": "",
+                  "variable_name": "Health",
+                  "success": false,
+                  "error": "Blueprint not found: "
+                },
+                {
+                  "blueprint": "",
+                  "variable_name": "Health",
+                  "success": false,
+                  "error": "Blueprint not found: "
+                },
+                {
+                  "blueprint": "",
+                  "variable_name": "Health",
+                  "success": false,
+                  "error": "Blueprint not found: "
+                }
+              ],
+              "errors": [
+                ": Blueprint not found",
+                ": Blueprint not found",
+                ": Blueprint not found"
+              ]
+            }
+          }
+        },
+        {
+          "command": "batch_set_variable",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 3,
+              "succeeded": 0,
+              "failed": 3,
+              "results": [
+                {
+                  "blueprint": "",
+                  "variable_name": "Damage",
+                  "success": false,
+                  "error": "Blueprint not found: "
+                },
+                {
+                  "blueprint": "",
+                  "variable_name": "Damage",
+                  "success": false,
+                  "error": "Blueprint not found: "
+                },
+                {
+                  "blueprint": "",
+                  "variable_name": "Damage",
+                  "success": false,
+                  "error": "Blueprint not found: "
+                }
+              ],
+              "errors": [
+                ": Blueprint not found",
+                ": Blueprint not found",
+                ": Blueprint not found"
+              ]
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.13",
+      "name": "Replace material globally",
+      "prompt": "Replace every stone material with brick",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "batch_replace_material",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Missing 'old_material'"
+          }
+        },
+        {
+          "command": "setup_scene_lighting",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "preset": "indoor_dark",
+              "actors": [
+                {
+                  "label": "SceneDirectionalLight",
+                  "intensity": 2,
+                  "pitch": -45
+                },
+                {
+                  "label": "SceneSkyLight",
+                  "intensity": 0.5
+                }
+              ],
+              "actors_created": 2
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.14",
+      "name": "Move actors",
+      "prompt": "Move all coins up by 50 units",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_set_property",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "total": 3,
+              "succeeded": 0,
+              "failed": 3,
+              "errors": [
+                "Actor not found: ",
+                "Actor not found: ",
+                "Actor not found: "
+              ]
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "M.15",
+      "name": "Remove all of a type",
+      "prompt": "Clear out all the torches",
+      "expected_mode": "MODIFY",
+      "actual_mode": "MODIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_delete_actors",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "deleted": 0,
+              "failed": 0,
+              "errors": []
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "No actors matching 'orch'",
+          "passed": true,
+          "found": 0
+        }
+      ],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "Q.01",
+      "name": "Count enemies",
+      "prompt": "How many enemies are in the level?",
+      "expected_mode": "QUERY",
+      "actual_mode": "QUERY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "find_actors",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "count": 3,
+              "actors": [
+                {
+                  "label": "BP_Enemy",
+                  "class": "BP_Enemy_C",
+                  "location": {
+                    "x": -200,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "rotation": {
+                    "pitch": 0,
+                    "yaw": 0,
+                    "roll": 0
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "tags": [],
+                  "components": [
+                    {
+                      "name": "PointLight_18",
+                      "class": "PointLightComponent"
+                    },
+                    {
+                      "name": "BillboardComponent_0",
+                      "class": "BillboardComponent"
+                    }
+                  ]
+                },
+                {
+                  "label": "BP_Enemy2",
+                  "class": "BP_Enemy_C",
+                  "location": {
+                    "x": 0,
+                    "y": 200,
+                    "z": 0
+                  },
+                  "rotation": {
+                    "pitch": 0,
+                    "yaw": 0,
+                    "roll": 0
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "tags": [],
+                  "components": [
+                    {
+                      "name": "PointLight_18",
+                      "class": "PointLightComponent"
+                    },
+                    {
+                      "name": "BillboardComponent_0",
+                      "class": "BillboardComponent"
+                    }
+                  ]
+                },
+                {
+                  "label": "BP_Enemy3",
+                  "class": "BP_Enemy_C",
+                  "location": {
+                    "x": 200,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "rotation": {
+                    "pitch": 0,
+                    "yaw": 0,
+                    "roll": 0
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "tags": [],
+                  "components": [
+                    {
+                      "name": "PointLight_18",
+                      "class": "PointLightComponent"
+                    },
+                    {
+                      "name": "BillboardComponent_0",
+                      "class": "BillboardComponent"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "Q.02",
+      "name": "List blueprints",
+      "prompt": "Show me all the blueprints in the project",
+      "expected_mode": "QUERY",
+      "actual_mode": "QUERY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "get_level_info",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "level_name": "Untitled_1",
+              "level_path": "/Temp/Untitled_1",
+              "actor_count": 197,
+              "class_counts": [
+                {
+                  "class": "WorldSettings",
+                  "count": 1
+                },
+                {
+                  "class": "Brush",
+                  "count": 1
+                },
+                {
+                  "class": "WorldDataLayers",
+                  "count": 1
+                },
+                {
+                  "class": "DefaultPhysicsVolume",
+                  "count": 1
+                },
+                {
+                  "class": "GameplayDebuggerPlayerManager",
+                  "count": 1
+                },
+                {
+                  "class": "Actor",
+                  "count": 51
+                },
+                {
+                  "class": "WorldPartitionMiniMap",
+                  "count": 1
+                },
+                {
+                  "class": "StaticMeshActor",
+                  "count": 1
+                },
+                {
+                  "class": "SkyAtmosphere",
+                  "count": 1
+                },
+                {
+                  "class": "PlayerStart",
+                  "count": 1
+                },
+                {
+                  "class": "ExponentialHeightFog",
+                  "count": 1
+                },
+                {
+                  "class": "VolumetricCloud",
+                  "count": 1
+                },
+                {
+                  "class": "Landscape",
+                  "count": 1
+                },
+                {
+                  "class": "LandscapeStreamingProxy",
+                  "count": 64
+                },
+                {
+                  "class": "AbstractNavData",
+                  "count": 1
+                },
+                {
+                  "class": "WorldPartitionHLOD",
+                  "count": 64
+                },
+                {
+                  "class": "BP_Enemy_C",
+                  "count": 3
+                },
+                {
+                  "class": "DirectionalLight",
+                  "count": 1
+                },
+                {
+                  "class": "SkyLight",
+                  "count": 1
+                }
+              ],
+              "player_start_location": {
+                "x": -200,
+                "y": 0,
+                "z": 92.00009999999747
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "Q.03",
+      "name": "List actors",
+      "prompt": "What's in the level right now?",
+      "expected_mode": "QUERY",
+      "actual_mode": "QUERY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "get_level_info",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "level_name": "Untitled_1",
+              "level_path": "/Temp/Untitled_1",
+              "actor_count": 197,
+              "class_counts": [
+                {
+                  "class": "WorldSettings",
+                  "count": 1
+                },
+                {
+                  "class": "Brush",
+                  "count": 1
+                },
+                {
+                  "class": "WorldDataLayers",
+                  "count": 1
+                },
+                {
+                  "class": "DefaultPhysicsVolume",
+                  "count": 1
+                },
+                {
+                  "class": "GameplayDebuggerPlayerManager",
+                  "count": 1
+                },
+                {
+                  "class": "Actor",
+                  "count": 51
+                },
+                {
+                  "class": "WorldPartitionMiniMap",
+                  "count": 1
+                },
+                {
+                  "class": "StaticMeshActor",
+                  "count": 1
+                },
+                {
+                  "class": "SkyAtmosphere",
+                  "count": 1
+                },
+                {
+                  "class": "PlayerStart",
+                  "count": 1
+                },
+                {
+                  "class": "ExponentialHeightFog",
+                  "count": 1
+                },
+                {
+                  "class": "VolumetricCloud",
+                  "count": 1
+                },
+                {
+                  "class": "Landscape",
+                  "count": 1
+                },
+                {
+                  "class": "LandscapeStreamingProxy",
+                  "count": 64
+                },
+                {
+                  "class": "AbstractNavData",
+                  "count": 1
+                },
+                {
+                  "class": "WorldPartitionHLOD",
+                  "count": 64
+                },
+                {
+                  "class": "BP_Enemy_C",
+                  "count": 3
+                },
+                {
+                  "class": "DirectionalLight",
+                  "count": 1
+                },
+                {
+                  "class": "SkyLight",
+                  "count": 1
+                }
+              ],
+              "player_start_location": {
+                "x": -200,
+                "y": 0,
+                "z": 92.00009999999747
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "Q.04",
+      "name": "Find specific type",
+      "prompt": "Which blueprints have a Health variable?",
+      "expected_mode": "QUERY",
+      "actual_mode": "QUERY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "find_blueprints",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "count": 22,
+              "blueprints": [
+                {
+                  "name": "BP_TreasureCoin",
+                  "asset_path": "/Game/Arcwright/Generated/BP_TreasureCoin/BP_TreasureCoin.BP_TreasureCoin",
+                  "parent_class": "Actor",
+                  "compiled": false,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "PointLight_0",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Gem",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Gem.BP_Gem",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "GemValue",
+                      "type": "real",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_1",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_PowerEnemy",
+                  "asset_path": "/Game/Arcwright/Generated/BP_PowerEnemy.BP_PowerEnemy",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "object",
+                      "default": ""
+                    },
+                    {
+                      "name": "Damage",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_2",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_HealthPotion",
+                  "asset_path": "/Game/Arcwright/Generated/BP_HealthPotion.BP_HealthPotion",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_3",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_TorchLight",
+                  "asset_path": "/Game/Arcwright/Generated/BP_TorchLight.BP_TorchLight",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "PointLight_4",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_WeaponsTable",
+                  "asset_path": "/Game/Arcwright/Generated/BP_WeaponsTable.BP_WeaponsTable",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Weapons",
+                      "type": "object",
+                      "default": ""
+                    },
+                    {
+                      "name": "SelectedWeapon",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_5",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_PatrolAI",
+                  "asset_path": "/Game/Arcwright/Generated/BP_PatrolAI.BP_PatrolAI",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Target",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_6",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_WaveSpawner",
+                  "asset_path": "/Game/Arcwright/Generated/BP_WaveSpawner.BP_WaveSpawner",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "WaveCount",
+                      "type": "int",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_7",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_ScoreManager",
+                  "asset_path": "/Game/Arcwright/Generated/BP_ScoreManager.BP_ScoreManager",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Points",
+                      "type": "int",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_8",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_DamageZone",
+                  "asset_path": "/Game/Arcwright/Generated/BP_DamageZone.BP_DamageZone",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_9",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_KeyCard",
+                  "asset_path": "/Game/Arcwright/Generated/BP_KeyCard.BP_KeyCard",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "PointLight_10",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_DoorCheck",
+                  "asset_path": "/Game/Arcwright/Generated/BP_DoorCheck.BP_DoorCheck",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "PointLight_11",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_DoorFrame",
+                  "asset_path": "/Game/Arcwright/Generated/BP_DoorFrame.BP_DoorFrame",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "PointLight_12",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_KeyPickup",
+                  "asset_path": "/Game/Arcwright/Generated/BP_KeyPickup.BP_KeyPickup",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "HasKey",
+                      "type": "bool",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_13",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Coin",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Coin.BP_Coin",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Score",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_14",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_CoinGold",
+                  "asset_path": "/Game/Arcwright/Generated/BP_CoinGold.BP_CoinGold",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Score",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_15",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Torch",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Torch.BP_Torch",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "PointLight_16",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_HealthPickup",
+                  "asset_path": "/Game/Arcwright/Generated/BP_HealthPickup.BP_HealthPickup",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_17",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Enemy",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Enemy.BP_Enemy",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "Health",
+                      "type": "real",
+                      "default": ""
+                    },
+                    {
+                      "name": "Damage",
+                      "type": "real",
+                      "default": ""
+                    },
+                    {
+                      "name": "Speed",
+                      "type": "real",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_18",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Spinner",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Spinner.BP_Spinner",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "PointLight_19",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_Checkpoint",
+                  "asset_path": "/Game/Arcwright/Generated/BP_Checkpoint.BP_Checkpoint",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [
+                    {
+                      "name": "CheckpointPosition",
+                      "type": "object",
+                      "default": ""
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "PointLight_20",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                },
+                {
+                  "name": "BP_TreasureChest",
+                  "asset_path": "/Game/Arcwright/Generated/BP_TreasureChest.BP_TreasureChest",
+                  "parent_class": "Actor",
+                  "compiled": true,
+                  "variables": [],
+                  "components": [
+                    {
+                      "name": "PointLight_21",
+                      "class": "PointLightComponent"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "Q.05",
+      "name": "Count specific actors",
+      "prompt": "How many coins did I place?",
+      "expected_mode": "QUERY",
+      "actual_mode": "QUERY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "find_actors",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "count": 0,
+              "actors": []
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "X.01",
+      "name": "Create and spawn",
+      "prompt": "Create a health potion and spawn 3 of them in the level",
+      "expected_mode": "MULTI",
+      "actual_mode": "MULTI",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_HealthPotion",
+              "asset_path": "/Game/Arcwright/Generated/BP_HealthPotion",
+              "nodes_created": 9,
+              "nodes_expected": 7,
+              "connections_wired": 6,
+              "connections_expected": 9,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "Actor52",
+              "class": "Actor",
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "X.02",
+      "name": "Full scene setup",
+      "prompt": "Set up FPS controls and add dark lighting to the level",
+      "expected_mode": [
+        "MULTI",
+        "CREATE"
+      ],
+      "actual_mode": "MULTI",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "get_level_info",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "level_name": "Untitled_1",
+              "level_path": "/Temp/Untitled_1",
+              "actor_count": 198,
+              "class_counts": [
+                {
+                  "class": "WorldSettings",
+                  "count": 1
+                },
+                {
+                  "class": "Brush",
+                  "count": 1
+                },
+                {
+                  "class": "WorldDataLayers",
+                  "count": 1
+                },
+                {
+                  "class": "DefaultPhysicsVolume",
+                  "count": 1
+                },
+                {
+                  "class": "GameplayDebuggerPlayerManager",
+                  "count": 1
+                },
+                {
+                  "class": "Actor",
+                  "count": 52
+                },
+                {
+                  "class": "WorldPartitionMiniMap",
+                  "count": 1
+                },
+                {
+                  "class": "StaticMeshActor",
+                  "count": 1
+                },
+                {
+                  "class": "SkyAtmosphere",
+                  "count": 1
+                },
+                {
+                  "class": "PlayerStart",
+                  "count": 1
+                },
+                {
+                  "class": "ExponentialHeightFog",
+                  "count": 1
+                },
+                {
+                  "class": "VolumetricCloud",
+                  "count": 1
+                },
+                {
+                  "class": "Landscape",
+                  "count": 1
+                },
+                {
+                  "class": "LandscapeStreamingProxy",
+                  "count": 64
+                },
+                {
+                  "class": "AbstractNavData",
+                  "count": 1
+                },
+                {
+                  "class": "WorldPartitionHLOD",
+                  "count": 64
+                },
+                {
+                  "class": "BP_Enemy_C",
+                  "count": 3
+                },
+                {
+                  "class": "DirectionalLight",
+                  "count": 1
+                },
+                {
+                  "class": "SkyLight",
+                  "count": 1
+                }
+              ],
+              "player_start_location": {
+                "x": -200,
+                "y": 0,
+                "z": 92.00009999999747
+              }
+            }
+          }
+        },
+        {
+          "command": "setup_scene_lighting",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "preset": "indoor_dark",
+              "actors": [
+                {
+                  "label": "SceneDirectionalLight",
+                  "intensity": 2,
+                  "pitch": -45
+                },
+                {
+                  "label": "SceneSkyLight",
+                  "intensity": 0.5
+                }
+              ],
+              "actors_created": 2
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "X.03",
+      "name": "Delete and replace",
+      "prompt": "Delete all coins and replace them with gems worth 100 each",
+      "expected_mode": "MULTI",
+      "actual_mode": "MULTI",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 3,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "batch_delete_actors",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "deleted": 0,
+              "failed": 0,
+              "errors": []
+            }
+          }
+        },
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_Gem",
+              "asset_path": "/Game/Arcwright/Generated/BP_Gem",
+              "nodes_created": 8,
+              "nodes_expected": 6,
+              "connections_wired": 5,
+              "connections_expected": 6,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "Actor53",
+              "class": "Actor",
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "X.04",
+      "name": "Modify multiple properties",
+      "prompt": "Make all enemies tougher and change the lighting to outdoor daytime",
+      "expected_mode": "MULTI",
+      "actual_mode": "MULTI",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "batch_set_variable",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Missing 'operations' array"
+          }
+        },
+        {
+          "command": "setup_scene_lighting",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "preset": "outdoor_daytime",
+              "actors": [
+                {
+                  "label": "SceneDirectionalLight",
+                  "intensity": 2,
+                  "pitch": -45
+                },
+                {
+                  "label": "SceneSkyLight",
+                  "intensity": 0.5
+                }
+              ],
+              "actors_created": 2
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "X.05",
+      "name": "Complex build request",
+      "prompt": "Build a boss room with one powerful enemy, health pickups around the edges, and dramatic dark lighting",
+      "expected_mode": "MULTI",
+      "actual_mode": "MULTI",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 4,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "setup_scene_lighting",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "preset": "dramatic_dark",
+              "actors": [
+                {
+                  "label": "SceneDirectionalLight",
+                  "intensity": 2,
+                  "pitch": -45
+                },
+                {
+                  "label": "SceneSkyLight",
+                  "intensity": 0.5
+                }
+              ],
+              "actors_created": 2
+            }
+          }
+        },
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_BossEnemy",
+              "asset_path": "/Game/Arcwright/Generated/BP_BossEnemy",
+              "nodes_created": 10,
+              "nodes_expected": 8,
+              "connections_wired": 6,
+              "connections_expected": 7,
+              "compiled": false,
+              "compile_errors": [
+                "Node Get Distance To\nTarget is Actor: compiler error"
+              ],
+              "variables_created": 0
+            }
+          }
+        },
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_HealthPickup",
+              "asset_path": "/Game/Arcwright/Generated/BP_HealthPickup",
+              "nodes_created": 8,
+              "nodes_expected": 5,
+              "connections_wired": 6,
+              "connections_expected": 5,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "Actor54",
+              "class": "Actor",
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "V.01",
+      "name": "Vague complaint",
+      "prompt": "The level feels empty",
+      "expected_mode": [
+        "MULTI",
+        "CLARIFY"
+      ],
+      "actual_mode": "CLARIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 0,
+      "exec_ok": true,
+      "exec_results": [],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "V.02",
+      "name": "Very vague",
+      "prompt": "Make it better",
+      "expected_mode": "CLARIFY",
+      "actual_mode": "CLARIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 0,
+      "exec_ok": true,
+      "exec_results": [],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "V.03",
+      "name": "Aesthetic complaint",
+      "prompt": "Everything looks too plain",
+      "expected_mode": [
+        "MODIFY",
+        "CLARIFY"
+      ],
+      "actual_mode": "CLARIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 0,
+      "exec_ok": true,
+      "exec_results": [],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "V.04",
+      "name": "Difficulty complaint",
+      "prompt": "The game is too easy",
+      "expected_mode": [
+        "MODIFY",
+        "CLARIFY"
+      ],
+      "actual_mode": "CLARIFY",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 0,
+      "exec_ok": true,
+      "exec_results": [],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "V.05",
+      "name": "Help request",
+      "prompt": "I'm stuck, can you help me set up the level?",
+      "expected_mode": [
+        "CLARIFY",
+        "HELP"
+      ],
+      "actual_mode": "HELP",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 0,
+      "exec_ok": true,
+      "exec_results": [],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    }
+  ]
+}

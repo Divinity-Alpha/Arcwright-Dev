@@ -1,0 +1,65 @@
+{
+  "lesson_id": "bt_lesson_02",
+  "lesson_name": "Services, Blackboard Operations, and Complex Trees",
+  "domain": "behavior_tree",
+  "model": "models/bt-lora-v3/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260309_180456",
+  "total_prompts": 20,
+  "valid_syntax": 20,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 93.2,
+  "timeout_count": 0,
+  "per_category": {
+    "service_find_nearest": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 91.6
+    },
+    "service_update_distance": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 87.9
+    },
+    "service_line_of_sight": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "service_default_focus": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "blackboard_set_clear": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 96.9
+    },
+    "cooldown_varied": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 82.1
+    },
+    "multi_service_complex": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 81.4
+    },
+    "abort_modes": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 96.7
+    },
+    "destroy_and_spawn": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "nested_complex": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 95.7
+    }
+  }
+}

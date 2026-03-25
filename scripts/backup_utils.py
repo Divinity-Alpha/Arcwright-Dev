@@ -1,7 +1,7 @@
 """
 backup_utils.py
 ---------------
-Shared backup module for the BlueprintLLM project.
+Shared backup module for the Arcwright project.
 
 Provides automatic and manual backup of datasets, results, lessons,
 pipeline state, and system prompt. Models are NOT backed up by default

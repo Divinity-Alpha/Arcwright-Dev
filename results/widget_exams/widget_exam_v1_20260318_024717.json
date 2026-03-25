@@ -1,0 +1,834 @@
+{
+  "syntax_accuracy": 82.0,
+  "average_similarity": 72.15447154471545,
+  "total_prompts": 50,
+  "syntax_pass": 41,
+  "results": [
+    {
+      "prompt": "Create a minimalist health bar for a platformer game",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 7,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_HealthBar\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 10\n\nCreate a horror notification that slides in from right,assistant\n\nWIDGET: WBP_NotifText\nTHEME: Horror\n\nCANVAS Root\n  TEXT NotifText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 80\n    @text: BIND:\"{Notification1}\"\n    @font_size: 14\n    @color: $text\n    @ani"
+    },
+    {
+      "prompt": "Make a sci-fi ammo display with current and reserve ammo",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 5,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_AmmoText\nTHEME: SciFi\n\nCANVAS Root\n  TEXT AmmoText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"{CurrentAmmo}/{ReserveAmmo}\"\n    @font_size: 28\n    @color: $text\n    @bold: true\n\nCreate a horror health bar bound to PlayerHealth with text showing current/max,assistant\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: "
+    },
+    {
+      "prompt": "Build a medieval gold counter in the top-right corner",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 4,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_GoldText\nTHEME: Medieval\n\nCANVAS Root\n  TEXT GoldText\n    @anchor: TopRight\n    @offset_x: -20\n    @offset_y: 60\n    @text: BIND:\"{Gold} Gold\"\n    @font_size: 16\n    @color: $warning\n\nCreate a horror health bar bound to PlayerHealth with text showing current/maxassistant\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n"
+    },
+    {
+      "prompt": "Create a horror-themed stamina bar that depletes when running",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 6,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_StaminaBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR StaminaBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 75\n    @percent: BIND:Stamina/MaxStamina\n    @fill_color: $stamina\n    @size_x: 180\n    @size_y: 8\n\nCreate a cartoon kill feed with scrolling entries,assistant\n\nWIDGET: WBP_KillFeed\nTHEME: Cartoon\n\nCANVAS Root\n  TEXT Kill1\n    @anchor: TopRight\n    @offset_x: -20\n    @offset_y: 100\n    @text: BIND:\"{KillText1}\"\n    @font_size: 13\n    @color: $text_secondary\n  TEXT Kil"
+    },
+    {
+      "prompt": "Design a racing lap timer display",
+      "theme": "Racing",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 5,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_LapTimerText\nTHEME: Racing\n\nCANVAS Root\n  TEXT LapTimerText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"LAP {CurrentLap}/{TotalLaps}\"\n    @font_size: 22\n    @color: $text\n    @bold: true\u040e\u044b\u045fN\n\nCreate a horror health bar bound to PlayerHealth with text showing current/max\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_col"
+    },
+    {
+      "prompt": "Make a fighting game combo counter in the center",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 4,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_ComboText\nTHEME: Fighting\n\nCANVAS Root\n  TEXT ComboText\n    @anchor: Center\n    @offset_x: 0\n    @offset_y: 20\n    @text: BIND:\"{ComboCount}\"\n    @font_size: 28\n    @color: $accent\n    @bold: true\n\nCreate a horror health bar bound to PlayerHealth with text showing current/maxassistant\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n   "
+    },
+    {
+      "prompt": "Create a simulation-style resource counter for Wood and Stone",
+      "theme": "Simulation",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 7,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_ResourceText\nTHEME: Simulation\n\nCANVAS Root\n  TEXT ResourceText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"Wood: {Wood} Stone: {Stone}\"\n    @font_size: 14\n    @color: $text\n\nCreate a horror health bar bound to PlayerHealth with text showing current/max,assistant\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $he"
+    },
+    {
+      "prompt": "Build a cartoon XP bar at the bottom of the screen",
+      "theme": "Cartoon",
+      "syntax_ok": false,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 1,
+        "warnings": 0,
+        "errors": [
+          "Invalid anchor 'Top' on 'ScoreText'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight"
+        ]
+      },
+      "generated": "WIDGET: WBP_XPBar\nTHEME: Cartoon\n\nCANVAS Root\n  PROGRESS_BAR XPBar\n    @anchor: BottomCenter\n    @offset_x: 0\n    @offset_y: -30\n    @percent: BIND:XP/MaxXP\n    @fill_color: $xp\n    @size_x: 400\n    @size_y: 10\n\nCreate a horror notification that slides in from rightassistant\n\nWIDGET: WBP_NotifText\nTHEME: Horror\n\nCANVAS Root\n  TEXT NotifText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 80\n    @text: BIND:\"{Notification1}\"\n    @font_size: 14\n    @color: $text\n    @anim:OnShow = SlideIn|di"
+    },
+    {
+      "prompt": "Make a normal-themed player level indicator",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 100.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 5,
+        "bind_score": 1.0,
+        "theme_match": true,
+        "similarity": 100.0
+      },
+      "generated": "WIDGET: WBP_LevelText\nTHEME: Normal\n\nCANVAS Root\n  TEXT LevelText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"Level {Level}\"\n    @font_size: 18\n    @color: $xp\n\nCreate a horror notification that slides in from rightassistant\n\nWIDGET: WBP_NotifText\nTHEME: Horror\n\nCANVAS Root\n  TEXT NotifText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 80\n    @text: BIND:\"{Notification1}\"\n    @font_size: 14\n    @color: $text\n    @anim:OnShow = SlideIn|direction=Right|duratio"
+    },
+    {
+      "prompt": "Create a sci-fi shield percentage display",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 2,
+        "types_match": 1.0,
+        "bindings": 6,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_ShieldBar\nTHEME: SciFi\n\nCANVAS Root\n  PROGRESS_BAR ShieldBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 50\n    @percent: BIND:Shield/MaxShield\n    @fill_color: $mana\n    @size_x: 200\n    @size_y: 16\n\nCreate a horror health bar bound to PlayerHealth with text overlay,assistant\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n "
+    },
+    {
+      "prompt": "Create a complete FPS HUD with health, ammo, and crosshair using sci-fi theme",
+      "theme": "SciFi",
+      "syntax_ok": false,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 1,
+        "warnings": 0,
+        "errors": [
+          "Invalid anchor 'Left' on 'SpeakerImg'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight"
+        ]
+      },
+      "generated": "WIDGET: WBP_FPSHUD\nTHEME: SciFi\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 20\n  TEXT AmmoCount\n    @anchor: BottomRight\n    @offset_x: -30\n    @offset_y: -30\n    @text: BIND:\"{CurrentAmmo}/{MaxAmmo}\"\n    @font_size: 28\n    @color: $text\n    @bold: true\n  TEXT Crosshair\n    @anchor: Center\n    @offset_x: 0\n    @offset_y: 0\n    @text: +\n    @font_size"
+    },
+    {
+      "prompt": "Build an RPG HUD with health, mana, and XP bars in medieval theme",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 9,
+        "bind_score": 1.0,
+        "nodes": 10,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_RPGHUD\nTHEME: Medieval\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 220\n    @size_y: 18\n  PROGRESS_BAR ManaBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 45\n    @percent: BIND:Mana/MaxMana\n    @fill_color: $mana\n    @size_x: 180\n    @size_y: 14\n  PROGRESS_BAR XPBar\n    @anchor: BottomCenter\n    @offset_x: 0\n    @offset_y: -20\n    @percent: BIND:"
+    },
+    {
+      "prompt": "Design a racing dashboard with speed, gear, lap counter, and position",
+      "theme": "Racing",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 8,
+        "bind_score": 1.0,
+        "nodes": 10,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_Dashboard\nTHEME: Racing\n\nCANVAS Root\n  TEXT SpeedValue\n    @anchor: BottomRight\n    @offset_x: -40\n    @offset_y: -50\n    @text: BIND:\"{Speed}\"\n    @font_size: 48\n    @color: $text\n    @bold: true\n  TEXT GearText\n    @anchor: BottomCenter\n    @offset_y: -60\n    @text: BIND:\"{CurrentGear}\"\n    @font_size: 44\n    @color: $primary\n    @bold: true\n  TEXT LapText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"LAP {CurrentLap}/{TotalLaps}\"\n    @font_size: 22\n    "
+    },
+    {
+      "prompt": "Create a survival game HUD with health, hunger, and temperature",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 7,
+        "bind_score": 1.0,
+        "nodes": 11,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_SurvivalHUD\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 200\n    @size_y: 18\n  PROGRESS_BAR HungerBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 45\n    @percent: BIND:HungerLevel/MaxHunger\n    @fill_color: $warning\n    @size_x: 160\n    @size_y: 14\n  TEXT TempText\n    @anchor: TopRight\n    @offset_x: -20\n    @offset_y: 20\n    @text:"
+    },
+    {
+      "prompt": "Build a wave-based arena HUD with health, score, wave counter, and ammo",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 8,
+        "bind_score": 1.0,
+        "nodes": 10,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_ArenaHUD\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 20\n  TEXT ScoreText\n    @anchor: TopRight\n    @offset_x: -30\n    @offset_y: 20\n    @text: BIND:\"{Score}\"\n    @font_size: 28\n    @color: $warning\n    @bold: true\n  TEXT WaveText\n    @anchor: TopCenter\n    @offset_y: 20\n    @text: BIND:\"WAVE {CurrentWave}/{TotalWaves}\"\n    @"
+    },
+    {
+      "prompt": "Create a stealth game HUD with detection meter, health, and objective",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 7,
+        "bind_score": 1.0,
+        "nodes": 12,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_StealthHUD\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 200\n    @size_y: 18\n  TEXT ObjText\n    @anchor: TopRight\n    @offset_x: -20\n    @offset_y: 100\n    @text: BIND:\"{ObjectiveText1}\"\n    @font_size: 14\n    @color: $text\n  PROGRESS_BAR DetectBar\n    @anchor: BottomCenter\n    @percent: BIND:DetectionLevel\n    @fill_color: $warning\n    @size_"
+    },
+    {
+      "prompt": "Design a sports game HUD with score, timer, and period display",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 100.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 7,
+        "bind_score": 1.0,
+        "nodes": 11,
+        "node_score": 1.0,
+        "theme_match": true,
+        "similarity": 100.0
+      },
+      "generated": "WIDGET: WBP_SportsHUD\nTHEME: Normal\n\nCANVAS Root\n  TEXT ScorePanel\n    @anchor: TopRight\n    @offset_x: -30\n    @offset_y: 20\n    @text: BIND:\"{Score}\"\n    @font_size: 32\n    @color: $warning\n    @bold: true\n  TEXT TimerPanel\n    @anchor: TopCenter\n    @offset_y: 20\n    @text: BIND:\"{TimeRemaining}\"\n    @font_size: 28\n    @color: $text\n  TEXT PeriodPanel\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"PERIOD {Period}\"\n    @font_size: 22\n    @color: $accent\n    @bold: tr"
+    },
+    {
+      "prompt": "Build a simulation management HUD with money, population, and happiness bars",
+      "theme": "Simulation",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 10,
+        "bind_score": 1.0,
+        "nodes": 11,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_ManagementHUD\nTHEME: Simulation\n\nCANVAS Root\n  TEXT MoneyValue\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"${Money}\"\n    @font_size: 16\n    @color: $warning\n  PROGRESS_BAR PopulationBar\n    @anchor: TopCenter\n    @offset_y: 20\n    @percent: BIND:Population/MaxPopulation\n    @fill_color: $accent\n    @size_x: 400\n    @size_y: 10\n  PROGRESS_BAR HappinessBar\n    @anchor: TopRight\n    @offset_x: -20\n    @offset_y: 20\n    @percent: BIND:Happiness/MaxHappiness\n"
+    },
+    {
+      "prompt": "Create a cartoon platformer HUD with lives, coins, and a star counter",
+      "theme": "Cartoon",
+      "syntax_ok": false,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 4,
+        "warnings": 0,
+        "errors": [
+          "Invalid anchor 'Left' on 'Portrait'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Speaker'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Dialog'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Right' on 'KillText'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight"
+        ]
+      },
+      "generated": "WIDGET: WBP_PlatformHUD\nTHEME: Cartoon\n\nCANVAS Root\n  TEXT LivesValue\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"{Lives}\"\n    @font_size: 28\n    @color: $danger\n    @bold: true\n  TEXT CoinValue\n    @anchor: TopRight\n    @offset_x: -30\n    @offset_y: 20\n    @text: BIND:\"{Coins}\"\n    @font_size: 22\n    @color: $warning\n    @bold: true\n  TEXT StarValue\n    @anchor: TopCenter\n    @offset_y: 20\n    @text: BIND:\"{Stars}\"\n    @font_size: 24\n    @color: $accent\n    @bold: "
+    },
+    {
+      "prompt": "Design a boss fight HUD with player health, boss health bar, and timer",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 100.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 8,
+        "bind_score": 1.0,
+        "nodes": 10,
+        "node_score": 1.0,
+        "theme_match": true,
+        "similarity": 100.0
+      },
+      "generated": "WIDGET: WBP_BossHUD\nTHEME: Normal\n\nCANVAS Root\n  TEXT BossName\n    @anchor: TopCenter\n    @offset_x: 0\n    @offset_y: 40\n    @text: BIND:\"{BossName}\"\n    @font_size: 22\n    @color: $text\n    @bold: true\n    @justification: Center\n  PROGRESS_BAR BossBar\n    @anchor: TopCenter\n    @offset_x: 0\n    @offset_y: 60\n    @percent: BIND:BossHealth/BossMaxHealth\n    @fill_color: $danger\n    @bar_color: $surface\n    @size_x: 600\n    @size_y: 8\n  TEXT Timer\n    @anchor: TopCenter\n    @offset_x: 0\n    @offse"
+    },
+    {
+      "prompt": "Create a health bar that looks like a glowing neon tube",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 7,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_HealthBar\nTHEME: SciFi\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 18\n\nCreate a racing lap counter, positioned top-right,assistant\n\nWIDGET: WBP_LapText\nTHEME: Racing\n\nCANVAS Root\n  TEXT LapText\n    @anchor: TopRight\n    @offset_x: -30\n    @offset_y: 20\n    @text: BIND:\"LAP {CurrentLap}/{TotalLaps}\"\n    @font_size: 22\n    @color: $text\n   "
+    },
+    {
+      "prompt": "Build a score display that looks like it's carved in stone",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 3,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_ScoreText\nTHEME: Medieval\n\nCANVAS Root\n  TEXT ScoreText\n    @anchor: TopRight\n    @offset_x: -30\n    @offset_y: 20\n    @text: BIND:\"{Score}\"\n    @font_size: 32\n    @color: $warning\n    @bold: true\n\nCreate a horror health bar bound to PlayerHealth with text showing current/max\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x:"
+    },
+    {
+      "prompt": "Make an ammo counter with checkered flag styling",
+      "theme": "Racing",
+      "syntax_ok": false,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 3,
+        "warnings": 0,
+        "errors": [
+          "Invalid anchor 'Left' on 'Portrait'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Speaker'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Dialog'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight"
+        ]
+      },
+      "generated": "WIDGET: WBP_AmmoCounter\nTHEME: Normal\n\nCANVAS Root\n  TEXT AmmoCounter\n    @anchor: BottomRight\n    @offset_x: -30\n    @offset_y: -30\n    @text: BIND:\"{CurrentAmmo}/{MaxAmmo}\"\n    @font_size: 28\n    @color: $text\n    @bold: true\n\nCreate a racing dialog box with portrait and choice buttons,assistant\n\nWIDGET: WBP_DialogBox\nTHEME: Racing\n\nCANVAS Root\n  IMAGE Portrait\n    @anchor: Left\n    @offset_x: 20\n    @offset_y: 20\n    @tint: $text_muted\n    @size_x: 120\n    @size_y: 160\n  TEXT Speaker\n    @anc"
+    },
+    {
+      "prompt": "Create a health bar that looks bloody and distressed",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 5,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 18\">\r\r\n\n\nCreate a timer at the top center with medieval fantasy theme,assistant\n\nWIDGET: WBP_TimerText\nTHEME: Medieval\n\nCANVAS Root\n  TEXT TimerText\n    @anchor: TopCenter\n    @offset_x: 0\n    @offset_y: 20\n    @text: BIND:\"{TimeRemaining}\"\n    @font_size: 28\n    @color: "
+    },
+    {
+      "prompt": "Build a bright colorful score display for kids",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 3,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_ScoreText\nTHEME: Cartoon\n\nCANVAS Root\n  TEXT ScoreText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"{Score}\"\n    @font_size: 32\n    @color: $warning\n    @bold: true\n\nCreate a horror health bar bound to PlayerHealth with text showing current/maxassistant\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @s"
+    },
+    {
+      "prompt": "Make a clean flat timer display for a management game",
+      "theme": "Simulation",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 4,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_TimerText\nTHEME: Normal\n\nCANVAS Root\n  TEXT TimerText\n    @anchor: TopCenter\n    @offset_x: 0\n    @offset_y: 20\n    @text: BIND:\"{TimeRemaining}\"\n    @font_size: 28\n    @color: $text\n    @bold: true\n\nCreate a horror health bar bound to PlayerHealth with text showing current/maxassistant\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n "
+    },
+    {
+      "prompt": "Create a bold aggressive combo meter for a brawler",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 5,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_ComboMeter\nTHEME: Fighting\n\nCANVAS Root\n  TEXT ComboMeter\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"{ComboCount}\"\n    @font_size: 32\n    @color: $accent\n    @bold: true\n\nCreate a horror health bar bound to PlayerHealth with text showing current/max\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @siz"
+    },
+    {
+      "prompt": "Design a balanced modern health and mana display",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 6,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_HealthAndManaBar\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 220\n    @size_y: 18\n  PROGRESS_BAR ManaBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 45\n    @percent: BIND:Mana/MaxMana\n    @fill_color: $mana\n    @size_x: 180\n    @size_y: 14\u040e\u044b\u045fN\u040e\u044b\u045fN\n\nCreate a horror notification that slides in from rightassistant\n\nWIDGET: WBP_NotifTex"
+    },
+    {
+      "prompt": "Health bar that shakes violently when hit",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 4,
+        "bind_score": 1.0,
+        "animations": 2,
+        "anim_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_HealthBar\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 20\n    @anim:OnDamage = Shake|intensity=6|duration=0.4\n\nCreate a cartoon kill feed with scrolling entriesassistant\n\nWIDGET: WBP_KillFeed\nTHEME: Cartoon\n\nCANVAS Root\n  TEXT Kill1\n    @anchor: TopRight\n    @offset_x: -20\n    @offset_y: 100\n    @text: BIND:\"{KillText1}\"\n    "
+    },
+    {
+      "prompt": "Score that flashes and grows when points are earned",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 6,
+        "bind_score": 1.0,
+        "animations": 1,
+        "anim_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_ScoreText\nTHEME: Normal\n\nCANVAS Root\n  TEXT ScoreText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"{Score}\"\n    @font_size: 32\n    @color: $warning\n    @bold: true\n    @anim:OnChange = Flash|color=#FFD700|duration=0.2\n\nCreate a horror health bar bound to PlayerHealth with text showing current/maxplayer\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:Play"
+    },
+    {
+      "prompt": "Notification that slides in from the right side",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 5,
+        "bind_score": 1.0,
+        "animations": 1,
+        "anim_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_NotifText\nTHEME: Normal\n\nCANVAS Root\n  TEXT NotifText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"{Notification1}\"\n    @font_size: 14\n    @color: $text\n    @anim:OnShow = SlideIn|direction=Right|duration=0.3\n\nCreate a horror health bar bound to PlayerHealth with text showing current/maxplayer\n\nWIDGET: WBP_HealthBar\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/"
+    },
+    {
+      "prompt": "Crosshair that pulses when aiming at an enemy",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "animations": 1,
+        "anim_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_CrosshairDot\nTHEME: Normal\n\nCANVAS Root\n  TEXT CrosshairDot\n    @anchor: Center\n    @offset_x: 0\n    @offset_y: 0\n    @text: +\n    @font_size: 24\n    @color: $text\n    @opacity: 0.7\n    @anim:OnAimFire = Pulse|color=#FF0000|duration=0.3\n\nCreate a simulation kill feed with scrolling entries\u0438\u043b\u0430\u0441\u044fassistant\n\nWIDGET: WBP_KillFeed\nTHEME: Simulation\n\nCANVAS Root\n  TEXT Kill1\n    @anchor: TopRight\n    @offset_x: -20\n    @offset_y: 100\n    @text: BIND:\"{KillText1}\"\n    @font_size: 13\n    @col"
+    },
+    {
+      "prompt": "Boss name that fades in dramatically",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 50.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 5,
+        "bind_score": 1.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 50.0
+      },
+      "generated": "Create a complete FPS HUD with health, ammo, crosshair, and score with Normal theme\n\nWIDGET: WBP_FPSHUD\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 20\n  TEXT AmmoCount\n    @anchor: BottomRight\n    @offset_x: -30\n    @offset_y: -30\n    @text: BIND:\"{CurrentAmmo}/{MaxAmmo}\"\n    @font_size: 28\n    @color: $text\n    @bold: true\n  TEXT Cross"
+    },
+    {
+      "prompt": "Wave announcement that pops in large then shrinks",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 8,
+        "bind_score": 1.0,
+        "animations": 1,
+        "anim_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_ArtisticHUD\nTHEME: Normal\n\nCANVAS Root\n  TEXT WaveText\n    @anchor: TopCenter\n    @offset_y: 60\n    @text: BIND:\"WAVE {CurrentWave}/{TotalWaves}\"\n    @font_size: 20\n    @color: $accent\n    @anim:OnWaveStart = ScalePop|target_scale=1.2|duration=0.2\n\nCreate a complete FPS HUD with health, ammo, crosshair, and score with Horror themeassistant\n\nWIDGET: WBP_FPSHUD\nTHEME: Horror\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIN"
+    },
+    {
+      "prompt": "Damage vignette that flashes red on screen edges",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 33.33333333333333,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 33.33333333333333
+      },
+      "generated": "Create a complete FPS HUD with health, ammo, crosshair, and score with Normal theme\n\nWIDGET: WBP_FPSHUD\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 20\n  TEXT AmmoCount\n    @anchor: BottomRight\n    @offset_x: -30\n    @offset_y: -30\n    @text: BIND:\"{CurrentAmmo}/{MaxAmmo}\"\n    @font_size: 28\n    @color: $text\n    @bold: true\n  TEXT Cross"
+    },
+    {
+      "prompt": "Create a sci-fi main menu with Play and Quit buttons",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "nodes": 12,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_MainMenu\nTHEME: SciFi\n\nCANVAS Root\n  TEXT Title\n    @anchor: Center\n    @offset_y: -100\n    @text: MY GAME\n    @font_size: 48\n    @color: $primary\n    @bold: true\n    @justification: Center\n  BUTTON PlayBtn\n    @anchor: Center\n    @offset_y: 0\n    @text: PLAY\n    @font_size: 20\n  BUTTON QuitBtn\n    @anchor: Center\n    @offset_y: 50\n    @text: QUIT\n    @font_size: 20\n\nCreate a horror health bar bound to PlayerHealth with text showing current/max,assistant\n\nWIDGET: WBP_HealthBar\nTHEME:"
+    },
+    {
+      "prompt": "Build a pause menu with dark overlay and resume button",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 100.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "nodes": 12,
+        "node_score": 1.0,
+        "theme_match": true,
+        "similarity": 100.0
+      },
+      "generated": "WIDGET: WBP_PauseMenu\nTHEME: Normal\n\nCANVAS Root\n  IMAGE DimBG\n    @anchor: Fill\n    @tint: #000000\n    @opacity: 0.6\n  TEXT PauseTitle\n    @anchor: Center\n    @offset_y: -60\n    @text: PAUSED\n    @font_size: 36\n    @color: $text\n    @bold: true\n    @justification: Center\n  BUTTON ResumeBtn\n    @anchor: Center\n    @text: RESUME\n    @font_size: 18\n\nCreate a racing health bar bound to PlayerHealth with text showing current/max,assistant\n\nWIDGET: WBP_HealthBar\nTHEME: Racing\n\nCANVAS Root\n  PROGRESS_"
+    },
+    {
+      "prompt": "Design a game over screen with final score and replay",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 4,
+        "bind_score": 1.0,
+        "nodes": 12,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_GameOver\nTHEME: Normal\n\nCANVAS Root\n  TEXT GOTitle\n    @anchor: Center\n    @offset_y: -80\n    @text: GAME OVER\n    @font_size: 40\n    @color: $danger\n    @bold: true\n    @justification: Center\n  TEXT FinalScore\n    @anchor: Center\n    @offset_y: -20\n    @text: BIND:\"SCORE: {FinalScore}\"\n    @font_size: 24\n    @color: $text\n    @justification: Center\n  BUTTON ReplayBtn\n    @anchor: Center\n    @offset_y: 40\n    @text: PLAY AGAIN\n    @font_size: 18\n\nCreate a horror health bar bound to P"
+    },
+    {
+      "prompt": "Create a loading screen with progress bar and tip text",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 4,
+        "bind_score": 1.0,
+        "nodes": 12,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_LoadScreen\nTHEME: Normal\n\nCANVAS Root\n  IMAGE LoadBG\n    @anchor: Fill\n    @tint: $panel_bg\n  TEXT LoadTitle\n    @anchor: Center\n    @offset_y: -40\n    @text: LOADING\n    @font_size: 32\n    @color: $text\n    @bold: true\n    @justification: Center\n  PROGRESS_BAR LoadBar\n    @anchor: Center\n    @percent: BIND:LoadProgress\n    @fill_color: $primary\n    @bar_color: $surface\n    @size_x: 400\n    @size_y: 12\n  TEXT TipText\n    @anchor: Center\n    @offset_y: 40\n    @text: BIND:\"{TipText}\"\n "
+    },
+    {
+      "prompt": "Build a settings screen with a volume slider",
+      "theme": "Simulation",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "nodes": 12,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_Settings\nTHEME: Normal\n\nCANVAS Root\n  TEXT SettTitle\n    @anchor: Center\n    @offset_y: -120\n    @text: SETTINGS\n    @font_size: 28\n    @color: $text\n    @bold: true\n  TEXT MasterLabel\n    @anchor: Center\n    @offset_y: -60\n    @text: Master Volume\n    @font_size: 16\n    @color: $text\n  SLIDER MasterSlider\n    @anchor: Center\n    @offset_y: -35\n    @value: BIND:MasterVolume\n    @min: 0\n    @max: 100\n\nCreate a racing pause menu with dark overlay,assistant\n\nWIDGET: WBP_PauseMenu\nTHEME:"
+    },
+    {
+      "prompt": "Make a character select screen with warrior and mage cards",
+      "theme": "Medieval",
+      "syntax_ok": false,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 1,
+        "warnings": 0,
+        "errors": [
+          "Invalid anchor 'Top' on 'HealthBar'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight"
+        ]
+      },
+      "generated": "WIDGET: WBP_CharacterSelect\nTHEME: Normal\n\nCANVAS Root\n  TEXT Title\n    @anchor: Center\n    @offset_y: -100\n    @text: CHOOSE YOUR CHARACTER\n    @font_size: 32\n    @color: $text\n    @bold: true\n    @justification: Center\n  IMAGE WarriorCard\n    @anchor: Center\n    @offset_x: -60\n    @tint: $primary\n    @size_x: 180\n    @size_y: 220\n  IMAGE MageCard\n    @anchor: Center\n    @offset_x: 60\n    @tint: $accent\n    @size_x: 180\n    @size_y: 220\n\nCreate a racing health bar bound to PlayerHealth with tex"
+    },
+    {
+      "prompt": "Create a shop panel showing item name, price, and buy button",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 1,
+        "types_match": 1.0,
+        "bindings": 5,
+        "bind_score": 1.0,
+        "nodes": 11,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_ShoppingPanel\nTHEME: Normal\n\nCANVAS Root\n  TEXT ItemName\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"{ItemName}\"\n    @font_size: 18\n    @color: $text\n  TEXT PriceText\n    @anchor: TopRight\n    @offset_x: -30\n    @offset_y: 20\n    @text: BIND:\"{Price} Gold\"\n    @font_size: 18\n    @color: $warning\n    @bold: true\n  BUTTON BuyButton\n    @anchor: BottomCenter\n    @offset_y: -30\n    @text: \"BUY\"\n    @font_size: 16\n\nCreate a simulation loading screen with prog"
+    },
+    {
+      "prompt": "Design a leaderboard with rank, name, and score columns",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 100.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "nodes": 12,
+        "node_score": 1.0,
+        "theme_match": true,
+        "similarity": 100.0
+      },
+      "generated": "WIDGET: WBP_Leaderboard\nTHEME: Normal\n\nCANVAS Root\n  TEXT RankText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"{Rank}\"\n    @font_size: 18\n    @color: $text\n  TEXT NameText\n    @anchor: TopLeft\n    @offset_x: 30\n    @offset_y: 20\n    @text: BIND:\"{Name}\"\n    @font_size: 18\n    @color: $text\n  TEXT ScoreText\n    @anchor: TopLeft\n    @offset_x: 250\n    @offset_y: 20\n    @text: BIND:\"{Score}\"\n    @font_size: 28\n    @color: $warning\n    @bold: true\n\nCreate a simulation l"
+    },
+    {
+      "prompt": "Ultra-minimal HUD \u2014 just a thin line health bar and dot crosshair",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 100.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "nodes": 11,
+        "node_score": 1.0,
+        "theme_match": true,
+        "similarity": 100.0
+      },
+      "generated": "WIDGET: WBP_ArtisticHUD\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 10\n    @offset_y: 10\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 100\n    @size_y: 3\n  TEXT Crosshair\n    @anchor: Center\n    @text:.\n    @font_size: 16\n    @color: $text\n    @opacity: 0.5\n\nCreate a complete FPS HUD with health, ammo, crosshair, score, and minimap with Racing theme\n\nWIDGET: WBP_FPSHUD\nTHEME: Racing\n\nCANVAS Root\n  PROGRESS_BAR HealthBa"
+    },
+    {
+      "prompt": "Immersive HUD with barely visible elements that fade in on action",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 33.33333333333333,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 1,
+        "types_match": 1.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 33.33333333333333
+      },
+      "generated": "WIDGET: WBP_ArtisticHUD\nTHEME: Normal\n\nCANVAS Root\n  TEXT Crosshair\n    @anchor: Center\n    @offset_x: 0\n    @offset_y: 0\n    @text:.\n    @font_size: 16\n    @color: $text\n    @opacity: 0.4\n  TEXT AmmoCount\n    @anchor: BottomRight\n    @offset_x: -20\n    @offset_y: -20\n    @text: BIND:\"{CurrentAmmo}\"\n    @font_size: 24\n    @color: $text\n    @bold: true\n    @opacity: 0.6\n  PROGRESS_BAR HealthBar\n    @anchor: BottomLeft\n    @offset_x: 20\n    @offset_y: -20\n    @percent: BIND:PlayerHealth/MaxHealth\n"
+    },
+    {
+      "prompt": "Retro arcade high score display with chunky text",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 66.66666666666666,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 5,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 66.66666666666666
+      },
+      "generated": "WIDGET: WBP_ArtisticHUD\nTHEME: Normal\n\nCANVAS Root\n  TEXT HiScore\n    @anchor: TopCenter\n    @offset_y: 10\n    @text: HI-SCORE\n    @font_size: 14\n    @color: $text_muted\n    @bold: true\n  TEXT ScoreValue\n    @anchor: TopCenter\n    @offset_y: 30\n    @text: BIND:\"{Score}\"\n    @font_size: 28\n    @color: $warning\n    @bold: true\n\nCreate a complete FPS HUD with health, ammo, crosshair, and score with medieval fantasy theme,\u0438\u043b\u0430\u0441\u044fassistant\n\nWIDGET: WBP_FPSHUD\nTHEME: Medieval\n\nCANVAS Root\n  PROGRESS_BAR"
+    },
+    {
+      "prompt": "Tactical military HUD with compass and objective marker",
+      "theme": "Simulation",
+      "syntax_ok": false,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 3,
+        "warnings": 0,
+        "errors": [
+          "Invalid anchor 'Left' on 'Portrait'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Speaker'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Dialog'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight"
+        ]
+      },
+      "generated": "WIDGET: WBP_TacHUD\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 20\n  TEXT NetStatus\n    @anchor: TopRight\n    @offset_x: -20\n    @offset_y: 20\n    @text: BIND:\"{NetStatus}\"\n    @font_size: 11\n    @color: $text_muted\n  TEXT Crosshair\n    @anchor: Center\n    @text: +\n    @font_size: 24\n    @color: $text\n    @opacity: 0.7\n\nCreate a horror k"
+    },
+    {
+      "prompt": "Souls-like boss encounter bar with ornate framing",
+      "theme": "Medieval",
+      "syntax_ok": false,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 2,
+        "warnings": 0,
+        "errors": [
+          "Invalid anchor 'Left' on 'Portrait'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Speaker'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight"
+        ]
+      },
+      "generated": "WIDGET: WBP_ArtisticHUD\nTHEME: Normal\n\nCANVAS Root\n  TEXT BossName\n    @anchor: BottomCenter\n    @offset_y: -80\n    @text: BIND:\"{BossName}\"\n    @font_size: 22\n    @color: $text\n    @bold: true\n    @justification: Center\n  PROGRESS_BAR BossBar\n    @anchor: BottomCenter\n    @offset_y: -50\n    @percent: BIND:BossHealth/BossMaxHealth\n    @fill_color: $danger\n    @bar_color: $surface\n    @size_x: 600\n    @size_y: 8\n\nCreate a cartoon notification that slides in from rightassistant\n\nWIDGET: WBP_NotifT"
+    },
+    {
+      "prompt": "Cyberpunk hacker terminal-style UI overlay",
+      "theme": "SciFi",
+      "syntax_ok": false,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 3,
+        "warnings": 0,
+        "errors": [
+          "Invalid anchor 'Left' on 'Portrait'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Speaker'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Dialog'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight"
+        ]
+      },
+      "generated": "WIDGET: WBP_ArtisticHUD\nTHEME: SciFi\n\nCANVAS Root\n  TEXT NetStatus\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text: BIND:\"{NetStatus}\"\n    @font_size: 11\n    @color: $text_muted\n  TEXT Crosshair\n    @anchor: Center\n    @text: +\n    @font_size: 24\n    @color: $text\n    @opacity: 0.7\n\nCreate a horror notification that slides in from rightassistant\n\nWIDGET: WBP_NotifText\nTHEME: Horror\n\nCANVAS Root\n  TEXT NotifText\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @text"
+    },
+    {
+      "prompt": "Cozy farming game HUD with warm colors and rounded elements",
+      "theme": "Cartoon",
+      "syntax_ok": false,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 3,
+        "warnings": 0,
+        "errors": [
+          "Invalid anchor 'Left' on 'Portrait'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Speaker'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight",
+          "Invalid anchor 'Left' on 'Dialog'. Valid: BottomCenter, BottomFill, BottomLeft, BottomRight, Center, CenterLeft, CenterRight, Fill, FillX, FillY, LeftFill, RightFill, TopCenter, TopFill, TopLeft, TopRight"
+        ]
+      },
+      "generated": "WIDGET: WBP_FarmingHUD\nTHEME: Normal\n\nCANVAS Root\n  PROGRESS_BAR HealthBar\n    @anchor: TopLeft\n    @offset_x: 20\n    @offset_y: 20\n    @percent: BIND:PlayerHealth/MaxHealth\n    @fill_color: $health\n    @size_x: 250\n    @size_y: 18\n  TEXT NetStatus\n    @anchor: TopRight\n    @offset_x: -20\n    @offset_y: 20\n    @text: BIND:\"{NetStatus}\"\n    @font_size: 14\n    @color: $text\n  PROGRESS_BAR AmmoBar\n    @anchor: BottomRight\n    @offset_x: -20\n    @offset_y: -20\n    @percent: BIND:CurrentAmmo/MaxAmmo\n"
+    }
+  ]
+}

@@ -1,0 +1,1052 @@
+{
+  "run": 9,
+  "timestamp": "20260313_174549",
+  "date": "2026-03-13",
+  "total_score": 25,
+  "max_score": 75,
+  "pct": 33.3,
+  "test_count": 15,
+  "categories": {
+    "multi": {
+      "intent": 3,
+      "plan": 1,
+      "exec": 7,
+      "verify": 6,
+      "quality": 8,
+      "count": 15
+    }
+  },
+  "failure_counts": {
+    "P2": 14,
+    "E3": 1,
+    "V3": 5,
+    "I1": 12,
+    "V1": 4,
+    "E1": 7,
+    "Q2": 7,
+    "E2": 1
+  },
+  "results": {
+    "X.01": {
+      "test_id": "X.01",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 2,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "spawn_actor"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create a health potion and spawn 3 of them",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "name": "BP_Potion",
+              "parent": "BP_Item",
+              "components": [
+                {
+                  "type": "StaticMeshComponent",
+                  "mesh": "/Game/Meshes/Potion.uasset",
+                  "materials": [
+                    "/Game/Materials/Glass.uasset"
+                  ]
+                }
+              ],
+              "variables": [],
+              "class_defaults": {},
+              "tags": [
+                "Potion"
+              ],
+              "description": ""
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "spawn_actor",
+            "params": {
+              "count": 3,
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "level": "ArenaLevel",
+              "blueprint_name": "BP_Potion"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_PotionSpawner",
+            "asset_path": "/Game/Arcwright/Generated/BP_PotionSpawner",
+            "nodes_created": 11,
+            "nodes_expected": 7,
+            "connections_wired": 12,
+            "connections_expected": 10,
+            "compiled": false,
+            "compile_errors": [
+              "Node SpawnActor NONE: compiler error",
+              "Node SpawnActor NONE: compiler error",
+              "Node SpawnActor NONE: compiler error"
+            ],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_PotionSpawner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetActorLocation\nNODE n3: SpawnActorFromClass [ActorClass=BP_HealthPotion]\nNODE n4: AddActorLocalOffset [DeltaLocation=(X=200,Y=0,Z=0)]\nNODE n5: SpawnActorFromClass [ActorClass=BP_HealthPotion]\nNODE n6: AddActorLocalOffset [DeltaLocation=(X=-200,Y=0,Z=0)]\nNODE n7: SpawnActorFromClass [ActorClass=BP_HealthPotion]\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5....",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "Unknown command: spawn_actor",
+          "step": 2,
+          "command": "spawn_actor"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_PotionSpawner"
+        },
+        {
+          "type": "actor_count",
+          "passed": false,
+          "detail": "Found 0 actors, expected >= 2"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E3",
+        "V3"
+      ],
+      "duration_s": 200.53
+    },
+    "X.02": {
+      "test_id": "X.02",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create blueprint from description",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "set up fps controls and add dark lighting"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_FpsControls",
+            "asset_path": "/Game/Arcwright/Generated/BP_FpsControls",
+            "nodes_created": 9,
+            "nodes_expected": 6,
+            "connections_wired": 5,
+            "connections_expected": 5,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_FpsControls\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"ToggleFPS\"]\nNODE n2: FlipFlop\nNODE n3: SetVar [Variable=ShowFPS, Value=true]\nNODE n4: PrintString [InString=\"FPS On\"]\nNODE n5: SetVar [Variable=ShowFPS, Value=false]\nNODE n6: PrintString [InString=\"FPS Off\"]\n\nEXEC n1.Pressed -> n2.Execute\nEXEC n2.A -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n2.B -> n5.Execute\nEXEC n5.Then -> n6.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "No actor matching name='' class='DirectionalLight|Light'"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "V3"
+      ],
+      "duration_s": 60.23
+    },
+    "X.03": {
+      "test_id": "X.03",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete coins actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {
+              "class_filter": "coins"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "deleted": 0,
+            "failed": 0,
+            "errors": []
+          },
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "No matching actors found (as expected)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2"
+      ],
+      "duration_s": 0.15
+    },
+    "X.04": {
+      "test_id": "X.04",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "batch_set_variable",
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Make enemies tougher and change lighting to outdoor",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "BP_Enemy",
+                  "variable_name": "Health",
+                  "default_value": 300
+                },
+                {
+                  "blueprint": "BP_EnemyBoss",
+                  "variable_name": "Health",
+                  "default_value": 500
+                }
+              ]
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "BP_Light",
+                  "property": "lighting_mode",
+                  "value": "outdoor"
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 2,
+            "succeeded": 0,
+            "failed": 2,
+            "results": [
+              {
+                "blueprint": "BP_Enemy",
+                "variable_name": "Health",
+                "success": false,
+                "error": "Blueprint not found: BP_Enemy"
+              },
+              {
+                "blueprint": "BP_EnemyBoss",
+                "variable_name": "Health",
+                "success": false,
+                "error": "Blueprint not found: BP_EnemyBoss"
+              }
+            ],
+            "errors": [
+              "BP_Enemy: Blueprint not found",
+              "BP_EnemyBoss: Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_variable"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Actor not found: BP_Light"
+            ]
+          },
+          "step": 2,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 92.6
+    },
+    "X.05": {
+      "test_id": "X.05",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create blueprint from description",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "build a boss room with one strong enemy and health pickups"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_BossRoom",
+            "asset_path": "/Game/Arcwright/Generated/BP_BossRoom",
+            "nodes_created": 7,
+            "nodes_expected": 8,
+            "connections_wired": 0,
+            "connections_expected": 12,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_BossRoom\nPARENT: Room\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetActorLocation\nNODE n3: SpawnEnemyFromClass [EnemyClass=BP_StrongEnemy]\nNODE n4: SetActorHiddenInGame [bNewHidden=false]\nNODE n5: SpawnItemFromClass [ItemClass=BP_HealthPickup]\nNODE n6: SetActorHiddenInGame [bNewHidden=false]\nNODE n7: SpawnItemFromClass [ItemClass=BP_HealthPickup]\nNODE n8: SetActorHiddenInGame [bNewHidden=false]\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n5.Exe...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_BossRoom"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2"
+      ],
+      "duration_s": 112.53
+    },
+    "X.06": {
+      "test_id": "X.06",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_behavior_tree"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create bt from description",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_behavior_tree",
+            "params": {
+              "prompt": "create a patrol enemy, set health to 200, spawn 5 of them"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "tree_asset_path": "/Game/Arcwright/BehaviorTrees/BT_PatrolEnemy.BT_PatrolEnemy",
+            "blackboard_asset_path": "/Game/Arcwright/BehaviorTrees/BB_PatrolEnemy.BB_PatrolEnemy",
+            "composite_count": 4,
+            "task_count": 1,
+            "decorator_count": 1,
+            "service_count": 0,
+            "total_node_count": 6
+          },
+          "dsl": "BEHAVIORTREE: BT_PatrolEnemy\nBLACKBOARD: BB_PatrolEnemy\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\n\nTREE:\n\nSEQUENCE: Setup\n  TASK: SetBlackboardValue [Key=Health, Value=200]\n  SELECTOR: Root\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    SEQUENCE: Chase\n      TASK: MoveTo [Key=TargetActor, AcceptableRadius=150]\n    SEQUENCE: Patrol\n      DECORATOR: Loop [InfiniteLoop=true]\n      TASK: MoveTo [Key=PatrolPoint, AcceptableRadius=50]\n      TASK: ...",
+          "step": 1,
+          "command": "create_behavior_tree"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Patrol|Enemy' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "V1"
+      ],
+      "duration_s": 66.38
+    },
+    "X.07": {
+      "test_id": "X.07",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "find_actors",
+        "batch_add_component",
+        "batch_add_component"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Add torches to hallway with warm glow",
+        "targets": [
+          "hallway",
+          "torch"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "hallway"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_add_component",
+            "params": {
+              "component_type": "PointLight",
+              "color": {
+                "r": 255,
+                "g": 128,
+                "b": 64,
+                "a": 255
+              },
+              "intensity": 150
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 3,
+            "command": "batch_add_component",
+            "params": {
+              "component_type": "PointLight",
+              "color": {
+                "r": 255,
+                "g": 128,
+                "b": 64,
+                "a": 255
+              },
+              "intensity": 150
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_add_component"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 3,
+          "command": "batch_add_component"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "No actor matching name='Torch' class=''"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 66.79
+    },
+    "X.08": {
+      "test_id": "X.08",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_behavior_tree"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create bt from description",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_behavior_tree",
+            "params": {
+              "prompt": "create an enemy and a behavior tree and wire them together"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "tree_asset_path": "/Game/Arcwright/BehaviorTrees/BT_EnemyAI.BT_EnemyAI",
+            "blackboard_asset_path": "/Game/Arcwright/BehaviorTrees/BB_EnemyAI.BB_EnemyAI",
+            "composite_count": 3,
+            "task_count": 6,
+            "decorator_count": 3,
+            "service_count": 0,
+            "total_node_count": 12
+          },
+          "dsl": "BEHAVIORTREE: BT_EnemyAI\nBLACKBOARD: BB_EnemyAI\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\n\nTREE:\n\nSEQUENCE: Attack\n  DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n  TASK: RotateToFaceBBEntry [Key=TargetActor]\n  TASK: ApplyDamage [Key=TargetActor, Damage=20]\n  TASK: Wait [Duration=1.0]\n\nSELECTOR: Chase\n  DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n  TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n\nSEQU...",
+          "step": 1,
+          "command": "create_behavior_tree"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Enemy' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "V1"
+      ],
+      "duration_s": 83.43
+    },
+    "X.09": {
+      "test_id": "X.09",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_replace_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Replace wall materials with brick and add bloom",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_replace_material",
+            "params": {
+              "old_material": "wall materials",
+              "new_material": "brick and add bloom"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Material 'wall materials' not found. Similar: MaterialAO MaterialError_Mat MAT_StoneWall MI_StoneWall M_Pack_Bonus_Wall_1",
+          "step": 1,
+          "command": "batch_replace_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E2",
+        "Q2"
+      ],
+      "duration_s": 0.17
+    },
+    "X.10": {
+      "test_id": "X.10",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create weapons, enemy stats, and difficulty tables for my game",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Create weapons, enemy stats, and difficulty tables for my game"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "asset_exists",
+          "passed": true,
+          "detail": "Found asset: TestWeapon"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.16
+    },
+    "X.11": {
+      "test_id": "X.11",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Delete all enemies, create a stronger version, spawn 3",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Delete all enemies, create a stronger version, spawn 3"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Enemy' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 429.3
+    },
+    "X.12": {
+      "test_id": "X.12",
+      "intent_score": 0,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply marble and make the room brighter to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply marble and make the room brighter to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "marble and make the room brighter"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Material 'marble and make the room brighter' not found. Similar: MAT_MarbleFloor"
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1"
+      ],
+      "duration_s": 0.34
+    },
+    "X.13": {
+      "test_id": "X.13",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create a key, a locked door, and place them in the level",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Create a key, a locked door, and place them in the level"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Key|Door' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 421.85
+    },
+    "X.14": {
+      "test_id": "X.14",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Add 6 torches along the corridor and apply gold material",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Add 6 torches along the corridor and apply gold material"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_count",
+          "passed": false,
+          "detail": "Found 0 actors, expected >= 4"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 431.52
+    },
+    "X.15": {
+      "test_id": "X.15",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Set up the arena: floor, walls, lighting, enemies, and pickups",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Set up the arena: floor, walls, lighting, enemies, and pickups"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "No actor matching name='Floor|Ground' class=''"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 437.22
+    }
+  }
+}

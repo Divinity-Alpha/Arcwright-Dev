@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "name": "BP_BlinkLight",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "SetTimerByFunctionName",
+      "params": {
+        "FunctionName": "Toggle",
+        "Time": "3.0",
+        "bLooping": "true"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:K2_SetTimerDelegate",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "Event_CustomEvent",
+      "params": {
+        "EventName": "Toggle"
+      },
+      "ue_class": "UK2Node_CustomEvent",
+      "param_key": "EventName",
+      "position": [
+        0,
+        150
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "FlipFlop",
+      "params": {},
+      "ue_class": "UK2Node_FlipFlop",
+      "position": [
+        300,
+        150
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "SetVisibility",
+      "params": {
+        "Target": ".LightMesh",
+        "NewVisibility": "true"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.SceneComponent:SetVisibility",
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "SetVisibility",
+      "params": {
+        "Target": ".LightMesh",
+        "NewVisibility": "false"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.SceneComponent:SetVisibility",
+      "position": [
+        600,
+        150
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n3",
+      "src_pin": "Then",
+      "dst_node": "n4",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n4",
+      "src_pin": "A",
+      "dst_node": "n5",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n4",
+      "src_pin": "B",
+      "dst_node": "n6",
+      "dst_pin": "Execute"
+    }
+  ]
+}

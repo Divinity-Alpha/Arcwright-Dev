@@ -1,0 +1,46 @@
+{
+  "template_id": "hazard_zone",
+  "name": "Damage Zone",
+  "category": "hazards",
+  "description": "An area that damages the player continuously while inside. Uses overlap events to start/stop a looping damage timer. Red visual indicator.",
+  "version": "1.0",
+  "proven_in": "Arena Collector, Pickup Collector Demo",
+  "customizable": {
+    "blueprint_name": "BP_DamageZone",
+    "damage_per_tick": "Damage per timer tick (default: 5)",
+    "tick_interval": "Seconds between damage ticks (default: 1.0)",
+    "enter_message": "Message on enter (default: Entering danger zone!)",
+    "exit_message": "Message on exit (default: Left danger zone)",
+    "zone_scale": "Scale of the visible zone (default: 3,3,1.5)",
+    "collision_extent": "Collision box size (default: 150,150,80)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_DamageZone}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: PrintString [InString=\"{{enter_message|Entering danger zone!}}\"]\nNODE n3: SetTimerByFunctionName [FunctionName=\"DealDamage\", Time={{tick_interval|1.0}}, Looping=true]\nNODE n4: Event_ActorEndOverlap\nNODE n5: ClearTimerByFunctionName [FunctionName=\"DealDamage\"]\nNODE n6: PrintString [InString=\"{{exit_message|Left danger zone}}\"]\nNODE n7: Event_CustomEvent [EventName=\"DealDamage\"]\nNODE n8: PrintString [InString=\"-{{damage_per_tick|5}} HP!\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\nEXEC n7.Then -> n8.Execute",
+  "components": [
+    {
+      "type": "BoxCollision",
+      "name": "HazardCollision",
+      "properties": {
+        "extent": {"x": 150, "y": 150, "z": 80},
+        "generate_overlap_events": true
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "HazardMesh",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Cube.Cube",
+        "scale": {"x": 3, "y": 3, "z": 1.5}
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_DangerRed",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 1.0, "g": 0.1, "b": 0.1, "a": 1.0}
+    },
+    "scalar_params": {
+      "Roughness": 0.3
+    }
+  }
+}

@@ -1,0 +1,19 @@
+# Arcwright RunPod Worker Dependencies
+
+# RunPod SDK
+runpod>=1.7.0
+
+# vLLM for fast inference with LoRA hot-swap
+vllm>=0.6.0
+
+# Quantization support (8-bit — 4-bit does NOT work on Blackwell)
+bitsandbytes>=0.44.0
+
+# HuggingFace model loading
+transformers>=4.45.0
+huggingface-hub>=0.25.0
+accelerate>=1.0.0
+
+# Tokenizers
+sentencepiece>=0.2.0
+protobuf>=4.25.0

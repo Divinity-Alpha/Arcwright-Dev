@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "name": "BP_TempleGameMode",
+    "parent_class": "GameModeBase"
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay"
+    },
+    {
+      "id": "n2",
+      "dsl_type": "CallFunction",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "params": {
+        "InString": "Temple Escape - GameMode Active"
+      }
+    }
+  ],
+  "connections": [
+    { "src_node": "n1", "src_pin": "Then", "dst_node": "n2", "dst_pin": "Execute" }
+  ]
+}

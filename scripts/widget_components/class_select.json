@@ -1,0 +1,130 @@
+{
+  "id": "class_select",
+  "name": "Class Select",
+  "category": "character",
+  "description": "Grid of class cards with stats preview",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    600,
+    400
+  ],
+  "variables": [
+    {
+      "name": "SelectedClass",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "ClassRoot",
+    "properties": {
+      "spacing": "16"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "ClassTitle",
+        "properties": {
+          "text": "CHOOSE YOUR CLASS",
+          "font_size": "28",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "ClassRow",
+        "properties": {
+          "spacing": "16"
+        },
+        "children": [
+          {
+            "type": "VBOX",
+            "name": "Class1",
+            "properties": {
+              "spacing": "4"
+            },
+            "children": [
+              {
+                "type": "IMAGE",
+                "name": "Class1Icon",
+                "properties": {
+                  "tint": "$danger",
+                  "size_x": "80",
+                  "size_y": "80"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Class1Name",
+                "properties": {
+                  "text": "Warrior",
+                  "font_size": "16",
+                  "color": "$text",
+                  "bold": "true",
+                  "justification": "Center"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Class1Desc",
+                "properties": {
+                  "text": "High strength, heavy armor",
+                  "font_size": "12",
+                  "color": "$text_muted",
+                  "justification": "Center"
+                }
+              }
+            ]
+          },
+          {
+            "type": "VBOX",
+            "name": "Class2",
+            "properties": {
+              "spacing": "4"
+            },
+            "children": [
+              {
+                "type": "IMAGE",
+                "name": "Class2Icon",
+                "properties": {
+                  "tint": "$mana",
+                  "size_x": "80",
+                  "size_y": "80"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Class2Name",
+                "properties": {
+                  "text": "Mage",
+                  "font_size": "16",
+                  "color": "$text",
+                  "bold": "true",
+                  "justification": "Center"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Class2Desc",
+                "properties": {
+                  "text": "Powerful spells, low defense",
+                  "font_size": "12",
+                  "color": "$text_muted",
+                  "justification": "Center"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

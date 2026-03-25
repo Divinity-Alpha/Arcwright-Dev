@@ -1,0 +1,467 @@
+{
+  "metadata": {
+    "name": "BP_FloorTrigger",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_ActorBeginOverlap",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveActorBeginOverlap",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "SetActorLocation",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_SetActorLocation",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "GetActorLocation",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_GetActorLocation",
+      "position": [
+        0,
+        150
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "BreakVector",
+      "params": {},
+      "ue_class": "UK2Node_BreakStruct",
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "MakeVector",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:MakeVector",
+      "position": [
+        0,
+        450
+      ]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "UnknownMath",
+      "params": {},
+      "ue_class": "UNMAPPED",
+      "position": [
+        0,
+        600
+      ]
+    },
+    {
+      "id": "n7",
+      "dsl_type": "UnknownMath",
+      "params": {},
+      "ue_class": "UNMAPPED",
+      "position": [
+        0,
+        750
+      ]
+    },
+    {
+      "id": "n8",
+      "dsl_type": "AddFloat",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Add_FloatFloat",
+      "position": [
+        0,
+        900
+      ]
+    },
+    {
+      "id": "n9",
+      "dsl_type": "AddFloat",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Add_FloatFloat",
+      "position": [
+        0,
+        1050
+      ]
+    },
+    {
+      "id": "n10",
+      "dsl_type": "MakeVector",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:MakeVector",
+      "position": [
+        0,
+        1200
+      ]
+    },
+    {
+      "id": "n11",
+      "dsl_type": "SetActorLocation",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_SetActorLocation",
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "id": "n12",
+      "dsl_type": "Event_ActorEndOverlap",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveActorEndOverlap",
+      "position": [
+        0,
+        1350
+      ]
+    },
+    {
+      "id": "n13",
+      "dsl_type": "SetActorLocation",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_SetActorLocation",
+      "position": [
+        300,
+        150
+      ]
+    },
+    {
+      "id": "n14",
+      "dsl_type": "GetActorLocation",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_GetActorLocation",
+      "position": [
+        0,
+        1500
+      ]
+    },
+    {
+      "id": "n15",
+      "dsl_type": "BreakVector",
+      "params": {},
+      "ue_class": "UK2Node_BreakStruct",
+      "position": [
+        0,
+        1650
+      ]
+    },
+    {
+      "id": "n16",
+      "dsl_type": "MakeVector",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:MakeVector",
+      "position": [
+        0,
+        1800
+      ]
+    },
+    {
+      "id": "n17",
+      "dsl_type": "UnknownMath",
+      "params": {},
+      "ue_class": "UNMAPPED",
+      "position": [
+        0,
+        1950
+      ]
+    },
+    {
+      "id": "n18",
+      "dsl_type": "UnknownMath",
+      "params": {},
+      "ue_class": "UNMAPPED",
+      "position": [
+        0,
+        2100
+      ]
+    },
+    {
+      "id": "n19",
+      "dsl_type": "SubtractFloat",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Subtract_FloatFloat",
+      "position": [
+        0,
+        2250
+      ]
+    },
+    {
+      "id": "n20",
+      "dsl_type": "SubtractFloat",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Subtract_FloatFloat",
+      "position": [
+        0,
+        2400
+      ]
+    },
+    {
+      "id": "n21",
+      "dsl_type": "MakeVector",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:MakeVector",
+      "position": [
+        0,
+        2550
+      ]
+    },
+    {
+      "id": "n22",
+      "dsl_type": "SetActorLocation",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_SetActorLocation",
+      "position": [
+        900,
+        0
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "Then",
+      "dst_node": "n11",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n11",
+      "src_pin": "Then",
+      "dst_node": "n22",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n12",
+      "src_pin": "Then",
+      "dst_node": "n13",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n13",
+      "src_pin": "Then",
+      "dst_node": "n22",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n1",
+      "src_pin": "OtherActor",
+      "dst_node": "n2",
+      "dst_pin": "T",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n3",
+      "src_pin": "ReturnValue",
+      "dst_node": "n4",
+      "dst_pin": "I",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n4",
+      "src_pin": "X",
+      "dst_node": "n5",
+      "dst_pin": "X",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n4",
+      "src_pin": "Y",
+      "dst_node": "n5",
+      "dst_pin": "Y",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n4",
+      "src_pin": "Z",
+      "dst_node": "n5",
+      "dst_pin": "Z",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n5",
+      "src_pin": "ReturnValue",
+      "dst_node": "n2",
+      "dst_pin": "N",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n5",
+      "src_pin": "ReturnValue",
+      "dst_node": "n6",
+      "dst_pin": "A",
+      "data_type": "Vector"
+    },
+    {
+      "type": "data",
+      "src_node": "n6",
+      "src_pin": "ReturnValue",
+      "dst_node": "n7",
+      "dst_pin": "A",
+      "data_type": "Vector"
+    },
+    {
+      "type": "data",
+      "src_node": "n7",
+      "src_pin": "ReturnValue",
+      "dst_node": "n8",
+      "dst_pin": "A",
+      "data_type": "Vector"
+    },
+    {
+      "type": "data",
+      "src_node": "n8",
+      "src_pin": "ReturnValue",
+      "dst_node": "n9",
+      "dst_pin": "A",
+      "data_type": "Vector"
+    },
+    {
+      "type": "data",
+      "src_node": "n9",
+      "src_pin": "ReturnValue",
+      "dst_node": "n10",
+      "dst_pin": "P",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n10",
+      "src_pin": "ReturnValue",
+      "dst_node": "n11",
+      "dst_pin": "N",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n10",
+      "src_pin": "ReturnValue",
+      "dst_node": "n22",
+      "dst_pin": "N",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n14",
+      "src_pin": "ReturnValue",
+      "dst_node": "n15",
+      "dst_pin": "I",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n15",
+      "src_pin": "X",
+      "dst_node": "n16",
+      "dst_pin": "X",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n15",
+      "src_pin": "Y",
+      "dst_node": "n16",
+      "dst_pin": "Y",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n15",
+      "src_pin": "Z",
+      "dst_node": "n16",
+      "dst_pin": "Z",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n16",
+      "src_pin": "ReturnValue",
+      "dst_node": "n17",
+      "dst_pin": "A",
+      "data_type": "Vector"
+    },
+    {
+      "type": "data",
+      "src_node": "n17",
+      "src_pin": "ReturnValue",
+      "dst_node": "n18",
+      "dst_pin": "A",
+      "data_type": "Vector"
+    },
+    {
+      "type": "data",
+      "src_node": "n18",
+      "src_pin": "ReturnValue",
+      "dst_node": "n19",
+      "dst_pin": "A",
+      "data_type": "Vector"
+    },
+    {
+      "type": "data",
+      "src_node": "n19",
+      "src_pin": "ReturnValue",
+      "dst_node": "n20",
+      "dst_pin": "A",
+      "data_type": "Vector"
+    },
+    {
+      "type": "data",
+      "src_node": "n20",
+      "src_pin": "ReturnValue",
+      "dst_node": "n21",
+      "dst_pin": "P",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n21",
+      "src_pin": "ReturnValue",
+      "dst_node": "n13",
+      "dst_pin": "N",
+      "data_type": null
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+	"FileVersion": 3,
+	"Version": 2,
+	"VersionName": "1.0.1",
+	"FriendlyName": "Arcwright",
+	"Description": "The Bridge Between AI and Unreal Engine",
+	"Category": "Editor",
+	"CreatedBy": "Arcwright",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "5.7.0",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "BlueprintLLM",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
+		}
+	]
+}

@@ -1,0 +1,45 @@
+{
+  "enabled": true,
+  "pageTitle": "Arcwright API",
+  "faviconUrl": "https://arcwright.app/favicon.ico",
+  "sitePathname": "/docs",
+  "generateExamples": true,
+  "authentication": "required",
+  "monetization": {
+    "enabled": true,
+    "provider": "stripe",
+    "pricingTableId": "${env.STRIPE_PRICING_TABLE_ID}",
+    "publishableKey": "${env.STRIPE_PRICING_PUBLISHABLE_KEY}",
+    "secretKey": "${env.STRIPE_SECRET_KEY}"
+  },
+  "sidebar": {
+    "logo": {
+      "url": "https://arcwright.app/logo-light.png",
+      "darkModeUrl": "https://arcwright.app/logo-dark.png"
+    },
+    "links": [
+      {
+        "label": "Getting Started",
+        "url": "https://arcwright.app/docs/getting-started"
+      },
+      {
+        "label": "Templates",
+        "url": "https://arcwright.app/docs/templates"
+      },
+      {
+        "label": "DSL Reference",
+        "url": "https://arcwright.app/docs/dsl-reference"
+      },
+      {
+        "label": "Discord Community",
+        "url": "https://discord.gg/arcwright",
+        "icon": "chat"
+      }
+    ]
+  },
+  "theme": {
+    "primary": "#00d4ff",
+    "background": "#08090d",
+    "textColor": "#e8eaf0"
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "timestamp": "20260313_100931",
+  "total_tests": 10,
+  "total_score": 40,
+  "max_score": 40,
+  "results": [
+    {
+      "test_id": "C.01",
+      "name": "Create simple pickup",
+      "prompt": "Create a key pickup that sets HasKey to true when collected",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_KeyPickup",
+              "asset_path": "/Game/Arcwright/Generated/BP_KeyPickup",
+              "nodes_created": 10,
+              "nodes_expected": 8,
+              "connections_wired": 7,
+              "connections_expected": 7,
+              "compiled": false,
+              "compile_errors": [
+                "Node Play Sound at Location: compiler error"
+              ],
+              "variables_created": 1
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "BP 'BP_KeyPickup' exists",
+          "passed": true
+        }
+      ],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.02",
+      "name": "Create door with logic",
+      "prompt": "Make a door that checks if the player has a key before opening",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_DoorCheck",
+              "asset_path": "/Game/Arcwright/Generated/BP_DoorCheck",
+              "nodes_created": 8,
+              "nodes_expected": 6,
+              "connections_wired": 6,
+              "connections_expected": 6,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.03",
+      "name": "Create timer-based hazard",
+      "prompt": "Build a damage zone that hurts the player 10 HP per second while they stand on it",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_DamageZone",
+              "asset_path": "/Game/Arcwright/Generated/BP_DamageZone",
+              "nodes_created": 14,
+              "nodes_expected": 12,
+              "connections_wired": 9,
+              "connections_expected": 10,
+              "compiled": false,
+              "compile_errors": [
+                "Node Clear Timer by Event: compiler error",
+                "Node Get Distance To\nTarget is Actor: compiler error",
+                "Node Get playerHealth: compiler error",
+                "Node float - float: compiler error",
+                "Node Set playerHealth: compiler error"
+              ],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.04",
+      "name": "Create score manager",
+      "prompt": "I need a score manager that tracks points and prints New High Score when the record is beaten",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_ScoreManager",
+              "asset_path": "/Game/Arcwright/Generated/BP_ScoreManager",
+              "nodes_created": 15,
+              "nodes_expected": 10,
+              "connections_wired": 13,
+              "connections_expected": 11,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 2
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.05",
+      "name": "Create wave spawner",
+      "prompt": "Create a wave spawner that sends enemies every 15 seconds with increasing counts",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_WaveSpawner",
+              "asset_path": "/Game/Arcwright/Generated/BP_WaveSpawner",
+              "nodes_created": 11,
+              "nodes_expected": 9,
+              "connections_wired": 6,
+              "connections_expected": 7,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 3
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.06",
+      "name": "Create behavior tree",
+      "prompt": "Make a patrol AI that walks between two points and chases the player when spotted",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_behavior_tree",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "tree_asset_path": "/Game/Arcwright/BehaviorTrees/BT_PatrolChase.BT_PatrolChase",
+              "blackboard_asset_path": "/Game/Arcwright/BehaviorTrees/BB_PatrolChase.BB_PatrolChase",
+              "composite_count": 3,
+              "task_count": 5,
+              "decorator_count": 2,
+              "service_count": 0,
+              "total_node_count": 10
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.07",
+      "name": "Create data table",
+      "prompt": "I need a weapons table with name, damage, fire rate, and ammo count",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_data_table",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "table_asset_path": "/Game/Arcwright/DataTables/DT_Weapons",
+              "struct_asset_path": "/Game/Arcwright/DataTables/FWeaponData",
+              "column_count": 4,
+              "row_count": 4
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.08",
+      "name": "Create with casual language",
+      "prompt": "Can you make me a treasure chest that gives random gold between 10 and 50",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_TreasureChest",
+              "asset_path": "/Game/Arcwright/Generated/BP_TreasureChest",
+              "nodes_created": 10,
+              "nodes_expected": 9,
+              "connections_wired": 7,
+              "connections_expected": 7,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.09",
+      "name": "Create checkpoint",
+      "prompt": "I want a checkpoint that saves the player position when they touch it",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_Checkpoint",
+              "asset_path": "/Game/Arcwright/Generated/BP_Checkpoint",
+              "nodes_created": 11,
+              "nodes_expected": 9,
+              "connections_wired": 8,
+              "connections_expected": 8,
+              "compiled": true,
+              "compile_errors": [],
+              "variables_created": 1
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    },
+    {
+      "test_id": "C.10",
+      "name": "Create spinning actor",
+      "prompt": "Make something that spins on its Z axis",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "blueprint_name": "BP_Spinner",
+              "asset_path": "/Game/Arcwright/Generated/BP_Spinner",
+              "nodes_created": 6,
+              "nodes_expected": 4,
+              "connections_wired": 2,
+              "connections_expected": 2,
+              "compiled": false,
+              "compile_errors": [
+                "Node Add Actor Local Rotation\nTarget is Actor: compiler error"
+              ],
+              "variables_created": 0
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [],
+      "score": 4,
+      "max_score": 4
+    }
+  ]
+}

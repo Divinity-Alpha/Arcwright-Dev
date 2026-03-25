@@ -1,0 +1,135 @@
+{
+  "timestamp": "20260314_184151",
+  "suite": "Phase 2 + Phase 4 Commands",
+  "passed": 21,
+  "failed": 0,
+  "total": 21,
+  "results": [
+    {
+      "step": 1,
+      "name": "connect + health_check",
+      "status": "PASS",
+      "detail": "Arcwright"
+    },
+    {
+      "step": 2,
+      "name": "list_available_materials",
+      "status": "PASS",
+      "detail": "found 10 materials, first: DefaultTextMaterialOpaque"
+    },
+    {
+      "step": 3,
+      "name": "list_available_materials (filtered)",
+      "status": "PASS",
+      "detail": "found 7 matching 'Basic'"
+    },
+    {
+      "step": 4,
+      "name": "list_available_blueprints",
+      "status": "PASS",
+      "detail": "found 50 blueprints, first: DmgTypeBP_Environmental"
+    },
+    {
+      "step": 5,
+      "name": "list_available_blueprints (filtered)",
+      "status": "PASS",
+      "detail": "found 1 matching 'BP_Phase2Test'"
+    },
+    {
+      "step": 6,
+      "name": "get_last_error",
+      "status": "PASS",
+      "detail": "has_error=False"
+    },
+    {
+      "step": 7,
+      "name": "get_last_error (after error)",
+      "status": "PASS",
+      "detail": "message="
+    },
+    {
+      "step": 8,
+      "name": "get_blueprint_details",
+      "status": "PASS",
+      "detail": "name=BP_Phase2Test, parent=Actor, components=2"
+    },
+    {
+      "step": 9,
+      "name": "get_blueprint_details (not found)",
+      "status": "PASS",
+      "detail": "got expected error: Blueprint not found: NONEXISTENT_BP_99999"
+    },
+    {
+      "step": 10,
+      "name": "set_collision_preset (BP component)",
+      "status": "PASS",
+      "detail": "preset=OverlapAllDynamic"
+    },
+    {
+      "step": 11,
+      "name": "set_collision_shape",
+      "status": "PASS",
+      "detail": "extents=200x200x50"
+    },
+    {
+      "step": 12,
+      "name": "set_camera_properties",
+      "status": "PASS",
+      "detail": "fov=90, applied=0 props"
+    },
+    {
+      "step": 13,
+      "name": "create_input_action",
+      "status": "PASS",
+      "detail": "path=?"
+    },
+    {
+      "step": 14,
+      "name": "bind_input_to_blueprint",
+      "status": "PASS",
+      "detail": "node_id=34DC3D0143C6BCF0A504AAAD54D0EF13"
+    },
+    {
+      "step": 15,
+      "name": "spawn test actor",
+      "status": "PASS",
+      "detail": "label=Phase2TestActor"
+    },
+    {
+      "step": 16,
+      "name": "set_actor_tags",
+      "status": "PASS",
+      "detail": "tag_count=3"
+    },
+    {
+      "step": 17,
+      "name": "get_actor_properties",
+      "status": "PASS",
+      "detail": "tags=['TestTag1', 'TestTag2', 'Interactable'], has_expected=True"
+    },
+    {
+      "step": 18,
+      "name": "set_collision_preset (actor)",
+      "status": "PASS",
+      "detail": "preset=BlockAll"
+    },
+    {
+      "step": 19,
+      "name": "set_audio_properties",
+      "status": "PASS",
+      "detail": "applied=0 props"
+    },
+    {
+      "step": 20,
+      "name": "create_nav_mesh_bounds",
+      "status": "PASS",
+      "detail": "label=Phase2TestNavMesh"
+    },
+    {
+      "step": 21,
+      "name": "get_actor_properties (nav mesh)",
+      "status": "PASS",
+      "detail": "class=NavMeshBoundsVolume"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "id": "leaderboard",
+  "name": "Leaderboard",
+  "category": "menu",
+  "description": "Ranked list with position, name, score",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    400,
+    400
+  ],
+  "variables": [],
+  "options": {
+    "max_entries": {
+      "type": "int",
+      "default": 10
+    }
+  },
+  "tree": {
+    "type": "VBOX",
+    "name": "LeaderboardBox",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "LBTitle",
+        "properties": {
+          "text": "LEADERBOARD",
+          "font_size": "24",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "LBHeader",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "LBHRank",
+            "properties": {
+              "text": "#",
+              "font_size": "14",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "LBHName",
+            "properties": {
+              "text": "NAME",
+              "font_size": "14",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "LBHScore",
+            "properties": {
+              "text": "SCORE",
+              "font_size": "14",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "LBRow1",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "LB1Rank",
+            "properties": {
+              "text": "1",
+              "font_size": "16",
+              "color": "$warning"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "LB1Name",
+            "properties": {
+              "text": "Player",
+              "font_size": "16",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "LB1Score",
+            "properties": {
+              "text": "0",
+              "font_size": "16",
+              "color": "$text"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

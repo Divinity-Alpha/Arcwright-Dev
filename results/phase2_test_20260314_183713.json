@@ -1,0 +1,135 @@
+{
+  "timestamp": "20260314_183713",
+  "suite": "Phase 2 + Phase 4 Commands",
+  "passed": 3,
+  "failed": 18,
+  "total": 21,
+  "results": [
+    {
+      "step": 1,
+      "name": "connect + health_check",
+      "status": "PASS",
+      "detail": "Arcwright"
+    },
+    {
+      "step": 2,
+      "name": "list_available_materials",
+      "status": "FAIL",
+      "detail": "Unknown command: list_available_materials"
+    },
+    {
+      "step": 3,
+      "name": "list_available_materials (filtered)",
+      "status": "FAIL",
+      "detail": "Unknown command: list_available_materials"
+    },
+    {
+      "step": 4,
+      "name": "list_available_blueprints",
+      "status": "FAIL",
+      "detail": "Unknown command: list_available_blueprints"
+    },
+    {
+      "step": 5,
+      "name": "list_available_blueprints (filtered)",
+      "status": "FAIL",
+      "detail": "Unknown command: list_available_blueprints"
+    },
+    {
+      "step": 6,
+      "name": "get_last_error",
+      "status": "FAIL",
+      "detail": "Unknown command: get_last_error"
+    },
+    {
+      "step": 7,
+      "name": "get_last_error (after error)",
+      "status": "FAIL",
+      "detail": "Unknown command: get_last_error"
+    },
+    {
+      "step": 8,
+      "name": "get_blueprint_details",
+      "status": "FAIL",
+      "detail": "Unknown command: get_blueprint_details"
+    },
+    {
+      "step": 9,
+      "name": "get_blueprint_details (not found)",
+      "status": "PASS",
+      "detail": "got expected error: Unknown command: get_blueprint_details"
+    },
+    {
+      "step": 10,
+      "name": "set_collision_preset (BP component)",
+      "status": "FAIL",
+      "detail": "Unknown command: set_collision_preset"
+    },
+    {
+      "step": 11,
+      "name": "set_collision_shape",
+      "status": "FAIL",
+      "detail": "Unknown command: set_collision_shape"
+    },
+    {
+      "step": 12,
+      "name": "set_camera_properties",
+      "status": "FAIL",
+      "detail": "Unknown command: set_camera_properties"
+    },
+    {
+      "step": 13,
+      "name": "create_input_action",
+      "status": "FAIL",
+      "detail": "Unknown command: create_input_action"
+    },
+    {
+      "step": 14,
+      "name": "bind_input_to_blueprint",
+      "status": "FAIL",
+      "detail": "Unknown command: bind_input_to_blueprint"
+    },
+    {
+      "step": 15,
+      "name": "spawn test actor",
+      "status": "PASS",
+      "detail": "label=Phase2TestActor"
+    },
+    {
+      "step": 16,
+      "name": "set_actor_tags",
+      "status": "FAIL",
+      "detail": "Unknown command: set_actor_tags"
+    },
+    {
+      "step": 17,
+      "name": "get_actor_properties",
+      "status": "FAIL",
+      "detail": "Unknown command: get_actor_properties"
+    },
+    {
+      "step": 18,
+      "name": "set_collision_preset (actor)",
+      "status": "FAIL",
+      "detail": "Unknown command: set_collision_preset"
+    },
+    {
+      "step": 19,
+      "name": "set_audio_properties",
+      "status": "FAIL",
+      "detail": "Unknown command: set_audio_properties"
+    },
+    {
+      "step": 20,
+      "name": "create_nav_mesh_bounds",
+      "status": "FAIL",
+      "detail": "Unknown command: create_nav_mesh_bounds"
+    },
+    {
+      "step": 21,
+      "name": "get_actor_properties (nav mesh)",
+      "status": "FAIL",
+      "detail": "Unknown command: get_actor_properties"
+    }
+  ]
+}

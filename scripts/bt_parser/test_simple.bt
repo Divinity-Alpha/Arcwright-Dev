@@ -1,0 +1,11 @@
+BEHAVIORTREE: BT_SimpleWait
+BLACKBOARD: BB_Simple
+
+KEY WaitTime: Float = 5.0
+
+TREE:
+
+SEQUENCE: Main
+  TASK: PrintString [Message="Starting AI"]
+  TASK: Wait [Duration=3.0]
+  TASK: PrintString [Message="AI Done"]

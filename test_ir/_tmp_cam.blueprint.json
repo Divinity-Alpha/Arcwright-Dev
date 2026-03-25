@@ -1,0 +1,1 @@
+{"metadata": {"name": "BP_CamTest", "parent_class": "Actor", "category": null}, "variables": [], "nodes": [{"id": "n1", "dsl_type": "Event_BeginPlay", "ue_class": "UK2Node_Event", "ue_event": "ReceiveBeginPlay", "params": {}, "position": [0, 0]}], "connections": []}

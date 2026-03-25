@@ -1,0 +1,51 @@
+{
+  "id": "timer",
+  "name": "Timer",
+  "category": "hud",
+  "description": "MM:SS countdown, flashes red when low",
+  "default_anchor": "TopCenter",
+  "default_offset": [
+    0,
+    20
+  ],
+  "default_size": [
+    120,
+    40
+  ],
+  "variables": [
+    {
+      "name": "TimeRemaining",
+      "type": "String",
+      "default": "05:00"
+    },
+    {
+      "name": "IsLowTime",
+      "type": "Bool",
+      "default": false
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "TEXT",
+    "name": "TimerText",
+    "properties": {
+      "text": "BIND:\"{TimeRemaining}\"",
+      "font_size": "28",
+      "color": "$text",
+      "bold": "true",
+      "justification": "Center"
+    },
+    "animations": [
+      {
+        "trigger": "OnLowTime",
+        "type": "Pulse",
+        "params": {
+          "duration": 0.5,
+          "scale_min": 0.95,
+          "scale_max": 1.05
+        }
+      }
+    ],
+    "children": []
+  }
+}

@@ -1,0 +1,15 @@
+DATATABLE: DT_Items
+STRUCT: FItemData
+
+COLUMN DisplayName: String
+COLUMN Description: Text
+COLUMN MaxStack: Int = 1
+COLUMN Value: Int = 0
+COLUMN Weight: Float = 0.0
+COLUMN ItemType: String = "Misc"
+COLUMN IsConsumable: Bool = false
+
+ROW HealthPotion: "Health Potion", "Restores 50 health", 10, 25, 0.5, "Consumable", true
+ROW ManaPotion: "Mana Potion", "Restores 30 mana", 10, 30, 0.5, "Consumable", true
+ROW IronSword: "Iron Sword", "A basic sword", 1, 100, 5.0, "Weapon", false
+ROW GoldCoin: "Gold Coin", "Currency", 999, 1, 0.01, "Currency", false

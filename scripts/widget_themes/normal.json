@@ -1,0 +1,90 @@
+{
+  "name": "Normal",
+  "description": "Clean modern theme — Poppins headings, Source Sans 3 body, balanced palette",
+  "version": "1.0",
+
+  "colors": {
+    "primary": "#4A9EFF",
+    "secondary": "#6C63FF",
+    "accent": "#33D166",
+    "warning": "#FFC733",
+    "danger": "#F2404D",
+
+    "panel_bg": "#1A1E2E",
+    "card_bg": "#222838",
+    "surface": "#2A3040",
+
+    "text": "#E8ECF4",
+    "text_secondary": "#8892A8",
+    "text_muted": "#5A6478",
+
+    "border": "#3A4258",
+    "divider": "#2E3548",
+
+    "health": "#33D166",
+    "health_low": "#F2404D",
+    "mana": "#4A9EFF",
+    "stamina": "#FFC733",
+    "xp": "#6C63FF",
+
+    "shadow": "rgba(0,0,0,0.3)"
+  },
+
+  "fonts": {
+    "heading": {"family": "Poppins", "weight": "Bold"},
+    "body": {"family": "Source Sans 3", "weight": "Regular"},
+    "mono": {"family": "JetBrains Mono", "weight": "Regular"},
+    "ui": {"family": "Source Sans 3", "weight": "SemiBold"}
+  },
+
+  "sizes": {
+    "h1": 36,
+    "h2": 28,
+    "h3": 22,
+    "h4": 18,
+    "body": 16,
+    "small": 13,
+    "tiny": 11,
+    "icon_small": 24,
+    "icon_medium": 32,
+    "icon_large": 48,
+    "corner_radius": 8,
+    "border_width": 1,
+    "spacing_xs": 4,
+    "spacing_sm": 8,
+    "spacing_md": 16,
+    "spacing_lg": 24,
+    "spacing_xl": 32
+  },
+
+  "defaults": {
+    "TEXT": {
+      "color": "#E8ECF4",
+      "font_size": 16,
+      "font": "Source Sans 3"
+    },
+    "PROGRESS_BAR": {
+      "fill_color": "#4A9EFF",
+      "bar_color": "#2A3040",
+      "percent": 100
+    },
+    "BUTTON": {
+      "font_size": 16,
+      "normal_color": "#4A9EFF",
+      "hovered_color": "#5AAFFF",
+      "pressed_color": "#3A8EEF"
+    },
+    "BORDER": {
+      "border_color": "#3A4258",
+      "corner_radius": 8,
+      "background": "#222838"
+    },
+    "CANVAS": {},
+    "VBOX": {
+      "spacing": 8
+    },
+    "HBOX": {
+      "spacing": 8
+    }
+  }
+}

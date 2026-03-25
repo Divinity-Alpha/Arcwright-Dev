@@ -1,0 +1,30 @@
+{
+  "lesson_id": "dt_lesson_05",
+  "lesson_name": "Corrective v2: Quest Systems, Skill Trees, Audio Configuration",
+  "domain": "data_table",
+  "model": "models/dt-lora-v5/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260316_030951",
+  "total_prompts": 12,
+  "valid_syntax": 12,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 70.1,
+  "timeout_count": 0,
+  "per_category": {
+    "quest": {
+      "count": 4,
+      "valid": 4,
+      "avg_score": 66.5
+    },
+    "skill_tree": {
+      "count": 4,
+      "valid": 4,
+      "avg_score": 76.1
+    },
+    "audio_config": {
+      "count": 4,
+      "valid": 4,
+      "avg_score": 67.7
+    }
+  }
+}

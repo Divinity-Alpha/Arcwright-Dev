@@ -456,6 +456,57 @@ UK2Node* FBlueprintBuilder::CreateCustomEventNode(UBlueprint* BP, UEdGraph* Grap
 	Node->AllocateDefaultPins();
 	Graph->AddNode(Node, false, false);
 
+	// Add typed output pins for event parameters (e.g., Amount:Float, Points:Int)
+	for (const FDSLEventParam& Param : NodeDef.EventParams)
+	{
+		FEdGraphPinType PinType;
+		FString TypeUpper = Param.Type.ToUpper();
+		if (TypeUpper == TEXT("FLOAT") || TypeUpper == TEXT("DOUBLE") || TypeUpper == TEXT("REAL"))
+		{
+			PinType.PinCategory = UEdGraphSchema_K2::PC_Real;
+			PinType.PinSubCategory = UEdGraphSchema_K2::PC_Double;
+		}
+		else if (TypeUpper == TEXT("INT") || TypeUpper == TEXT("INTEGER") || TypeUpper == TEXT("INT32"))
+		{
+			PinType.PinCategory = UEdGraphSchema_K2::PC_Int;
+		}
+		else if (TypeUpper == TEXT("BOOL") || TypeUpper == TEXT("BOOLEAN"))
+		{
+			PinType.PinCategory = UEdGraphSchema_K2::PC_Boolean;
+		}
+		else if (TypeUpper == TEXT("STRING"))
+		{
+			PinType.PinCategory = UEdGraphSchema_K2::PC_String;
+		}
+		else if (TypeUpper == TEXT("NAME"))
+		{
+			PinType.PinCategory = UEdGraphSchema_K2::PC_Name;
+		}
+		else if (TypeUpper == TEXT("VECTOR"))
+		{
+			PinType.PinCategory = UEdGraphSchema_K2::PC_Struct;
+			PinType.PinSubCategoryObject = TBaseStructure<FVector>::Get();
+		}
+		else if (TypeUpper == TEXT("ROTATOR"))
+		{
+			PinType.PinCategory = UEdGraphSchema_K2::PC_Struct;
+			PinType.PinSubCategoryObject = TBaseStructure<FRotator>::Get();
+		}
+		else if (TypeUpper == TEXT("TEXT"))
+		{
+			PinType.PinCategory = UEdGraphSchema_K2::PC_Text;
+		}
+		else
+		{
+			// Default to string for unknown types
+			PinType.PinCategory = UEdGraphSchema_K2::PC_String;
+			UE_LOG(LogTemp, Warning, TEXT("Arcwright: Unknown event param type '%s' for '%s', defaulting to String"), *Param.Type, *Param.Name);
+		}
+
+		Node->CreateUserDefinedPin(FName(*Param.Name), PinType, EGPD_Output);
+		UE_LOG(LogTemp, Log, TEXT("Arcwright: Added event param '%s' (%s) to CustomEvent '%s'"), *Param.Name, *Param.Type, *EventName);
+	}
+
 	return Node;
 }
 

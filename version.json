@@ -10,7 +10,7 @@
       "summary": "Remove DSL Import UI, fix hex: color rebuild, complete Arcwright rename.",
       "highlights": [
         "Removed 'Import DSL Blueprint' menu item from plugin UI",
-        "All user-visible 'BlueprintLLM' strings renamed to 'Arcwright'",
+        "All user-visible 'Arcwright' strings renamed to 'Arcwright'",
         "Screenshot directory uses Arcwright name",
         "Comment paths updated to /Game/Arcwright/"
       ],
@@ -31,9 +31,9 @@
         "HTML-to-Arcwright translator (scripts/html_to_arcwright/)"
       ],
       "breaking_changes": [
-        "Default content path changed from /Game/BlueprintLLM/ to /Game/Arcwright/"
+        "Default content path changed from /Game/Arcwright/ to /Game/Arcwright/"
       ],
-      "upgrade_notes": "Existing projects with assets at /Game/BlueprintLLM/ should move them to /Game/Arcwright/ or update paths in scripts."
+      "upgrade_notes": "Existing projects with assets at /Game/Arcwright/ should move them to /Game/Arcwright/ or update paths in scripts."
     },
     {
       "version": "1.0.0",

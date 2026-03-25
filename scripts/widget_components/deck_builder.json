@@ -1,0 +1,118 @@
+{
+  "id": "deck_builder",
+  "name": "Deck Builder",
+  "category": "genre",
+  "description": "Card grid, deck slots, stats, save/load",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    700,
+    500
+  ],
+  "variables": [
+    {
+      "name": "DeckCount",
+      "type": "Integer",
+      "default": 0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "DeckRoot",
+    "properties": {
+      "spacing": "12"
+    },
+    "children": [
+      {
+        "type": "VBOX",
+        "name": "Collection",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "CollTitle",
+            "properties": {
+              "text": "COLLECTION",
+              "font_size": "16",
+              "color": "$text",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "GRID",
+            "name": "CardGrid",
+            "properties": {
+              "columns": "4",
+              "col_spacing": "4",
+              "row_spacing": "4"
+            },
+            "children": [
+              {
+                "type": "IMAGE",
+                "name": "Card1",
+                "properties": {
+                  "tint": "$primary",
+                  "size_x": "80",
+                  "size_y": "110"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "VBOX",
+        "name": "DeckPanel",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "DeckTitle",
+            "properties": {
+              "text": "BIND:\"DECK ({DeckCount}/30)\"",
+              "font_size": "16",
+              "color": "$accent",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "GRID",
+            "name": "DeckSlots",
+            "properties": {
+              "columns": "3",
+              "col_spacing": "4",
+              "row_spacing": "4"
+            },
+            "children": [
+              {
+                "type": "IMAGE",
+                "name": "DSlot1",
+                "properties": {
+                  "tint": "$surface",
+                  "size_x": "60",
+                  "size_y": "84"
+                }
+              }
+            ]
+          },
+          {
+            "type": "BUTTON",
+            "name": "SaveBtn",
+            "properties": {
+              "text": "SAVE",
+              "font_size": "14"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "metadata": {
+    "name": "BP_HealthPickup",
+    "parent_class": "Actor",
+    "category": "Pickups"
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_ActorBeginOverlap",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveActorBeginOverlap",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "CastToCharacter",
+      "params": {},
+      "ue_class": "UK2Node_DynamicCast",
+      "cast_class": "/Script/Engine.Character",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "GetVar",
+      "params": {
+        "Variable": "Health"
+      },
+      "ue_class": "UK2Node_VariableGet",
+      "param_key": "Variable",
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "AddFloat",
+      "params": {
+        "B": "25"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Add_FloatFloat",
+      "position": [
+        900,
+        0
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "SetVar",
+      "params": {
+        "Variable": "Health"
+      },
+      "ue_class": "UK2Node_VariableSet",
+      "param_key": "Variable",
+      "position": [
+        1200,
+        0
+      ]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "PrintString",
+      "params": {
+        "InString": "Health Restored"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        1500,
+        0
+      ]
+    },
+    {
+      "id": "n7",
+      "dsl_type": "DestroyActor",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_DestroyActor",
+      "position": [
+        1800,
+        0
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "CastSucceeded",
+      "dst_node": "n3",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n3",
+      "src_pin": "Then",
+      "dst_node": "n4",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n4",
+      "src_pin": "Then",
+      "dst_node": "n5",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n5",
+      "src_pin": "Then",
+      "dst_node": "n6",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n6",
+      "src_pin": "Then",
+      "dst_node": "n7",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n1",
+      "src_pin": "OtherActor",
+      "dst_node": "n2",
+      "dst_pin": "O",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n3",
+      "src_pin": "Value",
+      "dst_node": "n4",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n4",
+      "src_pin": "ReturnValue",
+      "dst_node": "n5",
+      "dst_pin": "V",
+      "data_type": null
+    }
+  ]
+}

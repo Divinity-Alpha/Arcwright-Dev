@@ -1,0 +1,45 @@
+{
+  "lesson_id": "dt_lesson_04",
+  "lesson_name": "Showcase Prompts: Marketing-Ready Data Table Patterns",
+  "domain": "data_table",
+  "model": "models/dt-lora-v5/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260316_025306",
+  "total_prompts": 12,
+  "valid_syntax": 12,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 82.0,
+  "timeout_count": 0,
+  "per_category": {
+    "showcase_weapons": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 87.5
+    },
+    "showcase_enemies": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 78.0
+    },
+    "showcase_progression": {
+      "count": 3,
+      "valid": 3,
+      "avg_score": 86.1
+    },
+    "showcase_config": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 72.1
+    },
+    "showcase_quest": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 87.8
+    },
+    "showcase_crafting": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 75.0
+    }
+  }
+}

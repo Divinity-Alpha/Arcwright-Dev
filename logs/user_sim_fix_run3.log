@@ -1,0 +1,28 @@
+
+  Checking connections...
+  OK: UE editor connected
+  [16:57:41] USER TYPES: "health check"
+  [16:57:59] INTENT RETURNS: mode=QUERY, ops=1, summary=Check if any actor has less than 100 health
+  OK: Intent server connected
+
+  Running 48 user simulation tests...
+
+  [16:57:59] 
+============================================================
+  [16:57:59] TEST S.01: Setup: Create enemy blueprint
+  [16:57:59] ============================================================
+  [16:57:59] USER TYPES: "Create an enemy with 100 health, 15 damage, and 300 speed"
+  [16:59:23] INTENT RETURNS: mode=CREATE, ops=1, summary=Create an enemy with 100 health, 15 damage, and 300 speed
+  [16:59:23] EXECUTE: create_blueprint → DSL pipeline (blueprint): "Create an enemy with 100 health, 15 damage, and 300 speed"
+  [17:00:13] DSL GENERATE: Got 431 chars of blueprint DSL
+  [17:00:13] PARSE: IR generated for blueprint
+  [17:00:13] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Enemy.blueprint.json
+  [17:00:13] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'path' parameter"}
+  [17:00:13] SCORE: 2/4 WARN (intent=True, plan=True, exec=False, verify=False)
+  [17:00:15] 
+============================================================
+  [17:00:15] TEST S.02: Setup: Create health pickup
+  [17:00:15] ============================================================
+  [17:00:15] USER TYPES: "Create a health pickup that heals 25 HP when touched and destroys itself"
+  [17:00:41] INTENT RETURNS: mode=MULTI, ops=2, summary=Create health pickup that heals 
+  [17:00:41] EXECUTE: create_blueprint → DSL pipeline (blueprint): "health pickup that heals 25 HP when touched and destroys itself"

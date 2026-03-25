@@ -1,0 +1,551 @@
+
+  Checking connections...
+  OK: UE editor connected
+  [17:17:41] USER TYPES: "health check"
+  [17:17:55] INTENT RETURNS: mode=QUERY, ops=1, summary=Check if player is alive
+  OK: Intent server connected
+
+  Running 48 user simulation tests...
+
+  [17:17:55] 
+============================================================
+  [17:17:55] TEST S.01: Setup: Create enemy blueprint
+  [17:17:55] ============================================================
+  [17:17:55] USER TYPES: "Create an enemy with 100 health, 15 damage, and 300 speed"
+  [17:19:19] INTENT RETURNS: mode=CREATE, ops=1, summary=Create an enemy with 100 health, 15 damage, and 300 speed
+  [17:19:19] EXECUTE: create_blueprint → DSL pipeline (blueprint): "Create an enemy with 100 health, 15 damage, and 300 speed"
+  [17:20:13] DSL GENERATE: Got 431 chars of blueprint DSL
+  [17:20:13] PARSE: IR generated for blueprint
+  [17:20:13] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Enemy.blueprint.json
+  [17:20:13] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_Enemy", "asset_path": "/Game/BlueprintLLM/Generated/BP_Enemy", "nodes_created": 6, "n...
+  [17:20:15] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [17:20:17] 
+============================================================
+  [17:20:17] TEST S.02: Setup: Create health pickup
+  [17:20:17] ============================================================
+  [17:20:17] USER TYPES: "Create a health pickup that heals 25 HP when touched and destroys itself"
+  [17:20:37] INTENT RETURNS: mode=MULTI, ops=1, summary=Create health pickup BP
+  [17:20:37] EXECUTE: create_blueprint → DSL pipeline (blueprint): "health pickup that heals 25 HP when touched and destroys itself"
+  [17:21:46] DSL GENERATE: Got 590 chars of blueprint DSL
+  [17:21:46] PARSE: IR generated for blueprint
+  [17:21:46] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_HealthPickup.blueprint.json
+  [17:21:46] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_HealthPickup", "asset_path": "/Game/BlueprintLLM/Generated/BP_HealthPickup", "nodes_c...
+  [17:21:47] SCORE: 3/4 WARN (intent=False, plan=True, exec=True, verify=True)
+  [17:21:49] 
+============================================================
+  [17:21:49] TEST S.03: Setup: Create coin
+  [17:21:49] ============================================================
+  [17:21:49] USER TYPES: "Create a gold coin pickup worth 10 points that destroys on collection"
+  [17:22:04] INTENT RETURNS: mode=CREATE, ops=1, summary=Create gold coin BP
+  [17:22:04] EXECUTE: create_blueprint → DSL pipeline (blueprint): "gold coin worth 10 points that destroys on collection"
+  [17:22:40] DSL GENERATE: Got 322 chars of blueprint DSL
+  [17:22:40] PARSE: IR generated for blueprint
+  [17:22:40] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_CoinGold.blueprint.json
+  [17:22:40] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_CoinGold", "asset_path": "/Game/BlueprintLLM/Generated/BP_CoinGold", "nodes_created":...
+  [17:22:42] SCORE: 3/4 WARN (intent=True, plan=True, exec=True, verify=False)
+  [17:22:44] 
+============================================================
+  [17:22:44] TEST S.04: Setup: Create torch
+  [17:22:44] ============================================================
+  [17:22:44] USER TYPES: "Create a torch with a point light intensity of 5000"
+  [17:24:08] INTENT RETURNS: mode=CREATE, ops=1, summary=Create a torch with a point light intensity of 5000
+  [17:24:08] EXECUTE: create_blueprint → DSL pipeline (blueprint): "Create a torch with a point light intensity of 5000"
+  [17:26:49] DSL GENERATE: Got 1379 chars of blueprint DSL
+  [17:26:49] PARSE: IR generated for blueprint
+  [17:26:49] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Torch.blueprint.json
+  [17:26:49] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_Torch", "asset_path": "/Game/BlueprintLLM/Generated/BP_Torch", "nodes_created": 3, "n...
+  [17:26:50] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [17:26:52] 
+============================================================
+  [17:26:52] TEST S.05: Setup: Add lighting
+  [17:26:52] ============================================================
+  [17:26:52] USER TYPES: "Set up dark indoor lighting for the level"
+  [17:27:23] INTENT RETURNS: mode=MODIFY, ops=1, summary=Set up dark indoor lighting for Untitled_1
+  [17:27:23] EXECUTE: setup_scene_lighting {"light_type": "indoor_dark"}
+  [17:27:23] RESULT: OK -- {"success": true, "status": "ok", "data": {"preset": "indoor_dark", "actors": [{"label": "SceneDirectionalLight", "intensity": 2, "pitch": -45}, {"lab...
+  [17:27:24] SCORE: 3/4 WARN (intent=False, plan=True, exec=True, verify=True)
+  [17:27:26] 
+============================================================
+  [17:27:26] TEST S.06: Setup: Spawn enemies
+  [17:27:26] ============================================================
+  [17:27:26] USER TYPES: "Spawn 3 enemies in the level"
+  [17:27:39] INTENT RETURNS: mode=CREATE, ops=1, summary=Spawn 
+  [17:27:39] EXECUTE: spawn_actor_at {"count": 3}
+  [17:27:39] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor22", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [17:27:41] SCORE: 3/4 WARN (intent=True, plan=True, exec=True, verify=False)
+  [17:27:43] 
+============================================================
+  [17:27:43] TEST S.07: Setup: Spawn coins
+  [17:27:43] ============================================================
+  [17:27:43] USER TYPES: "Place 5 gold coins around the level"
+  [17:28:19] INTENT RETURNS: mode=MULTI, ops=1, summary=Spawn  The following actors at random locations in the level: Gold_Coin x5
+  [17:28:19] EXECUTE: spawn_actor_at {"actor_label": "Gold_Coin", "count": 5}
+  [17:28:19] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor23", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [17:28:21] SCORE: 3/4 WARN (intent=True, plan=True, exec=True, verify=False)
+  [17:28:23] 
+============================================================
+  [17:28:23] TEST S.08: Setup: Spawn torches
+  [17:28:23] ============================================================
+  [17:28:23] USER TYPES: "Put 4 torches in the level"
+  [17:28:41] INTENT RETURNS: mode=CREATE, ops=2, summary=Put 4 torches in the level
+  [17:28:41] EXECUTE: create_blueprint → DSL pipeline (blueprint): "torch"
+  [17:29:40] DSL GENERATE: Got 588 chars of blueprint DSL
+  [17:29:40] PARSE: IR generated for blueprint
+  [17:29:40] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Torch.blueprint.json
+  [17:29:41] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_Torch", "asset_path": "/Game/BlueprintLLM/Generated/BP_Torch", "nodes_created": 10, "...
+  [17:29:41] EXECUTE: spawn_actor_at {"count": 4}
+  [17:29:41] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor24", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [17:29:42] SCORE: 3/4 WARN (intent=True, plan=True, exec=True, verify=False)
+  [17:29:44] 
+============================================================
+  [17:29:44] TEST C.01: Create simple pickup
+  [17:29:44] ============================================================
+  [17:29:44] USER TYPES: "Create a key pickup that sets HasKey to true when collected"
+  [17:29:59] INTENT RETURNS: mode=CREATE, ops=1, summary=Create key pickup BP
+  [17:29:59] EXECUTE: create_blueprint → DSL pipeline (blueprint): "key pickup that sets HasKey to true when collected"
+  [17:30:28] DSL GENERATE: Got 279 chars of blueprint DSL
+  [17:30:28] PARSE: IR generated for blueprint
+  [17:30:28] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_KeyPickup.blueprint.json
+  [17:30:29] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_KeyPickup", "asset_path": "/Game/BlueprintLLM/Generated/BP_KeyPickup", "nodes_created...
+  [17:30:30] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [17:30:32] 
+============================================================
+  [17:30:32] TEST C.02: Create door with logic
+  [17:30:32] ============================================================
+  [17:30:32] USER TYPES: "Make a door that checks if the player has a key before opening"
+  [17:32:13] INTENT RETURNS: mode=MULTI, ops=3, summary=Make a door that checks for a key
+  [17:32:13] EXECUTE: create_blueprint → DSL pipeline (blueprint): "door"
+  [17:33:02] DSL GENERATE: Got 366 chars of blueprint DSL
+  [17:33:02] PARSE: IR generated for blueprint
+  [17:33:02] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_DoorFrame.blueprint.json
+  [17:33:03] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_DoorFrame", "asset_path": "/Game/BlueprintLLM/Generated/BP_DoorFrame", "nodes_created...
+  [17:33:03] EXECUTE: create_blueprint → DSL pipeline (blueprint): "keycard"
+  [17:33:41] DSL GENERATE: Got 300 chars of blueprint DSL
+  [17:33:41] PARSE: IR generated for blueprint
+  [17:33:41] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_KeyCard.blueprint.json
+  [17:33:41] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_KeyCard", "asset_path": "/Game/BlueprintLLM/Generated/BP_KeyCard", "nodes_created": 7...
+  [17:33:41] EXECUTE: create_behavior_tree → DSL pipeline (bt): "check for keycard"
+  [17:34:35] DSL GENERATE: Error - Empty DSL generated
+  [17:34:35] RESULT: FAIL -- {"success": false, "status": "error", "message": "DSL generation failed"}
+  [17:34:35] SCORE: 2/4 WARN (intent=False, plan=True, exec=False, verify=True)
+  [17:34:37] 
+============================================================
+  [17:34:37] TEST C.03: Create timer-based hazard
+  [17:34:37] ============================================================
+  [17:34:37] USER TYPES: "Build a damage zone that hurts the player 10 HP per second while they stand on it"
+  [17:35:01] INTENT RETURNS: mode=MULTI, ops=1, summary=Build a damage zone that hurts the player 10 HP per second while they stand on i
+  [17:35:01] EXECUTE: create_blueprint → DSL pipeline (blueprint): "damage zone that hurts the player 10 HP per second while they stand on it"
+  [17:36:38] DSL GENERATE: Got 954 chars of blueprint DSL
+  [17:36:38] PARSE: IR generated for blueprint
+  [17:36:38] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_DamageZone.blueprint.json
+  [17:36:38] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_DamageZone", "asset_path": "/Game/BlueprintLLM/Generated/BP_DamageZone", "nodes_creat...
+  [17:36:38] SCORE: 3/4 WARN (intent=False, plan=True, exec=True, verify=True)
+  [17:36:40] 
+============================================================
+  [17:36:40] TEST C.04: Create score manager
+  [17:36:40] ============================================================
+  [17:36:40] USER TYPES: "I need a score manager that tracks points and prints New High Score when the record is beaten"
+  [17:38:42] INTENT RETURNS: mode=MULTI, ops=4, summary=Create a new score manager that tracks points and displays high scores.
+  [17:38:42] EXECUTE: spawn_actor_at {"location": {"x": 0, "y": 0, "z": 0}, "blueprint": "BP_ScoreManager"}
+  [17:38:42] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor25", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [17:38:42] EXECUTE: batch_add_component {"component_type": "TextRenderComponent", "text": "Points: $Points$", "font_size": 24, "color": {"r": 255, "g": 255, "b": 255}}
+  [17:38:42] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:38:42] EXECUTE: batch_set_variable {"variable_name": "Points", "value": 0}
+  [17:38:42] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:38:42] EXECUTE: batch_set_variable {"variable_name": "NewHighScore", "value": false}
+  [17:38:43] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:38:43] SCORE: 2/4 WARN (intent=False, plan=True, exec=False, verify=True)
+  [17:38:45] 
+============================================================
+  [17:38:45] TEST C.05: Create wave spawner
+  [17:38:45] ============================================================
+  [17:38:45] USER TYPES: "Create a wave spawner that sends enemies every 15 seconds with increasing counts"
+  [17:40:09] INTENT RETURNS: mode=CREATE, ops=1, summary=Create a wave spawner that sends enemies every 15 seconds with increasing counts
+  [17:40:09] EXECUTE: create_blueprint → DSL pipeline (blueprint): "Create a wave spawner that sends enemies every 15 seconds with increasing counts"
+  [17:41:21] DSL GENERATE: Got 651 chars of blueprint DSL
+  [17:41:21] PARSE: IR generated for blueprint
+  [17:41:21] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_WaveSpawner.blueprint.json
+  [17:41:21] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_WaveSpawner", "asset_path": "/Game/BlueprintLLM/Generated/BP_WaveSpawner", "nodes_cre...
+  [17:41:21] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [17:41:23] 
+============================================================
+  [17:41:23] TEST C.06: Create behavior tree
+  [17:41:23] ============================================================
+  [17:41:23] USER TYPES: "Make a patrol AI that walks between two points and chases the player when spotted"
+  [17:41:54] INTENT RETURNS: mode=MULTI, ops=2, summary=Patrol AI that chases the player when spotted
+  [17:41:54] EXECUTE: create_blueprint → DSL pipeline (blueprint): "patrol AI that chases the player when spotted"
+  [17:43:14] DSL GENERATE: Got 761 chars of blueprint DSL
+  [17:43:14] PARSE: IR generated for blueprint
+  [17:43:14] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_PatrolAI.blueprint.json
+  [17:43:14] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_PatrolAI", "asset_path": "/Game/BlueprintLLM/Generated/BP_PatrolAI", "nodes_created":...
+  [17:43:14] EXECUTE: rename_asset {"new_name": "patrol AI that chases the player when spotted"}
+  [17:43:15] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'old_name'"}
+  [17:43:15] SCORE: 2/4 WARN (intent=False, plan=True, exec=False, verify=True)
+  [17:43:17] 
+============================================================
+  [17:43:17] TEST C.07: Create data table
+  [17:43:17] ============================================================
+  [17:43:17] USER TYPES: "I need a weapons table with name, damage, fire rate, and ammo count"
+  [17:44:43] INTENT RETURNS: mode=CREATE, ops=1, summary=I need a weapons table with name, damage, fire rate, and ammo count
+  [17:44:43] EXECUTE: create_blueprint → DSL pipeline (blueprint): "I need a weapons table with name, damage, fire rate, and ammo count"
+  [17:45:55] DSL GENERATE: Got 592 chars of blueprint DSL
+  [17:45:55] PARSE: IR generated for blueprint
+  [17:45:55] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_WeaponsTable.blueprint.json
+  [17:45:55] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_WeaponsTable", "asset_path": "/Game/BlueprintLLM/Generated/BP_WeaponsTable", "nodes_c...
+  [17:45:55] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [17:45:57] 
+============================================================
+  [17:45:57] TEST C.08: Create with casual language
+  [17:45:57] ============================================================
+  [17:45:57] USER TYPES: "Can you make me a treasure chest that gives random gold between 10 and 50"
+  [17:46:12] INTENT RETURNS: mode=CREATE, ops=1, summary=Create treasure chest BP
+  [17:46:12] EXECUTE: create_blueprint → DSL pipeline (blueprint): "treasure chest that gives random gold between 10 and 50"
+  [17:46:45] DSL GENERATE: Got 304 chars of blueprint DSL
+  [17:46:45] PARSE: IR generated for blueprint
+  [17:46:45] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_TreasureChest.blueprint.json
+  [17:46:45] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_TreasureChest", "asset_path": "/Game/BlueprintLLM/Generated/BP_TreasureChest", "nodes...
+  [17:46:45] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [17:46:47] 
+============================================================
+  [17:46:47] TEST C.09: Create checkpoint
+  [17:46:47] ============================================================
+  [17:46:47] USER TYPES: "I want a checkpoint that saves the player position when they touch it"
+  [17:47:01] INTENT RETURNS: mode=CREATE, ops=1, summary=Create checkpoint BP
+  [17:47:01] EXECUTE: create_blueprint → DSL pipeline (blueprint): "checkpoint that saves the player position when they touch it"
+  [17:47:35] DSL GENERATE: Got 351 chars of blueprint DSL
+  [17:47:35] PARSE: IR generated for blueprint
+  [17:47:35] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Checkpoint.blueprint.json
+  [17:47:35] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_Checkpoint", "asset_path": "/Game/BlueprintLLM/Generated/BP_Checkpoint", "nodes_creat...
+  [17:47:35] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [17:47:37] 
+============================================================
+  [17:47:37] TEST C.10: Create spinning actor
+  [17:47:37] ============================================================
+  [17:47:37] USER TYPES: "Make something that spins on its Z axis"
+  [17:47:52] INTENT RETURNS: mode=CREATE, ops=1, summary=Make something that spins on its Z axis
+  [17:47:52] EXECUTE: create_blueprint → DSL pipeline (blueprint): "something that spins on its Z axis"
+  [17:48:20] DSL GENERATE: Got 232 chars of blueprint DSL
+  [17:48:20] PARSE: IR generated for blueprint
+  [17:48:20] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Spinner.blueprint.json
+  [17:48:20] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_Spinner", "asset_path": "/Game/BlueprintLLM/Generated/BP_Spinner", "nodes_created": 5...
+  [17:48:20] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [17:48:22] 
+============================================================
+  [17:48:22] TEST M.01: Change enemy health
+  [17:48:22] ============================================================
+  [17:48:22] USER TYPES: "Set health to 200 on all enemies"
+  [17:48:41] INTENT RETURNS: mode=MODIFY, ops=1, summary=Set Health=200 on enemies
+  [17:48:41] EXECUTE: batch_set_variable {"variable_name": "Health", "default_value": "200"}
+  [17:48:41] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:48:41] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:48:43] 
+============================================================
+  [17:48:43] TEST M.02: Make enemies faster
+  [17:48:43] ============================================================
+  [17:48:43] USER TYPES: "Make the enemies faster"
+  [17:49:06] INTENT RETURNS: mode=MODIFY, ops=1, summary=Make enemies faster
+  [17:49:06] EXECUTE: batch_set_variable {"variable_name": "Speed", "default_value": "1000"}
+  [17:49:06] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:49:06] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:49:08] 
+============================================================
+  [17:49:08] TEST M.03: Change coin value
+  [17:49:08] ============================================================
+  [17:49:08] USER TYPES: "Gold coins should be worth 50 each"
+  [17:49:34] INTENT RETURNS: mode=MODIFY, ops=1, summary=Gold coins should be worth 50 each
+  [17:49:34] EXECUTE: batch_set_variable {"variable_name": "Value", "default_value": "50"}
+  [17:49:34] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:49:34] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:49:36] 
+============================================================
+  [17:49:36] TEST M.04: Scale enemies up
+  [17:49:36] ============================================================
+  [17:49:36] USER TYPES: "Scale all enemies up by 1.5"
+  [17:50:28] INTENT RETURNS: mode=MODIFY, ops=1, summary=Scale enemies up by 1.5
+  [17:50:28] EXECUTE: batch_set_property {"property_name": "scale", "value": "1.5"}
+  [17:50:28] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:50:28] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:50:30] 
+============================================================
+  [17:50:30] TEST M.05: Delete coins
+  [17:50:30] ============================================================
+  [17:50:30] USER TYPES: "Delete all the gold coins"
+  [17:50:59] INTENT RETURNS: mode=MODIFY, ops=1, summary=Delete all instances of BP_CoinGold from Untitled_1
+  [17:50:59] EXECUTE: batch_delete_actors {"blueprint": "BP_CoinGold"}
+  [17:50:59] RESULT: OK -- {"success": true, "status": "ok", "data": {"deleted": 0, "failed": 0, "errors": []}}
+  [17:51:01] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [17:51:03] 
+============================================================
+  [17:51:03] TEST M.06: Hide torches
+  [17:51:03] ============================================================
+  [17:51:03] USER TYPES: "Hide all the torches"
+  [17:52:40] INTENT RETURNS: mode=MODIFY, ops=1, summary=Hide torches
+  [17:52:40] EXECUTE: batch_set_property {"property_name": "hidden", "value": true}
+  [17:52:40] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:52:40] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:52:42] 
+============================================================
+  [17:52:42] TEST M.07: Change material with exact name
+  [17:52:42] ============================================================
+  [17:52:42] USER TYPES: "Change the material on all enemies to MI_Stone"
+  [17:53:03] INTENT RETURNS: mode=MODIFY, ops=1, summary=Change enemy material to stone
+  [17:53:03] EXECUTE: batch_set_property {"property_name": "Material", "value": "MI_Stone"}
+  [17:53:03] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:53:03] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:53:05] 
+============================================================
+  [17:53:05] TEST M.08: Change material with fuzzy name
+  [17:53:05] ============================================================
+  [17:53:05] USER TYPES: "Make the torches look like gold"
+  [17:53:27] INTENT RETURNS: mode=MODIFY, ops=1, summary=Make torches look like gold
+  [17:53:27] EXECUTE: batch_replace_material {"old_material": "torch", "new_material": "gold"}
+  [17:53:28] RESULT: FAIL -- {"success": false, "status": "error", "message": "Old material not found: torch"}
+  [17:53:28] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:53:30] 
+============================================================
+  [17:53:30] TEST M.09: Multiple variable changes
+  [17:53:30] ============================================================
+  [17:53:30] USER TYPES: "All enemies need 500 HP and 40 damage"
+  [17:53:57] INTENT RETURNS: mode=MODIFY, ops=2, summary=All enemies need 
+  [17:53:57] EXECUTE: batch_set_variable {"variable_name": "Health", "default_value": "500"}
+  [17:53:57] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:53:57] EXECUTE: batch_set_variable {"variable_name": "Damage", "default_value": "40"}
+  [17:53:57] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:53:57] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:53:59] 
+============================================================
+  [17:53:59] TEST M.10: Add component to all
+  [17:53:59] ============================================================
+  [17:53:59] USER TYPES: "Add a point light to every torch"
+  [17:54:48] INTENT RETURNS: mode=MULTI, ops=2, summary=Add point lights to torches
+  [17:54:48] EXECUTE: find_assets {"filter": "torch"}
+  [17:54:48] RESULT: OK -- {"success": true, "status": "ok", "data": {"count": 14, "assets": [{"name": "BP_Spinner", "asset_path": "/Game/BlueprintLLM/Generated/BP_Spinner.BP_Sp...
+  [17:54:48] EXECUTE: batch_add_component {"component_name": "point_light", "color": "white"}
+  [17:54:48] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:54:48] SCORE: 2/4 WARN (intent=False, plan=True, exec=False, verify=True)
+  [17:54:50] 
+============================================================
+  [17:54:50] TEST M.11: Rename blueprint
+  [17:54:50] ============================================================
+  [17:54:50] USER TYPES: "Rename BP_GoldCoin to BP_TreasureCoin"
+  [17:55:30] INTENT RETURNS: mode=MODIFY, ops=1, summary=Rename BP_GoldCoin to BP_TreasureCoin
+  [17:55:30] EXECUTE: rename_asset {"new_name": "BP_TreasureCoin", "old_name": "BP_GoldCoin"}
+  [17:55:30] RESULT: FAIL -- {"success": false, "status": "error", "message": "Asset not found: BP_GoldCoin"}
+  [17:55:30] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:55:32] 
+============================================================
+  [17:55:32] TEST M.12: Conversational modify
+  [17:55:32] ============================================================
+  [17:55:32] USER TYPES: "The enemies are too weak, buff them"
+  [17:56:37] INTENT RETURNS: mode=MODIFY, ops=1, summary=Buff enemies
+  [17:56:37] EXECUTE: batch_set_variable {"variable_name": "Health", "default_value": "1000"}
+  [17:56:37] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:56:37] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:56:39] 
+============================================================
+  [17:56:39] TEST M.13: Replace material globally
+  [17:56:39] ============================================================
+  [17:56:39] USER TYPES: "Replace every stone material with brick"
+  [17:58:01] INTENT RETURNS: mode=MODIFY, ops=1, summary=Replace Stone_Material with Brick_Material on Stone_WALL_ACTOR, Stone_FLOOR_ACTO
+  [17:58:01] EXECUTE: batch_replace_material {"operations": [{"actor_class": "Stone_WALL_ACTOR", "old_material_path": "/Game/Assets/Materials/Stone_Material", "new_material_path": "/Game/Assets/M...
+  [17:58:01] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'old_material'"}
+  [17:58:01] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:58:03] 
+============================================================
+  [17:58:03] TEST M.14: Move actors
+  [17:58:03] ============================================================
+  [17:58:03] USER TYPES: "Move all coins up by 50 units"
+  [17:59:28] INTENT RETURNS: mode=MODIFY, ops=1, summary=Move coins up by 50 units
+  [17:59:28] EXECUTE: batch_set_property {"property_name": "position_y", "value": 50}
+  [17:59:28] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:59:28] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [17:59:30] 
+============================================================
+  [17:59:30] TEST M.15: Remove all of a type
+  [17:59:30] ============================================================
+  [17:59:30] USER TYPES: "Clear out all the torches"
+  [17:59:51] INTENT RETURNS: mode=MODIFY, ops=1, summary=Clear out torches
+  [17:59:51] EXECUTE: batch_set_property {"property_name": "bEnabled", "value": 0}
+  [17:59:52] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [17:59:52] SCORE: 2/4 WARN (intent=True, plan=True, exec=False, verify=False)
+  [17:59:54] 
+============================================================
+  [17:59:54] TEST Q.01: Count enemies
+  [17:59:54] ============================================================
+  [17:59:54] USER TYPES: "How many enemies are in the level?"
+  [18:00:06] INTENT RETURNS: mode=QUERY, ops=1, summary=Count enemies
+  [18:00:06] EXECUTE: find_actors {"name_filter": "enemy"}
+  [18:00:06] RESULT: OK -- {"success": true, "status": "ok", "data": {"count": 0, "actors": []}}
+  [18:00:06] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:00:08] 
+============================================================
+  [18:00:08] TEST Q.02: List blueprints
+  [18:00:08] ============================================================
+  [18:00:08] USER TYPES: "Show me all the blueprints in the project"
+  [18:00:20] INTENT RETURNS: mode=QUERY, ops=1, summary=Show blueprints
+  [18:00:20] EXECUTE: find_blueprints {"filter": "all"}
+  [18:00:20] RESULT: OK -- {"success": true, "status": "ok", "data": {"count": 14, "blueprints": [{"name": "BP_Spinner", "asset_path": "/Game/BlueprintLLM/Generated/BP_Spinner.B...
+  [18:00:20] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:00:22] 
+============================================================
+  [18:00:22] TEST Q.03: List actors
+  [18:00:22] ============================================================
+  [18:00:22] USER TYPES: "What's in the level right now?"
+  [18:00:35] INTENT RETURNS: mode=QUERY, ops=1, summary=What's in the level right now?
+  [18:00:35] EXECUTE: get_level_info {}
+  [18:00:35] RESULT: OK -- {"success": true, "status": "ok", "data": {"level_name": "Untitled_1", "level_path": "/Temp/Untitled_1", "actor_count": 168, "class_counts": [{"class"...
+  [18:00:35] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:00:37] 
+============================================================
+  [18:00:37] TEST Q.04: Find specific type
+  [18:00:37] ============================================================
+  [18:00:37] USER TYPES: "Which blueprints have a Health variable?"
+  [18:00:52] INTENT RETURNS: mode=QUERY, ops=1, summary=Which blueprints have a Health variable?
+  [18:00:52] EXECUTE: find_blueprints {"property_filter": "Health"}
+  [18:00:52] RESULT: OK -- {"success": true, "status": "ok", "data": {"count": 14, "blueprints": [{"name": "BP_Spinner", "asset_path": "/Game/BlueprintLLM/Generated/BP_Spinner.B...
+  [18:00:52] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:00:54] 
+============================================================
+  [18:00:54] TEST Q.05: Count specific actors
+  [18:00:54] ============================================================
+  [18:00:54] USER TYPES: "How many coins did I place?"
+  [18:01:11] INTENT RETURNS: mode=QUERY, ops=1, summary=How many coins did I place?
+  [18:01:11] EXECUTE: find_actors {"name_filter": "coin"}
+  [18:01:11] RESULT: OK -- {"success": true, "status": "ok", "data": {"count": 0, "actors": []}}
+  [18:01:11] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:01:13] 
+============================================================
+  [18:01:13] TEST X.01: Create and spawn
+  [18:01:13] ============================================================
+  [18:01:13] USER TYPES: "Create a health potion and spawn 3 of them in the level"
+  [18:01:39] INTENT RETURNS: mode=MULTI, ops=2, summary=Spawn 
+  [18:01:39] EXECUTE: create_blueprint → DSL pipeline (blueprint): "health potion"
+  [18:02:43] DSL GENERATE: Got 576 chars of blueprint DSL
+  [18:02:43] PARSE: IR generated for blueprint
+  [18:02:43] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_HealthPotion.blueprint.json
+  [18:02:43] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_HealthPotion", "asset_path": "/Game/BlueprintLLM/Generated/BP_HealthPotion", "nodes_c...
+  [18:02:43] EXECUTE: spawn_actor_at {"count": 3}
+  [18:02:43] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor26", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [18:02:43] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:02:45] 
+============================================================
+  [18:02:45] TEST X.02: Full scene setup
+  [18:02:45] ============================================================
+  [18:02:45] USER TYPES: "Set up FPS controls and add dark lighting to the level"
+  [18:03:43] INTENT RETURNS: mode=MULTI, ops=2, summary=Add FPS controls and set dark lighting to the level
+  [18:03:43] EXECUTE: spawn_actor_at {"parent_class": "PlayerStart", "child_class": "FPS_Controller"}
+  [18:03:43] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor27", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [18:03:43] EXECUTE: setup_scene_lighting {"lighting_style": "dark"}
+  [18:03:43] RESULT: OK -- {"success": true, "status": "ok", "data": {"preset": "indoor_dark", "actors": [{"label": "SceneDirectionalLight", "intensity": 2, "pitch": -45}, {"lab...
+  [18:03:43] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:03:45] 
+============================================================
+  [18:03:45] TEST X.03: Delete and replace
+  [18:03:45] ============================================================
+  [18:03:45] USER TYPES: "Delete all coins and replace them with gems worth 100 each"
+  [18:04:22] INTENT RETURNS: mode=MULTI, ops=3, summary=Replace coins with gems worth 100 each
+  [18:04:22] EXECUTE: batch_delete_actors {}
+  [18:04:22] RESULT: OK -- {"success": true, "status": "ok", "data": {"deleted": 0, "failed": 0, "errors": []}}
+  [18:04:22] EXECUTE: create_blueprint → DSL pipeline (blueprint): "gem worth 100"
+  [18:05:03] DSL GENERATE: Got 375 chars of blueprint DSL
+  [18:05:03] PARSE: IR generated for blueprint
+  [18:05:03] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Gem.blueprint.json
+  [18:05:04] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_Gem", "asset_path": "/Game/BlueprintLLM/Generated/BP_Gem", "nodes_created": 8, "nodes...
+  [18:05:04] EXECUTE: spawn_actor_at {"count": 10}
+  [18:05:04] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor28", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [18:05:04] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:05:06] 
+============================================================
+  [18:05:06] TEST X.04: Modify multiple properties
+  [18:05:06] ============================================================
+  [18:05:06] USER TYPES: "Make all enemies tougher and change the lighting to outdoor daytime"
+  [18:05:35] INTENT RETURNS: mode=MULTI, ops=2, summary=Make enemies tougher and change lighting to outdoor daytime
+  [18:05:35] EXECUTE: batch_set_variable {"variable_name": "Health", "default_value": "300"}
+  [18:05:35] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'operations' array"}
+  [18:05:35] EXECUTE: setup_scene_lighting {"preset": "outdoor_daytime"}
+  [18:05:35] RESULT: OK -- {"success": true, "status": "ok", "data": {"preset": "outdoor_daytime", "actors": [{"label": "SceneDirectionalLight", "intensity": 2, "pitch": -45}, {...
+  [18:05:35] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [18:05:37] 
+============================================================
+  [18:05:37] TEST X.05: Complex build request
+  [18:05:37] ============================================================
+  [18:05:37] USER TYPES: "Build a boss room with one powerful enemy, health pickups around the edges, and dramatic dark lighting"
+  [18:07:57] INTENT RETURNS: mode=MULTI, ops=6, summary=Create a new level with  The following operations will be performed in order:  C
+  [18:07:57] EXECUTE: create_level {"level_name": "Untitled_1"}
+  [18:07:57] RESULT: FAIL -- {"success": false, "status": "error", "message": "Unknown command: create_level"}
+  [18:07:57] EXECUTE: spawn_actor_at {"blueprint": "BP_KeyPickup", "position_x": -100, "position_y": 0, "position_z": -50}
+  [18:07:58] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor29", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [18:07:58] EXECUTE: spawn_actor_at {"blueprint": "BP_HealthPickup", "position_x": 100, "position_y": 0, "position_z": -50}
+  [18:07:58] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor30", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [18:07:58] EXECUTE: spawn_actor_at {"blueprint": "BP_HealthPickup", "position_x": -100, "position_y": 0, "position_z": 50}
+  [18:07:58] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor31", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [18:07:58] EXECUTE: spawn_actor_at {"blueprint": "BP_HealthPickup", "position_x": 100, "position_y": 0, "position_z": 50}
+  [18:07:58] RESULT: OK -- {"success": true, "status": "ok", "data": {"label": "Actor32", "class": "Actor", "location": {"x": 0, "y": 0, "z": 0}, "rotation": {"pitch": 0, "yaw":...
+  [18:07:58] EXECUTE: setup_scene_lighting {"light_type": "dramatic"}
+  [18:07:58] RESULT: OK -- {"success": true, "status": "ok", "data": {"preset": "indoor_dark", "actors": [{"label": "SceneDirectionalLight", "intensity": 2, "pitch": -45}, {"lab...
+  [18:07:58] SCORE: 3/4 WARN (intent=True, plan=True, exec=False, verify=True)
+  [18:08:00] 
+============================================================
+  [18:08:00] TEST V.01: Vague complaint
+  [18:08:00] ============================================================
+  [18:08:00] USER TYPES: "The level feels empty"
+  [18:08:14] INTENT RETURNS: mode=QUERY, ops=1, summary=How many actors are there?
+  [18:08:14] EXECUTE: find_actors {"name_filter": ""}
+  [18:08:14] RESULT: OK -- {"success": true, "status": "ok", "data": {"count": 169, "actors": [{"label": "WorldDataLayers-1", "class": "WorldDataLayers", "location": {"x": 0, "y...
+  [18:08:14] SCORE: 3/4 WARN (intent=False, plan=True, exec=True, verify=True)
+  [18:08:16] 
+============================================================
+  [18:08:16] TEST V.02: Very vague
+  [18:08:16] ============================================================
+  [18:08:16] USER TYPES: "Make it better"
+  [18:08:25] INTENT RETURNS: mode=CLARIFY, ops=0, summary=What specifically would you like to improve?
+  [18:08:25] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:08:27] 
+============================================================
+  [18:08:27] TEST V.03: Aesthetic complaint
+  [18:08:27] ============================================================
+  [18:08:27] USER TYPES: "Everything looks too plain"
+  [18:08:35] INTENT RETURNS: mode=CLARIFY, ops=0, summary=Everything looks too plain
+  [18:08:35] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:08:37] 
+============================================================
+  [18:08:37] TEST V.04: Difficulty complaint
+  [18:08:37] ============================================================
+  [18:08:37] USER TYPES: "The game is too easy"
+  [18:08:46] INTENT RETURNS: mode=CLARIFY, ops=0, summary=How can we make it harder?
+  [18:08:46] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+  [18:08:48] 
+============================================================
+  [18:08:48] TEST V.05: Help request
+  [18:08:48] ============================================================
+  [18:08:48] USER TYPES: "I'm stuck, can you help me set up the level?"
+  [18:08:56] INTENT RETURNS: mode=CLARIFY, ops=0, summary=How can i help you?
+  [18:08:56] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+
+============================================================
+  USER SIMULATION RESULTS
+============================================================
+
+  Category            Tests      Score    Pct
+  ------------------ ------ ---------- ------
+  Setup                   8   26/32      81%
+  Create                 10   33/40      82%
+  Modify                 15   44/60      73%
+  Query                   5   20/20     100%
+  Multi-Step              5   18/20      90%
+  Conversational          5   19/20      95%
+  ================== ====== ========== ======
+  TOTAL                  48  160/192   83.3%
+
+  FAILURES (score < 3):
+    C.02: "Make a door that checks if the player has a key be" -> mode=MULTI (intent=N plan=Y exec=N verify=Y)
+    C.04: "I need a score manager that tracks points and prin" -> mode=MULTI (intent=N plan=Y exec=N verify=Y)
+    C.06: "Make a patrol AI that walks between two points and" -> mode=MULTI (intent=N plan=Y exec=N verify=Y)
+    M.10: "Add a point light to every torch" -> mode=MULTI (intent=N plan=Y exec=N verify=Y)
+    M.15: "Clear out all the torches" -> mode=MODIFY (intent=Y plan=Y exec=N verify=N)
+
+  Perfect 4/4: 21/48
+  Grade: C -- Significant Gaps
+
+  Results: C:\BlueprintLLM\tests\results\user_sim_20260311_180858.json
+  Manual log: C:\BlueprintLLM\tests\manual_test_log.txt

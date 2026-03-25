@@ -1,0 +1,131 @@
+{
+  "id": "scoreboard",
+  "name": "Scoreboard",
+  "category": "multiplayer",
+  "description": "Team columns with player stats rows",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    700,
+    500
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "ScoreRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "ScoreTitle",
+        "properties": {
+          "text": "SCOREBOARD",
+          "font_size": "24",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "Headers",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "HName",
+            "properties": {
+              "text": "PLAYER",
+              "font_size": "12",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "HKills",
+            "properties": {
+              "text": "K",
+              "font_size": "12",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "HDeaths",
+            "properties": {
+              "text": "D",
+              "font_size": "12",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "HScore",
+            "properties": {
+              "text": "SCORE",
+              "font_size": "12",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "Row1",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "P1Name",
+            "properties": {
+              "text": "BIND:\"{Player1Name}\"",
+              "font_size": "14",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "P1Kills",
+            "properties": {
+              "text": "BIND:\"{Player1Kills}\"",
+              "font_size": "14",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "P1Deaths",
+            "properties": {
+              "text": "BIND:\"{Player1Deaths}\"",
+              "font_size": "14",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "P1Score",
+            "properties": {
+              "text": "BIND:\"{Player1Score}\"",
+              "font_size": "14",
+              "color": "$warning"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

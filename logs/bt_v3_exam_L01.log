@@ -1,0 +1,82 @@
+
+============================================================
+  BT EXAM: BT Core Patterns
+  20 prompts
+  Model: models/bt-lora-v3/final
+============================================================
+
+Loaded BT system prompt from models\bt-lora-v3\system_prompt.txt (2,226 chars)
+Loading base model: meta-llama/Meta-Llama-3.1-70B
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|3         | 1/30 [00:05<02:50,  5.89s/it]Loading checkpoint shards:   7%|6         | 2/30 [00:11<02:32,  5.43s/it]Loading checkpoint shards:  10%|#         | 3/30 [00:16<02:22,  5.29s/it]Loading checkpoint shards:  13%|#3        | 4/30 [00:21<02:17,  5.27s/it]Loading checkpoint shards:  17%|#6        | 5/30 [00:26<02:07,  5.10s/it]Loading checkpoint shards:  20%|##        | 6/30 [00:30<01:59,  4.97s/it]Loading checkpoint shards:  23%|##3       | 7/30 [00:35<01:53,  4.94s/it]Loading checkpoint shards:  27%|##6       | 8/30 [00:41<01:51,  5.08s/it]Loading checkpoint shards:  30%|###       | 9/30 [00:46<01:48,  5.19s/it]Loading checkpoint shards:  33%|###3      | 10/30 [00:51<01:42,  5.15s/it]Loading checkpoint shards:  37%|###6      | 11/30 [00:56<01:36,  5.09s/it]Loading checkpoint shards:  40%|####      | 12/30 [01:01<01:31,  5.07s/it]Loading checkpoint shards:  43%|####3     | 13/30 [01:06<01:27,  5.17s/it]Loading checkpoint shards:  47%|####6     | 14/30 [01:12<01:23,  5.21s/it]Loading checkpoint shards:  50%|#####     | 15/30 [01:17<01:17,  5.16s/it]Loading checkpoint shards:  53%|#####3    | 16/30 [01:22<01:11,  5.11s/it]Loading checkpoint shards:  57%|#####6    | 17/30 [01:27<01:06,  5.08s/it]Loading checkpoint shards:  60%|######    | 18/30 [01:32<01:02,  5.19s/it]Loading checkpoint shards:  63%|######3   | 19/30 [01:38<00:57,  5.23s/it]Loading checkpoint shards:  67%|######6   | 20/30 [01:43<00:51,  5.16s/it]Loading checkpoint shards:  70%|#######   | 21/30 [01:48<00:46,  5.13s/it]Loading checkpoint shards:  73%|#######3  | 22/30 [01:53<00:40,  5.09s/it]Loading checkpoint shards:  77%|#######6  | 23/30 [01:58<00:36,  5.17s/it]Loading checkpoint shards:  80%|########  | 24/30 [02:03<00:31,  5.21s/it]Loading checkpoint shards:  83%|########3 | 25/30 [02:08<00:25,  5.15s/it]Loading checkpoint shards:  87%|########6 | 26/30 [02:13<00:20,  5.11s/it]Loading checkpoint shards:  90%|######### | 27/30 [02:18<00:15,  5.08s/it]Loading checkpoint shards:  93%|#########3| 28/30 [02:24<00:10,  5.16s/it]Loading checkpoint shards:  97%|#########6| 29/30 [02:29<00:05,  5.20s/it]Loading checkpoint shards: 100%|##########| 30/30 [02:31<00:00,  4.13s/it]Loading checkpoint shards: 100%|##########| 30/30 [02:31<00:00,  5.04s/it]
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Loading BT LoRA adapter: models/bt-lora-v3/final
+[1/20] BT01_01: Create a Behavior Tree where an AI prints 'Starting', waits ...
+  [OK] Score: 100% | Nodes: 4 | BB Keys: 0 | 19.7s
+[2/20] BT01_02: Create a Behavior Tree where an AI moves to a patrol locatio...
+  [OK] Score: 100% | Nodes: 3 | BB Keys: 1 | 19.5s
+[3/20] BT01_03: Create a Behavior Tree with a Selector that first tries to m...
+  [OK] Score: 100% | Nodes: 3 | BB Keys: 1 | 19.9s
+[4/20] BT01_04: Create a Behavior Tree where the AI chases a target actor on...
+  [OK] Score: 100% | Nodes: 3 | BB Keys: 1 | 25.2s
+[5/20] BT01_05: Create a Behavior Tree for an AI that patrols: move to Patro...
+  [OK] Score: 100% | Nodes: 3 | BB Keys: 1 | 26.3s
+[6/20] BT01_06: Create a Behavior Tree where the AI chases a target if one e...
+  [OK] Score: 100% | Nodes: 7 | BB Keys: 2 | 41.1s
+[7/20] BT01_07: Create a Behavior Tree where a FindNearestActor service runs...
+  [OK] Score: 100% | Nodes: 5 | BB Keys: 1 | 36.3s
+[8/20] BT01_08: Create a Behavior Tree where the AI attacks a target with a ...
+  [OK] Score: 100% | Nodes: 6 | BB Keys: 1 | 35.0s
+[9/20] BT01_09: Create a Behavior Tree where the AI tries to move to a targe...
+  [OK] Score: 100% | Nodes: 5 | BB Keys: 1 | 27.1s
+[10/20] BT01_10: Create a Behavior Tree where the AI always succeeds a patrol...
+  [OK] Score: 100% | Nodes: 4 | BB Keys: 1 | 23.3s
+[11/20] BT01_11: Create a Behavior Tree for an AI guard with three blackboard...
+  [OK] Score: 85% | Nodes: 10 | BB Keys: 3 | 53.7s
+[12/20] BT01_12: Create a Behavior Tree where the AI continuously faces a tar...
+  [OK] Score: 86% | Nodes: 3 | BB Keys: 1 | 21.3s
+[13/20] BT01_13: Create a Behavior Tree with three priority branches: Attack ...
+  [OK] Score: 81% | Nodes: 13 | BB Keys: 2 | 76.5s
+[14/20] BT01_14: Create a Behavior Tree where the AI waits for a duration sto...
+  [OK] Score: 100% | Nodes: 3 | BB Keys: 1 | 20.3s
+[15/20] BT01_15: Create a Behavior Tree where a DefaultFocus service keeps th...
+  [OK] Score: 100% | Nodes: 4 | BB Keys: 1 | 26.6s
+[16/20] BT01_16: Create a Behavior Tree where the AI chases a target, applies...
+  [OK] Score: 90% | Nodes: 5 | BB Keys: 1 | 30.6s
+[17/20] BT01_17: Create a Behavior Tree where the AI moves to a patrol locati...
+  [OK] Score: 100% | Nodes: 4 | BB Keys: 2 | 29.2s
+[18/20] BT01_18: Create a Behavior Tree for an enemy AI with: Attack branch (...
+  [OK] Score: 100% | Nodes: 14 | BB Keys: 3 | 77.8s
+[19/20] BT01_19: Create a Behavior Tree where the AI tries to move to a targe...
+  [OK] Score: 89% | Nodes: 4 | BB Keys: 1 | 22.3s
+[20/20] BT01_20: Create a Behavior Tree for a smart enemy with two services o...
+  [OK] Score: 83% | Nodes: 14 | BB Keys: 2 | 88.6s
+
+============================================================
+  BT EXAM RESULTS
+============================================================
+  Valid syntax:     20/20 (100.0%)
+  Avg similarity:   95.7%
+  Timeouts:         0
+  Results:          results\bt_exams\bt_exam_bt_lesson_01_20260309_174839.jsonl
+  Summary:          results\bt_exams\bt_exam_bt_lesson_01_20260309_174839_summary.json
+============================================================
+

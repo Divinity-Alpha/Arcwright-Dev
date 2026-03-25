@@ -1,0 +1,434 @@
+[02:47:16] Running all 92 tests across 10 categories
+[02:47:16] Checking intent server on localhost:13380 (first call may take ~150s for CUDA warmup)...
+[02:47:27] Intent server OK (mode=TEST)
+[02:47:27] ============================================================
+[02:47:27] Connected to UE Command Server (13377)
+[02:47:47] [1/92] 1.01 [IT.E] 3/4 | mode=MODIFY ops=2 (20.4s)
+[02:47:47]          prompt: Change the wall texture to brick
+[02:47:47]          summary: Change wall texture to brick
+[02:47:47]          commands: find_assets, batch_set_property
+[02:48:08] [2/92] 1.02 [ITAE] 4/4 | mode=MODIFY ops=2 (20.3s)
+[02:48:08]          prompt: Make all the walls look like marble
+[02:48:08]          summary: Make all the walls look like marble
+[02:48:08]          commands: find_assets, batch_apply_material
+[02:48:27] [3/92] 1.03 [IT.E] 3/4 | mode=MODIFY ops=2 (18.6s)
+[02:48:27]          prompt: Swap the stone material on the walls for concrete
+[02:48:27]          summary: Swap wall materials
+[02:48:27]          commands: find_assets, batch_set_property
+[02:48:46] [4/92] 1.04 [ITAE] 4/4 | mode=MODIFY ops=2 (19.5s)
+[02:48:46]          prompt: Replace every gold material with silver
+[02:48:46]          summary: Replace gold materials with silver
+[02:48:46]          commands: find_assets, batch_replace_material
+[02:49:07] [5/92] 1.05 [IT.E] 3/4 | mode=MODIFY ops=2 (20.1s)
+[02:49:07]          prompt: The walls need a different texture, use wood
+[02:49:07]          summary: Change wall material to wood
+[02:49:07]          commands: find_assets, batch_set_property
+[02:49:22] [6/92] 1.06 [IT..] 2/4 | mode=MODIFY ops=1 (15.4s)
+[02:49:22]          prompt: Give the floor a lava material
+[02:49:22]          summary: Give floor a lava material
+[02:49:22]          commands: modify_blueprint
+[02:50:46] [7/92] 1.07 [IT..] 2/4 | mode=MODIFY ops=0 (84.0s)
+[02:50:46]          prompt: Update torch materials to something warmer
+[02:50:46]          summary: Update torch materials to something warmer
+[02:50:55] [8/92] 1.08 [IT.E] 3/4 | mode=CLARIFY ops=0 (8.3s)
+[02:50:55]          prompt: I want the coins to look more realistic
+[02:50:55]          summary: How do you want the coins to look more realistic?
+[02:51:12] [9/92] 1.09 [IT.E] 3/4 | mode=MODIFY ops=2 (17.3s)
+[02:51:12]          prompt: Everything stone should be brick instead
+[02:51:12]          summary: Change stone to brick
+[02:51:12]          commands: find_assets, rename_asset
+[02:51:35] [10/92] 1.10 [IT.E] 3/4 | mode=MODIFY ops=2 (22.8s)
+[02:51:35]          prompt: Paint the walls red
+[02:51:35]          summary: Paint walls red
+[02:51:35]          commands: find_assets, batch_set_property
+[02:51:56] [11/92] 2.01 [ITAE] 4/4 | mode=MODIFY ops=2 (20.5s)
+[02:51:56]          prompt: Set health to 200 on all enemies
+[02:51:56]          summary: Set Health=200 on enemies
+[02:51:56]          commands: find_blueprints, batch_set_variable
+[02:52:16] [12/92] 2.02 [ITAE] 4/4 | mode=MODIFY ops=2 (19.9s)
+[02:52:16]          prompt: Make the enemies faster
+[02:52:16]          summary: Make enemies faster
+[02:52:16]          commands: find_actors, batch_set_variable
+[02:52:38] [13/92] 2.03 [ITAE] 4/4 | mode=MODIFY ops=2 (21.9s)
+[02:52:38]          prompt: Double the enemy damage
+[02:52:38]          summary: Double enemy damage
+[02:52:38]          commands: find_blueprints, batch_set_variable
+[02:52:59] [14/92] 2.04 [ITAE] 4/4 | mode=MODIFY ops=2 (20.8s)
+[02:52:59]          prompt: Gold coins should be worth 50 each
+[02:52:59]          summary: Gold coins should be worth 50 each
+[02:52:59]          commands: find_actors, batch_set_variable
+[02:53:19] [15/92] 2.05 [ITAE] 4/4 | mode=MODIFY ops=2 (20.2s)
+[02:53:19]          prompt: Reduce enemy health to 50
+[02:53:19]          summary: Reduce enemy health to 50
+[02:53:19]          commands: find_blueprints, batch_set_variable
+[02:53:38] [16/92] 2.06 [ITAE] 4/4 | mode=MODIFY ops=2 (19.2s)
+[02:53:38]          prompt: Make the torches brighter
+[02:53:38]          summary: Make torches brighter
+[02:53:38]          commands: find_actors, batch_set_property
+[02:53:58] [17/92] 2.07 [ITAE] 4/4 | mode=MODIFY ops=2 (19.5s)
+[02:53:58]          prompt: Enemies are too slow, speed them up
+[02:53:58]          summary: Speed up enemies
+[02:53:58]          commands: find_blueprints, batch_set_variable
+[02:54:19] [18/92] 2.08 [ITAE] 4/4 | mode=MODIFY ops=2 (20.5s)
+[02:54:19]          prompt: Turn down the torch intensity to 2000
+[02:54:19]          summary: Turn down the torch intensity to 2000
+[02:54:19]          commands: find_actors, batch_set_property
+[02:54:39] [19/92] 2.09 [ITAE] 4/4 | mode=MODIFY ops=2 (20.6s)
+[02:54:39]          prompt: Health potions should heal 50 instead
+[02:54:39]          summary: Change health potion amount
+[02:54:39]          commands: find_blueprints, batch_set_variable
+[02:55:16] [20/92] 2.10 [ITAE] 4/4 | mode=MODIFY ops=4 (36.5s)
+[02:55:16]          prompt: All enemies need 500 HP, 40 damage, and 600 speed
+[02:55:16]          summary: All enemies need 500 HP 40 damage and 600 speed
+[02:55:16]          commands: find_blueprints, batch_set_variable, batch_set_variable, batch_set_variable
+[02:55:38] [21/92] 3.01 [ITAE] 4/4 | mode=MODIFY ops=2 (22.3s)
+[02:55:38]          prompt: Scale all enemies up by 1.5
+[02:55:38]          summary: Scale enemies up by 1.5
+[02:55:38]          commands: find_actors, batch_set_property
+[02:55:58] [22/92] 3.02 [ITAE] 4/4 | mode=MODIFY ops=2 (19.3s)
+[02:55:58]          prompt: Make the coins smaller
+[02:55:58]          summary: Make coins smaller
+[02:55:58]          commands: find_actors, batch_set_property
+[02:56:16] [23/92] 3.03 [ITAE] 4/4 | mode=MODIFY ops=2 (18.6s)
+[02:56:16]          prompt: Hide all the torches
+[02:56:16]          summary: Hide torches
+[02:56:16]          commands: find_actors, batch_set_property
+[02:56:39] [24/92] 3.04 [I.AE] 3/4 | mode=MODIFY ops=2 (22.3s)
+[02:56:39]          prompt: Show all hidden actors
+[02:56:39]          summary: Show hidden actors
+[02:56:39]          commands: find_actors, batch_set_property
+[02:57:02] [25/92] 3.05 [ITAE] 4/4 | mode=MODIFY ops=2 (23.1s)
+[02:57:02]          prompt: Move all coins up by 50 units
+[02:57:02]          summary: Move coins up by 50 units
+[02:57:02]          commands: find_actors, batch_set_property
+[02:58:33] [26/92] 3.06 [I...] 1/4 | mode=MODIFY ops=0 (90.7s)
+[02:58:33]          prompt: Rotate all enemies to face north
+[02:58:33]          summary: Rotate all enemies to face north
+[02:58:50] [27/92] 3.07 [ITAE] 4/4 | mode=MODIFY ops=2 (17.0s)
+[02:58:50]          prompt: Delete all the gold coins
+[02:58:50]          summary: Delete coin actors
+[02:58:50]          commands: find_actors, batch_delete_actors
+[02:59:07] [28/92] 3.08 [ITAE] 4/4 | mode=MODIFY ops=2 (17.1s)
+[02:59:07]          prompt: Remove every torch from the level
+[02:59:07]          summary: Remove torches
+[02:59:07]          commands: find_actors, batch_delete_actors
+[02:59:24] [29/92] 3.09 [ITAE] 4/4 | mode=MODIFY ops=2 (17.0s)
+[02:59:24]          prompt: Clear out all the enemies
+[02:59:24]          summary: Clear out enemies
+[02:59:24]          commands: find_actors, batch_delete_actors
+[02:59:47] [30/92] 3.10 [ITAE] 4/4 | mode=MODIFY ops=2 (22.5s)
+[02:59:47]          prompt: Resize the walls to be twice as tall
+[02:59:47]          summary: Resize wall height
+[02:59:47]          commands: find_actors, batch_set_property
+[03:01:09] [31/92] 4.01 [IT..] 2/4 | mode=MODIFY ops=0 (81.8s)
+[03:01:09]          prompt: Add a point light to every torch
+[03:01:09]          summary: Add a point light to every torch
+[03:01:28] [32/92] 4.02 [ITAE] 4/4 | mode=MODIFY ops=2 (19.0s)
+[03:01:28]          prompt: Give all enemies a sphere collision
+[03:01:28]          summary: Give all enemies a sphere collision
+[03:01:28]          commands: find_blueprints, batch_add_component
+[03:01:52] [33/92] 4.03 [ITAE] 4/4 | mode=MODIFY ops=2 (23.9s)
+[03:01:52]          prompt: Add audio components to the torches
+[03:01:52]          summary: Add audio component to torches
+[03:01:52]          commands: find_actors, batch_add_component
+[03:02:12] [34/92] 4.04 [ITAE] 4/4 | mode=MODIFY ops=2 (19.8s)
+[03:02:12]          prompt: Put a box collision on every coin
+[03:02:12]          summary: Put box collision on coins
+[03:02:12]          commands: find_actors, batch_add_component
+[03:02:40] [35/92] 4.05 [IT..] 2/4 | mode=MODIFY ops=0 (27.8s)
+[03:02:40]          prompt: Every health potion needs a point light
+[03:02:40]          summary: Every health potion needs a point light
+[03:02:57] [36/92] 5.01 [ITAE] 4/4 | mode=MODIFY ops=1 (17.6s)
+[03:02:57]          prompt: Rename BP_GoldCoin to BP_TreasureCoin
+[03:02:57]          summary: Rename BP_GoldCoin to BP_TreasureCoin
+[03:02:57]          commands: rename_asset
+[03:03:11] [37/92] 5.02 [ITAE] 4/4 | mode=MODIFY ops=1 (13.6s)
+[03:03:11]          prompt: Rename the enemy blueprint to BP_SkeletonWarrior
+[03:03:11]          summary: Rename enemy BP
+[03:03:11]          commands: rename_asset
+[03:03:30] [38/92] 5.03 [IT.E] 3/4 | mode=MODIFY ops=2 (18.7s)
+[03:03:30]          prompt: Change the coin's parent class to Pawn
+[03:03:30]          summary: Change coin's parent class to Pawn
+[03:03:30]          commands: find_actors, modify_blueprint
+[03:03:49] [39/92] 5.04 [.T.E] 2/4 | mode=REPLACE ops=1 (18.6s)
+[03:03:49]          prompt: Make BP_EnemyGuard extend Character instead of Actor
+[03:03:49]          summary: Make BP_EnemyGuard extend Character instead of Actor
+[03:03:49]          commands: rename_asset
+[03:04:09] [40/92] 5.05 [ITAE] 4/4 | mode=MODIFY ops=2 (20.5s)
+[03:04:09]          prompt: Rename all the wall blueprints to BP_StoneWall
+[03:04:09]          summary: Rename wall BPs
+[03:04:09]          commands: find_blueprints, rename_asset
+[03:04:22] [41/92] 6.01 [ITAE] 4/4 | mode=QUERY ops=1 (12.3s)
+[03:04:22]          prompt: How many enemies are in the level?
+[03:04:22]          summary: Count enemies
+[03:04:22]          commands: find_actors
+[03:04:33] [42/92] 6.02 [ITAE] 4/4 | mode=QUERY ops=1 (10.4s)
+[03:04:33]          prompt: List all blueprints in the project
+[03:04:33]          summary: List blueprints
+[03:04:33]          commands: find_blueprints
+[03:04:45] [43/92] 6.03 [ITAE] 4/4 | mode=QUERY ops=1 (11.9s)
+[03:04:45]          prompt: Show me all the actors in the level
+[03:04:45]          summary: Show me all the actors in the level
+[03:04:45]          commands: find_actors
+[03:04:57] [44/92] 6.04 [IT.E] 3/4 | mode=QUERY ops=1 (11.0s)
+[03:04:57]          prompt: What materials exist in the project?
+[03:04:57]          summary: List materials
+[03:04:57]          commands: get_level_info
+[03:05:10] [45/92] 6.05 [ITAE] 4/4 | mode=QUERY ops=1 (13.0s)
+[03:05:10]          prompt: Which blueprints have a Health variable?
+[03:05:10]          summary: Which blueprints have a Health variable?
+[03:05:10]          commands: find_blueprints
+[03:05:23] [46/92] 6.06 [ITAE] 4/4 | mode=QUERY ops=1 (12.3s)
+[03:05:23]          prompt: How many coins are placed in the level?
+[03:05:23]          summary: How many coins are there?
+[03:05:23]          commands: find_actors
+[03:05:34] [47/92] 6.07 [ITAE] 4/4 | mode=QUERY ops=1 (11.6s)
+[03:05:34]          prompt: What's in the level right now?
+[03:05:34]          summary: What's in the level right now?
+[03:05:34]          commands: get_level_info
+[03:05:46] [48/92] 6.08 [IT.E] 3/4 | mode=QUERY ops=1 (11.8s)
+[03:05:46]          prompt: Show me the enemy blueprint details
+[03:05:46]          summary: Show enemy blueprint details
+[03:05:46]          commands: get_level_info
+[03:07:08] [49/92] 6.09 [IT..] 2/4 | mode=QUERY ops=0 (81.2s)
+[03:07:08]          prompt: Are there any torches near the entrance?
+[03:07:08]          summary: Are there any torches near the entrance?
+[03:07:23] [50/92] 6.10 [ITAE] 4/4 | mode=QUERY ops=1 (14.8s)
+[03:07:23]          prompt: What components does the enemy have?
+[03:07:23]          summary: What components does the enemy have?
+[03:07:23]          commands: find_blueprints
+[03:07:37] [51/92] 7.01 [ITAE] 4/4 | mode=CREATE ops=1 (13.8s)
+[03:07:37]          prompt: Create a health pickup that heals 25 HP
+[03:07:37]          summary: Create health pickup BP
+[03:07:37]          commands: create_blueprint
+[03:08:06] [52/92] 7.02 [.TAE] 3/4 | mode=MULTI ops=3 (29.7s)
+[03:08:06]          prompt: Make a new enemy that shoots projectiles
+[03:08:06]          summary: Make a new enemy that shoots projectiles
+[03:08:06]          commands: create_blueprint, create_blueprint, modify_blueprint
+[03:09:29] [53/92] 7.03 [.T..] 1/4 | mode=MULTI ops=0 (83.1s)
+[03:09:29]          prompt: Build a pressure plate that opens a door
+[03:09:29]          summary: Build a pressure plate that opens a door
+[03:09:48] [54/92] 7.04 [ITAE] 4/4 | mode=CREATE ops=2 (18.3s)
+[03:09:48]          prompt: Generate a patrol AI for the guards
+[03:09:48]          summary: Generate patrol AI for guards
+[03:09:48]          commands: find_actors, create_behavior_tree
+[03:11:10] [55/92] 7.05 [IT..] 2/4 | mode=CREATE ops=0 (82.4s)
+[03:11:10]          prompt: I need a weapons stats table
+[03:11:10]          summary: I need a weapons stats table
+[03:11:28] [56/92] 7.06 [.TAE] 3/4 | mode=MULTI ops=2 (17.6s)
+[03:11:28]          prompt: Create a wave spawner that sends enemies every 10 seconds
+[03:11:28]          summary: Create wave spawner
+[03:11:28]          commands: create_blueprint, spawn_actor_at
+[03:12:24] [57/92] 7.07 [.T..] 1/4 | mode=MULTI ops=0 (56.4s)
+[03:12:24]          prompt: Make a score HUD with health bar and coin counter
+[03:12:24]          summary: Make a score HUD with health bar and coin counter
+[03:12:36] [58/92] 7.08 [.TAE] 3/4 | mode=SETUP ops=1 (11.8s)
+[03:12:36]          prompt: Set up FPS controls for the game
+[03:12:36]          summary: Setup FPS controls
+[03:12:36]          commands: create_widget_blueprint
+[03:12:49] [59/92] 7.09 [ITAE] 4/4 | mode=MODIFY ops=1 (13.2s)
+[03:12:49]          prompt: Add dark indoor lighting to the level
+[03:12:49]          summary: Add dark indoor lighting to the level
+[03:12:49]          commands: setup_scene_lighting
+[03:13:01] [60/92] 7.10 [ITAE] 4/4 | mode=CREATE ops=1 (11.7s)
+[03:13:01]          prompt: Create a new brick material
+[03:13:01]          summary: Create new brick material
+[03:13:01]          commands: create_material
+[03:13:38] [61/92] 8.01 [ITAE] 4/4 | mode=MULTI ops=5 (37.7s)
+[03:13:38]          prompt: Make a dark dungeon with tough enemies and gold loot
+[03:13:38]          summary: Make a dark dungeon with tough enemies and gold loot
+[03:13:38]          commands: setup_scene_lighting, create_blueprint, spawn_actor_at, create_blueprint, spawn_actor_at
+[03:15:01] [62/92] 8.02 [ITA.] 3/4 | mode=MULTI ops=0 (82.4s)
+[03:15:01]          prompt: Create a patrol enemy, give it 200 HP, and spawn 5 of them
+[03:15:01]          summary: Create a patrol enemy, give it 200 HP, and spawn 5 of them
+[03:15:28] [63/92] 8.03 [ITAE] 4/4 | mode=MULTI ops=3 (26.9s)
+[03:15:28]          prompt: Add torches to the hallway and make them glow warm
+[03:15:28]          summary: Add torches to the hallway and make them glow warm
+[03:15:28]          commands: create_blueprint, spawn_actor_at, batch_set_property
+[03:15:54] [64/92] 8.04 [ITAE] 4/4 | mode=MULTI ops=3 (26.3s)
+[03:15:54]          prompt: Set up the arena: FPS controls, dark lighting, spawn 3 enemies
+[03:15:54]          summary: Set up the arena: FPS controls dark lighting spawn 
+[03:15:54]          commands: setup_scene_lighting, create_blueprint, spawn_actor_at
+[03:16:38] [65/92] 8.05 [ITAE] 4/4 | mode=MULTI ops=6 (44.2s)
+[03:16:38]          prompt: Create a boss room with one strong enemy, health pickups, and dramatic lighting
+[03:16:38]          summary: Create boss room with pickups and dramatic lighting
+[03:16:38]          commands: create_blueprint, create_blueprint, create_blueprint, create_blueprint, create_blueprint, setup_scene_lighting
+[03:17:00] [66/92] 8.06 [ITAE] 4/4 | mode=MULTI ops=2 (21.4s)
+[03:17:00]          prompt: Replace all stone with marble and make the room brighter
+[03:17:00]          summary: Replace stone with marble and make the room brighter
+[03:17:00]          commands: batch_replace_material, setup_scene_lighting
+[03:17:29] [67/92] 8.07 [ITAE] 4/4 | mode=MULTI ops=4 (29.8s)
+[03:17:29]          prompt: Delete all coins, create a gem pickup worth 100, and spawn 8 of them
+[03:17:29]          summary: Delete coins and create gems
+[03:17:29]          commands: find_actors, batch_delete_actors, create_blueprint, spawn_actor_at
+[03:17:55] [68/92] 8.08 [IT..] 2/4 | mode=MULTI ops=0 (25.5s)
+[03:17:55]          prompt: Create an enemy, a behavior tree for it, and wire them together
+[03:17:55]          summary: Create an enemy, a behavior tree for it, and wire them together
+[03:18:18] [69/92] 8.09 [ITAE] 4/4 | mode=MULTI ops=3 (23.5s)
+[03:18:18]          prompt: Build a complete checkpoint system with save, respawn, and a visual indicator
+[03:18:18]          summary: Build a complete checkpoint system
+[03:18:18]          commands: create_blueprint, create_blueprint, create_blueprint
+[03:19:04] [70/92] 8.10 [ITAE] 4/4 | mode=MULTI ops=6 (45.3s)
+[03:19:04]          prompt: Make all enemies tougher, add more coins, and change the walls to brick
+[03:19:04]          summary: Make enemies tougher, add more coins and change the walls to brick
+[03:19:04]          commands: find_blueprints, batch_set_variable, find_actors, batch_spawn_actor_at, find_assets, batch_replace_material
+[03:19:23] [71/92] 9.01 [ITAE] 4/4 | mode=MODIFY ops=2 (19.0s)
+[03:19:23]          prompt: These walls are too plain
+[03:19:23]          summary: Add decals to walls
+[03:19:23]          commands: find_assets, batch_add_component
+[03:19:29] [72/92] 9.02 [ITAE] 4/4 | mode=CLARIFY ops=0 (6.4s)
+[03:19:29]          prompt: The level feels empty
+[03:19:29]          summary: The level feels empty
+[03:19:38] [73/92] 9.03 [ITAE] 4/4 | mode=CLARIFY ops=0 (8.4s)
+[03:19:38]          prompt: Make it better
+[03:19:38]          summary: What specifically would you like to improve?
+[03:19:45] [74/92] 9.04 [I.AE] 3/4 | mode=CLARIFY ops=0 (7.4s)
+[03:19:45]          prompt: Something isn't right with the enemies
+[03:19:45]          summary: Something is not right with the enemies
+[03:19:53] [75/92] 9.05 [ITAE] 4/4 | mode=CLARIFY ops=0 (7.9s)
+[03:19:53]          prompt: I want more variety
+[03:19:53]          summary: What do you mean by "more variety"?
+[03:19:59] [76/92] 9.06 [I.AE] 3/4 | mode=CLARIFY ops=0 (6.4s)
+[03:19:59]          prompt: This room needs atmosphere
+[03:19:59]          summary: This room needs atmosphere
+[03:20:07] [77/92] 9.07 [.TA.] 2/4 | mode=HELP ops=0 (7.3s)
+[03:20:07]          prompt: Can you help me with the boss fight?
+[03:20:07]          summary: Can you help me with the boss fight?
+[03:20:26] [78/92] 9.08 [ITAE] 4/4 | mode=MODIFY ops=2 (19.5s)
+[03:20:26]          prompt: Too many coins
+[03:20:26]          summary: Too many coins
+[03:20:26]          commands: find_actors, batch_delete_actors
+[03:20:46] [79/92] 9.09 [ITAE] 4/4 | mode=MODIFY ops=2 (19.4s)
+[03:20:46]          prompt: The game is too easy
+[03:20:46]          summary: Make the game harder
+[03:20:46]          commands: find_blueprints, batch_set_variable
+[03:20:52] [80/92] 9.10 [.TA.] 2/4 | mode=HELP ops=0 (6.3s)
+[03:20:52]          prompt: I'm stuck
+[03:20:52]          summary: I'm stuck!
+[03:21:16] [81/92] 10.01 [IT.E] 3/4 | mode=MODIFY ops=2 (24.0s)
+[03:21:16]          prompt: Cambia la textura de las paredes a ladrillo
+[03:21:16]          summary: Cambiar la textura de las paredes a ladrillo
+[03:21:16]          commands: find_blueprints, batch_set_property
+[03:21:16]          (Spanish: Change wall texture to brick)
+[03:21:40] [82/92] 10.02 [ITAE] 4/4 | mode=MODIFY ops=2 (24.1s)
+[03:21:40]          prompt: Augmente la santé de tous les ennemis à 300
+[03:21:40]          summary: Augmente la santé de tous les ennemis à 300
+[03:21:40]          commands: find_blueprints, batch_set_variable
+[03:21:40]          (French: Set enemy health to 300)
+[03:22:00] [83/92] 10.03 [ITAE] 4/4 | mode=MODIFY ops=2 (19.2s)
+[03:22:00]          prompt: Lösche alle Goldmünzen
+[03:22:00]          summary: Lösche alle Goldmünzen
+[03:22:00]          commands: find_actors, batch_delete_actors
+[03:22:00]          (German: Delete all gold coins)
+[03:22:23] [84/92] 10.04 [.T.E] 2/4 | mode=MODIFY ops=2 (23.2s)
+[03:22:23]          prompt: Crie um inimigo com 500 de vida
+[03:22:23]          summary: Crie um inimigo com500 de vida
+[03:22:23]          commands: find_blueprints, batch_set_variable
+[03:22:23]          (Portuguese: Create enemy with 500 HP)
+[03:22:42] [85/92] 10.05 [I.AE] 3/4 | mode=MODIFY ops=2 (18.8s)
+[03:22:42]          prompt: ???????????????
+[03:22:42]          summary: Change material of coin actor to enemy
+[03:22:42]          commands: find_actors, batch_change_material
+[03:22:42]          (Japanese: Change wall material to brick)
+[03:23:02] [86/92] 10.06 [ITAE] 4/4 | mode=MODIFY ops=2 (19.8s)
+[03:23:02]          prompt: ?? ??? 200?? ?????
+[03:23:02]          summary: Set enemy health to 200
+[03:23:02]          commands: find_blueprints, batch_set_variable
+[03:23:02]          (Korean: Set enemy health to 200)
+[03:23:22] [87/92] 10.07 [ITAE] 4/4 | mode=MODIFY ops=2 (20.3s)
+[03:23:22]          prompt: ??????????50
+[03:23:22]          summary: Set damage of all enemies to 50
+[03:23:22]          commands: find_blueprints, batch_set_variable
+[03:23:22]          (Chinese: Set enemy damage to 50)
+[03:23:41] [88/92] 10.08 [I.AE] 3/4 | mode=MODIFY ops=2 (18.4s)
+[03:23:41]          prompt: ????? ??? ?????? ? ??????
+[03:23:41]          summary: ??????? ??? ?????? ? ??????
+[03:23:41]          commands: find_actors, batch_delete_actors
+[03:23:41]          (Russian: Delete all torches)
+[03:23:58] [89/92] 10.09 [ITAE] 4/4 | mode=MODIFY ops=2 (17.1s)
+[03:23:58]          prompt: ???? ???? ??????? ???????
+[03:23:58]          summary: Delete coin actors
+[03:23:58]          commands: find_actors, batch_delete_actors
+[03:23:58]          (Arabic: Delete all gold coins)
+[03:24:25] [90/92] 10.10 [ITAE] 4/4 | mode=MODIFY ops=3 (26.7s)
+[03:24:25]          prompt: ??? ???????? ?? ???? ????
+[03:24:25]          summary: Make enemies tougher
+[03:24:25]          commands: find_blueprints, batch_set_variable, batch_set_variable
+[03:24:25]          (Hindi: Make enemies faster)
+[03:24:45] [91/92] 10.11 [ITAE] 4/4 | mode=MODIFY ops=2 (19.7s)
+[03:24:45]          prompt: T?m d??manlar? sil
+[03:24:45]          summary: Silence all enemies
+[03:24:45]          commands: find_actors, batch_set_variable
+[03:24:45]          (Turkish: Delete all enemies)
+[03:25:06] [92/92] 10.12 [.T.E] 2/4 | mode=MODIFY ops=2 (20.8s)
+[03:25:06]          prompt: Erstelle einen Gesundheits-Pickup
+[03:25:06]          summary: Erstelle einen Gesundheits-Pickup
+[03:25:06]          commands: find_blueprints, rename_asset
+[03:25:06]          (German: Create health pickup)
+
+================================================================================
+ARCWRIGHT INTENT TEST SUITE — RESULTS
+================================================================================
+
+Category                                      Tests  Intent  Target  Action    Exec   Score
+------------------------------------------------------------------------------------------
+   1. Simple Modify — Material Changes            10  10/10   10/10    2/10    8/10   30/40
+   2. Simple Modify — Variable Changes            10  10/10   10/10   10/10   10/10   40/40
+   3. Simple Modify — Transform & Properties      10  10/10    8/10    9/10    9/10   36/40
+   4. Simple Modify — Component Changes            5   5/5     5/5     3/5     3/5    16/20
+   5. Simple Modify — Rename & Reparent            5   4/5     5/5     3/5     5/5    17/20
+   6. Query — Find & Inspect                      10  10/10   10/10    7/10    9/10   36/40
+   7. Create — New Assets                         10   5/10   10/10    7/10    7/10   29/40
+   8. Multi — Complex Multi-Step                  10  10/10   10/10    9/10    8/10   37/40
+   9. Conversational / Vague                      10   8/10    8/10   10/10    8/10   34/40
+  10. Non-English (12 Languages)                  12  10/12   10/12    9/12   12/12   41/48
+------------------------------------------------------------------------------------------
+  TOTAL                                          92  82/92   86/92   69/92   79/92  316/368
+
+  SCORE: 316/368 (85.9%)
+  GRADE: Significant gaps, needs iteration
+
+  FAILURES (34):
+    1.01 [ITaE] got=MODIFY expected=MODIFY | Change the wall texture to brick
+    1.03 [ITaE] got=MODIFY expected=MODIFY | Swap the stone material on the walls for concrete
+    1.05 [ITaE] got=MODIFY expected=MODIFY | The walls need a different texture, use wood
+    1.06 [ITae] got=MODIFY expected=MODIFY | Give the floor a lava material
+    1.07 [ITae] got=MODIFY expected=MODIFY | Update torch materials to something warmer
+    1.08 [ITaE] got=CLARIFY expected=MODIFY/CLARIFY | I want the coins to look more realistic
+    1.09 [ITaE] got=MODIFY expected=MODIFY | Everything stone should be brick instead
+    1.10 [ITaE] got=MODIFY expected=MODIFY | Paint the walls red
+    3.04 [ItAE] got=MODIFY expected=MODIFY | Show all hidden actors
+    3.06 [Itae] got=MODIFY expected=MODIFY | Rotate all enemies to face north
+    4.01 [ITae] got=MODIFY expected=MODIFY | Add a point light to every torch
+    4.05 [ITae] got=MODIFY expected=MODIFY | Every health potion needs a point light
+    5.03 [ITaE] got=MODIFY expected=MODIFY | Change the coin's parent class to Pawn
+    5.04 [iTaE] got=REPLACE expected=MODIFY | Make BP_EnemyGuard extend Character instead of Actor
+    6.04 [ITaE] got=QUERY expected=QUERY | What materials exist in the project?
+    6.08 [ITaE] got=QUERY expected=QUERY | Show me the enemy blueprint details
+    6.09 [ITae] got=QUERY expected=QUERY | Are there any torches near the entrance?
+    7.02 [iTAE] got=MULTI expected=CREATE | Make a new enemy that shoots projectiles
+    7.03 [iTae] got=MULTI expected=CREATE | Build a pressure plate that opens a door
+    7.05 [ITae] got=CREATE expected=CREATE | I need a weapons stats table
+    7.06 [iTAE] got=MULTI expected=CREATE | Create a wave spawner that sends enemies every 10 seconds
+    7.07 [iTae] got=MULTI expected=CREATE | Make a score HUD with health bar and coin counter
+    7.08 [iTAE] got=SETUP expected=CREATE/MULTI | Set up FPS controls for the game
+    8.02 [ITAe] got=MULTI expected=MULTI | Create a patrol enemy, give it 200 HP, and spawn 5 of them
+    8.08 [ITae] got=MULTI expected=MULTI | Create an enemy, a behavior tree for it, and wire them toget
+    9.04 [ItAE] got=CLARIFY expected=CLARIFY | Something isn't right with the enemies
+    9.06 [ItAE] got=CLARIFY expected=MULTI/CLARIFY/CREATE | This room needs atmosphere
+    9.07 [iTAe] got=HELP expected=CLARIFY | Can you help me with the boss fight?
+    9.10 [iTAe] got=HELP expected=CLARIFY | I'm stuck
+    10.01 [ITaE] got=MODIFY expected=MODIFY | Cambia la textura de las paredes a ladrillo
+    10.04 [iTaE] got=MODIFY expected=CREATE | Crie um inimigo com 500 de vida
+Traceback (most recent call last):
+  File "C:\BlueprintLLM\scripts\tests\test_intent_suite.py", line 799, in <module>
+    main()
+  File "C:\BlueprintLLM\scripts\tests\test_intent_suite.py", line 785, in main
+    total_score, max_possible = print_report(results)
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BlueprintLLM\scripts\tests\test_intent_suite.py", line 679, in print_report
+    print(f"    {t.test_id} [{marks}] got={mode} expected={expected} | {t.prompt[:60]}{note}")
+  File "C:\Program Files\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 46-60: character maps to <undefined>

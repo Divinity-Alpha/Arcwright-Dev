@@ -1,0 +1,35 @@
+{
+  "id": "gear_indicator",
+  "name": "Gear Indicator",
+  "category": "hud",
+  "description": "Current gear for racing",
+  "default_anchor": "BottomCenter",
+  "default_offset": [
+    0,
+    -60
+  ],
+  "default_size": [
+    60,
+    60
+  ],
+  "variables": [
+    {
+      "name": "CurrentGear",
+      "type": "Integer",
+      "default": 1
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "TEXT",
+    "name": "GearText",
+    "properties": {
+      "text": "BIND:\"{CurrentGear}\"",
+      "font_size": "44",
+      "color": "$primary",
+      "bold": "true",
+      "justification": "Center"
+    },
+    "children": []
+  }
+}

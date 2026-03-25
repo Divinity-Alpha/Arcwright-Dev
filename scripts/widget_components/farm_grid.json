@@ -1,0 +1,82 @@
+{
+  "id": "farm_grid",
+  "name": "Farm Grid",
+  "category": "genre",
+  "description": "Plot grid with growth stages and timers",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    400,
+    350
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "FarmRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "FarmTitle",
+        "properties": {
+          "text": "YOUR FARM",
+          "font_size": "20",
+          "color": "$accent",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "GRID",
+        "name": "PlotGrid",
+        "properties": {
+          "columns": "4",
+          "col_spacing": "6",
+          "row_spacing": "6"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "Plot1",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "64",
+              "size_y": "64"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "FarmActions",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "WaterBtn",
+            "properties": {
+              "text": "Water",
+              "font_size": "13"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "HarvestBtn",
+            "properties": {
+              "text": "Harvest",
+              "font_size": "13"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

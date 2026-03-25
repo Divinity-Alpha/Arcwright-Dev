@@ -1,0 +1,69 @@
+{
+  "id": "compass",
+  "name": "Compass",
+  "category": "hud",
+  "description": "Horizontal strip with N/S/E/W",
+  "default_anchor": "TopCenter",
+  "default_offset": [
+    0,
+    8
+  ],
+  "default_size": [
+    400,
+    30
+  ],
+  "variables": [
+    {
+      "name": "Bearing",
+      "type": "Float",
+      "default": 0.0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "CompassStrip",
+    "properties": {
+      "spacing": "0"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "CompassW",
+        "properties": {
+          "text": "W",
+          "font_size": "14",
+          "color": "$text_muted"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "CompassN",
+        "properties": {
+          "text": "N",
+          "font_size": "16",
+          "color": "$accent",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "CompassE",
+        "properties": {
+          "text": "E",
+          "font_size": "14",
+          "color": "$text_muted"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "CompassS",
+        "properties": {
+          "text": "S",
+          "font_size": "14",
+          "color": "$text_muted"
+        }
+      }
+    ]
+  }
+}

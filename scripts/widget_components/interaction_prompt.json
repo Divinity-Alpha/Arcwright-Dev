@@ -1,0 +1,77 @@
+{
+  "id": "interaction_prompt",
+  "name": "Interaction Prompt",
+  "category": "hud",
+  "description": "Press [E] to Open",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    80
+  ],
+  "default_size": [
+    300,
+    40
+  ],
+  "variables": [
+    {
+      "name": "ActionText",
+      "type": "String",
+      "default": "Interact"
+    },
+    {
+      "name": "KeyName",
+      "type": "String",
+      "default": "E"
+    },
+    {
+      "name": "IsVisible",
+      "type": "Bool",
+      "default": false
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "PromptRow",
+    "properties": {
+      "spacing": "8"
+    },
+    "animations": [
+      {
+        "trigger": "OnShow",
+        "type": "FadeIn",
+        "params": {
+          "duration": 0.3
+        }
+      },
+      {
+        "trigger": "OnHide",
+        "type": "FadeOut",
+        "params": {
+          "duration": 0.2
+        }
+      }
+    ],
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "KeyLabel",
+        "properties": {
+          "text": "BIND:\"[{KeyName}]\"",
+          "font_size": "18",
+          "color": "$accent",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "ActionLabel",
+        "properties": {
+          "text": "BIND:\"{ActionText}\"",
+          "font_size": "16",
+          "color": "$text"
+        }
+      }
+    ]
+  }
+}

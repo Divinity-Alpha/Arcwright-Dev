@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "name": "BP_MovingPlatform",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_Tick",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveTick",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "GetVar",
+      "params": {},
+      "ue_class": "UK2Node_VariableGet",
+      "param_key": "Variable",
+      "position": [
+        0,
+        150
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "AddFloat",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Add_FloatFloat",
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "SetVar",
+      "params": {},
+      "ue_class": "UK2Node_VariableSet",
+      "param_key": "Variable",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "GreaterThan",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Greater_FloatFloat",
+      "position": [
+        0,
+        450
+      ]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "Branch",
+      "params": {},
+      "ue_class": "UK2Node_IfThenElse",
+      "position": [
+        60600,
+        0
+      ]
+    },
+    {
+      "id": "n7",
+      "dsl_type": "SubtractFloat",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Subtract_FloatFloat",
+      "position": [
+        0,
+        600
+      ]
+    },
+    {
+      "id": "n8",
+      "dsl_type": "SetVar",
+      "params": {},
+      "ue_class": "UK2Node_VariableSet",
+      "param_key": "Variable",
+      "position": [
+        59700,
+        0
+      ]
+    },
+    {
+      "id": "n9",
+      "dsl_type": "LessThan",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Less_FloatFloat",
+      "position": [
+        0,
+        750
+      ]
+    },
+    {
+      "id": "n10",
+      "dsl_type": "Branch",
+      "params": {},
+      "ue_class": "UK2Node_IfThenElse",
+      "position": [
+        0,
+        900
+      ]
+    },
+    {
+      "id": "n11",
+      "dsl_type": "AddFloat",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Add_FloatFloat",
+      "position": [
+        0,
+        1050
+      ]
+    },
+    {
+      "id": "n12",
+      "dsl_type": "SetVar",
+      "params": {},
+      "ue_class": "UK2Node_VariableSet",
+      "param_key": "Variable",
+      "position": [
+        60300,
+        0
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n4",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n4",
+      "src_pin": "Then",
+      "dst_node": "n6",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n6",
+      "src_pin": "True",
+      "dst_node": "n8",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n8",
+      "src_pin": "Then",
+      "dst_node": "n6",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n6",
+      "src_pin": "False",
+      "dst_node": "n12",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n12",
+      "src_pin": "Then",
+      "dst_node": "n6",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n1",
+      "src_pin": "DeltaSeconds",
+      "dst_node": "n3",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n2",
+      "src_pin": "Value",
+      "dst_node": "n3",
+      "dst_pin": "B",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n3",
+      "src_pin": "ReturnValue",
+      "dst_node": "n4",
+      "dst_pin": "V",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n3",
+      "src_pin": "ReturnValue",
+      "dst_node": "n5",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n5",
+      "src_pin": "ReturnValue",
+      "dst_node": "n6",
+      "dst_pin": "C",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n3",
+      "src_pin": "ReturnValue",
+      "dst_node": "n7",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n7",
+      "src_pin": "ReturnValue",
+      "dst_node": "n8",
+      "dst_pin": "V",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n7",
+      "src_pin": "ReturnValue",
+      "dst_node": "n9",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n9",
+      "src_pin": "ReturnValue",
+      "dst_node": "n10",
+      "dst_pin": "C",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n7",
+      "src_pin": "ReturnValue",
+      "dst_node": "n11",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n11",
+      "src_pin": "ReturnValue",
+      "dst_node": "n12",
+      "dst_pin": "V",
+      "data_type": null
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "vehicle_dashboard",
+  "name": "Vehicle Dashboard",
+  "category": "genre",
+  "description": "Speedometer, RPM, fuel, damage indicators",
+  "default_anchor": "BottomCenter",
+  "default_offset": [
+    0,
+    -20
+  ],
+  "default_size": [
+    500,
+    200
+  ],
+  "variables": [
+    {
+      "name": "Speed",
+      "type": "Integer",
+      "default": 0
+    },
+    {
+      "name": "RPM",
+      "type": "Float",
+      "default": 0.0
+    },
+    {
+      "name": "Fuel",
+      "type": "Float",
+      "default": 100.0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "DashRoot",
+    "properties": {
+      "spacing": "20"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "SpeedText",
+        "properties": {
+          "text": "BIND:\"{Speed}\"",
+          "font_size": "48",
+          "color": "$text",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "GaugeCol",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "RPMText",
+            "properties": {
+              "text": "BIND:\"RPM: {RPM}\"",
+              "font_size": "14",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "GearText",
+            "properties": {
+              "text": "BIND:\"Gear: {CurrentGear}\"",
+              "font_size": "18",
+              "color": "$primary",
+              "bold": "true"
+            }
+          }
+        ]
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "FuelBar",
+        "properties": {
+          "percent": "BIND:Fuel/100",
+          "fill_color": "$warning",
+          "bar_color": "$surface",
+          "size_x": "120",
+          "size_y": "16"
+        }
+      }
+    ]
+  }
+}

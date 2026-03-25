@@ -1,0 +1,81 @@
+{
+  "id": "level_up_screen",
+  "name": "Level Up Screen",
+  "category": "character",
+  "description": "Level number, stat increases, new ability, continue button",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    400,
+    400
+  ],
+  "variables": [
+    {
+      "name": "NewLevel",
+      "type": "Integer",
+      "default": 2
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "LevelUpRoot",
+    "properties": {
+      "spacing": "12"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "LevelUpTitle",
+        "properties": {
+          "text": "LEVEL UP!",
+          "font_size": "36",
+          "color": "$warning",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "NewLevelText",
+        "properties": {
+          "text": "BIND:\"Level {NewLevel}\"",
+          "font_size": "28",
+          "color": "$accent",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "StatIncrease",
+        "properties": {
+          "text": "+2 Strength\n+1 Dexterity",
+          "font_size": "16",
+          "color": "$accent"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "NewAbility",
+        "properties": {
+          "text": "NEW: Power Strike",
+          "font_size": "18",
+          "color": "$warning",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "BUTTON",
+        "name": "ContinueBtn",
+        "properties": {
+          "text": "CONTINUE",
+          "font_size": "16"
+        }
+      }
+    ]
+  }
+}

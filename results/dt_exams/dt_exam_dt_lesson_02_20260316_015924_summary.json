@@ -1,0 +1,65 @@
+{
+  "lesson_id": "dt_lesson_02",
+  "lesson_name": "Advanced Data Tables: Vectors, Booleans, Defaults, Complex Schemas",
+  "domain": "data_table",
+  "model": "models/dt-lora-v5/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260316_015924",
+  "total_prompts": 20,
+  "valid_syntax": 20,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 91.8,
+  "timeout_count": 0,
+  "per_category": {
+    "vectors": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "heavy_defaults": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 96.2
+    },
+    "skill_tree": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 76.9
+    },
+    "map_data": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 91.6
+    },
+    "audio_config": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 84.6
+    },
+    "many_columns": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "status_effects": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 92.3
+    },
+    "quest": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 80.8
+    },
+    "ui_config": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 95.5
+    },
+    "progression": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "lesson_id": "bt_lesson_03",
+  "lesson_name": "Nested Trees, Blackboard Operations, Abort Modes, and Result Handling",
+  "domain": "behavior_tree",
+  "model": "models/bt-lora-v3/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260309_192341",
+  "total_prompts": 20,
+  "valid_syntax": 19,
+  "valid_syntax_pct": 95.0,
+  "avg_similarity_score": 87.2,
+  "timeout_count": 0,
+  "per_category": {
+    "nested_selector_in_sequence": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 82.7
+    },
+    "nested_sequence_in_selector": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 58.8
+    },
+    "blackboard_set_clear_v2": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 85.8
+    },
+    "blackboard_set_clear_v3": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "abort_self": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.3
+    },
+    "abort_both": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "abort_lower_priority": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 88.2
+    },
+    "finish_result_v2": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 90.9
+    },
+    "finish_result_v3": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "deep_nesting": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 85.4
+    },
+    "complex_blackboard_flow": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 88.0
+    },
+    "abort_mixed": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 95.5
+    },
+    "nested_with_services": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 73.2
+    },
+    "four_branch_selector": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 96.4
+    }
+  }
+}

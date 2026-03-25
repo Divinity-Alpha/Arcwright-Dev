@@ -1,0 +1,78 @@
+{
+  "lesson_id": "lesson_20",
+  "lesson_name": "Compositional Mid-Tier: Multi-Pattern Systems (15-30 nodes)",
+  "model": "models/blueprint-lora-v13/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260315_090336",
+  "total_prompts": 15,
+  "valid_syntax": 15,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 92.1,
+  "per_category": {
+    "timer_counter_threshold": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "overlap_score_destroy": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 95.2
+    },
+    "overlap_state_toggle": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "health_damage_death": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 98.1
+    },
+    "key_lock_door": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "shop_widget": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "checkpoint_respawn": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "day_night_cycle": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "turret_range_fire": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "score_highscore": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 44.4
+    },
+    "moving_platform": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 78.9
+    },
+    "lava_damage_zone": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 81.2
+    },
+    "teleporter_pair": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 85.7
+    }
+  }
+}

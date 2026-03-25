@@ -1,0 +1,81 @@
+{
+  "lesson_id": "dt_lesson_04",
+  "lesson_name": "Showcase Prompts: Marketing-Ready Data Table Patterns",
+  "version": "v1",
+  "domain": "data_table",
+  "description": "Marketing showcase prompts for DT domain. Every prompt will appear in docs, landing page, or demo video.",
+  "prompts": [
+    {
+      "id": "DT04_01",
+      "category": "showcase_weapons",
+      "instruction": "Create a weapons table with name, damage, fire rate, reload time, ammo capacity, and weapon type",
+      "expected_dsl": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN ReloadTime: Float = 2.0\nCOLUMN AmmoCapacity: Int = 30\nCOLUMN WeaponType: String\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 1.5, 12, \"Sidearm\"\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 2.5, 8, \"Primary\"\nROW AssaultRifle: \"Assault Rifle\", 22.0, 0.1, 2.0, 30, \"Primary\"\nROW SniperRifle: \"Sniper Rifle\", 90.0, 2.0, 3.0, 5, \"Special\""
+    },
+    {
+      "id": "DT04_02",
+      "category": "showcase_weapons",
+      "instruction": "Make an armor table with armor name, defense rating, weight, durability, required level, and armor slot",
+      "expected_dsl": "DATATABLE: DT_Armor\nSTRUCT: FArmorData\n\nCOLUMN ArmorName: String\nCOLUMN Defense: Int\nCOLUMN Weight: Float\nCOLUMN Durability: Int = 100\nCOLUMN RequiredLevel: Int = 1\nCOLUMN Slot: String\n\nROW IronHelm: \"Iron Helmet\", 5, 3.0, 80, 3, \"Head\"\nROW PlateArmor: \"Plate Armor\", 15, 20.0, 200, 10, \"Chest\"\nROW LeatherBoots: \"Leather Boots\", 3, 2.0, 60, 1, \"Feet\"\nROW SteelShield: \"Steel Shield\", 10, 8.0, 150, 5, \"Offhand\""
+    },
+    {
+      "id": "DT04_03",
+      "category": "showcase_enemies",
+      "instruction": "Make an enemy stats table with enemy name, health, damage, speed, detection range, attack range, XP reward, and loot table name",
+      "expected_dsl": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyStats\n\nCOLUMN EnemyName: String\nCOLUMN Health: Float\nCOLUMN Damage: Float\nCOLUMN Speed: Float = 300.0\nCOLUMN DetectionRange: Float = 1000.0\nCOLUMN AttackRange: Float = 200.0\nCOLUMN XPReward: Int = 10\nCOLUMN LootTable: String = \"\"\n\nROW Goblin: \"Goblin\", 50.0, 8.0, 400.0, 800.0, 150.0, 15, \"LT_Goblin\"\nROW Skeleton: \"Skeleton\", 80.0, 12.0, 250.0, 600.0, 200.0, 25, \"LT_Skeleton\"\nROW Dragon: \"Dragon\", 500.0, 50.0, 200.0, 2000.0, 500.0, 500, \"LT_Dragon\""
+    },
+    {
+      "id": "DT04_04",
+      "category": "showcase_enemies",
+      "instruction": "Create a character class table. Each class has a name, base health, base mana, strength, dexterity, intelligence, starting weapon, and description",
+      "expected_dsl": "DATATABLE: DT_Classes\nSTRUCT: FCharacterClass\n\nCOLUMN ClassName: String\nCOLUMN BaseHealth: Float\nCOLUMN BaseMana: Float\nCOLUMN Strength: Int\nCOLUMN Dexterity: Int\nCOLUMN Intelligence: Int\nCOLUMN StartingWeapon: String\nCOLUMN Description: Text\n\nROW Warrior: \"Warrior\", 150.0, 30.0, 10, 5, 3, \"Iron Sword\", \"A mighty fighter\"\nROW Mage: \"Mage\", 80.0, 120.0, 3, 4, 12, \"Oak Staff\", \"Master of the arcane\"\nROW Rogue: \"Rogue\", 100.0, 60.0, 5, 12, 5, \"Steel Dagger\", \"Swift and deadly\"\nROW Paladin: \"Paladin\", 130.0, 50.0, 8, 4, 6, \"Holy Mace\", \"Blessed warrior\""
+    },
+    {
+      "id": "DT04_05",
+      "category": "showcase_progression",
+      "instruction": "Create a level-up requirements table. Each level has required XP, health bonus, damage bonus, and what skill unlocks at that level",
+      "expected_dsl": "DATATABLE: DT_LevelUp\nSTRUCT: FLevelRequirement\n\nCOLUMN Level: Int\nCOLUMN RequiredXP: Int\nCOLUMN HealthBonus: Float = 0.0\nCOLUMN DamageBonus: Float = 0.0\nCOLUMN UnlockSkill: String = \"\"\n\nROW Lv1: 1, 0, 0.0, 0.0, \"Basic Attack\"\nROW Lv2: 2, 100, 10.0, 2.0, \"Shield Block\"\nROW Lv3: 3, 300, 15.0, 3.0, \"Power Strike\"\nROW Lv4: 4, 600, 20.0, 5.0, \"Fireball\"\nROW Lv5: 5, 1000, 30.0, 8.0, \"Ultimate\"" 
+    },
+    {
+      "id": "DT04_06",
+      "category": "showcase_progression",
+      "instruction": "Build a shop inventory with item name, buy price, sell price, stock quantity, restock time in hours, and required player level",
+      "expected_dsl": "DATATABLE: DT_ShopInventory\nSTRUCT: FShopItem\n\nCOLUMN ItemName: String\nCOLUMN BuyPrice: Int\nCOLUMN SellPrice: Int\nCOLUMN Stock: Int = 10\nCOLUMN RestockHours: Float = 24.0\nCOLUMN RequiredLevel: Int = 1\n\nROW HealthPotion: \"Health Potion\", 25, 12, 20, 12.0, 1\nROW IronSword: \"Iron Sword\", 150, 75, 3, 48.0, 3\nROW ManaPotion: \"Mana Potion\", 30, 15, 15, 12.0, 2\nROW SteelArmor: \"Steel Armor\", 500, 250, 1, 72.0, 8"
+    },
+    {
+      "id": "DT04_07",
+      "category": "showcase_progression",
+      "instruction": "Make an achievement table with achievement name, title, description, unlock condition, target value, and XP reward",
+      "expected_dsl": "DATATABLE: DT_Achievements\nSTRUCT: FAchievementInfo\n\nCOLUMN AchievementName: String\nCOLUMN Title: String\nCOLUMN Description: Text\nCOLUMN Condition: String\nCOLUMN TargetValue: Int\nCOLUMN RewardXP: Int = 0\n\nROW FirstKill: \"FirstBlood\", \"First Blood\", \"Defeat your first enemy\", \"EnemiesKilled\", 1, 50\nROW Hoarder: \"Hoarder\", \"Hoarder\", \"Collect 100 items\", \"ItemsCollected\", 100, 200\nROW Survivor: \"Survivor\", \"Survivor\", \"Survive 10 waves\", \"WavesSurvived\", 10, 500\nROW Legend: \"Legend\", \"Legendary\", \"Defeat the final boss\", \"BossesDefeated\", 1, 1000"
+    },
+    {
+      "id": "DT04_08",
+      "category": "showcase_config",
+      "instruction": "Build a difficulty settings table with difficulty name, enemy health multiplier, enemy damage multiplier, player damage multiplier, XP rate, and loot drop rate",
+      "expected_dsl": "DATATABLE: DT_Difficulty\nSTRUCT: FDifficultyConfig\n\nCOLUMN DifficultyName: String\nCOLUMN EnemyHealthMult: Float = 1.0\nCOLUMN EnemyDamageMult: Float = 1.0\nCOLUMN PlayerDamageMult: Float = 1.0\nCOLUMN XPRate: Float = 1.0\nCOLUMN LootDropRate: Float = 1.0\n\nROW Easy: \"Easy\", 0.5, 0.5, 1.5, 1.5, 1.5\nROW Normal: \"Normal\", 1.0, 1.0, 1.0, 1.0, 1.0\nROW Hard: \"Hard\", 1.5, 1.5, 0.8, 0.75, 0.75\nROW Nightmare: \"Nightmare\", 2.5, 2.0, 0.5, 0.5, 0.5"
+    },
+    {
+      "id": "DT04_09",
+      "category": "showcase_config",
+      "instruction": "Create a wave configuration table for a survival game with wave number, enemy type, enemy count, spawn interval, bonus enemy health, and boss flag",
+      "expected_dsl": "DATATABLE: DT_Waves\nSTRUCT: FWaveConfig\n\nCOLUMN WaveNumber: Int\nCOLUMN EnemyType: String\nCOLUMN EnemyCount: Int\nCOLUMN SpawnInterval: Float = 2.0\nCOLUMN BonusHealth: Float = 0.0\nCOLUMN IsBoss: Bool = false\n\nROW Wave1: 1, \"Goblin\", 3, 3.0, 0.0, false\nROW Wave2: 2, \"Goblin\", 5, 2.5, 0.0, false\nROW Wave3: 3, \"Skeleton\", 4, 2.0, 10.0, false\nROW Wave4: 4, \"Goblin\", 8, 1.5, 0.0, false\nROW Wave5: 5, \"Dragon\", 1, 0.0, 100.0, true"
+    },
+    {
+      "id": "DT04_10",
+      "category": "showcase_quest",
+      "instruction": "Create a quest table with quest name, description, quest giver, required level, XP reward, gold reward, quest type, and prerequisite quest",
+      "expected_dsl": "DATATABLE: DT_Quests\nSTRUCT: FQuestInfo\n\nCOLUMN QuestName: String\nCOLUMN Description: Text\nCOLUMN QuestGiver: String\nCOLUMN RequiredLevel: Int = 1\nCOLUMN XPReward: Int\nCOLUMN GoldReward: Int\nCOLUMN QuestType: String = \"Side\"\nCOLUMN Prerequisite: String = \"\"\n\nROW MainQ1: \"Dragon Slayer\", \"Defeat the dragon in the northern cave\", \"Elder\", 10, 1000, 500, \"Main\", \"\"\nROW SideQ1: \"Lost Sword\", \"Find the blacksmith's lost sword\", \"Blacksmith\", 3, 100, 50, \"Side\", \"\"\nROW MainQ2: \"Dark Lord\", \"Confront the Dark Lord\", \"Elder\", 20, 5000, 2000, \"Main\", \"Dragon Slayer\""
+    },
+    {
+      "id": "DT04_11",
+      "category": "showcase_quest",
+      "instruction": "Build a dialogue table with line ID, speaker name, dialogue text, display duration, next line ID, and required game flag",
+      "expected_dsl": "DATATABLE: DT_Dialogue\nSTRUCT: FDialogueLine\n\nCOLUMN LineID: String\nCOLUMN Speaker: String\nCOLUMN DialogueText: Text\nCOLUMN Duration: Float = 3.0\nCOLUMN NextLineID: Name = \"\"\nCOLUMN RequiredFlag: String = \"\"\n\nROW L1: \"Line1\", \"Guard\", \"Halt! Who goes there?\", 2.5, \"Line2\", \"\"\nROW L2: \"Line2\", \"Player\", \"Just a traveler.\", 2.0, \"Line3\", \"\"\nROW L3: \"Line3\", \"Guard\", \"The village is ahead. Be safe.\", 3.0, \"\", \"\"\nROW L4: \"Line4\", \"Elder\", \"Dark times are upon us.\", 3.0, \"Line5\", \"MetElder\""
+    },
+    {
+      "id": "DT04_12",
+      "category": "showcase_crafting",
+      "instruction": "Create a recipe crafting table with result item, ingredient 1 name, ingredient 1 count, ingredient 2 name, ingredient 2 count, crafting time, and required crafting level",
+      "expected_dsl": "DATATABLE: DT_Recipes\nSTRUCT: FRecipeInfo\n\nCOLUMN ResultItem: String\nCOLUMN Ingredient1: String\nCOLUMN Count1: Int\nCOLUMN Ingredient2: String = \"\"\nCOLUMN Count2: Int = 0\nCOLUMN CraftTime: Float = 2.0\nCOLUMN RequiredLevel: Int = 1\n\nROW IronSword: \"Iron Sword\", \"Iron Ore\", 3, \"Wood\", 1, 5.0, 2\nROW HealthPotion: \"Health Potion\", \"Herb\", 2, \"Water\", 1, 3.0, 1\nROW SteelArmor: \"Steel Armor\", \"Steel Ingot\", 5, \"Leather\", 3, 10.0, 5"
+    }
+  ]
+}

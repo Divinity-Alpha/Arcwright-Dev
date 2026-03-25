@@ -1,0 +1,90 @@
+{
+  "name": "Simulation",
+  "description": "Simulation/management theme — clean flat design, Inter headings, precise grid layout",
+  "version": "1.0",
+
+  "colors": {
+    "primary": "#4A7FB5",
+    "secondary": "#3A6A9A",
+    "accent": "#2AAA88",
+    "warning": "#E8A030",
+    "danger": "#CC4444",
+
+    "panel_bg": "#1A1D23",
+    "card_bg": "#22262E",
+    "surface": "#2A2E38",
+
+    "text": "#E8ECF0",
+    "text_secondary": "#8A92A0",
+    "text_muted": "#5A6270",
+
+    "border": "#3A3E48",
+    "divider": "#2E3238",
+
+    "health": "#2AAA88",
+    "health_low": "#CC4444",
+    "mana": "#4A7FB5",
+    "stamina": "#E8A030",
+    "xp": "#6688CC",
+
+    "shadow": "rgba(0,0,0,0.15)"
+  },
+
+  "fonts": {
+    "heading": {"family": "Inter", "weight": "SemiBold"},
+    "body": {"family": "Roboto", "weight": "Regular"},
+    "mono": {"family": "Source Code Pro", "weight": "Regular"},
+    "ui": {"family": "Inter", "weight": "Medium"}
+  },
+
+  "sizes": {
+    "h1": 32,
+    "h2": 24,
+    "h3": 20,
+    "h4": 16,
+    "body": 14,
+    "small": 12,
+    "tiny": 10,
+    "icon_small": 20,
+    "icon_medium": 28,
+    "icon_large": 40,
+    "corner_radius": 2,
+    "border_width": 1,
+    "spacing_xs": 4,
+    "spacing_sm": 8,
+    "spacing_md": 12,
+    "spacing_lg": 20,
+    "spacing_xl": 28
+  },
+
+  "defaults": {
+    "TEXT": {
+      "color": "#E8ECF0",
+      "font_size": 14,
+      "font": "Roboto"
+    },
+    "PROGRESS_BAR": {
+      "fill_color": "#4A7FB5",
+      "bar_color": "#2A2E38",
+      "percent": 100
+    },
+    "BUTTON": {
+      "font_size": 14,
+      "normal_color": "#4A7FB5",
+      "hovered_color": "#5A8FC5",
+      "pressed_color": "#3A6A9A"
+    },
+    "BORDER": {
+      "border_color": "#3A3E48",
+      "corner_radius": 2,
+      "background": "#22262E"
+    },
+    "CANVAS": {},
+    "VBOX": {
+      "spacing": 8
+    },
+    "HBOX": {
+      "spacing": 8
+    }
+  }
+}

@@ -1,5 +1,5 @@
 """
-BlueprintLLM DSL Parser
+Arcwright DSL Parser
 Parses v6 model output into structured JSON IR for UE5.7 plugin.
 """
 
@@ -100,9 +100,10 @@ def parse(raw: str) -> dict:
             else:
                 errors.append(f"Bad NODE: {line}")
 
-        # EXEC n1.Pin -> n2.Pin
-        elif line.startswith("EXEC "):
-            m = re.match(r'EXEC\s+(n\d+)\.(\S+)\s*->\s*(n\d+)\.(\S+)', line)
+        # EXEC n1.Pin -> n2.Pin (accepts "EXEC " or "EXEC: ")
+        elif line.startswith("EXEC"):
+            cleaned = line[4:].lstrip(": ")
+            m = re.match(r'(n\d+)\.(\S+)\s*->\s*(n\d+)\.(\S+)', cleaned)
             if m:
                 connections.append({"type": "exec",
                     "src_node": m.group(1), "src_pin": m.group(2),
@@ -110,9 +111,10 @@ def parse(raw: str) -> dict:
             else:
                 warnings.append(f"Bad EXEC: {line}")
 
-        # DATA n1.Pin -> n2.Pin [Type]
-        elif line.startswith("DATA "):
-            m = re.match(r'DATA\s+(n\d+)\.(\S+)\s*->\s*(n\d+)\.(\S+?)(?:\s*\[(\w+)\])?\s*', line)
+        # DATA n1.Pin -> n2.Pin [Type] (accepts "DATA " or "DATA: ")
+        elif line.startswith("DATA"):
+            cleaned = line[4:].lstrip(": ")
+            m = re.match(r'(n\d+)\.(\S+)\s*->\s*(n\d+)\.(\S+?)(?:\s*\[(\w+)\])?\s*', cleaned)
             if m:
                 connections.append({"type": "data",
                     "src_node": m.group(1), "src_pin": m.group(2),
@@ -120,7 +122,7 @@ def parse(raw: str) -> dict:
                     "data_type": m.group(5)})
             else:
                 # Try literal: DATA value -> n2.Pin [Type]
-                m2 = re.match(r'DATA\s+(\S+)\s*->\s*(n\d+)\.(\S+?)(?:\s*\[(\w+)\])?\s*', line)
+                m2 = re.match(r'(\S+)\s*->\s*(n\d+)\.(\S+?)(?:\s*\[(\w+)\])?\s*', cleaned)
                 if m2:
                     connections.append({"type": "data_literal",
                         "value": m2.group(1),

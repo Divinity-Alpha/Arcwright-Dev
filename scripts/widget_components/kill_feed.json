@@ -1,0 +1,55 @@
+{
+  "id": "kill_feed",
+  "name": "Kill Feed",
+  "category": "hud",
+  "description": "Vertical scroll of kill notifications",
+  "default_anchor": "TopRight",
+  "default_offset": [
+    -20,
+    100
+  ],
+  "default_size": [
+    300,
+    120
+  ],
+  "variables": [
+    {
+      "name": "KillText1",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {
+    "max_entries": {
+      "type": "int",
+      "default": 4
+    }
+  },
+  "tree": {
+    "type": "VBOX",
+    "name": "KillFeedList",
+    "properties": {
+      "spacing": "4"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "KillEntry1",
+        "properties": {
+          "text": "BIND:\"{KillText1}\"",
+          "font_size": "13",
+          "color": "$text_secondary"
+        },
+        "animations": [
+          {
+            "trigger": "OnNew",
+            "type": "FadeIn",
+            "params": {
+              "duration": 0.2
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "fishing_minigame",
+  "name": "Fishing Minigame",
+  "category": "genre",
+  "description": "Tension bar, timing indicator, reel button",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    300,
+    350
+  ],
+  "variables": [
+    {
+      "name": "Tension",
+      "type": "Float",
+      "default": 0.0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "FishRoot",
+    "properties": {
+      "spacing": "10"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "FishTitle",
+        "properties": {
+          "text": "FISHING",
+          "font_size": "20",
+          "color": "$primary",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "TensionBar",
+        "properties": {
+          "percent": "BIND:Tension/100",
+          "fill_color": "$danger",
+          "bar_color": "$surface",
+          "size_x": "200",
+          "size_y": "20"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "TensionLabel",
+        "properties": {
+          "text": "TENSION",
+          "font_size": "12",
+          "color": "$text_muted",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "BUTTON",
+        "name": "ReelBtn",
+        "properties": {
+          "text": "REEL!",
+          "font_size": "18"
+        }
+      }
+    ]
+  }
+}

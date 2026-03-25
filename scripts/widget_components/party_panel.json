@@ -1,0 +1,83 @@
+{
+  "id": "party_panel",
+  "name": "Party Panel",
+  "category": "multiplayer",
+  "description": "Vertical party members with health and voice indicator",
+  "default_anchor": "TopLeft",
+  "default_offset": [
+    10,
+    100
+  ],
+  "default_size": [
+    200,
+    300
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "PartyRoot",
+    "properties": {
+      "spacing": "6"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "PartyTitle",
+        "properties": {
+          "text": "PARTY",
+          "font_size": "14",
+          "color": "$text_muted",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "Member1",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "M1Avatar",
+            "properties": {
+              "tint": "$primary",
+              "size_x": "32",
+              "size_y": "32"
+            }
+          },
+          {
+            "type": "VBOX",
+            "name": "M1Info",
+            "properties": {
+              "spacing": "2"
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "M1Name",
+                "properties": {
+                  "text": "BIND:\"{Party1Name}\"",
+                  "font_size": "12",
+                  "color": "$text"
+                }
+              },
+              {
+                "type": "PROGRESS_BAR",
+                "name": "M1HP",
+                "properties": {
+                  "percent": "BIND:Party1HP",
+                  "fill_color": "$health",
+                  "bar_color": "$surface",
+                  "size_x": "100",
+                  "size_y": "6"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "lesson_id": "lesson_19",
+  "lesson_name": "Connection Patterns: EXEC Chains, DATA Wiring, Branch Paths",
+  "model": "models/blueprint-lora-v13/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260315_084240",
+  "total_prompts": 20,
+  "valid_syntax": 20,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 95.2,
+  "per_category": {
+    "exec_chain_linear": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 67.8
+    },
+    "exec_branch_complete": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 95.0
+    },
+    "data_chain_arithmetic": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "data_fan_out": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 96.7
+    },
+    "timer_event_pair": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 95.0
+    },
+    "multi_event_graph": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "flipflop_doonce": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 100.0
+    },
+    "nested_branch": {
+      "count": 2,
+      "valid": 2,
+      "avg_score": 97.5
+    },
+    "gate_pattern": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "delay_chain": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "spawn_configure": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "random_clamp": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    }
+  }
+}

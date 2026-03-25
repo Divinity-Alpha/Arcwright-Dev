@@ -1,0 +1,674 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Arcwright API",
+    "description": "AI Game Creation Platform — Generate Unreal Engine 5 Blueprints, Behavior Trees, Data Tables, and Widget UIs from natural language.",
+    "version": "1.1.0",
+    "contact": {
+      "name": "Arcwright Support",
+      "url": "https://discord.gg/arcwright"
+    },
+    "x-logo": {
+      "url": "https://arcwright.app/logo.png"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.arcwright.app"
+    }
+  ],
+  "paths": {
+    "/v1/generate": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "operationId": "generateDSL",
+        "summary": "Generate DSL from prompt",
+        "description": "Generate Blueprint, Behavior Tree, or Data Table DSL from a natural language description. The AI model produces valid structured output that can be directly imported into Unreal Engine 5.",
+        "tags": ["Generation"],
+        "x-zuplo-route": {
+          "corsPolicy": "arcwright-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BACKEND_URL}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-key-auth",
+              "rate-limit-generate",
+              "request-validation"
+            ]
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "DSL generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key"
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Reset": {
+                "schema": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/v1/generate/batch": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "operationId": "generateBatch",
+        "summary": "Batch generate DSL (Studio tier only)",
+        "description": "Generate multiple DSL outputs in a single request. Each item in the batch is processed sequentially. Studio tier only.",
+        "tags": ["Generation"],
+        "x-zuplo-route": {
+          "corsPolicy": "arcwright-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BACKEND_URL}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-key-auth",
+              "tier-check-studio",
+              "rate-limit-batch",
+              "request-validation"
+            ]
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchGenerateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchGenerateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Studio tier required for batch API"
+          }
+        }
+      }
+    },
+
+    "/v1/validate": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "operationId": "validateDSL",
+        "summary": "Validate DSL syntax",
+        "description": "Run parser validation on DSL text. Auto-detects domain or accepts explicit domain parameter. No GPU required — runs on the gateway.",
+        "tags": ["Validation"],
+        "x-zuplo-route": {
+          "corsPolicy": "arcwright-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BACKEND_URL}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-key-auth",
+              "rate-limit-validate"
+            ]
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Validation result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/v1/templates": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "listTemplates",
+        "summary": "List available templates",
+        "description": "Returns all available game pattern templates, filtered by tier access.",
+        "tags": ["Templates"],
+        "x-zuplo-route": {
+          "corsPolicy": "arcwright-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BACKEND_URL}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-key-auth"
+            ]
+          }
+        },
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["collectibles", "hazards", "triggers", "enemies", "managers", "ui", "movement", "player"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Template list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/v1/templates/{category}/{templateId}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getTemplate",
+        "summary": "Get a specific template",
+        "description": "Returns the full template including DSL, components, materials, and customizable fields.",
+        "tags": ["Templates"],
+        "x-zuplo-route": {
+          "corsPolicy": "arcwright-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BACKEND_URL}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-key-auth"
+            ]
+          }
+        },
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "templateId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Template details"
+          },
+          "404": {
+            "description": "Template not found"
+          }
+        }
+      }
+    },
+
+    "/v1/widget/from-html": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "operationId": "widgetFromHTML",
+        "summary": "Create UE Widget from HTML mockup",
+        "description": "Translate an HTML/CSS UI design into Unreal Engine Widget Blueprint commands. Claude designs beautiful UIs in HTML, this converts them to real game HUDs.",
+        "tags": ["Widgets"],
+        "x-zuplo-route": {
+          "corsPolicy": "arcwright-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BACKEND_URL}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-key-auth",
+              "tier-check-pro",
+              "rate-limit-generate"
+            ]
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WidgetFromHTMLRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Widget commands generated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetFromHTMLResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/v1/health": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "healthCheck",
+        "summary": "API health check",
+        "description": "Returns API status and available models. No authentication required.",
+        "tags": ["System"],
+        "x-zuplo-route": {
+          "corsPolicy": "arcwright-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BACKEND_URL}"
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "API is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/v1/feedback": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "operationId": "submitFeedback",
+        "summary": "Submit generation feedback",
+        "description": "Report quality feedback on a generation result. Used to improve model training data. Requires API key.",
+        "tags": ["System"],
+        "x-zuplo-route": {
+          "corsPolicy": "arcwright-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BACKEND_URL}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-key-auth"
+            ]
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Feedback recorded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key"
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "GenerateRequest": {
+        "type": "object",
+        "required": ["domain", "prompt"],
+        "properties": {
+          "domain": {
+            "type": "string",
+            "enum": ["blueprint", "bt", "dt"],
+            "description": "Which AI model to use. Aliases accepted: 'datatable'/'data_table' → 'dt', 'behavior_tree'/'behaviortree' → 'bt'"
+          },
+          "prompt": {
+            "type": "string",
+            "maxLength": 10000,
+            "description": "Natural language description of what to generate"
+          },
+          "options": {
+            "type": "object",
+            "properties": {
+              "temperature": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 2.0,
+                "default": 0.1
+              },
+              "max_tokens": {
+                "type": "integer",
+                "minimum": 64,
+                "maximum": 4096,
+                "default": 1024
+              },
+              "validate": {
+                "type": "boolean",
+                "default": true,
+                "description": "Run parser validation on output"
+              },
+              "format": {
+                "type": "string",
+                "enum": ["dsl", "ir"],
+                "default": "dsl",
+                "description": "Output format — raw DSL or parsed IR JSON"
+              }
+            }
+          }
+        }
+      },
+
+      "GenerateResponse": {
+        "type": "object",
+        "description": "Wraps RunPod serverless response. The 'output' object contains the generation results.",
+        "properties": {
+          "id": { "type": "string", "description": "RunPod job ID" },
+          "status": { "type": "string", "enum": ["COMPLETED", "FAILED"] },
+          "output": {
+            "type": "object",
+            "properties": {
+              "dsl": { "type": "string", "description": "Generated DSL text" },
+              "domain": { "type": "string", "description": "Resolved domain (blueprint/bt/dt)" },
+              "tokens_generated": { "type": "integer", "description": "Number of tokens in generated output" },
+              "generation_time_ms": { "type": "integer", "description": "Inference latency in milliseconds" },
+              "model": { "type": "string", "description": "Model label (e.g. 'arcwright-blueprint-v14')" }
+            }
+          }
+        }
+      },
+
+      "BatchGenerateRequest": {
+        "type": "object",
+        "required": ["requests"],
+        "properties": {
+          "requests": {
+            "type": "array",
+            "maxItems": 10,
+            "items": {
+              "$ref": "#/components/schemas/GenerateRequest"
+            }
+          }
+        }
+      },
+
+      "BatchGenerateResponse": {
+        "type": "object",
+        "properties": {
+          "batch_id": { "type": "string" },
+          "results": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/GenerateResponse" }
+          },
+          "total_tokens": { "type": "integer" },
+          "total_latency_ms": { "type": "integer" }
+        }
+      },
+
+      "ValidateRequest": {
+        "type": "object",
+        "required": ["dsl"],
+        "properties": {
+          "dsl": {
+            "type": "string",
+            "description": "DSL text to validate"
+          },
+          "domain": {
+            "type": "string",
+            "enum": ["blueprint", "bt", "datatable", "auto"],
+            "default": "auto",
+            "description": "Domain to validate against (auto-detected if not specified)"
+          }
+        }
+      },
+
+      "ValidateResponse": {
+        "type": "object",
+        "properties": {
+          "valid": { "type": "boolean" },
+          "domain": { "type": "string" },
+          "syntax_score": { "type": "number" },
+          "details": { "type": "object" },
+          "errors": { "type": "array", "items": { "type": "string" } },
+          "warnings": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+
+      "WidgetFromHTMLRequest": {
+        "type": "object",
+        "required": ["html"],
+        "properties": {
+          "html": {
+            "type": "string",
+            "description": "HTML/CSS markup of the UI design"
+          },
+          "widget_name": {
+            "type": "string",
+            "default": "WBP_Generated",
+            "description": "Name for the Widget Blueprint"
+          },
+          "root_selector": {
+            "type": "string",
+            "description": "CSS selector for root element (optional)"
+          }
+        }
+      },
+
+      "WidgetFromHTMLResponse": {
+        "type": "object",
+        "properties": {
+          "widget_name": { "type": "string" },
+          "commands": { "type": "array", "items": { "type": "object" } },
+          "widget_count": { "type": "integer" }
+        }
+      },
+
+      "TemplateListResponse": {
+        "type": "object",
+        "properties": {
+          "templates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "category": { "type": "string" },
+                "name": { "type": "string" },
+                "description": { "type": "string" },
+                "tier": { "type": "string" }
+              }
+            }
+          },
+          "total": { "type": "integer" }
+        }
+      },
+
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "example": "ok" },
+          "version": { "type": "string", "example": "1.1.0" },
+          "models": {
+            "type": "object",
+            "properties": {
+              "blueprint": { "type": "string", "example": "arcwright-blueprint-v14" },
+              "bt": { "type": "string", "example": "arcwright-bt-v3" },
+              "dt": { "type": "string", "example": "arcwright-dt-v5" }
+            }
+          }
+        }
+      },
+
+      "FeedbackRequest": {
+        "type": "object",
+        "required": ["generation_id", "rating"],
+        "properties": {
+          "generation_id": {
+            "type": "string",
+            "description": "The RunPod job ID from the generation response"
+          },
+          "rating": {
+            "type": "string",
+            "enum": ["good", "bad", "partial"],
+            "description": "Quality rating for the generated output"
+          },
+          "comment": {
+            "type": "string",
+            "maxLength": 2000,
+            "description": "Optional free-text feedback"
+          },
+          "corrected_dsl": {
+            "type": "string",
+            "description": "Optional corrected DSL (feeds the training flywheel)"
+          }
+        }
+      },
+
+      "FeedbackResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "example": "recorded" },
+          "feedback_id": { "type": "string" }
+        }
+      },
+
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string" },
+          "code": { "type": "string" },
+          "details": { "type": "object" }
+        }
+      }
+    }
+  }
+}

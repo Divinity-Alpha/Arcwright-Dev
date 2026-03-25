@@ -1,11 +1,11 @@
 {
-  "version": "v7",
+  "version": "v11",
   "lessons": [
     {
       "lesson_id": "L01",
       "lesson_name": "Core Pattern Gaps",
       "status": "done",
-      "valid_count": 16,
+      "valid_count": 20,
       "total_count": 20,
       "completed_prompts": 20,
       "prompts": [
@@ -14,163 +14,163 @@
           "category": "print_hello",
           "valid": true,
           "similarity": 83.3,
-          "time_seconds": 15.5
+          "time_seconds": 18.1
         },
         {
           "prompt_id": "L01_02",
           "category": "rotating_actor",
           "valid": true,
-          "similarity": 27.3,
-          "time_seconds": 27.9
+          "similarity": 100.0,
+          "time_seconds": 39.9
         },
         {
           "prompt_id": "L01_03",
           "category": "overlap_event",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 28.5
+          "time_seconds": 29.6
         },
         {
           "prompt_id": "L01_04",
           "category": "branch",
-          "valid": false,
-          "similarity": 41.7,
-          "time_seconds": 37.6
+          "valid": true,
+          "similarity": 33.3,
+          "time_seconds": 36.4
         },
         {
           "prompt_id": "L01_05",
           "category": "delay",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 19.0
+          "time_seconds": 22.2
         },
         {
           "prompt_id": "L01_06",
           "category": "sequence",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 38.8
+          "similarity": 66.7,
+          "time_seconds": 39.0
         },
         {
           "prompt_id": "L01_07",
           "category": "flipflop",
           "valid": true,
-          "similarity": 80.0,
-          "time_seconds": 35.2
+          "similarity": 100.0,
+          "time_seconds": 32.9
         },
         {
           "prompt_id": "L01_08",
           "category": "doonce",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 22.6
+          "time_seconds": 20.0
         },
         {
           "prompt_id": "L01_09",
           "category": "cast",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 34.9
+          "similarity": 88.9,
+          "time_seconds": 29.4
         },
         {
           "prompt_id": "L01_10",
           "category": "foreach",
           "valid": true,
           "similarity": 36.4,
-          "time_seconds": 37.2
+          "time_seconds": 39.1
         },
         {
           "prompt_id": "L01_11",
           "category": "gate",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 36.0
+          "time_seconds": 36.2
         },
         {
           "prompt_id": "L01_12",
           "category": "custom_event",
           "valid": true,
           "similarity": 88.9,
-          "time_seconds": 32.2
+          "time_seconds": 27.2
         },
         {
           "prompt_id": "L01_13",
           "category": "variable_set_get",
           "valid": true,
-          "similarity": 78.6,
-          "time_seconds": 46.3
+          "similarity": 100.0,
+          "time_seconds": 48.0
         },
         {
           "prompt_id": "L01_14",
           "category": "spawn_actor",
           "valid": true,
-          "similarity": 40.0,
-          "time_seconds": 25.9
+          "similarity": 50.0,
+          "time_seconds": 29.6
         },
         {
           "prompt_id": "L01_15",
           "category": "play_sound",
-          "valid": false,
+          "valid": true,
           "similarity": 87.5,
-          "time_seconds": 22.2
+          "time_seconds": 25.9
         },
         {
           "prompt_id": "L01_16",
           "category": "distance_check",
           "valid": true,
-          "similarity": 85.7,
-          "time_seconds": 46.6
+          "similarity": 100.0,
+          "time_seconds": 42.5
         },
         {
           "prompt_id": "L01_17",
           "category": "multi_event",
           "valid": true,
           "similarity": 91.7,
-          "time_seconds": 37.4
+          "time_seconds": 37.3
         },
         {
           "prompt_id": "L01_18",
           "category": "set_visibility",
-          "valid": false,
-          "similarity": 35.7,
-          "time_seconds": 44.7
+          "valid": true,
+          "similarity": 85.7,
+          "time_seconds": 47.7
         },
         {
           "prompt_id": "L01_19",
           "category": "math_chain",
-          "valid": false,
-          "similarity": 80.0,
-          "time_seconds": 25.4
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 31.0
         },
         {
           "prompt_id": "L01_20",
           "category": "delay_chain",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 45.7
+          "time_seconds": 41.1
         }
       ],
       "weakest_categories": [
         {
-          "category": "rotating_actor",
-          "similarity": 27.3
-        },
-        {
-          "category": "set_visibility",
-          "similarity": 35.7
+          "category": "branch",
+          "similarity": 33.3
         },
         {
           "category": "foreach",
           "similarity": 36.4
+        },
+        {
+          "category": "spawn_actor",
+          "similarity": 50.0
         }
       ],
       "strongest_categories": [
         {
-          "category": "cast",
+          "category": "distance_check",
           "similarity": 100.0
         },
         {
-          "category": "gate",
+          "category": "math_chain",
           "similarity": 100.0
         },
         {
@@ -178,10 +178,10 @@
           "similarity": 100.0
         }
       ],
-      "valid_syntax_pct": 80.0,
-      "avg_similarity": 77.8,
-      "duration_seconds": 659.6,
-      "avg_prompt_time": 33.0
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 85.6,
+      "duration_seconds": 673.1,
+      "avg_prompt_time": 33.7
     },
     {
       "lesson_id": "L02",
@@ -195,179 +195,179 @@
           "prompt_id": "L02_01",
           "category": "branch",
           "valid": true,
-          "similarity": 92.3,
-          "time_seconds": 40.1
+          "similarity": 100.0,
+          "time_seconds": 39.6
         },
         {
           "prompt_id": "L02_02",
           "category": "branch",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 37.1
+          "time_seconds": 36.8
         },
         {
           "prompt_id": "L02_03",
           "category": "variable_set_get",
           "valid": false,
-          "similarity": 66.7,
-          "time_seconds": 32.3
+          "similarity": 100.0,
+          "time_seconds": 36.3
         },
         {
           "prompt_id": "L02_04",
           "category": "variable_set_get",
           "valid": true,
-          "similarity": 83.3,
-          "time_seconds": 43.8
+          "similarity": 75.0,
+          "time_seconds": 41.3
         },
         {
           "prompt_id": "L02_05",
           "category": "custom_event",
           "valid": true,
-          "similarity": 88.9,
-          "time_seconds": 26.0
+          "similarity": 66.7,
+          "time_seconds": 26.8
         },
         {
           "prompt_id": "L02_06",
           "category": "custom_event",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 21.1
+          "time_seconds": 21.2
         },
         {
           "prompt_id": "L02_07",
           "category": "gate",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 29.5
+          "time_seconds": 30.2
         },
         {
           "prompt_id": "L02_08",
           "category": "gate",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 28.9
+          "time_seconds": 30.7
         },
         {
           "prompt_id": "L02_09",
           "category": "spawn_actor",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 26.0
+          "similarity": 87.5,
+          "time_seconds": 27.9
         },
         {
           "prompt_id": "L02_10",
           "category": "spawn_actor",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 35.3
+          "time_seconds": 39.8
         },
         {
           "prompt_id": "L02_11",
           "category": "foreach",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 32.6
+          "time_seconds": 35.1
         },
         {
           "prompt_id": "L02_12",
           "category": "foreach",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 31.0
+          "time_seconds": 31.8
         },
         {
           "prompt_id": "L02_13",
           "category": "distance_check",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 44.2
+          "similarity": 92.9,
+          "time_seconds": 39.3
         },
         {
           "prompt_id": "L02_14",
           "category": "distance_check",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 70.4
+          "time_seconds": 66.3
         },
         {
           "prompt_id": "L02_15",
           "category": "set_visibility",
           "valid": false,
           "similarity": 100.0,
-          "time_seconds": 29.4
+          "time_seconds": 29.8
         },
         {
           "prompt_id": "L02_16",
           "category": "set_visibility",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 31.3
+          "similarity": 90.0,
+          "time_seconds": 31.2
         },
         {
           "prompt_id": "L02_17",
           "category": "sequence",
           "valid": true,
-          "similarity": 91.7,
-          "time_seconds": 40.2
+          "similarity": 75.0,
+          "time_seconds": 39.1
         },
         {
           "prompt_id": "L02_18",
           "category": "rotating_actor",
           "valid": true,
           "similarity": 83.3,
-          "time_seconds": 20.4
+          "time_seconds": 21.2
         },
         {
           "prompt_id": "L02_19",
           "category": "overlap_event",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 26.1
+          "time_seconds": 26.5
         },
         {
           "prompt_id": "L02_20",
           "category": "play_sound",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 25.7
+          "time_seconds": 25.3
         },
         {
           "prompt_id": "L02_21",
           "category": "doonce",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 23.0
+          "similarity": 87.5,
+          "time_seconds": 22.9
         },
         {
           "prompt_id": "L02_22",
           "category": "math_chain",
           "valid": true,
-          "similarity": 80.0,
-          "time_seconds": 34.7
+          "similarity": 100.0,
+          "time_seconds": 33.8
         },
         {
           "prompt_id": "L02_23",
           "category": "multi_event",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 26.5
+          "time_seconds": 24.4
         },
         {
           "prompt_id": "L02_24",
           "category": "multi_event",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 39.6
+          "time_seconds": 35.3
         }
       ],
       "weakest_categories": [
         {
-          "category": "variable_set_get",
+          "category": "sequence",
           "similarity": 75.0
         },
         {
-          "category": "math_chain",
-          "similarity": 80.0
+          "category": "custom_event",
+          "similarity": 83.3
         },
         {
           "category": "rotating_actor",
@@ -380,7 +380,7 @@
           "similarity": 100.0
         },
         {
-          "category": "doonce",
+          "category": "math_chain",
           "similarity": 100.0
         },
         {
@@ -389,15 +389,15 @@
         }
       ],
       "valid_syntax_pct": 91.7,
-      "avg_similarity": 95.3,
-      "duration_seconds": 795.2,
-      "avg_prompt_time": 33.1
+      "avg_similarity": 94.1,
+      "duration_seconds": 792.6,
+      "avg_prompt_time": 33.0
     },
     {
       "lesson_id": "L03",
       "lesson_name": "Timers and Delayed Actions",
       "status": "done",
-      "valid_count": 18,
+      "valid_count": 19,
       "total_count": 20,
       "completed_prompts": 20,
       "prompts": [
@@ -406,159 +406,159 @@
           "category": "timer_basic",
           "valid": true,
           "similarity": 88.9,
-          "time_seconds": 34.7
+          "time_seconds": 38.6
         },
         {
           "prompt_id": "L03_02",
           "category": "timer_clear",
           "valid": true,
-          "similarity": 58.3,
-          "time_seconds": 47.8
+          "similarity": 33.3,
+          "time_seconds": 45.2
         },
         {
           "prompt_id": "L03_03",
           "category": "timer_oneshot",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 32.6
+          "similarity": 88.9,
+          "time_seconds": 29.6
         },
         {
           "prompt_id": "L03_04",
           "category": "retriggerable_delay",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 26.0
+          "time_seconds": 23.3
         },
         {
           "prompt_id": "L03_05",
           "category": "timer_with_branch",
           "valid": true,
-          "similarity": 50.0,
-          "time_seconds": 45.1
+          "similarity": 62.5,
+          "time_seconds": 57.1
         },
         {
           "prompt_id": "L03_06",
           "category": "delay_sequence",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 56.5
+          "time_seconds": 62.0
         },
         {
           "prompt_id": "L03_07",
           "category": "timer_counter",
-          "valid": false,
-          "similarity": 12.5,
-          "time_seconds": 80.5
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 85.8
         },
         {
           "prompt_id": "L03_08",
           "category": "delay_with_visibility",
           "valid": true,
           "similarity": 70.0,
-          "time_seconds": 36.6
+          "time_seconds": 33.5
         },
         {
           "prompt_id": "L03_09",
           "category": "timer_toggle",
-          "valid": true,
-          "similarity": 31.8,
-          "time_seconds": 62.1
+          "valid": false,
+          "similarity": 95.5,
+          "time_seconds": 81.7
         },
         {
           "prompt_id": "L03_10",
           "category": "delay_overlap",
           "valid": true,
-          "similarity": 41.7,
-          "time_seconds": 46.9
+          "similarity": 100.0,
+          "time_seconds": 34.9
         },
         {
           "prompt_id": "L03_11",
           "category": "timer_spawner",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 41.7
+          "similarity": 90.9,
+          "time_seconds": 43.3
         },
         {
           "prompt_id": "L03_12",
           "category": "delay_chain_branch",
           "valid": true,
           "similarity": 70.6,
-          "time_seconds": 61.4
+          "time_seconds": 53.2
         },
         {
           "prompt_id": "L03_13",
           "category": "timer_health_regen",
-          "valid": false,
-          "similarity": 88.5,
-          "time_seconds": 94.2
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 98.3
         },
         {
           "prompt_id": "L03_14",
           "category": "retriggerable_interaction",
           "valid": true,
-          "similarity": 90.0,
-          "time_seconds": 34.5
+          "similarity": 100.0,
+          "time_seconds": 38.8
         },
         {
           "prompt_id": "L03_15",
           "category": "timer_with_sound",
           "valid": true,
-          "similarity": 63.6,
-          "time_seconds": 42.9
+          "similarity": 90.9,
+          "time_seconds": 40.6
         },
         {
           "prompt_id": "L03_16",
           "category": "delay_destroy_sequence",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 36.7
+          "similarity": 83.3,
+          "time_seconds": 34.4
         },
         {
           "prompt_id": "L03_17",
           "category": "timer_with_gate",
           "valid": true,
-          "similarity": 42.9,
-          "time_seconds": 51.1
+          "similarity": 78.6,
+          "time_seconds": 43.9
         },
         {
           "prompt_id": "L03_18",
           "category": "delay_flipflop",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 46.1
+          "time_seconds": 41.9
         },
         {
           "prompt_id": "L03_19",
           "category": "timer_overlap_clear",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 50.8
+          "similarity": 92.9,
+          "time_seconds": 54.1
         },
         {
           "prompt_id": "L03_20",
           "category": "delay_multi_event",
           "valid": true,
-          "similarity": 93.8,
-          "time_seconds": 52.1
+          "similarity": 100.0,
+          "time_seconds": 52.4
         }
       ],
       "weakest_categories": [
         {
-          "category": "timer_counter",
-          "similarity": 12.5
+          "category": "timer_clear",
+          "similarity": 33.3
         },
         {
-          "category": "timer_toggle",
-          "similarity": 31.8
+          "category": "timer_with_branch",
+          "similarity": 62.5
         },
         {
-          "category": "delay_overlap",
-          "similarity": 41.7
+          "category": "delay_with_visibility",
+          "similarity": 70.0
         }
       ],
       "strongest_categories": [
         {
-          "category": "delay_destroy_sequence",
+          "category": "retriggerable_interaction",
           "similarity": 100.0
         },
         {
@@ -566,20 +566,20 @@
           "similarity": 100.0
         },
         {
-          "category": "timer_overlap_clear",
+          "category": "delay_multi_event",
           "similarity": 100.0
         }
       ],
-      "valid_syntax_pct": 90.0,
-      "avg_similarity": 75.1,
-      "duration_seconds": 980.3,
-      "avg_prompt_time": 49.0
+      "valid_syntax_pct": 95.0,
+      "avg_similarity": 87.3,
+      "duration_seconds": 992.6,
+      "avg_prompt_time": 49.6
     },
     {
       "lesson_id": "L04",
       "lesson_name": "Physics and Movement",
       "status": "done",
-      "valid_count": 19,
+      "valid_count": 20,
       "total_count": 20,
       "completed_prompts": 20,
       "prompts": [
@@ -588,174 +588,174 @@
           "category": "physics_impulse",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 22.7
+          "time_seconds": 22.4
         },
         {
           "prompt_id": "L04_02",
           "category": "physics_force",
           "valid": true,
-          "similarity": 40.0,
-          "time_seconds": 18.5
+          "similarity": 30.0,
+          "time_seconds": 20.3
         },
         {
           "prompt_id": "L04_03",
           "category": "physics_toggle",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 32.5
+          "similarity": 80.0,
+          "time_seconds": 34.6
         },
         {
           "prompt_id": "L04_04",
           "category": "movement_offset",
           "valid": true,
-          "similarity": 50.0,
-          "time_seconds": 42.1
+          "similarity": 66.7,
+          "time_seconds": 41.7
         },
         {
           "prompt_id": "L04_05",
           "category": "movement_teleport",
           "valid": true,
-          "similarity": 44.4,
-          "time_seconds": 46.2
+          "similarity": 100.0,
+          "time_seconds": 30.2
         },
         {
           "prompt_id": "L04_06",
           "category": "physics_overlap_launch",
           "valid": true,
           "similarity": 87.5,
-          "time_seconds": 25.3
+          "time_seconds": 28.4
         },
         {
           "prompt_id": "L04_07",
           "category": "movement_lerp",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 42.4
+          "time_seconds": 42.3
         },
         {
           "prompt_id": "L04_08",
           "category": "movement_input",
           "valid": true,
-          "similarity": 50.0,
-          "time_seconds": 43.1
+          "similarity": 100.0,
+          "time_seconds": 34.8
         },
         {
           "prompt_id": "L04_09",
           "category": "physics_bounce",
           "valid": true,
-          "similarity": 88.9,
-          "time_seconds": 27.4
+          "similarity": 100.0,
+          "time_seconds": 26.9
         },
         {
           "prompt_id": "L04_10",
           "category": "movement_patrol",
-          "valid": false,
-          "similarity": 42.3,
-          "time_seconds": 180.9
+          "valid": true,
+          "similarity": 38.5,
+          "time_seconds": 79.2
         },
         {
           "prompt_id": "L04_11",
           "category": "physics_delayed",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 33.6
+          "similarity": 90.0,
+          "time_seconds": 31.9
         },
         {
           "prompt_id": "L04_12",
           "category": "movement_rotate_and_move",
           "valid": true,
-          "similarity": 75.0,
-          "time_seconds": 28.3
+          "similarity": 100.0,
+          "time_seconds": 33.0
         },
         {
           "prompt_id": "L04_13",
           "category": "physics_conditional_force",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 41.7
+          "time_seconds": 48.8
         },
         {
           "prompt_id": "L04_14",
           "category": "movement_speed_variable",
           "valid": true,
-          "similarity": 64.3,
-          "time_seconds": 43.1
+          "similarity": 100.0,
+          "time_seconds": 47.4
         },
         {
           "prompt_id": "L04_15",
           "category": "physics_gravity_zone",
           "valid": true,
-          "similarity": 50.0,
-          "time_seconds": 27.6
+          "similarity": 58.3,
+          "time_seconds": 42.4
         },
         {
           "prompt_id": "L04_16",
           "category": "movement_clamp",
           "valid": true,
-          "similarity": 90.0,
-          "time_seconds": 66.3
+          "similarity": 35.0,
+          "time_seconds": 60.2
         },
         {
           "prompt_id": "L04_17",
           "category": "physics_multigate",
           "valid": true,
-          "similarity": 83.3,
-          "time_seconds": 50.4
+          "similarity": 100.0,
+          "time_seconds": 45.7
         },
         {
           "prompt_id": "L04_18",
           "category": "movement_sine_wave",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 61.3
+          "time_seconds": 53.3
         },
         {
           "prompt_id": "L04_19",
           "category": "physics_projectile",
           "valid": true,
-          "similarity": 31.2,
-          "time_seconds": 40.3
+          "similarity": 93.8,
+          "time_seconds": 54.4
         },
         {
           "prompt_id": "L04_20",
           "category": "movement_scale_speed",
           "valid": true,
-          "similarity": 38.1,
-          "time_seconds": 66.6
+          "similarity": 100.0,
+          "time_seconds": 77.7
         }
       ],
       "weakest_categories": [
         {
-          "category": "physics_projectile",
-          "similarity": 31.2
-        },
-        {
-          "category": "movement_scale_speed",
-          "similarity": 38.1
-        },
-        {
           "category": "physics_force",
-          "similarity": 40.0
+          "similarity": 30.0
+        },
+        {
+          "category": "movement_clamp",
+          "similarity": 35.0
+        },
+        {
+          "category": "movement_patrol",
+          "similarity": 38.5
         }
       ],
       "strongest_categories": [
         {
-          "category": "physics_delayed",
-          "similarity": 100.0
-        },
-        {
-          "category": "physics_conditional_force",
+          "category": "physics_multigate",
           "similarity": 100.0
         },
         {
           "category": "movement_sine_wave",
           "similarity": 100.0
+        },
+        {
+          "category": "movement_scale_speed",
+          "similarity": 100.0
         }
       ],
-      "valid_syntax_pct": 95.0,
-      "avg_similarity": 71.7,
-      "duration_seconds": 940.3,
-      "avg_prompt_time": 47.0
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 84.0,
+      "duration_seconds": 855.6,
+      "avg_prompt_time": 42.8
     },
     {
       "lesson_id": "L05",
@@ -770,140 +770,140 @@
           "category": "isvalid_basic",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 47.0
+          "time_seconds": 49.2
         },
         {
           "prompt_id": "L05_02",
           "category": "isvalid_cast",
           "valid": true,
           "similarity": 90.9,
-          "time_seconds": 35.7
+          "time_seconds": 37.0
         },
         {
           "prompt_id": "L05_03",
           "category": "isvalid_destroy",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 51.5
+          "time_seconds": 50.5
         },
         {
           "prompt_id": "L05_04",
           "category": "isvalid_overlap_cast",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 54.5
+          "time_seconds": 53.8
         },
         {
           "prompt_id": "L05_05",
           "category": "isvalid_timer_check",
           "valid": true,
-          "similarity": 95.2,
-          "time_seconds": 80.4
+          "similarity": 100.0,
+          "time_seconds": 72.6
         },
         {
           "prompt_id": "L05_06",
           "category": "isvalid_array",
           "valid": true,
           "similarity": 94.7,
-          "time_seconds": 52.1
+          "time_seconds": 51.5
         },
         {
           "prompt_id": "L05_07",
           "category": "isvalid_spawn_check",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 58.3
+          "similarity": 94.1,
+          "time_seconds": 53.2
         },
         {
           "prompt_id": "L05_08",
           "category": "isvalid_get_player",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 50.5
+          "time_seconds": 53.5
         },
         {
           "prompt_id": "L05_09",
           "category": "isvalid_before_distance",
           "valid": true,
-          "similarity": 95.0,
-          "time_seconds": 63.2
+          "similarity": 100.0,
+          "time_seconds": 65.4
         },
         {
           "prompt_id": "L05_10",
           "category": "isvalid_doonce_cast",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 38.4
+          "time_seconds": 35.6
         },
         {
           "prompt_id": "L05_11",
           "category": "cast_to_controller",
           "valid": true,
           "similarity": 88.9,
-          "time_seconds": 35.3
+          "time_seconds": 25.4
         },
         {
           "prompt_id": "L05_12",
           "category": "isvalid_sequence_checks",
           "valid": true,
-          "similarity": 96.4,
-          "time_seconds": 100.8
+          "similarity": 92.9,
+          "time_seconds": 79.6
         },
         {
           "prompt_id": "L05_13",
           "category": "isvalid_set_after_spawn",
           "valid": true,
-          "similarity": 89.5,
-          "time_seconds": 63.7
+          "similarity": 100.0,
+          "time_seconds": 57.5
         },
         {
           "prompt_id": "L05_14",
           "category": "cast_with_variable",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 40.8
+          "time_seconds": 39.0
         },
         {
           "prompt_id": "L05_15",
           "category": "isvalid_conditional_destroy",
           "valid": false,
-          "similarity": 100.0,
-          "time_seconds": 64.6
+          "similarity": 90.5,
+          "time_seconds": 69.3
         },
         {
           "prompt_id": "L05_16",
           "category": "isvalid_gate_pattern",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 48.8
+          "time_seconds": 47.2
         },
         {
           "prompt_id": "L05_17",
           "category": "isvalid_multi_cast",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 55.7
+          "time_seconds": 54.1
         },
         {
           "prompt_id": "L05_18",
           "category": "isvalid_foreach_destroy",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 88.4
+          "similarity": 94.1,
+          "time_seconds": 63.7
         },
         {
           "prompt_id": "L05_19",
           "category": "isvalid_safe_distance",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 56.1
+          "time_seconds": 57.9
         },
         {
           "prompt_id": "L05_20",
           "category": "isvalid_complete_pattern",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 71.3
+          "time_seconds": 60.1
         }
       ],
       "weakest_categories": [
@@ -912,8 +912,8 @@
           "similarity": 88.9
         },
         {
-          "category": "isvalid_set_after_spawn",
-          "similarity": 89.5
+          "category": "isvalid_conditional_destroy",
+          "similarity": 90.5
         },
         {
           "category": "isvalid_cast",
@@ -922,7 +922,7 @@
       ],
       "strongest_categories": [
         {
-          "category": "isvalid_foreach_destroy",
+          "category": "isvalid_multi_cast",
           "similarity": 100.0
         },
         {
@@ -935,9 +935,9 @@
         }
       ],
       "valid_syntax_pct": 95.0,
-      "avg_similarity": 97.5,
-      "duration_seconds": 1157.1,
-      "avg_prompt_time": 57.9
+      "avg_similarity": 97.3,
+      "duration_seconds": 1076.1,
+      "avg_prompt_time": 53.8
     },
     {
       "lesson_id": "L06",
@@ -951,160 +951,160 @@
           "prompt_id": "L06_01",
           "category": "forloop_basic",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 32.1
+          "similarity": 88.9,
+          "time_seconds": 28.8
         },
         {
           "prompt_id": "L06_02",
           "category": "forloop_spawn",
           "valid": true,
-          "similarity": 92.3,
-          "time_seconds": 53.3
+          "similarity": 100.0,
+          "time_seconds": 43.8
         },
         {
           "prompt_id": "L06_03",
           "category": "forloop_sum",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 59.6
+          "time_seconds": 58.5
         },
         {
           "prompt_id": "L06_04",
           "category": "whileloop_basic",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 73.9
+          "similarity": 95.0,
+          "time_seconds": 70.3
         },
         {
           "prompt_id": "L06_05",
           "category": "forloop_even",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 47.3
+          "time_seconds": 49.4
         },
         {
           "prompt_id": "L06_06",
           "category": "foreach_destroy",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 45.6
+          "time_seconds": 42.8
         },
         {
           "prompt_id": "L06_07",
           "category": "forloop_grid",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 71.3
+          "time_seconds": 71.2
         },
         {
           "prompt_id": "L06_08",
           "category": "forloop_delay_after",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 43.2
+          "time_seconds": 42.3
         },
         {
           "prompt_id": "L06_09",
           "category": "foreach_filter",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 67.1
+          "time_seconds": 61.6
         },
         {
           "prompt_id": "L06_10",
           "category": "forloop_countdown",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 40.7
+          "time_seconds": 39.5
         },
         {
           "prompt_id": "L06_11",
           "category": "foreach_toggle_vis",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 32.9
+          "time_seconds": 35.0
         },
         {
           "prompt_id": "L06_12",
           "category": "whileloop_halving",
           "valid": true,
-          "similarity": 85.7,
-          "time_seconds": 90.6
+          "similarity": 100.0,
+          "time_seconds": 71.6
         },
         {
           "prompt_id": "L06_13",
           "category": "forloop_random_spawn",
           "valid": true,
-          "similarity": 57.1,
-          "time_seconds": 49.9
+          "similarity": 100.0,
+          "time_seconds": 55.1
         },
         {
           "prompt_id": "L06_14",
           "category": "foreach_max",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 70.7
+          "time_seconds": 70.2
         },
         {
           "prompt_id": "L06_15",
           "category": "whileloop_damage",
           "valid": true,
-          "similarity": 50.0,
-          "time_seconds": 73.1
+          "similarity": 100.0,
+          "time_seconds": 68.6
         },
         {
           "prompt_id": "L06_16",
           "category": "foreach_closest",
           "valid": true,
-          "similarity": 40.6,
-          "time_seconds": 108.7
+          "similarity": 100.0,
+          "time_seconds": 110.8
         },
         {
           "prompt_id": "L06_17",
           "category": "forloop_sequence",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 42.0
+          "similarity": 84.6,
+          "time_seconds": 40.5
         },
         {
           "prompt_id": "L06_18",
           "category": "foreach_doonce",
           "valid": true,
-          "similarity": 92.9,
-          "time_seconds": 41.6
+          "similarity": 100.0,
+          "time_seconds": 40.8
         },
         {
           "prompt_id": "L06_19",
           "category": "forloop_health_bars",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 42.2
+          "time_seconds": 41.5
         },
         {
           "prompt_id": "L06_20",
           "category": "forloop_complete",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 42.5
+          "time_seconds": 39.0
         }
       ],
       "weakest_categories": [
         {
-          "category": "foreach_closest",
-          "similarity": 40.6
+          "category": "forloop_sequence",
+          "similarity": 84.6
         },
         {
-          "category": "whileloop_damage",
-          "similarity": 50.0
+          "category": "forloop_basic",
+          "similarity": 88.9
         },
         {
-          "category": "forloop_random_spawn",
-          "similarity": 57.1
+          "category": "whileloop_basic",
+          "similarity": 95.0
         }
       ],
       "strongest_categories": [
         {
-          "category": "forloop_sequence",
+          "category": "foreach_doonce",
           "similarity": 100.0
         },
         {
@@ -1117,15 +1117,15 @@
         }
       ],
       "valid_syntax_pct": 100.0,
-      "avg_similarity": 90.9,
-      "duration_seconds": 1128.3,
-      "avg_prompt_time": 56.4
+      "avg_similarity": 98.4,
+      "duration_seconds": 1081.3,
+      "avg_prompt_time": 54.1
     },
     {
       "lesson_id": "L07",
       "lesson_name": "String Operations and Debug Patterns",
       "status": "done",
-      "valid_count": 19,
+      "valid_count": 20,
       "total_count": 20,
       "completed_prompts": 20,
       "prompts": [
@@ -1134,154 +1134,154 @@
           "category": "string_concat",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 37.0
+          "time_seconds": 37.2
         },
         {
           "prompt_id": "L07_02",
           "category": "string_score",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 54.6
+          "similarity": 93.8,
+          "time_seconds": 53.4
         },
         {
           "prompt_id": "L07_03",
           "category": "string_health",
           "valid": true,
-          "similarity": 58.8,
-          "time_seconds": 50.9
+          "similarity": 100.0,
+          "time_seconds": 60.4
         },
         {
           "prompt_id": "L07_04",
           "category": "debug_location",
           "valid": true,
-          "similarity": 62.5,
-          "time_seconds": 77.5
+          "similarity": 100.0,
+          "time_seconds": 19.7
         },
         {
           "prompt_id": "L07_05",
           "category": "string_overlap_name",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 32.6
+          "time_seconds": 31.9
         },
         {
           "prompt_id": "L07_06",
           "category": "debug_distance",
           "valid": true,
           "similarity": 91.7,
-          "time_seconds": 36.8
+          "time_seconds": 36.3
         },
         {
           "prompt_id": "L07_07",
           "category": "string_counter",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 53.7
+          "time_seconds": 57.1
         },
         {
           "prompt_id": "L07_08",
           "category": "debug_fps",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 36.1
+          "time_seconds": 36.0
         },
         {
           "prompt_id": "L07_09",
           "category": "string_timer_log",
           "valid": true,
-          "similarity": 93.3,
-          "time_seconds": 55.8
+          "similarity": 100.0,
+          "time_seconds": 54.5
         },
         {
           "prompt_id": "L07_10",
           "category": "string_cast_result",
           "valid": true,
-          "similarity": 93.8,
-          "time_seconds": 54.2
+          "similarity": 100.0,
+          "time_seconds": 52.6
         },
         {
           "prompt_id": "L07_11",
           "category": "string_multi_var",
           "valid": true,
-          "similarity": 43.8,
-          "time_seconds": 51.7
+          "similarity": 56.2,
+          "time_seconds": 40.4
         },
         {
           "prompt_id": "L07_12",
           "category": "debug_spawn_log",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 52.7
+          "time_seconds": 48.7
         },
         {
           "prompt_id": "L07_13",
           "category": "string_loop_index",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 36.6
+          "time_seconds": 32.4
         },
         {
           "prompt_id": "L07_14",
           "category": "debug_branch_path",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 41.4
+          "time_seconds": 37.7
         },
         {
           "prompt_id": "L07_15",
           "category": "string_damage_log",
-          "valid": false,
-          "similarity": 26.3,
-          "time_seconds": 65.7
+          "valid": true,
+          "similarity": 42.1,
+          "time_seconds": 47.5
         },
         {
           "prompt_id": "L07_16",
           "category": "debug_array_count",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 40.9
+          "time_seconds": 40.2
         },
         {
           "prompt_id": "L07_17",
           "category": "string_time_display",
           "valid": true,
-          "similarity": 90.0,
-          "time_seconds": 31.6
+          "similarity": 100.0,
+          "time_seconds": 31.0
         },
         {
           "prompt_id": "L07_18",
           "category": "debug_gate_status",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 54.0
+          "time_seconds": 52.6
         },
         {
           "prompt_id": "L07_19",
           "category": "string_random_log",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 32.8
+          "time_seconds": 31.2
         },
         {
           "prompt_id": "L07_20",
           "category": "debug_lifecycle",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 56.9
+          "time_seconds": 54.7
         }
       ],
       "weakest_categories": [
         {
           "category": "string_damage_log",
-          "similarity": 26.3
+          "similarity": 42.1
         },
         {
           "category": "string_multi_var",
-          "similarity": 43.8
+          "similarity": 56.2
         },
         {
-          "category": "string_health",
-          "similarity": 58.8
+          "category": "debug_distance",
+          "similarity": 91.7
         }
       ],
       "strongest_categories": [
@@ -1298,10 +1298,10 @@
           "similarity": 100.0
         }
       ],
-      "valid_syntax_pct": 95.0,
-      "avg_similarity": 88.0,
-      "duration_seconds": 953.5,
-      "avg_prompt_time": 47.7
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 94.2,
+      "duration_seconds": 855.5,
+      "avg_prompt_time": 42.8
     },
     {
       "lesson_id": "L08",
@@ -1315,155 +1315,155 @@
           "prompt_id": "L08_01",
           "category": "ui_create_basic",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 28.0
+          "similarity": 88.9,
+          "time_seconds": 26.6
         },
         {
           "prompt_id": "L08_02",
           "category": "ui_remove",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 28.3
+          "time_seconds": 27.2
         },
         {
           "prompt_id": "L08_03",
           "category": "ui_toggle",
           "valid": false,
-          "similarity": 50.0,
-          "time_seconds": 106.4
+          "similarity": 100.0,
+          "time_seconds": 91.4
         },
         {
           "prompt_id": "L08_04",
           "category": "ui_delayed",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 58.4
+          "time_seconds": 48.0
         },
         {
           "prompt_id": "L08_05",
           "category": "ui_overlap_show",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 52.9
+          "time_seconds": 64.5
         },
         {
           "prompt_id": "L08_06",
           "category": "ui_with_cast",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 38.4
+          "similarity": 91.7,
+          "time_seconds": 40.3
         },
         {
           "prompt_id": "L08_07",
           "category": "ui_doonce",
           "valid": true,
-          "similarity": 90.9,
-          "time_seconds": 33.1
+          "similarity": 100.0,
+          "time_seconds": 34.7
         },
         {
           "prompt_id": "L08_08",
           "category": "ui_branch_show",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 51.1
+          "time_seconds": 54.4
         },
         {
           "prompt_id": "L08_09",
           "category": "ui_sequence_multi",
           "valid": true,
-          "similarity": 25.0,
-          "time_seconds": 66.4
+          "similarity": 87.5,
+          "time_seconds": 50.2
         },
         {
           "prompt_id": "L08_10",
           "category": "ui_valid_remove",
           "valid": false,
           "similarity": 100.0,
-          "time_seconds": 61.4
+          "time_seconds": 58.7
         },
         {
           "prompt_id": "L08_11",
           "category": "ui_timer_show",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 44.8
+          "time_seconds": 46.0
         },
         {
           "prompt_id": "L08_12",
           "category": "ui_flipflop_swap",
           "valid": true,
           "similarity": 95.8,
-          "time_seconds": 81.0
+          "time_seconds": 83.7
         },
         {
           "prompt_id": "L08_13",
           "category": "ui_distance_trigger",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 60.3
+          "time_seconds": 59.0
         },
         {
           "prompt_id": "L08_14",
           "category": "ui_create_store",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 48.8
+          "time_seconds": 48.2
         },
         {
           "prompt_id": "L08_15",
           "category": "ui_endplay_cleanup",
           "valid": true,
-          "similarity": 95.7,
-          "time_seconds": 69.3
+          "similarity": 87.0,
+          "time_seconds": 69.4
         },
         {
           "prompt_id": "L08_16",
           "category": "ui_gate_controlled",
           "valid": true,
-          "similarity": 23.8,
-          "time_seconds": 59.6
+          "similarity": 47.6,
+          "time_seconds": 50.4
         },
         {
           "prompt_id": "L08_17",
           "category": "ui_foreach_create",
           "valid": true,
           "similarity": 94.1,
-          "time_seconds": 52.6
+          "time_seconds": 47.5
         },
         {
           "prompt_id": "L08_18",
           "category": "ui_input_close",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 67.5
+          "similarity": 45.0,
+          "time_seconds": 48.6
         },
         {
           "prompt_id": "L08_19",
           "category": "ui_multigate",
           "valid": true,
-          "similarity": 95.2,
-          "time_seconds": 74.3
+          "similarity": 100.0,
+          "time_seconds": 71.9
         },
         {
           "prompt_id": "L08_20",
           "category": "ui_complete_flow",
           "valid": true,
-          "similarity": 42.3,
-          "time_seconds": 68.8
+          "similarity": 38.5,
+          "time_seconds": 69.4
         }
       ],
       "weakest_categories": [
         {
-          "category": "ui_gate_controlled",
-          "similarity": 23.8
-        },
-        {
-          "category": "ui_sequence_multi",
-          "similarity": 25.0
-        },
-        {
           "category": "ui_complete_flow",
-          "similarity": 42.3
+          "similarity": 38.5
+        },
+        {
+          "category": "ui_input_close",
+          "similarity": 45.0
+        },
+        {
+          "category": "ui_gate_controlled",
+          "similarity": 47.6
         }
       ],
       "strongest_categories": [
@@ -1476,14 +1476,14 @@
           "similarity": 100.0
         },
         {
-          "category": "ui_input_close",
+          "category": "ui_multigate",
           "similarity": 100.0
         }
       ],
       "valid_syntax_pct": 90.0,
-      "avg_similarity": 85.6,
-      "duration_seconds": 1151.4,
-      "avg_prompt_time": 57.6
+      "avg_similarity": 88.8,
+      "duration_seconds": 1090.1,
+      "avg_prompt_time": 54.5
     },
     {
       "lesson_id": "L09",
@@ -1498,356 +1498,356 @@
           "category": "nested_branch_basic",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 71.6
+          "time_seconds": 65.2
         },
         {
           "prompt_id": "L09_02",
           "category": "nested_branch_three",
           "valid": true,
-          "similarity": 95.5,
-          "time_seconds": 73.9
+          "similarity": 100.0,
+          "time_seconds": 72.2
         },
         {
           "prompt_id": "L09_03",
           "category": "switch_int",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 54.5
+          "time_seconds": 58.2
         },
         {
           "prompt_id": "L09_04",
           "category": "switch_string",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 60.6
+          "time_seconds": 57.0
         },
         {
           "prompt_id": "L09_05",
           "category": "branch_and_or",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 65.5
+          "time_seconds": 52.0
         },
         {
           "prompt_id": "L09_06",
           "category": "branch_not",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 35.2
+          "similarity": 92.3,
+          "time_seconds": 41.3
         },
         {
           "prompt_id": "L09_07",
           "category": "nested_overlap_cast",
           "valid": true,
-          "similarity": 95.0,
-          "time_seconds": 69.1
+          "similarity": 100.0,
+          "time_seconds": 65.8
         },
         {
           "prompt_id": "L09_08",
           "category": "branch_compare_vars",
           "valid": true,
-          "similarity": 88.9,
-          "time_seconds": 58.3
+          "similarity": 100.0,
+          "time_seconds": 58.9
         },
         {
           "prompt_id": "L09_09",
           "category": "switch_int_action",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 47.0
+          "similarity": 93.3,
+          "time_seconds": 52.8
         },
         {
           "prompt_id": "L09_10",
           "category": "nested_timer_branch",
           "valid": true,
-          "similarity": 50.0,
-          "time_seconds": 78.3
+          "similarity": 100.0,
+          "time_seconds": 110.0
         },
         {
           "prompt_id": "L09_11",
           "category": "branch_equal",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 53.6
+          "time_seconds": 41.8
         },
         {
           "prompt_id": "L09_12",
           "category": "nested_three_vars",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 76.4
+          "similarity": 92.6,
+          "time_seconds": 86.6
         },
         {
           "prompt_id": "L09_13",
           "category": "switch_with_timer",
           "valid": true,
-          "similarity": 81.2,
-          "time_seconds": 61.3
+          "similarity": 100.0,
+          "time_seconds": 66.4
         },
         {
           "prompt_id": "L09_14",
           "category": "branch_clamp",
           "valid": true,
-          "similarity": 89.3,
-          "time_seconds": 84.4
+          "similarity": 92.9,
+          "time_seconds": 81.7
         },
         {
           "prompt_id": "L09_15",
           "category": "branch_or_pattern",
           "valid": true,
           "similarity": 94.4,
-          "time_seconds": 60.5
+          "time_seconds": 59.7
         },
         {
           "prompt_id": "L09_16",
           "category": "nested_damage_type",
           "valid": true,
-          "similarity": 14.3,
-          "time_seconds": 83.3
+          "similarity": 100.0,
+          "time_seconds": 69.5
         },
         {
           "prompt_id": "L09_17",
           "category": "switch_spawn",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 72.9
+          "time_seconds": 74.3
         },
         {
           "prompt_id": "L09_18",
           "category": "branch_range_check",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 75.4
+          "time_seconds": 73.3
         },
         {
           "prompt_id": "L09_19",
           "category": "nested_valid_branch",
           "valid": true,
-          "similarity": 95.8,
-          "time_seconds": 78.2
+          "similarity": 100.0,
+          "time_seconds": 71.3
         },
         {
           "prompt_id": "L09_20",
           "category": "switch_with_ui",
           "valid": true,
-          "similarity": 95.8,
-          "time_seconds": 86.5
+          "similarity": 100.0,
+          "time_seconds": 81.3
         }
       ],
       "weakest_categories": [
         {
-          "category": "nested_damage_type",
-          "similarity": 14.3
+          "category": "branch_not",
+          "similarity": 92.3
         },
         {
-          "category": "nested_timer_branch",
-          "similarity": 50.0
+          "category": "nested_three_vars",
+          "similarity": 92.6
         },
         {
-          "category": "switch_with_timer",
-          "similarity": 81.2
+          "category": "branch_clamp",
+          "similarity": 92.9
         }
       ],
       "strongest_categories": [
         {
-          "category": "nested_three_vars",
-          "similarity": 100.0
-        },
-        {
-          "category": "switch_spawn",
-          "similarity": 100.0
-        },
-        {
           "category": "branch_range_check",
+          "similarity": 100.0
+        },
+        {
+          "category": "nested_valid_branch",
+          "similarity": 100.0
+        },
+        {
+          "category": "switch_with_ui",
           "similarity": 100.0
         }
       ],
       "valid_syntax_pct": 100.0,
-      "avg_similarity": 90.0,
-      "duration_seconds": 1346.5,
-      "avg_prompt_time": 67.3
+      "avg_similarity": 98.3,
+      "duration_seconds": 1339.3,
+      "avg_prompt_time": 67.0
     },
     {
       "lesson_id": "L10",
       "lesson_name": "Complex Real-World Blueprints",
       "status": "done",
-      "valid_count": 16,
+      "valid_count": 19,
       "total_count": 20,
       "completed_prompts": 20,
       "prompts": [
         {
           "prompt_id": "L10_01",
           "category": "pickup_full",
-          "valid": false,
-          "similarity": 60.0,
-          "time_seconds": 36.6
+          "valid": true,
+          "similarity": 46.7,
+          "time_seconds": 69.5
         },
         {
           "prompt_id": "L10_02",
           "category": "trap_floor",
-          "valid": false,
-          "similarity": 100.0,
-          "time_seconds": 193.2
+          "valid": true,
+          "similarity": 92.3,
+          "time_seconds": 41.7
         },
         {
           "prompt_id": "L10_03",
           "category": "door_interact",
           "valid": true,
-          "similarity": 95.5,
-          "time_seconds": 83.0
+          "similarity": 100.0,
+          "time_seconds": 86.5
         },
         {
           "prompt_id": "L10_04",
           "category": "spawner_waves",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 103.2
+          "time_seconds": 108.3
         },
         {
           "prompt_id": "L10_05",
           "category": "checkpoint",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 62.5
+          "time_seconds": 56.8
         },
         {
           "prompt_id": "L10_06",
           "category": "damage_zone",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 76.0
+          "similarity": 95.0,
+          "time_seconds": 71.1
         },
         {
           "prompt_id": "L10_07",
           "category": "collectible_counter",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 77.9
+          "time_seconds": 70.8
         },
         {
           "prompt_id": "L10_08",
           "category": "timed_platform",
           "valid": true,
-          "similarity": 26.7,
-          "time_seconds": 75.2
+          "similarity": 80.0,
+          "time_seconds": 63.4
         },
         {
           "prompt_id": "L10_09",
           "category": "enemy_proximity",
           "valid": true,
-          "similarity": 68.2,
-          "time_seconds": 89.1
+          "similarity": 100.0,
+          "time_seconds": 76.6
         },
         {
           "prompt_id": "L10_10",
           "category": "power_up",
           "valid": false,
           "similarity": 100.0,
-          "time_seconds": 57.5
+          "time_seconds": 67.8
         },
         {
           "prompt_id": "L10_11",
           "category": "multi_pickup",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 83.0
+          "similarity": 47.8,
+          "time_seconds": 99.0
         },
         {
           "prompt_id": "L10_12",
           "category": "turret_basic",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 79.0
+          "similarity": 90.5,
+          "time_seconds": 67.6
         },
         {
           "prompt_id": "L10_13",
           "category": "hud_health",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 105.2
+          "similarity": 30.3,
+          "time_seconds": 94.1
         },
         {
           "prompt_id": "L10_14",
           "category": "projectile_full",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 78.5
+          "similarity": 90.9,
+          "time_seconds": 81.6
         },
         {
           "prompt_id": "L10_15",
           "category": "pressure_plate",
           "valid": true,
-          "similarity": 50.0,
-          "time_seconds": 57.2
+          "similarity": 43.8,
+          "time_seconds": 54.7
         },
         {
           "prompt_id": "L10_16",
           "category": "respawn_system",
           "valid": true,
           "similarity": 96.9,
-          "time_seconds": 111.3
+          "time_seconds": 102.5
         },
         {
           "prompt_id": "L10_17",
           "category": "moving_platform",
-          "valid": false,
-          "similarity": 25.8,
-          "time_seconds": 126.4
+          "valid": true,
+          "similarity": 29.0,
+          "time_seconds": 74.4
         },
         {
           "prompt_id": "L10_18",
           "category": "trigger_sequence",
           "valid": true,
-          "similarity": 95.5,
-          "time_seconds": 76.5
+          "similarity": 100.0,
+          "time_seconds": 72.4
         },
         {
           "prompt_id": "L10_19",
           "category": "loading_screen",
           "valid": true,
           "similarity": 95.2,
-          "time_seconds": 70.7
+          "time_seconds": 69.7
         },
         {
           "prompt_id": "L10_20",
           "category": "full_game_loop",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 159.9
+          "similarity": 21.7,
+          "time_seconds": 131.4
         }
       ],
       "weakest_categories": [
         {
+          "category": "full_game_loop",
+          "similarity": 21.7
+        },
+        {
           "category": "moving_platform",
-          "similarity": 25.8
+          "similarity": 29.0
         },
         {
-          "category": "timed_platform",
-          "similarity": 26.7
-        },
-        {
-          "category": "pressure_plate",
-          "similarity": 50.0
+          "category": "hud_health",
+          "similarity": 30.3
         }
       ],
       "strongest_categories": [
         {
-          "category": "hud_health",
+          "category": "enemy_proximity",
           "similarity": 100.0
         },
         {
-          "category": "projectile_full",
+          "category": "power_up",
           "similarity": 100.0
         },
         {
-          "category": "full_game_loop",
+          "category": "trigger_sequence",
           "similarity": 100.0
         }
       ],
-      "valid_syntax_pct": 80.0,
-      "avg_similarity": 85.7,
-      "duration_seconds": 1801.9,
-      "avg_prompt_time": 90.1
+      "valid_syntax_pct": 95.0,
+      "avg_similarity": 78.0,
+      "duration_seconds": 1559.9,
+      "avg_prompt_time": 78.0
     },
     {
       "lesson_id": "L11",
@@ -1862,42 +1862,42 @@
           "category": "array_add",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 40.7
+          "time_seconds": 42.7
         },
         {
           "prompt_id": "L11_02",
           "category": "array_remove",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 36.6
+          "time_seconds": 34.5
         },
         {
           "prompt_id": "L11_03",
           "category": "array_get",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 31.7
+          "time_seconds": 32.9
         },
         {
           "prompt_id": "L11_04",
           "category": "array_contains",
           "valid": true,
-          "similarity": 93.3,
-          "time_seconds": 45.4
+          "similarity": 100.0,
+          "time_seconds": 41.7
         },
         {
           "prompt_id": "L11_05",
           "category": "array_length_check",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 53.3
+          "time_seconds": 49.8
         },
         {
           "prompt_id": "L11_06",
           "category": "array_foreach_print",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 35.3
+          "time_seconds": 35.0
         },
         {
           "prompt_id": "L11_07",
@@ -1911,110 +1911,110 @@
           "category": "array_add_overlap",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 46.4
+          "time_seconds": 45.6
         },
         {
           "prompt_id": "L11_09",
           "category": "array_foreach_destroy",
           "valid": true,
-          "similarity": 92.9,
-          "time_seconds": 45.0
+          "similarity": 100.0,
+          "time_seconds": 42.5
         },
         {
           "prompt_id": "L11_10",
           "category": "array_find_nearest",
           "valid": true,
-          "similarity": 37.5,
-          "time_seconds": 102.9
+          "similarity": 62.5,
+          "time_seconds": 97.2
         },
         {
           "prompt_id": "L11_11",
           "category": "array_random",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 52.2
+          "time_seconds": 45.9
         },
         {
           "prompt_id": "L11_12",
           "category": "array_loop_spawn",
           "valid": true,
-          "similarity": 61.1,
-          "time_seconds": 61.0
+          "similarity": 66.7,
+          "time_seconds": 50.5
         },
         {
           "prompt_id": "L11_13",
           "category": "array_remove_overlap",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 88.3
+          "time_seconds": 89.4
         },
         {
           "prompt_id": "L11_14",
           "category": "array_timer_add",
           "valid": true,
-          "similarity": 19.2,
-          "time_seconds": 83.6
+          "similarity": 100.0,
+          "time_seconds": 93.1
         },
         {
           "prompt_id": "L11_15",
           "category": "array_last_element",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 49.2
+          "time_seconds": 45.6
         },
         {
           "prompt_id": "L11_16",
           "category": "array_filter_distance",
           "valid": true,
-          "similarity": 75.0,
-          "time_seconds": 94.5
+          "similarity": 96.4,
+          "time_seconds": 86.4
         },
         {
           "prompt_id": "L11_17",
           "category": "array_switch_add",
           "valid": true,
-          "similarity": 96.3,
-          "time_seconds": 89.6
+          "similarity": 100.0,
+          "time_seconds": 98.8
         },
         {
           "prompt_id": "L11_18",
           "category": "array_empty_check",
           "valid": true,
-          "similarity": 88.0,
-          "time_seconds": 78.1
+          "similarity": 100.0,
+          "time_seconds": 78.5
         },
         {
           "prompt_id": "L11_19",
           "category": "array_foreach_valid",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 64.4
+          "time_seconds": 64.8
         },
         {
           "prompt_id": "L11_20",
           "category": "array_build_inventory",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 81.7
+          "time_seconds": 75.8
         }
       ],
       "weakest_categories": [
         {
-          "category": "array_timer_add",
-          "similarity": 19.2
-        },
-        {
           "category": "array_find_nearest",
-          "similarity": 37.5
+          "similarity": 62.5
         },
         {
           "category": "array_loop_spawn",
-          "similarity": 61.1
+          "similarity": 66.7
+        },
+        {
+          "category": "array_filter_distance",
+          "similarity": 96.4
         }
       ],
       "strongest_categories": [
         {
-          "category": "array_last_element",
+          "category": "array_empty_check",
           "similarity": 100.0
         },
         {
@@ -2027,9 +2027,9 @@
         }
       ],
       "valid_syntax_pct": 100.0,
-      "avg_similarity": 88.2,
-      "duration_seconds": 1213.4,
-      "avg_prompt_time": 60.7
+      "avg_similarity": 96.3,
+      "duration_seconds": 1184.2,
+      "avg_prompt_time": 59.2
     },
     {
       "lesson_id": "L12",
@@ -2044,140 +2044,140 @@
           "category": "minimal_bp",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 180.7
+          "time_seconds": 10.1
         },
         {
           "prompt_id": "L12_02",
           "category": "many_prints",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 47.1
+          "similarity": 71.4,
+          "time_seconds": 44.6
         },
         {
           "prompt_id": "L12_03",
           "category": "double_delay",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 52.7
+          "time_seconds": 49.9
         },
         {
           "prompt_id": "L12_04",
           "category": "no_variables",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 43.7
+          "time_seconds": 34.1
         },
         {
           "prompt_id": "L12_05",
           "category": "multi_var_types",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 35.1
+          "similarity": 91.7,
+          "time_seconds": 31.6
         },
         {
           "prompt_id": "L12_06",
           "category": "event_only",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 43.7
+          "similarity": 75.0,
+          "time_seconds": 40.4
         },
         {
           "prompt_id": "L12_07",
           "category": "deep_chain",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 13.8
+          "time_seconds": 16.7
         },
         {
           "prompt_id": "L12_08",
           "category": "flipflop_three_times",
           "valid": false,
           "similarity": 100.0,
-          "time_seconds": 54.0
+          "time_seconds": 54.4
         },
         {
           "prompt_id": "L12_09",
           "category": "doonce_reset",
           "valid": true,
-          "similarity": 90.0,
-          "time_seconds": 37.5
+          "similarity": 100.0,
+          "time_seconds": 30.5
         },
         {
           "prompt_id": "L12_10",
           "category": "data_only",
           "valid": true,
           "similarity": 92.9,
-          "time_seconds": 49.4
+          "time_seconds": 42.5
         },
         {
           "prompt_id": "L12_11",
           "category": "ambiguous_light",
           "valid": true,
-          "similarity": 70.0,
-          "time_seconds": 29.5
+          "similarity": 100.0,
+          "time_seconds": 30.5
         },
         {
           "prompt_id": "L12_12",
           "category": "ambiguous_pickup",
           "valid": true,
-          "similarity": 92.9,
-          "time_seconds": 41.9
+          "similarity": 57.1,
+          "time_seconds": 64.5
         },
         {
           "prompt_id": "L12_13",
           "category": "gate_full",
           "valid": true,
           "similarity": 92.9,
-          "time_seconds": 47.7
+          "time_seconds": 41.1
         },
         {
           "prompt_id": "L12_14",
           "category": "multigate_cycle",
           "valid": true,
-          "similarity": 83.3,
-          "time_seconds": 41.9
+          "similarity": 91.7,
+          "time_seconds": 36.1
         },
         {
           "prompt_id": "L12_15",
           "category": "two_inputs",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 32.5
+          "time_seconds": 28.3
         },
         {
           "prompt_id": "L12_16",
           "category": "self_reference",
           "valid": true,
-          "similarity": 50.0,
-          "time_seconds": 34.1
+          "similarity": 100.0,
+          "time_seconds": 31.3
         },
         {
           "prompt_id": "L12_17",
           "category": "cast_both",
           "valid": true,
           "similarity": 93.8,
-          "time_seconds": 55.9
+          "time_seconds": 54.9
         },
         {
           "prompt_id": "L12_18",
           "category": "nested_doonce",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 39.1
+          "time_seconds": 35.6
         },
         {
           "prompt_id": "L12_19",
           "category": "math_heavy",
           "valid": true,
           "similarity": 23.5,
-          "time_seconds": 119.2
+          "time_seconds": 106.4
         },
         {
           "prompt_id": "L12_20",
           "category": "complete_character",
           "valid": true,
-          "similarity": 100.0,
-          "time_seconds": 119.3
+          "similarity": 82.4,
+          "time_seconds": 114.1
         }
       ],
       "weakest_categories": [
@@ -2186,12 +2186,12 @@
           "similarity": 23.5
         },
         {
-          "category": "self_reference",
-          "similarity": 50.0
+          "category": "ambiguous_pickup",
+          "similarity": 57.1
         },
         {
-          "category": "ambiguous_light",
-          "similarity": 70.0
+          "category": "many_prints",
+          "similarity": 71.4
         }
       ],
       "strongest_categories": [
@@ -2200,86 +2200,1544 @@
           "similarity": 100.0
         },
         {
-          "category": "nested_doonce",
+          "category": "self_reference",
           "similarity": 100.0
         },
         {
-          "category": "complete_character",
+          "category": "nested_doonce",
           "similarity": 100.0
         }
       ],
       "valid_syntax_pct": 95.0,
-      "avg_similarity": 89.5,
-      "duration_seconds": 1118.8,
-      "avg_prompt_time": 55.9
+      "avg_similarity": 88.6,
+      "duration_seconds": 897.6,
+      "avg_prompt_time": 44.9
     },
     {
       "lesson_id": "L13",
       "lesson_name": "Corrective Training: Connection Patterns + New Node Types",
-      "status": "running",
-      "valid_count": 7,
+      "status": "done",
+      "valid_count": 19,
       "total_count": 20,
-      "completed_prompts": 7,
+      "completed_prompts": 20,
       "prompts": [
         {
           "prompt_id": "L13_01",
           "category": "cast_complete",
           "valid": true,
           "similarity": 90.9,
-          "time_seconds": 33.4
+          "time_seconds": 35.5
         },
         {
           "prompt_id": "L13_02",
           "category": "cast_complete",
           "valid": true,
-          "similarity": 43.8,
-          "time_seconds": 39.7
+          "similarity": 50.0,
+          "time_seconds": 39.9
         },
         {
           "prompt_id": "L13_03",
           "category": "cast_complete",
           "valid": true,
           "similarity": 100.0,
-          "time_seconds": 44.9
+          "time_seconds": 45.7
         },
         {
           "prompt_id": "L13_04",
           "category": "sequence_fanout",
           "valid": true,
-          "similarity": 83.3,
-          "time_seconds": 38.7
+          "similarity": 100.0,
+          "time_seconds": 32.6
         },
         {
           "prompt_id": "L13_05",
           "category": "sequence_fanout",
           "valid": true,
-          "similarity": 16.7,
-          "time_seconds": 83.3
+          "similarity": 90.0,
+          "time_seconds": 99.6
         },
         {
           "prompt_id": "L13_06",
           "category": "sequence_fanout",
           "valid": true,
-          "similarity": 68.8,
-          "time_seconds": 50.9
+          "similarity": 100.0,
+          "time_seconds": 57.3
         },
         {
           "prompt_id": "L13_07",
           "category": "math_compare_branch",
           "valid": true,
-          "similarity": 95.2,
-          "time_seconds": 61.5
+          "similarity": 81.0,
+          "time_seconds": 68.6
+        },
+        {
+          "prompt_id": "L13_08",
+          "category": "math_compare_branch",
+          "valid": true,
+          "similarity": 95.0,
+          "time_seconds": 63.7
+        },
+        {
+          "prompt_id": "L13_09",
+          "category": "math_compare_branch",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 66.6
+        },
+        {
+          "prompt_id": "L13_10",
+          "category": "event_pin_wiring",
+          "valid": true,
+          "similarity": 73.3,
+          "time_seconds": 45.6
+        },
+        {
+          "prompt_id": "L13_11",
+          "category": "event_pin_wiring",
+          "valid": true,
+          "similarity": 88.9,
+          "time_seconds": 25.7
+        },
+        {
+          "prompt_id": "L13_12",
+          "category": "event_pin_wiring",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 38.7
+        },
+        {
+          "prompt_id": "L13_13",
+          "category": "complete_exec_chains",
+          "valid": true,
+          "similarity": 97.1,
+          "time_seconds": 114.6
+        },
+        {
+          "prompt_id": "L13_14",
+          "category": "complete_exec_chains",
+          "valid": false,
+          "similarity": 89.7,
+          "time_seconds": 92.7
+        },
+        {
+          "prompt_id": "L13_15",
+          "category": "forloop_proper",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 31.8
+        },
+        {
+          "prompt_id": "L13_16",
+          "category": "forloop_proper",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 60.4
+        },
+        {
+          "prompt_id": "L13_17",
+          "category": "foreach_proper",
+          "valid": true,
+          "similarity": 94.7,
+          "time_seconds": 56.9
+        },
+        {
+          "prompt_id": "L13_18",
+          "category": "switch_new",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 49.0
+        },
+        {
+          "prompt_id": "L13_19",
+          "category": "switch_new",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 56.6
+        },
+        {
+          "prompt_id": "L13_20",
+          "category": "select_new",
+          "valid": true,
+          "similarity": 93.8,
+          "time_seconds": 48.8
         }
       ],
-      "weakest_categories": [],
-      "strongest_categories": []
+      "weakest_categories": [
+        {
+          "category": "cast_complete",
+          "similarity": 80.3
+        },
+        {
+          "category": "event_pin_wiring",
+          "similarity": 87.4
+        },
+        {
+          "category": "math_compare_branch",
+          "similarity": 92.0
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "sequence_fanout",
+          "similarity": 96.7
+        },
+        {
+          "category": "forloop_proper",
+          "similarity": 100.0
+        },
+        {
+          "category": "switch_new",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 95.0,
+      "avg_similarity": 92.2,
+      "duration_seconds": 1130.3,
+      "avg_prompt_time": 56.5
+    },
+    {
+      "lesson_id": "L14",
+      "lesson_name": "Corrective Training: DATA Line Completion + Core Pattern Consistency",
+      "status": "done",
+      "valid_count": 20,
+      "total_count": 20,
+      "completed_prompts": 20,
+      "prompts": [
+        {
+          "prompt_id": "L14_01",
+          "category": "data_completion_branch",
+          "valid": true,
+          "similarity": 92.3,
+          "time_seconds": 42.4
+        },
+        {
+          "prompt_id": "L14_02",
+          "category": "data_completion_branch",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 40.8
+        },
+        {
+          "prompt_id": "L14_03",
+          "category": "data_completion_branch",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 46.4
+        },
+        {
+          "prompt_id": "L14_04",
+          "category": "data_completion_math",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 31.1
+        },
+        {
+          "prompt_id": "L14_05",
+          "category": "data_completion_math",
+          "valid": true,
+          "similarity": 57.1,
+          "time_seconds": 31.7
+        },
+        {
+          "prompt_id": "L14_06",
+          "category": "data_completion_math",
+          "valid": true,
+          "similarity": 90.0,
+          "time_seconds": 32.9
+        },
+        {
+          "prompt_id": "L14_07",
+          "category": "data_completion_foreach",
+          "valid": true,
+          "similarity": 83.3,
+          "time_seconds": 33.6
+        },
+        {
+          "prompt_id": "L14_08",
+          "category": "data_completion_foreach",
+          "valid": true,
+          "similarity": 88.9,
+          "time_seconds": 61.7
+        },
+        {
+          "prompt_id": "L14_09",
+          "category": "data_completion_rotate",
+          "valid": true,
+          "similarity": 72.7,
+          "time_seconds": 39.1
+        },
+        {
+          "prompt_id": "L14_10",
+          "category": "data_completion_rotate",
+          "valid": true,
+          "similarity": 36.4,
+          "time_seconds": 42.7
+        },
+        {
+          "prompt_id": "L14_11",
+          "category": "data_completion_rotate",
+          "valid": true,
+          "similarity": 90.9,
+          "time_seconds": 38.4
+        },
+        {
+          "prompt_id": "L14_12",
+          "category": "data_completion_cast",
+          "valid": true,
+          "similarity": 73.3,
+          "time_seconds": 53.5
+        },
+        {
+          "prompt_id": "L14_13",
+          "category": "data_completion_cast",
+          "valid": true,
+          "similarity": 88.2,
+          "time_seconds": 52.3
+        },
+        {
+          "prompt_id": "L14_14",
+          "category": "data_completion_damage",
+          "valid": true,
+          "similarity": 95.5,
+          "time_seconds": 76.2
+        },
+        {
+          "prompt_id": "L14_15",
+          "category": "data_completion_damage",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 75.3
+        },
+        {
+          "prompt_id": "L14_16",
+          "category": "data_completion_visibility",
+          "valid": true,
+          "similarity": 92.9,
+          "time_seconds": 44.5
+        },
+        {
+          "prompt_id": "L14_17",
+          "category": "data_completion_spawn",
+          "valid": true,
+          "similarity": 80.0,
+          "time_seconds": 37.2
+        },
+        {
+          "prompt_id": "L14_18",
+          "category": "data_completion_gate",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 53.4
+        },
+        {
+          "prompt_id": "L14_19",
+          "category": "data_completion_complex",
+          "valid": true,
+          "similarity": 26.9,
+          "time_seconds": 79.3
+        },
+        {
+          "prompt_id": "L14_20",
+          "category": "data_completion_complex",
+          "valid": true,
+          "similarity": 73.9,
+          "time_seconds": 68.1
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "data_completion_complex",
+          "similarity": 50.4
+        },
+        {
+          "category": "data_completion_rotate",
+          "similarity": 66.7
+        },
+        {
+          "category": "data_completion_spawn",
+          "similarity": 80.0
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "data_completion_branch",
+          "similarity": 97.4
+        },
+        {
+          "category": "data_completion_damage",
+          "similarity": 97.8
+        },
+        {
+          "category": "data_completion_gate",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 82.1,
+      "duration_seconds": 980.6,
+      "avg_prompt_time": 49.0
+    },
+    {
+      "lesson_id": "L15",
+      "lesson_name": "Corrective Training: Weak Similarity Patterns",
+      "status": "done",
+      "valid_count": 20,
+      "total_count": 20,
+      "completed_prompts": 20,
+      "prompts": [
+        {
+          "prompt_id": "L15_01",
+          "category": "foreach_distance",
+          "valid": true,
+          "similarity": 94.4,
+          "time_seconds": 58.4
+        },
+        {
+          "prompt_id": "L15_02",
+          "category": "foreach_distance",
+          "valid": true,
+          "similarity": 84.6,
+          "time_seconds": 84.2
+        },
+        {
+          "prompt_id": "L15_03",
+          "category": "movement_patrol",
+          "valid": true,
+          "similarity": 50.0,
+          "time_seconds": 101.8
+        },
+        {
+          "prompt_id": "L15_04",
+          "category": "movement_patrol",
+          "valid": true,
+          "similarity": 91.3,
+          "time_seconds": 86.9
+        },
+        {
+          "prompt_id": "L15_05",
+          "category": "physics_gravity",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 54.7
+        },
+        {
+          "prompt_id": "L15_06",
+          "category": "physics_toggle",
+          "valid": true,
+          "similarity": 92.9,
+          "time_seconds": 45.5
+        },
+        {
+          "prompt_id": "L15_07",
+          "category": "gate_debug",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 56.5
+        },
+        {
+          "prompt_id": "L15_08",
+          "category": "gate_debug",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 48.6
+        },
+        {
+          "prompt_id": "L15_09",
+          "category": "damage_timer",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 75.0
+        },
+        {
+          "prompt_id": "L15_10",
+          "category": "damage_timer",
+          "valid": true,
+          "similarity": 56.0,
+          "time_seconds": 87.3
+        },
+        {
+          "prompt_id": "L15_11",
+          "category": "pickup_pattern",
+          "valid": true,
+          "similarity": 85.7,
+          "time_seconds": 74.6
+        },
+        {
+          "prompt_id": "L15_12",
+          "category": "pickup_pattern",
+          "valid": true,
+          "similarity": 37.0,
+          "time_seconds": 90.6
+        },
+        {
+          "prompt_id": "L15_13",
+          "category": "spawn_pattern",
+          "valid": true,
+          "similarity": 25.0,
+          "time_seconds": 46.5
+        },
+        {
+          "prompt_id": "L15_14",
+          "category": "isvalid_spawn",
+          "valid": true,
+          "similarity": 95.7,
+          "time_seconds": 91.3
+        },
+        {
+          "prompt_id": "L15_15",
+          "category": "isvalid_spawn",
+          "valid": true,
+          "similarity": 92.3,
+          "time_seconds": 89.2
+        },
+        {
+          "prompt_id": "L15_16",
+          "category": "timer_toggle",
+          "valid": true,
+          "similarity": 84.2,
+          "time_seconds": 70.2
+        },
+        {
+          "prompt_id": "L15_17",
+          "category": "math_heavy",
+          "valid": true,
+          "similarity": 92.9,
+          "time_seconds": 46.3
+        },
+        {
+          "prompt_id": "L15_18",
+          "category": "loading_screen",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 73.0
+        },
+        {
+          "prompt_id": "L15_19",
+          "category": "pressure_plate",
+          "valid": true,
+          "similarity": 94.1,
+          "time_seconds": 58.3
+        },
+        {
+          "prompt_id": "L15_20",
+          "category": "moving_platform",
+          "valid": true,
+          "similarity": 85.7,
+          "time_seconds": 96.5
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "spawn_pattern",
+          "similarity": 25.0
+        },
+        {
+          "category": "pickup_pattern",
+          "similarity": 61.4
+        },
+        {
+          "category": "movement_patrol",
+          "similarity": 70.7
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "physics_gravity",
+          "similarity": 100.0
+        },
+        {
+          "category": "gate_debug",
+          "similarity": 100.0
+        },
+        {
+          "category": "loading_screen",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 83.1,
+      "duration_seconds": 1435.4,
+      "avg_prompt_time": 71.8
+    },
+    {
+      "lesson_id": "L16",
+      "lesson_name": "Generalization: Varied Phrasing for Weak Patterns",
+      "status": "done",
+      "valid_count": 20,
+      "total_count": 20,
+      "completed_prompts": 20,
+      "prompts": [
+        {
+          "prompt_id": "L16_01",
+          "category": "gate_debug_v2",
+          "valid": true,
+          "similarity": 93.8,
+          "time_seconds": 53.7
+        },
+        {
+          "prompt_id": "L16_02",
+          "category": "gate_debug_v3",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 44.4
+        },
+        {
+          "prompt_id": "L16_03",
+          "category": "string_damage_v2",
+          "valid": true,
+          "similarity": 86.7,
+          "time_seconds": 49.1
+        },
+        {
+          "prompt_id": "L16_04",
+          "category": "string_damage_v3",
+          "valid": true,
+          "similarity": 93.3,
+          "time_seconds": 47.0
+        },
+        {
+          "prompt_id": "L16_05",
+          "category": "math_heavy_v2",
+          "valid": true,
+          "similarity": 91.7,
+          "time_seconds": 39.7
+        },
+        {
+          "prompt_id": "L16_06",
+          "category": "math_heavy_v3",
+          "valid": true,
+          "similarity": 91.7,
+          "time_seconds": 49.2
+        },
+        {
+          "prompt_id": "L16_07",
+          "category": "pressure_plate_v2",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 58.2
+        },
+        {
+          "prompt_id": "L16_08",
+          "category": "pressure_plate_v3",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 59.3
+        },
+        {
+          "prompt_id": "L16_09",
+          "category": "ambiguous_pickup_v2",
+          "valid": true,
+          "similarity": 89.5,
+          "time_seconds": 74.5
+        },
+        {
+          "prompt_id": "L16_10",
+          "category": "ambiguous_pickup_v3",
+          "valid": true,
+          "similarity": 89.5,
+          "time_seconds": 67.2
+        },
+        {
+          "prompt_id": "L16_11",
+          "category": "physics_gravity_v2",
+          "valid": true,
+          "similarity": 93.8,
+          "time_seconds": 49.4
+        },
+        {
+          "prompt_id": "L16_12",
+          "category": "physics_toggle_v2",
+          "valid": true,
+          "similarity": 92.9,
+          "time_seconds": 46.3
+        },
+        {
+          "prompt_id": "L16_13",
+          "category": "movement_patrol_v2",
+          "valid": true,
+          "similarity": 93.3,
+          "time_seconds": 52.4
+        },
+        {
+          "prompt_id": "L16_14",
+          "category": "movement_patrol_v3",
+          "valid": true,
+          "similarity": 86.7,
+          "time_seconds": 51.5
+        },
+        {
+          "prompt_id": "L16_15",
+          "category": "damage_zone_v2",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 79.4
+        },
+        {
+          "prompt_id": "L16_16",
+          "category": "damage_zone_v3",
+          "valid": true,
+          "similarity": 95.0,
+          "time_seconds": 77.7
+        },
+        {
+          "prompt_id": "L16_17",
+          "category": "trigger_sequence_v2",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 48.4
+        },
+        {
+          "prompt_id": "L16_18",
+          "category": "loading_screen_v2",
+          "valid": true,
+          "similarity": 95.2,
+          "time_seconds": 69.5
+        },
+        {
+          "prompt_id": "L16_19",
+          "category": "foreach_filter_v2",
+          "valid": true,
+          "similarity": 84.2,
+          "time_seconds": 57.9
+        },
+        {
+          "prompt_id": "L16_20",
+          "category": "moving_platform_v2",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 91.2
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "foreach_filter_v2",
+          "similarity": 84.2
+        },
+        {
+          "category": "string_damage_v2",
+          "similarity": 86.7
+        },
+        {
+          "category": "movement_patrol_v3",
+          "similarity": 86.7
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "damage_zone_v2",
+          "similarity": 100.0
+        },
+        {
+          "category": "trigger_sequence_v2",
+          "similarity": 100.0
+        },
+        {
+          "category": "moving_platform_v2",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 93.9,
+      "duration_seconds": 1166.0,
+      "avg_prompt_time": 58.3
+    },
+    {
+      "lesson_id": "L19",
+      "lesson_name": "Connection Patterns: EXEC Chains, DATA Wiring, Branch Paths",
+      "status": "done",
+      "valid_count": 20,
+      "total_count": 20,
+      "completed_prompts": 20,
+      "prompts": [
+        {
+          "prompt_id": "L19_01",
+          "category": "exec_chain_linear",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 94.0
+        },
+        {
+          "prompt_id": "L19_02",
+          "category": "exec_chain_linear",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 108.5
+        },
+        {
+          "prompt_id": "L19_03",
+          "category": "exec_branch_complete",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 128.2
+        },
+        {
+          "prompt_id": "L19_04",
+          "category": "exec_branch_complete",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 112.7
+        },
+        {
+          "prompt_id": "L19_05",
+          "category": "data_chain_arithmetic",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 135.4
+        },
+        {
+          "prompt_id": "L19_06",
+          "category": "data_chain_arithmetic",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 121.0
+        },
+        {
+          "prompt_id": "L19_07",
+          "category": "data_fan_out",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 101.4
+        },
+        {
+          "prompt_id": "L19_08",
+          "category": "data_fan_out",
+          "valid": true,
+          "similarity": 87.5,
+          "time_seconds": 137.8
+        },
+        {
+          "prompt_id": "L19_09",
+          "category": "timer_event_pair",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 116.6
+        },
+        {
+          "prompt_id": "L19_10",
+          "category": "timer_event_pair",
+          "valid": true,
+          "similarity": 96.0,
+          "time_seconds": 176.2
+        },
+        {
+          "prompt_id": "L19_11",
+          "category": "multi_event_graph",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 87.8
+        },
+        {
+          "prompt_id": "L19_12",
+          "category": "multi_event_graph",
+          "valid": true,
+          "similarity": 50.0,
+          "time_seconds": 221.5
+        },
+        {
+          "prompt_id": "L19_13",
+          "category": "flipflop_doonce",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 95.6
+        },
+        {
+          "prompt_id": "L19_14",
+          "category": "flipflop_doonce",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 93.6
+        },
+        {
+          "prompt_id": "L19_15",
+          "category": "nested_branch",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 125.1
+        },
+        {
+          "prompt_id": "L19_16",
+          "category": "nested_branch",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 132.9
+        },
+        {
+          "prompt_id": "L19_17",
+          "category": "gate_pattern",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 91.6
+        },
+        {
+          "prompt_id": "L19_18",
+          "category": "delay_chain",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 126.9
+        },
+        {
+          "prompt_id": "L19_19",
+          "category": "spawn_configure",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 62.3
+        },
+        {
+          "prompt_id": "L19_20",
+          "category": "random_clamp",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 91.6
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "multi_event_graph",
+          "similarity": 75.0
+        },
+        {
+          "category": "data_fan_out",
+          "similarity": 93.8
+        },
+        {
+          "category": "timer_event_pair",
+          "similarity": 98.0
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "delay_chain",
+          "similarity": 100.0
+        },
+        {
+          "category": "spawn_configure",
+          "similarity": 100.0
+        },
+        {
+          "category": "random_clamp",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 96.7,
+      "duration_seconds": 2360.7,
+      "avg_prompt_time": 118.0
+    },
+    {
+      "lesson_id": "L20",
+      "lesson_name": "Compositional Mid-Tier: Multi-Pattern Systems (15-30 nodes)",
+      "status": "done",
+      "valid_count": 15,
+      "total_count": 15,
+      "completed_prompts": 15,
+      "prompts": [
+        {
+          "prompt_id": "L20_01",
+          "category": "timer_counter_threshold",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 273.1
+        },
+        {
+          "prompt_id": "L20_02",
+          "category": "timer_counter_threshold",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 104.6
+        },
+        {
+          "prompt_id": "L20_03",
+          "category": "overlap_score_destroy",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 72.4
+        },
+        {
+          "prompt_id": "L20_04",
+          "category": "overlap_state_toggle",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 52.3
+        },
+        {
+          "prompt_id": "L20_05",
+          "category": "health_damage_death",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 94.6
+        },
+        {
+          "prompt_id": "L20_06",
+          "category": "health_damage_death",
+          "valid": true,
+          "similarity": 25.8,
+          "time_seconds": 127.8
+        },
+        {
+          "prompt_id": "L20_07",
+          "category": "key_lock_door",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 73.2
+        },
+        {
+          "prompt_id": "L20_08",
+          "category": "shop_widget",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 62.0
+        },
+        {
+          "prompt_id": "L20_09",
+          "category": "checkpoint_respawn",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 83.6
+        },
+        {
+          "prompt_id": "L20_10",
+          "category": "day_night_cycle",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 115.5
+        },
+        {
+          "prompt_id": "L20_11",
+          "category": "turret_range_fire",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 88.2
+        },
+        {
+          "prompt_id": "L20_12",
+          "category": "score_highscore",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 103.2
+        },
+        {
+          "prompt_id": "L20_13",
+          "category": "moving_platform",
+          "valid": true,
+          "similarity": 84.2,
+          "time_seconds": 81.0
+        },
+        {
+          "prompt_id": "L20_14",
+          "category": "lava_damage_zone",
+          "valid": true,
+          "similarity": 75.0,
+          "time_seconds": 67.9
+        },
+        {
+          "prompt_id": "L20_15",
+          "category": "teleporter_pair",
+          "valid": true,
+          "similarity": 92.9,
+          "time_seconds": 42.2
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "health_damage_death",
+          "similarity": 62.9
+        },
+        {
+          "category": "lava_damage_zone",
+          "similarity": 75.0
+        },
+        {
+          "category": "moving_platform",
+          "similarity": 84.2
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "day_night_cycle",
+          "similarity": 100.0
+        },
+        {
+          "category": "turret_range_fire",
+          "similarity": 100.0
+        },
+        {
+          "category": "score_highscore",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 91.9,
+      "duration_seconds": 1441.6,
+      "avg_prompt_time": 96.1
+    },
+    {
+      "lesson_id": "L21",
+      "lesson_name": "Complex Systems: Full Game Objects with Variations (25-50 nodes)",
+      "status": "done",
+      "valid_count": 10,
+      "total_count": 10,
+      "completed_prompts": 10,
+      "prompts": [
+        {
+          "prompt_id": "L21_01",
+          "category": "wave_spawner_v1",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 167.6
+        },
+        {
+          "prompt_id": "L21_02",
+          "category": "wave_spawner_v2",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 172.2
+        },
+        {
+          "prompt_id": "L21_03",
+          "category": "combat_system",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 213.1
+        },
+        {
+          "prompt_id": "L21_04",
+          "category": "inventory_pickup",
+          "valid": true,
+          "similarity": 33.3,
+          "time_seconds": 74.9
+        },
+        {
+          "prompt_id": "L21_05",
+          "category": "game_manager",
+          "valid": true,
+          "similarity": 93.2,
+          "time_seconds": 232.3
+        },
+        {
+          "prompt_id": "L21_06",
+          "category": "game_manager_v2",
+          "valid": true,
+          "similarity": 94.9,
+          "time_seconds": 156.3
+        },
+        {
+          "prompt_id": "L21_07",
+          "category": "respawn_system",
+          "valid": true,
+          "similarity": 97.5,
+          "time_seconds": 152.1
+        },
+        {
+          "prompt_id": "L21_08",
+          "category": "powerup_system",
+          "valid": true,
+          "similarity": 97.1,
+          "time_seconds": 134.2
+        },
+        {
+          "prompt_id": "L21_09",
+          "category": "interactive_npc",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 197.6
+        },
+        {
+          "prompt_id": "L21_10",
+          "category": "trap_system",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 135.4
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "inventory_pickup",
+          "similarity": 33.3
+        },
+        {
+          "category": "game_manager",
+          "similarity": 93.2
+        },
+        {
+          "category": "game_manager_v2",
+          "similarity": 94.9
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "combat_system",
+          "similarity": 100.0
+        },
+        {
+          "category": "interactive_npc",
+          "similarity": 100.0
+        },
+        {
+          "category": "trap_system",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 91.6,
+      "duration_seconds": 1635.7,
+      "avg_prompt_time": 163.6
+    },
+    {
+      "lesson_id": "L22",
+      "lesson_name": "Error Correction: Variables, Spawn, and UI Syntax",
+      "status": "done",
+      "valid_count": 0,
+      "total_count": 15,
+      "completed_prompts": 30,
+      "prompts": [
+        {
+          "prompt_id": "L22_01",
+          "category": "branch_with_variable",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_01",
+          "category": "branch_with_variable",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_02",
+          "category": "branch_float_compare",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_02",
+          "category": "branch_float_compare",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_03",
+          "category": "foreach_typed_array",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_03",
+          "category": "foreach_typed_array",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_04",
+          "category": "foreach_string_array",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_04",
+          "category": "foreach_string_array",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_05",
+          "category": "variable_add_int",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_05",
+          "category": "variable_add_int",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_06",
+          "category": "variable_subtract_float",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_06",
+          "category": "variable_subtract_float",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_07",
+          "category": "spawn_with_transform",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_07",
+          "category": "spawn_with_transform",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_08",
+          "category": "spawn_on_overlap",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_08",
+          "category": "spawn_on_overlap",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_09",
+          "category": "ui_toggle_notbool",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_09",
+          "category": "ui_toggle_notbool",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_10",
+          "category": "ui_switch_notbool",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_10",
+          "category": "ui_switch_notbool",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_11",
+          "category": "ui_safe_remove",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_11",
+          "category": "ui_safe_remove",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_12",
+          "category": "ui_endplay_dispose",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_12",
+          "category": "ui_endplay_dispose",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_13",
+          "category": "ui_load_transition",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_13",
+          "category": "ui_load_transition",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_14",
+          "category": "ui_splash_transition",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_14",
+          "category": "ui_splash_transition",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_15",
+          "category": "ui_notification_timed",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        },
+        {
+          "prompt_id": "L22_15",
+          "category": "ui_notification_timed",
+          "valid": false,
+          "similarity": 0.0,
+          "time_seconds": 300.0
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "branch_with_variable",
+          "similarity": 0.0
+        },
+        {
+          "category": "branch_float_compare",
+          "similarity": 0.0
+        },
+        {
+          "category": "foreach_typed_array",
+          "similarity": 0.0
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "ui_load_transition",
+          "similarity": 0.0
+        },
+        {
+          "category": "ui_splash_transition",
+          "similarity": 0.0
+        },
+        {
+          "category": "ui_notification_timed",
+          "similarity": 0.0
+        }
+      ],
+      "valid_syntax_pct": 0.0,
+      "avg_similarity": 0.0,
+      "duration_seconds": 9000.0,
+      "avg_prompt_time": 300.0
+    },
+    {
+      "lesson_id": "L23",
+      "lesson_name": "Complex Systems: 20-35 Node Blueprints",
+      "status": "done",
+      "valid_count": 8,
+      "total_count": 8,
+      "completed_prompts": 8,
+      "prompts": [
+        {
+          "prompt_id": "L23_01",
+          "category": "character_health_system",
+          "valid": true,
+          "similarity": 90.3,
+          "time_seconds": 108.9
+        },
+        {
+          "prompt_id": "L23_02",
+          "category": "pickup_with_effects",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 97.3
+        },
+        {
+          "prompt_id": "L23_03",
+          "category": "enemy_damage_system",
+          "valid": true,
+          "similarity": 94.3,
+          "time_seconds": 132.7
+        },
+        {
+          "prompt_id": "L23_04",
+          "category": "timed_hazard",
+          "valid": true,
+          "similarity": 96.4,
+          "time_seconds": 89.7
+        },
+        {
+          "prompt_id": "L23_05",
+          "category": "door_lock_system",
+          "valid": true,
+          "similarity": 33.3,
+          "time_seconds": 111.0
+        },
+        {
+          "prompt_id": "L23_06",
+          "category": "countdown_timer",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 132.2
+        },
+        {
+          "prompt_id": "L23_07",
+          "category": "multi_phase_spawner",
+          "valid": true,
+          "similarity": 86.4,
+          "time_seconds": 161.5
+        },
+        {
+          "prompt_id": "L23_08",
+          "category": "interactive_switch",
+          "valid": true,
+          "similarity": 56.7,
+          "time_seconds": 100.1
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "door_lock_system",
+          "similarity": 33.3
+        },
+        {
+          "category": "interactive_switch",
+          "similarity": 56.7
+        },
+        {
+          "category": "multi_phase_spawner",
+          "similarity": 86.4
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "timed_hazard",
+          "similarity": 96.4
+        },
+        {
+          "category": "pickup_with_effects",
+          "similarity": 100.0
+        },
+        {
+          "category": "countdown_timer",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 82.2,
+      "duration_seconds": 933.4,
+      "avg_prompt_time": 116.7
     }
   ],
   "aggregate": {
-    "total_prompts_completed": 251,
+    "total_prompts_completed": 407,
     "total_prompts_remaining": 0,
-    "overall_valid_syntax_pct": 92.8,
-    "overall_avg_similarity": 86.0,
+    "overall_valid_syntax_pct": 90.4,
+    "overall_avg_similarity": 83.8,
     "estimated_remaining_seconds": 0
   }
 }

@@ -1,10 +1,10 @@
-Grade these v7 results:
-https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_12_20260302_071921.jsonl
-https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_12_20260302_071921_summary.json
-https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_11_20260302_065509.jsonl
-https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_11_20260302_065509_summary.json
-https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_10_20260302_062106.jsonl
-https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_10_20260302_062106_summary.json
-https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_09_20260302_055438.jsonl
-https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/exams/exam_lesson_09_20260302_055438_summary.json
-https://raw.githubusercontent.com/Divinity-Alpha/BlueprintLLM/main/results/eval_v7_20260302.json
+Grade these v11 results:
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_16_20260306_135259.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_16_20260306_135259_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_15_20260306_132518.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_15_20260306_132518_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_14_20260306_130514.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_14_20260306_130514_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_13_20260306_124237.jsonl
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/exams/exam_lesson_13_20260306_124237_summary.json
+https://raw.githubusercontent.com/Divinity-Alpha/Arcwright/main/results/eval_v11_20260306.json

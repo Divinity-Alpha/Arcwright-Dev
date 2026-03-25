@@ -1,0 +1,69 @@
+{
+  "metadata": {
+    "name": "BP_ShowHUD",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "CreateWidget",
+      "params": {
+        "WidgetClass": "WBP_HUD"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/UMG.WidgetBlueprintLibrary:Create",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "AddToViewport",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/UMG.UserWidget:AddToViewport",
+      "position": [
+        600,
+        0
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "Then",
+      "dst_node": "n3",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n2",
+      "src_pin": "ReturnValue",
+      "dst_node": "n3",
+      "dst_pin": "T",
+      "data_type": null
+    }
+  ]
+}

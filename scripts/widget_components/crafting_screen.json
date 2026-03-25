@@ -1,0 +1,139 @@
+{
+  "id": "crafting_screen",
+  "name": "Crafting Screen",
+  "category": "inventory",
+  "description": "Recipe list, ingredient slots, result preview, craft button",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    600,
+    400
+  ],
+  "variables": [
+    {
+      "name": "SelectedRecipe",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "CraftRoot",
+    "properties": {
+      "spacing": "12"
+    },
+    "children": [
+      {
+        "type": "VBOX",
+        "name": "RecipeList",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "RecipesTitle",
+            "properties": {
+              "text": "RECIPES",
+              "font_size": "16",
+              "color": "$text",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "Recipe1",
+            "properties": {
+              "text": "Iron Sword",
+              "font_size": "14"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "Recipe2",
+            "properties": {
+              "text": "Health Potion",
+              "font_size": "14"
+            }
+          }
+        ]
+      },
+      {
+        "type": "VBOX",
+        "name": "CraftCenter",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "HBOX",
+            "name": "IngredientRow",
+            "properties": {
+              "spacing": "8"
+            },
+            "children": [
+              {
+                "type": "IMAGE",
+                "name": "Ingr1",
+                "properties": {
+                  "tint": "$surface",
+                  "size_x": "56",
+                  "size_y": "56"
+                }
+              },
+              {
+                "type": "IMAGE",
+                "name": "Ingr2",
+                "properties": {
+                  "tint": "$surface",
+                  "size_x": "56",
+                  "size_y": "56"
+                }
+              },
+              {
+                "type": "IMAGE",
+                "name": "Ingr3",
+                "properties": {
+                  "tint": "$surface",
+                  "size_x": "56",
+                  "size_y": "56"
+                }
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Arrow",
+            "properties": {
+              "text": ">>>",
+              "font_size": "24",
+              "color": "$accent",
+              "justification": "Center"
+            }
+          },
+          {
+            "type": "IMAGE",
+            "name": "ResultPreview",
+            "properties": {
+              "tint": "$primary",
+              "size_x": "72",
+              "size_y": "72"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "CraftBtn",
+            "properties": {
+              "text": "CRAFT",
+              "font_size": "16"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "name": "BP_Torch",
+    "parent_class": "Actor"
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay"
+    },
+    {
+      "id": "n2",
+      "dsl_type": "PrintString",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "params": {
+        "InString": ""
+      }
+    }
+  ],
+  "connections": [
+    {
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "version": "1.1",
+  "description": "Arcwright Template Library — Reusable game patterns for automated game creation",
+  "total_templates": 17,
+  "categories": {
+    "collectibles": {
+      "description": "Pickups, coins, power-ups that players collect",
+      "templates": ["collectible_basic", "collectible_score", "collectible_health", "collectible_powerup"]
+    },
+    "hazards": {
+      "description": "Damage zones, traps, environmental dangers",
+      "templates": ["hazard_zone", "hazard_timed_trap", "hazard_projectile"]
+    },
+    "triggers": {
+      "description": "Victory zones, checkpoints, teleporters, pressure plates, levers",
+      "templates": ["trigger_victory", "trigger_checkpoint", "trigger_teleporter", "trigger_pressure_plate", "trigger_lever"]
+    },
+    "enemies": {
+      "description": "AI enemies with patrol, chase, attack behaviors",
+      "templates": ["enemy_patrol_chase", "enemy_stationary_turret", "enemy_aggressive"]
+    },
+    "managers": {
+      "description": "Game managers, score trackers, wave spawners",
+      "templates": ["manager_score", "manager_wave_spawner", "manager_game_state"]
+    },
+    "ui": {
+      "description": "HUD widgets, menus, health bars",
+      "templates": ["ui_game_hud", "ui_health_bar", "ui_score_display"]
+    },
+    "movement": {
+      "description": "Moving platforms, rotating actors, patrolling objects",
+      "templates": ["movement_rotating", "movement_platform", "movement_bobbing"]
+    },
+    "player": {
+      "description": "Player character setups: FPS, third person, top-down",
+      "templates": ["player_fps"]
+    }
+  }
+}

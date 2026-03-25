@@ -57,7 +57,7 @@ from transformers import (
     TrainerControl,
     TrainerState,
 )
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from peft import LoraConfig, PeftModel, get_peft_model, prepare_model_for_kbit_training
 from trl import SFTTrainer
 
 # Add parent to path so we can import the prompt generator
@@ -175,11 +175,11 @@ class GracefulStopCallback(TrainerCallback):
 DEFAULT_CONFIG = {
     # Model
     "base_model": "meta-llama/Meta-Llama-3.1-8B",
-    "max_seq_length": 4096,  # Increased from 2048 to fit enhanced prompt
+    "max_seq_length": 1024,
 
     # LoRA
-    "lora_r": 64,
-    "lora_alpha": 128,
+    "lora_r": 32,
+    "lora_alpha": 64,
     "lora_dropout": 0.05,
     "target_modules": [
         "q_proj", "k_proj", "v_proj", "o_proj",
@@ -196,8 +196,8 @@ DEFAULT_CONFIG = {
     "max_grad_norm": 0.3,
 
     # Quantization
-    "use_4bit": True,
-    "use_8bit": False,
+    "use_4bit": False,
+    "use_8bit": True,
     "bnb_4bit_compute_dtype": "float16",
     "bnb_4bit_quant_type": "nf4",
     "use_double_quant": True,
@@ -424,18 +424,29 @@ def setup_model_and_tokenizer(config: dict):
     if config.get("use_8bit") or config["use_4bit"]:
         model = prepare_model_for_kbit_training(model)
 
-    # LoRA config
-    lora_config = LoraConfig(
-        r=config["lora_r"],
-        lora_alpha=config["lora_alpha"],
-        target_modules=config["target_modules"],
-        lora_dropout=config["lora_dropout"],
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
+    # LoRA setup — continuation (load existing adapter) or fresh (create new)
+    resume_from = config.get("resume_from")
+    if resume_from:
+        # CONTINUATION: Load existing adapter weights, keep trainable
+        adapter_path = Path(resume_from)
+        if not adapter_path.exists():
+            raise FileNotFoundError(f"Resume adapter not found: {resume_from}")
+        print(f"  Loading existing LoRA adapter from: {resume_from}")
+        model = PeftModel.from_pretrained(model, str(adapter_path), is_trainable=True)
+        lora_config = model.peft_config["default"]
+        print(f"  Resumed adapter: rank={lora_config.r}, alpha={lora_config.lora_alpha}")
+    else:
+        # FRESH: Create new LoRA from config
+        lora_config = LoraConfig(
+            r=config["lora_r"],
+            lora_alpha=config["lora_alpha"],
+            target_modules=config["target_modules"],
+            lora_dropout=config["lora_dropout"],
+            bias="none",
+            task_type="CAUSAL_LM",
+        )
+        model = get_peft_model(model, lora_config)
 
-    # Attach LoRA
-    model = get_peft_model(model, lora_config)
     trainable, total = model.get_nb_trainable_parameters()
     print(f"Trainable parameters: {trainable:,} / {total:,} ({100 * trainable / total:.2f}%)")
 
@@ -581,6 +592,8 @@ def train(config: dict):
     print(f"  Effective batch size: {config['batch_size'] * config['gradient_accumulation_steps']}")
     print(f"  Learning rate: {config['learning_rate']}")
     print(f"  LoRA rank: {config['lora_r']}")
+    if config.get("resume_from"):
+        print(f"  CONTINUATION from: {config['resume_from']}")
     print(f"  Output: {config['output_dir']}")
     print("=" * 60 + "\n")
 
@@ -661,6 +674,11 @@ def train(config: dict):
     plog.start_step("4.5", "Save training config")
     config["system_prompt_type"] = prompt_type
     config["system_prompt_length"] = len(ACTIVE_SYSTEM_PROMPT)
+    if config.get("resume_from"):
+        config["continuation_parent"] = config["resume_from"]
+        config["training_mode"] = "continuation"
+    else:
+        config["training_mode"] = "full"
     config_path = os.path.join(config["output_dir"], "training_config.json")
     with open(config_path, "w") as f:
         json.dump(config, f, indent=2)
@@ -759,18 +777,40 @@ def main():
     parser.add_argument("--basic-prompt", action="store_true",
                         help="Use basic system prompt WITHOUT node reference (not recommended)")
     parser.add_argument("--test", action="store_true", help="Run quick test after training")
+    parser.add_argument("--resume_from", type=str, default=None,
+                        help="Path to previous LoRA adapter to continue training from")
+    parser.add_argument("--continuation_lr", type=float, default=None,
+                        help="Learning rate for continuation (default: 5e-5 when resuming)")
+    parser.add_argument("--domain", type=str, default="blueprint", choices=["blueprint", "bt", "dt"],
+                        help="Training domain: 'blueprint' (default), 'bt' (Behavior Tree), or 'dt' (Data Table)")
     args = parser.parse_args()
 
-    # Select system prompt
+    # Select system prompt based on domain
     plog.start_step("3.1", "Load system prompt")
-    if args.basic_prompt:
+    if args.domain == "bt":
+        bt_prompt_path = Path(__file__).parent / "bt_system_prompt.txt"
+        if bt_prompt_path.exists():
+            ACTIVE_SYSTEM_PROMPT = bt_prompt_path.read_text(encoding="utf-8").strip()
+            print(f"Using BT domain system prompt from {bt_prompt_path}")
+        else:
+            print("ERROR: bt_system_prompt.txt not found for --domain bt")
+            sys.exit(1)
+    elif args.domain == "dt":
+        dt_prompt_path = Path(__file__).parent / "dt_system_prompt.txt"
+        if dt_prompt_path.exists():
+            ACTIVE_SYSTEM_PROMPT = dt_prompt_path.read_text(encoding="utf-8").strip()
+            print(f"Using DT domain system prompt from {dt_prompt_path}")
+        else:
+            print("ERROR: dt_system_prompt.txt not found for --domain dt")
+            sys.exit(1)
+    elif args.basic_prompt:
         ACTIVE_SYSTEM_PROMPT = BASIC_SYSTEM_PROMPT
         print("Using BASIC system prompt (no node reference)")
     else:
         print("Loading enhanced system prompt with node reference...")
         ACTIVE_SYSTEM_PROMPT = load_enhanced_system_prompt()
     plog.complete_step("3.1", "Load system prompt",
-                        f"{len(ACTIVE_SYSTEM_PROMPT):,} chars")
+                        f"{len(ACTIVE_SYSTEM_PROMPT):,} chars ({args.domain} domain)")
 
     config = {**DEFAULT_CONFIG}
     config.update({
@@ -782,7 +822,17 @@ def main():
         "learning_rate": args.lr,
         "lora_r": args.lora_r,
         "max_seq_length": args.max_seq_length,
+        "domain": args.domain,
     })
+
+    # Continuation mode: load previous adapter and adjust LR
+    if args.resume_from:
+        config["resume_from"] = args.resume_from
+        if args.continuation_lr is not None:
+            config["learning_rate"] = args.continuation_lr
+        elif args.lr == DEFAULT_CONFIG["learning_rate"]:
+            # User didn't explicitly set --lr, apply continuation default
+            config["learning_rate"] = 5e-5
 
     # Verify CUDA
     if not torch.cuda.is_available():
@@ -796,6 +846,23 @@ def main():
     print(f"GPU: {gpu_name}")
     print(f"VRAM: {vram:.1f} GB")
     print(f"Compute capability: {gpu_arch[0]}.{gpu_arch[1]}")
+
+    # --- EXPERIMENTAL: VRAM cap for DXGI coexistence ---
+    # When set, caps training VRAM to allow D3D12/DXGI to probe this GPU
+    # without hanging. This lets UE Editor launch DURING training.
+    # Set BLUEPRINTLLM_VRAM_FRACTION=0.92 (or pipeline_config.json
+    # hardware.vram_fraction) to leave ~8GB headroom on a 96GB GPU.
+    # WARNING: May cause OOM if the model needs more than the capped amount.
+    # This is an experiment — do not enable by default until validated.
+    vram_fraction = float(os.environ.get("BLUEPRINTLLM_VRAM_FRACTION", "0"))
+    if vram_fraction <= 0:
+        vram_fraction = pcfg.get("hardware", {}).get("vram_fraction", 0) if 'pcfg' in dir() else 0
+    if 0 < vram_fraction < 1.0:
+        torch.cuda.set_per_process_memory_fraction(vram_fraction, device=0)
+        capped_gb = vram * vram_fraction
+        print(f"  VRAM cap: {vram_fraction*100:.0f}% ({capped_gb:.1f} GB) — DXGI coexistence mode")
+    else:
+        print(f"  VRAM cap: none (full {vram:.1f} GB available)")
 
     # Determine best precision for this GPU
     # bf16 requires compute capability >= 8.0 (Ampere: RTX 3000+, A100, etc.)

@@ -1,0 +1,201 @@
+{
+  "metadata": {
+    "name": "BP_ScoreManager",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [
+    {
+      "name": "Score",
+      "type": "Int",
+      "default": "0"
+    },
+    {
+      "name": "HighScore",
+      "type": "Int",
+      "default": "0"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "GetVar",
+      "params": {
+        "Variable": "HighScore"
+      },
+      "ue_class": "UK2Node_VariableGet",
+      "param_key": "Variable",
+      "position": [
+        0,
+        150
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "PrintString",
+      "params": {
+        "InString": "High Score: "
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "SetVar",
+      "params": {
+        "Variable": "Score",
+        "Value": "10"
+      },
+      "ue_class": "UK2Node_VariableSet",
+      "param_key": "Variable",
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "GetVar",
+      "params": {
+        "Variable": "Score"
+      },
+      "ue_class": "UK2Node_VariableGet",
+      "param_key": "Variable",
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "GreaterThan",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Greater_FloatFloat",
+      "position": [
+        0,
+        450
+      ]
+    },
+    {
+      "id": "n7",
+      "dsl_type": "Branch",
+      "params": {},
+      "ue_class": "UK2Node_IfThenElse",
+      "position": [
+        900,
+        0
+      ]
+    },
+    {
+      "id": "n8",
+      "dsl_type": "SetVar",
+      "params": {
+        "Variable": "HighScore"
+      },
+      "ue_class": "UK2Node_VariableSet",
+      "param_key": "Variable",
+      "position": [
+        1200,
+        0
+      ]
+    },
+    {
+      "id": "n9",
+      "dsl_type": "PrintString",
+      "params": {
+        "InString": "New High Score!"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        1500,
+        0
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n3",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n3",
+      "src_pin": "Then",
+      "dst_node": "n4",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n4",
+      "src_pin": "Then",
+      "dst_node": "n7",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n7",
+      "src_pin": "True",
+      "dst_node": "n8",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n8",
+      "src_pin": "Then",
+      "dst_node": "n9",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n2",
+      "src_pin": "Value",
+      "dst_node": "n3",
+      "dst_pin": "I",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n5",
+      "src_pin": "Value",
+      "dst_node": "n6",
+      "dst_pin": "A",
+      "data_type": "Int"
+    },
+    {
+      "type": "data",
+      "src_node": "n6",
+      "src_pin": "ReturnValue",
+      "dst_node": "n7",
+      "dst_pin": "C",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n5",
+      "src_pin": "Value",
+      "dst_node": "n8",
+      "dst_pin": "V",
+      "data_type": null
+    }
+  ]
+}

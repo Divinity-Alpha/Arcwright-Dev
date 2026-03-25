@@ -1,0 +1,51 @@
+{
+  "template_id": "enemy_stationary_turret",
+  "name": "Stationary Turret",
+  "category": "enemies",
+  "description": "A fixed turret that detects the player within range and fires at a set interval. Uses timer-based distance checks on Tick and a firing custom event. Prints damage messages. No AI controller needed.",
+  "version": "1.0",
+  "proven_in": "Template Library",
+  "customizable": {
+    "blueprint_name": "Name of the Blueprint (default: BP_Turret)",
+    "fire_interval": "Seconds between shots (default: 2.0)",
+    "detection_range": "Detection range in units (default: 1000)",
+    "damage": "Damage per shot (default: 10)",
+    "fire_message": "Message when firing (default: Turret fires!)",
+    "color": "Turret color (default: dark gray)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_Turret}}\nPARENT: Actor\n\nVAR PlayerInRange: Bool = false\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: PrintString [InString=\"Turret Online\"]\nNODE n3: SetTimerByFunctionName [FunctionName=\"CheckRange\", Time=0.5, Looping=true]\nNODE n4: SetTimerByFunctionName [FunctionName=\"Fire\", Time={{fire_interval|2.0}}, Looping=true]\nNODE n5: Event_CustomEvent [EventName=\"CheckRange\"]\nNODE n6: GetPlayerPawn\nNODE n7: GetDistanceTo\nNODE n8: LessEqual_FloatFloat [B={{detection_range|1000}}]\nNODE n9: SetVar [Variable=PlayerInRange]\nNODE n10: Event_CustomEvent [EventName=\"Fire\"]\nNODE n11: GetVar [Variable=PlayerInRange]\nNODE n12: Branch\nNODE n13: PrintString [InString=\"{{fire_message|Turret fires! -{{damage|10}} HP}}\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n5.Then -> n9.Execute\nEXEC n10.Then -> n12.Execute\nEXEC n12.True -> n13.Execute\n\nDATA n6.ReturnValue -> n7.OtherActor [Actor]\nDATA n7.ReturnValue -> n8.A [Float]\nDATA n8.ReturnValue -> n9.Value [Bool]\nDATA n11.Value -> n12.Condition [Bool]",
+  "components": [
+    {
+      "type": "StaticMesh",
+      "name": "TurretBase",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+        "scale": {"x": 1, "y": 1, "z": 0.5}
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "TurretBarrel",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+        "scale": {"x": 0.2, "y": 0.2, "z": 1.5},
+        "location": {"x": 0, "y": 0, "z": 100}
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_Turret",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 0.3, "g": 0.3, "b": 0.3, "a": 1.0}
+    },
+    "scalar_params": {
+      "Metallic": 0.9,
+      "Roughness": 0.2
+    }
+  },
+  "example_spawn": {
+    "location": {"x": 500, "y": 0, "z": 92},
+    "notes": "Place on ground with clear line of sight to play area"
+  }
+}

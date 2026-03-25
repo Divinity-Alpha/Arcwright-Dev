@@ -1,0 +1,81 @@
+{
+  "id": "main_menu",
+  "name": "Main Menu",
+  "category": "menu",
+  "description": "Title + Play/Settings/Quit + background",
+  "default_anchor": "Fill",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    0,
+    0
+  ],
+  "variables": [],
+  "options": {
+    "title": {
+      "type": "string",
+      "default": "MY GAME"
+    }
+  },
+  "tree": {
+    "type": "OVERLAY",
+    "name": "MenuRoot",
+    "properties": {},
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "MenuBG",
+        "properties": {
+          "tint": "$panel_bg",
+          "opacity": "0.95"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "MenuContent",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "GameTitle",
+            "properties": {
+              "text": "MY GAME",
+              "font_size": "48",
+              "color": "$primary",
+              "bold": "true",
+              "justification": "Center"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "PlayBtn",
+            "properties": {
+              "text": "PLAY",
+              "font_size": "20"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "SettingsBtn",
+            "properties": {
+              "text": "SETTINGS",
+              "font_size": "20"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "QuitBtn",
+            "properties": {
+              "text": "QUIT",
+              "font_size": "20"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "id": "loading_screen",
+  "name": "Loading Screen",
+  "category": "menu",
+  "description": "Full screen with progress + tip",
+  "default_anchor": "Fill",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    0,
+    0
+  ],
+  "variables": [
+    {
+      "name": "LoadProgress",
+      "type": "Float",
+      "default": 0.0
+    },
+    {
+      "name": "TipText",
+      "type": "String",
+      "default": "Loading..."
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "OVERLAY",
+    "name": "LoadingRoot",
+    "properties": {},
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "LoadingBG",
+        "properties": {
+          "tint": "$panel_bg"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "LoadingContent",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "LoadingTitle",
+            "properties": {
+              "text": "LOADING",
+              "font_size": "32",
+              "color": "$text",
+              "bold": "true",
+              "justification": "Center"
+            }
+          },
+          {
+            "type": "PROGRESS_BAR",
+            "name": "LoadBar",
+            "properties": {
+              "percent": "BIND:LoadProgress",
+              "fill_color": "$primary",
+              "bar_color": "$surface",
+              "size_x": "400",
+              "size_y": "12"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "TipLabel",
+            "properties": {
+              "text": "BIND:\"{TipText}\"",
+              "font_size": "14",
+              "color": "$text_muted",
+              "justification": "Center",
+              "wrap": "true"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

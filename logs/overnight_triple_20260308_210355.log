@@ -1,0 +1,80 @@
+[21:03:55] ======================================================================
+[21:03:55] OVERNIGHT TRIPLE TRAINING RUN
+[21:03:55] Started: 2026-03-08 21:03:55
+[21:03:55] Jobs: DT v3 -> BT v3 -> Blueprint v12
+[21:03:55] Log: C:\BlueprintLLM\logs\overnight_triple_20260308_210355.log
+[21:03:55] ======================================================================
+[21:03:55] 
+
+######################################################################
+[21:03:55] JOB 1/3: DT v3
+[21:03:55] Started: 2026-03-08 21:03:55
+[21:03:55] ######################################################################
+[21:03:55] 
+============================================================
+[21:03:55] PRE-FLIGHT: DT v3
+[21:03:55] ============================================================
+[21:03:55]   Killing zombie GPU processes...
+[21:03:55]   CMD: nvidia-smi --query-compute-apps=pid,name --format=csv,noheader -i 1
+[21:03:55]   No zombie processes found.
+[21:03:55]   CMD: nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1
+[21:03:55]   VRAM used on PRO 6000: 3.0 GB
+[21:03:55]   Golden Config Verification:
+[21:03:55]     epochs: 3 — OK
+[21:03:55]     learning_rate: 0.0002 — OK
+[21:03:55]     batch_size: 1 — OK
+[21:03:55]     gradient_accumulation_steps: 4 — OK
+[21:03:55]     lora_r: 32 — OK
+[21:03:55]     lora_alpha: 64 — OK
+[21:03:55]     max_seq_length: 1024 — OK
+[21:03:55]     use_8bit: True
+[21:03:55]     base_model: meta-llama/Meta-Llama-3.1-70B
+[21:03:55]   Backing up dt-lora-v2 to D:...
+[21:03:56]   Backup verified: dt-lora-v2 (790 MB)
+[21:03:56] 
+DATASET PREP: DT v3
+[21:03:56]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/dt_lesson_to_training.py --lesson lessons/dt_lesson_01.json --output datasets/dt_train.jsonl --no-append
+[21:03:56]   Wrote 45 DT training entries from dt_lesson_01 to datasets\dt_train.jsonl
+  (20 prompts x ~2 variations each)
+[21:03:56]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/dt_lesson_to_training.py --lesson lessons/dt_lesson_02.json --output datasets/dt_train.jsonl 
+[21:03:57]   Wrote 40 DT training entries from dt_lesson_02 to datasets\dt_train.jsonl
+  (20 prompts x ~2 variations each)
+[21:03:57]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/dt_lesson_to_training.py --lesson lessons/dt_lesson_03.json --output datasets/dt_train.jsonl 
+[21:03:57]   Wrote 39 DT training entries from dt_lesson_03 to datasets\dt_train.jsonl
+  (20 prompts x ~1 variations each)
+[21:03:57]   Final dataset: datasets/dt_train.jsonl = 124 training examples
+[21:03:57] 
+TRAINING: DT v3
+[21:03:57]   Domain: dt
+[21:03:57]   Dataset: datasets/dt_train.jsonl
+[21:03:57]   Output: models/dt-lora-v3
+[21:03:57]   Mode: FULL (golden config, 3 epochs)
+[21:03:57]   Training command: python scripts/04_train_blueprint_lora.py --domain dt --dataset datasets/dt_train.jsonl --output models/dt-lora-v3 --epochs 3 --lr 0.0002 --lora_r 32 --max_seq_length 1024 --batch_size 1
+[21:03:57]   Started at: 2026-03-08 21:03:57
+[21:05:39]   TRAIN: GPU: NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition
+[21:05:39]   TRAIN: VRAM: 95.6 GB
+[21:05:39]   TRAIN:   VRAM cap: none (full 95.6 GB available)
+[21:05:39]   TRAIN:   Precision: bf16 (Ampere+ GPU detected)
+[21:05:39]   TRAIN: NOTE: 96 GB VRAM detected. Full 70B config supported.
+[21:05:43]   TRAIN: Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]
+[21:05:48]   TRAIN: Loading checkpoint shards:   3%|â–Ž         | 1/30 [00:04<01:59,  4.11s/it]
+[21:05:52]   TRAIN: Loading checkpoint shards:   7%|â–‹         | 2/30 [00:08<01:56,  4.17s/it]
+[21:05:57]   TRAIN: Loading checkpoint shards:  10%|â–ˆ         | 3/30 [00:12<01:56,  4.33s/it]
+[21:06:01]   TRAIN: Loading checkpoint shards:  13%|â–ˆâ–Ž        | 4/30 [00:17<01:54,  4.40s/it]
+[21:06:05]   TRAIN: Loading checkpoint shards:  17%|â–ˆâ–‹        | 5/30 [00:21<01:48,  4.33s/it]
+[21:06:09]   TRAIN: Loading checkpoint shards:  20%|â–ˆâ–ˆ        | 6/30 [00:25<01:43,  4.29s/it]
+[21:06:14]   TRAIN: Loading checkpoint shards:  23%|â–ˆâ–ˆâ–Ž       | 7/30 [00:30<01:38,  4.27s/it]
+[21:06:19]   TRAIN: Loading checkpoint shards:  27%|â–ˆâ–ˆâ–‹       | 8/30 [00:34<01:35,  4.35s/it]
+[21:06:23]   TRAIN: Loading checkpoint shards:  30%|â–ˆâ–ˆâ–ˆ       | 9/30 [00:39<01:37,  4.65s/it]
+[21:06:28]   TRAIN: Loading checkpoint shards:  33%|â–ˆâ–ˆâ–ˆâ–Ž      | 10/30 [00:44<01:30,  4.53s/it]
+[21:06:32]   TRAIN: Loading checkpoint shards:  37%|â–ˆâ–ˆâ–ˆâ–‹      | 11/30 [00:48<01:24,  4.45s/it]
+[21:06:37]   TRAIN: Loading checkpoint shards:  40%|â–ˆâ–ˆâ–ˆâ–ˆ      | 12/30 [00:53<01:21,  4.53s/it]
+[21:06:41]   TRAIN: Loading checkpoint shards:  43%|â–ˆâ–ˆâ–ˆâ–ˆâ–Ž     | 13/30 [00:57<01:17,  4.54s/it]
+[21:06:46]   TRAIN: Loading checkpoint shards:  47%|â–ˆâ–ˆâ–ˆâ–ˆâ–‹     | 14/30 [01:02<01:12,  4.53s/it]
+[21:06:50]   TRAIN: Loading checkpoint shards:  50%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆ     | 15/30 [01:06<01:08,  4.58s/it]
+[21:06:55]   TRAIN: Loading checkpoint shards:  53%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–Ž    | 16/30 [01:11<01:02,  4.49s/it]
+[21:07:00]   TRAIN: Loading checkpoint shards:  57%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‹    | 17/30 [01:15<00:58,  4.48s/it]
+[21:07:05]   TRAIN: Loading checkpoint shards:  60%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ    | 18/30 [01:20<00:54,  4.56s/it]
+[21:07:09]   TRAIN: Loading checkpoint shards:  63%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–Ž   | 19/30 [01:25<00:51,  4.69s/it]
+[21:07:14]   TRAIN: Loading checkpoint shards:  67%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‹   | 20/30 [01:29<00:46,  4.64s/it]
+[21:07:19]   TRAIN: Loading checkpoint shards:  70%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ   | 21/30 [01:34<00:41,  4.57s/it]

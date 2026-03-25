@@ -1,0 +1,501 @@
+{
+  "timestamp": "2026-03-10T00:18:06.624176",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "adapters": {
+    "data_table": "models/dt-lora-v3/final"
+  },
+  "multilingual_addendum": true,
+  "languages_tested": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "ja",
+    "ko",
+    "zh",
+    "pt",
+    "ru",
+    "ar",
+    "hi",
+    "tr"
+  ],
+  "domains_tested": [
+    "data_table"
+  ],
+  "results": {
+    "data_table": [
+      {
+        "test_id": "dt_weapons",
+        "language": "en",
+        "language_name": "English (baseline)",
+        "prompt": "Create a weapons data table with columns for name, damage, fire rate, and ammo capacity. Add rows for pistol, shotgun, and rifle.",
+        "output": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN Name: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN AmmoCapacity: Int\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8\nROW Rifle: \"Rifle\", 22.0, 0.08, 30",
+        "gen_time_s": 33.4,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "es",
+        "language_name": "Spanish",
+        "prompt": "Crea una tabla de datos de armas con columnas para nombre, daño, cadencia de fuego y capacidad de munición. Añade filas para pistola, escopeta y rifle.",
+        "output": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Year: Int\nCOLUMN FireRate: Float\nCOLUMN MagazineSize: Int\nCOLUMN Category: String = \"Rifle\"\n\nROW Pistol: \"Glock 17\", 1980, 0.5, 15, \"Pistol\"\nROW SMG: \"MP5\", 1964, 0.08, 30, \"SMG\"\nROW Sniper: \"AWM\", 1998, 1.5, 5, \"Sniper\"\nROW Rifle: \"AK-47\", 1947, 0.1, 30, \"Rifle\"",
+        "gen_time_s": 48.1,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "fr",
+        "language_name": "French",
+        "prompt": "Crée un tableau de données d'armes avec des colonnes pour le nom, les dégâts, la cadence de tir et la capacité de munitions. Ajoute des lignes pour pistolet, fusil à pompe et fusil.",
+        "output": "DATATABLE: DT_Arms\nSTRUCT: FArmData\n\nCOLUMN ArmName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float = 0.5\nCOLUMN AmmoCapacity: Int = 30\n\nROW Pistol: \"Pistol\", 15.0, 0.3, 12\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8\nROW Rifle: \"Rifle\", 22.0, 0.08, 30",
+        "gen_time_s": 34.7,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "de",
+        "language_name": "German",
+        "prompt": "Erstelle eine Waffen-Datentabelle mit Spalten für Name, Schaden, Feuerrate und Munitionskapazität. Füge Zeilen für Pistole, Schrotflinte und Gewehr hinzu.",
+        "output": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN MagazineSize: Int\nCOLUMN AmmoType: String = \"Bullet\"\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12, \"9mm\"\nROW SMG: \"SMG\", 10.0, 0.08, 30, \"9mm\"\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8, \"Shell\"\nROW Rifle: \"Rifle\", 22.0, 0.1, 20, \"5.56mm\"",
+        "gen_time_s": 48.8,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "ja",
+        "language_name": "Japanese",
+        "prompt": "名前、ダメージ、発射速度、弾薬容量の列を持つ武器データテーブルを作成し、ピストル、ショットガン、ライフルの行を追加してください。",
+        "output": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN Name: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float = 1.0\nCOLUMN AmmoCapacity: Int = 30\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8\nROW Rifle: \"Rifle\", 22.0, 0.08, 30",
+        "gen_time_s": 34.8,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "ko",
+        "language_name": "Korean",
+        "prompt": "이름, 데미지, 발사 속도, 탄약 용량 열이 있는 무기 데이터 테이블을 만들고 권총, 샷건, 라이플 행을 추가하세요.",
+        "output": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN Name: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float = 1.0\nCOLUMN AmmoCapacity: Int = 30\nCOLUMN WeaponClass: String = \"Rifle\"\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12, \"Handgun\"\nROW SMG: \"SMG\", 10.0, 0.08, 50, \"SMG\"\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8, \"Shotgun\"\nROW Sniper: \"Sniper\", 90.0, 2.0, 5, \"Sniper\"",
+        "gen_time_s": 51.2,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "zh",
+        "language_name": "Chinese (Simplified)",
+        "prompt": "创建一个武器数据表，包含名称、伤害、射速和弹药容量列。添加手枪、霞弹枪和步枪的行。",
+        "output": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN MagazineSize: Int\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12\nROW SMG: \"SMG\", 10.0, 0.08, 30\nROW Rifle: \"Rifle\", 22.0, 1.2, 20",
+        "gen_time_s": 32.9,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "pt",
+        "language_name": "Portuguese",
+        "prompt": "Crie uma tabela de dados de armas com colunas para nome, dano, taxa de disparo e capacidade de munição. Adicione linhas para pistola, espingarda e rifle.",
+        "output": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Year: Int\nCOLUMN FireRate: Float\nCOLUMN MagazineSize: Int = 30\nCOLUMN Damage: Float = 15.0\n\nROW Pistol: \"Pistol\", 1998, 0.5, 12, 10.0\nROW SMG: \"SMG\", 2005, 0.08, 50, 18.0\nROW Shotgun: \"Shotgun\", 1980, 1.2, 6, 45.0\nROW Rifle: \"Rifle\", 2010, 0.1, 20, 22.0",
+        "gen_time_s": 49.2,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "ru",
+        "language_name": "Russian",
+        "prompt": "Создай таблицу данных оружия с колонками для названия, урона, скорострельности и ёмкости магазина. Добавь строки для пистолета, дробовика и винтовки.",
+        "output": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN ShopPrice: Int = 0\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 200\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 500\nROW Sniper: \"Sniper\", 90.0, 2.0, 1000",
+        "gen_time_s": 33.7,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "ar",
+        "language_name": "Arabic",
+        "prompt": "أنشئ جدول بيانات أسلحة بأعمدة للاسم والضرر ومعدل النار وسعة الذخيرة. أضف صفوفًا للمسدس وبندقية الخرطوش والبندقية.",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN EnemyName: String\nCOLUMN Damage: Float\nCOLUMN Health: Float = 100.0\nCOLUMN DetectionRange: Float = 500.0\nCOLUMN Luck: Float = 50.0\n\nROW Goblin: \"Goblin\", 10.0, 80.0, 400.0, 30.0\nROW Skeleton: \"Skeleton\", 15.0, 120.0, 300.0, 40.0\nROW Troll: \"Troll\", 25.0, 200.0, 600.0, 60.0\nROW Boss: \"Dragon\", 50.0, 500.0, 800.0, 90.0",
+        "gen_time_s": 54.2,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "hi",
+        "language_name": "Hindi",
+        "prompt": "नाम, नुकसान, फायर रेट और गोला-बारूद क्षमता के कॉलम के साथ एक हथियार डेटा टेबल बनाएं। पिस्तौल, शॉटगन और राइफल की पंक्तियाँ जोड़ें।",
+        "output": "DATATABLE: DT_WeaponStats\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN MagazineSize: Int\nCOLUMN ReloadTime: Float = 1.0\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12, 1.2\nROW SMG: \"SMG\", 10.0, 0.08, 30, 1.5\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8, 2.0\nROW Sniper: \"Sniper\", 90.0, 2.0, 5, 3.0",
+        "gen_time_s": 50.4,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_weapons",
+        "language": "tr",
+        "language_name": "Turkish",
+        "prompt": "Ad, hasar, ateş hızı ve mermi kapasitesi sütunları olan bir silah veri tablosu oluştur. Tabanca, pompalı ve tüfek satırları ekle.",
+        "output": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float = 0.5\nCOLUMN MagazineSize: Int = 30\nCOLUMN IsAutomatic: Bool = false\n\nROW Pistol: \"Pistol\", 15.0, 0.3, 12, false\nROW SMG: \"SMG\", 10.0, 0.08, 50, true\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8, false\nROW Sniper: \"Sniper\", 90.0, 2.0, 5, false\nROW RocketLauncher: \"Rocket Launcher\", 200.0, 4.0, 1, false",
+        "gen_time_s": 55.6,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "en",
+        "language_name": "English (baseline)",
+        "prompt": "Create a data table for enemy types with columns: name, health, speed, attack damage, and is_boss boolean. Add 3 enemy rows.",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN Name: String\nCOLUMN Health: Float\nCOLUMN Speed: Float\nCOLUMN AttackDamage: Float\nCOLUMN IsBoss: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 200.0, 8.0, false\nROW Skeleton: \"Skeleton\", 80.0, 150.0, 12.0, false\nROW Dragon: \"Dragon\", 500.0, 100.0, 60.0, true",
+        "gen_time_s": 37.7,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "es",
+        "language_name": "Spanish",
+        "prompt": "Crea una tabla de datos para tipos de enemigos con columnas: nombre, salud, velocidad, daño de ataque y es_jefe booleano. Añade 3 filas de enemigos.",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN EnemyName: String\nCOLUMN Health: Float\nCOLUMN Speed: Float\nCOLUMN Damage: Float = 0.0\nCOLUMN IsBoss: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 200.0, 8.0, false\nROW Skeleton: \"Skeleton\", 80.0, 150.0, 12.0, false\nROW Dragon: \"Dragon\", 500.0, 100.0, 60.0, true",
+        "gen_time_s": 39.3,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "fr",
+        "language_name": "French",
+        "prompt": "Crée un tableau de données pour les types d'ennemis avec les colonnes: nom, santé, vitesse, dégâts d'attaque et est_boss booléen. Ajoute 3 lignes d'ennemis.",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN EnemyName: String\nCOLUMN Health: Float\nCOLUMN Speed: Float\nCOLUMN Damage: Float\nCOLUMN IsBoss: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 200.0, 8.0, false\nROW Skeleton: \"Skeleton\", 80.0, 150.0, 12.0, false\nROW Dragon: \"Dragon\", 500.0, 100.0, 60.0, true",
+        "gen_time_s": 37.5,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "de",
+        "language_name": "German",
+        "prompt": "Erstelle eine Datentabelle für Gegnertypen mit Spalten: Name, Gesundheit, Geschwindigkeit, Angriffsschaden und ist_Boss Boolean. Füge 3 Gegnerzeilen hinzu.",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN Name: String\nCOLUMN Health: Float\nCOLUMN Speed: Float = 200.0\nCOLUMN Damage: Float\nCOLUMN isBoss: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 300.0, 8.0, false\nROW Skeleton: \"Skeleton\", 80.0, 250.0, 12.0, false\nROW Troll: \"Troll\", 150.0, 100.0, 20.0, false\nROW Dragon: \"Dragon\", 500.0, 50.0, 40.0, true",
+        "gen_time_s": 47.2,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "ja",
+        "language_name": "Japanese",
+        "prompt": "敵の種類のデータテーブルを作成してください。列: 名前、体力、速度、攻撃力、ボスかどうか。敵3行を追加。",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN Name: String\nCOLUMN Health: Float\nCOLUMN Speed: Float\nCOLUMN Attack: Float\nCOLUMN IsBoss: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 200.0, 8.0, false\nROW Skeleton: \"Skeleton\", 80.0, 150.0, 12.0, false\nROW Dragon: \"Dragon\", 500.0, 100.0, 60.0, true",
+        "gen_time_s": 37.3,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "ko",
+        "language_name": "Korean",
+        "prompt": "이름, 체력, 속도, 공격력, 보스 여부 열이 있는 적 유형 데이터 테이블을 만들고 3개 적 행을 추가하세요.",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN Name: String\nCOLUMN Strength: Int\nCOLUMN Speed: Int\nCOLUMN Attack: Int\nCOLUMN BonusXP: Int = 0\n\nROW Goblin: \"Goblin\", 10, 15, 8, 50\nROW Skeleton: \"Skeleton\", 12, 10, 6, 100\nROW Troll: \"Troll\", 20, 5, 16, 200",
+        "gen_time_s": 33.5,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "zh",
+        "language_name": "Chinese (Simplified)",
+        "prompt": "创建敵人类型数据表，列：名称、生命值、速度、攻击伤害、是否为Boss。添加3行敌人。",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN Name: String\nCOLUMN Health: Float\nCOLUMN Speed: Float\nCOLUMN Damage: Float\nCOLUMN IsBoss: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 200.0, 10.0, false\nROW Skeleton: \"Skeleton\", 80.0, 150.0, 15.0, false\nROW Dragon: \"Dragon\", 500.0, 100.0, 60.0, true",
+        "gen_time_s": 37.4,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "pt",
+        "language_name": "Portuguese",
+        "prompt": "Crie uma tabela de dados para tipos de inimigos com colunas: nome, vida, velocidade, dano de ataque e é_chefe booleano. Adicione 3 linhas de inimigos.",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN EnemyName: String\nCOLUMN Health: Float\nCOLUMN Speed: Float\nCOLUMN AttackDamage: Float\nCOLUMN IsBoss: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 200.0, 8.0, false\nROW Skeleton: \"Skeleton\", 80.0, 150.0, 12.0, false\nROW Troll: \"Troll\", 120.0, 100.0, 20.0, false\nROW Dragon: \"Dragon\", 250.0, 60.0, 40.0, true",
+        "gen_time_s": 46.1,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "ru",
+        "language_name": "Russian",
+        "prompt": "Создай таблицу данных типов врагов с колонками: имя, здоровье, скорость, урон атаки и булево является_боссом. Добавь 3 строки врагов.",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN EnemyName: String\nCOLUMN Health: Float\nCOLUMN Speed: Float\nCOLUMN AttackDamage: Float\nCOLUMN IsBoss: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 200.0, 8.0, false\nROW Skeleton: \"Skeleton\", 80.0, 150.0, 12.0, false\nROW Dragon: \"Dragon\", 500.0, 100.0, 60.0, true",
+        "gen_time_s": 38.0,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "ar",
+        "language_name": "Arabic",
+        "prompt": "أنشئ جدول بيانات لأنواع الأعداء بأعمدة: الاسم، الصحة، السرعة، ضرر الهجوم، وهل_بوس. أضف 3 صفوف أعداء.",
+        "output": "DATATABLE: DT_AmmoClasses\nSTRUCT: FClassData\n\nCOLUMN ClassName: String\nCOLUMN BaseHealth: Float\nCOLUMN BaseDamage: Float\nCOLUMN IsTank: Bool = false\nCOLUMN HasHeal: Bool = false\n\nROW Warrior: \"Warrior\", 150.0, 20.0, true, false\nROW Mage: \"Mage\", 80.0, 35.0, false, true\nROW Rogue: \"Rogue\", 100.0, 25.0, false, false",
+        "gen_time_s": 37.1,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "hi",
+        "language_name": "Hindi",
+        "prompt": "दुश्मन प्रकारों के लिए डेटा टेबल बनाएं: नाम, स्वास्थ्य, गति, हमला क्षति, और बॉस है या नहीं। 3 दुश्मन पंक्तियाँ जोड़ें।",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN Name: String\nCOLUMN Health: Float\nCOLUMN Speed: Float\nCOLUMN Damage: Float\nCOLUMN IsBoss: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 200.0, 8.0, false\nROW Skeleton: \"Skeleton\", 80.0, 150.0, 12.0, false\nROW Dragon: \"Dragon\", 500.0, 100.0, 60.0, true",
+        "gen_time_s": 37.3,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "dt_enemy_stats",
+        "language": "tr",
+        "language_name": "Turkish",
+        "prompt": "Ad, can, hız, saldırı hasarı ve boss_mu boolean sütunları olan bir düşman türleri veri tablosu oluştur. 3 düşman satırı ekle.",
+        "output": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN Ad: String\nCOLUMN Can: Float\nCOLUMN Hiz: Float\nCOLUMN SaldırıHasarı: Int\nCOLUMN BossMu: Bool = false\n\nROW Goblin: \"Goblin\", 50.0, 200.0, 8, false\nROW Orc: \"Orc\", 100.0, 150.0, 15, false\nROW Dragon: \"Dragon\", 500.0, 30.0, 60, true",
+        "gen_time_s": 37.1,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": false,
+        "leakage_issues": [
+          "Non-ASCII letter in keyword line: COLUMN SaldırıHasarı: Int"
+        ],
+        "pass": false
+      }
+    ]
+  },
+  "matrix": {
+    "en": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "es": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "fr": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "de": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "ja": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "ko": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "zh": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "pt": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "ru": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "ar": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "hi": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "tr": {
+      "data_table": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 1,
+        "full_pass": 1
+      }
+    }
+  }
+}

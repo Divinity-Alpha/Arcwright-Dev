@@ -1,0 +1,129 @@
+{
+  "lesson_id": "dt_lesson_01",
+  "lesson_name": "Core Data Table Patterns: Weapons, Items, Enemies, Abilities, Waves",
+  "version": "v1",
+  "domain": "data_table",
+  "description": "First data table training lesson. Covers the fundamental game data patterns: weapon stats, inventory items, enemy configurations, ability/skill tables, wave definitions, dialogue, and crafting recipes. Varied phrasing for generalization.",
+  "prompts": [
+    {
+      "id": "DT01_01",
+      "category": "weapons_basic",
+      "instruction": "Create a data table for weapons with columns for name, damage, and fire rate.",
+      "expected_dsl": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN Name: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float = 1.0\n\nROW Pistol: \"Pistol\", 15.0, 0.5\nROW Shotgun: \"Shotgun\", 45.0, 1.2\nROW Rifle: \"Rifle\", 22.0, 0.1"
+    },
+    {
+      "id": "DT01_02",
+      "category": "weapons_basic",
+      "instruction": "Make a weapon stats table. Include the weapon name as a string, how much damage it does as a float, the rate of fire as a float, and the magazine size as an integer. Add 4 weapons.",
+      "expected_dsl": "DATATABLE: DT_WeaponStats\nSTRUCT: FWeaponStats\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN MagazineSize: Int\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12\nROW SMG: \"SMG\", 10.0, 0.08, 30\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8\nROW Sniper: \"Sniper\", 90.0, 2.0, 5"
+    },
+    {
+      "id": "DT01_03",
+      "category": "items_inventory",
+      "instruction": "Create an item table for an RPG inventory. Each item needs a display name, description, max stack count, gold value, weight, and whether it is consumable.",
+      "expected_dsl": "DATATABLE: DT_Items\nSTRUCT: FItemData\n\nCOLUMN DisplayName: String\nCOLUMN Description: Text\nCOLUMN MaxStack: Int = 1\nCOLUMN Value: Int = 0\nCOLUMN Weight: Float = 0.0\nCOLUMN IsConsumable: Bool = false\n\nROW HealthPotion: \"Health Potion\", \"Restores 50 health\", 10, 25, 0.5, true\nROW IronSword: \"Iron Sword\", \"A sturdy blade\", 1, 100, 5.0, false\nROW GoldCoin: \"Gold Coin\", \"Currency\", 999, 1, 0.01, false"
+    },
+    {
+      "id": "DT01_04",
+      "category": "items_inventory",
+      "instruction": "Build a loot table for a fantasy game. Columns: item name (string), rarity (string with default Common), drop chance as a float between 0 and 1, and sell price as an integer. Include 5 items from common to legendary.",
+      "expected_dsl": "DATATABLE: DT_Loot\nSTRUCT: FLootEntry\n\nCOLUMN ItemName: String\nCOLUMN Rarity: String = \"Common\"\nCOLUMN DropChance: Float\nCOLUMN SellPrice: Int\n\nROW WoodSword: \"Wood Sword\", \"Common\", 0.5, 10\nROW IronArmor: \"Iron Armor\", \"Uncommon\", 0.25, 50\nROW MagicRing: \"Magic Ring\", \"Rare\", 0.1, 200\nROW DragonScale: \"Dragon Scale\", \"Epic\", 0.03, 500\nROW ExcaliburSword: \"Excalibur\", \"Legendary\", 0.005, 5000"
+    },
+    {
+      "id": "DT01_05",
+      "category": "enemies",
+      "instruction": "Create an enemy stats data table. Include name, max health, damage, move speed, detection range, and XP reward for each enemy.",
+      "expected_dsl": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN Name: String\nCOLUMN MaxHealth: Float\nCOLUMN Damage: Float\nCOLUMN MoveSpeed: Float = 300.0\nCOLUMN DetectionRange: Float = 1000.0\nCOLUMN XPReward: Int = 10\n\nROW Goblin: \"Goblin\", 50.0, 8.0, 400.0, 800.0, 15\nROW Skeleton: \"Skeleton\", 80.0, 12.0, 250.0, 600.0, 25\nROW Troll: \"Troll\", 200.0, 30.0, 150.0, 500.0, 100"
+    },
+    {
+      "id": "DT01_06",
+      "category": "enemies",
+      "instruction": "Make a data table listing enemy types for a tower defense game. Each entry should have: the enemy name, health points as a float, movement speed as a float, armor rating as an integer, and a boolean for whether the enemy can fly.",
+      "expected_dsl": "DATATABLE: DT_TDEnemies\nSTRUCT: FTDEnemyData\n\nCOLUMN EnemyName: String\nCOLUMN Health: Float\nCOLUMN Speed: Float\nCOLUMN Armor: Int = 0\nCOLUMN CanFly: Bool = false\n\nROW Runner: \"Runner\", 30.0, 500.0, 0, false\nROW Tank: \"Tank\", 200.0, 150.0, 5, false\nROW Flyer: \"Flyer\", 40.0, 400.0, 0, true\nROW Boss: \"Boss\", 1000.0, 100.0, 10, false"
+    },
+    {
+      "id": "DT01_07",
+      "category": "abilities",
+      "instruction": "Create a skill table for an action RPG. Each skill needs: name, description, mana cost, cooldown in seconds, damage amount, and whether it is an area effect.",
+      "expected_dsl": "DATATABLE: DT_Skills\nSTRUCT: FSkillData\n\nCOLUMN SkillName: String\nCOLUMN Description: Text\nCOLUMN ManaCost: Float = 0.0\nCOLUMN Cooldown: Float = 1.0\nCOLUMN Damage: Float = 0.0\nCOLUMN IsAreaEffect: Bool = false\n\nROW Fireball: \"Fireball\", \"Launches a ball of fire\", 25.0, 3.0, 40.0, false\nROW IceStorm: \"Ice Storm\", \"Freezes an area\", 40.0, 8.0, 25.0, true\nROW Heal: \"Heal\", \"Restores health\", 30.0, 5.0, 0.0, false\nROW Lightning: \"Lightning Bolt\", \"Strikes a single target\", 35.0, 4.0, 60.0, false"
+    },
+    {
+      "id": "DT01_08",
+      "category": "abilities",
+      "instruction": "Build a data table of character abilities. Columns: ability name (string), type (string, default Active), mana cost (float), cooldown (float), range (float, default 500), and healing amount (float, default 0). Include a mix of attack, heal, and buff abilities.",
+      "expected_dsl": "DATATABLE: DT_Abilities\nSTRUCT: FAbilityData\n\nCOLUMN AbilityName: String\nCOLUMN Type: String = \"Active\"\nCOLUMN ManaCost: Float\nCOLUMN Cooldown: Float\nCOLUMN Range: Float = 500.0\nCOLUMN Healing: Float = 0.0\n\nROW Slash: \"Slash\", \"Active\", 0.0, 1.0, 200.0, 0.0\nROW Fireball: \"Fireball\", \"Active\", 25.0, 3.0, 1000.0, 0.0\nROW Heal: \"Heal\", \"Active\", 30.0, 5.0, 0.0, 60.0\nROW Shield: \"Shield\", \"Buff\", 20.0, 10.0, 0.0, 0.0\nROW Dash: \"Dash\", \"Movement\", 10.0, 2.0, 500.0, 0.0"
+    },
+    {
+      "id": "DT01_09",
+      "category": "waves",
+      "instruction": "Create a wave configuration table for a survival game. Each wave has: wave number, enemy type to spawn, number of enemies, and the time between spawns.",
+      "expected_dsl": "DATATABLE: DT_Waves\nSTRUCT: FWaveConfig\n\nCOLUMN WaveNumber: Int\nCOLUMN EnemyType: String\nCOLUMN EnemyCount: Int\nCOLUMN SpawnInterval: Float = 2.0\n\nROW Wave1: 1, \"Goblin\", 3, 3.0\nROW Wave2: 2, \"Goblin\", 5, 2.5\nROW Wave3: 3, \"Skeleton\", 3, 2.0\nROW Wave4: 4, \"Goblin\", 8, 1.5\nROW Wave5: 5, \"Troll\", 1, 0.0"
+    },
+    {
+      "id": "DT01_10",
+      "category": "waves",
+      "instruction": "Make a level progression table. Each row is a level with: level number (int), required XP to reach it (int), health bonus (float), damage bonus (float), and unlock name (string, what the player unlocks).",
+      "expected_dsl": "DATATABLE: DT_Levels\nSTRUCT: FLevelData\n\nCOLUMN Level: Int\nCOLUMN RequiredXP: Int\nCOLUMN HealthBonus: Float = 0.0\nCOLUMN DamageBonus: Float = 0.0\nCOLUMN Unlock: String = \"\"\n\nROW Lv1: 1, 0, 0.0, 0.0, \"Pistol\"\nROW Lv2: 2, 100, 10.0, 2.0, \"Shotgun\"\nROW Lv3: 3, 300, 20.0, 5.0, \"Rifle\"\nROW Lv4: 4, 600, 35.0, 8.0, \"Grenade\"\nROW Lv5: 5, 1000, 50.0, 12.0, \"Railgun\""
+    },
+    {
+      "id": "DT01_11",
+      "category": "dialogue",
+      "instruction": "Create a dialogue data table. Each line has: speaker name, the dialogue text, how long to display it in seconds, and the row name of the next line to show.",
+      "expected_dsl": "DATATABLE: DT_Dialogue\nSTRUCT: FDialogueEntry\n\nCOLUMN Speaker: String\nCOLUMN Text: Text\nCOLUMN Duration: Float = 3.0\nCOLUMN NextRow: Name = \"\"\n\nROW Line1: \"Guard\", \"Halt! Who goes there?\", 2.5, \"Line2\"\nROW Line2: \"Player\", \"Just a traveler.\", 2.0, \"Line3\"\nROW Line3: \"Guard\", \"The village is ahead. Be safe.\", 3.0, \"\""
+    },
+    {
+      "id": "DT01_12",
+      "category": "dialogue",
+      "instruction": "Build a quest dialogue table with speaker, text, duration, next line reference, and a condition string that determines when the line is available.",
+      "expected_dsl": "DATATABLE: DT_QuestDialogue\nSTRUCT: FQuestDialogue\n\nCOLUMN Speaker: String\nCOLUMN DialogueText: Text\nCOLUMN Duration: Float = 3.0\nCOLUMN NextLine: Name = \"\"\nCOLUMN Condition: String = \"\"\n\nROW Quest1A: \"Elder\", \"Dark times are upon us.\", 3.0, \"Quest1B\", \"\"\nROW Quest1B: \"Elder\", \"Will you help us?\", 2.5, \"Quest1C\", \"\"\nROW Quest1C: \"Player\", \"What do you need?\", 2.0, \"Quest1D\", \"\"\nROW Quest1D: \"Elder\", \"Defeat the dragon.\", 3.0, \"\", \"AcceptedQuest\""
+    },
+    {
+      "id": "DT01_13",
+      "category": "crafting",
+      "instruction": "Create a crafting recipe table. Each recipe has: the result item name, ingredient 1 name, ingredient 1 count, ingredient 2 name, ingredient 2 count, and crafting time in seconds.",
+      "expected_dsl": "DATATABLE: DT_Recipes\nSTRUCT: FRecipeData\n\nCOLUMN ResultItem: String\nCOLUMN Ingredient1: String\nCOLUMN Count1: Int\nCOLUMN Ingredient2: String = \"\"\nCOLUMN Count2: Int = 0\nCOLUMN CraftTime: Float = 1.0\n\nROW IronSword: \"Iron Sword\", \"Iron Ore\", 3, \"Wood\", 1, 5.0\nROW HealthPotion: \"Health Potion\", \"Herb\", 2, \"Water\", 1, 3.0\nROW Shield: \"Iron Shield\", \"Iron Ore\", 5, \"Leather\", 2, 8.0"
+    },
+    {
+      "id": "DT01_14",
+      "category": "crafting",
+      "instruction": "Make a data table for a cooking system. Columns: dish name, first ingredient, second ingredient, cooking time in seconds, health restored when eaten, and the stamina restored.",
+      "expected_dsl": "DATATABLE: DT_Cooking\nSTRUCT: FCookingRecipe\n\nCOLUMN DishName: String\nCOLUMN Ingredient1: String\nCOLUMN Ingredient2: String\nCOLUMN CookTime: Float\nCOLUMN HealthRestore: Float\nCOLUMN StaminaRestore: Float = 0.0\n\nROW Stew: \"Hearty Stew\", \"Meat\", \"Potato\", 10.0, 40.0, 20.0\nROW Bread: \"Bread\", \"Flour\", \"Water\", 5.0, 15.0, 10.0\nROW GrilledFish: \"Grilled Fish\", \"Fish\", \"Salt\", 8.0, 30.0, 5.0\nROW FruitSalad: \"Fruit Salad\", \"Apple\", \"Berry\", 3.0, 20.0, 30.0"
+    },
+    {
+      "id": "DT01_15",
+      "category": "shop",
+      "instruction": "Create a shop inventory data table. Each item has: display name, cost in gold (integer), category (string like Weapon or Armor), the item description, and stock count.",
+      "expected_dsl": "DATATABLE: DT_Shop\nSTRUCT: FShopItem\n\nCOLUMN DisplayName: String\nCOLUMN Cost: Int\nCOLUMN Category: String = \"Misc\"\nCOLUMN Description: Text\nCOLUMN Stock: Int = 99\n\nROW Sword: \"Steel Sword\", 150, \"Weapon\", \"A sharp steel blade\", 5\nROW Shield: \"Oak Shield\", 100, \"Armor\", \"A sturdy wooden shield\", 3\nROW Potion: \"Health Potion\", 25, \"Consumable\", \"Restores 50 health\", 20\nROW Arrow: \"Iron Arrow\", 2, \"Ammo\", \"Standard iron arrows\", 99"
+    },
+    {
+      "id": "DT01_16",
+      "category": "shop",
+      "instruction": "Build a vendor price list as a data table. Include columns for item name, buy price, sell price, whether the vendor has unlimited stock, and the vendor who sells it.",
+      "expected_dsl": "DATATABLE: DT_Prices\nSTRUCT: FPriceEntry\n\nCOLUMN ItemName: String\nCOLUMN BuyPrice: Int\nCOLUMN SellPrice: Int\nCOLUMN UnlimitedStock: Bool = false\nCOLUMN Vendor: String\n\nROW Bread: \"Bread\", 5, 2, true, \"Baker\"\nROW IronOre: \"Iron Ore\", 20, 10, false, \"Blacksmith\"\nROW HealthPotion: \"Health Potion\", 25, 12, true, \"Alchemist\"\nROW Map: \"Treasure Map\", 100, 50, false, \"Merchant\""
+    },
+    {
+      "id": "DT01_17",
+      "category": "character_stats",
+      "instruction": "Create a character class table for an RPG. Each class has: name, base health, base mana, strength, dexterity, intelligence, and starting weapon name.",
+      "expected_dsl": "DATATABLE: DT_Classes\nSTRUCT: FClassData\n\nCOLUMN ClassName: String\nCOLUMN BaseHealth: Float\nCOLUMN BaseMana: Float\nCOLUMN Strength: Int\nCOLUMN Dexterity: Int\nCOLUMN Intelligence: Int\nCOLUMN StartWeapon: String\n\nROW Warrior: \"Warrior\", 150.0, 30.0, 10, 5, 3, \"Iron Sword\"\nROW Mage: \"Mage\", 80.0, 120.0, 3, 4, 12, \"Staff\"\nROW Rogue: \"Rogue\", 100.0, 60.0, 5, 12, 5, \"Dagger\"\nROW Paladin: \"Paladin\", 130.0, 50.0, 8, 4, 6, \"Mace\""
+    },
+    {
+      "id": "DT01_18",
+      "category": "character_stats",
+      "instruction": "Make a data table defining NPC merchants. Columns: NPC name, location name, greeting text, gold carried, and reputation required to trade (integer, default 0).",
+      "expected_dsl": "DATATABLE: DT_Merchants\nSTRUCT: FMerchantData\n\nCOLUMN NPCName: String\nCOLUMN Location: String\nCOLUMN Greeting: Text\nCOLUMN Gold: Int\nCOLUMN ReputationRequired: Int = 0\n\nROW Blacksmith: \"Gorm the Smith\", \"Village Square\", \"Need something forged?\", 500, 0\nROW Alchemist: \"Elara\", \"Mystic Tower\", \"Potions and elixirs!\", 300, 10\nROW Merchant: \"Trader Finn\", \"Market Road\", \"Best deals in town!\", 1000, 0"
+    },
+    {
+      "id": "DT01_19",
+      "category": "game_config",
+      "instruction": "Create a difficulty settings data table. Each row is a difficulty level with: name, enemy health multiplier (float), enemy damage multiplier (float), player health multiplier, XP multiplier, and whether friendly fire is on.",
+      "expected_dsl": "DATATABLE: DT_Difficulty\nSTRUCT: FDifficultySettings\n\nCOLUMN DifficultyName: String\nCOLUMN EnemyHealthMult: Float = 1.0\nCOLUMN EnemyDamageMult: Float = 1.0\nCOLUMN PlayerHealthMult: Float = 1.0\nCOLUMN XPMult: Float = 1.0\nCOLUMN FriendlyFire: Bool = false\n\nROW Easy: \"Easy\", 0.5, 0.5, 1.5, 1.5, false\nROW Normal: \"Normal\", 1.0, 1.0, 1.0, 1.0, false\nROW Hard: \"Hard\", 1.5, 1.5, 0.8, 0.75, false\nROW Nightmare: \"Nightmare\", 2.0, 2.0, 0.5, 0.5, true"
+    },
+    {
+      "id": "DT01_20",
+      "category": "game_config",
+      "instruction": "Build a data table for achievement definitions. Each achievement has: a unique name, display title, description text, the condition type as a string, the target value as an integer, and reward XP.",
+      "expected_dsl": "DATATABLE: DT_Achievements\nSTRUCT: FAchievementData\n\nCOLUMN AchievementName: String\nCOLUMN Title: String\nCOLUMN Description: Text\nCOLUMN ConditionType: String\nCOLUMN TargetValue: Int\nCOLUMN RewardXP: Int = 0\n\nROW FirstKill: \"First Blood\", \"First Blood\", \"Defeat your first enemy\", \"EnemiesKilled\", 1, 50\nROW Hunter: \"Hunter\", \"Hunter\", \"Defeat 50 enemies\", \"EnemiesKilled\", 50, 500\nROW Rich: \"Wealthy\", \"Wealthy\", \"Collect 1000 gold\", \"GoldCollected\", 1000, 200\nROW Explorer: \"Explorer\", \"Explorer\", \"Discover all locations\", \"LocationsFound\", 10, 1000"
+    }
+  ]
+}

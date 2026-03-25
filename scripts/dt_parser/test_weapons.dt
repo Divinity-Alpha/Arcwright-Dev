@@ -1,0 +1,14 @@
+DATATABLE: DT_Weapons
+STRUCT: FWeaponData
+
+COLUMN Name: String
+COLUMN Damage: Float
+COLUMN FireRate: Float = 1.0
+COLUMN MaxAmmo: Int = 30
+COLUMN Rarity: String = "Common"
+
+ROW Pistol: "Pistol", 15.0, 0.5, 12, "Common"
+ROW Shotgun: "Shotgun", 45.0, 1.2, 8, "Uncommon"
+ROW AssaultRifle: "Assault Rifle", 22.0, 0.1, 30, "Common"
+ROW Sniper: "Sniper Rifle", 90.0, 2.0, 5, "Rare"
+ROW Railgun: "Railgun", 150.0, 3.5, 3, "Legendary"

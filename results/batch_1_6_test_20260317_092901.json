@@ -1,0 +1,151 @@
+{
+  "timestamp": "20260317_092901",
+  "pass": 36,
+  "fail": 0,
+  "tests": [
+    {
+      "test": "get_blueprint_details",
+      "result": "PASS"
+    },
+    {
+      "test": "get_actor_properties",
+      "result": "PASS"
+    },
+    {
+      "test": "get_all_materials",
+      "result": "PASS"
+    },
+    {
+      "test": "get_all_materials_filtered",
+      "result": "PASS"
+    },
+    {
+      "test": "get_all_blueprints",
+      "result": "PASS"
+    },
+    {
+      "test": "get_all_blueprints_filtered",
+      "result": "PASS"
+    },
+    {
+      "test": "set_collision_preset_actor",
+      "result": "PASS"
+    },
+    {
+      "test": "set_collision_preset_bp",
+      "result": "PASS"
+    },
+    {
+      "test": "set_collision_shape_bp",
+      "result": "PASS"
+    },
+    {
+      "test": "set_physics_enabled_actor",
+      "result": "PASS"
+    },
+    {
+      "test": "set_physics_disabled",
+      "result": "PASS"
+    },
+    {
+      "test": "set_physics_no_target_error",
+      "result": "PASS"
+    },
+    {
+      "test": "set_camera_fov",
+      "result": "PASS"
+    },
+    {
+      "test": "set_camera_no_camera_error",
+      "result": "PASS"
+    },
+    {
+      "test": "create_input_action",
+      "result": "PASS"
+    },
+    {
+      "test": "create_input_mapping",
+      "result": "PASS"
+    },
+    {
+      "test": "bind_input_to_blueprint",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_tags",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_visibility_hide",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_visibility_show",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_mobility_movable",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_mobility_static",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_mobility_invalid_error",
+      "result": "PASS"
+    },
+    {
+      "test": "attach_actor_to",
+      "result": "PASS"
+    },
+    {
+      "test": "detach_actor",
+      "result": "PASS"
+    },
+    {
+      "test": "attach_missing_parent_error",
+      "result": "PASS"
+    },
+    {
+      "test": "create_nav_mesh_bounds",
+      "result": "PASS"
+    },
+    {
+      "test": "set_audio_properties",
+      "result": "PASS"
+    },
+    {
+      "test": "play_sound_at_location",
+      "result": "PASS"
+    },
+    {
+      "test": "list_project_assets_by_type",
+      "result": "PASS"
+    },
+    {
+      "test": "list_project_assets_filtered",
+      "result": "PASS"
+    },
+    {
+      "test": "list_project_assets_by_path",
+      "result": "PASS"
+    },
+    {
+      "test": "list_project_assets_bad_type_error",
+      "result": "PASS"
+    },
+    {
+      "test": "copy_actor",
+      "result": "PASS"
+    },
+    {
+      "test": "copy_actor_default_label",
+      "result": "PASS"
+    },
+    {
+      "test": "copy_actor_not_found_error",
+      "result": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "template_id": "collectible_powerup",
+  "name": "Power-Up Pickup",
+  "category": "collectibles",
+  "description": "A collectible that grants a temporary buff. On pickup, prints an activation message and starts a timer. When the timer expires, prints a deactivation message. Uses DoOnce to prevent re-collection.",
+  "version": "1.0",
+  "proven_in": "Template Library",
+  "customizable": {
+    "blueprint_name": "Name of the Blueprint (default: BP_PowerUp)",
+    "powerup_name": "Name of the power-up (default: Speed Boost)",
+    "duration": "Duration of the buff in seconds (default: 10.0)",
+    "activate_message": "Message on pickup (default: Speed Boost activated!)",
+    "expire_message": "Message when buff ends (default: Speed Boost expired)",
+    "mesh": "Mesh asset path (default: Sphere)",
+    "color": "Powerup color (default: cyan)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_PowerUp}}\nPARENT: Actor\n\nVAR Collected: Bool = false\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Collected]\nNODE n3: Branch\nNODE n4: SetVar [Variable=Collected]\nNODE n5: PrintString [InString=\"{{activate_message|Speed Boost activated!}}\"]\nNODE n6: Delay [Duration={{duration|10.0}}]\nNODE n7: PrintString [InString=\"{{expire_message|Speed Boost expired}}\"]\nNODE n8: DestroyActor\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.False -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\nEXEC n6.Completed -> n7.Execute\nEXEC n7.Then -> n8.Execute\n\nDATA n2.Value -> n3.Condition [Bool]",
+  "components": [
+    {
+      "type": "SphereCollision",
+      "name": "PowerUpCollision",
+      "properties": {
+        "radius": 60,
+        "generate_overlap_events": true
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "PowerUpMesh",
+      "properties": {
+        "mesh": "{{mesh|/Engine/BasicShapes/Sphere.Sphere}}",
+        "scale": {"x": 0.6, "y": 0.6, "z": 0.6}
+      }
+    },
+    {
+      "type": "PointLight",
+      "name": "PowerUpGlow",
+      "properties": {
+        "intensity": 5000,
+        "light_color": {"r": 0, "g": 200, "b": 255},
+        "attenuation_radius": 250
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_PowerUp",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 0.0, "g": 0.8, "b": 1.0, "a": 1.0}
+    },
+    "scalar_params": {
+      "Roughness": 0.1
+    }
+  },
+  "example_spawn": {
+    "location": {"x": -300, "y": 300, "z": 92},
+    "notes": "Place at pickup height. DoOnce prevents double-collection. Actor destroys itself after buff expires."
+  }
+}

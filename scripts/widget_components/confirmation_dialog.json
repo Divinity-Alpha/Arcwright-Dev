@@ -1,0 +1,73 @@
+{
+  "id": "confirmation_dialog",
+  "name": "Confirmation Dialog",
+  "category": "system",
+  "description": "Modal with title, message, Yes/No buttons",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    350,
+    180
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "ConfirmRoot",
+    "properties": {
+      "spacing": "12"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "ConfirmTitle",
+        "properties": {
+          "text": "BIND:\"{ConfirmTitle}\"",
+          "font_size": "20",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "ConfirmMsg",
+        "properties": {
+          "text": "BIND:\"{ConfirmMessage}\"",
+          "font_size": "14",
+          "color": "$text",
+          "justification": "Center",
+          "wrap": "true"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "ConfirmBtns",
+        "properties": {
+          "spacing": "12"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "YesBtn",
+            "properties": {
+              "text": "Yes",
+              "font_size": "14"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "NoBtn",
+            "properties": {
+              "text": "No",
+              "font_size": "14"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

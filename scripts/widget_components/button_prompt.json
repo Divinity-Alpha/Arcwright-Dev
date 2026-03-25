@@ -1,0 +1,56 @@
+{
+  "id": "button_prompt",
+  "name": "Button Prompt",
+  "category": "system",
+  "description": "Key icon + action text, keyboard/gamepad aware",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    80
+  ],
+  "default_size": [
+    200,
+    40
+  ],
+  "variables": [
+    {
+      "name": "KeyName",
+      "type": "String",
+      "default": "E"
+    },
+    {
+      "name": "ActionName",
+      "type": "String",
+      "default": "Interact"
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "PromptRoot",
+    "properties": {
+      "spacing": "6"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "KeyIcon",
+        "properties": {
+          "text": "BIND:\"[{KeyName}]\"",
+          "font_size": "18",
+          "color": "$accent",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "ActionText",
+        "properties": {
+          "text": "BIND:\"{ActionName}\"",
+          "font_size": "16",
+          "color": "$text"
+        }
+      }
+    ]
+  }
+}

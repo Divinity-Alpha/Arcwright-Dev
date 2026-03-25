@@ -1,0 +1,207 @@
+[21:12:58] ======================================================================
+[21:12:58] OVERNIGHT TRIPLE TRAINING RUN
+[21:12:58] Started: 2026-03-08 21:12:58
+[21:12:58] Jobs: DT v3 -> BT v3 -> Blueprint v12
+[21:12:58] Log: C:\BlueprintLLM\logs\overnight_triple_20260308_211258.log
+[21:12:58] ======================================================================
+[21:12:58] 
+
+######################################################################
+[21:12:58] JOB 1/3: DT v3
+[21:12:58] Started: 2026-03-08 21:12:58
+[21:12:58] ######################################################################
+[21:12:58] 
+============================================================
+[21:12:58] PRE-FLIGHT: DT v3
+[21:12:58] ============================================================
+[21:12:58]   Killing zombie GPU processes...
+[21:12:58]   CMD: nvidia-smi --query-compute-apps=pid,name --format=csv,noheader -i 1
+[21:12:58]   No zombie processes found.
+[21:12:58]   CMD: nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1
+[21:12:58]   VRAM used on PRO 6000: 3.0 GB
+[21:12:58]   Golden Config Verification:
+[21:12:58]     epochs: 3 — OK
+[21:12:58]     learning_rate: 0.0002 — OK
+[21:12:58]     batch_size: 1 — OK
+[21:12:58]     gradient_accumulation_steps: 4 — OK
+[21:12:58]     lora_r: 32 — OK
+[21:12:58]     lora_alpha: 64 — OK
+[21:12:58]     max_seq_length: 1024 — OK
+[21:12:58]     use_8bit: True
+[21:12:58]     base_model: meta-llama/Meta-Llama-3.1-70B
+[21:12:58]   Backing up dt-lora-v2 to D:...
+[21:12:59]   Backup verified: dt-lora-v2 (790 MB)
+[21:12:59] 
+DATASET PREP: DT v3
+[21:12:59]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/dt_lesson_to_training.py --lesson lessons/dt_lesson_01.json --output datasets/dt_train.jsonl --no-append
+[21:12:59]   Wrote 45 DT training entries from dt_lesson_01 to datasets\dt_train.jsonl
+  (20 prompts x ~2 variations each)
+[21:12:59]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/dt_lesson_to_training.py --lesson lessons/dt_lesson_02.json --output datasets/dt_train.jsonl 
+[21:12:59]   Wrote 40 DT training entries from dt_lesson_02 to datasets\dt_train.jsonl
+  (20 prompts x ~2 variations each)
+[21:12:59]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/dt_lesson_to_training.py --lesson lessons/dt_lesson_03.json --output datasets/dt_train.jsonl 
+[21:12:59]   Wrote 39 DT training entries from dt_lesson_03 to datasets\dt_train.jsonl
+  (20 prompts x ~1 variations each)
+[21:12:59]   Final dataset: datasets/dt_train.jsonl = 124 training examples
+[21:12:59] 
+TRAINING: DT v3
+[21:12:59]   Domain: dt
+[21:12:59]   Dataset: datasets/dt_train.jsonl
+[21:12:59]   Output: models/dt-lora-v3
+[21:12:59]   Mode: FULL (golden config, 3 epochs)
+[21:12:59]   Training command: python scripts/04_train_blueprint_lora.py --domain dt --dataset datasets/dt_train.jsonl --output models/dt-lora-v3 --epochs 3 --lr 0.0002 --lora_r 32 --max_seq_length 1024 --batch_size 1
+[21:12:59]   Started at: 2026-03-08 21:12:59
+[21:14:27]   TRAIN: GPU: NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition
+[21:14:27]   TRAIN: VRAM: 95.6 GB
+[21:14:27]   TRAIN:   VRAM cap: none (full 95.6 GB available)
+[21:14:27]   TRAIN:   Precision: bf16 (Ampere+ GPU detected)
+[21:14:27]   TRAIN: NOTE: 96 GB VRAM detected. Full 70B config supported.
+[21:16:38]   TRAIN: Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:04<01:59,  4.10s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:08<01:56,  4.17s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:12<01:56,  4.33s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:17<01:54,  4.41s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:21<01:48,  4.36s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:25<01:43,  4.33s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:30<01:40,  4.36s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:35<01:38,  4.48s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:39<01:34,  4.50s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:44<01:29,  4.47s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:48<01:24,  4.44s/it]Loading checkpoint shards:  40%|████      | 12/30 [00:52<01:19,  4.41s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [00:57<01:15,  4.47s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [01:02<01:12,  4.56s/it]Loading checkpoint shards:  50%|█████     | 15/30 [01:06<01:07,  4.49s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [01:10<01:02,  4.45s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:15<00:57,  4.46s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:19<00:54,  4.51s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:24<00:49,  4.53s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:28<00:44,  4.46s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:33<00:40,  4.47s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:37<00:35,  4.42s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [01:42<00:31,  4.54s/it]Loading checkpoint shards:  80%|████████  | 24/30 [01:47<00:27,  4.58s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [01:51<00:22,  4.51s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [01:55<00:17,  4.45s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [01:59<00:13,  4.40s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [02:04<00:08,  4.45s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [02:09<00:04,  4.49s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:10<00:00,  3.52s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:10<00:00,  4.35s/it]
+[21:16:43]   TRAIN: Using TrainingArguments (older trl API)
+[21:16:43]   TRAIN: SFTTrainer params detected: ['model', 'train_dataset', 'eval_dataset', 'processing_class']
+[21:16:43]   TRAIN: Adding EOS to eval dataset:   0%|          | 0/30 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 30/30 [00:00<00:00, 29995.02 examples/s]
+[21:16:43]   TRAIN: Tokenizing eval dataset:   0%|          | 0/30 [00:00<?, ? examples/s]Tokenizing eval dataset: 100%|██████████| 30/30 [00:00<00:00, 2070.89 examples/s]
+[21:16:43]   TRAIN: Truncating eval dataset:   0%|          | 0/30 [00:00<?, ? examples/s]Truncating eval dataset: 100%|██████████| 30/30 [00:00<00:00, 29995.02 examples/s]
+[21:16:48]   TRAIN:   Epochs: 3
+[21:38:34]   TRAIN: {'loss': 2.8864, 'grad_norm': 22.625, 'learning_rate': 8e-05, 'entropy': 2.7270207166671754, 'num_tokens': 7697.0, 'mean_token_accuracy': 0.4998815432190895, 'epoch': 0.16}
+[21:38:34]   TRAIN: {'loss': 1.4883, 'grad_norm': 6.375, 'learning_rate': 0.00018, 'entropy': 1.39679114818573, 'num_tokens': 15434.0, 'mean_token_accuracy': 0.717717108130455, 'epoch': 0.32}
+[21:38:34]   TRAIN: {'loss': 2.3602, 'grad_norm': 74.5, 'learning_rate': 0.00019036144578313252, 'entropy': 2.140592548251152, 'num_tokens': 23658.0, 'mean_token_accuracy': 0.6830087229609489, 'epoch': 0.48}
+[21:38:34]   TRAIN: {'loss': 0.7737, 'grad_norm': 6880.0, 'learning_rate': 0.0001783132530120482, 'entropy': 0.7596453726291656, 'num_tokens': 31737.0, 'mean_token_accuracy': 0.8412050247192383, 'epoch': 0.65}
+[21:38:34]   TRAIN: {'loss': 0.5704, 'grad_norm': 32.25, 'learning_rate': 0.00016626506024096388, 'entropy': 0.5438125938177109, 'num_tokens': 39424.0, 'mean_token_accuracy': 0.8774639755487442, 'epoch': 0.81}
+[21:38:34]   TRAIN: {'loss': 0.4604, 'grad_norm': 49.5, 'learning_rate': 0.00015421686746987953, 'entropy': 0.4658422827720642, 'num_tokens': 47607.0, 'mean_token_accuracy': 0.8960877418518066, 'epoch': 0.97}
+[21:38:34]   TRAIN: {'loss': 0.4422, 'grad_norm': 3.6875, 'learning_rate': 0.00014216867469879518, 'entropy': 0.4355508252978325, 'num_tokens': 55409.0, 'mean_token_accuracy': 0.8998918831348419, 'epoch': 1.13}
+[21:38:34]   TRAIN: {'loss': 0.5408, 'grad_norm': 0.875, 'learning_rate': 0.00013012048192771085, 'entropy': 0.544495090842247, 'num_tokens': 63242.0, 'mean_token_accuracy': 0.8831579178571701, 'epoch': 1.29}
+[21:38:34]   TRAIN: {'loss': 0.3781, 'grad_norm': 1.703125, 'learning_rate': 0.00011807228915662652, 'entropy': 0.34503444135189054, 'num_tokens': 71454.0, 'mean_token_accuracy': 0.9136687457561493, 'epoch': 1.45}
+[21:38:34]   TRAIN: {'loss': 0.3658, 'grad_norm': 0.3828125, 'learning_rate': 0.00010602409638554218, 'entropy': 0.36924767792224883, 'num_tokens': 79271.0, 'mean_token_accuracy': 0.9197720259428024, 'epoch': 1.61}
+[21:38:34]   TRAIN: {'loss': 0.3367, 'grad_norm': 0.609375, 'learning_rate': 9.397590361445784e-05, 'entropy': 0.32864788770675657, 'num_tokens': 87079.0, 'mean_token_accuracy': 0.9235903561115265, 'epoch': 1.77}
+[21:38:34]   TRAIN: {'loss': 0.5922, 'grad_norm': 0.453125, 'learning_rate': 8.192771084337349e-05, 'entropy': 0.5469394065439701, 'num_tokens': 94965.0, 'mean_token_accuracy': 0.8782434493303299, 'epoch': 1.94}
+[21:38:34]   TRAIN: {'loss': 0.2967, 'grad_norm': 0.51953125, 'learning_rate': 6.987951807228917e-05, 'entropy': 0.2931848429143429, 'num_tokens': 102804.0, 'mean_token_accuracy': 0.9347046345472336, 'epoch': 2.1}
+[21:38:34]   TRAIN: {'loss': 0.2369, 'grad_norm': 3.359375, 'learning_rate': 5.783132530120482e-05, 'entropy': 0.27142286524176595, 'num_tokens': 111117.0, 'mean_token_accuracy': 0.9504295200109482, 'epoch': 2.26}
+[21:38:34]   TRAIN: {'loss': 0.2477, 'grad_norm': 13.1875, 'learning_rate': 4.578313253012048e-05, 'entropy': 0.2655272699892521, 'num_tokens': 118835.0, 'mean_token_accuracy': 0.9506334990262986, 'epoch': 2.42}
+[21:38:34]   TRAIN: {'loss': 0.2667, 'grad_norm': 0.87890625, 'learning_rate': 3.3734939759036146e-05, 'entropy': 0.2446983575820923, 'num_tokens': 126762.0, 'mean_token_accuracy': 0.9493024259805679, 'epoch': 2.58}
+[21:38:34]   TRAIN: {'loss': 0.2724, 'grad_norm': 0.52734375, 'learning_rate': 2.168674698795181e-05, 'entropy': 0.2593414537608624, 'num_tokens': 134728.0, 'mean_token_accuracy': 0.9441315680742264, 'epoch': 2.74}
+[21:38:34]   TRAIN: {'loss': 0.2548, 'grad_norm': 0.376953125, 'learning_rate': 9.63855421686747e-06, 'entropy': 0.2616839461028576, 'num_tokens': 142665.0, 'mean_token_accuracy': 0.9479719877243042, 'epoch': 2.9}
+[21:38:34]   TRAIN: {'train_runtime': 1302.5769, 'train_samples_per_second': 0.286, 'train_steps_per_second': 0.071, 'train_loss': 0.6943464291993008, 'entropy': 0.25086410840352374, 'num_tokens': 147315.0, 'mean_token_accuracy': 0.9553273667891821, 'epoch': 3.0}
+[21:38:36]   Training finished. RC=0, Elapsed: 26m
+[21:38:36]   Adapter created: 790 MB
+[21:38:36] 
+BACKUP: dt-lora-v3 to D:
+[21:38:36]   Backing up dt-lora-v3 to D:...
+[21:38:37]   Backup verified: dt-lora-v3 (790 MB)
+[21:38:37] 
+EXAMS: DT v3
+[21:38:37]   Examining dt_lesson_01...
+[21:38:37]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/dt_run_exam.py --lesson lessons/dt_lesson_01.json --model models/dt-lora-v3/final
+[22:00:23]   dt_lesson_01: syntax=100.0% sim=84.1%
+[22:00:23]   Examining dt_lesson_02...
+[22:00:23]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/dt_run_exam.py --lesson lessons/dt_lesson_02.json --model models/dt-lora-v3/final
+[22:29:52]   dt_lesson_02: syntax=95.0% sim=70.4%
+[22:29:52]   Examining dt_lesson_03...
+[22:29:52]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/dt_run_exam.py --lesson lessons/dt_lesson_03.json --model models/dt-lora-v3/final
+[23:00:10]   dt_lesson_03: syntax=95.0% sim=66.6%
+[23:00:12] 
+============================================================
+[23:00:12] SUMMARY: DT v3
+[23:00:12] ============================================================
+[23:00:12]   Adapter: models/dt-lora-v3/final
+[23:00:12]   Total elapsed: 107 minutes (1.8 hours)
+[23:00:12] 
+  Lesson                      Syntax   Similarity   Status
+[23:00:12]   ------------------------- -------- ------------ --------
+[23:00:12]   dt_lesson_01                100.0%        84.1%       OK
+[23:00:12]   dt_lesson_02                 95.0%        70.4%       OK
+[23:00:12]   dt_lesson_03                 95.0%        66.6%       OK
+[23:00:12] 
+  Average: syntax=96.7% similarity=73.7% (3 lessons)
+[23:00:12] 
+  All lessons above 60% similarity threshold.
+[23:00:12] 
+CLEANUP between jobs...
+[23:00:12]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" -c "import torch; torch.cuda.empty_cache(); print('CUDA cache cleared')"
+[23:00:19]   Killing zombie GPU processes...
+[23:00:19]   CMD: nvidia-smi --query-compute-apps=pid,name --format=csv,noheader -i 1
+[23:00:19]   No zombie processes found.
+[23:00:24]   CMD: nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1
+[23:00:24]   VRAM used on PRO 6000: 3.0 GB
+[23:00:24] 
+JOB 1/3 COMPLETE: DT v3 in 107 minutes
+[23:00:24] 
+
+######################################################################
+[23:00:24] JOB 2/3: BT v3
+[23:00:24] Started: 2026-03-08 23:00:24
+[23:00:24] ######################################################################
+[23:00:24] 
+============================================================
+[23:00:24] PRE-FLIGHT: BT v3
+[23:00:24] ============================================================
+[23:00:24]   Killing zombie GPU processes...
+[23:00:24]   CMD: nvidia-smi --query-compute-apps=pid,name --format=csv,noheader -i 1
+[23:00:24]   No zombie processes found.
+[23:00:24]   CMD: nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1
+[23:00:24]   VRAM used on PRO 6000: 3.0 GB
+[23:00:24]   Golden Config Verification:
+[23:00:24]     epochs: 3 — OK
+[23:00:24]     learning_rate: 0.0002 — OK
+[23:00:24]     batch_size: 1 — OK
+[23:00:24]     gradient_accumulation_steps: 4 — OK
+[23:00:24]     lora_r: 32 — OK
+[23:00:24]     lora_alpha: 64 — OK
+[23:00:24]     max_seq_length: 1024 — OK
+[23:00:24]     use_8bit: True
+[23:00:24]     base_model: meta-llama/Meta-Llama-3.1-70B
+[23:00:24]   Backing up bt-lora-v2 to D:...
+[23:00:30]   Backup verified: bt-lora-v2 (790 MB)
+[23:00:30] 
+DATASET PREP: BT v3
+[23:00:30]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/bt_lesson_to_training.py --lesson lessons/bt_lesson_01.json --output datasets/bt_train.jsonl --no-append
+[23:00:30]   Wrote 52 BT training entries from bt_lesson_01 to datasets\bt_train.jsonl
+  (20 prompts x ~2 variations each)
+[23:00:30]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/bt_lesson_to_training.py --lesson lessons/bt_lesson_02.json --output datasets/bt_train.jsonl 
+[23:00:30]   Wrote 44 BT training entries from bt_lesson_02 to datasets\bt_train.jsonl
+  (20 prompts x ~2 variations each)
+[23:00:30]   CMD: "C:\BlueprintLLM\venv\Scripts\python.exe" scripts/bt_lesson_to_training.py --lesson lessons/bt_lesson_03.json --output datasets/bt_train.jsonl 
+[23:00:30]   Wrote 39 BT training entries from bt_lesson_03 to datasets\bt_train.jsonl
+  (20 prompts x ~1 variations each)
+[23:00:30]   Final dataset: datasets/bt_train.jsonl = 135 training examples
+[23:00:30] 
+TRAINING: BT v3
+[23:00:30]   Domain: bt
+[23:00:30]   Dataset: datasets/bt_train.jsonl
+[23:00:30]   Output: models/bt-lora-v3
+[23:00:30]   Mode: FULL (golden config, 3 epochs)
+[23:00:30]   Training command: python scripts/04_train_blueprint_lora.py --domain bt --dataset datasets/bt_train.jsonl --output models/bt-lora-v3 --epochs 3 --lr 0.0002 --lora_r 32 --max_seq_length 1024 --batch_size 1
+[23:00:30]   Started at: 2026-03-08 23:00:30
+[23:01:59]   TRAIN: GPU: NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition
+[23:01:59]   TRAIN: VRAM: 95.6 GB
+[23:01:59]   TRAIN:   VRAM cap: none (full 95.6 GB available)
+[23:01:59]   TRAIN:   Precision: bf16 (Ampere+ GPU detected)
+[23:01:59]   TRAIN: NOTE: 96 GB VRAM detected. Full 70B config supported.
+[23:04:30]   TRAIN: Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:04<02:19,  4.81s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:09<02:15,  4.85s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:14<02:15,  5.02s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:19<02:10,  5.04s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:24<02:02,  4.89s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:29<01:55,  4.80s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:33<01:49,  4.76s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:38<01:46,  4.83s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:44<01:44,  4.96s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:49<01:38,  4.93s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:54<01:34,  4.96s/it]Loading checkpoint shards:  40%|████      | 12/30 [00:59<01:30,  5.00s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [01:04<01:27,  5.17s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [01:09<01:23,  5.21s/it]Loading checkpoint shards:  50%|█████     | 15/30 [01:15<01:17,  5.20s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [01:20<01:12,  5.18s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:25<01:07,  5.19s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:30<01:03,  5.25s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:36<00:58,  5.34s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:41<00:52,  5.24s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:46<00:46,  5.19s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:51<00:41,  5.20s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [01:57<00:36,  5.25s/it]Loading checkpoint shards:  80%|████████  | 24/30 [02:02<00:31,  5.32s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [02:07<00:26,  5.26s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [02:12<00:20,  5.19s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [02:17<00:15,  5.19s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [02:23<00:10,  5.26s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [02:28<00:05,  5.32s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:30<00:00,  4.24s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:30<00:00,  5.02s/it]
+[23:04:34]   TRAIN: Using TrainingArguments (older trl API)
+[23:04:34]   TRAIN: SFTTrainer params detected: ['model', 'train_dataset', 'eval_dataset', 'processing_class']
+[23:04:35]   TRAIN: Adding EOS to eval dataset:   0%|          | 0/30 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 30/30 [00:00<00:00, 29995.02 examples/s]
+[23:04:35]   TRAIN: Tokenizing eval dataset:   0%|          | 0/30 [00:00<?, ? examples/s]Tokenizing eval dataset: 100%|██████████| 30/30 [00:00<00:00, 1173.87 examples/s]
+[23:04:35]   TRAIN: Truncating eval dataset:   0%|          | 0/30 [00:00<?, ? examples/s]Truncating eval dataset: 100%|██████████| 30/30 [00:00<?, ? examples/s]
+[23:04:41]   TRAIN:   Epochs: 3
+[09:03:44]   Training finished. RC=1, Elapsed: 10.1h
+[09:03:44]   ERROR: Training failed with return code 1
+[09:03:44] 
+FATAL: Training failed for BT v3. STOPPING ALL JOBS.
+[09:03:44] 
+
+======================================================================
+[09:03:44] ALL JOBS COMPLETE
+[09:03:44] Total elapsed: 11.8 hours (711 minutes)
+[09:03:44] Finished: 2026-03-09 09:03:44
+[09:03:44] ======================================================================
+[09:03:44] 
+DT v3:
+[09:03:44]   dt_lesson_01: syntax=100.0% sim=84.1%
+[09:03:44]   dt_lesson_02: syntax=95.0% sim=70.4%
+[09:03:44]   dt_lesson_03: syntax=95.0% sim=66.6%
+[09:03:44] 
+All categories above 60%. No immediate continuation needed.
+[09:03:44] 
+Results saved to: C:\BlueprintLLM\results\overnight_triple_20260309_090344.json
+[09:03:44] Full log: C:\BlueprintLLM\logs\overnight_triple_20260308_211258.log

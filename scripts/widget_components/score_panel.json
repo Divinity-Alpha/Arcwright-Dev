@@ -1,0 +1,62 @@
+{
+  "id": "score_panel",
+  "name": "Score Panel",
+  "category": "hud",
+  "description": "Label + large score number",
+  "default_anchor": "TopRight",
+  "default_offset": [
+    -30,
+    20
+  ],
+  "default_size": [
+    160,
+    70
+  ],
+  "variables": [
+    {
+      "name": "Score",
+      "type": "Integer",
+      "default": 0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "ScoreBox",
+    "properties": {
+      "spacing": "2"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "ScoreLabel",
+        "properties": {
+          "text": "SCORE",
+          "font_size": "13",
+          "color": "$text_muted",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "ScoreValue",
+        "properties": {
+          "text": "BIND:\"{Score}\"",
+          "font_size": "32",
+          "color": "$warning",
+          "bold": "true"
+        },
+        "animations": [
+          {
+            "trigger": "OnChange",
+            "type": "ScalePop",
+            "params": {
+              "target_scale": 1.15,
+              "duration": 0.2
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

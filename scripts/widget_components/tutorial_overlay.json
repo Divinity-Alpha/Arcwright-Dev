@@ -1,0 +1,81 @@
+{
+  "id": "tutorial_overlay",
+  "name": "Tutorial Overlay",
+  "category": "system",
+  "description": "Highlight box, instruction text, next/skip buttons",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    400,
+    200
+  ],
+  "variables": [
+    {
+      "name": "StepNum",
+      "type": "Integer",
+      "default": 1
+    },
+    {
+      "name": "TotalSteps",
+      "type": "Integer",
+      "default": 5
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "TutRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "InstrText",
+        "properties": {
+          "text": "BIND:\"{Instruction}\"",
+          "font_size": "16",
+          "color": "$text",
+          "wrap": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "StepCounter",
+        "properties": {
+          "text": "BIND:\"Step {StepNum}/{TotalSteps}\"",
+          "font_size": "12",
+          "color": "$text_muted"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "TutBtns",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "SkipBtn",
+            "properties": {
+              "text": "Skip",
+              "font_size": "13"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "NextBtn",
+            "properties": {
+              "text": "Next",
+              "font_size": "13"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

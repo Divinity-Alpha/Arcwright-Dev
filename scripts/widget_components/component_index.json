@@ -1,0 +1,38 @@
+{
+  "hud_components": [
+    "health_bar", "shield_bar", "stamina_bar", "ammo_counter", "score_panel",
+    "timer", "minimap", "compass", "crosshair", "interaction_prompt",
+    "objective_tracker", "kill_feed", "wave_counter", "boss_health_bar",
+    "notification_stack", "damage_indicator", "speed_display", "gear_indicator",
+    "lap_counter", "position_display"
+  ],
+  "menu_components": [
+    "main_menu", "pause_menu", "settings_panel", "inventory_grid",
+    "character_select", "level_select", "shop_panel", "dialog_box",
+    "loading_screen", "game_over", "leaderboard"
+  ],
+  "inventory_components": [
+    "equipment_screen", "item_tooltip", "crafting_screen", "loot_panel",
+    "container_view", "quick_use_wheel", "item_comparison"
+  ],
+  "character_components": [
+    "character_sheet", "skill_tree", "class_select", "level_up_screen",
+    "stat_comparison"
+  ],
+  "quest_components": [
+    "quest_log", "quest_tracker", "dialogue_history", "world_map", "journal_codex"
+  ],
+  "multiplayer_components": [
+    "scoreboard", "team_select", "lobby_screen", "chat_window", "player_card",
+    "party_panel", "match_results", "server_browser"
+  ],
+  "genre_components": [
+    "build_menu", "tech_tree", "deck_builder", "mission_briefing",
+    "vehicle_dashboard", "fishing_minigame", "farm_grid", "cooking_screen",
+    "photo_mode"
+  ],
+  "system_components": [
+    "tutorial_overlay", "tooltip_system", "confirmation_dialog",
+    "text_input_dialog", "notification_toast", "button_prompt", "splash_screen"
+  ]
+}

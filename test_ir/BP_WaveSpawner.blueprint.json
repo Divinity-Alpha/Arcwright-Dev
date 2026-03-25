@@ -1,0 +1,248 @@
+{
+  "metadata": {
+    "name": "BP_WaveSpawner",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [
+    {
+      "name": "SpawnCount",
+      "type": "Int",
+      "default": "1"
+    },
+    {
+      "name": "SpawnTimer",
+      "type": "Float",
+      "default": "15.0"
+    },
+    {
+      "name": "Spawned",
+      "type": "Bool",
+      "default": "false"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "SetTimerByFunctionName",
+      "params": {
+        "FunctionName": "SpawnWave",
+        "Time": "15.0",
+        "bLooping": "true"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:K2_SetTimerDelegate",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "Event_CustomEvent",
+      "params": {
+        "EventName": "SpawnWave"
+      },
+      "ue_class": "UK2Node_CustomEvent",
+      "param_key": "EventName",
+      "position": [
+        0,
+        150
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "GetVar",
+      "params": {
+        "Variable": "SpawnCount"
+      },
+      "ue_class": "UK2Node_VariableGet",
+      "param_key": "Variable",
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "RandomIntegerInRange",
+      "params": {
+        "Min": "-500",
+        "Max": "500"
+      },
+      "ue_class": "UNMAPPED",
+      "position": [
+        0,
+        450
+      ]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "MakeVector",
+      "params": {
+        "Y": "0",
+        "Z": "0"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:MakeVector",
+      "position": [
+        0,
+        600
+      ]
+    },
+    {
+      "id": "n7",
+      "dsl_type": "SpawnActorFromClass",
+      "params": {
+        "ActorClass": "BP_Enemy"
+      },
+      "ue_class": "UK2Node_SpawnActorFromClass",
+      "position": [
+        300,
+        150
+      ]
+    },
+    {
+      "id": "n8",
+      "dsl_type": "AddInt",
+      "params": {
+        "B": "1"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Add_IntInt",
+      "position": [
+        0,
+        750
+      ]
+    },
+    {
+      "id": "n9",
+      "dsl_type": "SetVar",
+      "params": {
+        "Variable": "SpawnCount"
+      },
+      "ue_class": "UK2Node_VariableSet",
+      "param_key": "Variable",
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "id": "n10",
+      "dsl_type": "SetVar",
+      "params": {
+        "Variable": "SpawnTimer",
+        "Value": "20.0"
+      },
+      "ue_class": "UK2Node_VariableSet",
+      "param_key": "Variable",
+      "position": [
+        900,
+        0
+      ]
+    },
+    {
+      "id": "n11",
+      "dsl_type": "SetVar",
+      "params": {
+        "Variable": "Spawned",
+        "Value": "true"
+      },
+      "ue_class": "UK2Node_VariableSet",
+      "param_key": "Variable",
+      "position": [
+        1200,
+        0
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n3",
+      "src_pin": "Then",
+      "dst_node": "n7",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n7",
+      "src_pin": "Then",
+      "dst_node": "n9",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n9",
+      "src_pin": "Then",
+      "dst_node": "n10",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n10",
+      "src_pin": "Then",
+      "dst_node": "n11",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n4",
+      "src_pin": "Value",
+      "dst_node": "n5",
+      "dst_pin": "C",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n5",
+      "src_pin": "ReturnValue",
+      "dst_node": "n6",
+      "dst_pin": "X",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n6",
+      "src_pin": "ReturnValue",
+      "dst_node": "n7",
+      "dst_pin": "S",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n4",
+      "src_pin": "Value",
+      "dst_node": "n8",
+      "dst_pin": "A",
+      "data_type": "Int"
+    },
+    {
+      "type": "data",
+      "src_node": "n8",
+      "src_pin": "ReturnValue",
+      "dst_node": "n9",
+      "dst_pin": "V",
+      "data_type": null
+    }
+  ]
+}

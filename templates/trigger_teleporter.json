@@ -1,0 +1,60 @@
+{
+  "template_id": "trigger_teleporter",
+  "name": "Teleporter",
+  "category": "triggers",
+  "description": "A trigger volume that teleports the player to a target location when entered. Shows enter/arrival messages. Uses SetActorLocation on the overlapping actor.",
+  "version": "1.0",
+  "proven_in": "Template Library",
+  "customizable": {
+    "blueprint_name": "Name of the Blueprint (default: BP_Teleporter)",
+    "enter_message": "Message when entering (default: Teleporting...)",
+    "arrive_message": "Message at destination (default: Arrived!)",
+    "dest_x": "Destination X coordinate (default: 0)",
+    "dest_y": "Destination Y coordinate (default: 0)",
+    "dest_z": "Destination Z coordinate (default: 500)",
+    "collision_extent": "Trigger size (default: 100,100,100)",
+    "color": "Teleporter color (default: purple)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_Teleporter}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: PrintString [InString=\"{{enter_message|Teleporting...}}\"]\nNODE n3: MakeVector [X={{dest_x|0}}, Y={{dest_y|0}}, Z={{dest_z|500}}]\nNODE n4: SetActorLocation [Sweep=false, Teleport=true]\nNODE n5: PrintString [InString=\"{{arrive_message|Arrived!}}\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n1.OtherActor -> n4.Target [Actor]\nDATA n3.ReturnValue -> n4.NewLocation [Vector]",
+  "components": [
+    {
+      "type": "BoxCollision",
+      "name": "TeleportCollision",
+      "properties": {
+        "extent": {"x": 100, "y": 100, "z": 100},
+        "generate_overlap_events": true
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "TeleportMesh",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+        "scale": {"x": 1.5, "y": 1.5, "z": 0.2}
+      }
+    },
+    {
+      "type": "PointLight",
+      "name": "TeleportGlow",
+      "properties": {
+        "intensity": 5000,
+        "light_color": {"r": 128, "g": 0, "b": 255},
+        "attenuation_radius": 300
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_Teleporter",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 0.5, "g": 0.0, "b": 1.0, "a": 1.0}
+    },
+    "scalar_params": {
+      "Roughness": 0.1
+    }
+  },
+  "example_spawn": {
+    "location": {"x": -500, "y": 0, "z": 92},
+    "notes": "Place on ground. Set dest_x/dest_y/dest_z to target location."
+  }
+}

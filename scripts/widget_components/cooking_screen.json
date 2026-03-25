@@ -1,0 +1,89 @@
+{
+  "id": "cooking_screen",
+  "name": "Cooking Screen",
+  "category": "genre",
+  "description": "Recipe, ingredient slots, timing bar, quality stars",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    400,
+    350
+  ],
+  "variables": [
+    {
+      "name": "CookProgress",
+      "type": "Float",
+      "default": 0.0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "CookRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "RecipeName",
+        "properties": {
+          "text": "BIND:\"{RecipeName}\"",
+          "font_size": "20",
+          "color": "$warning",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "IngrRow",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "CIngr1",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "48",
+              "size_y": "48"
+            }
+          },
+          {
+            "type": "IMAGE",
+            "name": "CIngr2",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "48",
+              "size_y": "48"
+            }
+          }
+        ]
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "CookBar",
+        "properties": {
+          "percent": "BIND:CookProgress/100",
+          "fill_color": "$warning",
+          "bar_color": "$surface",
+          "size_x": "300",
+          "size_y": "16"
+        }
+      },
+      {
+        "type": "BUTTON",
+        "name": "CookBtn",
+        "properties": {
+          "text": "COOK!",
+          "font_size": "16"
+        }
+      }
+    ]
+  }
+}

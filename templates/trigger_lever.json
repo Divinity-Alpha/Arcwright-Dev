@@ -1,0 +1,58 @@
+{
+  "template_id": "trigger_lever",
+  "name": "Lever / Toggle Switch",
+  "category": "triggers",
+  "description": "An interactable lever that toggles between ON and OFF states when the player overlaps it. Uses a FlipFlop node for clean toggle logic. Prints state change messages.",
+  "version": "1.0",
+  "proven_in": "Template Library",
+  "customizable": {
+    "blueprint_name": "Name of the Blueprint (default: BP_Lever)",
+    "on_message": "Message when activated (default: Lever ON)",
+    "off_message": "Message when deactivated (default: Lever OFF)",
+    "color_on": "Color when ON (default: green)",
+    "color_off": "Color when OFF (default: red)",
+    "collision_extent": "Interaction zone size (default: 80,80,80)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_Lever}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: FlipFlop\nNODE n3: PrintString [InString=\"{{on_message|Lever ON}}\"]\nNODE n4: PrintString [InString=\"{{off_message|Lever OFF}}\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.A -> n3.Execute\nEXEC n2.B -> n4.Execute",
+  "components": [
+    {
+      "type": "BoxCollision",
+      "name": "LeverCollision",
+      "properties": {
+        "extent": {"x": 80, "y": 80, "z": 80},
+        "generate_overlap_events": true
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "LeverBase",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Cube.Cube",
+        "scale": {"x": 0.5, "y": 0.5, "z": 1.0}
+      }
+    },
+    {
+      "type": "PointLight",
+      "name": "LeverLight",
+      "properties": {
+        "intensity": 3000,
+        "light_color": {"r": 255, "g": 200, "b": 0},
+        "attenuation_radius": 200
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_Lever",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 0.5, "g": 0.5, "b": 0.5, "a": 1.0}
+    },
+    "scalar_params": {
+      "Metallic": 0.7
+    }
+  },
+  "example_spawn": {
+    "location": {"x": 300, "y": -300, "z": 92},
+    "notes": "Place at player-reachable height. Connect ON/OFF states to doors, lights, or other game systems."
+  }
+}

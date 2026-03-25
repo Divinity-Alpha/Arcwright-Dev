@@ -1,0 +1,118 @@
+{
+  "template_id": "player_fps",
+  "name": "FPS Game Base",
+  "version": "2.0",
+  "category": "player",
+  "description": "Complete FPS game base copied from UE5's official TP_FirstPerson template. C++ Character (camera, WASD, mouse look, jump), PlayerController (Enhanced Input, cursor hidden), GameMode, CameraManager (pitch limits). All controls are in C++ — do NOT attempt to recreate with Blueprint nodes.",
+  "status": "proven",
+  "method": "setup_game_base",
+  "setup_command": "python scripts/setup_game_base.py --type fps --project <project_dir>",
+  "verify_command": "python scripts/setup_game_base.py --type fps --project <project_dir> --verify",
+  "source": "C:\\Program Files\\Epic Games\\UE_5.7\\Templates\\TP_FirstPerson",
+  "requires": {
+    "ue_version": "5.7",
+    "build_after_setup": true,
+    "set_game_mode_per_level": true,
+    "notes": "After setup+build+launch, must call set_game_mode('BP_FirstPersonGameMode') per level. GlobalDefaultGameMode in DefaultEngine.ini is set but World Settings override takes priority."
+  },
+  "cpp_module": {
+    "name": "TP_FirstPerson",
+    "files": [
+      "TP_FirstPerson.h/cpp (module + log category)",
+      "TP_FirstPersonCharacter.h/cpp (Character with camera + Enhanced Input)",
+      "TP_FirstPersonPlayerController.h/cpp (Input Mapping Contexts)",
+      "TP_FirstPersonGameMode.h/cpp (stub GameMode)",
+      "TP_FirstPersonCameraManager.h/cpp (pitch limits)"
+    ],
+    "dependencies": ["Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "AIModule", "StateTreeModule", "GameplayStateTreeModule", "UMG", "Slate"]
+  },
+  "proven_settings": {
+    "character": {
+      "capsule_radius": 34.0,
+      "capsule_half_height": 96.0,
+      "camera_attachment": "CapsuleComponent",
+      "camera_relative_z": 64.0,
+      "camera_uses_pawn_control_rotation": true,
+      "braking_deceleration_falling": 1500.0,
+      "air_control": 0.5,
+      "eye_height_from_ground": 160.0,
+      "notes": "Camera attached to capsule at Z+64 (above capsule center at Z=96 from ground = 160 eye height). Original template uses skeletal mesh 'head' socket but that requires Mannequin mesh assets."
+    },
+    "camera_manager": {
+      "view_pitch_min": -70.0,
+      "view_pitch_max": 80.0
+    },
+    "controller": {
+      "input_system": "Enhanced Input",
+      "cursor_hidden": true,
+      "input_mode": "game_only",
+      "input_mapping_contexts": ["IMC_Default", "IMC_MouseLook"]
+    },
+    "input_actions": {
+      "IA_Move": "Vector2D (WASD)",
+      "IA_Look": "Vector2D (gamepad right stick)",
+      "IA_MouseLook": "Vector2D (mouse delta)",
+      "IA_Jump": "bool (spacebar)"
+    },
+    "movement": {
+      "walk_speed": "600 (default Character)",
+      "jump_z_velocity": "420 (default Character)",
+      "gravity_scale": "1.0 (default)"
+    }
+  },
+  "content_copied": {
+    "Content/FirstPerson/Blueprints/": [
+      "BP_FirstPersonCharacter.uasset",
+      "BP_FirstPersonGameMode.uasset",
+      "BP_FirstPersonPlayerController.uasset"
+    ],
+    "Content/FirstPerson/Anims/": [
+      "ABP_FP_Copy.uasset",
+      "CtrlRig_FPWarp.uasset"
+    ],
+    "Content/FirstPerson/": [
+      "MI_FirstPersonColorway.uasset"
+    ],
+    "Content/Input/Actions/": [
+      "IA_Jump.uasset",
+      "IA_Look.uasset",
+      "IA_MouseLook.uasset",
+      "IA_Move.uasset"
+    ],
+    "Content/Input/": [
+      "IMC_Default.uasset",
+      "IMC_MouseLook.uasset"
+    ]
+  },
+  "config_merged": {
+    "DefaultEngine.ini": [
+      "GlobalDefaultGameMode=/Game/FirstPerson/Blueprints/BP_FirstPersonGameMode.BP_FirstPersonGameMode_C",
+      "Projectile collision profile",
+      "AISystem bForgetStaleActors",
+      "NearClipPlane=5.0"
+    ],
+    "DefaultInput.ini": [
+      "Full Enhanced Input settings from template",
+      "DefaultViewportMouseCaptureMode=CapturePermanently_IncludingInitialMouseDown",
+      "DefaultViewportMouseLockMode=LockOnCapture",
+      "bCaptureMouseOnLaunch=True"
+    ]
+  },
+  "test_checklist": [
+    "Mouse cursor hidden during Play",
+    "Mouse rotates camera (yaw 360, pitch -70 to +80)",
+    "WASD moves relative to camera direction",
+    "Spacebar jumps with gravity",
+    "Character stands at proper eye height (~160 units)",
+    "Character collides with walls/floors",
+    "Gravity pulls character down after jumping",
+    "Escape exits Play mode"
+  ],
+  "critical_lessons": [
+    "NEVER recreate FPS controls with Blueprint nodes. Enhanced Input, cursor hiding, and movement all require C++ from the official template.",
+    "Camera must attach to CapsuleComponent at Z+64, NOT to FirstPersonMesh 'head' socket (requires Mannequin assets).",
+    "IMPLEMENT_GAME_MODULE (2 args), NOT IMPLEMENT_PRIMARY_GAME_MODULE (3 args) — project already has a primary module.",
+    "Must call set_game_mode per level after setup — GlobalDefaultGameMode alone is insufficient if World Settings has an override.",
+    "Build.cs variant paths must be stripped (we only copy base files, not Horror/Shooter variants)."
+  ]
+}

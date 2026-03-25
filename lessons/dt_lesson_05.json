@@ -1,0 +1,82 @@
+{
+  "lesson_id": "dt_lesson_05",
+  "lesson_name": "Corrective v2: Quest Systems, Skill Trees, Audio Configuration",
+  "version": "v1",
+  "domain": "data_table",
+  "description": "Targets persistent DT weaknesses from v4 exams: quest (69.2% L02, 75% L03), skill_tree (73.4% L02, 65.4% L03), audio_config (76.6% L02). Model hallucinate alternative column names, struct names, and row values. This lesson provides 12 additional examples with varied phrasing to anchor correct naming and value patterns.",
+  "created": "2026-03-15",
+  "prompts": [
+    {
+      "id": "DT05_01",
+      "category": "quest",
+      "instruction": "Create a simple quest log data table. Each quest has: quest name as a string, a text description, and whether the quest is complete as a boolean.",
+      "expected_dsl": "DATATABLE: DT_QuestLog\nSTRUCT: FQuestLogEntry\n\nCOLUMN QuestName: String\nCOLUMN Description: Text\nCOLUMN IsComplete: Bool = false\n\nROW FindSword: \"Find the Lost Sword\", \"Retrieve the sword from the goblin camp\", false\nROW SaveVillage: \"Save the Village\", \"Defeat the bandits attacking the village\", false\nROW DeliverLetter: \"Deliver the Letter\", \"Bring the sealed letter to the castle\", true"
+    },
+    {
+      "id": "DT05_02",
+      "category": "quest",
+      "instruction": "Build a quest rewards table. Columns: quest name (string), gold reward (integer), XP reward (integer), and item reward as a string with empty default.",
+      "expected_dsl": "DATATABLE: DT_QuestRewards\nSTRUCT: FQuestRewardEntry\n\nCOLUMN QuestName: String\nCOLUMN GoldReward: Int\nCOLUMN XPReward: Int\nCOLUMN ItemReward: String = \"\"\n\nROW SlayDragon: \"Slay the Dragon\", 500, 1000, \"Dragon Scale Shield\"\nROW GatherHerbs: \"Gather Herbs\", 50, 100, \"\"\nROW EscortMerchant: \"Escort the Merchant\", 200, 300, \"Merchant Ring\"\nROW ClearMine: \"Clear the Mine\", 150, 250, \"Mining Pick\""
+    },
+    {
+      "id": "DT05_03",
+      "category": "quest",
+      "instruction": "Make a mission objectives table with 5 columns: mission name as a string, objective text as text, required count as an integer, current count as an integer defaulting to 0, and is optional as a boolean defaulting to false.",
+      "expected_dsl": "DATATABLE: DT_MissionObjectives\nSTRUCT: FMissionObjective\n\nCOLUMN MissionName: String\nCOLUMN ObjectiveText: Text\nCOLUMN RequiredCount: Int\nCOLUMN CurrentCount: Int = 0\nCOLUMN IsOptional: Bool = false\n\nROW KillWolves: \"Wolf Hunt\", \"Defeat wolves in the forest\", 8, 0, false\nROW CollectOre: \"Mining Run\", \"Mine iron ore deposits\", 12, 0, false\nROW FindRelics: \"Ancient Relics\", \"Discover hidden relics\", 3, 0, true\nROW TalkToSage: \"Seek Wisdom\", \"Consult the forest sage\", 1, 0, false"
+    },
+    {
+      "id": "DT05_04",
+      "category": "quest",
+      "instruction": "Create a full quest definition table with 6 columns: quest ID as a string, quest name, description as text, difficulty as a string with default Normal, reward gold as an integer, and is repeatable as a boolean defaulting to false.",
+      "expected_dsl": "DATATABLE: DT_QuestDefinitions\nSTRUCT: FQuestDefinition\n\nCOLUMN QuestID: String\nCOLUMN QuestName: String\nCOLUMN Description: Text\nCOLUMN Difficulty: String = \"Normal\"\nCOLUMN RewardGold: Int\nCOLUMN IsRepeatable: Bool = false\n\nROW Q001: \"Q001\", \"Dragon's Bane\", \"Slay the dragon terrorizing the valley\", \"Hard\", 1000, false\nROW Q002: \"Q002\", \"Herb Collection\", \"Collect 20 healing herbs for the healer\", \"Easy\", 50, true\nROW Q003: \"Q003\", \"Escort Duty\", \"Protect the caravan on its journey north\", \"Normal\", 200, false\nROW Q004: \"Q004\", \"Arena Champion\", \"Win 5 fights in the arena\", \"Hard\", 500, true"
+    },
+    {
+      "id": "DT05_05",
+      "category": "skill_tree",
+      "instruction": "Create a basic skills data table. Each skill has: skill name (string), mana cost (float), damage (float), and cooldown in seconds (float).",
+      "expected_dsl": "DATATABLE: DT_BasicSkills\nSTRUCT: FBasicSkill\n\nCOLUMN SkillName: String\nCOLUMN ManaCost: Float\nCOLUMN Damage: Float\nCOLUMN CooldownSeconds: Float\n\nROW Fireball: \"Fireball\", 25.0, 40.0, 3.0\nROW IceLance: \"Ice Lance\", 20.0, 30.0, 2.5\nROW ThunderStrike: \"Thunder Strike\", 35.0, 55.0, 5.0\nROW HealingLight: \"Healing Light\", 30.0, 0.0, 4.0"
+    },
+    {
+      "id": "DT05_06",
+      "category": "skill_tree",
+      "instruction": "Build a skill tree node table with 5 columns: node name as a string, description as text, point cost as an integer, max level as an integer defaulting to 1, and parent skill name as a string with empty default.",
+      "expected_dsl": "DATATABLE: DT_SkillTreeNodes\nSTRUCT: FSkillTreeNode\n\nCOLUMN NodeName: String\nCOLUMN Description: Text\nCOLUMN PointCost: Int\nCOLUMN MaxLevel: Int = 1\nCOLUMN ParentSkill: String = \"\"\n\nROW BasicStrike: \"Basic Strike\", \"A simple melee attack\", 1, 3, \"\"\nROW HeavyBlow: \"Heavy Blow\", \"A powerful but slow strike\", 2, 3, \"Basic Strike\"\nROW Whirlwind: \"Whirlwind\", \"Spin attack hitting all nearby enemies\", 3, 1, \"Heavy Blow\"\nROW Toughness: \"Toughness\", \"Increases maximum health\", 1, 5, \"\""
+    },
+    {
+      "id": "DT05_07",
+      "category": "skill_tree",
+      "instruction": "Make a character abilities table. Columns: ability name (string), unlock level (integer), base power (float), cooldown (float with default 1.0), and is passive (boolean defaulting to false).",
+      "expected_dsl": "DATATABLE: DT_CharacterAbilities\nSTRUCT: FCharacterAbility\n\nCOLUMN AbilityName: String\nCOLUMN UnlockLevel: Int\nCOLUMN BasePower: Float\nCOLUMN Cooldown: Float = 1.0\nCOLUMN IsPassive: Bool = false\n\nROW PowerSlash: \"Power Slash\", 1, 20.0, 2.0, false\nROW DodgeRoll: \"Dodge Roll\", 3, 0.0, 3.0, false\nROW CriticalEye: \"Critical Eye\", 5, 15.0, 0.0, true\nROW BerserkRage: \"Berserk Rage\", 10, 50.0, 30.0, false"
+    },
+    {
+      "id": "DT05_08",
+      "category": "skill_tree",
+      "instruction": "Create a talent specialization data table with 6 columns: talent name (string), tier as an integer, mana cost (float), cast time in seconds (float with default 0.0), description as text, and is ultimate as a boolean defaulting to false.",
+      "expected_dsl": "DATATABLE: DT_TalentSpec\nSTRUCT: FTalentSpecEntry\n\nCOLUMN TalentName: String\nCOLUMN Tier: Int\nCOLUMN ManaCost: Float\nCOLUMN CastTime: Float = 0.0\nCOLUMN Description: Text\nCOLUMN IsUltimate: Bool = false\n\nROW QuickSlash: \"Quick Slash\", 1, 5.0, 0.0, \"Fast sword strike\", false\nROW FlameBurst: \"Flame Burst\", 2, 30.0, 1.5, \"Burst of fire in a cone\", false\nROW ShadowStep: \"Shadow Step\", 2, 20.0, 0.0, \"Teleport behind the target\", false\nROW Cataclysm: \"Cataclysm\", 4, 100.0, 3.0, \"Devastating area destruction\", true"
+    },
+    {
+      "id": "DT05_09",
+      "category": "audio_config",
+      "instruction": "Create a basic audio settings data table. Each entry has: setting name as a string, volume as a float from 0 to 1, and is muted as a boolean defaulting to false.",
+      "expected_dsl": "DATATABLE: DT_AudioSettings\nSTRUCT: FAudioSetting\n\nCOLUMN SettingName: String\nCOLUMN Volume: Float\nCOLUMN IsMuted: Bool = false\n\nROW Master: \"Master Volume\", 0.8, false\nROW Music: \"Music\", 0.6, false\nROW SFX: \"Sound Effects\", 0.9, false\nROW Voice: \"Voice Chat\", 0.7, true"
+    },
+    {
+      "id": "DT05_10",
+      "category": "audio_config",
+      "instruction": "Build a sound effect configuration table with 4 columns: sound name (string), category as a string with default SFX, default volume as a float defaulting to 1.0, and max distance as a float defaulting to 2000.",
+      "expected_dsl": "DATATABLE: DT_SFXConfig\nSTRUCT: FSFXConfigEntry\n\nCOLUMN SoundName: String\nCOLUMN Category: String = \"SFX\"\nCOLUMN DefaultVolume: Float = 1.0\nCOLUMN MaxDistance: Float = 2000.0\n\nROW Gunshot: \"Gunshot\", \"SFX\", 1.0, 3000.0\nROW Footstep: \"Footstep\", \"SFX\", 0.5, 500.0\nROW Explosion: \"Explosion\", \"SFX\", 1.0, 5000.0\nROW MenuClick: \"Menu Click\", \"UI\", 0.7, 0.0"
+    },
+    {
+      "id": "DT05_11",
+      "category": "audio_config",
+      "instruction": "Make a music playlist data table. Columns: track name (string), artist (string), duration in seconds (float), genre (string with default Orchestral), and loop enabled as a boolean defaulting to true.",
+      "expected_dsl": "DATATABLE: DT_MusicPlaylist\nSTRUCT: FMusicPlaylistEntry\n\nCOLUMN TrackName: String\nCOLUMN Artist: String\nCOLUMN Duration: Float\nCOLUMN Genre: String = \"Orchestral\"\nCOLUMN LoopEnabled: Bool = true\n\nROW MainTheme: \"Main Theme\", \"Epic Scores\", 195.0, \"Orchestral\", true\nROW BattleTheme: \"Into Battle\", \"Action Beats\", 160.0, \"Action\", true\nROW TavernSong: \"Tavern Song\", \"Folk Band\", 120.0, \"Folk\", false\nROW VictoryFanfare: \"Victory\", \"Epic Scores\", 25.0, \"Fanfare\", false"
+    },
+    {
+      "id": "DT05_12",
+      "category": "audio_config",
+      "instruction": "Create a full audio mix configuration table with 6 columns: channel name (string), volume (float), pan position as a float defaulting to 0.0, low pass frequency as a float defaulting to 20000.0, reverb amount as a float defaulting to 0.0, and is stereo as a boolean defaulting to true.",
+      "expected_dsl": "DATATABLE: DT_AudioMix\nSTRUCT: FAudioMixChannel\n\nCOLUMN ChannelName: String\nCOLUMN Volume: Float\nCOLUMN PanPosition: Float = 0.0\nCOLUMN LowPassFreq: Float = 20000.0\nCOLUMN ReverbAmount: Float = 0.0\nCOLUMN IsStereo: Bool = true\n\nROW Music: \"Music\", 0.7, 0.0, 20000.0, 0.3, true\nROW SFX: \"Sound Effects\", 0.9, 0.0, 18000.0, 0.1, true\nROW Voice: \"Voice\", 1.0, 0.0, 12000.0, 0.0, false\nROW Ambient: \"Ambient\", 0.4, 0.0, 15000.0, 0.5, true"
+    }
+  ]
+}

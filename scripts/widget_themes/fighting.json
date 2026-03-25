@@ -1,0 +1,90 @@
+{
+  "name": "Fighting",
+  "description": "Fighting game theme — crimson/electric blue, thick bold borders, explosive animations",
+  "version": "1.0",
+
+  "colors": {
+    "primary": "#DC143C",
+    "secondary": "#8B0000",
+    "accent": "#00BFFF",
+    "warning": "#FF6600",
+    "danger": "#FF0033",
+
+    "panel_bg": "#0C0C0C",
+    "card_bg": "#161616",
+    "surface": "#1E1E1E",
+
+    "text": "#FFFFFF",
+    "text_secondary": "#AAAAAA",
+    "text_muted": "#555555",
+
+    "border": "#DC143C80",
+    "divider": "#DC143C40",
+
+    "health": "#33CC33",
+    "health_low": "#FF0033",
+    "mana": "#00BFFF",
+    "stamina": "#FF6600",
+    "xp": "#FFD700",
+
+    "shadow": "rgba(220,20,60,0.2)"
+  },
+
+  "fonts": {
+    "heading": {"family": "Impact", "weight": "Bold"},
+    "body": {"family": "Bebas Neue", "weight": "Regular"},
+    "mono": {"family": "Anton", "weight": "Regular"},
+    "ui": {"family": "Bebas Neue", "weight": "Bold"}
+  },
+
+  "sizes": {
+    "h1": 44,
+    "h2": 34,
+    "h3": 26,
+    "h4": 20,
+    "body": 18,
+    "small": 14,
+    "tiny": 12,
+    "icon_small": 28,
+    "icon_medium": 38,
+    "icon_large": 56,
+    "corner_radius": 0,
+    "border_width": 4,
+    "spacing_xs": 4,
+    "spacing_sm": 8,
+    "spacing_md": 14,
+    "spacing_lg": 22,
+    "spacing_xl": 30
+  },
+
+  "defaults": {
+    "TEXT": {
+      "color": "#FFFFFF",
+      "font_size": 18,
+      "font": "Bebas Neue"
+    },
+    "PROGRESS_BAR": {
+      "fill_color": "#DC143C",
+      "bar_color": "#1E1E1E",
+      "percent": 100
+    },
+    "BUTTON": {
+      "font_size": 18,
+      "normal_color": "#DC143C",
+      "hovered_color": "#FF2255",
+      "pressed_color": "#8B0000"
+    },
+    "BORDER": {
+      "border_color": "#DC143C80",
+      "corner_radius": 0,
+      "background": "#161616"
+    },
+    "CANVAS": {},
+    "VBOX": {
+      "spacing": 8
+    },
+    "HBOX": {
+      "spacing": 8
+    }
+  }
+}

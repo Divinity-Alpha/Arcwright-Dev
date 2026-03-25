@@ -8,7 +8,7 @@
       "step": 1,
       "name": "connect + health_check",
       "status": "PASS",
-      "detail": "BlueprintLLM"
+      "detail": "Arcwright"
     },
     {
       "step": 2,
@@ -62,7 +62,7 @@
       "step": 10,
       "name": "spawn Blueprint actor",
       "status": "PASS",
-      "detail": "SKIP (no BP available): Could not resolve actor class: /Game/BlueprintLLM/Generated/BP_HelloWorld"
+      "detail": "SKIP (no BP available): Could not resolve actor class: /Game/Arcwright/Generated/BP_HelloWorld"
     }
   ]
 }

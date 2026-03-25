@@ -19,7 +19,7 @@ from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from blueprint_client import BlueprintLLMClient, BlueprintLLMError
+from blueprint_client import ArcwrightClient, BlueprintLLMError
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
@@ -31,7 +31,8 @@ def parse_ir_expectations(ir_path: str) -> dict:
 
     name = ir.get("metadata", {}).get("name", "Unknown")
     nodes_expected = len(ir.get("nodes", []))
-    connections_expected = len(ir.get("connections", []))
+    # Don't count data_literal connections — the server reports those as default values, not wired connections
+    connections_expected = sum(1 for c in ir.get("connections", []) if c.get("type") != "data_literal")
     variables_expected = len(ir.get("variables", []))
 
     return {
@@ -42,7 +43,7 @@ def parse_ir_expectations(ir_path: str) -> dict:
     }
 
 
-def run_single_test(client: BlueprintLLMClient, ir_path: str) -> dict:
+def run_single_test(client: ArcwrightClient, ir_path: str) -> dict:
     """Run a single import test and return results."""
     filename = os.path.basename(ir_path)
     result = {
@@ -69,6 +70,8 @@ def run_single_test(client: BlueprintLLMClient, ir_path: str) -> dict:
         client.delete_blueprint(expectations["name"])
     except BlueprintLLMError:
         pass  # OK if it doesn't exist
+    except (ConnectionError, ConnectionResetError, OSError):
+        raise  # Propagate connection errors for outer handler
 
     # Step 2: Import
     try:
@@ -192,7 +195,7 @@ def main():
     # Connect
     print(f"\nConnecting to {args.host}:{args.port}...", end=" ")
     try:
-        client = BlueprintLLMClient(host=args.host, port=args.port, timeout=args.timeout)
+        client = ArcwrightClient(host=args.host, port=args.port, timeout=args.timeout)
         health = client.health_check()
         server_version = health.get("data", {}).get("version", "?")
         print(f"OK (server v{server_version})")
@@ -207,17 +210,57 @@ def main():
 
     for i, ir_file in enumerate(ir_files, 1):
         print(f"\n[{i}/{len(ir_files)}] Testing {ir_file.name}...")
+        # Small delay between tests to avoid overwhelming the editor renderer
+        if i > 1:
+            time.sleep(1.5)
         test_start = time.time()
-        result = run_single_test(client, str(ir_file))
+        try:
+            result = run_single_test(client, str(ir_file))
+        except (ConnectionError, ConnectionResetError, ConnectionAbortedError, OSError) as e:
+            # Server/editor likely crashed — try to reconnect
+            result = {
+                "file": ir_file.name,
+                "ir_path": str(ir_file),
+                "status": "FAIL",
+                "details": {},
+                "errors": [f"Connection lost: {e}"],
+            }
+            print(f"  CONNECTION LOST — attempting reconnect...")
+            try:
+                client.close()
+            except Exception:
+                pass
+            # Wait for editor to potentially recover
+            time.sleep(2)
+            try:
+                client = ArcwrightClient(host=args.host, port=args.port, timeout=args.timeout)
+                health = client.health_check()
+                print(f"  Reconnected OK (v{health.get('data', {}).get('version', '?')})")
+            except Exception:
+                print(f"  Reconnect FAILED — editor crashed. Marking remaining tests as SKIP.")
+                result["errors"].append("Editor crashed")
+                results.append(result)
+                # Mark remaining tests
+                for j, remaining_file in enumerate(ir_files[i:], i + 1):
+                    results.append({
+                        "file": remaining_file.name,
+                        "ir_path": str(remaining_file),
+                        "status": "FAIL",
+                        "details": {},
+                        "errors": ["SKIPPED — editor not running"],
+                    })
+                break
         result["duration_seconds"] = round(time.time() - test_start, 2)
         results.append(result)
 
-        status = result["status"]
         if result.get("errors"):
             for err in result["errors"]:
                 print(f"  Warning: {err}")
 
-    client.close()
+    try:
+        client.close()
+    except Exception:
+        pass
 
     total_duration = round(time.time() - start_time, 2)
 

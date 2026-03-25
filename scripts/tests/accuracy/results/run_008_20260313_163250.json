@@ -1,0 +1,2130 @@
+{
+  "run": 8,
+  "timestamp": "20260313_163250",
+  "date": "2026-03-13",
+  "total_score": 89,
+  "max_score": 175,
+  "pct": 50.9,
+  "test_count": 35,
+  "categories": {
+    "modify": {
+      "intent": 19,
+      "plan": 14,
+      "exec": 11,
+      "verify": 34,
+      "quality": 11,
+      "count": 35
+    }
+  },
+  "failure_counts": {
+    "P2": 21,
+    "E3": 2,
+    "Q2": 24,
+    "I1": 16,
+    "E1": 21,
+    "E2": 1,
+    "V1": 1
+  },
+  "results": {
+    "M.01": {
+      "test_id": "M.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Set Health=200 on enemies",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "",
+                  "variable_name": "Health",
+                  "default_value": 200
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "results": [
+              {
+                "blueprint": "",
+                "variable_name": "Health",
+                "success": false,
+                "error": "Blueprint not found: "
+              }
+            ],
+            "errors": [
+              ": Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 40.27
+    },
+    "M.02": {
+      "test_id": "M.02",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Make the enemies faster",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "BP_Enemy",
+                  "variable_name": "Speed",
+                  "default_value": 1000
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "results": [
+              {
+                "blueprint": "BP_Enemy",
+                "variable_name": "Speed",
+                "success": false,
+                "error": "Blueprint not found: BP_Enemy"
+              }
+            ],
+            "errors": [
+              "BP_Enemy: Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 45.68
+    },
+    "M.03": {
+      "test_id": "M.03",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Double the enemy damage",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "BP_Enemy",
+                  "variable_name": "Damage",
+                  "default_value": 20
+                },
+                {
+                  "blueprint": "BP_EnemyBoss",
+                  "variable_name": "Damage",
+                  "default_value": 40
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 2,
+            "succeeded": 0,
+            "failed": 2,
+            "results": [
+              {
+                "blueprint": "BP_Enemy",
+                "variable_name": "Damage",
+                "success": false,
+                "error": "Blueprint not found: BP_Enemy"
+              },
+              {
+                "blueprint": "BP_EnemyBoss",
+                "variable_name": "Damage",
+                "success": false,
+                "error": "Blueprint not found: BP_EnemyBoss"
+              }
+            ],
+            "errors": [
+              "BP_Enemy: Blueprint not found",
+              "BP_EnemyBoss: Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 69.29
+    },
+    "M.04": {
+      "test_id": "M.04",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Coin Blueprint",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_Coin",
+              "set_class_defaults": {
+                "Value": "50"
+              },
+              "add_variables": [],
+              "remove_variables": []
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Blueprint not found: BP_Coin",
+          "step": 1,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E3",
+        "Q2"
+      ],
+      "duration_s": 47.92
+    },
+    "M.05": {
+      "test_id": "M.05",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Reduce torch intensity to 2000",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "BP_Torch_01",
+                  "property": "intensity",
+                  "value": 200
+                },
+                {
+                  "actor_label": "BP_Torch_02",
+                  "property": "intensity",
+                  "value": 200
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 2,
+            "succeeded": 0,
+            "failed": 2,
+            "errors": [
+              "Actor not found: BP_Torch_01",
+              "Actor not found: BP_Torch_02"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 59.41
+    },
+    "M.06": {
+      "test_id": "M.06",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Enemy and BP_EnemyBoss blueprints",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_Enemy",
+              "set_class_defaults": {
+                "Health": "500",
+                "Damage": "40"
+              },
+              "add_variables": [],
+              "remove_variables": []
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Blueprint not found: BP_Enemy",
+          "step": 1,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E3",
+        "Q2"
+      ],
+      "duration_s": 72.24
+    },
+    "M.07": {
+      "test_id": "M.07",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Make the health pickups heal 50 instead of 25",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Make the health pickups heal 50 instead of 25"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.14
+    },
+    "M.08": {
+      "test_id": "M.08",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply brick to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply brick to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "brick"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Multiple materials match 'brick': MI_StreetBrick_26 MI_StreetBrick_25 MI_StreetBrick_D_26 MI_WallBrick_9 MI_StreetBrick_24 MI_WallBrick_8 MI_StreetBrick_D_25 MI_WallBrick_D_9 MI_StreetBrick_23 MI_WallBrick_7 ...and 86 more. Please specify the full path."
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 0.76
+    },
+    "M.09": {
+      "test_id": "M.09",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply marble to floor",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find floor actors in level",
+            "params": {
+              "name_filter": "floor"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 0.45
+    },
+    "M.10": {
+      "test_id": "M.10",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Make the torches look like gold",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Make the torches look like gold"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 437.47
+    },
+    "M.11": {
+      "test_id": "M.11",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply concrete on all walls to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply concrete on all walls to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "concrete on all walls"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Material 'concrete on all walls' not found. Similar: MAT_Concrete MI_ConcreteWall_02 MI_ConcreteWall_D_22 MI_ConcreteWall_D_21 MI_ConcreteWall_22"
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 0.2
+    },
+    "M.12": {
+      "test_id": "M.12",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_replace_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Replace stone with brick",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_replace_material",
+            "params": {
+              "old_material": "",
+              "new_material": "brick"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Missing 'old_material'",
+          "step": 1,
+          "command": "batch_replace_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E2",
+        "Q2"
+      ],
+      "duration_s": 0.18
+    },
+    "M.13": {
+      "test_id": "M.13",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply all hazard zones to *",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find all actors in level",
+            "params": {
+              "name_filter": ""
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply all hazard zones to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "all hazard zones"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Material 'all hazard zones' not found."
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 0.27
+    },
+    "M.14": {
+      "test_id": "M.14",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply m_pack_bonus_stone_2 to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 0.47
+    },
+    "M.15": {
+      "test_id": "M.15",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Scale all enemies up by 1.5",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Scale all enemies up by 1.5"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 440.57
+    },
+    "M.16": {
+      "test_id": "M.16",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Make the coins smaller",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Make the coins smaller"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.2
+    },
+    "M.17": {
+      "test_id": "M.17",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete gold actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {
+              "class_filter": "gold"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "deleted": 0,
+            "failed": 0,
+            "errors": []
+          },
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "No matching actors found (as expected)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 0.07
+    },
+    "M.18": {
+      "test_id": "M.18",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete torch actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {
+              "class_filter": "torch"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "deleted": 0,
+            "failed": 0,
+            "errors": []
+          },
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "No matching actors found (as expected)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 0.19
+    },
+    "M.19": {
+      "test_id": "M.19",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Hide all the health pickups",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Hide all the health pickups"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 438.06
+    },
+    "M.20": {
+      "test_id": "M.20",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Move all coins up by 50 units",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Move all coins up by 50 units"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.07
+    },
+    "M.21": {
+      "test_id": "M.21",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete out actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {
+              "class_filter": "out"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "deleted": 0,
+            "failed": 0,
+            "errors": []
+          },
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "No matching actors found (as expected)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 0.07
+    },
+    "M.22": {
+      "test_id": "M.22",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Add a point light to every torch",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Add a point light to every torch"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.07
+    },
+    "M.23": {
+      "test_id": "M.23",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Give all enemies a sphere collision component",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Give all enemies a sphere collision component"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.07
+    },
+    "M.24": {
+      "test_id": "M.24",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Rename BP_GoldCoin to BP_TreasureCoin",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Rename BP_GoldCoin to BP_TreasureCoin"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'TreasureCoin' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 421.09
+    },
+    "M.25": {
+      "test_id": "M.25",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply character to enemy",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find enemy actors in level",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply character to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "character"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Material 'character' not found."
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 0.15
+    },
+    "M.26": {
+      "test_id": "M.26",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "The enemies are too weak, buff them",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "The enemies are too weak, buff them"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.04
+    },
+    "M.27": {
+      "test_id": "M.27",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Everything looks too plain, change the walls",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Everything looks too plain, change the walls"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.05
+    },
+    "M.28": {
+      "test_id": "M.28",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Make all coins worth double",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Make all coins worth double"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.24
+    },
+    "M.29": {
+      "test_id": "M.29",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "The torches are too bright, dim them",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "The torches are too bright, dim them"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.05
+    },
+    "M.30": {
+      "test_id": "M.30",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply m_pack_bonus_stone_2 to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 0.06
+    },
+    "M.31": {
+      "test_id": "M.31",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply marble to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 0.11
+    },
+    "M.32": {
+      "test_id": "M.32",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply stone to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 0.06
+    },
+    "M.33": {
+      "test_id": "M.33",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Make the floor darker",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Make the floor darker"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.04
+    },
+    "M.34": {
+      "test_id": "M.34",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Set the coin value to 100 on every pickup",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Set the coin value to 100 on every pickup"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.03
+    },
+    "M.35": {
+      "test_id": "M.35",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Increase enemy detection range to 1200",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Increase enemy detection range to 1200"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Generation timed out after 300s",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 420.05
+    }
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "timestamp": "20260314_222601",
+  "suite": "AI Workflow Integration Tests",
+  "passed": 6,
+  "failed": 4,
+  "total": 10,
+  "results": [
+    {
+      "test_id": "01_query_then_create",
+      "status": "FAIL",
+      "elapsed_s": 1.22,
+      "steps": [
+        {
+          "name": "get_level_info",
+          "ok": true,
+          "detail": "level=ArenaLevel"
+        },
+        {
+          "name": "import_from_ir",
+          "ok": true,
+          "detail": "nodes=3"
+        },
+        {
+          "name": "spawn_actor_at",
+          "ok": true,
+          "detail": "label=AIW_QTC_Actor"
+        },
+        {
+          "name": "find_actors verify",
+          "ok": false,
+          "detail": "found=1 matching"
+        }
+      ]
+    },
+    {
+      "test_id": "02_build_and_configure",
+      "status": "PASS",
+      "elapsed_s": 2.48,
+      "steps": [
+        {
+          "name": "create blueprint",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "add StaticMesh component",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "add BoxCollision component",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "spawn actor",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "create material",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "set_actor_material",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "get_actor_properties verify",
+          "ok": true,
+          "detail": "class=BP_AIW_BAC_C"
+        }
+      ]
+    },
+    {
+      "test_id": "03_batch_modify",
+      "status": "PASS",
+      "elapsed_s": 2.53,
+      "steps": [
+        {
+          "name": "create BP with mesh",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "spawn 3 actors",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "find_actors",
+          "ok": true,
+          "detail": "found=3"
+        },
+        {
+          "name": "batch_apply_material",
+          "ok": true,
+          "detail": "succeeded=3"
+        },
+        {
+          "name": "verify actors still present",
+          "ok": true,
+          "detail": "found=3"
+        }
+      ]
+    },
+    {
+      "test_id": "04_full_enemy_setup",
+      "status": "FAIL",
+      "elapsed_s": 1.25,
+      "steps": [
+        {
+          "name": "unexpected exception",
+          "ok": false,
+          "detail": "Missing 'metadata' in IR"
+        }
+      ]
+    },
+    {
+      "test_id": "05_scene_setup",
+      "status": "PASS",
+      "elapsed_s": 1.89,
+      "steps": [
+        {
+          "name": "setup_scene_lighting",
+          "ok": true,
+          "detail": "actors_created=2"
+        },
+        {
+          "name": "spawn floor",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "apply floor material",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "spawn game prop",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "verify level populated",
+          "ok": true,
+          "detail": "actor_count=46"
+        }
+      ]
+    },
+    {
+      "test_id": "06_data_driven",
+      "status": "FAIL",
+      "elapsed_s": 0.32,
+      "steps": [
+        {
+          "name": "unexpected exception",
+          "ok": false,
+          "detail": "Missing table_name or struct_name in metadata"
+        }
+      ]
+    },
+    {
+      "test_id": "07_iterative_refinement",
+      "status": "PASS",
+      "elapsed_s": 1.84,
+      "steps": [
+        {
+          "name": "create initial BP",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "add Health variable",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "spawn actor",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "find_blueprints verify Health",
+          "ok": true,
+          "detail": "blueprints_found=1"
+        },
+        {
+          "name": "add MaxHealth variable",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "verify both variables",
+          "ok": true,
+          "detail": "variables=['Health', 'MaxHealth']"
+        }
+      ]
+    },
+    {
+      "test_id": "08_cleanup_workflow",
+      "status": "PASS",
+      "elapsed_s": 2.29,
+      "steps": [
+        {
+          "name": "create BP",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "spawn 5 actors",
+          "ok": true,
+          "detail": "spawned=5"
+        },
+        {
+          "name": "find_actors (before)",
+          "ok": true,
+          "detail": "found=5"
+        },
+        {
+          "name": "batch_delete_actors",
+          "ok": true,
+          "detail": "deleted=5"
+        },
+        {
+          "name": "verify actors deleted",
+          "ok": true,
+          "detail": "remaining=0"
+        }
+      ]
+    },
+    {
+      "test_id": "09_multi_domain",
+      "status": "FAIL",
+      "elapsed_s": 0.89,
+      "steps": [
+        {
+          "name": "unexpected exception",
+          "ok": false,
+          "detail": "Missing 'metadata' in IR"
+        }
+      ]
+    },
+    {
+      "test_id": "10_error_recovery",
+      "status": "PASS",
+      "elapsed_s": 0.87,
+      "steps": [
+        {
+          "name": "expected error on bad BP name",
+          "ok": true,
+          "detail": "ArcwrightError raised"
+        },
+        {
+          "name": "expected error on bad IR path",
+          "ok": true,
+          "detail": "ArcwrightError raised"
+        },
+        {
+          "name": "spawn_actor_at with empty params",
+          "ok": true,
+          "detail": "returned ok or error without crash"
+        },
+        {
+          "name": "retry with valid import",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "verify recovery succeeded",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "name": "BP_HealthPickup",
+    "parent_class": "Actor"
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_ActorBeginOverlap",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveActorBeginOverlap"
+    },
+    {
+      "id": "n2",
+      "dsl_type": "PrintString",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "params": {
+        "InString": "Health restored!"
+      }
+    },
+    {
+      "id": "n3",
+      "dsl_type": "DestroyActor",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_DestroyActor"
+    }
+  ],
+  "connections": [
+    {
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "src_node": "n2",
+      "src_pin": "Then",
+      "dst_node": "n3",
+      "dst_pin": "Execute"
+    }
+  ]
+}

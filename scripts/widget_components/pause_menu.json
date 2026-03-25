@@ -1,0 +1,76 @@
+{
+  "id": "pause_menu",
+  "name": "Pause Menu",
+  "category": "menu",
+  "description": "Semi-transparent overlay with Resume/Settings/Quit",
+  "default_anchor": "Fill",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    0,
+    0
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "OVERLAY",
+    "name": "PauseRoot",
+    "properties": {},
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "PauseDim",
+        "properties": {
+          "tint": "#000000",
+          "opacity": "0.6"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "PausePanel",
+        "properties": {
+          "spacing": "16"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "PauseTitle",
+            "properties": {
+              "text": "PAUSED",
+              "font_size": "36",
+              "color": "$text",
+              "bold": "true",
+              "justification": "Center"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "ResumeBtn",
+            "properties": {
+              "text": "RESUME",
+              "font_size": "18"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "PauseSettingsBtn",
+            "properties": {
+              "text": "SETTINGS",
+              "font_size": "18"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "PauseQuitBtn",
+            "properties": {
+              "text": "QUIT",
+              "font_size": "18"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

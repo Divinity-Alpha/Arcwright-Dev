@@ -1,0 +1,40 @@
+{
+  "id": "crosshair",
+  "name": "Crosshair",
+  "category": "hud",
+  "description": "Center dot + lines",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    40,
+    40
+  ],
+  "variables": [
+    {
+      "name": "Spread",
+      "type": "Float",
+      "default": 0.0
+    }
+  ],
+  "options": {
+    "style": {
+      "type": "string",
+      "default": "cross"
+    }
+  },
+  "tree": {
+    "type": "TEXT",
+    "name": "CrosshairDot",
+    "properties": {
+      "text": "+",
+      "font_size": "24",
+      "color": "$text",
+      "justification": "Center",
+      "opacity": "0.8"
+    },
+    "children": []
+  }
+}

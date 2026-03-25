@@ -1,0 +1,47 @@
+{
+  "template_id": "movement_platform",
+  "name": "Moving Platform",
+  "category": "movement",
+  "description": "A platform that moves back and forth between two positions using a timeline-like ping-pong pattern. Uses SetTimerByFunctionName with alternating MoveToLocation calls via a boolean toggle.",
+  "version": "1.0",
+  "proven_in": "Template Library",
+  "customizable": {
+    "blueprint_name": "Name of the Blueprint (default: BP_MovingPlatform)",
+    "move_time": "Seconds between position switches (default: 3.0)",
+    "start_message": "Message on begin play (default: Platform Active)",
+    "platform_scale": "Scale of the platform mesh (default: 3,3,0.3)",
+    "color": "Platform color (default: teal)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_MovingPlatform}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: PrintString [InString=\"{{start_message|Platform Active}}\"]\nNODE n3: Delay [Duration={{move_time|3.0}}]\nNODE n4: PrintString [InString=\"Platform moving...\"]\nNODE n5: Delay [Duration={{move_time|3.0}}]\nNODE n6: PrintString [InString=\"Platform returning...\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Completed -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Completed -> n6.Execute\nEXEC n6.Then -> n3.Execute",
+  "components": [
+    {
+      "type": "StaticMesh",
+      "name": "PlatformMesh",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Cube.Cube",
+        "scale": {"x": 3, "y": 3, "z": 0.3}
+      }
+    },
+    {
+      "type": "BoxCollision",
+      "name": "PlatformCollision",
+      "properties": {
+        "extent": {"x": 150, "y": 150, "z": 30}
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_Platform",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 0.0, "g": 0.7, "b": 0.7, "a": 1.0}
+    },
+    "scalar_params": {
+      "Metallic": 0.5
+    }
+  },
+  "example_spawn": {
+    "location": {"x": 0, "y": -400, "z": 92},
+    "notes": "Set EndPos variable after spawning to define the second position. Platform ping-pongs between StartPos (auto-set from spawn location) and EndPos."
+  }
+}

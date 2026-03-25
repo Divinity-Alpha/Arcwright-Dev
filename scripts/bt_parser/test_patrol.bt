@@ -1,0 +1,21 @@
+BEHAVIORTREE: BT_PatrolGuard
+BLACKBOARD: BB_PatrolGuard
+
+KEY TargetActor: Object
+KEY PatrolLocation: Vector
+KEY PatrolIndex: Int = 0
+KEY IsAlert: Bool = false
+
+TREE:
+
+SELECTOR: Root
+  SEQUENCE: ChaseTarget
+    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]
+    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]
+    TASK: RotateToFaceBBEntry [Key=TargetActor]
+    TASK: ApplyDamage [Key=TargetActor, Damage=10]
+    TASK: Wait [Duration=1.0]
+  SEQUENCE: Patrol
+    TASK: MoveTo [Key=PatrolLocation, AcceptableRadius=50]
+    TASK: Wait [Duration=3.0, RandomDeviation=1.0]
+    TASK: SetBlackboardValue [Key=PatrolIndex, Value=Next]

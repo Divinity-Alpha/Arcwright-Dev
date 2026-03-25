@@ -1,0 +1,654 @@
+{
+  "timestamp": "2026-03-15T00:33:07.459999",
+  "passed": 87,
+  "failed": 4,
+  "skipped": 1,
+  "total": 92,
+  "duration_seconds": 323.8,
+  "results": [
+    {
+      "name": "health_check",
+      "category": "connection",
+      "status": "PASS",
+      "detail": "server=Arcwright",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "create_blueprint_from_dsl",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "created BP_ArcwrightTest",
+      "duration_seconds": 0.361
+    },
+    {
+      "name": "get_blueprint_info",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "nodes=3, compiled=True",
+      "duration_seconds": 0.006
+    },
+    {
+      "name": "compile_blueprint",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "compiled",
+      "duration_seconds": 0.022
+    },
+    {
+      "name": "duplicate_blueprint",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "duplicated to BP_ArcwrightTest2",
+      "duration_seconds": 0.338
+    },
+    {
+      "name": "delete_blueprint",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "deleted",
+      "duration_seconds": 0.338
+    },
+    {
+      "name": "get_blueprint_info_nonexistent",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "correctly returned error",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "add_node",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "added Delay (id=6B5D6E914AF9D5E0327A0CA9A56F3F82)",
+      "duration_seconds": 0.027
+    },
+    {
+      "name": "set_node_param",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "set Duration=2.0 on 6B5D6E914AF9D5E0327A0CA9A56F3F82",
+      "duration_seconds": 0.021
+    },
+    {
+      "name": "add_connection",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "wired BeginPlay->6B5D6E914AF9D5E0327A0CA9A56F3F82",
+      "duration_seconds": 0.041
+    },
+    {
+      "name": "remove_connection",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "unwired",
+      "duration_seconds": 0.021
+    },
+    {
+      "name": "remove_node",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "removed Delay",
+      "duration_seconds": 0.025
+    },
+    {
+      "name": "set_variable_default",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "Health=75.0",
+      "duration_seconds": 0.023
+    },
+    {
+      "name": "add_component_BoxCollision",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added BoxCollision",
+      "duration_seconds": 0.026
+    },
+    {
+      "name": "add_component_SphereCollision",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added SphereCollision",
+      "duration_seconds": 0.024
+    },
+    {
+      "name": "add_component_StaticMesh",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added StaticMesh",
+      "duration_seconds": 0.028
+    },
+    {
+      "name": "add_component_PointLight",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added PointLight",
+      "duration_seconds": 0.021
+    },
+    {
+      "name": "add_component_SpotLight",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added SpotLight",
+      "duration_seconds": 0.027
+    },
+    {
+      "name": "add_component_Audio",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added Audio",
+      "duration_seconds": 0.023
+    },
+    {
+      "name": "add_component_Arrow",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added Arrow",
+      "duration_seconds": 0.026
+    },
+    {
+      "name": "add_component_Scene",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added Scene",
+      "duration_seconds": 0.024
+    },
+    {
+      "name": "add_component_CapsuleCollision",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added CapsuleCollision",
+      "duration_seconds": 0.027
+    },
+    {
+      "name": "get_components",
+      "category": "components",
+      "status": "PASS",
+      "detail": "count=9",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "set_component_property",
+      "category": "components",
+      "status": "PASS",
+      "detail": "intensity=1000",
+      "duration_seconds": 0.027
+    },
+    {
+      "name": "remove_component",
+      "category": "components",
+      "status": "PASS",
+      "detail": "removed Arrow",
+      "duration_seconds": 0.023
+    },
+    {
+      "name": "remove_component_idempotent",
+      "category": "components",
+      "status": "PASS",
+      "detail": "idempotent ok",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "create_simple_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "created red material",
+      "duration_seconds": 0.726
+    },
+    {
+      "name": "create_simple_material_emissive",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "created green emissive",
+      "duration_seconds": 0.291
+    },
+    {
+      "name": "apply_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "applied to StaticMesh",
+      "duration_seconds": 0.035
+    },
+    {
+      "name": "create_textured_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "created textured material",
+      "duration_seconds": 0.299
+    },
+    {
+      "name": "set_actor_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "material applied to actor",
+      "duration_seconds": 0.633
+    },
+    {
+      "name": "spawn_actor_at",
+      "category": "level",
+      "status": "PASS",
+      "detail": "spawned actor",
+      "duration_seconds": 0.328
+    },
+    {
+      "name": "get_actors",
+      "category": "level",
+      "status": "PASS",
+      "detail": "actors=165",
+      "duration_seconds": 0.021
+    },
+    {
+      "name": "set_actor_transform",
+      "category": "level",
+      "status": "PASS",
+      "detail": "moved actor",
+      "duration_seconds": 0.004
+    },
+    {
+      "name": "get_level_info",
+      "category": "level",
+      "status": "PASS",
+      "detail": "level=ArenaLevel",
+      "duration_seconds": 0.004
+    },
+    {
+      "name": "delete_actor",
+      "category": "level",
+      "status": "PASS",
+      "detail": "deleted",
+      "duration_seconds": 0.006
+    },
+    {
+      "name": "save_all",
+      "category": "level",
+      "status": "PASS",
+      "detail": "saved",
+      "duration_seconds": 0.031
+    },
+    {
+      "name": "save_level",
+      "category": "level",
+      "status": "PASS",
+      "detail": "saved",
+      "duration_seconds": 0.036
+    },
+    {
+      "name": "create_widget_blueprint",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "created",
+      "duration_seconds": 0.029
+    },
+    {
+      "name": "add_widget_child_canvas",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "added root CanvasPanel",
+      "duration_seconds": 0.028
+    },
+    {
+      "name": "add_widget_child_text",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "added TextBlock",
+      "duration_seconds": 0.122
+    },
+    {
+      "name": "add_widget_child_progress",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "added ProgressBar",
+      "duration_seconds": 0.055
+    },
+    {
+      "name": "set_widget_property_text",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "text set",
+      "duration_seconds": 0.022
+    },
+    {
+      "name": "set_widget_property_percent",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "percent=0.75",
+      "duration_seconds": 0.054
+    },
+    {
+      "name": "get_widget_tree",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "tree retrieved",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "remove_widget",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "removed ProgressBar",
+      "duration_seconds": 0.049
+    },
+    {
+      "name": "create_behavior_tree",
+      "category": "behavior_tree",
+      "status": "PASS",
+      "detail": "created BT",
+      "duration_seconds": 0.034
+    },
+    {
+      "name": "get_behavior_tree_info",
+      "category": "behavior_tree",
+      "status": "PASS",
+      "detail": "queried BT",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "get_behavior_tree_info_nonexistent",
+      "category": "behavior_tree",
+      "status": "PASS",
+      "detail": "correctly returned error",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "create_data_table",
+      "category": "data_table",
+      "status": "PASS",
+      "detail": "created DT",
+      "duration_seconds": 0.252
+    },
+    {
+      "name": "get_data_table_info",
+      "category": "data_table",
+      "status": "PASS",
+      "detail": "queried DT",
+      "duration_seconds": 0.003
+    },
+    {
+      "name": "create_ai_pawn",
+      "category": "ai_setup",
+      "status": "PASS",
+      "detail": "pawn created (via IR)",
+      "duration_seconds": 0.567
+    },
+    {
+      "name": "setup_ai_for_pawn",
+      "category": "ai_setup",
+      "status": "PASS",
+      "detail": "AI setup complete",
+      "duration_seconds": 0.085
+    },
+    {
+      "name": "set_class_defaults",
+      "category": "ai_setup",
+      "status": "PASS",
+      "detail": "class defaults set",
+      "duration_seconds": 0.027
+    },
+    {
+      "name": "import_static_mesh_bad_path",
+      "category": "asset_import",
+      "status": "PASS",
+      "detail": "correctly returned error for bad path",
+      "duration_seconds": 0.005
+    },
+    {
+      "name": "import_texture_bad_path",
+      "category": "asset_import",
+      "status": "PASS",
+      "detail": "correctly returned error for bad path",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "import_sound_bad_path",
+      "category": "asset_import",
+      "status": "PASS",
+      "detail": "correctly returned error for bad path",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "create_spline_actor",
+      "category": "splines",
+      "status": "PASS",
+      "detail": "created spline",
+      "duration_seconds": 0.337
+    },
+    {
+      "name": "add_spline_point",
+      "category": "splines",
+      "status": "PASS",
+      "detail": "added point",
+      "duration_seconds": 0.025
+    },
+    {
+      "name": "get_spline_info",
+      "category": "splines",
+      "status": "PASS",
+      "detail": "points=4",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "add_post_process_volume",
+      "category": "post_process",
+      "status": "PASS",
+      "detail": "added PP volume",
+      "duration_seconds": 0.315
+    },
+    {
+      "name": "set_post_process_settings",
+      "category": "post_process",
+      "status": "PASS",
+      "detail": "settings applied",
+      "duration_seconds": 0.026
+    },
+    {
+      "name": "set_movement_defaults",
+      "category": "movement",
+      "status": "PASS",
+      "detail": "movement defaults set",
+      "duration_seconds": 0.668
+    },
+    {
+      "name": "add_physics_constraint",
+      "category": "physics",
+      "status": "PASS",
+      "detail": "added hinge constraint",
+      "duration_seconds": 0.33
+    },
+    {
+      "name": "break_constraint",
+      "category": "physics",
+      "status": "PASS",
+      "detail": "status=ok",
+      "duration_seconds": 0.013
+    },
+    {
+      "name": "create_sequence",
+      "category": "sequencer",
+      "status": "PASS",
+      "detail": "created 5s sequence",
+      "duration_seconds": 0.015
+    },
+    {
+      "name": "add_sequence_track",
+      "category": "sequencer",
+      "status": "PASS",
+      "detail": "added Transform track",
+      "duration_seconds": 0.654
+    },
+    {
+      "name": "add_keyframe",
+      "category": "sequencer",
+      "status": "PASS",
+      "detail": "keyframe at t=0",
+      "duration_seconds": 0.007
+    },
+    {
+      "name": "get_sequence_info",
+      "category": "sequencer",
+      "status": "PASS",
+      "detail": "queried sequence",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "play_sequence",
+      "category": "sequencer",
+      "status": "PASS",
+      "detail": "status=error (PIE limitation expected)",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "create_foliage_type",
+      "category": "foliage",
+      "status": "PASS",
+      "detail": "created foliage type",
+      "duration_seconds": 0.017
+    },
+    {
+      "name": "paint_foliage",
+      "category": "foliage",
+      "status": "PASS",
+      "detail": "status=error",
+      "duration_seconds": 0.005
+    },
+    {
+      "name": "get_foliage_info",
+      "category": "foliage",
+      "status": "PASS",
+      "detail": "queried foliage",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "get_landscape_info",
+      "category": "landscape",
+      "status": "PASS",
+      "detail": "queried landscape",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "set_landscape_material",
+      "category": "landscape",
+      "status": "PASS",
+      "detail": "status=error",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "setup_scene_lighting",
+      "category": "scene_setup",
+      "status": "PASS",
+      "detail": "lighting set up",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "set_game_mode",
+      "category": "scene_setup",
+      "status": "PASS",
+      "detail": "status=ok",
+      "duration_seconds": 0.033
+    },
+    {
+      "name": "get_output_log",
+      "category": "misc",
+      "status": "PASS",
+      "detail": "log retrieved",
+      "duration_seconds": 0.025
+    },
+    {
+      "name": "take_screenshot",
+      "category": "misc",
+      "status": "PASS",
+      "detail": "screenshot taken",
+      "duration_seconds": 0.485
+    },
+    {
+      "name": "get_viewport_info",
+      "category": "misc",
+      "status": "PASS",
+      "detail": "viewport info retrieved",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "set_viewport_camera",
+      "category": "misc",
+      "status": "PASS",
+      "detail": "camera moved",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "quit_editor",
+      "category": "misc",
+      "status": "SKIP",
+      "detail": "skipped: would close the editor",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "empty_blueprint_name",
+      "category": "error_handling",
+      "status": "PASS",
+      "detail": "correctly errored on empty name",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "empty_node_type",
+      "category": "error_handling",
+      "status": "PASS",
+      "detail": "correctly errored",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "compile_nonexistent_bp",
+      "category": "error_handling",
+      "status": "PASS",
+      "detail": "correctly errored",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "delete_nonexistent_actor",
+      "category": "error_handling",
+      "status": "PASS",
+      "detail": "status=ok (idempotent delete is ok)",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "transform_nonexistent_actor",
+      "category": "error_handling",
+      "status": "PASS",
+      "detail": "correctly errored",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "bad_material_path",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "CONNECTION LOST: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.274
+    },
+    {
+      "name": "unknown_command",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "CONNECTION LOST: [WinError 10038] An operation was attempted on something that is not a socket",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "missing_required_params",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "CONNECTION LOST: [WinError 10038] An operation was attempted on something that is not a socket",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "very_long_string",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "CONNECTION LOST: [WinError 10038] An operation was attempted on something that is not a socket",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "server_still_alive",
+      "category": "error_handling",
+      "status": "PASS",
+      "detail": "server survived",
+      "duration_seconds": 0.438
+    }
+  ]
+}

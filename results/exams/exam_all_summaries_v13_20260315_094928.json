@@ -1,0 +1,160 @@
+{
+  "suite": "v13_full_consolidation",
+  "model": "models/blueprint-lora-v13/final",
+  "timestamp": "20260315_094928",
+  "total_lessons": 21,
+  "total_prompts": 401,
+  "total_valid": 392,
+  "overall_syntax_pct": 97.8,
+  "overall_similarity": 96.8,
+  "suite_time_seconds": 24398.9,
+  "per_lesson": [
+    {
+      "lesson_id": "lesson_01",
+      "syntax_pct": 100.0,
+      "similarity": 88.5,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_02",
+      "syntax_pct": 95.8,
+      "similarity": 95.2,
+      "valid": 23,
+      "total": 24
+    },
+    {
+      "lesson_id": "lesson_03",
+      "syntax_pct": 95.0,
+      "similarity": 100.0,
+      "valid": 19,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_04",
+      "syntax_pct": 95.0,
+      "similarity": 96.2,
+      "valid": 19,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_05",
+      "syntax_pct": 95.0,
+      "similarity": 99.2,
+      "valid": 19,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_06",
+      "syntax_pct": 100.0,
+      "similarity": 99.5,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_07",
+      "syntax_pct": 100.0,
+      "similarity": 100.0,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_08",
+      "syntax_pct": 90.0,
+      "similarity": 96.7,
+      "valid": 18,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_09",
+      "syntax_pct": 100.0,
+      "similarity": 100.0,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_10",
+      "syntax_pct": 95.0,
+      "similarity": 95.7,
+      "valid": 19,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_11",
+      "syntax_pct": 100.0,
+      "similarity": 100.0,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_12",
+      "syntax_pct": 95.0,
+      "similarity": 98.6,
+      "valid": 19,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_13",
+      "syntax_pct": 95.0,
+      "similarity": 98.5,
+      "valid": 19,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_14",
+      "syntax_pct": 100.0,
+      "similarity": 96.2,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_15",
+      "syntax_pct": 100.0,
+      "similarity": 95.1,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_16",
+      "syntax_pct": 100.0,
+      "similarity": 98.8,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_17",
+      "syntax_pct": 100.0,
+      "similarity": 94.9,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_18",
+      "syntax_pct": 100.0,
+      "similarity": 96.2,
+      "valid": 12,
+      "total": 12
+    },
+    {
+      "lesson_id": "lesson_19",
+      "syntax_pct": 100.0,
+      "similarity": 95.2,
+      "valid": 20,
+      "total": 20
+    },
+    {
+      "lesson_id": "lesson_20",
+      "syntax_pct": 100.0,
+      "similarity": 92.1,
+      "valid": 15,
+      "total": 15
+    },
+    {
+      "lesson_id": "lesson_21",
+      "syntax_pct": 100.0,
+      "similarity": 93.9,
+      "valid": 10,
+      "total": 10
+    }
+  ]
+}

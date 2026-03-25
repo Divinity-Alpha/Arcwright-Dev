@@ -1,0 +1,109 @@
+{
+  "lesson_id": "dt_lesson_03",
+  "lesson_name": "Corrective: Quest Systems, Skill Trees, Audio Config, Vector Data, Status Effects",
+  "version": "v1",
+  "domain": "data_table",
+  "description": "Targets DT v2 L02 weaknesses: quest (50%), skill_tree (51.9%), audio_config (52.2%), vectors (58.4%), status_effects (58.8%). Varied phrasing for each.",
+  "prompts": [
+    {
+      "id": "DT03_01", "category": "quest_v2",
+      "instruction": "Create a quest data table. Each quest has: name, description, giver NPC, required level, XP reward, gold reward, and quest type as Main or Side.",
+      "expected_dsl": "DATATABLE: DT_Quests\nSTRUCT: FQuestInfo\n\nCOLUMN QuestName: String\nCOLUMN Description: Text\nCOLUMN GiverNPC: String\nCOLUMN RequiredLevel: Int = 1\nCOLUMN XPReward: Int\nCOLUMN GoldReward: Int\nCOLUMN QuestType: String = \"Side\"\n\nROW SlayGoblins: \"Slay the Goblins\", \"Defeat 10 goblins in the forest\", \"Captain\", 3, 200, 100, \"Main\"\nROW FindHerb: \"Rare Herb\", \"Collect a rare herb from the mountain\", \"Healer\", 1, 50, 25, \"Side\"\nROW EscortMerchant: \"Safe Passage\", \"Escort the merchant to the city\", \"Merchant\", 5, 300, 200, \"Main\""
+    },
+    {
+      "id": "DT03_02", "category": "quest_v2",
+      "instruction": "Make a table of quest objectives. Columns: objective ID, parent quest name, task description, type (Kill, Collect, Explore, Talk), target name, target count, and is optional boolean.",
+      "expected_dsl": "DATATABLE: DT_QuestObjectives\nSTRUCT: FObjective\n\nCOLUMN ObjectiveID: String\nCOLUMN ParentQuest: String\nCOLUMN TaskDescription: Text\nCOLUMN ObjectiveType: String\nCOLUMN TargetName: String\nCOLUMN TargetCount: Int = 1\nCOLUMN IsOptional: Bool = false\n\nROW Obj1: \"KillGoblins\", \"SlayGoblins\", \"Defeat 10 goblins\", \"Kill\", \"Goblin\", 10, false\nROW Obj2: \"FindBoss\", \"SlayGoblins\", \"Find the goblin chief\", \"Explore\", \"GoblinCamp\", 1, false\nROW Obj3: \"BonusLoot\", \"SlayGoblins\", \"Find hidden chest\", \"Explore\", \"HiddenChest\", 1, true"
+    },
+    {
+      "id": "DT03_03", "category": "quest_v3",
+      "instruction": "Build a daily quest table. Each daily quest has: quest name, description, reset time in hours as a float, reward type as a string, reward amount as an integer, and minimum player level.",
+      "expected_dsl": "DATATABLE: DT_Dailies\nSTRUCT: FDailyQuest\n\nCOLUMN QuestName: String\nCOLUMN Description: Text\nCOLUMN ResetHours: Float = 24.0\nCOLUMN RewardType: String\nCOLUMN RewardAmount: Int\nCOLUMN MinLevel: Int = 1\n\nROW GatherWood: \"Woodcutter\", \"Gather 20 wood\", 24.0, \"Gold\", 50, 1\nROW KillBandits: \"Bandit Hunter\", \"Defeat 5 bandits\", 24.0, \"XP\", 100, 3\nROW DeliverMail: \"Postal Service\", \"Deliver 3 letters\", 12.0, \"Gold\", 30, 1"
+    },
+    {
+      "id": "DT03_04", "category": "skill_tree_v2",
+      "instruction": "Create a skill tree table. Each skill needs: name, description, tier number, prerequisite skill name (empty if none), mana cost, cooldown, and damage.",
+      "expected_dsl": "DATATABLE: DT_Skills\nSTRUCT: FSkillEntry\n\nCOLUMN SkillName: String\nCOLUMN Description: Text\nCOLUMN Tier: Int\nCOLUMN Prerequisite: String = \"\"\nCOLUMN ManaCost: Float\nCOLUMN Cooldown: Float\nCOLUMN Damage: Float = 0.0\n\nROW Strike: \"Strike\", \"Basic melee attack\", 1, \"\", 0.0, 1.0, 15.0\nROW PowerStrike: \"Power Strike\", \"Stronger melee hit\", 2, \"Strike\", 10.0, 3.0, 30.0\nROW Fireball: \"Fireball\", \"Ranged fire attack\", 1, \"\", 25.0, 4.0, 40.0\nROW Inferno: \"Inferno\", \"Area fire damage\", 3, \"Fireball\", 50.0, 10.0, 60.0"
+    },
+    {
+      "id": "DT03_05", "category": "skill_tree_v2",
+      "instruction": "Make a talent point table for a strategy game. Columns: talent name, branch (Offense, Defense, Utility), tier (int 1-5), effect description, bonus value as a float, and max rank as an integer.",
+      "expected_dsl": "DATATABLE: DT_TalentPoints\nSTRUCT: FTalentEntry\n\nCOLUMN TalentName: String\nCOLUMN Branch: String\nCOLUMN Tier: Int\nCOLUMN EffectDescription: Text\nCOLUMN BonusValue: Float\nCOLUMN MaxRank: Int = 1\n\nROW SharpBlades: \"Sharp Blades\", \"Offense\", 1, \"Increases melee damage\", 5.0, 3\nROW ThickArmor: \"Thick Armor\", \"Defense\", 1, \"Reduces damage taken\", 3.0, 5\nROW QuickFeet: \"Quick Feet\", \"Utility\", 1, \"Increases move speed\", 10.0, 3\nROW Execute: \"Execute\", \"Offense\", 3, \"Instant kill below threshold\", 15.0, 1\nROW Meditate: \"Meditate\", \"Utility\", 2, \"Regenerate mana over time\", 2.0, 3"
+    },
+    {
+      "id": "DT03_06", "category": "skill_tree_v3",
+      "instruction": "Create an ability unlock table for a progression system. Each ability has: name, unlock level as integer, ability type (Active, Passive, Ultimate), description, cooldown seconds, and resource cost.",
+      "expected_dsl": "DATATABLE: DT_AbilityUnlocks\nSTRUCT: FAbilityUnlock\n\nCOLUMN AbilityName: String\nCOLUMN UnlockLevel: Int\nCOLUMN AbilityType: String = \"Active\"\nCOLUMN Description: Text\nCOLUMN Cooldown: Float = 1.0\nCOLUMN ResourceCost: Float = 0.0\n\nROW Slash: \"Slash\", 1, \"Active\", \"Quick sword attack\", 1.0, 0.0\nROW DodgeRoll: \"Dodge Roll\", 3, \"Active\", \"Quick dodge\", 2.0, 10.0\nROW CritBoost: \"Critical Boost\", 5, \"Passive\", \"Increased crit chance\", 0.0, 0.0\nROW Earthquake: \"Earthquake\", 10, \"Ultimate\", \"Massive area damage\", 30.0, 100.0"
+    },
+    {
+      "id": "DT03_07", "category": "audio_v2",
+      "instruction": "Create an audio configuration table. Columns: event name, volume from 0 to 1, pitch, max audible distance, whether it loops, and its category like SFX or Music.",
+      "expected_dsl": "DATATABLE: DT_AudioConfig\nSTRUCT: FAudioEntry\n\nCOLUMN EventName: String\nCOLUMN Volume: Float = 1.0\nCOLUMN Pitch: Float = 1.0\nCOLUMN MaxDistance: Float = 2000.0\nCOLUMN IsLooping: Bool = false\nCOLUMN Category: String = \"SFX\"\n\nROW Footstep: \"Footstep\", 0.6, 1.0, 500.0, false, \"SFX\"\nROW Explosion: \"Explosion\", 1.0, 0.8, 5000.0, false, \"SFX\"\nROW AmbientWind: \"Wind\", 0.3, 1.0, 3000.0, true, \"Ambient\"\nROW BattleMusic: \"Battle Theme\", 0.7, 1.0, 10000.0, true, \"Music\""
+    },
+    {
+      "id": "DT03_08", "category": "audio_v2",
+      "instruction": "Make a sound effects data table for a shooter game. Each sound has: name, volume (float 0-1), pitch multiplier (float), falloff distance (float), priority (integer 0-10), and is 3D (boolean).",
+      "expected_dsl": "DATATABLE: DT_ShooterSounds\nSTRUCT: FShooterSound\n\nCOLUMN SoundName: String\nCOLUMN Volume: Float = 1.0\nCOLUMN Pitch: Float = 1.0\nCOLUMN FalloffDistance: Float = 2000.0\nCOLUMN Priority: Int = 5\nCOLUMN Is3D: Bool = true\n\nROW Gunshot: \"Gunshot\", 1.0, 1.0, 3000.0, 8, true\nROW Reload: \"Reload\", 0.7, 1.0, 500.0, 6, true\nROW Footstep: \"Footstep\", 0.4, 1.0, 400.0, 3, true\nROW UIClick: \"Menu Click\", 0.8, 1.2, 0.0, 10, false\nROW Headshot: \"Headshot Ding\", 0.9, 1.5, 0.0, 9, false"
+    },
+    {
+      "id": "DT03_09", "category": "vector_data_v2",
+      "instruction": "Create a data table of checkpoint locations for a racing game. Each checkpoint has: checkpoint number, position as a vector, gate width as a float, and whether it is the finish line.",
+      "expected_dsl": "DATATABLE: DT_RaceCheckpoints\nSTRUCT: FRaceCheckpoint\n\nCOLUMN CheckpointNum: Int\nCOLUMN Position: Vector\nCOLUMN GateWidth: Float = 500.0\nCOLUMN IsFinishLine: Bool = false\n\nROW CP1: 1, (0,0,0), 600.0, false\nROW CP2: 2, (1000,500,0), 500.0, false\nROW CP3: 3, (2000,1000,50), 500.0, false\nROW Finish: 4, (0,0,0), 800.0, true"
+    },
+    {
+      "id": "DT03_10", "category": "vector_data_v2",
+      "instruction": "Build a spawn points table for a multiplayer map. Each spawn has: spawn name, position vector, facing rotation as a rotator, team name string, and whether it is a respawn point.",
+      "expected_dsl": "DATATABLE: DT_SpawnPoints\nSTRUCT: FSpawnPointData\n\nCOLUMN SpawnName: String\nCOLUMN Position: Vector\nCOLUMN FacingRotation: Rotator = (0,0,0)\nCOLUMN Team: String\nCOLUMN IsRespawn: Bool = true\n\nROW RedBase: \"Red Base\", (0,0,100), (0,0,0), \"Red\", false\nROW BlueBase: \"Blue Base\", (5000,0,100), (0,180,0), \"Blue\", false\nROW RedRespawn1: \"Red Respawn A\", (500,300,100), (0,45,0), \"Red\", true\nROW BlueRespawn1: \"Blue Respawn A\", (4500,300,100), (0,135,0), \"Blue\", true"
+    },
+    {
+      "id": "DT03_11", "category": "vector_data_v3",
+      "instruction": "Create a patrol route table for AI enemies. Each waypoint has: route name, waypoint index as integer, position vector, wait time at that point, and whether the AI should run to it.",
+      "expected_dsl": "DATATABLE: DT_PatrolRoutes\nSTRUCT: FPatrolWaypoint\n\nCOLUMN RouteName: String\nCOLUMN WaypointIndex: Int\nCOLUMN Position: Vector\nCOLUMN WaitTime: Float = 2.0\nCOLUMN ShouldRun: Bool = false\n\nROW GuardA1: \"GuardA\", 1, (0,0,50), 3.0, false\nROW GuardA2: \"GuardA\", 2, (500,0,50), 1.0, false\nROW GuardA3: \"GuardA\", 3, (500,500,50), 2.0, false\nROW GuardB1: \"GuardB\", 1, (1000,0,50), 2.0, true\nROW GuardB2: \"GuardB\", 2, (1000,1000,50), 5.0, false"
+    },
+    {
+      "id": "DT03_12", "category": "status_effect_v2",
+      "instruction": "Make a status effects table for an RPG. Each effect has: name, duration seconds, damage per second, speed multiplier, is a debuff boolean, and can stack boolean.",
+      "expected_dsl": "DATATABLE: DT_Effects\nSTRUCT: FEffectData\n\nCOLUMN EffectName: String\nCOLUMN Duration: Float\nCOLUMN DamagePerSec: Float = 0.0\nCOLUMN SpeedMultiplier: Float = 1.0\nCOLUMN IsDebuff: Bool\nCOLUMN CanStack: Bool = false\n\nROW Burn: \"Burn\", 5.0, 8.0, 1.0, true, true\nROW Freeze: \"Freeze\", 3.0, 0.0, 0.0, true, false\nROW Haste: \"Haste\", 10.0, 0.0, 1.5, false, false\nROW Regen: \"Regeneration\", 8.0, -5.0, 1.0, false, true"
+    },
+    {
+      "id": "DT03_13", "category": "status_effect_v2",
+      "instruction": "Create a buff and debuff table. Columns: effect name, target (Self or Enemy), stat affected (Attack, Defense, Speed), modifier value as a float, duration in turns as integer, and rarity string.",
+      "expected_dsl": "DATATABLE: DT_Buffs\nSTRUCT: FBuffData\n\nCOLUMN EffectName: String\nCOLUMN Target: String\nCOLUMN StatAffected: String\nCOLUMN Modifier: Float\nCOLUMN DurationTurns: Int\nCOLUMN Rarity: String = \"Common\"\n\nROW Strengthen: \"Strengthen\", \"Self\", \"Attack\", 10.0, 3, \"Common\"\nROW Weaken: \"Weaken\", \"Enemy\", \"Attack\", -8.0, 2, \"Common\"\nROW Fortify: \"Fortify\", \"Self\", \"Defense\", 15.0, 3, \"Uncommon\"\nROW Slow: \"Slow\", \"Enemy\", \"Speed\", -20.0, 2, \"Rare\""
+    },
+    {
+      "id": "DT03_14", "category": "status_effect_v3",
+      "instruction": "Build a potion effects table. Each potion has: potion name, effect type (Heal, Buff, Cure), magnitude as a float, duration in seconds, stack limit as integer, and description.",
+      "expected_dsl": "DATATABLE: DT_Potions\nSTRUCT: FPotionEffect\n\nCOLUMN PotionName: String\nCOLUMN EffectType: String\nCOLUMN Magnitude: Float\nCOLUMN Duration: Float = 0.0\nCOLUMN StackLimit: Int = 1\nCOLUMN Description: Text\n\nROW HealthPotion: \"Health Potion\", \"Heal\", 50.0, 0.0, 1, \"Instantly restores 50 health\"\nROW StrengthElixir: \"Strength Elixir\", \"Buff\", 20.0, 30.0, 1, \"Increases attack for 30 seconds\"\nROW Antidote: \"Antidote\", \"Cure\", 0.0, 0.0, 1, \"Cures all poison effects\"\nROW RegenPotion: \"Regen Potion\", \"Heal\", 5.0, 15.0, 3, \"Heals 5 per second for 15 seconds\""
+    },
+    {
+      "id": "DT03_15", "category": "complex_mixed",
+      "instruction": "Create a tower defense tower data table. Each tower has: name, damage per shot, fire rate (shots per second), range, cost to build, upgrade cost, tower type (Archer, Mage, Cannon), and can target air units boolean.",
+      "expected_dsl": "DATATABLE: DT_Towers\nSTRUCT: FTowerData\n\nCOLUMN TowerName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN Range: Float\nCOLUMN BuildCost: Int\nCOLUMN UpgradeCost: Int = 0\nCOLUMN TowerType: String\nCOLUMN CanTargetAir: Bool = false\n\nROW Archer: \"Archer Tower\", 10.0, 1.5, 800.0, 100, 50, \"Archer\", true\nROW Mage: \"Mage Tower\", 25.0, 0.8, 600.0, 200, 100, \"Mage\", true\nROW Cannon: \"Cannon Tower\", 50.0, 0.3, 500.0, 300, 150, \"Cannon\", false\nROW Frost: \"Frost Tower\", 5.0, 1.0, 700.0, 250, 125, \"Mage\", false"
+    },
+    {
+      "id": "DT03_16", "category": "complex_mixed",
+      "instruction": "Make a vehicle data table for a racing game. Each vehicle has: name, top speed, acceleration, handling rating from 1 to 10, weight, boost capacity, drift modifier, and vehicle class string.",
+      "expected_dsl": "DATATABLE: DT_Vehicles\nSTRUCT: FVehicleData\n\nCOLUMN VehicleName: String\nCOLUMN TopSpeed: Float\nCOLUMN Acceleration: Float\nCOLUMN Handling: Float\nCOLUMN Weight: Float\nCOLUMN BoostCapacity: Float = 100.0\nCOLUMN DriftModifier: Float = 1.0\nCOLUMN VehicleClass: String\n\nROW Speedster: \"Speedster\", 200.0, 9.0, 6.0, 1000.0, 80.0, 0.8, \"Light\"\nROW Tank: \"Road Tank\", 140.0, 4.0, 3.5, 3000.0, 120.0, 1.5, \"Heavy\"\nROW Balanced: \"All-Rounder\", 170.0, 7.0, 7.0, 1500.0, 100.0, 1.0, \"Medium\"\nROW Drift: \"Drift King\", 160.0, 6.0, 9.0, 1200.0, 90.0, 2.0, \"Light\""
+    },
+    {
+      "id": "DT03_17", "category": "audio_v3",
+      "instruction": "Create a music track list data table. Each track has: name, file path as a string, duration in seconds, BPM as integer, genre tag, and volume level.",
+      "expected_dsl": "DATATABLE: DT_MusicTracks\nSTRUCT: FMusicTrackEntry\n\nCOLUMN TrackName: String\nCOLUMN FilePath: String\nCOLUMN Duration: Float\nCOLUMN BPM: Int\nCOLUMN Genre: String = \"Orchestral\"\nCOLUMN Volume: Float = 0.8\n\nROW MainTheme: \"Main Theme\", \"/Game/Audio/MainTheme\", 180.0, 120, \"Orchestral\", 0.9\nROW BattleTheme: \"Battle\", \"/Game/Audio/Battle\", 150.0, 140, \"Action\", 1.0\nROW ExploreTheme: \"Exploration\", \"/Game/Audio/Explore\", 240.0, 85, \"Ambient\", 0.6\nROW VictoryTheme: \"Victory\", \"/Game/Audio/Victory\", 30.0, 130, \"Fanfare\", 0.8"
+    },
+    {
+      "id": "DT03_18", "category": "quest_v4",
+      "instruction": "Build a reward table for quest completion. Each row has: quest name, reward type (Gold, XP, Item), reward amount as integer, bonus item name as string (empty if none), and reputation gained as integer.",
+      "expected_dsl": "DATATABLE: DT_QuestRewards\nSTRUCT: FQuestReward\n\nCOLUMN QuestName: String\nCOLUMN RewardType: String\nCOLUMN Amount: Int\nCOLUMN BonusItem: String = \"\"\nCOLUMN ReputationGain: Int = 0\n\nROW SlayGoblinsReward: \"Slay Goblins\", \"Gold\", 200, \"Iron Sword\", 10\nROW FindHerbReward: \"Find Herb\", \"XP\", 100, \"\", 5\nROW DragonReward: \"Slay Dragon\", \"Gold\", 5000, \"Dragon Scale Armor\", 50\nROW EscortReward: \"Escort Merchant\", \"Gold\", 150, \"Health Potion\", 15"
+    },
+    {
+      "id": "DT03_19", "category": "skill_tree_v4",
+      "instruction": "Create a passive skills table. Each passive has: name, category (Combat, Magic, Survival), effect description, value as a float representing the bonus percentage, required character level, and whether it stacks with other passives.",
+      "expected_dsl": "DATATABLE: DT_Passives\nSTRUCT: FPassiveSkill\n\nCOLUMN PassiveName: String\nCOLUMN Category: String\nCOLUMN Effect: Text\nCOLUMN BonusPercent: Float\nCOLUMN RequiredLevel: Int = 1\nCOLUMN Stackable: Bool = false\n\nROW CritChance: \"Critical Eye\", \"Combat\", \"Increases critical hit chance\", 5.0, 3, true\nROW ManaRegen: \"Meditation\", \"Magic\", \"Increases mana regeneration\", 10.0, 5, true\nROW DamageReduce: \"Iron Skin\", \"Survival\", \"Reduces all damage taken\", 3.0, 2, true\nROW DoubleJump: \"Acrobat\", \"Survival\", \"Enables double jump\", 0.0, 8, false"
+    },
+    {
+      "id": "DT03_20", "category": "complex_mixed_v2",
+      "instruction": "Make an achievement tracking table. Each achievement has: name, display title, description, condition type string (EnemiesKilled, ItemsCollected, LevelsCompleted), target value as integer, reward XP, and is hidden boolean.",
+      "expected_dsl": "DATATABLE: DT_Achievements\nSTRUCT: FAchievement\n\nCOLUMN AchievementName: String\nCOLUMN Title: String\nCOLUMN Description: Text\nCOLUMN ConditionType: String\nCOLUMN TargetValue: Int\nCOLUMN RewardXP: Int = 0\nCOLUMN IsHidden: Bool = false\n\nROW FirstKill: \"First Blood\", \"First Blood\", \"Defeat your first enemy\", \"EnemiesKilled\", 1, 50, false\nROW Collector: \"Collector\", \"Hoarder\", \"Collect 100 items\", \"ItemsCollected\", 100, 200, false\nROW Secret: \"The Secret\", \"???\", \"Find the hidden room\", \"LevelsCompleted\", 1, 500, true\nROW Veteran: \"Veteran\", \"Battle Hardened\", \"Defeat 1000 enemies\", \"EnemiesKilled\", 1000, 1000, false"
+    }
+  ]
+}

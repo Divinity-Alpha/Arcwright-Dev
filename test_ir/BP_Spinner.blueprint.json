@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "name": "BP_Spinner",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "AddActorLocalRotation",
+      "params": {
+        "DeltaRotation": "(Pitch=0,Yaw=0,Roll=10)"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_AddActorLocalRotation",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "Event_Tick",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveTick",
+      "position": [
+        0,
+        150
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "GetWorldDeltaSeconds",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.GameplayStatics:GetWorldDeltaSeconds",
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "MultiplyFloat",
+      "params": {
+        "B": "10.0"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Multiply_FloatFloat",
+      "position": [
+        0,
+        450
+      ]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "MakeRotator",
+      "params": {
+        "Roll": "1.0"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:MakeRotator",
+      "position": [
+        0,
+        600
+      ]
+    },
+    {
+      "id": "n7",
+      "dsl_type": "AddActorLocalRotation",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_AddActorLocalRotation",
+      "position": [
+        15300,
+        0
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n3",
+      "src_pin": "Then",
+      "dst_node": "n7",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n7",
+      "src_pin": "Then",
+      "dst_node": "n7",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n4",
+      "src_pin": "ReturnValue",
+      "dst_node": "n5",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n5",
+      "src_pin": "ReturnValue",
+      "dst_node": "n6",
+      "dst_pin": "R",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n6",
+      "src_pin": "ReturnValue",
+      "dst_node": "n7",
+      "dst_pin": "D",
+      "data_type": null
+    }
+  ]
+}

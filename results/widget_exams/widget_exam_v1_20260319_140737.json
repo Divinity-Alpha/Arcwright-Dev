@@ -1,0 +1,844 @@
+{
+  "syntax_accuracy": 100.0,
+  "average_similarity": 17.069444444444443,
+  "total_prompts": 50,
+  "syntax_pass": 50,
+  "results": [
+    {
+      "prompt": "Create a minimalist health bar for a platformer game",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 2,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Widget Types\nCANVAS, VBOX, HBOX, OVERLAY, SIZEBOX, GRID, TEXT, IMAGE, PROGRESS_BAR, BUTTON, SPACER, BORDER, INPUT, CHECKBOX, SLIDER, SCROLLBOX\n\n## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $"
+    },
+    {
+      "prompt": "Make a sci-fi ammo display with current and reserve ammo",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "Make a medieval health bar with current and max health. Format remaining health as \"HH:MM:SS\" (hours, minutes, seconds). Use $health, $health_low, and $max_health references.\nMake a racing tachometer UI with current_speed and max_speed variables.\nMake a fighting game UI with player_health, enemy_health, player_mana, enemy_mana variables.\nMake a simulation UI that displays the current_year variable as \"YYYY\".\nMake a horror UI that displays a fear_level variable from 0 to 100.\nMake a cartoon UI wi"
+    },
+    {
+      "prompt": "Build a medieval gold counter in the top-right corner",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Validations\nShook: intensity, duration, frequency\nPulse: scale_min, scale_max, duration, loops\nFlash: color, duration, loops\nFadeIn: duration, from_opacity, to_opacity\nFadeOut: duration, from_opacity, to_opacity\nSlideIn: direction, distance, duration\nSlideOut: direction, distance, duration\nScalePop: target_scale, duration, bounce\nColorShift: to_color, duration\nSpin: degrees, duration, loops\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, "
+    },
+    {
+      "prompt": "Create a horror-themed stamina bar that depletes when running",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Widget Types\nCANVAS, VBOX, HBOX, OVERLAY, SIZEBOX, GRID, TEXT, IMAGE, PROGRESS_BAR, BUTTON, SPACER, BORDER, INPUT, CHECKBOX, SLIDER, SCROLLBOX\n\n## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $"
+    },
+    {
+      "prompt": "Design a racing lap timer display",
+      "theme": "Racing",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Validating Expressions\nHealth/MaxHealth, CurrentAmmo/MaxAmmo, CurrentGear/TotalGears, CurrentLap/TotalLaps, Position.X, Position.Y, DistanceTo(Boss), HasItem(\"WeaponName\"), IsAlive, IsDead, CanAfford($cost)\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Hea"
+    },
+    {
+      "prompt": "Make a fighting game combo counter in the center",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Ce"
+    },
+    {
+      "prompt": "Create a simulation-style resource counter for Wood and Stone",
+      "theme": "Simulation",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid A"
+    },
+    {
+      "prompt": "Build a cartoon XP bar at the bottom of the screen",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color Refe"
+    },
+    {
+      "prompt": "Make a normal-themed player level indicator",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 33.33333333333333,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": true,
+        "similarity": 33.33333333333333
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName"
+    },
+    {
+      "prompt": "Create a sci-fi shield percentage display",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName"
+    },
+    {
+      "prompt": "Create a complete FPS HUD with health, ammo, and crosshair using sci-fi theme",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 23,
+        "types_match": 0.0,
+        "bindings": 10,
+        "bind_score": 1.0,
+        "nodes": 25,
+        "node_score": 1.0,
+        "theme_match": true,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_PlayerHUD\nTHEME: SciFi\n\nCANVAS Root\n  VBOX Main\n    HBOX Top\n      TEXT: \"Health\"\n      PROGRESS_BAR: percent=BIND:PlayerHealth/MaxHealth, fill_color=$health, bar_color=$surface\n    HBOX Bottom\n      TEXT: \"Ammo\"\n      PROGRESS_BAR: percent=BIND:CurrentAmmo / MaxAmmo, fill_color=$warning, bar_color=$surface\n  OVERLAY BottomRight\n    SIZEBOX: size_x:32, size_y:32\n    IMAGE: texture=Crosshair, color=$danger\nVBOX Side\n  HBOX Top\n    TEXT: \"Weapon: \"\n    TEXT: BIND:WeaponName\n  HBOX Bott"
+    },
+    {
+      "prompt": "Build an RPG HUD with health, mana, and XP bars in medieval theme",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 75.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 11,
+        "types_match": 0.0,
+        "bindings": 6,
+        "bind_score": 1.0,
+        "nodes": 3,
+        "node_score": 1.0,
+        "theme_match": true,
+        "similarity": 75.0
+      },
+      "generated": "WIDGET: WBP_HUD\nTHEME: Medieval\n\nCANVAS Root\n  VBOX: HealthAndMana\n    HBOX: HealthBar\n      PROGRESS_BAR: BIND:Health/MaxHealth\n        COLOR_SHIFT: to_color=$health\n    HBOX: ManaBar\n      PROGRESS_BAR: BIND:Mana/MaxMana\n        COLOR_SHIFT: to_color=$mana\n  SIZEBOX: size_x=20\n  VBOX: XP\n    HBOX: XPBar\n      PROGRESS_BAR: BIND:XP/MaxXP\n    TEXT: Level: BIND:Level\n  SIZEBOX: size_x=40\n\nCANVAS Root\n  VBOX: Stats\n    TEXT: Strength: BIND:Strength\n    TEXT: Agility: BIND:Agility\n    TEXT: Intelle"
+    },
+    {
+      "prompt": "Design a racing dashboard with speed, gear, lap counter, and position",
+      "theme": "Racing",
+      "syntax_ok": true,
+      "similarity": 12.5,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 2,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "nodes": 2,
+        "node_score": 0.5,
+        "theme_match": false,
+        "similarity": 12.5
+      },
+      "generated": "Design a sci-fi UI with health, shields, and ammo counters, as well as buttons for weapon switching and special abilities, and a mission timer. Style with metallic surfaces and neon highlights.\n\nDesign a medieval UI with health, stamina, and mana bars, inventory slots, and buttons for attacks, blocks, and using items. Style with rustic textures and muted colors.\n\nDesign a cartoon UI with health, energy, and lives indicators, buttons for jumping, dashing, and attacking, and a score display. Style"
+    },
+    {
+      "prompt": "Create a survival game HUD with health, hunger, and temperature",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 33.33333333333333,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "nodes": 1,
+        "node_score": 0.3333333333333333,
+        "theme_match": true,
+        "similarity": 33.33333333333333
+      },
+      "generated": "Create a racing game UI with speed, rpm, gear, and lap_count, distance, best_lap, current_lap, finish_line_distance, coin_count, bomb_count, shield_amount, boost_amount, fuel_amount, tire_condition, engine_temperature, oil_pressure, battery_charge, accident_chance, weather, track_condition, visibility, camera_mode, map_style, race_position, sector, checkered_flag, warning_light, pit_stop_duration, crew_skill, driver_weight, chassis_type, engine_size, nitro, turbo, sponsorship, paint_scheme, numb"
+    },
+    {
+      "prompt": "Build a wave-based arena HUD with health, score, wave counter, and ammo",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 6.25,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "nodes": 1,
+        "node_score": 0.25,
+        "theme_match": false,
+        "similarity": 6.25
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Ce"
+    },
+    {
+      "prompt": "Create a stealth game HUD with detection meter, health, and objective",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 50.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 19,
+        "types_match": 0.0,
+        "bindings": 6,
+        "bind_score": 1.0,
+        "nodes": 10,
+        "node_score": 1.0,
+        "theme_match": false,
+        "similarity": 50.0
+      },
+      "generated": "Create a racing game UI with speedometer, lap counter, and best lap time?\u00f0\u0178\u02dc\u2026system_info: System Name\ntheme: SciFi\nCANVAS Root\n  VBOX Vertical\n    TEXT: \"System Information\"\n    SIZEBOX: size_x: 200, size_y: 50\n      TEXT: \"Version\"\n      TEXT: BIND:Version\n    SIZEBOX: size_x: 200, size_y: 50\n      TEXT: \"Engine Version\"\n      TEXT: BIND:EngineVersion\n  OVERLAY Bottom\n    SIZEBOX: size_x: 300, size_y: 30\n      TEXT: \"Legal Notice\", color: $text_secondary, font_size: 8\n  OVERLAY Bottom\n    SIZEB"
+    },
+    {
+      "prompt": "Design a sports game HUD with score, timer, and period display",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 33.33333333333333,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "nodes": 1,
+        "node_score": 0.3333333333333333,
+        "theme_match": true,
+        "similarity": 33.33333333333333
+      },
+      "generated": "Design a sci-fi game UI with health, shields, and stamina bars. Also include button for special_attack. Theme: SciFi\n\nDesign a medieval game UI with health, mana, and stamina bars. Also include buttons for attack and defend. Theme: Medieval\n\nDesign a racing game UI with speed, distance, and laps displays. Also include buttons for boost, drift, and e-brake. Theme: Racing\n\nDesign a fighting game UI with health, armor, and stamina bars. Also include buttons for punch, kick, and block. Theme: Fighti"
+    },
+    {
+      "prompt": "Build a simulation management HUD with money, population, and happiness bars",
+      "theme": "Simulation",
+      "syntax_ok": true,
+      "similarity": 8.333333333333332,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "nodes": 1,
+        "node_score": 0.3333333333333333,
+        "theme_match": false,
+        "similarity": 8.333333333333332
+      },
+      "generated": "## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme C"
+    },
+    {
+      "prompt": "Create a cartoon platformer HUD with lives, coins, and a star counter",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 41.666666666666664,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 12,
+        "types_match": 0.0,
+        "bindings": 4,
+        "bind_score": 1.0,
+        "nodes": 2,
+        "node_score": 0.6666666666666666,
+        "theme_match": false,
+        "similarity": 41.666666666666664
+      },
+      "generated": "Create a sci-fi horror game UI with health, stamina, and an oxygen meter,\u00f0\u0178\u02dcassistant\n\nCreate a medieval RPG UI with health, mana, and experience bars,\u00f0\u0178\u02dcassistant\n\nCreate a racing game UI with speed, distance, and laps counters,\u00f0\u0178\u02dcassistant\n\nCreate a fighting game UI with health, armor, and a power-up indicator,\u00f0\u0178\u02dcassistant\n\nCreate a simulation game UI with population, happiness, and crime rates,\u00f0\u0178\u02dcassistant\n\nCreate a horror game UI with fear, insanity, and a darkness level,\u00f0\u0178\u02dcassistant\n\nCreate"
+    },
+    {
+      "prompt": "Design a boss fight HUD with player health, boss health bar, and timer",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 8.333333333333332,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "nodes": 1,
+        "node_score": 0.3333333333333333,
+        "theme_match": false,
+        "similarity": 8.333333333333332
+      },
+      "generated": "Design a sci-fi game UI with buttons for inventory, map, and settings, using a blue color scheme\n\nDesign a racing game UI with a speedometer, rpm gauge, and lap counter\n\nDesign a fighting game UI with buttons for attack, defend, and use_item, using a red color scheme\n\nDesign a simulation game UI with buttons for build, harvest, and trade, using a green color scheme\n\nDesign a horror game UI with buttons for hide, sneak, and run, using a dark color scheme\n\nDesign a cartoon game UI with buttons for"
+    },
+    {
+      "prompt": "Create a health bar that looks like a glowing neon tube",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Widget Types\nCANVAS, VBOX, HBOX, OVERLAY, SIZEBOX, GRID, TEXT, IMAGE, PROGRESS_BAR, BUTTON, SPACER, BORDER, INPUT, CHECKBOX, SLIDER, SCROLLBOX\n\n## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $"
+    },
+    {
+      "prompt": "Build a score display that looks like it's carved in stone",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Make an ammo counter with checkered flag styling",
+      "theme": "Racing",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Create a health bar that looks bloody and distressed",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 100.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 1.0,
+        "bindings": 2,
+        "bind_score": 1.0,
+        "theme_match": true,
+        "similarity": 100.0
+      },
+      "generated": "WIDGET: WBP_PlayerUI\nTHEME: Horror\n\nCANVAS Root\n  VBOX Main\n    HBOX Top\n      TEXT Title\n        @text: \"Health\"\n        @font_size: 32\n        @color: $health\n      PROGRESS_BAR Health\n        @percent: BIND:Health/MaxHealth\n        @fill_color: $health_low\n        @bar_color: $panel_bg\n    HBOX Bottom\n      TEXT Current\n        @text: BIND:Health\n        @font_size: 24\n      TEXT Max\n        @text: \"/\"\n        @font_size: 24\n      TEXT Maximum\n        @text: BIND:MaxHealth\n        @font_size:"
+    },
+    {
+      "prompt": "Build a bright colorful score display for kids",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Ce"
+    },
+    {
+      "prompt": "Make a clean flat timer display for a management game",
+      "theme": "Simulation",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName"
+    },
+    {
+      "prompt": "Create a bold aggressive combo meter for a brawler",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Design a balanced modern health and mana display",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 33.33333333333333,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": true,
+        "similarity": 33.33333333333333
+      },
+      "generated": "## Examples\n```\nWIDGET: WBP_PlayerUI\nTHEME: Normal\n\nCANVAS Root\n  VBOX Main\n    HBOX Top\n      TEXT Title\n        @text: \"Game UI\"\n        @font_size: 48\n        @color: $primary\n      HBOX Bottom\n        TEXT Health\n          @text: \"Health: BIND:PlayerHealth/BIND:MaxHealth\"\n          @font_size: 24\n        TEXT Mana\n          @text: \"Mana: BIND:Mana/BIND:MaxMana\"\n          @font_size: 24\n    VBOX Side\n      TEXT Description\n        @text: \"This is a very basic UI layout.\"\n        @font_size: 1"
+    },
+    {
+      "prompt": "Health bar that shakes violently when hit",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Ce"
+    },
+    {
+      "prompt": "Score that flashes and grows when points are earned",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Notification that slides in from the right side",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 25.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": true,
+        "similarity": 25.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Crosshair that pulses when aiming at an enemy",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Boss name that fades in dramatically",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Wave announcement that pops in large then shrinks",
+      "theme": "Fighting",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Damage vignette that flashes red on screen edges",
+      "theme": "Horror",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Valid Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color Refe"
+    },
+    {
+      "prompt": "Create a sci-fi main menu with Play and Quit buttons",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 44.44444444444444,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 8,
+        "types_match": 0.0,
+        "nodes": 1,
+        "node_score": 0.3333333333333333,
+        "theme_match": true,
+        "similarity": 44.44444444444444
+      },
+      "generated": "WIDGET: WBP_MainMenu\nTHEME: SciFi\n\nCANVAS Root\n  VBOX: menu_box\n    SIZEBOX: sizebox\n      TEXT: \"Sci-Fi Game\"\n        font_size: 48\n        color: $primary\n    SIZEBOX: sizebox\n      TEXT: \"Main Menu\"\n        font_size: 24\n        color: $text_secondary\n        offset_y: 20\n    HBOX: button_row\n      BUTTON: play_button\n        text: \"Play\"\n        bind:visible: BIND:HasSaveGame\n      BUTTON: quit_button\n        text: \"Quit\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Cen"
+    },
+    {
+      "prompt": "Build a pause menu with dark overlay and resume button",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 50.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "nodes": 1,
+        "node_score": 0.5,
+        "theme_match": true,
+        "similarity": 50.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Design a game over screen with final score and replay",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 8.333333333333332,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "nodes": 1,
+        "node_score": 0.3333333333333333,
+        "theme_match": false,
+        "similarity": 8.333333333333332
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Ce"
+    },
+    {
+      "prompt": "Create a loading screen with progress bar and tip text",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 37.5,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "nodes": 1,
+        "node_score": 0.5,
+        "theme_match": true,
+        "similarity": 37.5
+      },
+      "generated": "## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid A"
+    },
+    {
+      "prompt": "Build a settings screen with a volume slider",
+      "theme": "Simulation",
+      "syntax_ok": true,
+      "similarity": 16.666666666666664,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "nodes": 1,
+        "node_score": 0.5,
+        "theme_match": false,
+        "similarity": 16.666666666666664
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Ce"
+    },
+    {
+      "prompt": "Make a character select screen with warrior and mage cards",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 11.11111111111111,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "nodes": 1,
+        "node_score": 0.3333333333333333,
+        "theme_match": false,
+        "similarity": 11.11111111111111
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Ce"
+    },
+    {
+      "prompt": "Create a shop panel showing item name, price, and buy button",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 8.333333333333332,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "nodes": 1,
+        "node_score": 0.3333333333333333,
+        "theme_match": false,
+        "similarity": 8.333333333333332
+      },
+      "generated": "## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid A"
+    },
+    {
+      "prompt": "Design a leaderboard with rank, name, and score columns",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 25.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 1,
+        "types_match": 0.0,
+        "nodes": 3,
+        "node_score": 0.75,
+        "theme_match": false,
+        "similarity": 25.0
+      },
+      "generated": "## Examples\n```\nWIDGET: WBP_Name\nTHEME: ThemeName\n\nCANVAS Root\n  VBOX Container\n    @anim:SlideIn = direction, distance, duration\n    HBOX Content\n      TEXT: Title\n      TEXT: Description\n```\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $"
+    },
+    {
+      "prompt": "Ultra-minimal HUD \u2014 just a thin line health bar and dot crosshair",
+      "theme": "Normal",
+      "syntax_ok": true,
+      "similarity": 50.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "nodes": 1,
+        "node_score": 0.5,
+        "theme_match": true,
+        "similarity": 50.0
+      },
+      "generated": "Normal HUD \u2014 normal-sized health bar, ammo counter, and button prompts, with a light gray background,\u00f0\u0178\u02dcsystem,ui,skill,attack,defense,special\n\nSci-fi HUD \u2014 sci-fi themed UI with futuristic shapes and glowing lines,\u00f0\u0178\u02dcsystem,ui,skill,attack,defense,special,science,technology,computer\n\nMedieval HUD \u2014 medieval UI with rustic textures and muted colors,\u00f0\u0178\u02dcsystem,ui,skill,attack,defense,special,history,war,ageofempires,kingdom,castles\n\nRacing HUD \u2014 racing UI with speedometer, nitro boost, and lap cou"
+    },
+    {
+      "prompt": "Immersive HUD with barely visible elements that fade in on action",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "animations": 0,
+        "anim_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Retro arcade high score display with chunky text",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Tactical military HUD with compass and objective marker",
+      "theme": "Simulation",
+      "syntax_ok": true,
+      "similarity": 16.666666666666664,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "nodes": 1,
+        "node_score": 0.5,
+        "theme_match": false,
+        "similarity": 16.666666666666664
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Souls-like boss encounter bar with ornate framing",
+      "theme": "Medieval",
+      "syntax_ok": true,
+      "similarity": 0.0,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "bindings": 0,
+        "bind_score": 0.0,
+        "theme_match": false,
+        "similarity": 0.0
+      },
+      "generated": "## Theme Color References\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Theme Color References"
+    },
+    {
+      "prompt": "Cyberpunk hacker terminal-style UI overlay",
+      "theme": "SciFi",
+      "syntax_ok": true,
+      "similarity": 16.666666666666664,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 0,
+        "types_match": 0.0,
+        "nodes": 1,
+        "node_score": 0.5,
+        "theme_match": false,
+        "similarity": 16.666666666666664
+      },
+      "generated": "## Valid Themes\nNormal, SciFi, Medieval, Racing, Fighting, Simulation, Horror, Cartoon\n\n## Theme Color References (use $ prefix)\n$primary, $secondary, $accent, $warning, $danger, $panel_bg, $card_bg, $surface, $text, $text_secondary, $text_muted, $border, $health, $health_low, $mana, $stamina, $xp\n\n## Binding Syntax\n- Simple variable: BIND:VariableName\n- Expression: BIND:Health/MaxHealth\n- Format string: BIND:\"{Current}/{Max}\"\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Ce"
+    },
+    {
+      "prompt": "Cozy farming game HUD with warm colors and rounded elements",
+      "theme": "Cartoon",
+      "syntax_ok": true,
+      "similarity": 33.33333333333333,
+      "details": {
+        "syntax_errors": 0,
+        "warnings": 5,
+        "types_match": 0.0,
+        "bindings": 4,
+        "bind_score": 1.0,
+        "theme_match": false,
+        "similarity": 33.33333333333333
+      },
+      "generated": "## Theme Color References\n$primary: #E95420\n$secondary: #AC3B53\n$accent: #785A41\n$warning: #FFC24D\n$danger: #BF332F\n$panel_bg: #1A1C25\n$card_bg: #222429\n$surface: #333842\n$text: #D5CFC4\n$text_secondary: #AAAAAA\n$text_muted: #666666\n$border: #3A3A3A\n$health: #63CF56\n$health_low: #BF4843\n$mana: #4B7CD2\n$stamina: #EB9D3A\n$xp: #FFEA43\n\n## Valid Anchor Presets\nTopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight, Fill, FillX, FillY\n\n## Examples\n```\nWIDG"
+    }
+  ]
+}

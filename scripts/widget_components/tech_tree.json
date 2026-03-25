@@ -1,0 +1,87 @@
+{
+  "id": "tech_tree",
+  "name": "Tech Tree",
+  "category": "genre",
+  "description": "Horizontal research nodes with time/cost and queue",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    700,
+    400
+  ],
+  "variables": [
+    {
+      "name": "ResearchProgress",
+      "type": "Float",
+      "default": 0.0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "TechRoot",
+    "properties": {
+      "spacing": "10"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "TechTitle",
+        "properties": {
+          "text": "RESEARCH",
+          "font_size": "22",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "TechRow",
+        "properties": {
+          "spacing": "16"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "Tech1",
+            "properties": {
+              "text": "Iron Working",
+              "font_size": "12"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "Tech2",
+            "properties": {
+              "text": "Masonry",
+              "font_size": "12"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "Tech3",
+            "properties": {
+              "text": "Archery",
+              "font_size": "12"
+            }
+          }
+        ]
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "ResearchBar",
+        "properties": {
+          "percent": "BIND:ResearchProgress",
+          "fill_color": "$primary",
+          "bar_color": "$surface",
+          "size_x": "500",
+          "size_y": "10"
+        }
+      }
+    ]
+  }
+}

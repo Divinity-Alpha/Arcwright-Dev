@@ -1,0 +1,26 @@
+{
+  "id": "002",
+  "timestamp": "2026-03-22T16:00:00Z",
+  "from": "claude.ai",
+  "priority": "high",
+  "type": "build",
+  "title": "Make station actions functional",
+  "instructions": "The C++ BSStationWidget already has action population logic. Check: 1) grep for PopulateActions/ShowActions/GetAvailableActions in BSStationWidget.cpp and BSStationBase.cpp. 2) Check if actions.csv is loaded by BSDataSubsystem. 3) Wire the station widget to call the C++ action list when opened. 4) The player should see a list of available actions (Degrease, Steam Clean, etc.) in the station UI panel when pressing E at a station. 5) Use simulate_walk_to + simulate_input + capture_full_screen to verify. 6) Git commit when working.",
+  "verification": {
+    "type": "play_test",
+    "steps": [
+      "walk to degriming station",
+      "press E",
+      "verify action list visible in station UI",
+      "capture screenshot"
+    ],
+    "success_criteria": "Station UI shows available actions from actions.csv"
+  },
+  "constraints": [
+    "Do NOT modify any widget not in Arcwright manifest",
+    "Git commit after verified working",
+    "Report honestly - do not say PASS without screenshot evidence"
+  ],
+  "status": "completed",
+  "completed_at": "2026-03-23T15:36:28Z"
+}

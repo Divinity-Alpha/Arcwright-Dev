@@ -1,7 +1,7 @@
 {
   "lesson_id": "lesson_04",
   "lesson_name": "Physics and Movement",
-  "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v5\\final",
+  "model": "C:\\Arcwright\\models\\blueprint-lora-v5\\final",
   "base_model": "meta-llama/Meta-Llama-3.1-70B",
   "timestamp": "20260228_095510",
   "total_prompts": 20,

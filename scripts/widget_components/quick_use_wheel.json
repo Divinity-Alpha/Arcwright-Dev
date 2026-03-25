@@ -1,0 +1,77 @@
+{
+  "id": "quick_use_wheel",
+  "name": "Quick-Use Wheel",
+  "category": "inventory",
+  "description": "Radial selector with 8 slots",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    300,
+    300
+  ],
+  "variables": [
+    {
+      "name": "SelectedItem",
+      "type": "Integer",
+      "default": -1
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "OVERLAY",
+    "name": "WheelRoot",
+    "properties": {},
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "WheelBG",
+        "properties": {
+          "tint": "$panel_bg",
+          "opacity": "0.8",
+          "size_x": "300",
+          "size_y": "300"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "Slot1",
+        "properties": {
+          "text": "1",
+          "font_size": "16",
+          "color": "$text"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "Slot2",
+        "properties": {
+          "text": "2",
+          "font_size": "16",
+          "color": "$text"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "Slot3",
+        "properties": {
+          "text": "3",
+          "font_size": "16",
+          "color": "$text"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "CancelCenter",
+        "properties": {
+          "text": "X",
+          "font_size": "20",
+          "color": "$danger",
+          "justification": "Center"
+        }
+      }
+    ]
+  }
+}

@@ -1,6 +1,26 @@
 {
   "versions": [
     {
+      "version": "v11",
+      "date": "2026-03-06T14:23:50.744413",
+      "training_examples": 0,
+      "training_time_seconds": 0,
+      "system_prompt_chars": 0,
+      "eval": {
+        "pass_rate": 1.0,
+        "avg_score": 0.988,
+        "perfect_scores": 9,
+        "avg_gen_time": 41.9
+      },
+      "exam_summary": {
+        "total_prompts": 0,
+        "valid_syntax_pct": 0.0,
+        "avg_similarity": 0.0
+      },
+      "lessons_tested": [],
+      "lesson_scores": {}
+    },
+    {
       "version": "v2",
       "date": "2026-02-27T08:00:00",
       "training_examples": 391,

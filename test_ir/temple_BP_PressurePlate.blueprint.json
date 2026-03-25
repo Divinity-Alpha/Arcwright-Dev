@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "name": "BP_PressurePlate",
+    "parent_class": "Actor"
+  },
+  "variables": [
+    {
+      "name": "IsPressed",
+      "type": "Bool",
+      "default": "false"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_ActorBeginOverlap",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveActorBeginOverlap"
+    },
+    {
+      "id": "n2",
+      "dsl_type": "VariableSet",
+      "ue_class": "UK2Node_VariableSet",
+      "params": {
+        "Variable": "IsPressed"
+      },
+      "data_literals": {
+        "IsPressed": "true"
+      }
+    },
+    {
+      "id": "n3",
+      "dsl_type": "PrintString",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "params": {
+        "InString": "Plate activated!"
+      }
+    },
+    {
+      "id": "n4",
+      "dsl_type": "Event_ActorEndOverlap",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveActorEndOverlap"
+    },
+    {
+      "id": "n5",
+      "dsl_type": "VariableSet",
+      "ue_class": "UK2Node_VariableSet",
+      "params": {
+        "Variable": "IsPressed"
+      },
+      "data_literals": {
+        "IsPressed": "false"
+      }
+    },
+    {
+      "id": "n6",
+      "dsl_type": "PrintString",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "params": {
+        "InString": "Plate deactivated"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "src_node": "n2",
+      "src_pin": "Then",
+      "dst_node": "n3",
+      "dst_pin": "Execute"
+    },
+    {
+      "src_node": "n4",
+      "src_pin": "Then",
+      "dst_node": "n5",
+      "dst_pin": "Execute"
+    },
+    {
+      "src_node": "n5",
+      "src_pin": "Then",
+      "dst_node": "n6",
+      "dst_pin": "Execute"
+    }
+  ]
+}

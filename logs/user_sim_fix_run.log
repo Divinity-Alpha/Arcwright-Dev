@@ -1,0 +1,6 @@
+
+  Checking connections...
+  OK: UE editor connected
+  [16:35:05] USER TYPES: "health check"
+  [16:35:07] INTENT ERROR: [WinError 10061] No connection could be made because the target machine actively refused it
+  FAIL: Intent server not responding on TCP 13380

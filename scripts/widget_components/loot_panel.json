@@ -1,0 +1,115 @@
+{
+  "id": "loot_panel",
+  "name": "Loot Panel",
+  "category": "inventory",
+  "description": "Dropped items list with take/discard per item",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    300,
+    350
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "LootRoot",
+    "properties": {
+      "spacing": "6"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "LootTitle",
+        "properties": {
+          "text": "LOOT",
+          "font_size": "20",
+          "color": "$warning",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "Item1Row",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "Item1Icon",
+            "properties": {
+              "tint": "$primary",
+              "size_x": "40",
+              "size_y": "40"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "Item1Name",
+            "properties": {
+              "text": "Iron Sword",
+              "font_size": "14",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "Item1Take",
+            "properties": {
+              "text": "Take",
+              "font_size": "12"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "Item2Row",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "Item2Icon",
+            "properties": {
+              "tint": "$accent",
+              "size_x": "40",
+              "size_y": "40"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "Item2Name",
+            "properties": {
+              "text": "Gold x50",
+              "font_size": "14",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "Item2Take",
+            "properties": {
+              "text": "Take",
+              "font_size": "12"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BUTTON",
+        "name": "TakeAllBtn",
+        "properties": {
+          "text": "TAKE ALL",
+          "font_size": "14"
+        }
+      }
+    ]
+  }
+}

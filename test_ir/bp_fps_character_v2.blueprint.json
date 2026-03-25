@@ -1,0 +1,153 @@
+{
+  "metadata": {
+    "name": "BP_FPSCharacter",
+    "parent_class": "Character"
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "node_0",
+      "dsl_type": "Event_Tick",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveTick"
+    },
+    {
+      "id": "node_1",
+      "dsl_type": "GetForward",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:GetActorForwardVector"
+    },
+    {
+      "id": "node_2",
+      "dsl_type": "MoveForward",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Pawn:AddMovementInput"
+    },
+    {
+      "id": "node_3",
+      "dsl_type": "GetRight",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:GetActorRightVector"
+    },
+    {
+      "id": "node_4",
+      "dsl_type": "MoveRight",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Pawn:AddMovementInput"
+    },
+    {
+      "id": "node_5",
+      "dsl_type": "IsKeyDown_W",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.PlayerController:IsInputKeyDown"
+    },
+    {
+      "id": "node_6",
+      "dsl_type": "IsKeyDown_S",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.PlayerController:IsInputKeyDown"
+    },
+    {
+      "id": "node_7",
+      "dsl_type": "IsKeyDown_D",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.PlayerController:IsInputKeyDown"
+    },
+    {
+      "id": "node_8",
+      "dsl_type": "IsKeyDown_A",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.PlayerController:IsInputKeyDown"
+    },
+    {
+      "id": "node_9",
+      "dsl_type": "GetController",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Pawn:GetController"
+    },
+    {
+      "id": "node_10",
+      "dsl_type": "Branch_W",
+      "ue_class": "UK2Node_IfThenElse"
+    },
+    {
+      "id": "node_11",
+      "dsl_type": "Branch_S",
+      "ue_class": "UK2Node_IfThenElse"
+    },
+    {
+      "id": "node_12",
+      "dsl_type": "Branch_D",
+      "ue_class": "UK2Node_IfThenElse"
+    },
+    {
+      "id": "node_13",
+      "dsl_type": "Branch_A",
+      "ue_class": "UK2Node_IfThenElse"
+    },
+    {
+      "id": "node_14",
+      "dsl_type": "NegateForward",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:NegateVector"
+    },
+    {
+      "id": "node_15",
+      "dsl_type": "NegateRight",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:NegateVector"
+    },
+    {
+      "id": "node_16",
+      "dsl_type": "MoveBackward",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Pawn:AddMovementInput"
+    },
+    {
+      "id": "node_17",
+      "dsl_type": "MoveLeft",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Pawn:AddMovementInput"
+    },
+    {
+      "id": "node_18",
+      "dsl_type": "InputAction_Jump",
+      "ue_class": "UK2Node_InputAction",
+      "params": {
+        "ActionName": "Jump"
+      }
+    },
+    {
+      "id": "node_19",
+      "dsl_type": "Jump",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Character:Jump"
+    },
+    {
+      "id": "node_20",
+      "dsl_type": "StopJumping",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Character:StopJumping"
+    },
+    {
+      "id": "node_21",
+      "dsl_type": "PrintSpawned",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString"
+    },
+    {
+      "id": "node_22",
+      "dsl_type": "Event_BeginPlay",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay"
+    }
+  ],
+  "connections": [
+    {
+      "src_node": "node_22",
+      "src_pin": "Then",
+      "dst_node": "node_21",
+      "dst_pin": "Execute"
+    }
+  ]
+}

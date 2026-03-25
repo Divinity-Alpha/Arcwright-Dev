@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "name": "BP_TempleGameManager",
+    "parent_class": "Actor"
+  },
+  "variables": [
+    {
+      "name": "KeysCollected",
+      "type": "Int",
+      "default": "0"
+    },
+    {
+      "name": "Health",
+      "type": "Float",
+      "default": "100.0"
+    },
+    {
+      "name": "GameWon",
+      "type": "Bool",
+      "default": "false"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay"
+    },
+    {
+      "id": "n2",
+      "dsl_type": "PrintString",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "params": {
+        "InString": "Find 3 keys to escape the temple..."
+      }
+    }
+  ],
+  "connections": [
+    {
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    }
+  ]
+}

@@ -184,7 +184,7 @@ def load_hf_model(model_path: str, base_model: str = None):
     return model, tokenizer, system_prompt
 
 
-def generate_hf(model, tokenizer, prompt: str, max_tokens: int = 512,
+def generate_hf(model, tokenizer, prompt: str, max_tokens: int = 2048,
                 temperature: float = 0.1, system_prompt: str = None) -> str:
     """Generate Blueprint DSL using a Hugging Face model."""
     import torch
@@ -468,7 +468,7 @@ def main():
     parser.add_argument("--interactive", action="store_true", help="Interactive REPL mode")
     parser.add_argument("--batch", type=str, help="File with prompts (one per line)")
     parser.add_argument("--output", type=str, default="results/", help="Output directory for batch mode")
-    parser.add_argument("--max_tokens", type=int, default=1024)
+    parser.add_argument("--max_tokens", type=int, default=2048)
     parser.add_argument("--temperature", type=float, default=0.1)
     args = parser.parse_args()
 

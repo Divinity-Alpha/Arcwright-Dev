@@ -1,0 +1,9 @@
+Bore & Stroke Final Build -- 2026-03-21 23:06:13.311192
+Commands: 115 OK: 115 Errors: 0 Time: 10.9s
+
+Blueprint Verification:
+  FAIL: BP_TimeManager (23 nodes, 17 conns)
+  PASS: BP_EconomyManager (27 nodes, 20 conns)
+  PASS: BP_StationBase (19 nodes, 12 conns)
+  FAIL: BP_HeatManager (19 nodes, 13 conns)
+  PASS: BP_BoreAndStrokeGameMode (9 nodes, 6 conns)

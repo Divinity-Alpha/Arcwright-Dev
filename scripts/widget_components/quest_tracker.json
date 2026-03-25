@@ -1,0 +1,70 @@
+{
+  "id": "quest_tracker",
+  "name": "Quest Tracker",
+  "category": "quest",
+  "description": "Compact on-screen objective list",
+  "default_anchor": "TopRight",
+  "default_offset": [
+    -20,
+    100
+  ],
+  "default_size": [
+    250,
+    150
+  ],
+  "variables": [
+    {
+      "name": "QuestName",
+      "type": "String",
+      "default": ""
+    },
+    {
+      "name": "ObjectiveText",
+      "type": "String",
+      "default": ""
+    },
+    {
+      "name": "Progress",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "TrackerRoot",
+    "properties": {
+      "spacing": "4"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "QuestName",
+        "properties": {
+          "text": "BIND:\"{QuestName}\"",
+          "font_size": "14",
+          "color": "$primary",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "ObjText",
+        "properties": {
+          "text": "BIND:\"{ObjectiveText}\"",
+          "font_size": "12",
+          "color": "$text"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "ProgressText",
+        "properties": {
+          "text": "BIND:\"{Progress}\"",
+          "font_size": "12",
+          "color": "$accent"
+        }
+      }
+    ]
+  }
+}

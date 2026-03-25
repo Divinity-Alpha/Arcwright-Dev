@@ -1,0 +1,113 @@
+{
+  "lesson_id": "lesson_17",
+  "lesson_name": "Complex Systems: UI Flows, Movement, Math Chains, Multi-Step Patterns",
+  "model": "models/blueprint-lora-v14/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260315_204052",
+  "total_prompts": 20,
+  "valid_syntax": 20,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 96.2,
+  "per_category": {
+    "branch_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.3
+    },
+    "foreach_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 85.7
+    },
+    "timer_clear_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.3
+    },
+    "math_chain_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 91.7
+    },
+    "string_format_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "movement_clamp_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 91.7
+    },
+    "physics_force_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "movement_patrol_v4": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 85.0
+    },
+    "ui_create_show_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "ui_toggle_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "ui_flow_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "moving_platform_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 95.2
+    },
+    "pressure_plate_v4": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "pickup_complete_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.8
+    },
+    "multi_pickup_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "spawn_pattern_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "hud_health_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 95.0
+    },
+    "gate_controlled_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "damage_health_system_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "full_game_loop_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    }
+  }
+}

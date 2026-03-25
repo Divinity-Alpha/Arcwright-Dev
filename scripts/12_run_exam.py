@@ -76,9 +76,19 @@ class DSLStoppingCriteria(StoppingCriteria):
                 and ("EXEC " in completed_text or "DATA " in completed_text)):
             return False
 
-        # Double newline = DSL block finished
+        # Double newline = DSL block finished, BUT not between EXEC→DATA sections.
+        # DSL format uses blank lines as section separators (VAR / NODE / EXEC / DATA).
+        # If we have EXEC lines but no complete DATA lines, the blank line is just
+        # a section separator — keep generating to get the DATA section.
         if completed_text.rstrip(" ").endswith("\n"):
-            return True
+            has_exec = "EXEC " in completed_text
+            has_complete_data = any(
+                l.strip().startswith("DATA ") and "->" in l
+                for l in completed_text.split("\n")
+            )
+            if not has_exec or has_complete_data:
+                return True
+            # else: blank line between EXEC and DATA — keep generating
 
         # Last completed line is not a DSL keyword → junk started
         lines = completed_text.split("\n")
@@ -177,7 +187,7 @@ def load_model(model_path, base_model=None):
     return model, tokenizer, base_model
 
 
-def generate(model, tokenizer, instruction, max_tokens=512, temperature=0.1):
+def generate(model, tokenizer, instruction, max_tokens=2048, temperature=0.1):
     """Generate DSL from an instruction."""
     import torch
     import re

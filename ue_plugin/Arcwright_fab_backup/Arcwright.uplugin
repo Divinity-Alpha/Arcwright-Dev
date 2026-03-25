@@ -1,0 +1,26 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "Arcwright",
+	"Description": "The Bridge Between AI and Unreal Engine. 263 TCP commands, 335 MCP tools, 29 DSL systems.",
+	"Category": "AI Tools",
+	"CreatedBy": "Divinity Alpha",
+	"CreatedByURL": "https://arcwright.app",
+	"DocsURL": "https://arcwright.app/help.html",
+	"MarketplaceURL": "",
+	"EnabledByDefault": true,
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Plugins": [
+		{ "Name": "EnhancedInput", "Enabled": true },
+		{ "Name": "Niagara", "Enabled": true }
+	],
+	"Modules": [
+		{
+			"Name": "Arcwright",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}

@@ -1,0 +1,113 @@
+{
+  "id": "shop_panel",
+  "name": "Shop Panel",
+  "category": "menu",
+  "description": "Items with price + buy button + currency",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    500,
+    400
+  ],
+  "variables": [
+    {
+      "name": "PlayerGold",
+      "type": "Integer",
+      "default": 0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "ShopBox",
+    "properties": {
+      "spacing": "12"
+    },
+    "children": [
+      {
+        "type": "HBOX",
+        "name": "ShopHeader",
+        "properties": {
+          "spacing": "10"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "ShopTitle",
+            "properties": {
+              "text": "SHOP",
+              "font_size": "24",
+              "color": "$text",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "GoldDisplay",
+            "properties": {
+              "text": "BIND:\"{PlayerGold} Gold\"",
+              "font_size": "18",
+              "color": "$warning"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "ItemRow",
+        "properties": {
+          "spacing": "12"
+        },
+        "children": [
+          {
+            "type": "VBOX",
+            "name": "Item1Card",
+            "properties": {
+              "spacing": "4"
+            },
+            "children": [
+              {
+                "type": "IMAGE",
+                "name": "Item1Icon",
+                "properties": {
+                  "tint": "$primary",
+                  "size_x": "80",
+                  "size_y": "80"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Item1Name",
+                "properties": {
+                  "text": "Sword",
+                  "font_size": "14",
+                  "color": "$text"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Item1Price",
+                "properties": {
+                  "text": "100 Gold",
+                  "font_size": "12",
+                  "color": "$warning"
+                }
+              },
+              {
+                "type": "BUTTON",
+                "name": "Item1Buy",
+                "properties": {
+                  "text": "BUY",
+                  "font_size": "14"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

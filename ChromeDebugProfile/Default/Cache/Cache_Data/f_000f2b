@@ -1,0 +1,1253 @@
+#include "BlueprintBuilder.h"
+
+#include "Engine/Blueprint.h"
+#include "Engine/BlueprintGeneratedClass.h"
+#include "Kismet2/BlueprintEditorUtils.h"
+#include "Kismet2/KismetEditorUtilities.h"
+#include "K2Node_Event.h"
+#include "K2Node_CustomEvent.h"
+#include "K2Node_CallFunction.h"
+#include "K2Node_IfThenElse.h"
+#include "K2Node_ExecutionSequence.h"
+#include "K2Node_InputAction.h"
+#include "K2Node_DynamicCast.h"
+#include "K2Node_MacroInstance.h"
+#include "K2Node_MultiGate.h"
+#include "K2Node_VariableGet.h"
+#include "K2Node_VariableSet.h"
+#include "K2Node_SpawnActorFromClass.h"
+#include "K2Node_Switch.h"
+#include "K2Node_SwitchInteger.h"
+#include "K2Node_SwitchString.h"
+#include "EdGraphSchema_K2.h"
+#include "Factories/BlueprintFactory.h"
+#include "AssetRegistry/AssetRegistryModule.h"
+#include "UObject/SavePackage.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
+#include "GameFramework/Actor.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/Pawn.h"
+
+UBlueprint* FBlueprintBuilder::CreateBlueprint(const FDSLBlueprint& DSL, const FString& PackagePath)
+{
+	// 1. Resolve parent class
+	UClass* ParentClass = FindParentClass(DSL.ParentClass);
+	if (!ParentClass)
+	{
+		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: Unknown parent class: %s, defaulting to AActor"), *DSL.ParentClass);
+		ParentClass = AActor::StaticClass();
+	}
+
+	// 2. Create package — delete existing asset if it exists
+	const FString AssetName = DSL.Name.IsEmpty() ? TEXT("BP_Generated") : DSL.Name;
+	const FString FullPath = PackagePath / AssetName;
+
+	// Check if asset already exists and delete it
+	{
+		UObject* ExistingAsset = StaticFindObject(UBlueprint::StaticClass(), nullptr, *FullPath);
+		if (ExistingAsset)
+		{
+			UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Deleting existing asset: %s"), *FullPath);
+			ExistingAsset->Rename(nullptr, GetTransientPackage(), REN_DontCreateRedirectors);
+			ExistingAsset->MarkAsGarbage();
+			CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
+		}
+
+		// Also try to unload the package if it's loaded
+		UPackage* ExistingPackage = FindPackage(nullptr, *FullPath);
+		if (ExistingPackage)
+		{
+			ExistingPackage->Rename(nullptr, GetTransientPackage(), REN_DontCreateRedirectors);
+			ExistingPackage->MarkAsGarbage();
+			CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
+		}
+	}
+
+	UPackage* Package = CreatePackage(*FullPath);
+	if (!Package)
+	{
+		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: Failed to create package: %s"), *FullPath);
+		return nullptr;
+	}
+	Package->FullyLoad();
+
+	// 3. Create Blueprint via factory
+	UBlueprintFactory* Factory = NewObject<UBlueprintFactory>();
+	Factory->ParentClass = ParentClass;
+
+	UBlueprint* Blueprint = Cast<UBlueprint>(
+		Factory->FactoryCreateNew(
+			UBlueprint::StaticClass(),
+			Package,
+			FName(*AssetName),
+			RF_Public | RF_Standalone,
+			nullptr,
+			GWarn
+		)
+	);
+
+	if (!Blueprint)
+	{
+		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: Failed to create Blueprint"));
+		return nullptr;
+	}
+
+	// 4. Create variables
+	CreateBlueprintVariables(Blueprint, DSL.Variables);
+
+	// 5. Get or create EventGraph
+	UEdGraph* EventGraph = FBlueprintEditorUtils::FindEventGraph(Blueprint);
+	if (!EventGraph)
+	{
+		UE_LOG(LogTemp, Error, TEXT("BlueprintLLM: No EventGraph found"));
+		return nullptr;
+	}
+
+	// 5b. Remove default event nodes that aren't in our DSL
+	{
+		TSet<FName> NeededEvents;
+		for (const FDSLNode& NodeDef : DSL.Nodes)
+		{
+			if (NodeDef.UEClass == TEXT("UK2Node_Event") && !NodeDef.UEEvent.IsEmpty())
+			{
+				NeededEvents.Add(FName(*NodeDef.UEEvent));
+			}
+		}
+
+		TArray<UEdGraphNode*> NodesToRemove;
+		for (UEdGraphNode* ExistingNode : EventGraph->Nodes)
+		{
+			UK2Node_Event* EventNode = Cast<UK2Node_Event>(ExistingNode);
+			if (EventNode)
+			{
+				FName EventName = EventNode->EventReference.GetMemberName();
+				if (!NeededEvents.Contains(EventName))
+				{
+					NodesToRemove.Add(ExistingNode);
+				}
+			}
+		}
+
+		for (UEdGraphNode* Node : NodesToRemove)
+		{
+			EventGraph->RemoveNode(Node);
+			UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Removed unused default event node"));
+		}
+	}
+
+	// 6. Pre-count how many exec outputs each Sequence/MultiGate node needs
+	TMap<FString, int32> NodeExecOutCount;
+	for (const FDSLConnection& Conn : DSL.Connections)
+	{
+		if (Conn.Type == TEXT("exec"))
+		{
+			if (!NodeExecOutCount.Contains(Conn.SourceNode))
+			{
+				NodeExecOutCount.Add(Conn.SourceNode, 0);
+			}
+
+			int32 PinIndex = -1;
+
+			// Single-letter pins: A=1, B=2, C=3...
+			if (Conn.SourcePin.Len() == 1 && Conn.SourcePin[0] >= 'A' && Conn.SourcePin[0] <= 'Z')
+			{
+				PinIndex = Conn.SourcePin[0] - 'A' + 1;
+			}
+			// Out_N format pins: Out_0=1, Out_1=2, Out_2=3...
+			else if (Conn.SourcePin.StartsWith(TEXT("Out_")) || Conn.SourcePin.StartsWith(TEXT("out_")))
+			{
+				FString IndexStr = Conn.SourcePin.RightChop(4);
+				if (IndexStr.IsNumeric())
+				{
+					PinIndex = FCString::Atoi(*IndexStr) + 1;
+				}
+			}
+
+			if (PinIndex > 0)
+			{
+				NodeExecOutCount[Conn.SourceNode] = FMath::Max(NodeExecOutCount[Conn.SourceNode], PinIndex);
+			}
+		}
+	}
+
+	// 7. Create all nodes
+	TMap<FString, UEdGraphNode*> NodeMap;
+	for (const FDSLNode& NodeDef : DSL.Nodes)
+	{
+		// Pass exec out count hint for Sequence/MultiGate nodes
+		int32 ExecOutNeeded = 0;
+		if (const int32* Count = NodeExecOutCount.Find(NodeDef.ID))
+		{
+			ExecOutNeeded = *Count;
+		}
+
+		UK2Node* NewNode = CreateNodeFromDef(Blueprint, EventGraph, NodeDef, ExecOutNeeded);
+		if (NewNode)
+		{
+			// Ensure node has a valid GUID (required for editor interaction)
+			NewNode->CreateNewGuid();
+			SetNodePosition(NewNode, NodeDef.Position);
+			NodeMap.Add(NodeDef.ID, NewNode);
+			UE_LOG(LogTemp, Verbose, TEXT("BlueprintLLM: Created node %s (%s)"), *NodeDef.ID, *NodeDef.DSLType);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Failed to create node %s (%s / %s)"),
+				*NodeDef.ID, *NodeDef.DSLType, *NodeDef.UEClass);
+		}
+	}
+
+	// 7. Wire connections
+	ConnectPins(NodeMap, DSL.Connections);
+
+	// 8. Notify graph of changes so editor state is correct
+	EventGraph->NotifyGraphChanged();
+
+	// 9. Compile
+	FBlueprintEditorUtils::MarkBlueprintAsModified(Blueprint);
+	FKismetEditorUtilities::CompileBlueprint(Blueprint);
+
+	// 9. Save
+	Package->MarkPackageDirty();
+	FAssetRegistryModule::AssetCreated(Blueprint);
+
+	const FString PackageFilename = FPackageName::LongPackageNameToFilename(FullPath, FPackageName::GetAssetPackageExtension());
+
+	// Ensure directory exists
+	IFileManager::Get().MakeDirectory(*FPaths::GetPath(PackageFilename), true);
+
+	FSavePackageArgs SaveArgs;
+	SaveArgs.TopLevelFlags = RF_Public | RF_Standalone;
+	bool bSaved = UPackage::SavePackage(Package, Blueprint, *PackageFilename, SaveArgs);
+	if (!bSaved)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Save failed for %s — asset created in memory only"), *AssetName);
+	}
+
+	UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Successfully created %s with %d nodes"),
+		*AssetName, NodeMap.Num());
+
+	return Blueprint;
+}
+
+// ============================================================
+// Node creation dispatch
+// ============================================================
+
+UK2Node* FBlueprintBuilder::CreateNodeFromDef(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef, int32 ExecOutCount)
+{
+	const FString& UEClass = NodeDef.UEClass;
+
+	if (UEClass == TEXT("UK2Node_Event"))
+	{
+		return CreateEventNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_CustomEvent"))
+	{
+		return CreateCustomEventNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_CallFunction"))
+	{
+		return CreateCallFunctionNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_IfThenElse"))
+	{
+		return CreateBranchNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_ExecutionSequence"))
+	{
+		return CreateSequenceNode(BP, Graph, NodeDef, ExecOutCount);
+	}
+	if (UEClass == TEXT("UK2Node_ForLoop") || UEClass == TEXT("UK2Node_ForEachLoop") || UEClass == TEXT("UK2Node_WhileLoop"))
+	{
+		return CreateLoopNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_DynamicCast"))
+	{
+		return CreateCastNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_VariableGet") || UEClass == TEXT("UK2Node_VariableSet"))
+	{
+		return CreateVariableNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_SpawnActorFromClass"))
+	{
+		return CreateSpawnActorNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_SwitchInteger") || UEClass == TEXT("UK2Node_SwitchString"))
+	{
+		return CreateSwitchNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_BreakStruct"))
+	{
+		return CreateBreakStructNode(BP, Graph, NodeDef);
+	}
+	if (UEClass == TEXT("UK2Node_InputAction"))
+	{
+		// Input action events
+		UK2Node_InputAction* Node = NewObject<UK2Node_InputAction>(Graph);
+		if (NodeDef.Params.Contains(TEXT("ActionName")))
+		{
+			Node->InputActionName = FName(*NodeDef.Params[TEXT("ActionName")]);
+		}
+		Node->AllocateDefaultPins();
+		Graph->AddNode(Node, false, false);
+		return Node;
+	}
+
+	// Flow control nodes (FlipFlop, DoOnce, Gate)
+	if (UEClass == TEXT("UK2Node_FlipFlop") || UEClass == TEXT("UK2Node_DoOnce") ||
+		UEClass == TEXT("UK2Node_Gate"))
+	{
+		return CreateFlowControlNode(BP, Graph, NodeDef, ExecOutCount);
+	}
+	// MultiGate — native node class UK2Node_MultiGate
+	if (UEClass == TEXT("UK2Node_MultiGate"))
+	{
+		return CreateMultiGateNode(BP, Graph, NodeDef, ExecOutCount);
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Unhandled UE class: %s"), *UEClass);
+	return nullptr;
+}
+
+// ============================================================
+// Individual node creators
+// ============================================================
+
+UK2Node* FBlueprintBuilder::CreateEventNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	// Check if this event already exists in the graph (BeginPlay, Tick, etc.)
+	FName EventName = FName(*NodeDef.UEEvent);
+
+	for (UEdGraphNode* ExistingNode : Graph->Nodes)
+	{
+		UK2Node_Event* ExistingEvent = Cast<UK2Node_Event>(ExistingNode);
+		if (ExistingEvent && ExistingEvent->EventReference.GetMemberName() == EventName)
+		{
+			return ExistingEvent;
+		}
+	}
+
+	// Create new event node
+	UK2Node_Event* EventNode = NewObject<UK2Node_Event>(Graph);
+	UClass* ParentClass = BP->ParentClass;
+
+	// Find the function in the parent class
+	UFunction* EventFunc = ParentClass->FindFunctionByName(EventName);
+	if (EventFunc)
+	{
+		EventNode->EventReference.SetFromField<UFunction>(EventFunc, false);
+		EventNode->bOverrideFunction = true;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Event function not found: %s"), *NodeDef.UEEvent);
+	}
+
+	EventNode->AllocateDefaultPins();
+	Graph->AddNode(EventNode, false, false);
+
+	return EventNode;
+}
+
+UK2Node* FBlueprintBuilder::CreateCustomEventNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	UK2Node_CustomEvent* Node = NewObject<UK2Node_CustomEvent>(Graph);
+
+	FString EventName = TEXT("CustomEvent");
+	if (!NodeDef.ParamKey.IsEmpty() && NodeDef.Params.Contains(NodeDef.ParamKey))
+	{
+		EventName = NodeDef.Params[NodeDef.ParamKey];
+	}
+	else if (NodeDef.Params.Contains(TEXT("EventName")))
+	{
+		EventName = NodeDef.Params[TEXT("EventName")];
+	}
+
+	Node->CustomFunctionName = FName(*EventName);
+	Node->AllocateDefaultPins();
+	Graph->AddNode(Node, false, false);
+
+	return Node;
+}
+
+UK2Node* FBlueprintBuilder::CreateCallFunctionNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	UK2Node_CallFunction* FuncNode = NewObject<UK2Node_CallFunction>(Graph);
+
+	// Find the UFunction from the path
+	UFunction* Func = FindFunctionByPath(NodeDef.UEFunction);
+
+	// UE5 renamed Float functions to Double — try that if not found
+	if (!Func && NodeDef.UEFunction.Contains(TEXT("Float")))
+	{
+		FString DoublePath = NodeDef.UEFunction.Replace(TEXT("Float"), TEXT("Double"));
+		Func = FindFunctionByPath(DoublePath);
+		if (Func)
+		{
+			UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Remapped Float->Double: %s"), *DoublePath);
+		}
+	}
+
+	if (Func)
+	{
+		FuncNode->SetFromFunction(Func);
+	}
+	else
+	{
+		// Try setting by member reference with proper owning class
+		FString ClassPath, FuncName;
+		if (NodeDef.UEFunction.Split(TEXT(":"), &ClassPath, &FuncName))
+		{
+			// Try to resolve the class for proper member reference
+			FString ClassName;
+			ClassPath.Split(TEXT("."), nullptr, &ClassName);
+
+			UClass* OwnerClass = nullptr;
+			if (ClassName == TEXT("KismetMathLibrary"))
+				OwnerClass = UKismetMathLibrary::StaticClass();
+			else if (ClassName == TEXT("KismetSystemLibrary"))
+				OwnerClass = UKismetSystemLibrary::StaticClass();
+			else if (ClassName == TEXT("GameplayStatics"))
+				OwnerClass = UGameplayStatics::StaticClass();
+
+			if (OwnerClass)
+			{
+				FuncNode->FunctionReference.SetExternalMember(FName(*FuncName), OwnerClass);
+			}
+			else
+			{
+				FuncNode->FunctionReference.SetExternalMember(FName(*FuncName), nullptr);
+			}
+		}
+		UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Function not found: %s"), *NodeDef.UEFunction);
+	}
+
+	FuncNode->AllocateDefaultPins();
+	Graph->AddNode(FuncNode, false, false);
+
+	// Set parameter defaults
+	for (const auto& Param : NodeDef.Params)
+	{
+		SetPinDefaultValue(FuncNode, Param.Key, Param.Value);
+	}
+
+	return FuncNode;
+}
+
+UK2Node* FBlueprintBuilder::CreateBranchNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	UK2Node_IfThenElse* Node = NewObject<UK2Node_IfThenElse>(Graph);
+	Node->AllocateDefaultPins();
+	Graph->AddNode(Node, false, false);
+	return Node;
+}
+
+UK2Node* FBlueprintBuilder::CreateSequenceNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef, int32 ExecOutCount)
+{
+	UK2Node_ExecutionSequence* Node = NewObject<UK2Node_ExecutionSequence>(Graph);
+	Node->AllocateDefaultPins();
+	Graph->AddNode(Node, false, false);
+
+	// Default Sequence node has 2 output pins. Add more if needed.
+	int32 PinsToAdd = FMath::Max(0, ExecOutCount - 2);
+	for (int32 i = 0; i < PinsToAdd; i++)
+	{
+		Node->AddInputPin();
+	}
+
+	return Node;
+}
+
+UK2Node* FBlueprintBuilder::CreateFlowControlNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef, int32 ExecOutCount)
+{
+	FString MacroName;
+	if (NodeDef.UEClass == TEXT("UK2Node_FlipFlop")) MacroName = TEXT("FlipFlop");
+	else if (NodeDef.UEClass == TEXT("UK2Node_DoOnce")) MacroName = TEXT("DoOnce");
+	else if (NodeDef.UEClass == TEXT("UK2Node_Gate")) MacroName = TEXT("Gate");
+	else if (NodeDef.UEClass == TEXT("UK2Node_MultiGate")) MacroName = TEXT("MultiGate");
+
+	// Load the standard macro library by known path
+	static const TArray<FString> MacroLibPaths = {
+		TEXT("/Engine/EditorBlueprintResources/StandardMacros.StandardMacros"),
+		TEXT("/Engine/EditorBlueprintResources/StandardMacros"),
+	};
+
+	UEdGraph* MacroGraph = nullptr;
+
+	for (const FString& LibPath : MacroLibPaths)
+	{
+		UBlueprint* MacroBP = LoadObject<UBlueprint>(nullptr, *LibPath);
+		if (!MacroBP)
+		{
+			UE_LOG(LogTemp, Verbose, TEXT("BlueprintLLM: Macro lib not found at: %s"), *LibPath);
+			continue;
+		}
+
+		UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Found macro library with %d macros"), MacroBP->MacroGraphs.Num());
+
+		for (UEdGraph* MacroCandidate : MacroBP->MacroGraphs)
+		{
+			if (MacroCandidate)
+			{
+				FString GraphName = MacroCandidate->GetFName().ToString();
+				UE_LOG(LogTemp, Verbose, TEXT("BlueprintLLM: Available macro: %s"), *GraphName);
+				if (GraphName.Equals(MacroName, ESearchCase::IgnoreCase))
+				{
+					MacroGraph = MacroCandidate;
+					break;
+				}
+			}
+		}
+		if (MacroGraph) break;
+	}
+
+	if (MacroGraph)
+	{
+		UK2Node_MacroInstance* MacroNode = NewObject<UK2Node_MacroInstance>(Graph);
+		MacroNode->SetMacroGraph(MacroGraph);
+		MacroNode->AllocateDefaultPins();
+		Graph->AddNode(MacroNode, false, false);
+
+		// Log all pins for debugging
+		FString AllPins;
+		for (UEdGraphPin* P : MacroNode->Pins)
+		{
+			AllPins += FString::Printf(TEXT("[%s %s %s] "),
+				P->Direction == EGPD_Input ? TEXT("IN") : TEXT("OUT"),
+				P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec ? TEXT("exec") : TEXT("data"),
+				*P->PinName.ToString());
+		}
+		UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Created macro node: %s — Pins: %s"), *MacroName, *AllPins);
+
+		return MacroNode;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Macro not found: %s — creating placeholder"), *MacroName);
+	UK2Node_CallFunction* Node = NewObject<UK2Node_CallFunction>(Graph);
+	Node->AllocateDefaultPins();
+	Graph->AddNode(Node, false, false);
+	return Node;
+}
+
+UK2Node* FBlueprintBuilder::CreateMultiGateNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef, int32 ExecOutCount)
+{
+	UK2Node_MultiGate* Node = NewObject<UK2Node_MultiGate>(Graph);
+	Node->AllocateDefaultPins();
+	Graph->AddNode(Node, false, false);
+
+	// Add extra output pins if needed (default is usually 2)
+	int32 CurrentOuts = 0;
+	for (UEdGraphPin* P : Node->Pins)
+	{
+		if (P->Direction == EGPD_Output && P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec)
+		{
+			CurrentOuts++;
+		}
+	}
+
+	int32 PinsToAdd = FMath::Max(0, ExecOutCount - CurrentOuts);
+	for (int32 i = 0; i < PinsToAdd; i++)
+	{
+		Node->AddInputPin();
+	}
+
+	// Log pins for debugging
+	FString AllPins;
+	for (UEdGraphPin* P : Node->Pins)
+	{
+		AllPins += FString::Printf(TEXT("[%s %s %s] "),
+			P->Direction == EGPD_Input ? TEXT("IN") : TEXT("OUT"),
+			P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec ? TEXT("exec") : TEXT("data"),
+			*P->PinName.ToString());
+	}
+	UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Created MultiGate node — Pins: %s"), *AllPins);
+
+	return Node;
+}
+
+UK2Node* FBlueprintBuilder::CreateLoopNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	FString MacroName;
+	if (NodeDef.UEClass == TEXT("UK2Node_ForLoop")) MacroName = TEXT("ForLoop");
+	else if (NodeDef.UEClass == TEXT("UK2Node_ForEachLoop")) MacroName = TEXT("ForEachLoop");
+	else if (NodeDef.UEClass == TEXT("UK2Node_WhileLoop")) MacroName = TEXT("WhileLoop");
+	else MacroName = TEXT("ForLoop");
+
+	// Load standard macro library directly
+	UEdGraph* MacroGraph = nullptr;
+	static const TArray<FString> MacroLibPaths = {
+		TEXT("/Engine/EditorBlueprintResources/StandardMacros.StandardMacros"),
+		TEXT("/Engine/EditorBlueprintResources/StandardMacros"),
+	};
+
+	for (const FString& LibPath : MacroLibPaths)
+	{
+		UBlueprint* MacroBP = LoadObject<UBlueprint>(nullptr, *LibPath);
+		if (!MacroBP) continue;
+
+		for (UEdGraph* MacroCandidate : MacroBP->MacroGraphs)
+		{
+			if (MacroCandidate && MacroCandidate->GetFName().ToString().Equals(MacroName, ESearchCase::IgnoreCase))
+			{
+				MacroGraph = MacroCandidate;
+				break;
+			}
+		}
+		if (MacroGraph) break;
+	}
+
+	if (MacroGraph)
+	{
+		UK2Node_MacroInstance* MacroNode = NewObject<UK2Node_MacroInstance>(Graph);
+		MacroNode->SetMacroGraph(MacroGraph);
+		MacroNode->AllocateDefaultPins();
+		Graph->AddNode(MacroNode, false, false);
+
+		// Set loop params
+		if (NodeDef.Params.Contains(TEXT("FirstIndex")))
+			SetPinDefaultValue(MacroNode, TEXT("FirstIndex"), NodeDef.Params[TEXT("FirstIndex")]);
+		if (NodeDef.Params.Contains(TEXT("LastIndex")))
+			SetPinDefaultValue(MacroNode, TEXT("LastIndex"), NodeDef.Params[TEXT("LastIndex")]);
+
+		return MacroNode;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Loop macro not found: %s"), *MacroName);
+	UK2Node_CallFunction* Node = NewObject<UK2Node_CallFunction>(Graph);
+	Node->AllocateDefaultPins();
+	Graph->AddNode(Node, false, false);
+	return Node;
+}
+
+UK2Node* FBlueprintBuilder::CreateCastNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	UK2Node_DynamicCast* CastNode = NewObject<UK2Node_DynamicCast>(Graph);
+
+	// Resolve target class from cast_class path
+	UClass* TargetClass = nullptr;
+	if (NodeDef.CastClass.StartsWith(TEXT("/Script/")))
+	{
+		TargetClass = FindObject<UClass>(nullptr, *NodeDef.CastClass);
+	}
+	if (!TargetClass)
+	{
+		// Try common class names
+		if (NodeDef.CastClass.Contains(TEXT("Character"))) TargetClass = ACharacter::StaticClass();
+		else if (NodeDef.CastClass.Contains(TEXT("Pawn"))) TargetClass = APawn::StaticClass();
+		else TargetClass = AActor::StaticClass();
+	}
+
+	CastNode->TargetType = TargetClass;
+	CastNode->AllocateDefaultPins();
+	Graph->AddNode(CastNode, false, false);
+
+	// Set the Object input pin type to AActor so it doesn't show as unresolved wildcard
+	UEdGraphPin* ObjectPin = CastNode->FindPin(TEXT("Object"), EGPD_Input);
+	if (!ObjectPin)
+	{
+		ObjectPin = CastNode->FindPin(UEdGraphSchema_K2::PN_ObjectToCast, EGPD_Input);
+	}
+	if (ObjectPin)
+	{
+		ObjectPin->PinType.PinCategory = UEdGraphSchema_K2::PC_Object;
+		ObjectPin->PinType.PinSubCategoryObject = AActor::StaticClass();
+	}
+
+	return CastNode;
+}
+
+UK2Node* FBlueprintBuilder::CreateVariableNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	// Get the variable name from params
+	FString VarName;
+	if (!NodeDef.ParamKey.IsEmpty() && NodeDef.Params.Contains(NodeDef.ParamKey))
+	{
+		VarName = NodeDef.Params[NodeDef.ParamKey];
+	}
+
+	if (VarName.IsEmpty())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Variable node %s has no variable name"), *NodeDef.ID);
+		return nullptr;
+	}
+
+	FName VarFName = FName(*VarName);
+
+	if (NodeDef.UEClass == TEXT("UK2Node_VariableGet"))
+	{
+		UK2Node_VariableGet* Node = NewObject<UK2Node_VariableGet>(Graph);
+		Node->VariableReference.SetSelfMember(VarFName);
+		Node->AllocateDefaultPins();
+		Graph->AddNode(Node, false, false);
+		return Node;
+	}
+	else // UK2Node_VariableSet
+	{
+		UK2Node_VariableSet* Node = NewObject<UK2Node_VariableSet>(Graph);
+		Node->VariableReference.SetSelfMember(VarFName);
+		Node->AllocateDefaultPins();
+		Graph->AddNode(Node, false, false);
+		return Node;
+	}
+}
+
+UK2Node* FBlueprintBuilder::CreateSpawnActorNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	UK2Node_SpawnActorFromClass* Node = NewObject<UK2Node_SpawnActorFromClass>(Graph);
+	Node->AllocateDefaultPins();
+	Graph->AddNode(Node, false, false);
+	return Node;
+}
+
+UK2Node* FBlueprintBuilder::CreateSwitchNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	if (NodeDef.UEClass == TEXT("UK2Node_SwitchInteger"))
+	{
+		UK2Node_SwitchInteger* Node = NewObject<UK2Node_SwitchInteger>(Graph);
+		Node->AllocateDefaultPins();
+		Graph->AddNode(Node, false, false);
+		return Node;
+	}
+	else
+	{
+		UK2Node_SwitchString* Node = NewObject<UK2Node_SwitchString>(Graph);
+		Node->AllocateDefaultPins();
+		Graph->AddNode(Node, false, false);
+		return Node;
+	}
+}
+
+UK2Node* FBlueprintBuilder::CreateBreakStructNode(UBlueprint* BP, UEdGraph* Graph, const FDSLNode& NodeDef)
+{
+	// BreakStruct nodes are implemented as CallFunction to break functions
+	UK2Node_CallFunction* Node = NewObject<UK2Node_CallFunction>(Graph);
+	Node->AllocateDefaultPins();
+	Graph->AddNode(Node, false, false);
+	return Node;
+}
+
+// ============================================================
+// Variable creation
+// ============================================================
+
+void FBlueprintBuilder::CreateBlueprintVariables(UBlueprint* BP, const TArray<FDSLVariable>& Variables)
+{
+	for (const FDSLVariable& Var : Variables)
+	{
+		FEdGraphPinType PinType = GetPinTypeFromString(Var.Type);
+		const bool bSuccess = FBlueprintEditorUtils::AddMemberVariable(BP, FName(*Var.Name), PinType);
+
+		if (bSuccess && !Var.DefaultValue.IsEmpty())
+		{
+			// Set default value
+			FProperty* Prop = BP->GeneratedClass->FindPropertyByName(FName(*Var.Name));
+			if (Prop)
+			{
+				UE_LOG(LogTemp, Verbose, TEXT("BlueprintLLM: Created variable %s : %s = %s"),
+					*Var.Name, *Var.Type, *Var.DefaultValue);
+			}
+		}
+	}
+}
+
+// ============================================================
+// Connection wiring
+// ============================================================
+
+bool FBlueprintBuilder::ConnectPins(
+	const TMap<FString, UEdGraphNode*>& NodeMap,
+	const TArray<FDSLConnection>& Connections)
+{
+	int32 SuccessCount = 0;
+	int32 FailCount = 0;
+
+	for (const FDSLConnection& Conn : Connections)
+	{
+		// Skip literal data connections for now
+		if (Conn.Type == TEXT("data_literal"))
+		{
+			continue;
+		}
+
+		UEdGraphNode* const* SrcNodePtr = NodeMap.Find(Conn.SourceNode);
+		UEdGraphNode* const* DstNodePtr = NodeMap.Find(Conn.TargetNode);
+
+		if (!SrcNodePtr || !DstNodePtr)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Connection refs unknown node: %s -> %s"),
+				*Conn.SourceNode, *Conn.TargetNode);
+			FailCount++;
+			continue;
+		}
+
+		UEdGraphNode* SrcNode = *SrcNodePtr;
+		UEdGraphNode* DstNode = *DstNodePtr;
+
+		UEdGraphPin* SrcPin = FindPinByDSLName(SrcNode, Conn.SourcePin, EGPD_Output);
+		UEdGraphPin* DstPin = FindPinByDSLName(DstNode, Conn.TargetPin, EGPD_Input);
+
+		if (SrcPin && DstPin)
+		{
+			// Use Schema's TryCreateConnection — it auto-inserts conversion nodes (e.g. Float→String)
+			const UEdGraphSchema_K2* Schema = GetDefault<UEdGraphSchema_K2>();
+			bool bConnected = Schema->TryCreateConnection(SrcPin, DstPin);
+			if (bConnected)
+			{
+				SuccessCount++;
+			}
+			else
+			{
+				// Fallback to direct link
+				SrcPin->MakeLinkTo(DstPin);
+				SuccessCount++;
+			}
+		}
+		else
+		{
+			// Log available pins to help debug
+			FString SrcPins, DstPins;
+			for (UEdGraphPin* P : SrcNode->Pins) { if (P->Direction == EGPD_Output) { SrcPins += P->PinName.ToString() + TEXT(" "); } }
+			for (UEdGraphPin* P : DstNode->Pins) { if (P->Direction == EGPD_Input) { DstPins += P->PinName.ToString() + TEXT(" "); } }
+
+			UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Pin not found: %s.%s(%s) -> %s.%s(%s) | SrcOuts=[%s] DstIns=[%s]"),
+				*Conn.SourceNode, *Conn.SourcePin, SrcPin ? TEXT("OK") : TEXT("MISSING"),
+				*Conn.TargetNode, *Conn.TargetPin, DstPin ? TEXT("OK") : TEXT("MISSING"),
+				*SrcPins.TrimEnd(), *DstPins.TrimEnd());
+			FailCount++;
+		}
+	}
+
+	UE_LOG(LogTemp, Log, TEXT("BlueprintLLM: Wired %d/%d connections (%d failed)"),
+		SuccessCount, SuccessCount + FailCount, FailCount);
+
+	return FailCount == 0;
+}
+
+UEdGraphPin* FBlueprintBuilder::FindPinByDSLName(UEdGraphNode* Node, const FString& DSLName, EEdGraphPinDirection Direction)
+{
+	if (!Node) return nullptr;
+
+	// 1. Exact match
+	UEdGraphPin* Pin = Node->FindPin(FName(*DSLName), Direction);
+	if (Pin) return Pin;
+
+	// 2. Also try without direction constraint (some pins have weird direction)
+	Pin = Node->FindPin(FName(*DSLName));
+	if (Pin) return Pin;
+
+	// 3. Known DSL-to-UE pin name aliases
+	static const TMap<FString, TArray<FString>> PinAliases = {
+		// Exec pins
+		{ TEXT("Execute"),      { TEXT("execute"), TEXT("exec") } },
+		{ TEXT("Then"),         { TEXT("then") } },
+		{ TEXT("True"),         { TEXT("true") } },
+		{ TEXT("False"),        { TEXT("false") } },
+
+		// Branch condition
+		{ TEXT("Condition"),    { TEXT("Condition"), TEXT("bCondition"), TEXT("bNotCondition") } },
+
+		// Data pins - common short names from DSL
+		{ TEXT("I"),            { TEXT("InString"), TEXT("InputObject"), TEXT("Object"), TEXT("Input") } },
+		{ TEXT("ReturnValue"),  { TEXT("ReturnValue"), TEXT("bReturnValue") } },
+
+		// PrintString
+		{ TEXT("InString"),     { TEXT("InString"), TEXT("In String"), TEXT("InStr") } },
+
+		// Cast pins
+		{ TEXT("Object"),       { TEXT("Object"), TEXT("ObjectToCast") } },
+		{ TEXT("CastSucceeded"),{ TEXT("then 0"), TEXT("CastSucceeded") } },
+		{ TEXT("CastFailed"),   { TEXT("CastFail"), TEXT("then 1") } },
+
+		// InputAction pins
+		{ TEXT("Pressed"),      { TEXT("Pressed"), TEXT("pressed") } },
+		{ TEXT("Released"),     { TEXT("Released"), TEXT("released") } },
+
+		// IsValid output
+		{ TEXT("IsValid"),      { TEXT("IsValid"), TEXT("ReturnValue"), TEXT("bIsValid") } },
+	};
+
+	// Try aliases
+	if (const TArray<FString>* Aliases = PinAliases.Find(DSLName))
+	{
+		for (const FString& Alias : *Aliases)
+		{
+			Pin = Node->FindPin(FName(*Alias), Direction);
+			if (Pin) return Pin;
+			Pin = Node->FindPin(FName(*Alias));
+			if (Pin) return Pin;
+		}
+	}
+
+	// 4. Special case: "Value" on VariableGet/Set nodes - the pin name is the variable name
+	if (DSLName == TEXT("Value"))
+	{
+		for (UEdGraphPin* P : Node->Pins)
+		{
+			if (P->Direction == Direction &&
+				P->PinType.PinCategory != UEdGraphSchema_K2::PC_Exec &&
+				P->PinName != UEdGraphSchema_K2::PN_Self &&
+				P->PinName.ToString() != TEXT("WorldContextObject"))
+			{
+				return P;
+			}
+		}
+	}
+
+	// 5. Special case: Sequence output pins "A","B","C"... -> try many UE naming conventions
+	if (DSLName.Len() == 1 && DSLName[0] >= 'A' && DSLName[0] <= 'F')
+	{
+		int32 Index = DSLName[0] - 'A';
+
+		// Try all known Sequence pin name formats
+		TArray<FString> SeqNames = {
+			FString::Printf(TEXT("then %d"), Index),
+			FString::Printf(TEXT("Then %d"), Index),
+			FString::Printf(TEXT("Out_%d"), Index),
+			FString::Printf(TEXT("out_%d"), Index),
+			FString::Printf(TEXT("Out %d"), Index),
+			FString::Printf(TEXT("Output_%d"), Index),
+			FString::Printf(TEXT("%d"), Index),
+		};
+
+		for (const FString& Name : SeqNames)
+		{
+			Pin = Node->FindPin(FName(*Name), Direction);
+			if (Pin) return Pin;
+			Pin = Node->FindPin(FName(*Name));
+			if (Pin) return Pin;
+		}
+
+		// Also try: just pick the Nth exec output pin
+		int32 ExecOutCount = 0;
+		for (UEdGraphPin* P : Node->Pins)
+		{
+			if (P->Direction == EGPD_Output && P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec)
+			{
+				if (ExecOutCount == Index)
+				{
+					return P;
+				}
+				ExecOutCount++;
+			}
+		}
+	}
+
+	// 5a. Special case: "Out_0", "Out_1", "Out_2"... pattern (MultiGate, etc.)
+	if (DSLName.StartsWith(TEXT("Out_")) || DSLName.StartsWith(TEXT("out_")))
+	{
+		FString IndexStr = DSLName.RightChop(4);
+		if (IndexStr.IsNumeric())
+		{
+			int32 Index = FCString::Atoi(*IndexStr);
+
+			// Try exact match first (already tried above, but be thorough)
+			TArray<FString> OutNames = {
+				FString::Printf(TEXT("Out_%d"), Index),
+				FString::Printf(TEXT("out_%d"), Index),
+				FString::Printf(TEXT("Out %d"), Index),
+				FString::Printf(TEXT("then %d"), Index),
+				FString::Printf(TEXT("Then %d"), Index),
+				FString::Printf(TEXT("%d"), Index),
+			};
+
+			for (const FString& Name : OutNames)
+			{
+				Pin = Node->FindPin(FName(*Name), Direction);
+				if (Pin) return Pin;
+				Pin = Node->FindPin(FName(*Name));
+				if (Pin) return Pin;
+			}
+
+			// Fallback: pick the Nth exec output pin
+			int32 ExecOutCount = 0;
+			for (UEdGraphPin* P : Node->Pins)
+			{
+				if (P->Direction == EGPD_Output && P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec)
+				{
+					if (ExecOutCount == Index)
+					{
+						return P;
+					}
+					ExecOutCount++;
+				}
+			}
+		}
+	}
+
+	// 5b. Special case: "C" as Branch condition pin
+	if (DSLName == TEXT("C"))
+	{
+		Pin = Node->FindPin(TEXT("Condition"), Direction);
+		if (Pin) return Pin;
+		Pin = Node->FindPin(TEXT("bCondition"), Direction);
+		if (Pin) return Pin;
+	}
+
+	// 5c. Special case: InputAction "Pressed"/"Released" — find Nth exec output
+	if (DSLName == TEXT("Pressed"))
+	{
+		// Pressed is typically the first exec output pin
+		int32 ExecIdx = 0;
+		for (UEdGraphPin* P : Node->Pins)
+		{
+			if (P->Direction == EGPD_Output && P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec)
+			{
+				if (ExecIdx == 0) return P;
+				ExecIdx++;
+			}
+		}
+	}
+	if (DSLName == TEXT("Released"))
+	{
+		// Released is typically the second exec output pin
+		int32 ExecIdx = 0;
+		for (UEdGraphPin* P : Node->Pins)
+		{
+			if (P->Direction == EGPD_Output && P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec)
+			{
+				if (ExecIdx == 1) return P;
+				ExecIdx++;
+			}
+		}
+	}
+
+	// 6. Special case: "True"/"False" on Branch -> might be "then"/"else" in UE
+	if (DSLName == TEXT("True"))
+	{
+		Pin = Node->FindPin(UEdGraphSchema_K2::PN_Then, Direction);
+		if (Pin) return Pin;
+		// Also try the raw text variations
+		Pin = Node->FindPin(FName(TEXT("True")), Direction);
+		if (Pin) return Pin;
+	}
+	if (DSLName == TEXT("False"))
+	{
+		Pin = Node->FindPin(UEdGraphSchema_K2::PN_Else, Direction);
+		if (Pin) return Pin;
+		Pin = Node->FindPin(FName(TEXT("False")), Direction);
+		if (Pin) return Pin;
+	}
+
+	// 7. Special case: exec input "Execute" -> try UE's standard exec pin name, then first exec input
+	if (DSLName == TEXT("Execute"))
+	{
+		Pin = Node->FindPin(UEdGraphSchema_K2::PN_Execute, Direction);
+		if (Pin) return Pin;
+
+		// Try common macro input pin names
+		Pin = Node->FindPin(TEXT("In"), Direction);
+		if (Pin) return Pin;
+		Pin = Node->FindPin(TEXT("Input"), Direction);
+		if (Pin) return Pin;
+
+		// Fallback: grab the first exec input pin
+		for (UEdGraphPin* P : Node->Pins)
+		{
+			if (P->Direction == EGPD_Input && P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec)
+			{
+				return P;
+			}
+		}
+	}
+
+	// 8. Special case: exec output "Then" -> try UE's standard then pin name, then first exec output
+	if (DSLName == TEXT("Then"))
+	{
+		Pin = Node->FindPin(UEdGraphSchema_K2::PN_Then, Direction);
+		if (Pin) return Pin;
+
+		// Try common macro output pin names
+		Pin = Node->FindPin(TEXT("Out"), Direction);
+		if (Pin) return Pin;
+		Pin = Node->FindPin(TEXT("Output"), Direction);
+		if (Pin) return Pin;
+
+		// Fallback: grab the first exec output pin
+		for (UEdGraphPin* P : Node->Pins)
+		{
+			if (P->Direction == EGPD_Output && P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec)
+			{
+				return P;
+			}
+		}
+	}
+
+	// 9. Special case: "ReturnValue"
+	if (DSLName == TEXT("ReturnValue"))
+	{
+		Pin = Node->FindPin(UEdGraphSchema_K2::PN_ReturnValue, Direction);
+		if (Pin) return Pin;
+	}
+
+	// 10. Case-insensitive search as last resort
+	for (UEdGraphPin* P : Node->Pins)
+	{
+		if (P->PinName.ToString().Equals(DSLName, ESearchCase::IgnoreCase))
+		{
+			if (Direction == EGPD_MAX || P->Direction == Direction)
+			{
+				return P;
+			}
+		}
+	}
+
+	// 11. Substring match - if DSL pin name is contained in UE pin name or vice versa
+	for (UEdGraphPin* P : Node->Pins)
+	{
+		if (P->Direction == Direction || Direction == EGPD_MAX)
+		{
+			FString UEName = P->PinName.ToString();
+			if (UEName.Contains(DSLName) || DSLName.Contains(UEName))
+			{
+				// Skip exec, self, and WorldContextObject pins
+				if (P->PinType.PinCategory == UEdGraphSchema_K2::PC_Exec ||
+					P->PinName == UEdGraphSchema_K2::PN_Self ||
+					P->PinName.ToString() == TEXT("WorldContextObject"))
+				{
+					continue;
+				}
+				return P;
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+// ============================================================
+// Helpers
+// ============================================================
+
+UClass* FBlueprintBuilder::FindParentClass(const FString& ClassName)
+{
+	if (ClassName == TEXT("Actor") || ClassName == TEXT("AActor")) return AActor::StaticClass();
+	if (ClassName == TEXT("Character") || ClassName == TEXT("ACharacter")) return ACharacter::StaticClass();
+	if (ClassName == TEXT("Pawn") || ClassName == TEXT("APawn")) return APawn::StaticClass();
+
+	// Try finding by path
+	UClass* Found = FindObject<UClass>(nullptr, *ClassName);
+	return Found;
+}
+
+UFunction* FBlueprintBuilder::FindFunctionByPath(const FString& FunctionPath)
+{
+	// Format: "/Script/Engine.KismetSystemLibrary:PrintString"
+	FString ClassPath, FuncName;
+	if (!FunctionPath.Split(TEXT(":"), &ClassPath, &FuncName))
+	{
+		return nullptr;
+	}
+
+	UClass* OwnerClass = FindObject<UClass>(nullptr, *ClassPath);
+	if (!OwnerClass)
+	{
+		// Try loading
+		OwnerClass = LoadObject<UClass>(nullptr, *ClassPath);
+	}
+
+	if (!OwnerClass)
+	{
+		// Try extracting just the class name and searching common libraries
+		FString ClassName;
+		if (ClassPath.Split(TEXT("."), nullptr, &ClassName))
+		{
+			// Try well-known UE classes directly
+			if (ClassName == TEXT("KismetMathLibrary"))
+				OwnerClass = UKismetMathLibrary::StaticClass();
+			else if (ClassName == TEXT("KismetSystemLibrary"))
+				OwnerClass = UKismetSystemLibrary::StaticClass();
+			else if (ClassName == TEXT("KismetStringLibrary"))
+				OwnerClass = FindObject<UClass>(nullptr, TEXT("/Script/Engine.KismetStringLibrary"));
+			else if (ClassName == TEXT("KismetArrayLibrary"))
+				OwnerClass = FindObject<UClass>(nullptr, TEXT("/Script/Engine.KismetArrayLibrary"));
+			else if (ClassName == TEXT("GameplayStatics"))
+				OwnerClass = UGameplayStatics::StaticClass();
+		}
+	}
+
+	if (OwnerClass)
+	{
+		UFunction* Func = OwnerClass->FindFunctionByName(FName(*FuncName));
+		if (Func)
+		{
+			return Func;
+		}
+		UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Function '%s' not found on class '%s'"), *FuncName, *OwnerClass->GetName());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("BlueprintLLM: Class not found for path: %s"), *ClassPath);
+	}
+
+	return nullptr;
+}
+
+FEdGraphPinType FBlueprintBuilder::GetPinTypeFromString(const FString& TypeName)
+{
+	FEdGraphPinType PinType;
+
+	if (TypeName == TEXT("Int") || TypeName == TEXT("int"))
+	{
+		PinType.PinCategory = UEdGraphSchema_K2::PC_Int;
+	}
+	else if (TypeName == TEXT("Float") || TypeName == TEXT("float"))
+	{
+		PinType.PinCategory = UEdGraphSchema_K2::PC_Real;
+		PinType.PinSubCategory = UEdGraphSchema_K2::PC_Float;
+	}
+	else if (TypeName == TEXT("Bool") || TypeName == TEXT("bool"))
+	{
+		PinType.PinCategory = UEdGraphSchema_K2::PC_Boolean;
+	}
+	else if (TypeName == TEXT("String") || TypeName == TEXT("string"))
+	{
+		PinType.PinCategory = UEdGraphSchema_K2::PC_String;
+	}
+	else if (TypeName == TEXT("Vector") || TypeName == TEXT("vector"))
+	{
+		PinType.PinCategory = UEdGraphSchema_K2::PC_Struct;
+		PinType.PinSubCategoryObject = TBaseStructure<FVector>::Get();
+	}
+	else if (TypeName == TEXT("Rotator") || TypeName == TEXT("rotator"))
+	{
+		PinType.PinCategory = UEdGraphSchema_K2::PC_Struct;
+		PinType.PinSubCategoryObject = TBaseStructure<FRotator>::Get();
+	}
+	else if (TypeName == TEXT("Object") || TypeName == TEXT("object") ||
+			 TypeName == TEXT("Actor"))
+	{
+		PinType.PinCategory = UEdGraphSchema_K2::PC_Object;
+		PinType.PinSubCategoryObject = AActor::StaticClass();
+	}
+	else
+	{
+		// Default to wildcard
+		PinType.PinCategory = UEdGraphSchema_K2::PC_Wildcard;
+	}
+
+	return PinType;
+}
+
+void FBlueprintBuilder::SetNodePosition(UEdGraphNode* Node, const FVector2D& Position)
+{
+	if (Node)
+	{
+		Node->NodePosX = Position.X;
+		Node->NodePosY = Position.Y;
+	}
+}
+
+void FBlueprintBuilder::SetPinDefaultValue(UEdGraphNode* Node, const FString& PinName, const FString& Value)
+{
+	if (!Node) return;
+
+	UEdGraphPin* Pin = Node->FindPin(FName(*PinName));
+	if (Pin)
+	{
+		Pin->DefaultValue = Value;
+	}
+}

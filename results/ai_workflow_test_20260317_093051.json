@@ -1,0 +1,179 @@
+{
+  "timestamp": "20260317_093051",
+  "suite": "AI Workflow Test Suite",
+  "passed": 21,
+  "failed": 17,
+  "total": 38,
+  "elapsed_s": 11.99,
+  "tests": [
+    {
+      "test": "S1.01 get_level_info",
+      "result": "PASS"
+    },
+    {
+      "test": "S1.02 setup_scene_lighting indoor_bright",
+      "result": "PASS"
+    },
+    {
+      "test": "S1.03 spawn floor (StaticMeshActor)",
+      "result": "PASS"
+    },
+    {
+      "test": "S1.04 create BP_WF_HealthPickup with Health var",
+      "result": "PASS"
+    },
+    {
+      "test": "S1.05 spawn pickup actor",
+      "result": "PASS"
+    },
+    {
+      "test": "S1.06 find_actors pickup (exactly 1)",
+      "result": "PASS"
+    },
+    {
+      "test": "S1.07 get_actor_properties on pickup",
+      "result": "PASS"
+    },
+    {
+      "test": "S1.08 batch_set_variable Health=50",
+      "result": "FAIL",
+      "error": "The command 'batch_set_variable' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S1.09 find_actors (floor + pickup exist)",
+      "result": "PASS"
+    },
+    {
+      "test": "S1.10 cleanup all test artifacts",
+      "result": "PASS"
+    },
+    {
+      "test": "S2.01 setup: create 3 BPs, spawn 6 actors",
+      "result": "PASS"
+    },
+    {
+      "test": "S2.02 find_actors WF_ (6 actors)",
+      "result": "PASS"
+    },
+    {
+      "test": "S2.03 create_simple_material MAT_WF_Red",
+      "result": "FAIL",
+      "error": "The command 'create_simple_material' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S2.04 batch_apply_material on walls",
+      "result": "FAIL",
+      "error": "The command 'batch_apply_material' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S2.05 batch_scale_actors on enemy (2x)",
+      "result": "FAIL",
+      "error": "The command 'batch_scale_actors' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S2.06 batch_delete_actors (3 coins)",
+      "result": "FAIL",
+      "error": "The command 'batch_delete_actors' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S2.07 verify coins gone (0 found)",
+      "result": "FAIL",
+      "error": "Expected 0 coins, found 3"
+    },
+    {
+      "test": "S2.08 cleanup",
+      "result": "PASS"
+    },
+    {
+      "test": "S3.01 create BP_WF_AIEnemy (Pawn) with Health",
+      "result": "PASS"
+    },
+    {
+      "test": "S3.02 create BT_WF_Patrol (Sequence->Wait)",
+      "result": "FAIL",
+      "error": "The command 'create_behavior_tree' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S3.03 setup_ai_for_pawn",
+      "result": "FAIL",
+      "error": "The command 'setup_ai_for_pawn' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S3.04 spawn AI enemy",
+      "result": "PASS"
+    },
+    {
+      "test": "S3.05 get_blueprint_details on AI enemy",
+      "result": "PASS"
+    },
+    {
+      "test": "S3.06 cleanup",
+      "result": "PASS"
+    },
+    {
+      "test": "S4.01 setup_scene_lighting",
+      "result": "PASS"
+    },
+    {
+      "test": "S4.02 spawn floor",
+      "result": "PASS"
+    },
+    {
+      "test": "S4.03 create 3 materials (red, green, gold)",
+      "result": "FAIL",
+      "error": "The command 'create_simple_material' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S4.04 create 3 BPs (wall, pickup, enemy)",
+      "result": "PASS"
+    },
+    {
+      "test": "S4.05 add components (collision, mesh)",
+      "result": "FAIL",
+      "error": "The command 'add_component' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S4.06 spawn_actor_grid 4x4 walls",
+      "result": "FAIL",
+      "error": "The command 'spawn_actor_grid' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S4.07 spawn_actor_circle 8 pickups",
+      "result": "FAIL",
+      "error": "The command 'spawn_actor_circle' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S4.08 spawn_actor_line 3 enemies",
+      "result": "FAIL",
+      "error": "The command 'spawn_actor_line' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S4.09 batch_apply_material (walls + pickups)",
+      "result": "PASS"
+    },
+    {
+      "test": "S4.10 query level (find_actors x3, find_blueprints, get_level_info)",
+      "result": "FAIL",
+      "error": "Expected 4+ walls, found 0"
+    },
+    {
+      "test": "S4.11 batch_set_variable Score=10",
+      "result": "FAIL",
+      "error": "The command 'batch_set_variable' requires Arcwright Pro. Upgrade at arcwright.app"
+    },
+    {
+      "test": "S4.12 save_all",
+      "result": "PASS"
+    },
+    {
+      "test": "S4.13 audit: count all WF_ actors",
+      "result": "FAIL",
+      "error": "Expected 15+ total WF_ actors, found 4"
+    },
+    {
+      "test": "S4.14 cleanup all arena artifacts",
+      "result": "FAIL",
+      "error": "The command 'batch_delete_actors' requires Arcwright Pro. Upgrade at arcwright.app"
+    }
+  ]
+}

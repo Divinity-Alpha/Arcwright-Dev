@@ -1,0 +1,90 @@
+{
+  "name": "Racing",
+  "description": "Racing theme — high contrast yellow/black, angled cuts, DIN values, aggressive motion",
+  "version": "1.0",
+
+  "colors": {
+    "primary": "#FFD700",
+    "secondary": "#FF8C00",
+    "accent": "#FF0000",
+    "warning": "#FF8C00",
+    "danger": "#FF0000",
+
+    "panel_bg": "#0A0A0A",
+    "card_bg": "#151515",
+    "surface": "#1A1A1A",
+
+    "text": "#FFFFFF",
+    "text_secondary": "#B0B0B0",
+    "text_muted": "#666666",
+
+    "border": "#FFD70050",
+    "divider": "#FFD70030",
+
+    "health": "#00CC44",
+    "health_low": "#FF0000",
+    "mana": "#0088FF",
+    "stamina": "#FFD700",
+    "xp": "#FF8C00",
+
+    "shadow": "rgba(255,215,0,0.1)"
+  },
+
+  "fonts": {
+    "heading": {"family": "Racing Sans One", "weight": "Bold"},
+    "body": {"family": "Industry", "weight": "Regular"},
+    "mono": {"family": "DIN Alternate", "weight": "Bold"},
+    "ui": {"family": "Industry", "weight": "SemiBold"}
+  },
+
+  "sizes": {
+    "h1": 40,
+    "h2": 30,
+    "h3": 24,
+    "h4": 18,
+    "body": 16,
+    "small": 13,
+    "tiny": 11,
+    "icon_small": 24,
+    "icon_medium": 34,
+    "icon_large": 50,
+    "corner_radius": 0,
+    "border_width": 2,
+    "spacing_xs": 4,
+    "spacing_sm": 8,
+    "spacing_md": 14,
+    "spacing_lg": 22,
+    "spacing_xl": 30
+  },
+
+  "defaults": {
+    "TEXT": {
+      "color": "#FFFFFF",
+      "font_size": 16,
+      "font": "Industry"
+    },
+    "PROGRESS_BAR": {
+      "fill_color": "#FFD700",
+      "bar_color": "#1A1A1A",
+      "percent": 100
+    },
+    "BUTTON": {
+      "font_size": 16,
+      "normal_color": "#FFD700",
+      "hovered_color": "#FFE44D",
+      "pressed_color": "#CC9900"
+    },
+    "BORDER": {
+      "border_color": "#FFD70050",
+      "corner_radius": 0,
+      "background": "#151515"
+    },
+    "CANVAS": {},
+    "VBOX": {
+      "spacing": 8
+    },
+    "HBOX": {
+      "spacing": 8
+    }
+  }
+}

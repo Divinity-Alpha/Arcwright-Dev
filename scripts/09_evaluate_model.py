@@ -400,7 +400,7 @@ def load_model(model_path: str, base_model: str = None):
     return model, tokenizer, system_prompt
 
 
-def generate(model, tokenizer, system_prompt: str, prompt: str, max_tokens: int = 768) -> tuple[str, float]:
+def generate(model, tokenizer, system_prompt: str, prompt: str, max_tokens: int = 2048) -> tuple[str, float]:
     """Generate and return (output, time_seconds)."""
     import torch
 

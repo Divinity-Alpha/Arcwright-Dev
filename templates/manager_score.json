@@ -1,0 +1,20 @@
+{
+  "template_id": "manager_score",
+  "name": "Score Manager",
+  "category": "managers",
+  "description": "A persistent actor that tracks score via a variable. Custom event AddScore increments and prints the current score. Place once in the level.",
+  "version": "1.0",
+  "proven_in": "Pickup Collector Demo",
+  "customizable": {
+    "blueprint_name": "BP_ScoreTracker",
+    "initial_score": "Starting score (default: 0)",
+    "points_per_add": "Points per AddScore call (default: 1)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_ScoreTracker}}\nPARENT: Actor\n\nVAR Score: Int = {{initial_score|0}}\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: PrintString [InString=\"Score Tracker Active\"]\nNODE n3: Event_CustomEvent [EventName=\"AddScore\"]\nNODE n4: GetVar [Variable=Score]\nNODE n5: AddFloat [B={{points_per_add|1}}]\nNODE n6: SetVar [Variable=Score]\nNODE n7: PrintString\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n6.Execute\nEXEC n6.Then -> n7.Execute\n\nDATA n4.Value -> n5.A [Int]\nDATA n5.ReturnValue -> n6.Value [Int]\nDATA n5.ReturnValue -> n7.InString [String]",
+  "components": [],
+  "spawn_example": {
+    "location": {"x": 0, "y": 0, "z": 200},
+    "label": "ScoreTracker_1",
+    "notes": "Place above play area — no visual component needed"
+  }
+}

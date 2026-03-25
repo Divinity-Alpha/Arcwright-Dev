@@ -1,0 +1,45 @@
+{
+  "id": "position_display",
+  "name": "Position Display",
+  "category": "hud",
+  "description": "1st/2nd/3rd for racing",
+  "default_anchor": "TopRight",
+  "default_offset": [
+    -30,
+    20
+  ],
+  "default_size": [
+    100,
+    60
+  ],
+  "variables": [
+    {
+      "name": "Position",
+      "type": "String",
+      "default": "1st"
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "TEXT",
+    "name": "PositionText",
+    "properties": {
+      "text": "BIND:\"{Position}\"",
+      "font_size": "40",
+      "color": "$warning",
+      "bold": "true",
+      "justification": "Center"
+    },
+    "animations": [
+      {
+        "trigger": "OnChange",
+        "type": "ScalePop",
+        "params": {
+          "target_scale": 1.3,
+          "duration": 0.25
+        }
+      }
+    ],
+    "children": []
+  }
+}

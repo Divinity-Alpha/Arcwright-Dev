@@ -1,0 +1,36 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\source\\arcwright\\private\\arcwrightmodule.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\junk\\blueprintllmtest\\intermediate\\build\\win64\\x64\\blueprintllmtesteditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\arcwright\\definitions.arcwright.h",
+            "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\source\\arcwright\\public\\arcwrightmodule.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\slatecore\\public\\styling\\slatestyleregistry.h",
+            "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\source\\arcwright\\public\\commandserver.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\networking\\public\\common\\tcplistener.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\sockets\\public\\socketsubsystem.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\sockets\\public\\addressinfotypes.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\networking\\public\\interfaces\\ipv4\\ipv4endpoint.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\networking\\public\\interfaces\\ipv4\\ipv4address.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\networking\\public\\interfaces\\ipv4\\ipv4subnetmask.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\networking\\public\\common\\tcpsocketbuilder.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\sockets\\public\\sockets.h",
+            "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\source\\arcwright\\private\\tiergating.h",
+            "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\source\\arcwright\\public\\arcwrightdashboardpanel.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\slate\\public\\widgets\\input\\smultilineeditabletextbox.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\slate\\public\\widgets\\text\\smultilineeditabletext.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\slate\\public\\framework\\text\\slatetextlayoutfactory.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\slate\\public\\framework\\text\\slatetextlayout.h",
+            "c:\\junk\\blueprintllmtest\\plugins\\arcwright\\source\\arcwright\\public\\arcwrightstats.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\online\\http\\public\\interfaces\\ihttprequest.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\online\\http\\public\\interfaces\\ihttpbase.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\online\\http\\public\\interfaces\\ihttpresponse.h",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\online\\http\\public\\interfaces\\ihttpresponsecodes.inl",
+            "c:\\program files\\epic games\\ue_5.7\\engine\\source\\runtime\\online\\http\\public\\interfaces\\ihttpresponsecodes.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

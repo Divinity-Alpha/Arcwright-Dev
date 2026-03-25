@@ -1,0 +1,1130 @@
+{
+  "run": 13,
+  "timestamp": "20260313_191031",
+  "date": "2026-03-13",
+  "total_score": 40,
+  "max_score": 75,
+  "pct": 53.3,
+  "test_count": 15,
+  "categories": {
+    "multi": {
+      "intent": 6,
+      "plan": 3,
+      "exec": 12,
+      "verify": 8,
+      "quality": 11,
+      "count": 15
+    }
+  },
+  "failure_counts": {
+    "V3": 5,
+    "I1": 9,
+    "P2": 10,
+    "P1": 2,
+    "Q2": 4,
+    "V1": 2,
+    "E2": 1,
+    "E4": 1,
+    "E1": 1
+  },
+  "results": {
+    "X.01": {
+      "test_id": "X.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "spawn_actor_at",
+        "spawn_actor_at",
+        "spawn_actor_at"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create a health potion and spawn 3",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "a health potion"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "spawn_actor_at",
+            "params": {
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 3,
+            "command": "spawn_actor_at",
+            "params": {
+              "location": {
+                "x": 300,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 4,
+            "command": "spawn_actor_at",
+            "params": {
+              "location": {
+                "x": 600,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_Potion",
+            "asset_path": "/Game/Arcwright/Generated/BP_Potion",
+            "nodes_created": 6,
+            "nodes_expected": 4,
+            "connections_wired": 4,
+            "connections_expected": 4,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_Potion\nPARENT: Actor\n\nCATEGORY: Pickups\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE n3: PrintString [InString=\"Health Potion\"]\nNODE n4: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.CastSucceeded -> n3.Execute\nEXEC n3.Then -> n4.Execute\n\nDATA n1.OtherActor -> n2.Object [Actor]\u040e\u044b\u045fN\u040e\u044b\u045fN",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "label": "Actor5",
+            "class": "Actor",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "pitch": 0,
+              "yaw": 0,
+              "roll": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          },
+          "step": 2,
+          "command": "spawn_actor_at"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "label": "Actor6",
+            "class": "Actor",
+            "location": {
+              "x": 300,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "pitch": 0,
+              "yaw": 0,
+              "roll": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          },
+          "step": 3,
+          "command": "spawn_actor_at"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "label": "Actor7",
+            "class": "Actor",
+            "location": {
+              "x": 600,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "pitch": 0,
+              "yaw": 0,
+              "roll": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          },
+          "step": 4,
+          "command": "spawn_actor_at"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_Potion"
+        },
+        {
+          "type": "actor_count",
+          "passed": false,
+          "detail": "Found 0 actors, expected >= 2"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "V3"
+      ],
+      "duration_s": 166.73
+    },
+    "X.02": {
+      "test_id": "X.02",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create blueprint from description",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "set up fps controls and add dark lighting"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_FpsControls",
+            "asset_path": "/Game/Arcwright/Generated/BP_FpsControls",
+            "nodes_created": 9,
+            "nodes_expected": 6,
+            "connections_wired": 5,
+            "connections_expected": 6,
+            "compiled": false,
+            "compile_errors": [
+              "Node InputAction ToggleFPS: compiler error",
+              "Node Add to Viewport\nTarget is User Widget: compiler error",
+              "Node Remove from Parent\nTarget is Widget: compiler error"
+            ],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_FpsControls\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"ToggleFPS\"]\nNODE n2: FlipFlop\nNODE n3: SetVar [Variable=ShowFPS, Value=true]\nNODE n4: SetVar [Variable=ShowFPS, Value=false]\nNODE n5: AddToViewport [Content=FpsOverlay]\nNODE n6: RemoveFromParent [Target=FpsOverlay]\n\nEXEC n1.Pressed -> n2.Execute\nEXEC n2.A -> n3.Execute\nEXEC n2.B -> n4.Execute\nEXEC n3.Then -> n5.Execute\nEXEC n4.Then -> n6.Execute\n\nDATA n1.Pressed -> n2.IsA [Bool]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "No actor matching name='' class='DirectionalLight|Light'"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "V3"
+      ],
+      "duration_s": 111.3
+    },
+    "X.03": {
+      "test_id": "X.03",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete coins actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {
+              "class_filter": "coins"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "deleted": 0,
+            "failed": 0,
+            "errors": []
+          },
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "No matching actors found (as expected)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2"
+      ],
+      "duration_s": 161.07
+    },
+    "X.04": {
+      "test_id": "X.04",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "ERROR",
+        "summary": "GPU busy \u2014 try again",
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 180.0
+    },
+    "X.05": {
+      "test_id": "X.05",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create blueprint from description",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "build a boss room with one strong enemy and health pickups"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_BossRoom",
+            "asset_path": "/Game/Arcwright/Generated/BP_BossRoom",
+            "nodes_created": 11,
+            "nodes_expected": 10,
+            "connections_wired": 4,
+            "connections_expected": 9,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_BossRoom\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetActorLocation\nNODE n3: SpawnEnemyFromClass [EnemyClass=BP_StrongEnemy]\nNODE n4: SetActorHiddenInGame [bNewHidden=false]\nNODE n5: Delay [Duration=10.0]\nNODE n6: SpawnActorFromClass [ActorClass=BP_HealthPickup]\nNODE n7: SetActorHiddenInGame [bNewHidden=false]\nNODE n8: Delay [Duration=15.0]\nNODE n9: SpawnActorFromClass [ActorClass=BP_HealthPickup]\nNODE n10: SetActorHiddenInGame [bNewHidden=false]\n\nEXEC n1....",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_BossRoom"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2"
+      ],
+      "duration_s": 116.04
+    },
+    "X.06": {
+      "test_id": "X.06",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_behavior_tree"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create bt from description",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_behavior_tree",
+            "params": {
+              "prompt": "create a patrol enemy, set health to 200, spawn 5 of them"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "tree_asset_path": "/Game/Arcwright/BehaviorTrees/BT_PatrolEnemy.BT_PatrolEnemy",
+            "blackboard_asset_path": "/Game/Arcwright/BehaviorTrees/BB_PatrolEnemy.BB_PatrolEnemy",
+            "composite_count": 1,
+            "task_count": 2,
+            "decorator_count": 1,
+            "service_count": 0,
+            "total_node_count": 4
+          },
+          "dsl": "BEHAVIORTREE: BT_PatrolEnemy\nBLACKBOARD: BB_PatrolEnemy\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\nKEY Health: Float = 200.0\n\nTREE:\n\nSEQUENCE: Patrol\n  DECORATOR: Loop [InfiniteLoop=true]\n  TASK: MoveTo [Key=PatrolPoint, AcceptableRadius=50]\n  TASK: Wait [Duration=3.0]",
+          "step": 1,
+          "command": "create_behavior_tree"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Patrol|Enemy' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "V1"
+      ],
+      "duration_s": 43.2
+    },
+    "X.07": {
+      "test_id": "X.07",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "find_actors"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Add torches to hallway and make them glow warm",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "hallway"
+            },
+            "depends_on": null
+          }
+        ],
+        "validation_warnings": [
+          "Operation 1: unknown command 'batch_spawn_actor_at' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'",
+          "Operation 2: unknown command 'batch_set_material' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "No actor matching name='Torch' class=''"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "V3"
+      ],
+      "duration_s": 218.16
+    },
+    "X.08": {
+      "test_id": "X.08",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "ERROR",
+        "summary": "GPU busy \u2014 try again",
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Enemy' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 180.03
+    },
+    "X.09": {
+      "test_id": "X.09",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_replace_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Replace wall materials with brick and add bloom",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_replace_material",
+            "params": {
+              "old_material": "wall materials",
+              "new_material": "brick and add bloom"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Material 'wall materials' not found. Similar: MaterialAO MaterialError_Mat MAT_StoneWall MI_StoneWall M_Pack_Bonus_Wall_1",
+          "step": 1,
+          "command": "batch_replace_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E2",
+        "Q2"
+      ],
+      "duration_s": 111.42
+    },
+    "X.10": {
+      "test_id": "X.10",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "create_blueprint",
+        "create_data_table"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create 3 assets",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "weapons"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "enemy stats"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "create_data_table",
+            "params": {
+              "prompt": "and difficulty tables for my game"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_TimerLoop",
+            "asset_path": "/Game/Arcwright/Generated/BP_TimerLoop",
+            "nodes_created": 6,
+            "nodes_expected": 4,
+            "connections_wired": 2,
+            "connections_expected": 2,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_TimerLoop\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"OnTimer\", Time=0.5, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"OnTimer\"]\nNODE n4: PrintString [InString=\"Tick\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_EnemyStats",
+            "asset_path": "/Game/Arcwright/Generated/BP_EnemyStats",
+            "nodes_created": 12,
+            "nodes_expected": 7,
+            "connections_wired": 9,
+            "connections_expected": 6,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 3
+          },
+          "dsl": "BLUEPRINT: BP_EnemyStats\nPARENT: Actor\n\nVAR Health: Float = 100.0\nVAR Armor: Float = 50.0\nVAR Damage: Float = 10.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetVar [Variable=Health]\nNODE n3: PrintString [InString=\"Health: \"]\nNODE n4: GetVar [Variable=Armor]\nNODE n5: PrintString [InString=\"Armor: \"]\nNODE n6: GetVar [Variable=Damage]\nNODE n7: PrintString [InString=\"Damage: \"]\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.Then -> n5.Execute\nEXEC n5.Then -> n7.Execute\n\nDATA n2.Value -> n3.InString...",
+          "step": 2,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "table_asset_path": "/Game/Arcwright/DataTables/DT_Difficulty",
+            "struct_asset_path": "/Game/Arcwright/DataTables/FDifficultySettings",
+            "column_count": 6,
+            "row_count": 4
+          },
+          "dsl": "DATATABLE: DT_Difficulty\nSTRUCT: FDifficultySettings\n\nCOLUMN DifficultyLevel: String\nCOLUMN EnemyHealthMultiplier: Float = 1.0\nCOLUMN EnemyDamageMultiplier: Float = 1.0\nCOLUMN PlayerHealthMultiplier: Float = 1.0\nCOLUMN XPModifier: Float = 1.0\nCOLUMN LootChanceModifier: Float = 1.0\n\nROW Easy: \"Easy\", 0.5, 0.5, 1.5, 1.5, 2.0\nROW Normal: \"Normal\", 1.0, 1.0, 1.0, 1.0, 1.0\nROW Hard: \"Hard\", 1.5, 1.5, 0.8, 0.75, 0.5\nROW Nightmare: \"Nightmare\", 2.0, 2.0, 0.5, 0.5, 0.25",
+          "step": 3,
+          "command": "create_data_table"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "asset_exists",
+          "passed": true,
+          "detail": "Found asset: TestWeapon"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 546.16
+    },
+    "X.11": {
+      "test_id": "X.11",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "spawn_actor_at"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Delete enemies, create stronger version",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "stronger enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 3
+            },
+            "depends_on": 2
+          }
+        ],
+        "validation_warnings": [
+          "Operation 0: command 'batch_delete_actors' missing required params: ['labels'] \u2014 removed"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_StrongEnemy",
+            "asset_path": "/Game/Arcwright/Generated/BP_StrongEnemy",
+            "nodes_created": 5,
+            "nodes_expected": 3,
+            "connections_wired": 2,
+            "connections_expected": 2,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_StrongEnemy\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetVar [Variable=Health, Value=200]\nNODE n3: PrintString [InString=\"Strong Enemy Spawned\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute",
+          "step": 2,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "label": "Actor9",
+            "class": "Actor",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "pitch": 0,
+              "yaw": 0,
+              "roll": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          },
+          "step": 3,
+          "command": "spawn_actor_at"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_EnemyStats"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 467.09
+    },
+    "X.12": {
+      "test_id": "X.12",
+      "intent_score": 0,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply marble and make the room brighter to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply marble and make the room brighter to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "marble and make the room brighter"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Material 'marble and make the room brighter' not found. Similar: MAT_MarbleFloor"
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1"
+      ],
+      "duration_s": 150.54
+    },
+    "X.13": {
+      "test_id": "X.13",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "create_blueprint",
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create 3 assets",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "key"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "locked door"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "and place them in the level"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Failed to build Blueprint: BP_Demo119.Dsl.Dsl.Dsl.Dsl",
+          "dsl": "BLUEPRINT: BP_Demo119.Dsl.Dsl.Dsl.Dsl\nPARENT: Actor\n\nGRAPH: EventGraph",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_LockedDoor",
+            "asset_path": "/Game/Arcwright/Generated/BP_LockedDoor",
+            "nodes_created": 3,
+            "nodes_expected": 0,
+            "connections_wired": 0,
+            "connections_expected": 0,
+            "compiled": true,
+            "compile_errors": [],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_LockedDoor\nPARENT: Actor\n\nvar DoorOpen: bool = false\nvar KeyCard: actor = none\n\ngraph: EventGraph\n\nnode n1: Event_ActorBeginOverlap\nnode n2: CastToCharacter\nnode n3: SetVar [Variable=KeyCard]\nnode n4: Branch\nnode n5: GetVar [Variable=DoorOpen]\nnode n6: Branch\nnode n7: SetActorHiddenInGame [bNewHidden=false]\nnode n8: PrintString [InString=\"Door Unlocked\"]\nnode n9: SetActorHiddenInGame [bNewHidden=true]\nnode n10: PrintString [InString=\"Door Locked\"]\n\nexec n1.Then -> n2.Execute\nexec n...",
+          "step": 2,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "blueprint_name": "BP_FloorTrigger",
+            "asset_path": "/Game/Arcwright/Generated/BP_FloorTrigger",
+            "nodes_created": 8,
+            "nodes_expected": 6,
+            "connections_wired": 5,
+            "connections_expected": 5,
+            "compiled": false,
+            "compile_errors": [
+              "Node Event ActorBeginOverlap: compiler error",
+              "Node Set IsOnFloor: compiler error"
+            ],
+            "variables_created": 0
+          },
+          "dsl": "BLUEPRINT: BP_FloorTrigger\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetVar [Variable=IsOnFloor, Value=true]\nNODE n3: PrintString [InString=\"Floor Contact\"]\nNODE n4: Event_ActorEndOverlap\nNODE n5: SetVar [Variable=IsOnFloor, Value=false]\nNODE n6: PrintString [InString=\"No Floor\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\n\nDATA n1.OtherActor -> n2.Target [Actor]",
+          "step": 3,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_LockedDoor"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E4"
+      ],
+      "duration_s": 268.5
+    },
+    "X.14": {
+      "test_id": "X.14",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Add torches and apply gold material",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "material_name": "gold"
+            },
+            "depends_on": 1
+          }
+        ],
+        "validation_warnings": [
+          "Operation 0: unknown command 'add_torches_along_corridor' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_count",
+          "passed": false,
+          "detail": "Found 0 actors, expected >= 4"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 150.17
+    },
+    "X.15": {
+      "test_id": "X.15",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "setup_scene_lighting"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Setup outdoor_day lighting",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "setup_scene_lighting",
+            "params": {
+              "preset": "outdoor_day"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "preset": "outdoor_day",
+            "actors": [
+              {
+                "label": "SceneDirectionalLight",
+                "intensity": 10,
+                "pitch": -60
+              },
+              {
+                "label": "SceneSkyLight",
+                "intensity": 1
+              },
+              {
+                "label": "SceneHeightFog",
+                "density": 0.004999999888241291
+              }
+            ],
+            "actors_created": 3
+          },
+          "step": 1,
+          "command": "setup_scene_lighting"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "No actor matching name='Floor|Ground' class=''"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "V3"
+      ],
+      "duration_s": 0.13
+    }
+  }
+}

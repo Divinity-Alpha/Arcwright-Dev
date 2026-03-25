@@ -1,0 +1,50 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Arcwright — RunPod Debug Container
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# Minimal container that logs environment info and stays alive.
+# No model loading — just probes GPU, disk, packages, paths.
+#
+# Build:
+#   docker build -f Dockerfile.debug -t divinityalpha/arcwright-worker:debug .
+#
+# Push:
+#   docker push divinityalpha/arcwright-worker:debug
+# ═══════════════════════════════════════════════════════════════════════════════
+
+FROM runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
+
+WORKDIR /app
+
+# ─── System dependencies ───
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# ─── Python dependencies ───
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# ─── Copy debug handler (replaces production handler.py) ───
+COPY debug_handler.py ./handler.py
+
+# ─── Copy system prompts (so we can verify they're present) ───
+COPY system_prompts/ ./system_prompts/
+
+# ─── NO LoRA adapters in debug image ───
+# Debug handler checks if /models/* paths exist and reports findings.
+# Adapters are NOT baked in — keeps image small and build fast.
+# If adapters are mounted via RunPod network storage, the handler will see them.
+RUN mkdir -p /models
+
+# ─── Environment (same as production) ───
+ENV BASE_MODEL="meta-llama/Meta-Llama-3.1-70B"
+ENV MODEL_DIR="/models"
+ENV PROMPT_DIR="/app/system_prompts"
+ENV TENSOR_PARALLEL="1"
+ENV QUANTIZATION="bitsandbytes"
+ENV PYTHONUNBUFFERED=1
+ENV HF_HOME=/app/hf_cache
+
+# ─── Entrypoint ───
+CMD ["python", "-u", "handler.py"]

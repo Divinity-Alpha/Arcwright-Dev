@@ -1,0 +1,120 @@
+{
+  "timestamp": "20260314_235254",
+  "total": 28,
+  "pass": 28,
+  "fail": 0,
+  "tests": [
+    {
+      "test": "set_actor_tick: enable with interval",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_tick: disable",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_tick: bad actor error",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_lifespan: 60s",
+      "result": "PASS"
+    },
+    {
+      "test": "get_actor_bounds: success",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_enabled: toggle",
+      "result": "PASS"
+    },
+    {
+      "test": "set_actor_enabled: bad actor error",
+      "result": "PASS"
+    },
+    {
+      "test": "create_save_game: with variables",
+      "result": "PASS"
+    },
+    {
+      "test": "create_save_game: empty name error",
+      "result": "PASS"
+    },
+    {
+      "test": "get_data_table_rows: non-existent error",
+      "result": "PASS"
+    },
+    {
+      "test": "DT row ops: add + get + edit",
+      "result": "PASS"
+    },
+    {
+      "test": "set_player_input_mapping: basic call",
+      "result": "PASS"
+    },
+    {
+      "test": "create_anim_blueprint: bad skeleton error",
+      "result": "PASS"
+    },
+    {
+      "test": "create_anim_montage: bad animation error",
+      "result": "PASS"
+    },
+    {
+      "test": "create_blend_space: bad skeleton error",
+      "result": "PASS"
+    },
+    {
+      "test": "get_skeleton_bones: bad skeleton error",
+      "result": "PASS"
+    },
+    {
+      "test": "get_available_animations: empty results for bad skeleton",
+      "result": "PASS"
+    },
+    {
+      "test": "set_skeletal_mesh: bad mesh error",
+      "result": "PASS"
+    },
+    {
+      "test": "play_animation: bad actor error",
+      "result": "PASS"
+    },
+    {
+      "test": "add_anim_state: bad ABP error",
+      "result": "PASS"
+    },
+    {
+      "test": "add_anim_transition: graceful handling",
+      "result": "PASS"
+    },
+    {
+      "test": "activate_niagara: bad actor error",
+      "result": "PASS"
+    },
+    {
+      "test": "set_niagara_parameter: bad actor error",
+      "result": "PASS"
+    },
+    {
+      "test": "get_niagara_parameters: bad actor error",
+      "result": "PASS"
+    },
+    {
+      "test": "get_sublevel_list: success",
+      "result": "PASS"
+    },
+    {
+      "test": "create_sublevel: P6TestSublevel",
+      "result": "PASS"
+    },
+    {
+      "test": "set_level_visibility: toggle",
+      "result": "PASS"
+    },
+    {
+      "test": "move_actor_to_sublevel: bad actor error",
+      "result": "PASS"
+    }
+  ]
+}

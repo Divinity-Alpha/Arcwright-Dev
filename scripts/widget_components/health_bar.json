@@ -1,0 +1,88 @@
+{
+  "id": "health_bar",
+  "name": "Health Bar",
+  "category": "hud",
+  "description": "Health progress bar with icon and numeric value",
+  "default_anchor": "TopLeft",
+  "default_offset": [
+    20,
+    20
+  ],
+  "default_size": [
+    280,
+    40
+  ],
+  "variables": [
+    {
+      "name": "PlayerHealth",
+      "type": "Float",
+      "default": 100.0
+    },
+    {
+      "name": "MaxHealth",
+      "type": "Float",
+      "default": 100.0
+    }
+  ],
+  "options": {
+    "show_icon": {
+      "type": "bool",
+      "default": true
+    },
+    "show_numeric": {
+      "type": "bool",
+      "default": true
+    }
+  },
+  "tree": {
+    "type": "HBOX",
+    "name": "HealthRow",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "HealthIcon",
+        "properties": {
+          "text": "+",
+          "font_size": "22",
+          "color": "$health",
+          "bold": "true"
+        },
+        "condition": "show_icon"
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "HealthFill",
+        "properties": {
+          "percent": "BIND:PlayerHealth/MaxHealth",
+          "fill_color": "$health",
+          "bar_color": "$surface",
+          "size_x": "200",
+          "size_y": "20"
+        },
+        "animations": [
+          {
+            "trigger": "OnDamage",
+            "type": "Shake",
+            "params": {
+              "duration": 0.3,
+              "intensity": 3
+            }
+          }
+        ]
+      },
+      {
+        "type": "TEXT",
+        "name": "HealthText",
+        "properties": {
+          "text": "BIND:\"{PlayerHealth}/{MaxHealth}\"",
+          "font_size": "16",
+          "color": "$text"
+        },
+        "condition": "show_numeric"
+      }
+    ]
+  }
+}

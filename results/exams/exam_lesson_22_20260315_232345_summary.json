@@ -1,0 +1,88 @@
+{
+  "lesson_id": "lesson_22",
+  "lesson_name": "Error Correction: Variables, Spawn, and UI Syntax",
+  "model": "models/blueprint-lora-v14/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260315_232345",
+  "total_prompts": 15,
+  "valid_syntax": 0,
+  "valid_syntax_pct": 0.0,
+  "avg_similarity_score": 0.0,
+  "per_category": {
+    "branch_with_variable": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "branch_float_compare": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "foreach_typed_array": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "foreach_string_array": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "variable_add_int": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "variable_subtract_float": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "spawn_with_transform": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "spawn_on_overlap": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "ui_toggle_notbool": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "ui_switch_notbool": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "ui_safe_remove": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "ui_endplay_dispose": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "ui_load_transition": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "ui_splash_transition": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    },
+    "ui_notification_timed": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 0.0
+    }
+  }
+}

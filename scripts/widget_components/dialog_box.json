@@ -1,0 +1,100 @@
+{
+  "id": "dialog_box",
+  "name": "Dialog Box",
+  "category": "menu",
+  "description": "Portrait, name, text, choice buttons",
+  "default_anchor": "BottomCenter",
+  "default_offset": [
+    0,
+    -20
+  ],
+  "default_size": [
+    700,
+    200
+  ],
+  "variables": [
+    {
+      "name": "SpeakerName",
+      "type": "String",
+      "default": ""
+    },
+    {
+      "name": "DialogText",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "DialogPanel",
+    "properties": {
+      "spacing": "16"
+    },
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "CharPortrait",
+        "properties": {
+          "tint": "$text_muted",
+          "size_x": "120",
+          "size_y": "160"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "DialogContent",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "SpeakerLabel",
+            "properties": {
+              "text": "BIND:\"{SpeakerName}\"",
+              "font_size": "18",
+              "color": "$accent",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "DialogTextBlock",
+            "properties": {
+              "text": "BIND:\"{DialogText}\"",
+              "font_size": "16",
+              "color": "$text",
+              "wrap": "true"
+            }
+          },
+          {
+            "type": "HBOX",
+            "name": "ChoiceRow",
+            "properties": {
+              "spacing": "12"
+            },
+            "children": [
+              {
+                "type": "BUTTON",
+                "name": "Choice1",
+                "properties": {
+                  "text": "Option A",
+                  "font_size": "14"
+                }
+              },
+              {
+                "type": "BUTTON",
+                "name": "Choice2",
+                "properties": {
+                  "text": "Option B",
+                  "font_size": "14"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

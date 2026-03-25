@@ -1,0 +1,113 @@
+{
+  "lesson_id": "lesson_16",
+  "lesson_name": "Generalization: Varied Phrasing for Weak Patterns",
+  "model": "models/blueprint-lora-v12/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260310_133727",
+  "total_prompts": 20,
+  "valid_syntax": 20,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 95.1,
+  "per_category": {
+    "gate_debug_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.8
+    },
+    "gate_debug_v3": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "string_damage_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "string_damage_v3": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.3
+    },
+    "math_heavy_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 91.7
+    },
+    "math_heavy_v3": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 91.7
+    },
+    "pressure_plate_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 94.1
+    },
+    "pressure_plate_v3": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 94.1
+    },
+    "ambiguous_pickup_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 94.7
+    },
+    "ambiguous_pickup_v3": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 94.7
+    },
+    "physics_gravity_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "physics_toggle_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "movement_patrol_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 93.3
+    },
+    "movement_patrol_v3": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 86.7
+    },
+    "damage_zone_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "damage_zone_v3": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 95.0
+    },
+    "trigger_sequence_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "loading_screen_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 95.2
+    },
+    "foreach_filter_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 84.2
+    },
+    "moving_platform_v2": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    }
+  }
+}

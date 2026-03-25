@@ -1,0 +1,40 @@
+{
+  "id": "stamina_bar",
+  "name": "Stamina Bar",
+  "category": "hud",
+  "description": "Thin stamina bar",
+  "default_anchor": "TopLeft",
+  "default_offset": [
+    20,
+    100
+  ],
+  "default_size": [
+    200,
+    16
+  ],
+  "variables": [
+    {
+      "name": "Stamina",
+      "type": "Float",
+      "default": 100.0
+    },
+    {
+      "name": "MaxStamina",
+      "type": "Float",
+      "default": 100.0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "PROGRESS_BAR",
+    "name": "StaminaFill",
+    "properties": {
+      "percent": "BIND:Stamina/MaxStamina",
+      "fill_color": "$stamina",
+      "bar_color": "$surface",
+      "size_x": "200",
+      "size_y": "8"
+    },
+    "children": []
+  }
+}

@@ -1,7 +1,7 @@
 {
   "lesson_id": "lesson_02",
   "lesson_name": "Corrections: Variables, Events, Complex Nodes",
-  "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v5\\final",
+  "model": "C:\\Arcwright\\models\\blueprint-lora-v5\\final",
   "base_model": "meta-llama/Meta-Llama-3.1-70B",
   "timestamp": "20260227_212314",
   "total_prompts": 24,

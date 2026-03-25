@@ -1,0 +1,1908 @@
+{
+  "failures": [
+    {
+      "test_id": "F.01",
+      "prompt": "Set up FPS controls for the game",
+      "root_causes": [
+        "I1",
+        "P2"
+      ],
+      "description": "I1, P2",
+      "first_seen_run": 1,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "F.02",
+      "prompt": "Add dark indoor lighting to the level",
+      "root_causes": [
+        "P2",
+        "V3"
+      ],
+      "description": "P2, V3",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "F.03",
+      "prompt": "Create a ground floor with stone texture",
+      "root_causes": [
+        "P2",
+        "V3"
+      ],
+      "description": "P2, E1, V3, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "F.04",
+      "prompt": "Create an enemy with 100 health, 15 damage, and 300 speed",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "F.05",
+      "prompt": "Create a gold coin pickup worth 10 points",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "F.06",
+      "prompt": "Create a torch with a point light",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "F.07",
+      "prompt": "Create a health pickup that heals 25 HP",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "F.08",
+      "prompt": "Spawn 5 enemies around the level",
+      "root_causes": [
+        "P2",
+        "E3",
+        "V3",
+        "Q2"
+      ],
+      "description": "V3",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "F.09",
+      "prompt": "Spawn 8 coins around the level",
+      "root_causes": [
+        "P2",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "description": "P2, E1, V3, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "F.10",
+      "prompt": "Spawn 4 torches along the walls",
+      "root_causes": [
+        "P1",
+        "V3",
+        "Q2"
+      ],
+      "description": "Timeout after 300s (hard deadline)",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.01",
+      "prompt": "Create a health pickup that restores 25 HP when the player touches it",
+      "root_causes": [
+        "E1",
+        "Q2"
+      ],
+      "description": "Timeout after 300s (hard deadline)",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.02",
+      "prompt": "Make a coin that adds 10 points to the score and destroys itself",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.03",
+      "prompt": "Build a door that opens when the player has a key",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.04",
+      "prompt": "Create a pressure plate that activates when something stands on it",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.05",
+      "prompt": "Make a timed bomb that explodes after 5 seconds",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.06",
+      "prompt": "Build a checkpoint that saves the player's position",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.07",
+      "prompt": "Create a turret that fires at the player every 2 seconds when in range",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.08",
+      "prompt": "Make a moving platform that goes up 300 units and comes back down",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.09",
+      "prompt": "Build a score manager that tracks points and high score",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.10",
+      "prompt": "Create a wave spawner that sends enemies every 15 seconds",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.11",
+      "prompt": "Make a day night cycle that toggles every 60 seconds",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.12",
+      "prompt": "Build a respawn system that resets the player after 3 seconds",
+      "root_causes": [
+        "V1"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.13",
+      "prompt": "Create a treasure chest that gives random gold between 10 and 50",
+      "root_causes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 1,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.14",
+      "prompt": "Make a lever that toggles between on and off",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 4,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.15",
+      "prompt": "Build a damage zone that hurts 10 HP per second",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 4,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.16",
+      "prompt": "Create a teleporter that moves the player to a target point",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 4,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.17",
+      "prompt": "Make a blinking light that turns on and off every 3 seconds",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 4,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.18",
+      "prompt": "Create a spinning actor that rotates on its Z axis",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 4,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.19",
+      "prompt": "Build a spring pad that launches the player upward",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 4,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.20",
+      "prompt": "Create a game manager that initializes score and health",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 4,
+      "consecutive_failures": 0,
+      "priority": "LOW",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.21",
+      "prompt": "Make a patrol AI that walks between two waypoints",
+      "root_causes": [
+        "P2",
+        "V1"
+      ],
+      "description": "P2, E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.22",
+      "prompt": "Build a boss AI with three phases based on health",
+      "root_causes": [
+        "P2",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "description": "P2, E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.23",
+      "prompt": "Create a weapons table with name, damage, fire rate, and ammo",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.24",
+      "prompt": "Make an enemy stats table with name, health, damage, and XP reward",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "C.25",
+      "prompt": "Build a difficulty settings table with multipliers for health and damage",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.01",
+      "prompt": "Set health to 200 on all enemies",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.02",
+      "prompt": "Make the enemies faster",
+      "root_causes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "description": "P2",
+      "first_seen_run": 1,
+      "last_seen_run": 11,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.03",
+      "prompt": "Double the enemy damage",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "P2",
+      "first_seen_run": 1,
+      "last_seen_run": 7,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.04",
+      "prompt": "Gold coins should be worth 50 each",
+      "root_causes": [
+        "P2",
+        "E3",
+        "Q2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 11,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.05",
+      "prompt": "Reduce torch intensity to 2000",
+      "root_causes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "description": "P2",
+      "first_seen_run": 1,
+      "last_seen_run": 11,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.06",
+      "prompt": "All enemies need 500 HP and 40 damage",
+      "root_causes": [
+        "I1",
+        "P2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.07",
+      "prompt": "Make the health pickups heal 50 instead of 25",
+      "root_causes": [
+        "P2",
+        "E3",
+        "Q2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.09",
+      "prompt": "Replace the texture on every floor with marble",
+      "root_causes": [
+        "E1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.10",
+      "prompt": "Make the torches look like gold",
+      "root_causes": [
+        "E1",
+        "Q2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.11",
+      "prompt": "Swap the stone material to concrete on all walls",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.12",
+      "prompt": "Replace stone with brick everywhere in the level",
+      "root_causes": [
+        "E2",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.13",
+      "prompt": "Apply the lava material to all hazard zones",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 7,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.14",
+      "prompt": "Change the wall texture to M_Pack_Bonus_Stone_2",
+      "root_causes": [
+        "E1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.15",
+      "prompt": "Scale all enemies up by 1.5",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.16",
+      "prompt": "Make the coins smaller",
+      "root_causes": [
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "description": "P1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.17",
+      "prompt": "Delete all the gold coins from the level",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 7,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.18",
+      "prompt": "Remove every torch",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 7,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.19",
+      "prompt": "Hide all the health pickups",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.20",
+      "prompt": "Move all coins up by 50 units",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.21",
+      "prompt": "Clear out all the damage zones",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 7,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.22",
+      "prompt": "Add a point light to every torch",
+      "root_causes": [
+        "E1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.23",
+      "prompt": "Give all enemies a sphere collision component",
+      "root_causes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.24",
+      "prompt": "Rename BP_GoldCoin to BP_TreasureCoin",
+      "root_causes": [
+        "E3",
+        "V1",
+        "Q2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.25",
+      "prompt": "Change the enemy parent class to Character",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.26",
+      "prompt": "The enemies are too weak, buff them",
+      "root_causes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 11,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.27",
+      "prompt": "Everything looks too plain, change the walls",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.28",
+      "prompt": "Make all coins worth double",
+      "root_causes": [
+        "E3",
+        "E1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 11,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.29",
+      "prompt": "The torches are too bright, dim them",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 11,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.30",
+      "prompt": "Replace the material on all walls with M_Pack_Bonus_Stone_2",
+      "root_causes": [
+        "E1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.31",
+      "prompt": "Swap the wall material to marble",
+      "root_causes": [
+        "E1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.32",
+      "prompt": "Change the texture on all the walls to stone",
+      "root_causes": [
+        "E1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.33",
+      "prompt": "Make the floor darker",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 14,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.34",
+      "prompt": "Set the coin value to 100 on every pickup",
+      "root_causes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 8,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.35",
+      "prompt": "Increase enemy detection range to 1200",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 11,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.01",
+      "prompt": "How many enemies are in the level?",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.02",
+      "prompt": "Show me all the blueprints in the project",
+      "root_causes": [
+        "P1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.03",
+      "prompt": "What's in the level right now?",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.04",
+      "prompt": "Which blueprints have a Health variable?",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "I1, P2, E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.05",
+      "prompt": "How many coins did I place?",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.06",
+      "prompt": "List all the materials in the project",
+      "root_causes": [
+        "P1"
+      ],
+      "description": "P1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.07",
+      "prompt": "What components does the enemy blueprint have?",
+      "root_causes": [
+        "P1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.08",
+      "prompt": "How many actors total are in the level?",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.09",
+      "prompt": "Show me all the data tables I've created",
+      "root_causes": [
+        "P1"
+      ],
+      "description": "P1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.10",
+      "prompt": "What variables does BP_Enemy have?",
+      "root_causes": [
+        "P1"
+      ],
+      "description": "P1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.11",
+      "prompt": "Are there any torches in the level?",
+      "root_causes": [
+        "P1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.12",
+      "prompt": "How many health pickups are placed?",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.13",
+      "prompt": "What's the current lighting setup?",
+      "root_causes": [
+        "P1"
+      ],
+      "description": "P1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.14",
+      "prompt": "List all behavior trees in the project",
+      "root_causes": [
+        "P1"
+      ],
+      "description": "P1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "Q.15",
+      "prompt": "Show me everything matching 'wall'",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "X.01",
+      "prompt": "Create a health potion and spawn 3 of them",
+      "root_causes": [
+        "V3"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.02",
+      "prompt": "Set up FPS controls and add dark lighting",
+      "root_causes": [
+        "I1",
+        "P2"
+      ],
+      "description": "E1, V3, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.03",
+      "prompt": "Delete all coins and replace them with gems worth 100",
+      "root_causes": [
+        "I1",
+        "P2"
+      ],
+      "description": "I1, P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.04",
+      "prompt": "Make all enemies tougher and change lighting to outdoor",
+      "root_causes": [
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "description": "E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.05",
+      "prompt": "Build a boss room with one strong enemy and health pickups",
+      "root_causes": [
+        "I1",
+        "P2"
+      ],
+      "description": "P2, E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.06",
+      "prompt": "Create a patrol enemy, set health to 200, spawn 5 of them",
+      "root_causes": [
+        "I1",
+        "P2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.07",
+      "prompt": "Add torches to the hallway and make them glow warm",
+      "root_causes": [
+        "P2",
+        "V3"
+      ],
+      "description": "E1, V3, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.08",
+      "prompt": "Create an enemy and a behavior tree and wire them together",
+      "root_causes": [
+        "I1",
+        "P2"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.09",
+      "prompt": "Replace all wall materials with brick and add bloom",
+      "root_causes": [
+        "I1",
+        "P2",
+        "E2",
+        "Q2"
+      ],
+      "description": "I1, P2, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.10",
+      "prompt": "Create weapons, enemy stats, and difficulty tables for my game",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 12,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "X.11",
+      "prompt": "Delete all enemies, create a stronger version, spawn 3",
+      "root_causes": [
+        "P2"
+      ],
+      "description": "P2, E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.12",
+      "prompt": "Change walls to marble and make the room brighter",
+      "root_causes": [
+        "I1",
+        "E1"
+      ],
+      "description": "I1, E1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.13",
+      "prompt": "Create a key, a locked door, and place them in the level",
+      "root_causes": [
+        "P2",
+        "E4"
+      ],
+      "description": "E1, V1, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.14",
+      "prompt": "Add 6 torches along the corridor and apply gold material",
+      "root_causes": [
+        "P2",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "description": "P2, E1, V3, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "X.15",
+      "prompt": "Set up the arena: floor, walls, lighting, enemies, and pickups",
+      "root_causes": [
+        "I1",
+        "P2",
+        "V3"
+      ],
+      "description": "P2, E1, V3, Q2",
+      "first_seen_run": 1,
+      "last_seen_run": 15,
+      "consecutive_failures": 1,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 14
+    },
+    {
+      "test_id": "V.10",
+      "prompt": "Too many coins",
+      "root_causes": [
+        "I1",
+        "P1"
+      ],
+      "description": "I1, P1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.01",
+      "prompt": "Create a blueprint called BP_Test with no functionality",
+      "root_causes": [
+        "E1",
+        "V1"
+      ],
+      "description": "E1, V1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.02",
+      "prompt": "Delete everything in the level",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.03",
+      "prompt": "Set health to -50 on all enemies",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.04",
+      "prompt": "Apply a material that doesn't exist to the walls",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.05",
+      "prompt": "Create 100 enemies",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.06",
+      "prompt": "Change the material on actors that don't exist",
+      "root_causes": [
+        "E1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.07",
+      "prompt": "Rename a blueprint that doesn't exist",
+      "root_causes": [
+        "I1",
+        "P1"
+      ],
+      "description": "E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.08",
+      "prompt": "Make the walls transparent",
+      "root_causes": [
+        "P2",
+        "E1"
+      ],
+      "description": "P2, E1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.09",
+      "prompt": "Create a weapon that does 999999 damage",
+      "root_causes": [
+        "E1",
+        "V1"
+      ],
+      "description": "E1, V1",
+      "first_seen_run": 1,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "M.08",
+      "prompt": "Change the material on all the walls to brick",
+      "root_causes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 7,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "V.01",
+      "prompt": "The level feels empty",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "V.02",
+      "prompt": "Make it better",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "V.03",
+      "prompt": "The game is too easy",
+      "root_causes": [
+        "I1",
+        "V1",
+        "Q2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "V.04",
+      "prompt": "I'm stuck, help me",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "V.05",
+      "prompt": "Can you suggest what to add next?",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "V.06",
+      "prompt": "The boss room needs to feel more dramatic",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "V.07",
+      "prompt": "Something doesn't look right about the lighting",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "V.08",
+      "prompt": "I need more variety",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "V.09",
+      "prompt": "The enemies are boring",
+      "root_causes": [
+        "I2"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 5,
+      "consecutive_failures": 0,
+      "priority": "MEDIUM",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    },
+    {
+      "test_id": "E.10",
+      "prompt": "Undo the last thing you did",
+      "root_causes": [
+        "I1",
+        "V1"
+      ],
+      "description": "Connection refused on port 13380",
+      "first_seen_run": 4,
+      "last_seen_run": 6,
+      "consecutive_failures": 0,
+      "priority": "HIGH",
+      "fix_attempted": "",
+      "status": "FIXED",
+      "fixed_in_run": 15
+    }
+  ]
+}

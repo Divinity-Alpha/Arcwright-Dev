@@ -1,14 +1,14 @@
-# BlueprintLLM — Claude Code Project Context
+# Arcwright — Claude Code Project Context
 
 > **Last Updated:** 2026-03-02
 > **Owner:** Divinity Alpha
-> **Repo:** github.com/Divinity-Alpha/BlueprintLLM
+> **Repo:** github.com/Divinity-Alpha/Arcwright
 
 ---
 
 ## What This Project Is
 
-BlueprintLLM is a self-improving AI system that trains LLMs to generate **validated, structurally correct** Unreal Engine 5 Blueprint DSL from natural language descriptions. The core innovation is the **teaching loop** — a closed-loop cycle of train → examine → grade → create lesson → retrain that targets specific weaknesses each iteration.
+**Arcwright** (formerly BlueprintLLM) is a self-improving AI system that trains LLMs to generate **validated, structurally correct** Unreal Engine 5 Blueprint DSL from natural language descriptions. The core innovation is the **teaching loop** — a closed-loop cycle of train → examine → grade → create lesson → retrain that targets specific weaknesses each iteration.
 
 The long-term vision is a platform that trains validated AI models for ANY structured language (not just Blueprints). Blueprints are the proof-of-concept. The teaching loop infrastructure is language-agnostic.
 
@@ -108,7 +108,7 @@ C:\BlueprintLLM\
 │   ├── backup_utils.py
 │   ├── system_prompt.txt               # Training system prompt
 │   └── mcp_client/                     # TCP client for UE plugin
-│       ├── blueprint_client.py         # BlueprintLLMClient class
+│       ├── blueprint_client.py         # ArcwrightClient class
 │       ├── verify.py                   # Quick connectivity test
 │       └── test_runner.py              # Batch IR import + report
 ├── datasets/
@@ -259,7 +259,7 @@ Format: `[STEP X.Y] STARTING/COMPLETE/PROGRESS: Description`
 - Pre-training safety backups (keep last 3)
 - Scheduled watchdog backups every 6 hours (keep last 5)
 
-**Tier 2: Secondary SSD Backup (D:\BlueprintLLMBackup\)**
+**Tier 2: Secondary SSD Backup (D:\ArcwrightBackup\)**
 - **Mirror of ALL local backups** — automatic duplicate
 - Protects against primary drive failure
 - MUST be updated every time a local backup runs
@@ -273,7 +273,7 @@ Format: `[STEP X.Y] STARTING/COMPLETE/PROGRESS: Description`
   - `pipeline_config.json` — current configuration
   - `dashboard/` — generated dashboard HTML
 
-**Tier 3: Git (github.com/Divinity-Alpha/BlueprintLLM)**
+**Tier 3: Git (github.com/Divinity-Alpha/Arcwright)**
 - All scripts (scripts/*.py)
 - Documentation
 - System prompts
@@ -283,14 +283,14 @@ Format: `[STEP X.Y] STARTING/COMPLETE/PROGRESS: Description`
 
 Every backup script MUST:
 1. Save to `C:\BlueprintLLM\backups\` (primary)
-2. Mirror to `D:\BlueprintLLMBackup\` (secondary SSD)
+2. Mirror to `D:\ArcwrightBackup\` (secondary SSD)
 3. Include SHA256 checksums in backup_manifest.json
 4. Log the backup to `logs/backup_log.txt`
 
 ```python
 # Standard backup paths
 PRIMARY_BACKUP = r"C:\BlueprintLLM\backups"
-SECONDARY_BACKUP = r"D:\BlueprintLLMBackup"
+SECONDARY_BACKUP = r"D:\ArcwrightBackup"
 
 # After any backup to PRIMARY_BACKUP:
 import shutil

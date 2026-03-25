@@ -1,0 +1,22 @@
+{
+  "template_id": "manager_wave_spawner",
+  "name": "Wave Spawner",
+  "category": "managers",
+  "description": "A manager that spawns waves of actors at timed intervals. Tracks current wave number and prints wave announcements. Uses SetTimerByFunctionName for wave timing and a counter variable.",
+  "version": "1.0",
+  "proven_in": "Template Library",
+  "customizable": {
+    "blueprint_name": "Name of the Blueprint (default: BP_WaveSpawner)",
+    "wave_interval": "Seconds between waves (default: 15.0)",
+    "start_message": "Message on game start (default: Wave Spawner Active!)",
+    "wave_message": "Message per wave (default: Wave incoming!)",
+    "spawn_class": "Class to spawn each wave (default: Actor)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_WaveSpawner}}\nPARENT: Actor\n\nVAR CurrentWave: Int = 0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: PrintString [InString=\"{{start_message|Wave Spawner Active!}}\"]\nNODE n3: SetTimerByFunctionName [FunctionName=\"SpawnWave\", Time={{wave_interval|15.0}}, Looping=true]\nNODE n4: Event_CustomEvent [EventName=\"SpawnWave\"]\nNODE n5: GetVar [Variable=CurrentWave]\nNODE n6: AddFloat [B=1]\nNODE n7: SetVar [Variable=CurrentWave]\nNODE n8: PrintString [InString=\"{{wave_message|Wave incoming!}}\"]\nNODE n9: PrintString\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n4.Then -> n7.Execute\nEXEC n7.Then -> n8.Execute\nEXEC n8.Then -> n9.Execute\n\nDATA n5.Value -> n6.A [Int]\nDATA n6.ReturnValue -> n7.Value [Int]\nDATA n6.ReturnValue -> n9.InString [String]",
+  "components": [],
+  "example_spawn": {
+    "location": {"x": 0, "y": 0, "z": 300},
+    "label": "WaveSpawner_1",
+    "notes": "Place above play area. No visual representation needed. Extend by adding SpawnActor nodes inside the SpawnWave custom event."
+  }
+}

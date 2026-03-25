@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "name": "BP_FPSCharacter",
+    "parent_class": "Character"
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "node_0",
+      "dsl_type": "Event_BeginPlay",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay"
+    },
+    {
+      "id": "node_1",
+      "dsl_type": "PrintSpawned",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString"
+    }
+  ],
+  "connections": [
+    {
+      "src_node": "node_0",
+      "src_pin": "Then",
+      "dst_node": "node_1",
+      "dst_pin": "Execute"
+    }
+  ]
+}

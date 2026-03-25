@@ -1,0 +1,10 @@
+{
+  "metadata": {
+    "name": "BP_LockedDoor",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [],
+  "connections": []
+}

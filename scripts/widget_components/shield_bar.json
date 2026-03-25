@@ -1,0 +1,72 @@
+{
+  "id": "shield_bar",
+  "name": "Shield Bar",
+  "category": "hud",
+  "description": "Shield/armor bar, hides when empty",
+  "default_anchor": "TopLeft",
+  "default_offset": [
+    20,
+    65
+  ],
+  "default_size": [
+    220,
+    30
+  ],
+  "variables": [
+    {
+      "name": "Shield",
+      "type": "Float",
+      "default": 50.0
+    },
+    {
+      "name": "MaxShield",
+      "type": "Float",
+      "default": 100.0
+    }
+  ],
+  "options": {
+    "show_when_empty": {
+      "type": "bool",
+      "default": false
+    }
+  },
+  "tree": {
+    "type": "HBOX",
+    "name": "ShieldRow",
+    "properties": {
+      "spacing": "6"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "ShieldIcon",
+        "properties": {
+          "text": "O",
+          "font_size": "18",
+          "color": "$mana",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "ShieldFill",
+        "properties": {
+          "percent": "BIND:Shield/MaxShield",
+          "fill_color": "$mana",
+          "bar_color": "$surface",
+          "size_x": "160",
+          "size_y": "16"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "ShieldText",
+        "properties": {
+          "text": "BIND:\"{Shield}\"",
+          "font_size": "14",
+          "color": "$text_secondary"
+        }
+      }
+    ]
+  }
+}

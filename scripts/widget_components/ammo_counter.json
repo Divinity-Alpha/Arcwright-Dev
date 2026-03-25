@@ -1,0 +1,104 @@
+{
+  "id": "ammo_counter",
+  "name": "Ammo Counter",
+  "category": "hud",
+  "description": "Current/max ammo with weapon name",
+  "default_anchor": "BottomRight",
+  "default_offset": [
+    -30,
+    -30
+  ],
+  "default_size": [
+    180,
+    80
+  ],
+  "variables": [
+    {
+      "name": "CurrentAmmo",
+      "type": "Integer",
+      "default": 30
+    },
+    {
+      "name": "MaxAmmo",
+      "type": "Integer",
+      "default": 30
+    },
+    {
+      "name": "WeaponName",
+      "type": "String",
+      "default": "Rifle"
+    }
+  ],
+  "options": {
+    "show_weapon_name": {
+      "type": "bool",
+      "default": true
+    }
+  },
+  "tree": {
+    "type": "VBOX",
+    "name": "AmmoPanel",
+    "properties": {
+      "spacing": "2"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "WeaponLabel",
+        "properties": {
+          "text": "BIND:\"{WeaponName}\"",
+          "font_size": "13",
+          "color": "$text_muted"
+        },
+        "condition": "show_weapon_name"
+      },
+      {
+        "type": "HBOX",
+        "name": "AmmoRow",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "AmmoCount",
+            "properties": {
+              "text": "BIND:\"{CurrentAmmo}\"",
+              "font_size": "36",
+              "color": "$text",
+              "bold": "true"
+            },
+            "animations": [
+              {
+                "trigger": "OnReload",
+                "type": "Flash",
+                "params": {
+                  "color": "#FFFF00",
+                  "duration": 0.2
+                }
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "AmmoDivider",
+            "properties": {
+              "text": "/",
+              "font_size": "24",
+              "color": "$text_muted"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "AmmoMax",
+            "properties": {
+              "text": "BIND:\"{MaxAmmo}\"",
+              "font_size": "24",
+              "color": "$text_secondary"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

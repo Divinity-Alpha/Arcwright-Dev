@@ -1,0 +1,86 @@
+{
+  "id": "level_select",
+  "name": "Level Select",
+  "category": "menu",
+  "description": "Grid of level cards with stars",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    600,
+    400
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "LevelSelectBox",
+    "properties": {
+      "spacing": "12"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "LevelTitle",
+        "properties": {
+          "text": "SELECT LEVEL",
+          "font_size": "28",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "GRID",
+        "name": "LevelGrid",
+        "properties": {
+          "columns": "3",
+          "col_spacing": "12",
+          "row_spacing": "12"
+        },
+        "children": [
+          {
+            "type": "VBOX",
+            "name": "Level1Card",
+            "properties": {
+              "spacing": "4"
+            },
+            "children": [
+              {
+                "type": "IMAGE",
+                "name": "Level1Thumb",
+                "properties": {
+                  "tint": "$surface",
+                  "size_x": "160",
+                  "size_y": "100"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Level1Name",
+                "properties": {
+                  "text": "Level 1",
+                  "font_size": "14",
+                  "color": "$text",
+                  "justification": "Center"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Level1Stars",
+                "properties": {
+                  "text": "***",
+                  "font_size": "16",
+                  "color": "$warning",
+                  "justification": "Center"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

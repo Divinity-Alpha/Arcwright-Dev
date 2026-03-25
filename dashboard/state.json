@@ -1,27 +1,27 @@
 {
-  "version": "v7",
+  "version": "v11",
   "status": "idle",
-  "pipeline_start_time": 1772431225.1845481,
+  "pipeline_start_time": 1772780417.6243088,
   "current_step": {
     "number": 9,
     "total_steps": 9,
     "name": "Finalize",
-    "started_at": 1772459450.9349835
+    "started_at": 1772828659.8739655
   },
   "steps": [
     {
       "number": 1,
       "name": "Data Foundation",
       "status": "done",
-      "started_at": 1772431225.1845481,
-      "duration_seconds": 10.1
+      "started_at": 1772780417.6243088,
+      "duration_seconds": 26.5
     },
     {
       "number": 2,
       "name": "Pre-Flight Checks",
       "status": "done",
-      "started_at": 1772431235.2427113,
-      "duration_seconds": 3.2
+      "started_at": 1772780444.156309,
+      "duration_seconds": 3.4
     },
     {
       "number": 3,
@@ -32,52 +32,60 @@
       "number": 4,
       "name": "Training",
       "status": "done",
-      "started_at": 1772431238.4438198,
-      "duration_seconds": 11285.7
+      "started_at": 1772780447.514032,
+      "duration_seconds": 26591.8
     },
     {
       "number": 5,
       "name": "Post-Training",
       "status": "done",
-      "started_at": 1772442524.123416,
-      "duration_seconds": 20.4
+      "started_at": 1772807039.2654397,
+      "duration_seconds": 10.3
     },
     {
       "number": 6,
       "name": "Run exams",
       "status": "done",
-      "started_at": 1772442544.4911754,
-      "duration_seconds": 16172.9
+      "started_at": 1772807049.5270202,
+      "duration_seconds": 20898.6
     },
     {
       "number": 7,
       "name": "Run eval suite",
       "status": "done",
-      "started_at": 1772458717.3434074,
-      "duration_seconds": 722.8
+      "started_at": 1772827948.1519501,
+      "duration_seconds": 683.7
     },
     {
       "number": 8,
       "name": "Lesson Integration",
       "status": "done",
-      "started_at": 1772459440.1852345,
-      "duration_seconds": 10.7
+      "started_at": 1772828631.894322,
+      "duration_seconds": 28.0
     },
     {
       "number": 9,
       "name": "Finalize",
       "status": "done",
-      "started_at": 1772459450.9349835,
+      "started_at": 1772828659.8739655,
       "duration_seconds": 0.1
     }
   ],
-  "training": null,
+  "training": {
+    "total_steps": 84,
+    "current_step": 84,
+    "loss": 0,
+    "examples": null,
+    "epochs": null,
+    "learning_rate": null,
+    "elapsed_seconds": null
+  },
   "exam_active": {
-    "lesson_id": "lesson_13",
-    "lesson_name": "Corrective Training: Connection Patterns + New Node Types",
-    "current_prompt": 7,
-    "total_prompts": 20,
-    "last_prompt_time_seconds": 61.5,
-    "avg_prompt_time_seconds": 50.3
+    "lesson_id": "lesson_23",
+    "lesson_name": "Complex Systems: 20-35 Node Blueprints",
+    "current_prompt": 8,
+    "total_prompts": 8,
+    "last_prompt_time_seconds": 100.1,
+    "avg_prompt_time_seconds": 116.7
   }
 }

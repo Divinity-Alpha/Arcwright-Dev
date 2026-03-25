@@ -1,0 +1,180 @@
+{
+  "metadata": {
+    "name": "BP_TreasureChest",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_ActorBeginOverlap",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveActorBeginOverlap",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "GetDistanceTo",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:GetDistanceTo",
+      "position": [
+        0,
+        150
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "LessThan",
+      "params": {
+        "B": "200.0"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Less_FloatFloat",
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "Branch",
+      "params": {},
+      "ue_class": "UK2Node_IfThenElse",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "SetTimerByFunctionName",
+      "params": {
+        "FunctionName": "OpenTreasure",
+        "Time": "3.0",
+        "bLooping": "false"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:K2_SetTimerDelegate",
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "Event_CustomEvent",
+      "params": {
+        "EventName": "OpenTreasure"
+      },
+      "ue_class": "UK2Node_CustomEvent",
+      "param_key": "EventName",
+      "position": [
+        0,
+        450
+      ]
+    },
+    {
+      "id": "n7",
+      "dsl_type": "RandomIntegerInRange",
+      "params": {
+        "Min": "10",
+        "Max": "50"
+      },
+      "ue_class": "UNMAPPED",
+      "position": [
+        0,
+        600
+      ]
+    },
+    {
+      "id": "n8",
+      "dsl_type": "PrintString",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        300,
+        150
+      ]
+    },
+    {
+      "id": "n9",
+      "dsl_type": "DestroyActor",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.Actor:K2_DestroyActor",
+      "position": [
+        600,
+        150
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n4",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n4",
+      "src_pin": "True",
+      "dst_node": "n5",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n6",
+      "src_pin": "Then",
+      "dst_node": "n8",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n8",
+      "src_pin": "Then",
+      "dst_node": "n9",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n1",
+      "src_pin": "OtherActor",
+      "dst_node": "n2",
+      "dst_pin": "T",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n2",
+      "src_pin": "ReturnValue",
+      "dst_node": "n3",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n3",
+      "src_pin": "ReturnValue",
+      "dst_node": "n4",
+      "dst_pin": "C",
+      "data_type": null
+    },
+    {
+      "type": "data",
+      "src_node": "n7",
+      "src_pin": "ReturnValue",
+      "dst_node": "n8",
+      "dst_pin": "I",
+      "data_type": null
+    }
+  ]
+}

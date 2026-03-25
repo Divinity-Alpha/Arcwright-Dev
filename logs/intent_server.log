@@ -1,0 +1,815 @@
+[01:41:53] ============================================================
+[01:41:53] Arcwright Intent Classification Server (Multi-Stage)
+[01:41:53] Intent port: 13380
+[01:41:53] UE query port: 13377
+[01:41:53] Model: meta-llama/Meta-Llama-3.1-70B (base, no LoRA)
+[01:41:53] ============================================================
+[01:41:53] Loading base model: meta-llama/Meta-Llama-3.1-70B
+[01:41:53] This uses the BASE model (no LoRA) -- intent classification is a general task
+[01:42:08] Loading tokenizer...
+[01:43:30] Loading model in 8-bit quantization...
+`torch_dtype` is deprecated! Use `dtype` instead!
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|3         | 1/30 [00:05<02:25,  5.01s/it]Loading checkpoint shards:   7%|6         | 2/30 [00:09<02:13,  4.78s/it]Loading checkpoint shards:  10%|#         | 3/30 [00:14<02:09,  4.79s/it]Loading checkpoint shards:  13%|#3        | 4/30 [00:19<02:09,  4.96s/it]Loading checkpoint shards:  17%|#6        | 5/30 [00:24<02:00,  4.80s/it]Loading checkpoint shards:  20%|##        | 6/30 [00:28<01:51,  4.64s/it]Loading checkpoint shards:  23%|##3       | 7/30 [00:32<01:45,  4.58s/it]Loading checkpoint shards:  27%|##6       | 8/30 [00:38<01:44,  4.76s/it]Loading checkpoint shards:  30%|###       | 9/30 [00:42<01:38,  4.71s/it]Loading checkpoint shards:  33%|###3      | 10/30 [00:47<01:35,  4.78s/it]Loading checkpoint shards:  37%|###6      | 11/30 [00:52<01:30,  4.75s/it]Loading checkpoint shards:  40%|####      | 12/30 [00:56<01:23,  4.61s/it]Loading checkpoint shards:  43%|####3     | 13/30 [01:01<01:18,  4.61s/it]Loading checkpoint shards:  47%|####6     | 14/30 [01:05<01:13,  4.59s/it]Loading checkpoint shards:  50%|#####     | 15/30 [01:10<01:08,  4.57s/it]Loading checkpoint shards:  53%|#####3    | 16/30 [01:14<01:02,  4.49s/it]Loading checkpoint shards:  57%|#####6    | 17/30 [01:18<00:57,  4.44s/it]Loading checkpoint shards:  60%|######    | 18/30 [01:23<00:54,  4.56s/it]Loading checkpoint shards:  63%|######3   | 19/30 [01:28<00:51,  4.71s/it]Loading checkpoint shards:  67%|######6   | 20/30 [01:33<00:48,  4.80s/it]Loading checkpoint shards:  70%|#######   | 21/30 [01:38<00:43,  4.86s/it]Loading checkpoint shards:  73%|#######3  | 22/30 [01:43<00:37,  4.69s/it]Loading checkpoint shards:  77%|#######6  | 23/30 [01:48<00:34,  4.95s/it]Loading checkpoint shards:  80%|########  | 24/30 [01:53<00:29,  4.90s/it]Loading checkpoint shards:  83%|########3 | 25/30 [01:57<00:23,  4.77s/it]Loading checkpoint shards:  87%|########6 | 26/30 [02:03<00:19,  4.86s/it]Loading checkpoint shards:  90%|######### | 27/30 [02:08<00:14,  4.99s/it]Loading checkpoint shards:  93%|#########3| 28/30 [02:12<00:09,  4.90s/it]Loading checkpoint shards:  97%|#########6| 29/30 [02:17<00:04,  4.86s/it]Loading checkpoint shards: 100%|##########| 30/30 [02:19<00:00,  3.79s/it]Loading checkpoint shards: 100%|##########| 30/30 [02:19<00:00,  4.63s/it]
+[01:45:53] Base model loaded. VRAM: 72.7 GB
+[01:45:54] Loading first adapter (blueprint) from C:\BlueprintLLM\models\blueprint-lora-v12\final
+[01:46:01]   Adapter 'blueprint' loaded
+[01:46:01] Loading adapter (bt) from C:\BlueprintLLM\models\bt-lora-v3\final
+[01:46:08]   Adapter 'bt' loaded
+[01:46:08] Loading adapter (dt) from C:\BlueprintLLM\models\dt-lora-v3\final
+[01:46:13]   Adapter 'dt' loaded
+[01:46:13] All adapters loaded and disabled (base model active for classification)
+[01:46:13] Ready. VRAM: 77.7 GB
+[01:46:13] Intent server listening on localhost:13380
+[01:46:13] Ready for multi-stage intent classification requests
+[01:46:13]   Stage 1: Classify (LLM) ? Stage 2: Discover (UE:13377) ? Stage 3: Refine (LLM)
+[01:46:16] Client connected: ('127.0.0.1', 50736)
+[01:46:16] Request: {"command": "health_check", "params": {}}
+[01:46:16] Response sent: {"mode": "CLARIFY", "summary": "Empty prompt received.", "requires_confirmation": false, "operations": []}
+[01:46:26] Client connected: ('127.0.0.1', 50760)
+[01:46:26] Request: {"prompt": "Double the enemy damage"}
+[01:46:26] [Stage 1] Classifying: Double the enemy damage
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[01:46:44] Raw model output: {"mode":"MODIFY","summary":"Double enemy damage","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Damage","default_value":"*2"},"depends_on":null}]}
+[01:46:44] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[01:46:44] Multi-stage flow for MODIFY (discovery needed)
+[01:46:44] [Stage 2] Discovering targets: ['enemy']
+[01:46:44] [Stage 2] find_actors(enemy): 0 found
+[01:46:44] [Stage 2] find_blueprints(enemy): 1 found
+[01:46:45] [Stage 2] Discovery complete: 3 result sets
+[01:46:45] [Stage 3] Refining with 2 discovery sections
+[01:47:02] Raw model output: {"mode":"MODIFY","summary":"Double the enemy damage","requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"operations":[{"blueprint":"BP_Enemy","variable_name":"Damage","default_value":"*2"}]},"depends_on":null}]}
+[01:47:02] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[01:47:02] Intent classified in 35.4s (multi-stage)
+[01:47:02] Response sent: {"mode": "MODIFY", "summary": "Double the enemy damage", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint": "BP_Enemy", 
+[01:47:02] Client connected: ('127.0.0.1', 50842)
+[01:47:02] Request: {"prompt": "Double the enemy damage"}
+[01:47:02] [Stage 1] Classifying: Double the enemy damage
+[01:47:19] Raw model output: {"mode":"MODIFY","summary":"Double enemy damage","targets":["enemy"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Damage","default_value":"*2"},"depends_on":null}]}
+[01:47:19] [Stage 1] Result: mode=MODIFY, targets=['enemy'], ops=1
+[01:47:19] Multi-stage flow for MODIFY (discovery needed)
+[01:47:19] [Stage 2] Discovering targets: ['enemy']
+[01:47:19] [Stage 2] find_actors(enemy): 0 found
+[01:47:19] [Stage 2] find_blueprints(enemy): 1 found
+[01:47:20] [Stage 2] Discovery complete: 3 result sets
+[01:47:20] [Stage 3] Refining with 2 discovery sections
+[01:47:37] Raw model output: {"mode":"MODIFY","summary":"Double the enemy damage","requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"operations":[{"blueprint":"BP_Enemy","variable_name":"Damage","default_value":"*2"}]},"depends_on":null}]}
+[01:47:37] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[01:47:37] Intent classified in 34.4s (multi-stage)
+[01:47:37] Response sent: {"mode": "MODIFY", "summary": "Double the enemy damage", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_set_variable", "params": {"operations": [{"blueprint": "BP_Enemy", 
+[01:47:49] Client connected: ('127.0.0.1', 65171)
+[01:47:49] Request: {"prompt": "Gold coins should be worth 50 each"}
+[01:47:49] [Stage 1] Classifying: Gold coins should be worth 50 each
+[01:48:06] Raw model output: {"mode":"MODIFY","summary":"Set Coin value=50","targets":["coin"],"requires_confirmation":true,"operations":[{"step":1,"command":"batch_set_variable","params":{"variable_name":"Value","default_value":50},"depends_on":null}]}
+[01:48:06] [Stage 1] Result: mode=MODIFY, targets=['coin'], ops=1
+[01:48:06] Multi-stage flow for MODIFY (discovery needed)
+[01:48:06] [Stage 2] Discovering targets: ['coin']
+[01:48:07] [Stage 2] find_actors(coin): 0 found
+[01:48:07] [Stage 2] find_blueprints(coin): 2 found
+[01:48:07] [Stage 2] Discovery complete: 3 result sets
+[01:48:07] [Stage 3] Refining with 2 discovery sections
+[01:48:41] Raw model output: {"mode":"MODIFY","summary":"Modify BP_Coin and BP_CoinPickup blueprints","requires_confirmation":true,"operations":[{"step":1,"command":"modify_blueprint","params":{"name":"BP_Coin","set_class_defaults":[{"variable_name":"Score","default_value":"50"}],"add_variables":[],"remove_variables":[]},"depen
+[01:48:41] [Stage 3] Refined plan: mode=MODIFY, ops=2
+[01:48:41] [PostProcess] RESHAPE: modify_blueprint set_class_defaults array ? dict
+[01:48:41] [PostProcess] RESHAPE: modify_blueprint set_class_defaults array ? dict
+[01:48:41] [PostProcess] Plan rewritten with 2 operations
+[01:48:41] Intent classified in 51.8s (multi-stage)
+[01:48:41] Response sent: {"mode": "MODIFY", "summary": "Modify BP_Coin and BP_CoinPickup blueprints", "requires_confirmation": true, "operations": [{"step": 1, "command": "modify_blueprint", "params": {"name": "BP_Coin", "set
+[01:48:49] Client connected: ('127.0.0.1', 65306)
+[01:48:49] Request: {"command": "health_check", "params": {}}
+[01:48:49] Response sent: {"mode": "CLARIFY", "summary": "Empty prompt received.", "requires_confirmation": false, "operations": []}
+[01:48:54] Client connected: ('127.0.0.1', 55248)
+[01:48:54] Request: {"prompt": "health check"}
+[01:48:54] [Stage 1] Classifying: health check
+[01:49:09] Raw model output: {"mode":"QUERY","summary":"Check health","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"check_health","params":{},"depends_on":null}]}
+[01:49:09] [Stage 1] WARN: Operation 0: unknown command 'check_health' ? removed. Hint: 'add_point_light' ? use add_component with component_type='PointLight'
+[01:49:09] [Stage 1] Result: mode=QUERY, targets=[], ops=0
+[01:49:09] Single-stage result (QUERY)
+[01:49:09] Intent classified in 14.4s (multi-stage)
+[01:49:09] Response sent: {"mode": "QUERY", "summary": "Check health", "targets": [], "requires_confirmation": false, "operations": [], "validation_warnings": ["Operation 0: unknown command 'check_health' \u2014 removed. Hint:
+[01:49:44] Client connected: ('127.0.0.1', 55480)
+[01:49:44] Request: {"prompt": "Set up FPS controls for the game"}
+[01:49:44] [Stage 1] Classifying: Set up FPS controls for the game
+[01:49:59] Raw model output: {"mode":"MODIFY","summary":"Setup FPS controls","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"setup_fps_controls","params":{},"depends_on":null}]}
+[01:49:59] [Stage 1] WARN: Operation 0: unknown command 'setup_fps_controls' ? removed. Hint: 'add_point_light' ? use add_component with component_type='PointLight'
+[01:49:59] [Stage 1] Result: mode=MODIFY, targets=[], ops=0
+[01:49:59] Multi-stage flow for MODIFY (discovery needed)
+[01:49:59] [Stage 2] Discovering targets: []
+[01:49:59] [Stage 2] Discovery complete: 1 result sets
+[01:49:59] [Stage 3] Refining with 1 discovery sections
+[01:50:18] Raw model output: {"mode":"MODIFY","summary":"Add FPS controls to the game","requires_confirmation":true,"operations":[{"step":1,"command":"batch_add_component","params":{"operations":[{"blueprint":"ArenaLevel","component_type":"FPSController","component_name":"FPSController"}]},"depends_on":null}]}
+[01:50:18] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[01:50:18] Intent classified in 34.4s (multi-stage)
+[01:50:18] Response sent: {"mode": "MODIFY", "summary": "Add FPS controls to the game", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_add_component", "params": {"operations": [{"blueprint": "Arena
+[01:50:19] Client connected: ('127.0.0.1', 55558)
+[01:50:19] Request: {"prompt": "Add dark indoor lighting to the level"}
+[01:50:19] [Stage 1] Classifying: Add dark indoor lighting to the level
+[01:50:35] Raw model output: {"mode":"MODIFY","summary":"Setup scene lighting","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"setup_scene_lighting","params":{"preset":"indoor_dark"},"depends_on":null}]}
+[01:50:35] [Stage 1] Result: mode=MODIFY, targets=[], ops=1
+[01:50:35] Multi-stage flow for MODIFY (discovery needed)
+[01:50:35] [Stage 2] Discovering targets: []
+[01:50:35] [Stage 2] Discovery complete: 1 result sets
+[01:50:35] [Stage 3] Refining with 1 discovery sections
+[01:51:06] Raw model output: {"mode":"MODIFY","summary":"Add dark indoor lighting to the level","requires_confirmation":true,"operations":[{"step":1,"command":"batch_add_component","params":{"operations":[{"blueprint":"ArenaLevel","component_type":"DirectionalLight","component_name":"IndoorLighting","direction":{"x":-0.3,"y":0.
+[01:51:06] [Stage 3] Refined plan: mode=MODIFY, ops=1
+[01:51:06] Intent classified in 46.6s (multi-stage)
+[01:51:06] Response sent: {"mode": "MODIFY", "summary": "Add dark indoor lighting to the level", "requires_confirmation": true, "operations": [{"step": 1, "command": "batch_add_component", "params": {"operations": [{"blueprint
+[01:51:06] Client connected: ('127.0.0.1', 55671)
+[01:51:06] Request: {"prompt": "Create a ground floor with stone texture"}
+[01:51:06] [Stage 1] Classifying: Create a ground floor with stone texture
+[01:51:22] Raw model output: {"mode":"CREATE","summary":"Create ground floor BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"ground floor with stone texture"},"depends_on":null}]}
+[01:51:22] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[01:51:22] Single-stage result (CREATE)
+[01:51:22] Intent classified in 15.6s (multi-stage)
+[01:51:22] Response sent: {"mode": "CREATE", "summary": "Create ground floor BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "ground floor with
+[01:51:22] Client connected: ('127.0.0.1', 55705)
+[01:51:22] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "ground floor with stone texture"}
+[01:51:22] [Generate DSL] domain=blueprint, prompt=ground floor with stone texture
+[01:51:43] DSL raw output (blueprint, 52 tokens): BLUEPRINT: BP_GroundFloor
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetMaterial [Target=Self, Material=StoneMat]
+
+EXEC n1.Then -> n2.Execute
+[01:51:43] [Generate DSL] Done in 20.6s, DSL length=166
+[01:51:43] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_GroundFloor\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetMaterial [Target=Self, Material=StoneMat]\n\nEXEC
+[01:51:43] Client connected: ('127.0.0.1', 55753)
+[01:51:43] Request: {"prompt": "Create an enemy with 100 health, 15 damage, and 300 speed"}
+[01:51:43] [Stage 1] Classifying: Create an enemy with 100 health, 15 damage, and 300 speed
+[01:52:00] Raw model output: {"mode":"CREATE","summary":"Create enemy BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"an enemy with|100 health||15 damage||300 speed"},"depends_on":null}]}
+[01:52:00] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[01:52:00] Multi-stage flow for CREATE (discovery needed)
+[01:52:00] [Stage 2] Discovering targets: []
+[01:52:00] [Stage 2] Discovery complete: 1 result sets
+[01:52:00] CREATE with discovery: enriching Stage 1 result
+[01:52:00] Intent classified in 17.0s (multi-stage)
+[01:52:00] Response sent: {"mode": "CREATE", "summary": "Create enemy BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "an enemy with|100 health
+[01:52:00] Client connected: ('127.0.0.1', 55795)
+[01:52:00] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "an enemy with|100 health||15 damage||300 speed"}
+[01:52:00] [Generate DSL] domain=blueprint, prompt=an enemy with|100 health||15 damage||300 speed
+[01:52:50] DSL raw output (blueprint, 153 tokens): BLUEPRINT: BP_Enemy
+PARENT: Actor
+
+VAR Health: Float = 100.0
+VAR Damage: Float = 15.0
+VAR Speed: Float = 300.0
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetVar [Variable=Health]
+NODE n3: S
+[01:52:50] [Generate DSL] Done in 49.7s, DSL length=431
+[01:52:50] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Enemy\nPARENT: Actor\n\nVAR Health: Float = 100.0\nVAR Damage: Float = 15.0\nVAR Speed: Float = 300.0\n\nGRAPH: EventGraph\n\nNODE n1: Eve
+[01:52:50] Client connected: ('127.0.0.1', 62707)
+[01:52:50] Request: {"prompt": "Create a gold coin pickup worth 10 points"}
+[01:52:50] [Stage 1] Classifying: Create a gold coin pickup worth 10 points
+[01:53:06] Raw model output: {"mode":"CREATE","summary":"Create gold coin BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"gold coin pickup worth|10 points"},"depends_on":null}]}
+[01:53:06] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[01:53:06] Multi-stage flow for CREATE (discovery needed)
+[01:53:06] [Stage 2] Discovering targets: []
+[01:53:06] [Stage 2] Discovery complete: 1 result sets
+[01:53:06] CREATE with discovery: enriching Stage 1 result
+[01:53:06] Intent classified in 15.9s (multi-stage)
+[01:53:06] Response sent: {"mode": "CREATE", "summary": "Create gold coin BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "gold coin pickup wor
+[01:53:06] Client connected: ('127.0.0.1', 62743)
+[01:53:06] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "gold coin pickup worth|10 points"}
+[01:53:06] [Generate DSL] domain=blueprint, prompt=gold coin pickup worth|10 points
+[01:53:47] DSL raw output (blueprint, 125 tokens): BLUEPRINT: BP_CoinPickup
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: GetVar [Variable=Player]
+NODE n3: CastToCharacter
+NODE n4: SetVar [Variable=CoinCount, Value=1]
+NOD
+[01:53:47] [Generate DSL] Done in 40.2s, DSL length=384
+[01:53:47] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_CoinPickup\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Player]\nNODE n3: CastToChar
+[01:53:47] Client connected: ('127.0.0.1', 53143)
+[01:53:47] Request: {"prompt": "Create a torch with a point light"}
+[01:53:47] [Stage 1] Classifying: Create a torch with a point light
+[01:54:03] Raw model output: {"mode":"CREATE","summary":"Create torch BP with point light","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"a torch with a point light"},"depends_on":null}]}
+[01:54:03] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[01:54:03] Multi-stage flow for CREATE (discovery needed)
+[01:54:03] [Stage 2] Discovering targets: []
+[01:54:03] [Stage 2] Discovery complete: 1 result sets
+[01:54:03] CREATE with discovery: enriching Stage 1 result
+[01:54:03] Intent classified in 16.3s (multi-stage)
+[01:54:03] Response sent: {"mode": "CREATE", "summary": "Create torch BP with point light", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "a torch
+[01:54:03] Client connected: ('127.0.0.1', 53180)
+[01:54:03] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "a torch with a point light"}
+[01:54:03] [Generate DSL] domain=blueprint, prompt=a torch with a point light
+[01:57:10] DSL raw output (blueprint, 546 tokens): BLUEPRINT: BP_TorchLight
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: AddPointLight
+NODE n3: GetActorLocation
+NODE n4: SetIntensity [Intensity=500]
+NODE n5: SetColor [Color=(R=2
+[01:57:10] [Generate DSL] Done in 186.5s, DSL length=1704
+[01:57:10] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_TorchLight\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: AddPointLight\nNODE n3: GetActorLocation\nNODE n4: Se
+[01:57:10] Client connected: ('127.0.0.1', 56270)
+[01:57:10] Request: {"prompt": "Create a health pickup that heals 25 HP"}
+[01:57:10] [Stage 1] Classifying: Create a health pickup that heals 25 HP
+[01:57:27] Raw model output: {"mode":"CREATE","summary":"Create health pickup BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"health pickup that heals|25 HP"},"depends_on":null}]}
+[01:57:27] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[01:57:27] Multi-stage flow for CREATE (discovery needed)
+[01:57:27] [Stage 2] Discovering targets: []
+[01:57:27] [Stage 2] Discovery complete: 1 result sets
+[01:57:27] CREATE with discovery: enriching Stage 1 result
+[01:57:27] Intent classified in 17.0s (multi-stage)
+[01:57:27] Response sent: {"mode": "CREATE", "summary": "Create health pickup BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "health pickup th
+[01:57:27] Client connected: ('127.0.0.1', 56309)
+[01:57:27] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "health pickup that heals|25 HP"}
+[01:57:27] [Generate DSL] domain=blueprint, prompt=health pickup that heals|25 HP
+[01:58:30] DSL raw output (blueprint, 190 tokens): BLUEPRINT: BP_HealthPickup
+PARENT: Actor
+
+CATEGORY: Pickups
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: CastToCharacter
+NODE n3: GetVar [Variable=Health]
+NODE n4: AddFloat [B=25]
+NOD
+[01:58:30] [Generate DSL] Done in 62.8s, DSL length=580
+[01:58:30] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_HealthPickup\nPARENT: Actor\n\nCATEGORY: Pickups\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE 
+[01:58:31] Client connected: ('127.0.0.1', 55753)
+[01:58:31] Request: {"prompt": "Spawn 5 enemies around the level"}
+[01:58:31] [Stage 1] Classifying: Spawn 5 enemies around the level
+[01:59:33] Raw model output: {"mode":"MULTI","summary":"Spawn|5 enemies","targets":["enemy"],"requires_confirmation":false,"operations":[{"step":1,"command":"spawn_actor_at","params":{"class":"BP_Enemy","location":{"x":-200,"y":0,"z":0}},"depends_on":null},{"step":2,"command":"spawn_actor_at","params":{"class":"BP_Enemy","locat
+[01:59:33] [Stage 1] Result: mode=MULTI, targets=['enemy'], ops=5
+[01:59:33] Multi-stage flow for MULTI (discovery needed)
+[01:59:33] [Stage 2] Discovering targets: ['enemy']
+[01:59:33] [Stage 2] find_actors(enemy): 0 found
+[01:59:33] [Stage 2] find_blueprints(enemy): 1 found
+[01:59:34] [Stage 2] Discovery complete: 3 result sets
+[01:59:34] [Stage 3] Refining with 2 discovery sections
+[01:59:55] Raw model output: {"mode":"MULTI","summary":"Spawn 5 enemies around the level","requires_confirmation":true,"operations":[{"step":1,"command":"spawn_actor","params":{"blueprint":"BP_Enemy","location":{"x":0,"y":0,"z":0},"rotation":{"pitch":0,"yaw":0,"roll":0},"count":5},"depends_on":null}]}
+[01:59:55] [Stage 3] Refined plan: mode=MULTI, ops=1
+[01:59:55] Intent classified in 84.0s (multi-stage)
+[01:59:55] Response sent: {"mode": "MULTI", "summary": "Spawn 5 enemies around the level", "requires_confirmation": true, "operations": [{"step": 1, "command": "spawn_actor", "params": {"location": {"x": 0, "y": 0, "z": 0}, "r
+[01:59:55] Client connected: ('127.0.0.1', 55351)
+[01:59:55] Request: {"prompt": "Spawn 8 coins around the level"}
+[01:59:55] [Stage 1] Classifying: Spawn 8 coins around the level
+[02:01:23] Raw model output: {"mode":"MULTI","summary":"Spawn|8 coins","targets":["coin"],"requires_confirmation":false,"operations":[{"step":1,"command":"spawn_actor_at","params":{"class":"BP_Coin","location":{"x":-200,"y":0,"z":0}},"depends_on":null},{"step":2,"command":"spawn_actor_at","params":{"class":"BP_Coin","location":
+[02:01:23] [Stage 1] WARNING: LLM returned invalid JSON, falling back to CREATE
+[02:01:23] Multi-stage flow for CREATE (discovery needed)
+[02:01:23] [Stage 2] Discovering targets: []
+[02:01:23] [Stage 2] Discovery complete: 1 result sets
+[02:01:23] CREATE with discovery: enriching Stage 1 result
+[02:01:23] Intent classified in 88.0s (multi-stage)
+[02:01:23] Response sent: {"mode": "CREATE", "summary": "Spawn 8 coins around the level", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "Spawn 8 c
+[02:01:23] Client connected: ('127.0.0.1', 49348)
+[02:01:23] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "Spawn 8 coins around the level"}
+[02:01:23] [Generate DSL] domain=blueprint, prompt=Spawn 8 coins around the level
+[02:06:24] Client connected: ('127.0.0.1', 57054)
+[02:06:24] Request: {"prompt": "Spawn 4 torches along the walls"}
+[02:14:05] DSL raw output (blueprint, 2048 tokens): BLUEPRINT: BP_CoinSpawner
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetActorLocation
+NODE n3: AddFloat [B=100]
+NODE n4: SetActorLocation
+NODE n5: Delay [Duration=1.0]
+NODE n6
+[02:14:05] [Generate DSL] Done in 761.4s, DSL length=6370
+[02:14:05] [Stage 1] Classifying: Spawn 4 torches along the walls
+[02:14:05] ERROR handling client: [WinError 10053] An established connection was aborted by the software in your host machine
+[02:14:24] Raw model output: {"mode":"MULTI","summary":"Spawn|4 torches along walls","targets":["torch"],"requires_confirmation":false,"operations":[{"step":1,"command":"spawn_actor_along","params":{"class":"BP_Torch","path":"walls"},"depends_on":null}]}
+[02:14:24] [Stage 1] WARN: Operation 0: unknown command 'spawn_actor_along' ? removed. Hint: 'add_point_light' ? use add_component with component_type='PointLight'
+[02:14:24] [Stage 1] Result: mode=MULTI, targets=['torch'], ops=0
+[02:14:24] Multi-stage flow for MULTI (discovery needed)
+[02:14:24] [Stage 2] Discovering targets: ['torch']
+[02:14:24] [Stage 2] find_actors(torch): 0 found
+[02:14:25] [Stage 2] find_blueprints(torch): 1 found
+[02:14:25] [Stage 2] Discovery complete: 3 result sets
+[02:14:25] [Stage 3] Refining with 2 discovery sections
+[02:14:41] Raw model output: {"mode":"MULTI","summary":"Spawn 4 torches along the walls","requires_confirmation":true,"operations":[{"step":1,"command":"batch_add_actor","params":{"count":4,"blueprint":"BP_TorchLight"},"depends_on":null}]}
+[02:14:41] [Stage 3] WARN: Operation 0: 'batch_add_actor' ? aliased to 'spawn_actor_at'
+[02:14:41] [Stage 3] Refined plan: mode=MULTI, ops=1
+[02:14:41] Intent classified in 497.2s (multi-stage)
+[02:14:41] Response sent: {"mode": "MULTI", "summary": "Spawn 4 torches along the walls", "requires_confirmation": true, "operations": [{"step": 1, "command": "spawn_actor_at", "params": {"count": 4, "blueprint_name": "BP_Torc
+[02:14:42] Client connected: ('127.0.0.1', 57909)
+[02:14:42] Request: {"prompt": "Create a health pickup that restores 25 HP when the player touches it"}
+[02:14:42] [Stage 1] Classifying: Create a health pickup that restores 25 HP when the player touches it
+[02:15:00] Raw model output: {"mode":"CREATE","summary":"Create health pickup BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"health pickup that restores|25 HP when the player touches it"},"depends_on":null}]}
+[02:15:00] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:15:00] Multi-stage flow for CREATE (discovery needed)
+[02:15:00] [Stage 2] Discovering targets: []
+[02:15:01] [Stage 2] Discovery complete: 1 result sets
+[02:15:01] CREATE with discovery: enriching Stage 1 result
+[02:15:01] Intent classified in 19.0s (multi-stage)
+[02:15:01] Response sent: {"mode": "CREATE", "summary": "Create health pickup BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "health pickup th
+[02:15:01] Client connected: ('127.0.0.1', 57951)
+[02:15:01] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "health pickup that restores|25 HP when the player touches it"}
+[02:15:01] [Generate DSL] domain=blueprint, prompt=health pickup that restores|25 HP when the player touches it
+[02:16:06] DSL raw output (blueprint, 188 tokens): BLUEPRINT: BP_HealthPickup
+PARENT: Actor
+
+CATEGORY: Pickups
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: CastToCharacter
+NODE n3: GetVar [Variable=Health]
+NODE n4: AddFloat [B=25]
+NOD
+[02:16:06] [Generate DSL] Done in 65.5s, DSL length=576
+[02:16:06] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_HealthPickup\nPARENT: Actor\n\nCATEGORY: Pickups\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE 
+[02:16:07] Client connected: ('127.0.0.1', 64889)
+[02:16:07] Request: {"prompt": "Make a coin that adds 10 points to the score and destroys itself"}
+[02:16:07] [Stage 1] Classifying: Make a coin that adds 10 points to the score and destroys itself
+[02:16:24] Raw model output: {"mode":"CREATE","summary":"Create coin BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"coin that adds|10 points to the score and destroys itself"},"depends_on":null}]}
+[02:16:24] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:16:24] Multi-stage flow for CREATE (discovery needed)
+[02:16:24] [Stage 2] Discovering targets: []
+[02:16:24] [Stage 2] Discovery complete: 1 result sets
+[02:16:24] CREATE with discovery: enriching Stage 1 result
+[02:16:24] Intent classified in 17.6s (multi-stage)
+[02:16:24] Response sent: {"mode": "CREATE", "summary": "Create coin BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "coin that adds|10 points 
+[02:16:24] Client connected: ('127.0.0.1', 64929)
+[02:16:24] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "coin that adds|10 points to the score and destroys itself"}
+[02:16:24] [Generate DSL] domain=blueprint, prompt=coin that adds|10 points to the score and destroys itself
+[02:17:00] DSL raw output (blueprint, 110 tokens): BLUEPRINT: BP_Coin
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: GetVar [Variable=Score]
+NODE n3: AddFloat [B=10]
+NODE n4: SetVar [Variable=Score]
+NODE n5: DestroyActor
+
+
+[02:17:00] [Generate DSL] Done in 35.5s, DSL length=320
+[02:17:00] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Coin\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Score]\nNODE n3: AddFloat [B=10]\n
+[02:17:00] Client connected: ('127.0.0.1', 65004)
+[02:17:00] Request: {"prompt": "Build a door that opens when the player has a key"}
+[02:17:00] [Stage 1] Classifying: Build a door that opens when the player has a key
+[02:17:19] Raw model output: {"mode":"CREATE","summary":"Create door BP with key check","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"a door that opens when the player has a key"},"depends_on":null}]}
+[02:17:19] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:17:19] Multi-stage flow for CREATE (discovery needed)
+[02:17:19] [Stage 2] Discovering targets: []
+[02:17:20] [Stage 2] Discovery complete: 1 result sets
+[02:17:20] CREATE with discovery: enriching Stage 1 result
+[02:17:20] Intent classified in 19.3s (multi-stage)
+[02:17:20] Response sent: {"mode": "CREATE", "summary": "Create door BP with key check", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "a door tha
+[02:17:20] Client connected: ('127.0.0.1', 65046)
+[02:17:20] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "a door that opens when the player has a key"}
+[02:17:20] [Generate DSL] domain=blueprint, prompt=a door that opens when the player has a key
+[02:17:59] DSL raw output (blueprint, 121 tokens): BLUEPRINT: BP_DoorCheck
+PARENT: Actor
+
+VAR HasKey: Bool = false
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: GetVar [Variable=HasKey]
+NODE n3: Branch
+NODE n4: SetActorHiddenInGame [bN
+[02:17:59] [Generate DSL] Done in 39.0s, DSL length=383
+[02:17:59] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_DoorCheck\nPARENT: Actor\n\nVAR HasKey: Bool = false\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=H
+[02:17:59] Client connected: ('127.0.0.1', 65130)
+[02:17:59] Request: {"prompt": "Create a pressure plate that activates when something stands on it"}
+[02:17:59] [Stage 1] Classifying: Create a pressure plate that activates when something stands on it
+[02:18:16] Raw model output: {"mode":"CREATE","summary":"Create pressure plate BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"pressure plate that activates when something stands on it"},"depends_on":null}]}
+[02:18:16] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:18:16] Single-stage result (CREATE)
+[02:18:16] Intent classified in 16.5s (multi-stage)
+[02:18:16] Response sent: {"mode": "CREATE", "summary": "Create pressure plate BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "pressure plate 
+[02:18:16] Client connected: ('127.0.0.1', 65165)
+[02:18:16] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "pressure plate that activates when something stands on it"}
+[02:18:16] [Generate DSL] domain=blueprint, prompt=pressure plate that activates when something stands on it
+[02:18:49] DSL raw output (blueprint, 101 tokens): BLUEPRINT: BP_PressurePlate
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: SetActorHiddenInGame [bNewHidden=false]
+NODE n3: Event_ActorEndOverlap
+NODE n4: SetActorHiddenIn
+[02:18:49] [Generate DSL] Done in 33.0s, DSL length=318
+[02:18:49] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_PressurePlate\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetActorHiddenInGame [bNewHidden=false]\nN
+[02:18:49] Client connected: ('127.0.0.1', 51856)
+[02:18:49] Request: {"prompt": "Make a timed bomb that explodes after 5 seconds"}
+[02:18:49] [Stage 1] Classifying: Make a timed bomb that explodes after 5 seconds
+[02:19:09] Raw model output: {"mode":"CREATE","summary":"Create timed bomb BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"timed bomb that explodes after|5 seconds"},"depends_on":null}]}
+[02:19:09] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:19:09] Single-stage result (CREATE)
+[02:19:09] Intent classified in 20.1s (multi-stage)
+[02:19:09] Response sent: {"mode": "CREATE", "summary": "Create timed bomb BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "timed bomb that exp
+[02:19:09] Client connected: ('127.0.0.1', 51899)
+[02:19:09] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "timed bomb that explodes after|5 seconds"}
+[02:19:09] [Generate DSL] domain=blueprint, prompt=timed bomb that explodes after|5 seconds
+[02:19:44] DSL raw output (blueprint, 93 tokens): BLUEPRINT: BP_TimedBomb
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="Explode", Time=5.0, bLooping=false]
+NODE n3: Event_CustomEvent [EventN
+[02:19:44] [Generate DSL] Done in 35.0s, DSL length=291
+[02:19:44] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_TimedBomb\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Explode\", Time
+[02:19:45] Client connected: ('127.0.0.1', 56687)
+[02:19:45] Request: {"prompt": "Build a checkpoint that saves the player's position"}
+[02:19:45] [Stage 1] Classifying: Build a checkpoint that saves the player's position
+[02:20:02] Raw model output: {"mode":"CREATE","summary":"Create checkpoint BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"checkpoint that saves the player's position"},"depends_on":null}]}
+[02:20:02] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:20:02] Single-stage result (CREATE)
+[02:20:02] Intent classified in 16.8s (multi-stage)
+[02:20:02] Response sent: {"mode": "CREATE", "summary": "Create checkpoint BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "checkpoint that sav
+[02:20:02] Client connected: ('127.0.0.1', 56725)
+[02:20:02] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "checkpoint that saves the player's position"}
+[02:20:02] [Generate DSL] domain=blueprint, prompt=checkpoint that saves the player's position
+[02:20:32] DSL raw output (blueprint, 74 tokens): BLUEPRINT: BP_Checkpoint
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_InputAction [ActionName="Save"]
+NODE n2: GetActorLocation
+NODE n3: SetVar [Variable=SavedPosition]
+
+EXEC n1.Pressed -> n3.Exec
+[02:20:32] [Generate DSL] Done in 30.0s, DSL length=245
+[02:20:32] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Checkpoint\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Save\"]\nNODE n2: GetActorLocation\nNODE n3: Se
+[02:20:32] Client connected: ('127.0.0.1', 56788)
+[02:20:32] Request: {"prompt": "Create a turret that fires at the player every 2 seconds when in range"}
+[02:20:32] [Stage 1] Classifying: Create a turret that fires at the player every 2 seconds when in range
+[02:20:53] Raw model output: {"mode":"CREATE","summary":"Create turret BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"turret that fires at the player every|2 seconds when in range"},"depends_on":null}]}
+[02:20:53] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:20:53] Single-stage result (CREATE)
+[02:20:53] Intent classified in 20.6s (multi-stage)
+[02:20:53] Response sent: {"mode": "CREATE", "summary": "Create turret BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "turret that fires at th
+[02:20:53] Client connected: ('127.0.0.1', 56837)
+[02:20:53] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "turret that fires at the player every|2 seconds when in range"}
+[02:20:53] [Generate DSL] domain=blueprint, prompt=turret that fires at the player every|2 seconds when in range
+[02:22:18] DSL raw output (blueprint, 237 tokens): BLUEPRINT: BP_Turret
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="Fire", Time=2.0, bLooping=true]
+NODE n3: Event_CustomEvent [EventName="Fi
+[02:22:18] [Generate DSL] Done in 85.5s, DSL length=726
+[02:22:18] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Turret\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Fire\", Time=2.0, 
+[02:22:19] Client connected: ('127.0.0.1', 57012)
+[02:22:19] Request: {"prompt": "Make a moving platform that goes up 300 units and comes back down"}
+[02:22:19] [Stage 1] Classifying: Make a moving platform that goes up 300 units and comes back down
+[02:22:36] Raw model output: {"mode":"CREATE","summary":"Create moving platform BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"moving platform that goes up|300 units and comes back down"},"depends_on":null}]}
+[02:22:36] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:22:36] Single-stage result (CREATE)
+[02:22:36] Intent classified in 17.3s (multi-stage)
+[02:22:36] Response sent: {"mode": "CREATE", "summary": "Create moving platform BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "moving platfor
+[02:22:36] Client connected: ('127.0.0.1', 57049)
+[02:22:36] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "moving platform that goes up|300 units and comes back down"}
+[02:22:36] [Generate DSL] domain=blueprint, prompt=moving platform that goes up|300 units and comes back down
+[02:24:09] DSL raw output (blueprint, 288 tokens): BLUEPRINT: BP_MovingPlatform
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_Tick
+NODE n2: GetVar
+NODE n3: AddFloat
+NODE n4: SetVar
+NODE n5: GreaterThan
+NODE n6: Branch
+NODE n7: SubtractFloat
+NODE n8
+[02:24:09] [Generate DSL] Done in 92.8s, DSL length=867
+[02:24:09] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_MovingPlatform\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: GetVar\nNODE n3: AddFloat\nNODE n4: SetVar\nNODE n5: G
+[02:24:10] Client connected: ('127.0.0.1', 57410)
+[02:24:10] Request: {"prompt": "Build a score manager that tracks points and high score"}
+[02:24:10] [Stage 1] Classifying: Build a score manager that tracks points and high score
+[02:24:26] Raw model output: {"mode":"CREATE","summary":"Create score manager BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"score manager that tracks points and high score"},"depends_on":null}]}
+[02:24:26] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:24:26] Single-stage result (CREATE)
+[02:24:26] Intent classified in 16.1s (multi-stage)
+[02:24:26] Response sent: {"mode": "CREATE", "summary": "Create score manager BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "score manager th
+[02:24:26] Client connected: ('127.0.0.1', 57443)
+[02:24:26] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "score manager that tracks points and high score"}
+[02:24:26] [Generate DSL] domain=blueprint, prompt=score manager that tracks points and high score
+[02:25:39] DSL raw output (blueprint, 229 tokens): BLUEPRINT: BP_ScoreManager
+PARENT: Actor
+
+VAR Score: Int = 0
+VAR HighScore: Int = 0
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: GetVar [Variable=HighScore]
+NODE n3: PrintString [InString="Hi
+[02:25:39] [Generate DSL] Done in 72.8s, DSL length=690
+[02:25:39] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_ScoreManager\nPARENT: Actor\n\nVAR Score: Int = 0\nVAR HighScore: Int = 0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetVa
+[02:25:39] Client connected: ('127.0.0.1', 52681)
+[02:25:39] Request: {"prompt": "Create a wave spawner that sends enemies every 15 seconds"}
+[02:25:39] [Stage 1] Classifying: Create a wave spawner that sends enemies every 15 seconds
+[02:25:57] Raw model output: {"mode":"CREATE","summary":"Create wave spawner BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"wave spawner that sends enemies every|15 seconds"},"depends_on":null}]}
+[02:25:57] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:25:57] Multi-stage flow for CREATE (discovery needed)
+[02:25:57] [Stage 2] Discovering targets: []
+[02:25:58] [Stage 2] Discovery complete: 1 result sets
+[02:25:58] CREATE with discovery: enriching Stage 1 result
+[02:25:58] Intent classified in 18.6s (multi-stage)
+[02:25:58] Response sent: {"mode": "CREATE", "summary": "Create wave spawner BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "wave spawner that
+[02:25:58] Client connected: ('127.0.0.1', 52724)
+[02:25:58] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "wave spawner that sends enemies every|15 seconds"}
+[02:25:58] [Generate DSL] domain=blueprint, prompt=wave spawner that sends enemies every|15 seconds
+[02:26:31] DSL raw output (blueprint, 101 tokens): BLUEPRINT: BP_WaveSpawner
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="SpawnEnemy", Time=15.0, bLooping=true]
+NODE n3: Event_CustomEvent [E
+[02:26:31] [Generate DSL] Done in 33.3s, DSL length=325
+[02:26:31] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_WaveSpawner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"SpawnEnemy\",
+[02:26:32] Client connected: ('127.0.0.1', 64105)
+[02:26:32] Request: {"prompt": "Make a day night cycle that toggles every 60 seconds"}
+[02:26:32] [Stage 1] Classifying: Make a day night cycle that toggles every 60 seconds
+[02:26:49] Raw model output: {"mode":"CREATE","summary":"Create day night cycle BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"day night cycle that toggles every|60 seconds"},"depends_on":null}]}
+[02:26:49] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:26:49] Single-stage result (CREATE)
+[02:26:49] Intent classified in 16.8s (multi-stage)
+[02:26:49] Response sent: {"mode": "CREATE", "summary": "Create day night cycle BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "day night cycl
+[02:26:49] Client connected: ('127.0.0.1', 64141)
+[02:26:49] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "day night cycle that toggles every|60 seconds"}
+[02:26:49] [Generate DSL] domain=blueprint, prompt=day night cycle that toggles every|60 seconds
+[02:27:34] DSL raw output (blueprint, 141 tokens): BLUEPRINT: BP_DayNightCycle
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="ToggleDay", Time=60.0, bLooping=true]
+NODE n3: Event_CustomEvent [
+[02:27:34] [Generate DSL] Done in 45.4s, DSL length=445
+[02:27:34] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_DayNightCycle\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"ToggleDay\"
+[02:27:34] Client connected: ('127.0.0.1', 64234)
+[02:27:34] Request: {"prompt": "Build a respawn system that resets the player after 3 seconds"}
+[02:27:34] [Stage 1] Classifying: Build a respawn system that resets the player after 3 seconds
+[02:27:53] Raw model output: {"mode":"CREATE","summary":"Create respawn system BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"respawn system that resets the player after|3 seconds"},"depends_on":null}]}
+[02:27:53] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:27:53] Multi-stage flow for CREATE (discovery needed)
+[02:27:53] [Stage 2] Discovering targets: []
+[02:27:53] [Stage 2] Discovery complete: 1 result sets
+[02:27:53] CREATE with discovery: enriching Stage 1 result
+[02:27:53] Intent classified in 18.3s (multi-stage)
+[02:27:53] Response sent: {"mode": "CREATE", "summary": "Create respawn system BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "respawn system 
+[02:27:53] Client connected: ('127.0.0.1', 64275)
+[02:27:53] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "respawn system that resets the player after|3 seconds"}
+[02:27:53] [Generate DSL] domain=blueprint, prompt=respawn system that resets the player after|3 seconds
+[02:28:57] DSL raw output (blueprint, 201 tokens): BLUEPRINT: BP_TimedRespawn
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="ExecuteRespawn", Time=3.0, bLooping=true]
+NODE n3: Event_CustomEven
+[02:28:57] [Generate DSL] Done in 64.5s, DSL length=634
+[02:28:57] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_TimedRespawn\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"ExecuteRespa
+[02:28:58] Client connected: ('127.0.0.1', 64432)
+[02:28:58] Request: {"prompt": "Create a treasure chest that gives random gold between 10 and 50"}
+[02:28:58] [Stage 1] Classifying: Create a treasure chest that gives random gold between 10 and 50
+[02:29:17] Raw model output: {"mode":"CREATE","summary":"Create treasure chest BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"treasure chest that gives random gold between|10 and|50"},"depends_on":null}]}
+[02:29:17] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:29:17] Multi-stage flow for CREATE (discovery needed)
+[02:29:17] [Stage 2] Discovering targets: []
+[02:29:17] [Stage 2] Discovery complete: 1 result sets
+[02:29:17] CREATE with discovery: enriching Stage 1 result
+[02:29:17] Intent classified in 19.0s (multi-stage)
+[02:29:17] Response sent: {"mode": "CREATE", "summary": "Create treasure chest BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "treasure chest 
+[02:29:17] Client connected: ('127.0.0.1', 64472)
+[02:29:17] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "treasure chest that gives random gold between|10 and|50"}
+[02:29:17] [Generate DSL] domain=blueprint, prompt=treasure chest that gives random gold between|10 and|50
+[02:29:49] DSL raw output (blueprint, 98 tokens): BLUEPRINT: BP_RandomGoldChest
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: RandomInteger [Min=10, Max=50]
+NODE n3: PrintString [InString="Gold Found"]
+NODE n4: DestroyAc
+[02:29:49] [Generate DSL] Done in 31.8s, DSL length=306
+[02:29:49] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_RandomGoldChest\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: RandomInteger [Min=10, Max=50]\nNODE n3:
+[02:29:49] Client connected: ('127.0.0.1', 54661)
+[02:29:49] Request: {"prompt": "Make a lever that toggles between on and off"}
+[02:29:49] [Stage 1] Classifying: Make a lever that toggles between on and off
+[02:30:05] Raw model output: {"mode":"CREATE","summary":"Create lever BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"lever that toggles between on and off"},"depends_on":null}]}
+[02:30:05] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:30:05] Single-stage result (CREATE)
+[02:30:05] Intent classified in 15.9s (multi-stage)
+[02:30:05] Response sent: {"mode": "CREATE", "summary": "Create lever BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "lever that toggles betwe
+[02:30:05] Client connected: ('127.0.0.1', 54698)
+[02:30:05] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "lever that toggles between on and off"}
+[02:30:05] [Generate DSL] domain=blueprint, prompt=lever that toggles between on and off
+[02:30:54] DSL raw output (blueprint, 151 tokens): BLUEPRINT: BP_ToggleLever
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_InputAction [ActionName="Use"]
+NODE n2: FlipFlop
+NODE n3: SetVisibility [Target=ToggleOn, NewVisibility=true]
+NODE n4: SetVis
+[02:30:54] [Generate DSL] Done in 48.9s, DSL length=504
+[02:30:54] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_ToggleLever\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Use\"]\nNODE n2: FlipFlop\nNODE n3: SetVisibil
+[02:30:54] Client connected: ('127.0.0.1', 61964)
+[02:30:54] Request: {"prompt": "Build a damage zone that hurts 10 HP per second"}
+[02:30:54] [Stage 1] Classifying: Build a damage zone that hurts 10 HP per second
+[02:31:13] Raw model output: {"mode":"CREATE","summary":"Create damage zone BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"damage zone that hurts|10 HP per second"},"depends_on":null}]}
+[02:31:13] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:31:13] Single-stage result (CREATE)
+[02:31:13] Intent classified in 19.0s (multi-stage)
+[02:31:13] Response sent: {"mode": "CREATE", "summary": "Create damage zone BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "damage zone that h
+[02:31:13] Client connected: ('127.0.0.1', 62008)
+[02:31:13] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "damage zone that hurts|10 HP per second"}
+[02:31:13] [Generate DSL] domain=blueprint, prompt=damage zone that hurts|10 HP per second
+[02:33:02] DSL raw output (blueprint, 320 tokens): BLUEPRINT: BP_DamageZone
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: SetTimerByFunctionName [FunctionName="DealDamage", Time=1.0, bLooping=true]
+NODE n3: Event_ActorEnd
+[02:33:02] [Generate DSL] Done in 108.0s, DSL length=1007
+[02:33:02] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_DamageZone\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetTimerByFunctionName [FunctionName=\"DealDa
+[02:33:02] Client connected: ('127.0.0.1', 50455)
+[02:33:02] Request: {"prompt": "Create a teleporter that moves the player to a target point"}
+[02:33:02] [Stage 1] Classifying: Create a teleporter that moves the player to a target point
+[02:33:20] Raw model output: {"mode":"CREATE","summary":"Create teleporter BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"teleporter that moves the player to a target point"},"depends_on":null}]}
+[02:33:20] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:33:20] Single-stage result (CREATE)
+[02:33:20] Intent classified in 18.0s (multi-stage)
+[02:33:20] Response sent: {"mode": "CREATE", "summary": "Create teleporter BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "teleporter that mov
+[02:33:20] Client connected: ('127.0.0.1', 50492)
+[02:33:20] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "teleporter that moves the player to a target point"}
+[02:33:20] [Generate DSL] domain=blueprint, prompt=teleporter that moves the player to a target point
+[02:33:50] DSL raw output (blueprint, 82 tokens): BLUEPRINT: BP_Teleporter
+PARENT: Actor
+
+VAR TargetLocation: Vector
+
+GRAPH: EventGraph
+
+NODE n1: Event_InputAction [ActionName="Teleport"]
+NODE n2: GetVar [Variable=TargetLocation]
+NODE n3: SetActorLoc
+[02:33:50] [Generate DSL] Done in 30.2s, DSL length=278
+[02:33:50] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Teleporter\nPARENT: Actor\n\nVAR TargetLocation: Vector\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Teleport\"]\nNODE
+[02:33:51] Client connected: ('127.0.0.1', 51854)
+[02:33:51] Request: {"prompt": "Make a blinking light that turns on and off every 3 seconds"}
+[02:33:51] [Stage 1] Classifying: Make a blinking light that turns on and off every 3 seconds
+[02:34:11] Raw model output: {"mode":"CREATE","summary":"Create blinking light BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"blinking light that turns on and off every|3 seconds"},"depends_on":null}]}
+[02:34:11] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:34:11] Single-stage result (CREATE)
+[02:34:11] Intent classified in 19.8s (multi-stage)
+[02:34:11] Response sent: {"mode": "CREATE", "summary": "Create blinking light BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "blinking light 
+[02:34:11] Client connected: ('127.0.0.1', 62402)
+[02:34:11] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "blinking light that turns on and off every|3 seconds"}
+[02:34:11] [Generate DSL] domain=blueprint, prompt=blinking light that turns on and off every|3 seconds
+[02:34:59] DSL raw output (blueprint, 142 tokens): BLUEPRINT: BP_BlinkLight
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetTimerByFunctionName [FunctionName="Toggle", Time=3.0, bLooping=true]
+NODE n3: Event_CustomEvent [EventNa
+[02:34:59] [Generate DSL] Done in 48.3s, DSL length=460
+[02:34:59] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_BlinkLight\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Toggle\", Time
+[02:35:00] Client connected: ('127.0.0.1', 62504)
+[02:35:00] Request: {"prompt": "Create a spinning actor that rotates on its Z axis"}
+[02:35:00] [Stage 1] Classifying: Create a spinning actor that rotates on its Z axis
+[02:35:16] Raw model output: {"mode":"CREATE","summary":"Create spinning BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"spinning actor that rotates on its Z axis"},"depends_on":null}]}
+[02:35:16] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:35:16] Single-stage result (CREATE)
+[02:35:16] Intent classified in 16.3s (multi-stage)
+[02:35:16] Response sent: {"mode": "CREATE", "summary": "Create spinning BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "spinning actor that r
+[02:35:16] Client connected: ('127.0.0.1', 49295)
+[02:35:16] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "spinning actor that rotates on its Z axis"}
+[02:35:16] [Generate DSL] domain=blueprint, prompt=spinning actor that rotates on its Z axis
+[02:35:48] DSL raw output (blueprint, 95 tokens): BLUEPRINT: BP_Spinner
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_Tick
+NODE n2: MakeRotator [Roll=0, Pitch=0, Yaw=10]
+NODE n3: AddActorLocalRotation
+
+EXEC n1.Then -> n3.Execute
+
+DATA n1.DeltaSeco
+[02:35:48] [Generate DSL] Done in 31.8s, DSL length=271
+[02:35:48] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_Spinner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: MakeRotator [Roll=0, Pitch=0, Yaw=10]\nNODE n3: AddActorLocal
+[02:35:48] Client connected: ('127.0.0.1', 49365)
+[02:35:48] Request: {"prompt": "Build a spring pad that launches the player upward"}
+[02:35:48] [Stage 1] Classifying: Build a spring pad that launches the player upward
+[02:36:04] Raw model output: {"mode":"CREATE","summary":"Create spring pad BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"spring pad that launches the player upward"},"depends_on":null}]}
+[02:36:04] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:36:04] Single-stage result (CREATE)
+[02:36:04] Intent classified in 15.7s (multi-stage)
+[02:36:04] Response sent: {"mode": "CREATE", "summary": "Create spring pad BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "spring pad that lau
+[02:36:04] Client connected: ('127.0.0.1', 49398)
+[02:36:04] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "spring pad that launches the player upward"}
+[02:36:04] [Generate DSL] domain=blueprint, prompt=spring pad that launches the player upward
+[02:36:45] DSL raw output (blueprint, 129 tokens): BLUEPRINT: BP_SpringPad
+PARENT: Actor
+
+GRAPH: EventGraph
+
+NODE n1: Event_ActorBeginOverlap
+NODE n2: SetActorHiddenInGame [bNewHidden=true]
+NODE n3: AddImpulse [Impulse=(X=0,Y=0,Z=2000)]
+NODE n4: Delay
+[02:36:45] [Generate DSL] Done in 41.6s, DSL length=378
+[02:36:45] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_SpringPad\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetActorHiddenInGame [bNewHidden=true]\nNODE n
+[02:36:46] Client connected: ('127.0.0.1', 49488)
+[02:36:46] Request: {"prompt": "Create a game manager that initializes score and health"}
+[02:36:46] [Stage 1] Classifying: Create a game manager that initializes score and health
+[02:37:02] Raw model output: {"mode":"CREATE","summary":"Create game manager BP","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_blueprint","params":{"prompt":"game manager that initializes score and health"},"depends_on":null}]}
+[02:37:02] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:37:02] Single-stage result (CREATE)
+[02:37:02] Intent classified in 16.6s (multi-stage)
+[02:37:02] Response sent: {"mode": "CREATE", "summary": "Create game manager BP", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_blueprint", "params": {"prompt": "game manager that
+[02:37:02] Client connected: ('127.0.0.1', 49522)
+[02:37:02] Request: {"command": "generate_dsl", "domain": "blueprint", "prompt": "game manager that initializes score and health"}
+[02:37:02] [Generate DSL] domain=blueprint, prompt=game manager that initializes score and health
+[02:37:43] DSL raw output (blueprint, 107 tokens): BLUEPRINT: BP_GameManager
+PARENT: Actor
+
+VAR Score: Int = 0
+VAR Health: Float = 100.0
+
+GRAPH: EventGraph
+
+NODE n1: Event_BeginPlay
+NODE n2: SetVar [Variable=Score]
+NODE n3: SetVar [Variable=Health]
+
+E
+[02:37:43] [Generate DSL] Done in 40.3s, DSL length=309
+[02:37:43] Response sent: {"status": "ok", "domain": "blueprint", "dsl": "BLUEPRINT: BP_GameManager\nPARENT: Actor\n\nVAR Score: Int = 0\nVAR Health: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: Set
+[02:37:43] Client connected: ('127.0.0.1', 49607)
+[02:37:43] Request: {"prompt": "Make a patrol AI that walks between two waypoints"}
+[02:37:43] [Stage 1] Classifying: Make a patrol AI that walks between two waypoints
+[02:38:01] Raw model output: {"mode":"CREATE","summary":"Create patrol AI behavior tree","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_behavior_tree","params":{"prompt":"patrol AI that walks between two waypoints"},"depends_on":null}]}
+[02:38:01] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:38:01] Single-stage result (CREATE)
+[02:38:01] Intent classified in 18.2s (multi-stage)
+[02:38:01] Response sent: {"mode": "CREATE", "summary": "Create patrol AI behavior tree", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_behavior_tree", "params": {"prompt": "patro
+[02:38:01] Client connected: ('127.0.0.1', 49645)
+[02:38:01] Request: {"command": "generate_dsl", "domain": "bt", "prompt": "patrol AI that walks between two waypoints"}
+[02:38:01] [Generate DSL] domain=bt, prompt=patrol AI that walks between two waypoints
+[02:38:34] DSL raw output (bt, 101 tokens): BEHAVIORTREE: BT_Patrol
+BLACKBOARD: BB_Patrol
+
+KEY WaypointA: Vector
+KEY WaypointB: Vector
+
+TREE:
+
+SEQUENCE: PatrolAB
+  TASK: MoveTo [Key=WaypointA, AcceptableRadius=100]
+  TASK: Wait [Duration=3.0]
+ 
+[02:38:34] [Generate DSL] Done in 32.6s, DSL length=279
+[02:38:34] Response sent: {"status": "ok", "domain": "bt", "dsl": "BEHAVIORTREE: BT_Patrol\nBLACKBOARD: BB_Patrol\n\nKEY WaypointA: Vector\nKEY WaypointB: Vector\n\nTREE:\n\nSEQUENCE: PatrolAB\n  TASK: MoveTo [Key=WaypointA, A
+[02:38:35] Client connected: ('127.0.0.1', 49722)
+[02:38:35] Request: {"prompt": "Build a boss AI with three phases based on health"}
+[02:38:35] [Stage 1] Classifying: Build a boss AI with three phases based on health
+[02:38:51] Raw model output: {"mode":"CREATE","summary":"Create boss AI behavior tree","targets":[],"requires_confirmation":false,"operations":[{"step":1,"command":"create_behavior_tree","params":{"prompt":"boss AI with three phases based on health"},"depends_on":null}]}
+[02:38:51] [Stage 1] Result: mode=CREATE, targets=[], ops=1
+[02:38:51] Single-stage result (CREATE)
+[02:38:51] Intent classified in 16.7s (multi-stage)
+[02:38:51] Response sent: {"mode": "CREATE", "summary": "Create boss AI behavior tree", "targets": [], "requires_confirmation": false, "operations": [{"step": 1, "command": "create_behavior_tree", "params": {"prompt": "boss AI
+[02:38:51] Client connected: ('127.0.0.1', 49761)
+[02:38:51] Request: {"command": "generate_dsl", "domain": "bt", "prompt": "boss AI with three phases based on health"}
+[02:38:51] [Generate DSL] domain=bt, prompt=boss AI with three phases based on health

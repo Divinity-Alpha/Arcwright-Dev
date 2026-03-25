@@ -1,0 +1,74 @@
+{
+  "id": "objective_tracker",
+  "name": "Objective Tracker",
+  "category": "hud",
+  "description": "Vertical objectives with checkmarks",
+  "default_anchor": "TopRight",
+  "default_offset": [
+    -20,
+    200
+  ],
+  "default_size": [
+    250,
+    200
+  ],
+  "variables": [
+    {
+      "name": "ObjectiveText1",
+      "type": "String",
+      "default": "Find the key"
+    },
+    {
+      "name": "Objective1Done",
+      "type": "Bool",
+      "default": false
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "ObjectiveList",
+    "properties": {
+      "spacing": "6"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "ObjectiveHeader",
+        "properties": {
+          "text": "OBJECTIVES",
+          "font_size": "14",
+          "color": "$text_muted",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "Obj1Row",
+        "properties": {
+          "spacing": "6"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "Obj1Check",
+            "properties": {
+              "text": "BIND:\"{Objective1Done}\"",
+              "font_size": "14",
+              "color": "$accent"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "Obj1Text",
+            "properties": {
+              "text": "BIND:\"{ObjectiveText1}\"",
+              "font_size": "14",
+              "color": "$text"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

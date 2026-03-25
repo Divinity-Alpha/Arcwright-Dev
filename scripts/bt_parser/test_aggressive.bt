@@ -1,0 +1,24 @@
+BEHAVIORTREE: BT_AggressiveEnemy
+BLACKBOARD: BB_Aggressive
+
+KEY TargetActor: Object
+KEY DistanceToTarget: Float = 9999.0
+KEY HasLineOfSight: Bool = false
+
+TREE:
+
+SELECTOR: Root
+  SERVICE: FindNearestActor [Class=Character, ResultKey=TargetActor, SearchRadius=2000, Interval=0.5]
+  SERVICE: UpdateDistance [TargetKey=TargetActor, ResultKey=DistanceToTarget, Interval=0.3]
+  SEQUENCE: Attack
+    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]
+    DECORATOR: BlackboardBased [Key=DistanceToTarget, Condition=LessThan, Value=500]
+    TASK: RotateToFaceBBEntry [Key=TargetActor]
+    TASK: ApplyDamage [Key=TargetActor, Damage=25]
+    TASK: Wait [Duration=0.5]
+  SEQUENCE: Chase
+    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]
+    TASK: MoveTo [Key=TargetActor, AcceptableRadius=300]
+  SEQUENCE: Idle
+    TASK: Wait [Duration=2.0, RandomDeviation=1.0]
+    TASK: PrintString [Message="Looking around..."]

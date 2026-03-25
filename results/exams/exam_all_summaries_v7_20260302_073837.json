@@ -1,6 +1,6 @@
 {
   "version": "v7",
-  "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+  "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
   "base_model": "meta-llama/Meta-Llama-3.1-70B",
   "timestamp": "20260302_073837",
   "total_lessons": 12,
@@ -14,7 +14,7 @@
     {
       "lesson_id": "lesson_01",
       "lesson_name": "Core Pattern Gaps",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_031312",
       "total_prompts": 20,
@@ -127,7 +127,7 @@
     {
       "lesson_id": "lesson_02",
       "lesson_name": "Corrections: Variables, Events, Complex Nodes",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_032813",
       "total_prompts": 24,
@@ -215,7 +215,7 @@
     {
       "lesson_id": "lesson_03",
       "lesson_name": "Timers and Delayed Actions",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_034528",
       "total_prompts": 20,
@@ -328,7 +328,7 @@
     {
       "lesson_id": "lesson_04",
       "lesson_name": "Physics and Movement",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_040548",
       "total_prompts": 20,
@@ -441,7 +441,7 @@
     {
       "lesson_id": "lesson_05",
       "lesson_name": "IsValid Checks and Defensive Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_042527",
       "total_prompts": 20,
@@ -554,7 +554,7 @@
     {
       "lesson_id": "lesson_06",
       "lesson_name": "While Loops, For Loops, and Iteration",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_044846",
       "total_prompts": 20,
@@ -667,7 +667,7 @@
     {
       "lesson_id": "lesson_07",
       "lesson_name": "String Operations and Debug Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_051134",
       "total_prompts": 20,
@@ -780,7 +780,7 @@
     {
       "lesson_id": "lesson_08",
       "lesson_name": "UI Widgets and HUD Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_053127",
       "total_prompts": 20,
@@ -893,7 +893,7 @@
     {
       "lesson_id": "lesson_09",
       "lesson_name": "Nested Branches and Switch Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_055438",
       "total_prompts": 20,
@@ -1006,7 +1006,7 @@
     {
       "lesson_id": "lesson_10",
       "lesson_name": "Complex Real-World Blueprints",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_062106",
       "total_prompts": 20,
@@ -1119,7 +1119,7 @@
     {
       "lesson_id": "lesson_11",
       "lesson_name": "Arrays and Data Structures",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_065509",
       "total_prompts": 20,
@@ -1232,7 +1232,7 @@
     {
       "lesson_id": "lesson_12",
       "lesson_name": "Edge Cases and Unusual Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v7\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v7\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260302_071921",
       "total_prompts": 20,

@@ -1,0 +1,74 @@
+{
+  "id": "boss_health_bar",
+  "name": "Boss Health Bar",
+  "category": "hud",
+  "description": "Wide bar with boss name",
+  "default_anchor": "TopCenter",
+  "default_offset": [
+    0,
+    40
+  ],
+  "default_size": [
+    500,
+    60
+  ],
+  "variables": [
+    {
+      "name": "BossName",
+      "type": "String",
+      "default": "Boss"
+    },
+    {
+      "name": "BossHealth",
+      "type": "Float",
+      "default": 100.0
+    },
+    {
+      "name": "BossMaxHealth",
+      "type": "Float",
+      "default": 100.0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "BossPanel",
+    "properties": {
+      "spacing": "4"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "BossNameText",
+        "properties": {
+          "text": "BIND:\"{BossName}\"",
+          "font_size": "18",
+          "color": "$danger",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "BossBar",
+        "properties": {
+          "percent": "BIND:BossHealth/BossMaxHealth",
+          "fill_color": "$danger",
+          "bar_color": "$surface",
+          "size_x": "480",
+          "size_y": "20"
+        },
+        "animations": [
+          {
+            "trigger": "OnDamage",
+            "type": "Shake",
+            "params": {
+              "duration": 0.4,
+              "intensity": 5
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

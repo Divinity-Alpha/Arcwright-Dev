@@ -1,0 +1,59 @@
+{
+  "id": "splash_screen",
+  "name": "Splash Screen",
+  "category": "system",
+  "description": "Full screen: company logo, engine logo, press any key",
+  "default_anchor": "Fill",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    0,
+    0
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "OVERLAY",
+    "name": "SplashRoot",
+    "properties": {},
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "SplashBG",
+        "properties": {
+          "tint": "$panel_bg"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "SplashContent",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "CompanyLogo",
+            "properties": {
+              "tint": "$text",
+              "size_x": "300",
+              "size_y": "100"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "PressAnyKey",
+            "properties": {
+              "text": "PRESS ANY KEY",
+              "font_size": "18",
+              "color": "$text_muted",
+              "justification": "Center"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

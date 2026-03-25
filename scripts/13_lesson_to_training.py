@@ -80,7 +80,7 @@ def lesson_to_training(lesson_path: str, output_path: str, append: bool = True):
         for var_instruction in variations:
             entry = {
                 "instruction": var_instruction,
-                "output": prompt["expected_dsl"],
+                "output": prompt.get("expected_dsl") or prompt["expected_output"],
                 "source": f"lesson:{lesson['lesson_id']}:{prompt['id']}",
                 "category": prompt["category"],
             }

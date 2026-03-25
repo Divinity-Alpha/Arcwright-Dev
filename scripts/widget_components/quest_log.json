@@ -1,0 +1,137 @@
+{
+  "id": "quest_log",
+  "name": "Quest Log",
+  "category": "quest",
+  "description": "Tab bar, quest list, detail panel with objectives",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    600,
+    450
+  ],
+  "variables": [
+    {
+      "name": "SelectedQuest",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "QuestLogRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "HBOX",
+        "name": "TabBar",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "ActiveTab",
+            "properties": {
+              "text": "Active",
+              "font_size": "14"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "CompletedTab",
+            "properties": {
+              "text": "Completed",
+              "font_size": "14"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "FailedTab",
+            "properties": {
+              "text": "Failed",
+              "font_size": "14"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "QuestContent",
+        "properties": {
+          "spacing": "12"
+        },
+        "children": [
+          {
+            "type": "VBOX",
+            "name": "QuestList",
+            "properties": {
+              "spacing": "4"
+            },
+            "children": [
+              {
+                "type": "BUTTON",
+                "name": "Quest1",
+                "properties": {
+                  "text": "The Lost Artifact",
+                  "font_size": "14"
+                }
+              },
+              {
+                "type": "BUTTON",
+                "name": "Quest2",
+                "properties": {
+                  "text": "Dragon Slayer",
+                  "font_size": "14"
+                }
+              }
+            ]
+          },
+          {
+            "type": "VBOX",
+            "name": "QuestDetail",
+            "properties": {
+              "spacing": "6"
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "QuestTitle",
+                "properties": {
+                  "text": "BIND:\"{SelectedQuest}\"",
+                  "font_size": "20",
+                  "color": "$primary",
+                  "bold": "true"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "QuestDesc",
+                "properties": {
+                  "text": "BIND:\"{QuestDescription}\"",
+                  "font_size": "14",
+                  "color": "$text",
+                  "wrap": "true"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Obj1",
+                "properties": {
+                  "text": "BIND:\"{Objective1}\"",
+                  "font_size": "13",
+                  "color": "$text"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

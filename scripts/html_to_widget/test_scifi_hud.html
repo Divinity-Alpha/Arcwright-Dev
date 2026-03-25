@@ -1,0 +1,208 @@
+<!-- Arcwright: Game HUD designed in HTML, auto-translated to UE Widget -->
+<style>
+    .hud-root {
+        position: absolute;
+        left: 0; top: 0;
+        width: 1920px;
+        height: 1080px;
+    }
+    .health-section {
+        position: absolute;
+        left: 40px;
+        top: 30px;
+    }
+    .health-label {
+        color: #00ff88;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .health-bar {
+        width: 280px;
+        height: 24px;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    .health-fill {
+        width: 75%;
+        height: 100%;
+        background-color: #00ff88;
+    }
+    .health-text {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .score-section {
+        position: absolute;
+        right: 40px;
+        top: 30px;
+    }
+    .score-label {
+        color: #ffb800;
+        font-size: 14px;
+    }
+    .score-value {
+        color: #ffb800;
+        font-size: 36px;
+        font-weight: bold;
+        text-align: right;
+    }
+    .ammo-section {
+        position: absolute;
+        right: 40px;
+        bottom: 40px;
+    }
+    .ammo-count {
+        color: white;
+        font-size: 48px;
+        font-weight: bold;
+        text-align: right;
+    }
+    .ammo-label {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 12px;
+        text-align: right;
+    }
+    .crosshair {
+        position: absolute;
+        left: 950px;
+        top: 530px;
+        width: 20px;
+        height: 20px;
+    }
+    .crosshair-dot {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 20px;
+        text-align: center;
+    }
+    .message-area {
+        position: absolute;
+        left: 660px;
+        top: 750px;
+        width: 600px;
+    }
+    .message-text {
+        color: #00d4ff;
+        font-size: 24px;
+        text-align: center;
+    }
+    .minimap-frame {
+        position: absolute;
+        right: 30px;
+        top: 120px;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    .minimap-label {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 10px;
+        text-align: center;
+    }
+    .wave-info {
+        position: absolute;
+        left: 860px;
+        top: 30px;
+        width: 200px;
+    }
+    .wave-text {
+        color: #a855f7;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .wave-sub {
+        color: rgba(168, 85, 247, 0.6);
+        font-size: 12px;
+        text-align: center;
+    }
+    .ability-bar {
+        position: absolute;
+        left: 710px;
+        bottom: 40px;
+        width: 500px;
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+    }
+    .ability-slot {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+    .ability-key {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 11px;
+        text-align: center;
+    }
+    .ability-icon {
+        color: #00d4ff;
+        font-size: 24px;
+        text-align: center;
+    }
+</style>
+
+<div class="hud-root" data-widget-name="RootCanvas">
+    
+    <!-- Health (top-left) -->
+    <div class="health-section" data-widget-name="HealthGroup">
+        <span class="health-label">HEALTH</span>
+        <div class="health-bar" data-widget="progress" data-percent="75">
+            <div class="health-fill"></div>
+        </div>
+        <span class="health-text">75 / 100</span>
+    </div>
+    
+    <!-- Score (top-right) -->
+    <div class="score-section" data-widget-name="ScoreGroup">
+        <span class="score-label">SCORE</span>
+        <p class="score-value" data-widget-name="ScoreValue">12,450</p>
+    </div>
+    
+    <!-- Wave Info (top-center) -->
+    <div class="wave-info" data-widget-name="WaveGroup">
+        <p class="wave-text" data-widget-name="WaveText">WAVE 3</p>
+        <p class="wave-sub">Enemies Remaining: 8</p>
+    </div>
+    
+    <!-- Crosshair (center) -->
+    <div class="crosshair" data-widget-name="Crosshair">
+        <span class="crosshair-dot">+</span>
+    </div>
+    
+    <!-- Message Area (lower-center) -->
+    <div class="message-area" data-widget-name="MessageArea">
+        <p class="message-text" data-widget-name="MessageText">Key Collected! 2/3</p>
+    </div>
+    
+    <!-- Minimap (right side) -->
+    <div class="minimap-frame" data-widget-name="MinimapFrame">
+        <span class="minimap-label">MAP</span>
+    </div>
+    
+    <!-- Ammo Counter (bottom-right) -->
+    <div class="ammo-section" data-widget-name="AmmoGroup">
+        <p class="ammo-count" data-widget-name="AmmoCount">24</p>
+        <span class="ammo-label">RIFLE AMMO</span>
+    </div>
+    
+    <!-- Ability Bar (bottom-center) -->
+    <div class="ability-bar" data-widget-name="AbilityBar">
+        <div class="ability-slot" data-widget-name="Ability1">
+            <span class="ability-key">Q</span>
+            <span class="ability-icon">⚡</span>
+        </div>
+        <div class="ability-slot" data-widget-name="Ability2">
+            <span class="ability-key">E</span>
+            <span class="ability-icon">🛡</span>
+        </div>
+        <div class="ability-slot" data-widget-name="Ability3">
+            <span class="ability-key">R</span>
+            <span class="ability-icon">🔥</span>
+        </div>
+        <div class="ability-slot" data-widget-name="Ability4">
+            <span class="ability-key">F</span>
+            <span class="ability-icon">💊</span>
+        </div>
+    </div>
+
+</div>

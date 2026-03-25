@@ -1,0 +1,58 @@
+{
+  "id": "speed_display",
+  "name": "Speed Display",
+  "category": "hud",
+  "description": "Large speed + KPH for racing",
+  "default_anchor": "BottomRight",
+  "default_offset": [
+    -40,
+    -40
+  ],
+  "default_size": [
+    150,
+    80
+  ],
+  "variables": [
+    {
+      "name": "Speed",
+      "type": "Integer",
+      "default": 0
+    }
+  ],
+  "options": {
+    "unit": {
+      "type": "string",
+      "default": "KPH"
+    }
+  },
+  "tree": {
+    "type": "VBOX",
+    "name": "SpeedPanel",
+    "properties": {
+      "spacing": "0"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "SpeedValue",
+        "properties": {
+          "text": "BIND:\"{Speed}\"",
+          "font_size": "48",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Right"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "SpeedUnit",
+        "properties": {
+          "text": "KPH",
+          "font_size": "14",
+          "color": "$text_muted",
+          "justification": "Right"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,654 @@
+{
+  "timestamp": "2026-03-09T20:47:58.890490",
+  "passed": 51,
+  "failed": 40,
+  "skipped": 1,
+  "total": 92,
+  "duration_seconds": 13.5,
+  "results": [
+    {
+      "name": "health_check",
+      "category": "connection",
+      "status": "PASS",
+      "detail": "server=Arcwright",
+      "duration_seconds": 0.254
+    },
+    {
+      "name": "create_blueprint_from_dsl",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "created BP_ArcwrightTest",
+      "duration_seconds": 0.72
+    },
+    {
+      "name": "get_blueprint_info",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "nodes=3, compiled=True",
+      "duration_seconds": 0.028
+    },
+    {
+      "name": "compile_blueprint",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "compiled",
+      "duration_seconds": 0.274
+    },
+    {
+      "name": "duplicate_blueprint",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "duplicated to BP_ArcwrightTest2",
+      "duration_seconds": 0.338
+    },
+    {
+      "name": "delete_blueprint",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "deleted",
+      "duration_seconds": 0.227
+    },
+    {
+      "name": "get_blueprint_info_nonexistent",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "correctly returned error",
+      "duration_seconds": 0.081
+    },
+    {
+      "name": "add_node",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "added Delay (id=4D77CC8242BD7E47E3E9C6BF22A3227E)",
+      "duration_seconds": 0.038
+    },
+    {
+      "name": "set_node_param",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "set Duration=2.0 on 4D77CC8242BD7E47E3E9C6BF22A3227E",
+      "duration_seconds": 0.317
+    },
+    {
+      "name": "add_connection",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "wired BeginPlay->4D77CC8242BD7E47E3E9C6BF22A3227E",
+      "duration_seconds": 0.032
+    },
+    {
+      "name": "remove_connection",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "unwired",
+      "duration_seconds": 0.3
+    },
+    {
+      "name": "remove_node",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "removed Delay",
+      "duration_seconds": 0.028
+    },
+    {
+      "name": "set_variable_default",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "Health=75.0",
+      "duration_seconds": 0.303
+    },
+    {
+      "name": "add_component_BoxCollision",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added BoxCollision",
+      "duration_seconds": 0.033
+    },
+    {
+      "name": "add_component_SphereCollision",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added SphereCollision",
+      "duration_seconds": 0.301
+    },
+    {
+      "name": "add_component_StaticMesh",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added StaticMesh",
+      "duration_seconds": 0.031
+    },
+    {
+      "name": "add_component_PointLight",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added PointLight",
+      "duration_seconds": 0.302
+    },
+    {
+      "name": "add_component_SpotLight",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added SpotLight",
+      "duration_seconds": 0.03
+    },
+    {
+      "name": "add_component_Audio",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added Audio",
+      "duration_seconds": 0.3
+    },
+    {
+      "name": "add_component_Arrow",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added Arrow",
+      "duration_seconds": 0.029
+    },
+    {
+      "name": "add_component_Scene",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added Scene",
+      "duration_seconds": 0.308
+    },
+    {
+      "name": "add_component_CapsuleCollision",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added CapsuleCollision",
+      "duration_seconds": 0.03
+    },
+    {
+      "name": "get_components",
+      "category": "components",
+      "status": "PASS",
+      "detail": "count=9",
+      "duration_seconds": 0.283
+    },
+    {
+      "name": "set_component_property",
+      "category": "components",
+      "status": "PASS",
+      "detail": "intensity=1000",
+      "duration_seconds": 0.022
+    },
+    {
+      "name": "remove_component",
+      "category": "components",
+      "status": "PASS",
+      "detail": "removed Arrow",
+      "duration_seconds": 0.029
+    },
+    {
+      "name": "remove_component_idempotent",
+      "category": "components",
+      "status": "PASS",
+      "detail": "idempotent ok",
+      "duration_seconds": 0.284
+    },
+    {
+      "name": "create_simple_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "created red material",
+      "duration_seconds": 0.26
+    },
+    {
+      "name": "create_simple_material_emissive",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "created green emissive",
+      "duration_seconds": 0.26
+    },
+    {
+      "name": "apply_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "applied to StaticMesh",
+      "duration_seconds": 0.025
+    },
+    {
+      "name": "create_textured_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "created textured material",
+      "duration_seconds": 0.205
+    },
+    {
+      "name": "set_actor_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "material applied to actor",
+      "duration_seconds": 0.788
+    },
+    {
+      "name": "spawn_actor_at",
+      "category": "level",
+      "status": "PASS",
+      "detail": "spawned actor",
+      "duration_seconds": 0.35
+    },
+    {
+      "name": "get_actors",
+      "category": "level",
+      "status": "PASS",
+      "detail": "actors=97",
+      "duration_seconds": 0.01
+    },
+    {
+      "name": "set_actor_transform",
+      "category": "level",
+      "status": "PASS",
+      "detail": "moved actor",
+      "duration_seconds": 0.307
+    },
+    {
+      "name": "get_level_info",
+      "category": "level",
+      "status": "PASS",
+      "detail": "level=ArenaLevel",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "delete_actor",
+      "category": "level",
+      "status": "PASS",
+      "detail": "deleted",
+      "duration_seconds": 0.022
+    },
+    {
+      "name": "save_all",
+      "category": "level",
+      "status": "PASS",
+      "detail": "saved",
+      "duration_seconds": 0.746
+    },
+    {
+      "name": "save_level",
+      "category": "level",
+      "status": "PASS",
+      "detail": "saved",
+      "duration_seconds": 0.026
+    },
+    {
+      "name": "create_widget_blueprint",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "created",
+      "duration_seconds": 0.229
+    },
+    {
+      "name": "add_widget_child_canvas",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "added root CanvasPanel",
+      "duration_seconds": 0.028
+    },
+    {
+      "name": "add_widget_child_text",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "added TextBlock",
+      "duration_seconds": 0.058
+    },
+    {
+      "name": "add_widget_child_progress",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "added ProgressBar",
+      "duration_seconds": 0.052
+    },
+    {
+      "name": "set_widget_property_text",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "text set",
+      "duration_seconds": 0.042
+    },
+    {
+      "name": "set_widget_property_percent",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "percent=0.75",
+      "duration_seconds": 0.018
+    },
+    {
+      "name": "get_widget_tree",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "tree retrieved",
+      "duration_seconds": 0.031
+    },
+    {
+      "name": "remove_widget",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "removed ProgressBar",
+      "duration_seconds": 0.045
+    },
+    {
+      "name": "create_behavior_tree",
+      "category": "behavior_tree",
+      "status": "PASS",
+      "detail": "created BT",
+      "duration_seconds": 0.032
+    },
+    {
+      "name": "get_behavior_tree_info",
+      "category": "behavior_tree",
+      "status": "PASS",
+      "detail": "queried BT",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "get_behavior_tree_info_nonexistent",
+      "category": "behavior_tree",
+      "status": "PASS",
+      "detail": "correctly returned error",
+      "duration_seconds": 0.003
+    },
+    {
+      "name": "create_data_table",
+      "category": "data_table",
+      "status": "PASS",
+      "detail": "created DT",
+      "duration_seconds": 0.248
+    },
+    {
+      "name": "get_data_table_info",
+      "category": "data_table",
+      "status": "PASS",
+      "detail": "queried DT",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "create_ai_pawn",
+      "category": "ai_setup",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 3.241
+    },
+    {
+      "name": "setup_ai_for_pawn",
+      "category": "ai_setup",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "set_class_defaults",
+      "category": "ai_setup",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "import_static_mesh_bad_path",
+      "category": "asset_import",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "import_texture_bad_path",
+      "category": "asset_import",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "import_sound_bad_path",
+      "category": "asset_import",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "create_spline_actor",
+      "category": "splines",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.301
+    },
+    {
+      "name": "add_spline_point",
+      "category": "splines",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "get_spline_info",
+      "category": "splines",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "add_post_process_volume",
+      "category": "post_process",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.301
+    },
+    {
+      "name": "set_post_process_settings",
+      "category": "post_process",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "set_movement_defaults",
+      "category": "movement",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.301
+    },
+    {
+      "name": "add_physics_constraint",
+      "category": "physics",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.301
+    },
+    {
+      "name": "break_constraint",
+      "category": "physics",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "create_sequence",
+      "category": "sequencer",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "add_sequence_track",
+      "category": "sequencer",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.301
+    },
+    {
+      "name": "add_keyframe",
+      "category": "sequencer",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "get_sequence_info",
+      "category": "sequencer",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "play_sequence",
+      "category": "sequencer",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "create_foliage_type",
+      "category": "foliage",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "paint_foliage",
+      "category": "foliage",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "get_foliage_info",
+      "category": "foliage",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "get_landscape_info",
+      "category": "landscape",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "set_landscape_material",
+      "category": "landscape",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "setup_scene_lighting",
+      "category": "scene_setup",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "set_game_mode",
+      "category": "scene_setup",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "get_output_log",
+      "category": "misc",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "take_screenshot",
+      "category": "misc",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "get_viewport_info",
+      "category": "misc",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "set_viewport_camera",
+      "category": "misc",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "quit_editor",
+      "category": "misc",
+      "status": "SKIP",
+      "detail": "skipped: would close the editor",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "empty_blueprint_name",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "empty_node_type",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "compile_nonexistent_bp",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "delete_nonexistent_actor",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "transform_nonexistent_actor",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "bad_material_path",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "unknown_command",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "missing_required_params",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "very_long_string",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "server_still_alive",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host",
+      "duration_seconds": 0.0
+    }
+  ]
+}

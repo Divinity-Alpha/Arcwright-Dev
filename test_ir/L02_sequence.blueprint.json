@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "name": "BP_SequenceSteps",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "Sequence",
+      "params": {},
+      "ue_class": "UK2Node_ExecutionSequence",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "PrintString",
+      "params": {
+        "InString": "Step 1"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "PrintString",
+      "params": {
+        "InString": "Step 2"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        600,
+        150
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "PrintString",
+      "params": {
+        "InString": "Step 3"
+      },
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        600,
+        300
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "Then_0",
+      "dst_node": "n3",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "Then_1",
+      "dst_node": "n4",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "Then_2",
+      "dst_node": "n5",
+      "dst_pin": "Execute"
+    }
+  ]
+}

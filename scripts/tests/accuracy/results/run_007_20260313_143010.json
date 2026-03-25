@@ -1,0 +1,1073 @@
+{
+  "run": 7,
+  "timestamp": "20260313_143010",
+  "date": "2026-03-13",
+  "total_score": 25,
+  "max_score": 175,
+  "pct": 14.3,
+  "test_count": 35,
+  "categories": {
+    "modify": {
+      "intent": 6,
+      "plan": 1,
+      "exec": 6,
+      "verify": 8,
+      "quality": 4,
+      "count": 35
+    }
+  },
+  "failure_counts": {
+    "P2": 5,
+    "E3": 3,
+    "Q2": 4,
+    "I2": 27,
+    "I1": 2,
+    "P1": 2
+  },
+  "results": {
+    "M.01": {
+      "test_id": "M.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Set Health=200 on enemies",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "",
+                  "variable_name": "Health",
+                  "default_value": 200
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "results": [
+              {
+                "blueprint": "",
+                "variable_name": "Health",
+                "success": false,
+                "error": "Blueprint not found: "
+              }
+            ],
+            "errors": [
+              ": Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 34.2
+    },
+    "M.02": {
+      "test_id": "M.02",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Make the enemies faster",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "ArenaLevel",
+                  "property": "speed",
+                  "value": 1.25
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Actor not found: ArenaLevel"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 44.7
+    },
+    "M.03": {
+      "test_id": "M.03",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Double the enemy damage",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "ArenaLevel",
+                  "property": "damage",
+                  "value": 2
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Actor not found: ArenaLevel"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 44.49
+    },
+    "M.04": {
+      "test_id": "M.04",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Coin blueprint",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_Coin",
+              "set_class_defaults": {
+                "Value": "50"
+              },
+              "add_variables": [],
+              "remove_variables": []
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Blueprint not found: BP_Coin",
+          "step": 1,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E3",
+        "Q2"
+      ],
+      "duration_s": 51.18
+    },
+    "M.05": {
+      "test_id": "M.05",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Reduce torch intensity to 2000",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "BP_Torch_01",
+                  "property": "intensity",
+                  "value": 200
+                },
+                {
+                  "actor_label": "BP_Torch_02",
+                  "property": "intensity",
+                  "value": 200
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 2,
+            "succeeded": 0,
+            "failed": 2,
+            "errors": [
+              "Actor not found: BP_Torch_01",
+              "Actor not found: BP_Torch_02"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 60.03
+    },
+    "M.06": {
+      "test_id": "M.06",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint",
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Enemy and BP_EnemyBoss blueprints",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_Enemy",
+              "set_class_defaults": {
+                "Health": 500,
+                "Damage": 40
+              }
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_EnemyBoss",
+              "set_class_defaults": {
+                "Health": 500,
+                "Damage": 40
+              }
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Blueprint not found: BP_Enemy",
+          "step": 1,
+          "command": "modify_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "Blueprint not found: BP_EnemyBoss",
+          "step": 2,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E3",
+        "E3",
+        "Q2"
+      ],
+      "duration_s": 78.36
+    },
+    "M.07": {
+      "test_id": "M.07",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Timeout after 600s (hard deadline)"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Timeout after 600s (hard deadline)",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 600.07
+    },
+    "M.08": {
+      "test_id": "M.08",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "ERROR",
+        "summary": "GPU busy \u2014 try again",
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 180.01
+    },
+    "M.09": {
+      "test_id": "M.09",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "ERROR",
+        "summary": "GPU busy \u2014 try again",
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 180.03
+    },
+    "M.10": {
+      "test_id": "M.10",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "[WinError 10054] An existing connection was forcibly closed by the remote host"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "[WinError 10054] An existing connection was forcibly closed by the remote host",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 83.52
+    },
+    "M.11": {
+      "test_id": "M.11",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.04
+    },
+    "M.12": {
+      "test_id": "M.12",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.03
+    },
+    "M.13": {
+      "test_id": "M.13",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.04
+    },
+    "M.14": {
+      "test_id": "M.14",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.02
+    },
+    "M.15": {
+      "test_id": "M.15",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.04
+    },
+    "M.16": {
+      "test_id": "M.16",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.01
+    },
+    "M.17": {
+      "test_id": "M.17",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.01
+    },
+    "M.18": {
+      "test_id": "M.18",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.02
+    },
+    "M.19": {
+      "test_id": "M.19",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.01
+    },
+    "M.20": {
+      "test_id": "M.20",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.03
+    },
+    "M.21": {
+      "test_id": "M.21",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.02
+    },
+    "M.22": {
+      "test_id": "M.22",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.01
+    },
+    "M.23": {
+      "test_id": "M.23",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.01
+    },
+    "M.24": {
+      "test_id": "M.24",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.02
+    },
+    "M.25": {
+      "test_id": "M.25",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.02
+    },
+    "M.26": {
+      "test_id": "M.26",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.02
+    },
+    "M.27": {
+      "test_id": "M.27",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.04
+    },
+    "M.28": {
+      "test_id": "M.28",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.02
+    },
+    "M.29": {
+      "test_id": "M.29",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.02
+    },
+    "M.30": {
+      "test_id": "M.30",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.03
+    },
+    "M.31": {
+      "test_id": "M.31",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.01
+    },
+    "M.32": {
+      "test_id": "M.32",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.03
+    },
+    "M.33": {
+      "test_id": "M.33",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.01
+    },
+    "M.34": {
+      "test_id": "M.34",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.03
+    },
+    "M.35": {
+      "test_id": "M.35",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Connection refused on port 13380"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Connection refused on port 13380",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 2.02
+    }
+  }
+}

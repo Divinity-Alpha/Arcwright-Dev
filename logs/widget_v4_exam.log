@@ -1,0 +1,113 @@
+
+============================================================
+  Widget DSL v2 Exam Suite — 50 prompts
+============================================================
+
+Loading model from models\widget-lora-v4\final...
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:04<02:18,  4.77s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:09<02:10,  4.65s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:14<02:08,  4.78s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:19<02:05,  4.81s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:23<01:57,  4.72s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:28<01:51,  4.66s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:32<01:46,  4.63s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:37<01:43,  4.70s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:42<01:39,  4.75s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:47<01:33,  4.69s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:51<01:28,  4.65s/it]Loading checkpoint shards:  40%|████      | 12/30 [00:56<01:23,  4.63s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [01:01<01:20,  4.74s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [01:06<01:16,  4.78s/it]Loading checkpoint shards:  50%|█████     | 15/30 [01:10<01:10,  4.72s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [01:15<01:05,  4.67s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:19<01:00,  4.64s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:24<00:56,  4.72s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:29<00:52,  4.76s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:34<00:46,  4.70s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:38<00:41,  4.66s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:43<00:37,  4.65s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [01:48<00:33,  4.74s/it]Loading checkpoint shards:  80%|████████  | 24/30 [01:53<00:28,  4.80s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [01:57<00:23,  4.75s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [02:02<00:18,  4.71s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [02:07<00:14,  4.67s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [02:11<00:09,  4.74s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [02:16<00:04,  4.78s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:18<00:00,  3.77s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:18<00:00,  4.61s/it]
+  [ 1/50] Create a minimalist health bar for a platformer game... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [ 2/50] Make a sci-fi ammo display with current and reserve ammo... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [ 3/50] Build a medieval gold counter in the top-right corner... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [ 4/50] Create a horror-themed stamina bar that depletes when runnin... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [ 5/50] Design a racing lap timer display... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [ 6/50] Make a fighting game combo counter in the center... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [ 7/50] Create a simulation-style resource counter for Wood and Ston... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [ 8/50] Build a cartoon XP bar at the bottom of the screen... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [ 9/50] Make a normal-themed player level indicator... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [10/50] Create a sci-fi shield percentage display... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (50.0%)
+  [11/50] Create a complete FPS HUD with health, ammo, and crosshair u... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [12/50] Build an RPG HUD with health, mana, and XP bars in medieval ... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [13/50] Design a racing dashboard with speed, gear, lap counter, and... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [14/50] Create a survival game HUD with health, hunger, and temperat... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [15/50] Build a wave-based arena HUD with health, score, wave counte... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [16/50] Create a stealth game HUD with detection meter, health, and ... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [17/50] Design a sports game HUD with score, timer, and period displ... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [18/50] Build a simulation management HUD with money, population, an... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [19/50] Create a cartoon platformer HUD with lives, coins, and a sta... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [20/50] Design a boss fight HUD with player health, boss health bar,... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [21/50] Create a health bar that looks like a glowing neon tube... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [22/50] Build a score display that looks like it's carved in stone... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [23/50] Make an ammo counter with checkered flag styling... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [24/50] Create a health bar that looks bloody and distressed... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [25/50] Build a bright colorful score display for kids... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [26/50] Make a clean flat timer display for a management game... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [27/50] Create a bold aggressive combo meter for a brawler... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [28/50] Design a balanced modern health and mana display... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [29/50] Health bar that shakes violently when hit... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [30/50] Score that flashes and grows when points are earned... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [31/50] Notification that slides in from the right side... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (100.0%)
+  [32/50] Crosshair that pulses when aiming at an enemy... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [33/50] Boss name that fades in dramatically... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [34/50] Wave announcement that pops in large then shrinks... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [35/50] Damage vignette that flashes red on screen edges... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [36/50] Create a sci-fi main menu with Play and Quit buttons... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [37/50] Build a pause menu with dark overlay and resume button... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [38/50] Design a game over screen with final score and replay... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [39/50] Create a loading screen with progress bar and tip text... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [40/50] Build a settings screen with a volume slider... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [41/50] Make a character select screen with warrior and mage cards... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [42/50] Create a shop panel showing item name, price, and buy button... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (75.0%)
+  [43/50] Design a leaderboard with rank, name, and score columns... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [44/50] Ultra-minimal HUD — just a thin line health bar and dot cros... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [45/50] Immersive HUD with barely visible elements that fade in on a... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [46/50] Retro arcade high score display with chunky text... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [47/50] Tactical military HUD with compass and objective marker... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [48/50] Souls-like boss encounter bar with ornate framing... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (100.0%)
+  [49/50] Cyberpunk hacker terminal-style UI overlay... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (66.7%)
+  [50/50] Cozy farming game HUD with warm colors and rounded elements... Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+OK (100.0%)
+
+============================================================
+  RESULTS: 50/50 syntax valid (100.0%)
+  Average similarity: 71.2%
+============================================================
+  Report: results\widget_exams\widget_exam_v1_20260319_210618.json

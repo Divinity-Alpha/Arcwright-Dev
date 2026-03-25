@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "name": "BP_FPSPlayerController",
+    "parent_class": "PlayerController"
+  },
+  "variables": [],
+  "nodes": [
+    {
+      "id": "node_0",
+      "dsl_type": "Event_Tick",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveTick"
+    },
+    {
+      "id": "node_1",
+      "dsl_type": "GetPC",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.GameplayStatics:GetPlayerController"
+    },
+    {
+      "id": "node_2",
+      "dsl_type": "SetGameOnly",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/UMG.WidgetBlueprintLibrary:SetInputMode_GameOnly"
+    },
+    {
+      "id": "node_3",
+      "dsl_type": "Event_BeginPlay",
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay"
+    },
+    {
+      "id": "node_4",
+      "dsl_type": "PrintReady",
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString"
+    }
+  ],
+  "connections": [
+    {
+      "src_node": "node_0",
+      "src_pin": "Then",
+      "dst_node": "node_2",
+      "dst_pin": "Execute"
+    },
+    {
+      "src_node": "node_1",
+      "src_pin": "ReturnValue",
+      "dst_node": "node_2",
+      "dst_pin": "PlayerController"
+    },
+    {
+      "src_node": "node_3",
+      "src_pin": "Then",
+      "dst_node": "node_4",
+      "dst_pin": "Execute"
+    }
+  ]
+}

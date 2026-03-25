@@ -1,0 +1,2135 @@
+{
+  "run": 10,
+  "timestamp": "20260313_181645",
+  "date": "2026-03-13",
+  "total_score": 118,
+  "max_score": 175,
+  "pct": 67.4,
+  "test_count": 35,
+  "categories": {
+    "modify": {
+      "intent": 27,
+      "plan": 17,
+      "exec": 24,
+      "verify": 34,
+      "quality": 16,
+      "count": 35
+    }
+  },
+  "failure_counts": {
+    "I1": 8,
+    "P1": 8,
+    "Q2": 19,
+    "P2": 10,
+    "E3": 4,
+    "E1": 7,
+    "E2": 1,
+    "V1": 1
+  },
+  "results": {
+    "M.01": {
+      "test_id": "M.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Set health=200 on enemies",
+        "targets": [
+          "enemies"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "",
+                  "variable_name": "health",
+                  "default_value": 200
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "results": [
+              {
+                "blueprint": "",
+                "variable_name": "health",
+                "success": false,
+                "error": "Blueprint not found: "
+              }
+            ],
+            "errors": [
+              ": Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 1.87
+    },
+    "M.02": {
+      "test_id": "M.02",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "How do you want to make the enemies faster?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 11.5
+    },
+    "M.03": {
+      "test_id": "M.03",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Double the enemy damage",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "BP_Enemy",
+                  "variable_name": "Damage",
+                  "default_value": 20
+                },
+                {
+                  "blueprint": "BP_EnemyBoss",
+                  "variable_name": "Damage",
+                  "default_value": 40
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 2,
+            "succeeded": 0,
+            "failed": 2,
+            "results": [
+              {
+                "blueprint": "BP_Enemy",
+                "variable_name": "Damage",
+                "success": false,
+                "error": "Blueprint not found: BP_Enemy"
+              },
+              {
+                "blueprint": "BP_EnemyBoss",
+                "variable_name": "Damage",
+                "success": false,
+                "error": "Blueprint not found: BP_EnemyBoss"
+              }
+            ],
+            "errors": [
+              "BP_Enemy: Blueprint not found",
+              "BP_EnemyBoss: Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 63.89
+    },
+    "M.04": {
+      "test_id": "M.04",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Coin Blueprint",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_Coin",
+              "set_class_defaults": {
+                "Value": "50"
+              },
+              "add_variables": [],
+              "remove_variables": []
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Blueprint not found: BP_Coin",
+          "step": 1,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E3",
+        "Q2"
+      ],
+      "duration_s": 45.14
+    },
+    "M.05": {
+      "test_id": "M.05",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "Reduce torch intensity to what?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 10.46
+    },
+    "M.06": {
+      "test_id": "M.06",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "modify_blueprint",
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Add variables to blueprints",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_FirstPersonCharacter",
+              "add_variables": [
+                {
+                  "name": "Health",
+                  "type": "int32",
+                  "default_value": "500"
+                }
+              ],
+              "remove_variables": [],
+              "set_class_defaults": []
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_ThirdPersonCharacter",
+              "add_variables": [
+                {
+                  "name": "Damage",
+                  "type": "float",
+                  "default_value": "40"
+                }
+              ],
+              "remove_variables": [],
+              "set_class_defaults": []
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "name": "BP_FirstPersonCharacter",
+            "operations_applied": 0,
+            "compiled": true,
+            "errors": [
+              "Unknown type 'int32' for variable 'Health'"
+            ]
+          },
+          "step": 1,
+          "command": "modify_blueprint"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "name": "BP_ThirdPersonCharacter",
+            "operations_applied": 1,
+            "compiled": true,
+            "errors": []
+          },
+          "step": 2,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 84.94
+    },
+    "M.07": {
+      "test_id": "M.07",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Pickup_Health blueprint",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_Pickup_Health",
+              "set_class_defaults": {
+                "HealAmount": "50"
+              },
+              "add_variables": [],
+              "remove_variables": []
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Blueprint not found: BP_Pickup_Health",
+          "step": 1,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E3",
+        "Q2"
+      ],
+      "duration_s": 89.78
+    },
+    "M.08": {
+      "test_id": "M.08",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply brick to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply brick to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "brick"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Multiple materials match 'brick': MI_StreetBrick_26 MI_StreetBrick_25 MI_StreetBrick_D_26 MI_WallBrick_9 MI_StreetBrick_24 MI_WallBrick_8 MI_StreetBrick_D_25 MI_WallBrick_D_9 MI_StreetBrick_23 MI_WallBrick_7 ...and 86 more. Please specify the full path."
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 13.14
+    },
+    "M.09": {
+      "test_id": "M.09",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply marble to floor",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find floor actors in level",
+            "params": {
+              "name_filter": "floor"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 72.33
+    },
+    "M.10": {
+      "test_id": "M.10",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What specifically would you like to change about the torches?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 64.6
+    },
+    "M.11": {
+      "test_id": "M.11",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply concrete on all walls to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply concrete on all walls to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "concrete on all walls"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Material 'concrete on all walls' not found. Similar: MAT_Concrete MI_ConcreteWall_02 MI_ConcreteWall_D_22 MI_ConcreteWall_D_21 MI_ConcreteWall_22"
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 11.86
+    },
+    "M.12": {
+      "test_id": "M.12",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_replace_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Replace stone with brick",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_replace_material",
+            "params": {
+              "old_material": "",
+              "new_material": "brick"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Missing 'old_material'",
+          "step": 1,
+          "command": "batch_replace_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E2",
+        "Q2"
+      ],
+      "duration_s": 84.01
+    },
+    "M.13": {
+      "test_id": "M.13",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply all hazard zones to *",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find all actors in level",
+            "params": {
+              "name_filter": ""
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply all hazard zones to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "all hazard zones"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Material 'all hazard zones' not found."
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 77.96
+    },
+    "M.14": {
+      "test_id": "M.14",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply m_pack_bonus_stone_2 to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 0.17
+    },
+    "M.15": {
+      "test_id": "M.15",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Scale all enemies",
+        "targets": [
+          "enemies"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "property": "scale",
+                  "value": {
+                    "x": 1.5,
+                    "y": 1.5,
+                    "z": 1.5
+                  }
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Actor not found: "
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 0.08
+    },
+    "M.16": {
+      "test_id": "M.16",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "Make the coins smaller",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 25.16
+    },
+    "M.17": {
+      "test_id": "M.17",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete gold actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {
+              "class_filter": "gold"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "deleted": 0,
+            "failed": 0,
+            "errors": []
+          },
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "No matching actors found (as expected)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 0.12
+    },
+    "M.18": {
+      "test_id": "M.18",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete torch actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {
+              "class_filter": "torch"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "deleted": 0,
+            "failed": 0,
+            "errors": []
+          },
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "No matching actors found (as expected)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 0.15
+    },
+    "M.19": {
+      "test_id": "M.19",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Hide all health",
+        "targets": [
+          "health"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "property": "visibility",
+                  "value": false
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Actor not found: "
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 0.09
+    },
+    "M.20": {
+      "test_id": "M.20",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Move all coins",
+        "targets": [
+          "coins"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "property": "location",
+                  "value": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 50.0
+                  }
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Actor not found: "
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 0.08
+    },
+    "M.21": {
+      "test_id": "M.21",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete out actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {
+              "class_filter": "out"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "deleted": 0,
+            "failed": 0,
+            "errors": []
+          },
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "No matching actors found (as expected)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 0.1
+    },
+    "M.22": {
+      "test_id": "M.22",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_add_component"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Add point light to all torch",
+        "targets": [
+          "torch"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_add_component",
+            "params": {
+              "component_type": "point light"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 1,
+          "command": "batch_add_component"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 10.98
+    },
+    "M.23": {
+      "test_id": "M.23",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "Server error: maximum recursion depth exceeded",
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 0.02
+    },
+    "M.24": {
+      "test_id": "M.24",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "rename_asset"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Rename bp_goldcoin to bp_treasurecoin",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "rename_asset",
+            "params": {
+              "old_name": "bp_goldcoin",
+              "new_name": "bp_treasurecoin"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Asset not found: bp_goldcoin",
+          "step": 1,
+          "command": "rename_asset"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'TreasureCoin' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E3",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 0.07
+    },
+    "M.25": {
+      "test_id": "M.25",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply character to enemy",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find enemy actors in level",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply character to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "character"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Material 'character' not found."
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 0.12
+    },
+    "M.26": {
+      "test_id": "M.26",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "How do you want to buff them?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 12.3
+    },
+    "M.27": {
+      "test_id": "M.27",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What specifically would you like to improve?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 12.49
+    },
+    "M.28": {
+      "test_id": "M.28",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint",
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Coin blueprint",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "name": "BP_Coin",
+              "set_class_defaults": [],
+              "add_variables": [
+                {
+                  "name": "Value",
+                  "type": "int",
+                  "default_value": "100"
+                }
+              ],
+              "remove_variables": [
+                "Value"
+              ]
+            }
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "BP_Coin",
+                  "variable_name": "Value",
+                  "default_value": 200
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Blueprint not found: BP_Coin",
+          "step": 1,
+          "command": "modify_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "Skipped: dependency step 1 failed",
+          "step": 2,
+          "command": "batch_set_variable",
+          "skipped": true
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E3",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 68.66
+    },
+    "M.29": {
+      "test_id": "M.29",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Dim the torches",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "BP_Torch_01",
+                  "property": "brightness",
+                  "value": 0.5
+                },
+                {
+                  "actor_label": "BP_Torch_02",
+                  "property": "brightness",
+                  "value": 0.5
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 2,
+            "succeeded": 0,
+            "failed": 2,
+            "errors": [
+              "Actor not found: BP_Torch_01",
+              "Actor not found: BP_Torch_02"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 78.03
+    },
+    "M.30": {
+      "test_id": "M.30",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply m_pack_bonus_stone_2 to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 0.1
+    },
+    "M.31": {
+      "test_id": "M.31",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply marble to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 0.2
+    },
+    "M.32": {
+      "test_id": "M.32",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply stone to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 12.33
+    },
+    "M.33": {
+      "test_id": "M.33",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What specifically would you like to change about the floor?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 25.9
+    },
+    "M.34": {
+      "test_id": "M.34",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Set the coin value to 100 on every pickup",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "BP_Pickup",
+                  "variable_name": "Value",
+                  "default_value": 100
+                },
+                {
+                  "blueprint": "BP_Coin",
+                  "variable_name": "Value",
+                  "default_value": 100
+                },
+                {
+                  "blueprint": "BP_GoldCoin",
+                  "variable_name": "Value",
+                  "default_value": 100
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 3,
+            "succeeded": 0,
+            "failed": 3,
+            "results": [
+              {
+                "blueprint": "BP_Pickup",
+                "variable_name": "Value",
+                "success": false,
+                "error": "Blueprint not found: BP_Pickup"
+              },
+              {
+                "blueprint": "BP_Coin",
+                "variable_name": "Value",
+                "success": false,
+                "error": "Blueprint not found: BP_Coin"
+              },
+              {
+                "blueprint": "BP_GoldCoin",
+                "variable_name": "Value",
+                "success": false,
+                "error": "Blueprint not found: BP_GoldCoin"
+              }
+            ],
+            "errors": [
+              "BP_Pickup: Blueprint not found",
+              "BP_Coin: Blueprint not found",
+              "BP_GoldCoin: Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 142.17
+    },
+    "M.35": {
+      "test_id": "M.35",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Increase enemy detection range to 1200",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "BP_Enemy_01",
+                  "property": "detection_range",
+                  "value": 1200
+                },
+                {
+                  "actor_label": "BP_Enemy_02",
+                  "property": "detection_range",
+                  "value": 1200
+                },
+                {
+                  "actor_label": "BP_Enemy_03",
+                  "property": "detection_range",
+                  "value": 1200
+                },
+                {
+                  "actor_label": "BP_Enemy_04",
+                  "property": "detection_range",
+                  "value": 1200
+                },
+                {
+                  "actor_label": "BP_Enemy_05",
+                  "property": "detection_range",
+                  "value": 1200
+                },
+                {
+                  "actor_label": "BP_Enemy_06",
+                  "property": "detection_range",
+                  "value": 1200
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 6,
+            "succeeded": 0,
+            "failed": 6,
+            "errors": [
+              "Actor not found: BP_Enemy_01",
+              "Actor not found: BP_Enemy_02",
+              "Actor not found: BP_Enemy_03",
+              "Actor not found: BP_Enemy_04",
+              "Actor not found: BP_Enemy_05",
+              "Actor not found: BP_Enemy_06"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 192.39
+    }
+  }
+}

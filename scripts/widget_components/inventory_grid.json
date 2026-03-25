@@ -1,0 +1,67 @@
+{
+  "id": "inventory_grid",
+  "name": "Inventory Grid",
+  "category": "menu",
+  "description": "Grid of item slots",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    400,
+    350
+  ],
+  "variables": [
+    {
+      "name": "SelectedSlot",
+      "type": "Integer",
+      "default": -1
+    }
+  ],
+  "options": {
+    "columns": {
+      "type": "int",
+      "default": 4
+    }
+  },
+  "tree": {
+    "type": "VBOX",
+    "name": "InventoryBox",
+    "properties": {
+      "spacing": "4"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "InvTitle",
+        "properties": {
+          "text": "INVENTORY",
+          "font_size": "20",
+          "color": "$text",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "GRID",
+        "name": "ItemGrid",
+        "properties": {
+          "columns": "4",
+          "col_spacing": "4",
+          "row_spacing": "4"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "Slot1",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "64",
+              "size_y": "64"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

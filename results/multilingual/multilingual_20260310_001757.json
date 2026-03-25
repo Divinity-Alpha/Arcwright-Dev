@@ -1,0 +1,517 @@
+{
+  "timestamp": "2026-03-09T23:51:58.584510",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "adapters": {
+    "behavior_tree": "models/bt-lora-v3/final"
+  },
+  "multilingual_addendum": true,
+  "languages_tested": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "ja",
+    "ko",
+    "zh",
+    "pt",
+    "ru",
+    "ar",
+    "hi",
+    "tr"
+  ],
+  "domains_tested": [
+    "behavior_tree"
+  ],
+  "results": {
+    "behavior_tree": [
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "en",
+        "language_name": "English (baseline)",
+        "prompt": "Create a behavior tree for an enemy that patrols between waypoints, and chases the player when spotted.",
+        "gen_time_s": 66.2,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_EnemyAI\nBLACKBOARD: BB_EnemyAI\n\nKEY TargetActor: Object\nKEY PatrolPointA: Vector\nKEY PatrolPointB: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: ChasePlayer\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n  SEQUENCE: PatrolAB\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=PatrolPointA, AcceptableRadius=50]\n    TASK: Wait [Duration=3.0]\n    TASK: MoveTo [Key=PatrolPointB...",
+        "output_length": 552
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "es",
+        "language_name": "Spanish",
+        "prompt": "Crea un árbol de comportamiento para un enemigo que patrulla entre puntos de ruta y persigue al jugador cuando lo detecta.",
+        "gen_time_s": 55.7,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_ChaseAI\nBLACKBOARD: BB_ChaseAI\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: PrintString [Message=\"Found you!\"]\n  SEQUENCE: Patrol\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=PatrolPoint, AcceptableRadius=50]\n    TASK: Wait [Duration=3.0]\n    TASK: PrintString [M...",
+        "output_length": 520
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "fr",
+        "language_name": "French",
+        "prompt": "Crée un arbre de comportement pour un ennemi qui patrouille entre des points de passage et poursuit le joueur quand il le repère.",
+        "gen_time_s": 59.7,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_PatrolAI\nBLACKBOARD: BB_PatrolAI\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\nKEY DistToPlayer: Float = 9999.0\nKEY PatrolIndex: Int = 0\n\nTREE:\n\nSELECTOR: Root\n  SERVICE: UpdateDistance [TargetKey=TargetActor, ResultKey=DistToPlayer, Interval=0.3]\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n  SEQUENCE: Patrol\n    DECORATOR: Loop [InfiniteLoop=true]\n    TAS...",
+        "output_length": 578
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "de",
+        "language_name": "German",
+        "prompt": "Erstelle einen Verhaltensbaum für einen Feind, der zwischen Wegpunkten patrouilliert und den Spieler verfolgt, wenn er entdeckt wird.",
+        "output": "BEHAVIORTREE: BT_FollowerAI\nBLACKBOARD: BB_FollowerAI\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: PrintString [Message=\"Found you!\"]\n  SEQUENCE: Patrol\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=PatrolPoint, AcceptableRadius=50]\n    TASK: Wait [Duration=3.0]",
+        "gen_time_s": 47.5,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "ja",
+        "language_name": "Japanese",
+        "prompt": "敵がウェイポイント間を巡回し、プレイヤーを発見したら追跡するビヘイビアツリーを作成してください。",
+        "gen_time_s": 61.2,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_ChaseAI\nBLACKBOARD: BB_ChaseAI\n\nKEY TargetActor: Object\nKEY PatrolPointA: Vector\nKEY PatrolPointB: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: ChaseVisiblePlayer\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: PrintString [Message=\"Found you!\"]\n  SEQUENCE: PatrolAB\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=PatrolPointA, AcceptableRadius=50]\n    TASK: Wa...",
+        "output_length": 604
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "ko",
+        "language_name": "Korean",
+        "prompt": "웨이포인트 사이를 순찰하고 플레이어를 발견하면 추격하는 적 행동 트리를 만들어 주세요.",
+        "gen_time_s": 59.5,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_ChaseAI\nBLACKBOARD: BB_ChaseAI\n\nKEY TargetActor: Object\nKEY DistToTarget: Float = 9999.0\nKEY PatrolPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SERVICE: UpdateDistance [TargetKey=TargetActor, ResultKey=DistToTarget, Interval=0.3]\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: PrintString [Message=\"Found you!\"]\n  SEQUENCE: Patrol\n    DECORATOR: Loop [Infinite...",
+        "output_length": 596
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "zh",
+        "language_name": "Chinese (Simplified)",
+        "prompt": "创建一个行为树，敌人在路点之间巡逻，发现玩家时追击。",
+        "gen_time_s": 58.1,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_PatrolChase\nBLACKBOARD: BB_PatrolChase\n\nKEY TargetActor: Object\nKEY PatrolPointA: Vector\nKEY PatrolPointB: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n  SEQUENCE: PatrolAB\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=PatrolPointA, AcceptableRadius=50]\n    TASK: Wait [Duration=3.0]\n    TASK: MoveTo [Key=PatrolPoin...",
+        "output_length": 554
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "pt",
+        "language_name": "Portuguese",
+        "prompt": "Crie uma árvore de comportamento para um inimigo que patrulha entre pontos e persegue o jogador quando o detecta.",
+        "gen_time_s": 56.6,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_ChasePlayer\nBLACKBOARD: BB_ChasePlayer\n\nKEY TargetActor: Object\nKEY PatrolPointA: Vector\nKEY PatrolPointB: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n  SEQUENCE: PatrolAB\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=PatrolPointA, AcceptableRadius=50]\n    TASK: Wait [Duration=3.0]\n    TASK: MoveTo [Key=PatrolPoin...",
+        "output_length": 554
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "ru",
+        "language_name": "Russian",
+        "prompt": "Создай дерево поведения для врага, который патрулирует между точками и преследует игрока при обнаружении.",
+        "output": "BEHAVIORTREE: BT_PatrolAI\nBLACKBOARD: BB_PatrolAI\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: ApplyDamage [Key=TargetActor, Damage=15]\n  SEQUENCE: Patrol\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=PatrolPoint, AcceptableRadius=50]\n    TASK: Wait [Duration=3.0]",
+        "gen_time_s": 49.0,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "ar",
+        "language_name": "Arabic",
+        "prompt": "أنشئ شجرة سلوك لعدو يقوم بالدورية بين نقاط المسار ويطارد اللاعب عند اكتشافه.",
+        "output": "BEHAVIORTREE: BT_DoorAI\nBLACKBOARD: BB_DoorAI\n\nKEY TargetPoint: Vector\nKEY PatrolIndex: Int = 0\n\nTREE:\n\nSEQUENCE: Main\n  DECORATOR: BlackboardBased [Key=TargetPoint, Condition=IsSet]\n  SELECTOR: Patrol\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=TargetPoint, AcceptableRadius=100]\n    TASK: Wait [Duration=3.0]\n  TASK: FinishWithResult [Result=Succeeded]",
+        "gen_time_s": 37.7,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "hi",
+        "language_name": "Hindi",
+        "prompt": "एक व्यवहार वृक्ष बनाएं जहां दुश्मन मार्गबंदुओं के बीच गश्त करता है और खिलाड़ी को देखने पर पीछा करता है।",
+        "gen_time_s": 75.0,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_SpyGame\nBLACKBOARD: BB_SpyGame\n\nKEY TargetActor: Object\nKEY DistToTarget: Float = 9999.0\nKEY PatrolPoint: Vector\n\nTREE:\n\nSEQUENCE: Main\n  SELECTOR: React\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: RotateToFaceBBEntry [Key=TargetActor]\n    TASK: PrintString [Message=\"Found you!\"]\n    TASK: ApplyDamage [Key=TargetActor, Damage=20]\n    TASK: Wait [Duration=1.0]\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=DistToTarg...",
+        "output_length": 736
+      },
+      {
+        "test_id": "bt_patrol_chase",
+        "language": "tr",
+        "language_name": "Turkish",
+        "prompt": "Düşmanın yol noktaları arasında devriye gezdiği ve oyuncuyu görünce kovaladığı bir davranış ağacı oluştur.",
+        "gen_time_s": 69.0,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_DevriyeGez\nBLACKBOARD: BB_DevriyeGez\n\nKEY YolNoktasi: Array<Vector>\nKEY OyuncuKonumu: Bool = false\nKEY DevriyeyeGittim: Float = 0.0\n\nTREE:\n\nSEQUENCE: Gez\n  DECORATOR: BlackboardBased [Key=OyuncuKonumu, Condition=Equals, Value=true, AbortMode=LowerPriority]\n  TASK: MoveTo [Key=YolNoktasi, AcceptableRadius=100]\n  TASK: Wait [Duration=1.0]\n  SELECTOR: Arama\n    TASK: RotateToFaceBBEntry [Key=OyuncuKonumu]\n    TASK: PrintString [Message=\"Ben buradayım!\"]\n    TASK: Wait [Duration=3.0...",
+        "output_length": 587
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "en",
+        "language_name": "English (baseline)",
+        "prompt": "Create a behavior tree for a guard that stands idle, but investigates a noise location when alerted.",
+        "gen_time_s": 47.0,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_NoiseGuard\nBLACKBOARD: BB_NoiseGuard\n\nKEY NoiseLocation: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Investigate\n    DECORATOR: BlackboardBased [Key=NoiseLocation, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=NoiseLocation, AcceptableRadius=200]\n    TASK: Wait [Duration=3.0]\n    TASK: ClearBlackboardValue [Key=NoiseLocation]\n    TASK: PrintString [Message=\"All clear\"]\n  SEQUENCE: StandIdle\n    TASK: PrintString [Message=\"Standing by\"]\n    TASK: Wait [Duration=2....",
+        "output_length": 502
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "es",
+        "language_name": "Spanish",
+        "prompt": "Crea un árbol de comportamiento para un guardia que permanece inactivo, pero investiga la ubicación de un ruido cuando es alertado.",
+        "gen_time_s": 48.1,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_InvestigateSound\nBLACKBOARD: BB_InvestigateSound\n\nKEY AlertPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Investigate\n    DECORATOR: BlackboardBased [Key=AlertPoint, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=AlertPoint, AcceptableRadius=100]\n    TASK: Wait [Duration=3.0]\n    TASK: PrintString [Message=\"Investigating\"]\n    TASK: ClearBlackboardValue [Key=AlertPoint]\n  SEQUENCE: StandBy\n    TASK: PrintString [Message=\"Standing by\"]\n    TASK: Wait [Duration=...",
+        "output_length": 504
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "fr",
+        "language_name": "French",
+        "prompt": "Crée un arbre de comportement pour un garde qui reste immobile mais enquête sur un bruit lorsqu'il est alerté.",
+        "gen_time_s": 69.0,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_GuardAlert\nBLACKBOARD: BB_GuardAlert\n\nKEY TargetActor: Object\nKEY AlertLevel: Int = 0\nKEY LastKnownPos: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Investigate\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=LastKnownPos, AcceptableRadius=100]\n    TASK: Wait [Duration=3.0]\n    TASK: PrintString [Message=\"Found nothing\"]\n    TASK: ClearBlackboardValue [Key=TargetActor]\n    TASK: ClearBlackboardValue [Key=LastKnownPos]...",
+        "output_length": 721
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "de",
+        "language_name": "German",
+        "prompt": "Erstelle einen Verhaltensbaum für einen Wächter, der still steht, aber einen Geräuschort untersucht, wenn alarmiert.",
+        "gen_time_s": 82.6,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_SentryGuard\nBLACKBOARD: BB_SentryGuard\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\nKEY IsAlert: Bool = false\nKEY HasLOS: Bool = false\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Investigate\n    DECORATOR: BlackboardBased [Key=HasLOS, Condition=Equals, Value=true, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: Wait [Duration=3.0]\n    TASK: ClearBlackboardValue [Key=HasLOS]\n    TASK: PrintString [Message=\"All clear\"]\n  SEQUENCE: Chase\n    D...",
+        "output_length": 838
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "ja",
+        "language_name": "Japanese",
+        "prompt": "警備員が静止しているが、警報が鳴ったら音の場所を調査するビヘイビアツリーを作成してください。",
+        "output": "BEHAVIORTREE: BT_InvestigateAlarm\nBLACKBOARD: BB_InvestigateAlarm\n\nKEY AlarmLocation: Vector\n\nTREE:\n\nSEQUENCE: Investigate\n  DECORATOR: BlackboardBased [Key=AlarmLocation, Condition=IsSet]\n  TASK: MoveTo [Key=AlarmLocation, AcceptableRadius=100]\n  TASK: Wait [Duration=3.0]",
+        "gen_time_s": 26.7,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": false,
+        "semantic_error": "Missing keywords: SELECTOR",
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "ko",
+        "language_name": "Korean",
+        "prompt": "경비병이 가만히 서 있다가 경보가 울리면 소음 위치를 조사하는 행동 트리를 만들어 주세요.",
+        "output": "BEHAVIORTREE: BT_InvestigateSound\nBLACKBOARD: BB_InvestigateSound\n\nKEY SoundLocation: Vector\n\nTREE:\n\nSEQUENCE: Investigate\n  DECORATOR: BlackboardBased [Key=SoundLocation, Condition=IsSet, AbortMode=LowerPriority]\n  TASK: MoveTo [Key=SoundLocation, AcceptableRadius=100]\n  TASK: Wait [Duration=3.0]",
+        "gen_time_s": 28.8,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": false,
+        "semantic_error": "Missing keywords: SELECTOR",
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "zh",
+        "language_name": "Chinese (Simplified)",
+        "prompt": "创建一个行为树，警卫静止站立，但在被警报时调查噪音位置。",
+        "gen_time_s": 62.3,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_Sentry\nBLACKBOARD: BB_Sentry\n\nKEY TargetActor: Object\nKEY InvestigatePoint: Vector\nKEY HasAlerted: Bool = false\nKEY PatrolIndex: Int = 0\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Investigate\n    DECORATOR: BlackboardBased [Key=HasAlerted, Condition=Equals, Value=true, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=InvestigatePoint, AcceptableRadius=100]\n    TASK: Wait [Duration=3.0]\n    TASK: ClearBlackboardValue [Key=HasAlerted]\n    TASK: PrintString [Message=\"All clear\"]\n  SEQUENCE: ...",
+        "output_length": 632
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "pt",
+        "language_name": "Portuguese",
+        "prompt": "Crie uma árvore de comportamento para um guarda que fica parado, mas investiga o local de um barulho quando alertado.",
+        "gen_time_s": 62.2,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_GuardInvestigate\nBLACKBOARD: BB_GuardInvestigate\n\nKEY TargetActor: Object\nKEY AlertLevel: Int = 0\nKEY PatrolPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Investigate\n    DECORATOR: BlackboardBased [Key=AlertLevel, Condition=GreaterThan, Value=1]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: Wait [Duration=3.0]\n    TASK: ClearBlackboardValue [Key=AlertLevel]\n    TASK: PrintString [Message=\"All clear\"]\n  SEQUENCE: Patrol\n    DECORATOR: Loop [InfiniteLoop=tr...",
+        "output_length": 589
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "ru",
+        "language_name": "Russian",
+        "prompt": "Создай дерево поведения для охранника, который стоит на месте, но исследует источник шума при тревоге.",
+        "gen_time_s": 53.7,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_SentryGuard\nBLACKBOARD: BB_SentryGuard\n\nKEY TargetActor: Object\nKEY DisturbanceSource: Vector\nKEY PatrolPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Investigate\n    DECORATOR: BlackboardBased [Key=DisturbanceSource, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=DisturbanceSource, AcceptableRadius=100]\n    TASK: Wait [Duration=3.0]\n    TASK: ClearBlackboardValue [Key=DisturbanceSource]\n    TASK: PrintString [Message=\"All clear\"]\n  SEQUENCE: StandGround\n    T...",
+        "output_length": 573
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "ar",
+        "language_name": "Arabic",
+        "prompt": "أنشئ شجرة سلوك لحارس يقف ساكنًا لكنه يحقق في مكان الضوضاء عندما يُنبه.",
+        "gen_time_s": 61.3,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": true,
+        "semantic_error": null,
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_SafeSpotter\nBLACKBOARD: BB_SafeSpotter\n\nKEY TargetActor: Object\nKEY SafePoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Hide\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=SafePoint, AcceptableRadius=100]\n    TASK: PrintString [Message=\"Hiding\"]\n    TASK: Wait [Duration=3.0]\n  SEQUENCE: Investigate\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadiu...",
+        "output_length": 628
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "hi",
+        "language_name": "Hindi",
+        "prompt": "एक व्यवहार वृक्ष बनाएं जहां गार्ड खड़ा रहता है लेकिन अलर्ट होने पर शोर की जगह की जांच करता है।",
+        "output": "BEHAVIORTREE: BT_GuardPost\nBLACKBOARD: BB_GuardPost\n\nKEY GuardPoint: Vector\n\nTREE:\n\nSEQUENCE: Patrol\n  DECORATOR: BlackboardBased [Key=GuardPoint, Condition=IsSet]\n  TASK: MoveTo [Key=GuardPoint, AcceptableRadius=50]\n  TASK: Wait [Duration=3.0]",
+        "gen_time_s": 25.9,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": false,
+        "semantic_error": "Missing keywords: SELECTOR",
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true
+      },
+      {
+        "test_id": "bt_guard_investigate",
+        "language": "tr",
+        "language_name": "Turkish",
+        "prompt": "Nöbetçinin boşta durduğu ama uyarıldığında gürültü yerini araştırdığı bir davranış ağacı oluştur.",
+        "gen_time_s": 54.3,
+        "syntax_valid": true,
+        "syntax_error": null,
+        "semantic_match": false,
+        "semantic_error": "Missing keywords: SELECTOR",
+        "no_leakage": true,
+        "leakage_issues": [],
+        "pass": true,
+        "output_preview": "BEHAVIORTREE: BT_Scanner\nBLACKBOARD: BB_Scanner\n\nKEY TargetActor: Object\nKEY LastKnownPos: Vector = 0,0,0\n\nTREE:\n\nSEQUENCE: ChaseVisible\n  DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n  TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n\nSEQUENCE: ScanLastKnown\n  DECORATOR: BlackboardBased [Key=LastKnownPos, Condition=NotEquals, Value=0,0,0]\n  TASK: MoveTo [Key=LastKnownPos, AcceptableRadius=100]\n  TASK: Wait [Duration=3.0]\n  TASK: ClearBlackboardValue...",
+        "output_length": 519
+      }
+    ]
+  },
+  "matrix": {
+    "en": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "es": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "fr": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "de": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "ja": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 1,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "ko": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 1,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "zh": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "pt": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "ru": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "ar": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 2,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "hi": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 1,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    },
+    "tr": {
+      "behavior_tree": {
+        "total": 2,
+        "syntax_pass": 2,
+        "semantic_pass": 1,
+        "no_leak": 2,
+        "full_pass": 2
+      }
+    }
+  }
+}

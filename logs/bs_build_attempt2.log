@@ -1,0 +1,15 @@
+Using bundled DotNet SDK version: 8.0.412 win-x64
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" BoreAndStrokeEditor Win64 Development C:\Projects\BoreAndStroke_Original\BoreandStroke.uproject
+Log file: C:\Users\sparu\AppData\Local\UnrealBuildTool\Log.txt
+Using 'git status' to determine working set for adaptive non-unity build (C:\Projects\BoreAndStroke_Original).
+Creating makefile for BoreAndStrokeEditor (no existing makefile)
+Available x64 toolchains (2):
+ * C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\VC\Tools\MSVC\14.50.35717
+    (Family=14.50.35717, FamilyRank=1, Version=14.50.35725, HostArchitecture=x64, ReleaseChannel=Latest, Architecture=x64)
+ * C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717
+    (Family=14.50.35717, FamilyRank=1, Version=14.50.35725, HostArchitecture=x64, ReleaseChannel=Latest, Architecture=x64)
+Visual Studio 2026 compiler version 14.50.35725 is not a preferred version. Please use the latest preferred version 14.44.35207
+Could not find definition for module 'BlueprintLLM', (referenced via default plugins -> BlueprintLLM.uplugin)
+
+Result: Failed (RulesError)
+Total execution time: 2.52 seconds

@@ -1,0 +1,4008 @@
+{
+  "timestamp": "2026-03-11 04:03:46",
+  "total_tests": 92,
+  "total_score": 323,
+  "max_score": 368,
+  "results": [
+    {
+      "test_id": "1.01",
+      "category": 1,
+      "prompt": "Change the wall texture to brick",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "wall"
+      ],
+      "action_keywords": [
+        "batch_apply_material",
+        "batch_replace_material",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Change wall texture to brick",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "type_filter": [
+                "wall"
+              ],
+              "name_filter": "*",
+              "tag_filter": [
+                "brick"
+              ]
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Material",
+              "value": "BrickWall01"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "1.02",
+      "category": 1,
+      "prompt": "Make all the walls look like marble",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "wall",
+        "marble"
+      ],
+      "action_keywords": [
+        "batch_apply_material",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Make all the walls look like marble",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "type_filter": [
+                "wall"
+              ],
+              "name_filter": ""
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "material_name": "marble_wall_mat"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "1.03",
+      "category": 1,
+      "prompt": "Swap the stone material on the walls for concrete",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "wall",
+        "stone",
+        "concrete"
+      ],
+      "action_keywords": [
+        "batch_replace_material",
+        "batch_apply_material"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Swap wall materials",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "type_filter": [
+                "wall"
+              ],
+              "material_filter": [
+                "stone"
+              ]
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Material",
+              "value": "concrete"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "1.04",
+      "category": 1,
+      "prompt": "Replace every gold material with silver",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "gold",
+        "silver"
+      ],
+      "action_keywords": [
+        "batch_replace_material"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Replace gold materials with silver",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "material_filter": "gold"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_replace_material",
+            "params": {
+              "old_material": "gold",
+              "new_material": "silver"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "1.05",
+      "category": 1,
+      "prompt": "The walls need a different texture, use wood",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "wall",
+        "wood"
+      ],
+      "action_keywords": [
+        "batch_apply_material",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Change wall material to wood",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "material_name": "wood"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "1.06",
+      "category": 1,
+      "prompt": "Give the floor a lava material",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "floor",
+        "lava"
+      ],
+      "action_keywords": [
+        "batch_apply_material",
+        "find_actors",
+        "set_actor_material"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Give floor lava material",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "name_filter": "floor"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "material_name": "lava"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "1.07",
+      "category": 1,
+      "prompt": "Update torch materials to something warmer",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "torch"
+      ],
+      "action_keywords": [
+        "batch_apply_material",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Update torch material",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Material",
+              "value": "fireplace01"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "1.08",
+      "category": 1,
+      "prompt": "I want the coins to look more realistic",
+      "expected_modes": [
+        "MODIFY",
+        "CLARIFY"
+      ],
+      "target_keywords": [
+        "coin"
+      ],
+      "action_keywords": [
+        "batch_apply_material",
+        "find_actors",
+        "find_assets"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "CLARIFY",
+        "summary": "Make coins look more realistic",
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "1.09",
+      "category": 1,
+      "prompt": "Everything stone should be brick instead",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "stone",
+        "brick"
+      ],
+      "action_keywords": [
+        "batch_replace_material"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Change material of everything to brick",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "material_filter": "stone"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "material_name": "brick"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "1.10",
+      "category": 1,
+      "prompt": "Paint the walls red",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "wall",
+        "red"
+      ],
+      "action_keywords": [
+        "batch_apply_material",
+        "find_actors",
+        "create_simple_material"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Paint walls red",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "type_filter": "wall",
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "material_name": "red_wall"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.01",
+      "category": 2,
+      "prompt": "Set health to 200 on all enemies",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "health",
+        "200"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Set Health=200 on enemies",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "default_value": "200"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.02",
+      "category": 2,
+      "prompt": "Make the enemies faster",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "speed"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Make enemies faster",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Speed",
+              "default_value": "1000.5"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.03",
+      "category": 2,
+      "prompt": "Double the enemy damage",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "damage"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Double enemy damage",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Damage",
+              "default_value": "2x",
+              "multiplier": true
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.04",
+      "category": 2,
+      "prompt": "Gold coins should be worth 50 each",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "coin",
+        "value",
+        "50"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Gold coins should be worth 50 each",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Value",
+              "default_value": "50"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.05",
+      "category": 2,
+      "prompt": "Reduce enemy health to 50",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "health",
+        "50"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Reduce enemy health to 50",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "default_value": "50"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.06",
+      "category": 2,
+      "prompt": "Make the torches brighter",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "torch",
+        "intensity"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Make torches brighter",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "brightness",
+              "value": 1000
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.07",
+      "category": 2,
+      "prompt": "Enemies are too slow, speed them up",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "speed"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Speed up enemies",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Movement Speed",
+              "default_value": "1000"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.08",
+      "category": 2,
+      "prompt": "Turn down the torch intensity to 2000",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "torch",
+        "intensity",
+        "2000"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Turn down the torch intensity to 2000",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Intensity",
+              "default_value": "2000"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.09",
+      "category": 2,
+      "prompt": "Health potions should heal 50 instead",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "health",
+        "50"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find",
+        "set_variable_default"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Change health potion healing amount",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "health_potion"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "HealingAmount",
+              "value": "50"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "2.10",
+      "category": 2,
+      "prompt": "All enemies need 500 HP, 40 damage, and 600 speed",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "500",
+        "40",
+        "600"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "All enemies need 500 HP,40 damage and 600 speed",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "default_value": "500"
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 3,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Damage",
+              "default_value": "40"
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 4,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Speed",
+              "default_value": "600"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.01",
+      "category": 3,
+      "prompt": "Scale all enemies up by 1.5",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "1.5"
+      ],
+      "action_keywords": [
+        "batch_set_property",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Scale all enemies up by 1.5",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "scale",
+              "value": "1.5"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.02",
+      "category": 3,
+      "prompt": "Make the coins smaller",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "coin"
+      ],
+      "action_keywords": [
+        "batch_set_property",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Make coins smaller",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Scale",
+              "value": 0.5
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.03",
+      "category": 3,
+      "prompt": "Hide all the torches",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "torch",
+        "visibility"
+      ],
+      "action_keywords": [
+        "batch_set_property",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Hide torches",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Visible",
+              "value": 0
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.04",
+      "category": 3,
+      "prompt": "Show all hidden actors",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "visibility"
+      ],
+      "action_keywords": [
+        "batch_set_property",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": false,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Show hidden actors",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "hidden_only": true
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Hidden",
+              "value": false
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.05",
+      "category": 3,
+      "prompt": "Move all coins up by 50 units",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "coin",
+        "50"
+      ],
+      "action_keywords": [
+        "batch_set_property",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Move coins up by 50 units",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "LocationY",
+              "value": 50
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.06",
+      "category": 3,
+      "prompt": "Rotate all enemies to face north",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "rotation"
+      ],
+      "action_keywords": [
+        "batch_set_property",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": false,
+      "action_correct": false,
+      "exec_correct": false,
+      "score": 1,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Rotate all enemies to face north",
+        "requires_confirmation": true,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.07",
+      "category": 3,
+      "prompt": "Delete all the gold coins",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "coin"
+      ],
+      "action_keywords": [
+        "batch_delete_actors",
+        "find_actors",
+        "delete"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Delete coin actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.08",
+      "category": 3,
+      "prompt": "Remove every torch from the level",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "torch"
+      ],
+      "action_keywords": [
+        "batch_delete_actors",
+        "find_actors",
+        "delete"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Remove torches",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.09",
+      "category": 3,
+      "prompt": "Clear out all the enemies",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy"
+      ],
+      "action_keywords": [
+        "batch_delete_actors",
+        "find_actors",
+        "delete"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Clear out enemies",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "3.10",
+      "category": 3,
+      "prompt": "Resize the walls to be twice as tall",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "wall",
+        "scale"
+      ],
+      "action_keywords": [
+        "batch_set_property",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Resize walls",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Scale",
+              "value": "(X=1,Y=2,Z=1)",
+              "type": "Vector3D"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "4.01",
+      "category": 4,
+      "prompt": "Add a point light to every torch",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "torch",
+        "point",
+        "light"
+      ],
+      "action_keywords": [
+        "batch_add_component",
+        "find_blueprints",
+        "add_component"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Add point lights to torches",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_add_component",
+            "params": {
+              "component_name": "PointLightComponent",
+              "properties": {
+                "intensity": 1000,
+                "radius": 500
+              }
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "4.02",
+      "category": 4,
+      "prompt": "Give all enemies a sphere collision",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "sphere",
+        "collision"
+      ],
+      "action_keywords": [
+        "batch_add_component",
+        "find_blueprints",
+        "add_component"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Give enemies sphere collision",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_add_component",
+            "params": {
+              "component_name": "SphereCollision"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "4.03",
+      "category": 4,
+      "prompt": "Add audio components to the torches",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "torch",
+        "audio"
+      ],
+      "action_keywords": [
+        "batch_add_component",
+        "find_blueprints",
+        "add_component"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Add audio component to torches",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_add_component",
+            "params": {
+              "component_name": "AudioComponent",
+              "audio_file_path": "Torch.wav"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "4.04",
+      "category": 4,
+      "prompt": "Put a box collision on every coin",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "coin",
+        "box",
+        "collision"
+      ],
+      "action_keywords": [
+        "batch_add_component",
+        "find_blueprints",
+        "add_component"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Put box collision on coins",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_add_component",
+            "params": {
+              "component_name": "BoxCollision"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "4.05",
+      "category": 4,
+      "prompt": "Every health potion needs a point light",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "health",
+        "point",
+        "light"
+      ],
+      "action_keywords": [
+        "batch_add_component",
+        "find_blueprints",
+        "add_component"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": false,
+      "score": 2,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Every health potion needs a point light",
+        "requires_confirmation": true,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "5.01",
+      "category": 5,
+      "prompt": "Rename BP_GoldCoin to BP_TreasureCoin",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "goldcoin",
+        "treasurecoin"
+      ],
+      "action_keywords": [
+        "rename_asset"
+      ],
+      "description": "",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "RENAME",
+        "summary": "Rename BP_GoldCoin to BP_TreasureCoin",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "rename_asset",
+            "params": {
+              "asset_name": "BP_GoldCoin",
+              "new_name": "BP_TreasureCoin"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "5.02",
+      "category": 5,
+      "prompt": "Rename the enemy blueprint to BP_SkeletonWarrior",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "skeletonwarrior"
+      ],
+      "action_keywords": [
+        "rename_asset"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Rename enemy blueprint",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "rename_asset",
+            "params": {
+              "old_name": "enemy",
+              "new_name": "BP_SkeletonWarrior"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "5.03",
+      "category": 5,
+      "prompt": "Change the coin's parent class to Pawn",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "coin",
+        "pawn"
+      ],
+      "action_keywords": [
+        "reparent_blueprint"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Change coin's parent class to Pawn",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "modify_blueprint",
+            "params": {
+              "parent_class": "Pawn"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "5.04",
+      "category": 5,
+      "prompt": "Make BP_EnemyGuard extend Character instead of Actor",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemyguard",
+        "character"
+      ],
+      "action_keywords": [
+        "reparent_blueprint"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Make BP_EnemyGuard extend Character instead of Actor",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "rename_asset",
+            "params": {
+              "old_name": "BP_EnemyGuard",
+              "new_name": "Character/BP_EnemyGuard"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "5.05",
+      "category": 5,
+      "prompt": "Rename all the wall blueprints to BP_StoneWall",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "wall",
+        "stonewall"
+      ],
+      "action_keywords": [
+        "rename_asset"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Rename wall BPs",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "rename_asset",
+            "params": {
+              "new_name": "BP_StoneWall"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.01",
+      "category": 6,
+      "prompt": "How many enemies are in the level?",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [
+        "enemy"
+      ],
+      "action_keywords": [
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "Count enemies",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.02",
+      "category": 6,
+      "prompt": "List all blueprints in the project",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [],
+      "action_keywords": [
+        "find_blueprints",
+        "find_assets"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "List blueprints",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.03",
+      "category": 6,
+      "prompt": "Show me all the actors in the level",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [],
+      "action_keywords": [
+        "find_actors",
+        "get_level_info"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "Show me all the actors in the level",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.04",
+      "category": 6,
+      "prompt": "What materials exist in the project?",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [
+        "material"
+      ],
+      "action_keywords": [
+        "find_assets"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "List materials",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "get_level_info",
+            "params": {
+              "info_type": "materials"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.05",
+      "category": 6,
+      "prompt": "Which blueprints have a Health variable?",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [
+        "health"
+      ],
+      "action_keywords": [
+        "find_blueprints"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "Which blueprints have a Health variable?",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "property_filter": [
+                "Health"
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.06",
+      "category": 6,
+      "prompt": "How many coins are placed in the level?",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [
+        "coin"
+      ],
+      "action_keywords": [
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "How many coins are there?",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.07",
+      "category": 6,
+      "prompt": "What's in the level right now?",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [],
+      "action_keywords": [
+        "get_level_info",
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "What's in the level right now?",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "get_level_info",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.08",
+      "category": 6,
+      "prompt": "Show me the enemy blueprint details",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [
+        "enemy"
+      ],
+      "action_keywords": [
+        "find_blueprints",
+        "get_blueprint_info",
+        "get_behavior_tree_info"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "Show enemy blueprint details",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "get_level_info",
+            "params": {
+              "blueprint_name": "enemy"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.09",
+      "category": 6,
+      "prompt": "Are there any torches near the entrance?",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [
+        "torch"
+      ],
+      "action_keywords": [
+        "find_actors"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "Are there any torches near the entrance?",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch",
+              "distance_from_player": 1000
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "6.10",
+      "category": 6,
+      "prompt": "What components does the enemy have?",
+      "expected_modes": [
+        "QUERY"
+      ],
+      "target_keywords": [
+        "enemy"
+      ],
+      "action_keywords": [
+        "find_blueprints",
+        "get_components",
+        "get_blueprint_info"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "QUERY",
+        "summary": "What components does the enemy have?",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.01",
+      "category": 7,
+      "prompt": "Create a health pickup that heals 25 HP",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "health",
+        "25"
+      ],
+      "action_keywords": [
+        "create_blueprint"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "CREATE",
+        "summary": "Create health pickup BP",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "health pickup that heals 25 HP"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.02",
+      "category": 7,
+      "prompt": "Make a new enemy that shoots projectiles",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "enemy",
+        "projectile"
+      ],
+      "action_keywords": [
+        "create_blueprint"
+      ],
+      "description": "",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": false,
+      "score": 1,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Make a new enemy that shoots projectiles",
+        "requires_confirmation": true,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.03",
+      "category": 7,
+      "prompt": "Build a pressure plate that opens a door",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "pressure",
+        "plate",
+        "door"
+      ],
+      "action_keywords": [
+        "create_blueprint"
+      ],
+      "description": "",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": false,
+      "score": 1,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Build a pressure plate that opens a door",
+        "requires_confirmation": true,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.04",
+      "category": 7,
+      "prompt": "Generate a patrol AI for the guards",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "patrol"
+      ],
+      "action_keywords": [
+        "create_behavior_tree"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "CREATE",
+        "summary": "Generate patrol AI for guards",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_behavior_tree",
+            "params": {
+              "prompt": "patrol AI for guards",
+              "tree_type": "AI"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.05",
+      "category": 7,
+      "prompt": "I need a weapons stats table",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "weapon"
+      ],
+      "action_keywords": [
+        "create_data_table"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": false,
+      "score": 2,
+      "plan": {
+        "mode": "CREATE",
+        "summary": "I need a weapons stats table",
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.06",
+      "category": 7,
+      "prompt": "Create a wave spawner that sends enemies every 10 seconds",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "wave",
+        "spawn",
+        "10"
+      ],
+      "action_keywords": [
+        "create_blueprint"
+      ],
+      "description": "",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Create wave spawner",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "wave spawner"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 1
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.07",
+      "category": 7,
+      "prompt": "Make a score HUD with health bar and coin counter",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "hud",
+        "health",
+        "coin"
+      ],
+      "action_keywords": [
+        "create_widget_blueprint",
+        "create_blueprint"
+      ],
+      "description": "",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": false,
+      "score": 1,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Make a score HUD with health bar and coin counter",
+        "requires_confirmation": true,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.08",
+      "category": 7,
+      "prompt": "Set up FPS controls for the game",
+      "expected_modes": [
+        "CREATE",
+        "MULTI"
+      ],
+      "target_keywords": [
+        "fps"
+      ],
+      "action_keywords": [
+        "set_game_mode",
+        "setup",
+        "create_blueprint"
+      ],
+      "description": "",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "SETUP",
+        "summary": "Set up FPS controls",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_widget_blueprint",
+            "params": {
+              "widget_type": "FPSController"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.09",
+      "category": 7,
+      "prompt": "Add dark indoor lighting to the level",
+      "expected_modes": [
+        "CREATE",
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "dark",
+        "indoor"
+      ],
+      "action_keywords": [
+        "setup_scene_lighting"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Add dark indoor lighting",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "setup_scene_lighting",
+            "params": {
+              "preset": "indoor_dark"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "7.10",
+      "category": 7,
+      "prompt": "Create a new brick material",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "brick"
+      ],
+      "action_keywords": [
+        "create_textured_material",
+        "create_simple_material",
+        "create_material"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "CREATE",
+        "summary": "Create a new brick material",
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_material",
+            "params": {
+              "prompt": "new brick material"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.01",
+      "category": 8,
+      "prompt": "Make a dark dungeon with tough enemies and gold loot",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "dark",
+        "enemy",
+        "gold"
+      ],
+      "action_keywords": [
+        "setup_scene_lighting",
+        "create_blueprint",
+        "spawn"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Make a dark dungeon with tough enemies and gold loot",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "setup_scene_lighting",
+            "params": {
+              "preset": "dungeon_dark"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "tough enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 10
+            },
+            "depends_on": 2
+          },
+          {
+            "step": 4,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "gold coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 5,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 20
+            },
+            "depends_on": 4
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.02",
+      "category": 8,
+      "prompt": "Create a patrol enemy, give it 200 HP, and spawn 5 of them",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "patrol",
+        "200",
+        "5"
+      ],
+      "action_keywords": [
+        "create_blueprint",
+        "spawn",
+        "set_variable"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": false,
+      "score": 3,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Create a patrol enemy, give it 200 HP, and spawn 5 of them",
+        "requires_confirmation": true,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.03",
+      "category": 8,
+      "prompt": "Add torches to the hallway and make them glow warm",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "torch",
+        "warm"
+      ],
+      "action_keywords": [
+        "spawn",
+        "create",
+        "material",
+        "apply"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Add torches to the hallway and make them glow warm",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 10
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 3,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "glow_color",
+              "value": "warm"
+            },
+            "depends_on": 2
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.04",
+      "category": 8,
+      "prompt": "Set up the arena: FPS controls, dark lighting, spawn 3 enemies",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "fps",
+        "dark",
+        "enemy",
+        "3"
+      ],
+      "action_keywords": [
+        "setup",
+        "lighting",
+        "spawn"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Set up the arena: FPS controls dark lighting spawn ",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "setup_scene_lighting",
+            "params": {
+              "preset": "indoor_dark"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 3
+            },
+            "depends_on": 2
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.05",
+      "category": 8,
+      "prompt": "Create a boss room with one strong enemy, health pickups, and dramatic lighting",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "boss",
+        "enemy",
+        "health",
+        "lighting"
+      ],
+      "action_keywords": [
+        "create_blueprint",
+        "spawn",
+        "setup_scene_lighting"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Create boss room with one strong enemy health pickups and dramatic lighting",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "boss room"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "strong enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "health pickup that heals 50 HP"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 4,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "dramatic lighting"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 5,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 1
+            },
+            "depends_on": 2
+          },
+          {
+            "step": 6,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 10
+            },
+            "depends_on": 3
+          },
+          {
+            "step": 7,
+            "command": "setup_scene_lighting",
+            "params": {
+              "preset": "dramatic"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.06",
+      "category": 8,
+      "prompt": "Replace all stone with marble and make the room brighter",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "stone",
+        "marble",
+        "bright"
+      ],
+      "action_keywords": [
+        "batch_replace_material",
+        "setup_scene_lighting",
+        "lighting"
+      ],
+      "description": "",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Replace stone with marble and make the room brighter",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_replace_material",
+            "params": {
+              "old_material": "stone",
+              "new_material": "marble"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "setup_scene_lighting",
+            "params": {
+              "preset": "brighter_room"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.07",
+      "category": 8,
+      "prompt": "Delete all coins, create a gem pickup worth 100, and spawn 8 of them",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "coin",
+        "gem",
+        "100",
+        "8"
+      ],
+      "action_keywords": [
+        "batch_delete_actors",
+        "delete",
+        "create_blueprint",
+        "spawn"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Delete coins and create gems",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": 1
+          },
+          {
+            "step": 3,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "gem pickup worth 100"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 4,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 8
+            },
+            "depends_on": 3
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.08",
+      "category": 8,
+      "prompt": "Create an enemy, a behavior tree for it, and wire them together",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "enemy",
+        "behavior",
+        "tree"
+      ],
+      "action_keywords": [
+        "create_blueprint",
+        "create_behavior_tree",
+        "setup_ai"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": false,
+      "score": 2,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Create an enemy, a behavior tree for it, and wire them together",
+        "requires_confirmation": true,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.09",
+      "category": 8,
+      "prompt": "Build a complete checkpoint system with save, respawn, and a visual indicator",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "checkpoint",
+        "save",
+        "respawn"
+      ],
+      "action_keywords": [
+        "create_blueprint",
+        "spawn"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": false,
+      "score": 3,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Build a complete checkpoint system with save, respawn, and a visual indicator",
+        "requires_confirmation": true,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "8.10",
+      "category": 8,
+      "prompt": "Make all enemies tougher, add more coins, and change the walls to brick",
+      "expected_modes": [
+        "MULTI"
+      ],
+      "target_keywords": [
+        "enemy",
+        "coin",
+        "wall",
+        "brick"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "spawn",
+        "batch_apply_material",
+        "batch_replace_material"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MULTI",
+        "summary": "Make enemies tougher, add more coins and change the walls to brick",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "default_value": "300"
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 3,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 4,
+            "command": "batch_spawn_actor_at",
+            "params": {
+              "count": 10
+            },
+            "depends_on": 3
+          },
+          {
+            "step": 5,
+            "command": "find_assets",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 6,
+            "command": "batch_replace_material",
+            "params": {
+              "material_name": "brick_wall"
+            },
+            "depends_on": 5
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.01",
+      "category": 9,
+      "prompt": "These walls are too plain",
+      "expected_modes": [
+        "MODIFY",
+        "CLARIFY"
+      ],
+      "target_keywords": [
+        "wall"
+      ],
+      "action_keywords": [
+        "find_actors",
+        "batch_apply_material",
+        "find_assets"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Add decals to walls",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_assets",
+            "params": {
+              "type_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_add_component",
+            "params": {
+              "component_name": "decal"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.02",
+      "category": 9,
+      "prompt": "The level feels empty",
+      "expected_modes": [
+        "MULTI",
+        "CLARIFY"
+      ],
+      "target_keywords": [],
+      "action_keywords": [],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "CLARIFY",
+        "summary": "The level feels empty",
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.03",
+      "category": 9,
+      "prompt": "Make it better",
+      "expected_modes": [
+        "CLARIFY"
+      ],
+      "target_keywords": [],
+      "action_keywords": [],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "CLARIFY",
+        "summary": "What specifically would you like to improve?",
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.04",
+      "category": 9,
+      "prompt": "Something isn't right with the enemies",
+      "expected_modes": [
+        "CLARIFY"
+      ],
+      "target_keywords": [
+        "enemy"
+      ],
+      "action_keywords": [],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": false,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "CLARIFY",
+        "summary": "What's wrong with the enemies?",
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.05",
+      "category": 9,
+      "prompt": "I want more variety",
+      "expected_modes": [
+        "CLARIFY"
+      ],
+      "target_keywords": [],
+      "action_keywords": [],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "CLARIFY",
+        "summary": "What kind of variety do you want?",
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.06",
+      "category": 9,
+      "prompt": "This room needs atmosphere",
+      "expected_modes": [
+        "MULTI",
+        "CLARIFY",
+        "CREATE"
+      ],
+      "target_keywords": [
+        "lighting",
+        "fog",
+        "post"
+      ],
+      "action_keywords": [],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": false,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "CLARIFY",
+        "summary": "This room needs atmosphere",
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.07",
+      "category": 9,
+      "prompt": "Can you help me with the boss fight?",
+      "expected_modes": [
+        "CLARIFY"
+      ],
+      "target_keywords": [
+        "boss"
+      ],
+      "action_keywords": [],
+      "description": "",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": false,
+      "score": 2,
+      "plan": {
+        "mode": "HELP",
+        "summary": "Can you help me with the boss fight?",
+        "requires_confirmation": false,
+        "operations": [],
+        "help_text": "Sure! I can give you some tips for the boss fight."
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.08",
+      "category": 9,
+      "prompt": "Too many coins",
+      "expected_modes": [
+        "MODIFY",
+        "CLARIFY"
+      ],
+      "target_keywords": [
+        "coin"
+      ],
+      "action_keywords": [
+        "batch_delete_actors",
+        "find_actors",
+        "delete"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Too many coins",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_delete_actors",
+            "params": {
+              "count": 10
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.09",
+      "category": 9,
+      "prompt": "The game is too easy",
+      "expected_modes": [
+        "MODIFY",
+        "CLARIFY"
+      ],
+      "target_keywords": [
+        "enemy"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Make the game harder",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "default_value": "1000"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "9.10",
+      "category": 9,
+      "prompt": "I'm stuck",
+      "expected_modes": [
+        "CLARIFY"
+      ],
+      "target_keywords": [],
+      "action_keywords": [],
+      "description": "",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "CLARIFY",
+        "summary": "How can we help?",
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.01",
+      "category": 10,
+      "prompt": "Cambia la textura de las paredes a ladrillo",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "wall",
+        "pared",
+        "brick",
+        "ladrillo"
+      ],
+      "action_keywords": [
+        "batch_apply_material",
+        "find_actors",
+        "batch_replace_material"
+      ],
+      "description": "Spanish: Change wall texture to brick",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Cambiar la textura de las paredes a ladrillo",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "pared"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Material",
+              "value": "wall_adobe",
+              "type": "string"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.02",
+      "category": 10,
+      "prompt": "Augmente la santé de tous les ennemis à 300",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "ennemi",
+        "health",
+        "santé",
+        "300"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "French: Set enemy health to 300",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Augmente la santé de tous les ennemis à 300",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "default_value": "300"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.03",
+      "category": 10,
+      "prompt": "Lösche alle Goldmünzen",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "coin",
+        "gold",
+        "münz"
+      ],
+      "action_keywords": [
+        "batch_delete_actors",
+        "find_actors",
+        "delete"
+      ],
+      "description": "German: Delete all gold coins",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Lösche alle Goldmünzen",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "Goldmünze"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.04",
+      "category": 10,
+      "prompt": "Crie um inimigo com 500 de vida",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "enemy",
+        "inimigo",
+        "500"
+      ],
+      "action_keywords": [
+        "create_blueprint"
+      ],
+      "description": "Portuguese: Create enemy with 500 HP",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 2,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Crie um inimigo com500 de vida",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "default_value": "500"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.05",
+      "category": 10,
+      "prompt": "壁のマテリアルをレンガに変えて",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "wall",
+        "壁",
+        "brick",
+        "レンガ"
+      ],
+      "action_keywords": [
+        "batch_apply_material",
+        "find_actors",
+        "batch_replace_material"
+      ],
+      "description": "Japanese: Change wall material to brick",
+      "intent_correct": true,
+      "target_correct": false,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Change material of coin actor to enemy",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_change_material",
+            "params": {
+              "material_name": "enemy"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.06",
+      "category": 10,
+      "prompt": "적의 체력을 200으로 설정하세요",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "적",
+        "health",
+        "체력",
+        "200"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "Korean: Set enemy health to 200",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Set enemy health to 200",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "default_value": "200"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.07",
+      "category": 10,
+      "prompt": "把所有敌人的伤害改为50",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "敌人",
+        "damage",
+        "伤害",
+        "50"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "Chinese: Set enemy damage to 50",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Set damage of enemies to ",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Damage",
+              "value": 50
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.08",
+      "category": 10,
+      "prompt": "Удали все факелы с уровня",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "torch",
+        "факел"
+      ],
+      "action_keywords": [
+        "batch_delete_actors",
+        "find_actors",
+        "delete"
+      ],
+      "description": "Russian: Delete all torches",
+      "intent_correct": true,
+      "target_correct": false,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 3,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Удалить все факелы с уровня",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.09",
+      "category": 10,
+      "prompt": "احذف جميع العملات الذهبية",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "coin",
+        "عملات"
+      ],
+      "action_keywords": [
+        "batch_delete_actors",
+        "find_actors",
+        "delete"
+      ],
+      "description": "Arabic: Delete all gold coins",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Delete coin actors",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.10",
+      "category": 10,
+      "prompt": "सभी दुश्मनों को तेज़ बनाओ",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "दुश्मन",
+        "speed"
+      ],
+      "action_keywords": [
+        "batch_set_variable",
+        "find"
+      ],
+      "description": "Hindi: Make enemies faster",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Make all enemies tougher",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "default_value": "500"
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 3,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Damage",
+              "default_value": "50"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.11",
+      "category": 10,
+      "prompt": "Tüm düşmanları sil",
+      "expected_modes": [
+        "MODIFY"
+      ],
+      "target_keywords": [
+        "enemy",
+        "düşman"
+      ],
+      "action_keywords": [
+        "batch_delete_actors",
+        "find_actors",
+        "delete"
+      ],
+      "description": "Turkish: Delete all enemies",
+      "intent_correct": true,
+      "target_correct": true,
+      "action_correct": true,
+      "exec_correct": true,
+      "score": 4,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Tüm dumanlar sil",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Visible",
+              "value": false
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_id": "10.12",
+      "category": 10,
+      "prompt": "Erstelle einen Gesundheits-Pickup",
+      "expected_modes": [
+        "CREATE"
+      ],
+      "target_keywords": [
+        "health",
+        "gesundheit",
+        "pickup"
+      ],
+      "action_keywords": [
+        "create_blueprint"
+      ],
+      "description": "German: Create health pickup",
+      "intent_correct": false,
+      "target_correct": true,
+      "action_correct": false,
+      "exec_correct": true,
+      "score": 2,
+      "plan": {
+        "mode": "MODIFY",
+        "summary": "Erstelle einen Gesundheits-Pickup",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {
+              "name_filter": "health_pickup"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "rename_asset",
+            "params": {
+              "new_name": "Gesundheit"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "error": null
+    }
+  ]
+}

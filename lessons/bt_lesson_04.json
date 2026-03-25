@@ -1,0 +1,81 @@
+{
+  "lesson_id": "bt_lesson_04",
+  "lesson_name": "Showcase Prompts: Marketing-Ready Behavior Tree Patterns",
+  "version": "v1",
+  "domain": "behavior_tree",
+  "description": "Marketing showcase prompts for BT domain. Every prompt will appear in docs, landing page, or demo video. All must produce valid, impressive output.",
+  "prompts": [
+    {
+      "id": "BT04_01",
+      "category": "showcase_simple",
+      "instruction": "Create an AI that stands still and waits 5 seconds in a loop",
+      "expected_dsl": "BEHAVIORTREE: BT_Idle\nBLACKBOARD: BB_Idle\n\nTREE:\n\nSEQUENCE: Root\n  DECORATOR: Loop [InfiniteLoop=true]\n  TASK: Wait [Duration=5.0]"
+    },
+    {
+      "id": "BT04_02",
+      "category": "showcase_simple",
+      "instruction": "Make an enemy that walks to a single patrol point and waits there forever",
+      "expected_dsl": "BEHAVIORTREE: BT_WalkAndWait\nBLACKBOARD: BB_WalkAndWait\n\nKEY PatrolPoint: Vector\n\nTREE:\n\nSEQUENCE: Root\n  TASK: MoveTo [Key=PatrolPoint, AcceptableRadius=50]\n  TASK: Wait [Duration=999.0]"
+    },
+    {
+      "id": "BT04_03",
+      "category": "showcase_simple",
+      "instruction": "Build an AI that just chases the player whenever it can see them",
+      "expected_dsl": "BEHAVIORTREE: BT_Chase\nBLACKBOARD: BB_Chase\n\nKEY TargetActor: Object\n\nTREE:\n\nSEQUENCE: Root\n  SERVICE: FindNearestActor [Class=Character, ResultKey=TargetActor, SearchRadius=2000, Interval=0.5]\n  DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet]\n  DECORATOR: Loop [InfiniteLoop=true]\n  TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]"
+    },
+    {
+      "id": "BT04_04",
+      "category": "showcase_simple",
+      "instruction": "Make an NPC that walks between point A and point B repeatedly",
+      "expected_dsl": "BEHAVIORTREE: BT_ABPatrol\nBLACKBOARD: BB_ABPatrol\n\nKEY PointA: Vector\nKEY PointB: Vector\n\nTREE:\n\nSEQUENCE: Root\n  DECORATOR: Loop [InfiniteLoop=true]\n  TASK: MoveTo [Key=PointA, AcceptableRadius=50]\n  TASK: Wait [Duration=2.0]\n  TASK: MoveTo [Key=PointB, AcceptableRadius=50]\n  TASK: Wait [Duration=2.0]"
+    },
+    {
+      "id": "BT04_05",
+      "category": "showcase_patrol_chase",
+      "instruction": "Build a patrol guard. It walks between three waypoints with 2 second pauses. If it detects a player within 800 units, it abandons patrol and chases. When the player gets away, it returns to patrolling",
+      "expected_dsl": "BEHAVIORTREE: BT_PatrolGuard\nBLACKBOARD: BB_PatrolGuard\n\nKEY TargetActor: Object\nKEY WaypointA: Vector\nKEY WaypointB: Vector\nKEY WaypointC: Vector\n\nTREE:\n\nSELECTOR: Root\n  SERVICE: FindNearestActor [Class=Character, ResultKey=TargetActor, SearchRadius=800, Interval=0.5]\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: PrintString [Message=\"Stop right there!\"]\n  SEQUENCE: Patrol\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=WaypointA, AcceptableRadius=50]\n    TASK: Wait [Duration=2.0]\n    TASK: MoveTo [Key=WaypointB, AcceptableRadius=50]\n    TASK: Wait [Duration=2.0]\n    TASK: MoveTo [Key=WaypointC, AcceptableRadius=50]\n    TASK: Wait [Duration=2.0]"
+    },
+    {
+      "id": "BT04_06",
+      "category": "showcase_patrol_chase",
+      "instruction": "Create an enemy that patrols a route. If it hears a noise (SoundLocation key is set), it investigates that location. If it finds nothing after 5 seconds, clears the key and resumes patrol",
+      "expected_dsl": "BEHAVIORTREE: BT_Investigator\nBLACKBOARD: BB_Investigator\n\nKEY SoundLocation: Vector\nKEY PatrolPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Investigate\n    DECORATOR: BlackboardBased [Key=SoundLocation, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=SoundLocation, AcceptableRadius=100]\n    TASK: Wait [Duration=5.0]\n    TASK: ClearBlackboardValue [Key=SoundLocation]\n    TASK: PrintString [Message=\"Nothing here\"]\n  SEQUENCE: Patrol\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=PatrolPoint, AcceptableRadius=50]\n    TASK: Wait [Duration=3.0]"
+    },
+    {
+      "id": "BT04_07",
+      "category": "showcase_combat",
+      "instruction": "Make a boss with three phases. Above 70% health: basic melee attacks. Between 30-70%: ranged attacks with a 3 second cooldown. Below 30%: rage mode with fast attacks",
+      "expected_dsl": "BEHAVIORTREE: BT_PhasedBoss\nBLACKBOARD: BB_PhasedBoss\n\nKEY TargetActor: Object\nKEY BossHealth: Float = 100.0\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: RagePhase\n    DECORATOR: BlackboardBased [Key=BossHealth, Condition=LessThan, Value=30]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=150]\n    TASK: ApplyDamage [Key=TargetActor, Damage=40]\n    TASK: Wait [Duration=0.3]\n  SEQUENCE: RangedPhase\n    DECORATOR: BlackboardBased [Key=BossHealth, Condition=LessThan, Value=70]\n    DECORATOR: Cooldown [Duration=3.0]\n    TASK: RotateToFaceBBEntry [Key=TargetActor]\n    TASK: ApplyDamage [Key=TargetActor, Damage=25]\n  SEQUENCE: MeleePhase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n    TASK: ApplyDamage [Key=TargetActor, Damage=15]\n    TASK: Wait [Duration=1.0]"
+    },
+    {
+      "id": "BT04_08",
+      "category": "showcase_combat",
+      "instruction": "Create a healer AI that scans for nearby allies with low health. If an ally needs healing, move to them and heal. Otherwise follow the player at a safe distance",
+      "expected_dsl": "BEHAVIORTREE: BT_Healer\nBLACKBOARD: BB_Healer\n\nKEY InjuredAlly: Object\nKEY FollowTarget: Object\n\nTREE:\n\nSELECTOR: Root\n  SERVICE: FindNearestActor [Class=Pawn, ResultKey=InjuredAlly, SearchRadius=1500, Interval=1.0]\n  SEQUENCE: HealAlly\n    DECORATOR: BlackboardBased [Key=InjuredAlly, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=InjuredAlly, AcceptableRadius=200]\n    TASK: PrintString [Message=\"Healing!\"]\n    TASK: Wait [Duration=2.0]\n    TASK: ClearBlackboardValue [Key=InjuredAlly]\n  SEQUENCE: FollowPlayer\n    DECORATOR: BlackboardBased [Key=FollowTarget, Condition=IsSet]\n    TASK: MoveTo [Key=FollowTarget, AcceptableRadius=400]\n    TASK: Wait [Duration=1.0]"
+    },
+    {
+      "id": "BT04_09",
+      "category": "showcase_combat",
+      "instruction": "Build a sniper AI. It finds cover, moves there, then shoots at the player with a 2 second delay. If the player gets within 300 units, flee to a new position",
+      "expected_dsl": "BEHAVIORTREE: BT_Sniper\nBLACKBOARD: BB_Sniper\n\nKEY TargetActor: Object\nKEY CoverPoint: Vector\nKEY DistToTarget: Float = 9999.0\n\nTREE:\n\nSELECTOR: Root\n  SERVICE: UpdateDistance [TargetKey=TargetActor, ResultKey=DistToTarget, Interval=0.3]\n  SEQUENCE: Flee\n    DECORATOR: BlackboardBased [Key=DistToTarget, Condition=LessThan, Value=300, AbortMode=Both]\n    TASK: MoveTo [Key=CoverPoint, AcceptableRadius=100]\n    TASK: PrintString [Message=\"Repositioning!\"]\n  SEQUENCE: Snipe\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet]\n    TASK: MoveTo [Key=CoverPoint, AcceptableRadius=50]\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: RotateToFaceBBEntry [Key=TargetActor]\n    TASK: PrintString [Message=\"Firing!\"]\n    TASK: Wait [Duration=2.0]"
+    },
+    {
+      "id": "BT04_10",
+      "category": "showcase_complex",
+      "instruction": "Create a companion AI that follows the player at 400 units distance. If the player enters combat, the companion attacks the same target. After combat, return to following",
+      "expected_dsl": "BEHAVIORTREE: BT_Companion\nBLACKBOARD: BB_Companion\n\nKEY FollowTarget: Object\nKEY EnemyTarget: Object\nKEY IsPlayerInCombat: Bool = false\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: HelpInCombat\n    DECORATOR: BlackboardBased [Key=IsPlayerInCombat, Condition=Equals, Value=true, AbortMode=LowerPriority]\n    DECORATOR: BlackboardBased [Key=EnemyTarget, Condition=IsSet]\n    TASK: MoveTo [Key=EnemyTarget, AcceptableRadius=200]\n    TASK: ApplyDamage [Key=EnemyTarget, Damage=15]\n    TASK: Wait [Duration=1.0]\n  SEQUENCE: Follow\n    DECORATOR: BlackboardBased [Key=FollowTarget, Condition=IsSet]\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=FollowTarget, AcceptableRadius=400]\n    TASK: Wait [Duration=1.0]"
+    },
+    {
+      "id": "BT04_11",
+      "category": "showcase_complex",
+      "instruction": "Build a stealth enemy that patrols silently. When it spots the player, it goes on alert, calls for backup, and chases. If it loses the player for 10 seconds, returns to patrol",
+      "expected_dsl": "BEHAVIORTREE: BT_StealthEnemy\nBLACKBOARD: BB_StealthEnemy\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\nKEY IsAlert: Bool = false\n\nTREE:\n\nSELECTOR: Root\n  SERVICE: FindNearestActor [Class=Character, ResultKey=TargetActor, SearchRadius=1200, Interval=0.5]\n  SEQUENCE: ChaseAndAlert\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: SetBlackboardValue [Key=IsAlert, Value=true]\n    TASK: PrintString [Message=\"Intruder spotted!\"]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=200]\n  SEQUENCE: SearchTimeout\n    DECORATOR: BlackboardBased [Key=IsAlert, Condition=Equals, Value=true]\n    TASK: Wait [Duration=10.0]\n    TASK: SetBlackboardValue [Key=IsAlert, Value=false]\n    TASK: ClearBlackboardValue [Key=TargetActor]\n    TASK: PrintString [Message=\"Lost them\"]\n  SEQUENCE: Patrol\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=PatrolPoint, AcceptableRadius=50]\n    TASK: Wait [Duration=3.0]"
+    },
+    {
+      "id": "BT04_12",
+      "category": "showcase_complex",
+      "instruction": "Make a zombie AI. It wanders randomly when no target is near. When it detects a player, it shambles toward them slowly. When within attack range, it attacks and pauses for 3 seconds",
+      "expected_dsl": "BEHAVIORTREE: BT_Zombie\nBLACKBOARD: BB_Zombie\n\nKEY TargetActor: Object\nKEY DistToTarget: Float = 9999.0\nKEY WanderPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SERVICE: FindNearestActor [Class=Character, ResultKey=TargetActor, SearchRadius=1000, Interval=0.5]\n  SERVICE: UpdateDistance [TargetKey=TargetActor, ResultKey=DistToTarget, Interval=0.3]\n  SEQUENCE: Attack\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=Both]\n    DECORATOR: BlackboardBased [Key=DistToTarget, Condition=LessThan, Value=200]\n    TASK: RotateToFaceBBEntry [Key=TargetActor]\n    TASK: ApplyDamage [Key=TargetActor, Damage=20]\n    TASK: Wait [Duration=3.0]\n  SEQUENCE: Shamble\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActor, AcceptableRadius=150]\n  SEQUENCE: Wander\n    DECORATOR: Loop [InfiniteLoop=true]\n    TASK: MoveTo [Key=WanderPoint, AcceptableRadius=100]\n    TASK: Wait [Duration=4.0]"
+    }
+  ]
+}

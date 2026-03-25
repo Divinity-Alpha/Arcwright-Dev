@@ -1,0 +1,48 @@
+{
+  "template_id": "collectible_health",
+  "name": "Health Pickup",
+  "category": "collectibles",
+  "description": "A collectible that restores health, prints feedback, and destroys itself. Green sphere with glow.",
+  "version": "1.0",
+  "proven_in": "Arena Collector",
+  "customizable": {
+    "blueprint_name": "BP_HealthPickup",
+    "heal_amount": "Health restored (default: 25)",
+    "message": "Feedback message (default: +25 Health!)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_HealthPickup}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: PrintString [InString=\"{{message|+25 Health!}}\"]\nNODE n3: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute",
+  "components": [
+    {
+      "type": "BoxCollision",
+      "name": "HealthCollision",
+      "properties": {
+        "extent": {"x": 60, "y": 60, "z": 60},
+        "generate_overlap_events": true
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "HealthMesh",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Sphere.Sphere",
+        "scale": {"x": 0.6, "y": 0.6, "z": 0.6}
+      }
+    },
+    {
+      "type": "PointLight",
+      "name": "HealthGlow",
+      "properties": {
+        "intensity": 3000,
+        "light_color": {"r": 0, "g": 1, "b": 0},
+        "attenuation_radius": 300
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_HealthGreen",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 0.1, "g": 1.0, "b": 0.2, "a": 1.0}
+    }
+  }
+}

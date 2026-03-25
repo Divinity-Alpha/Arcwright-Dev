@@ -15,10 +15,10 @@
 - Flowchart: `http://localhost:8080/dashboard/flowchart.html`
 - Stop with: `python serve_dashboard.py --stop`
 
-## 2026-02-26 18:40 — Add backup mirroring to D:\BlueprintLLMBackup
+## 2026-02-26 18:40 — Add backup mirroring to D:\ArcwrightBackup
 
 **Changed:**
-- `scripts/backup_utils.py` — Added `MIRROR_DIR` constant (`D:/BlueprintLLMBackup`); added `_mirror_to_external()` function that copies backups to the mirror drive; integrated mirror call in `auto_backup()` after manifest generation; updated `cleanup_backups()` to remove mirror copies during retention cleanup; added `mirror_path` field to backup history entries
+- `scripts/backup_utils.py` — Added `MIRROR_DIR` constant (`D:/ArcwrightBackup`); added `_mirror_to_external()` function that copies backups to the mirror drive; integrated mirror call in `auto_backup()` after manifest generation; updated `cleanup_backups()` to remove mirror copies during retention cleanup; added `mirror_path` field to backup history entries
 - `scripts/16_backup.py` — Updated `show_list()` to display mirror status with `[LM]` indicators (L=local present, M=mirror present)
 - `scripts/17_scheduled_backup.py` — Added `MIRROR_DIR` import from `backup_utils`
 

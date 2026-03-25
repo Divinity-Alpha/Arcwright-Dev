@@ -1,0 +1,42 @@
+{
+  "id": "damage_indicator",
+  "name": "Damage Indicator",
+  "category": "hud",
+  "description": "Full-screen red vignette flash",
+  "default_anchor": "Fill",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    0,
+    0
+  ],
+  "variables": [
+    {
+      "name": "DamageActive",
+      "type": "Bool",
+      "default": false
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "IMAGE",
+    "name": "DamageVignette",
+    "properties": {
+      "tint": "$danger",
+      "opacity": "0"
+    },
+    "animations": [
+      {
+        "trigger": "OnDamage",
+        "type": "Flash",
+        "params": {
+          "color": "#FF000080",
+          "duration": 0.3
+        }
+      }
+    ],
+    "children": []
+  }
+}

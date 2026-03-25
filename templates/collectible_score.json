@@ -1,0 +1,49 @@
+{
+  "template_id": "collectible_score",
+  "name": "Score Pickup",
+  "category": "collectibles",
+  "description": "A collectible that adds points to a score variable, prints the new score, and destroys itself.",
+  "version": "1.0",
+  "proven_in": "Arena Collector",
+  "customizable": {
+    "blueprint_name": "BP_ScorePickup",
+    "points": "Points awarded per pickup (default: 10)",
+    "message": "Feedback message (default: +10 Points!)",
+    "color": "BaseColor RGBA (default: gold)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_ScorePickup}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: PrintString [InString=\"{{message|+10 Points!}}\"]\nNODE n3: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute",
+  "components": [
+    {
+      "type": "BoxCollision",
+      "name": "ScoreCollision",
+      "properties": {
+        "extent": {"x": 50, "y": 50, "z": 50},
+        "generate_overlap_events": true
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "ScoreMesh",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Cube.Cube",
+        "scale": {"x": 0.4, "y": 0.4, "z": 0.4}
+      }
+    },
+    {
+      "type": "PointLight",
+      "name": "ScoreGlow",
+      "properties": {
+        "intensity": 3000,
+        "light_color": {"r": 1, "g": 0.8, "b": 0},
+        "attenuation_radius": 300
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_ScoreGold",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 1.0, "g": 0.85, "b": 0.0, "a": 1.0}
+    }
+  }
+}

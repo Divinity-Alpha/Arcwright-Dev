@@ -1,0 +1,90 @@
+{
+  "name": "Medieval",
+  "description": "Medieval fantasy theme — ornate gold and parchment, Cinzel body, MedieviSharp headings",
+  "version": "1.0",
+
+  "colors": {
+    "primary": "#D4A856",
+    "secondary": "#B8860B",
+    "accent": "#8B1A1A",
+    "warning": "#CC8800",
+    "danger": "#991111",
+
+    "panel_bg": "#2A2218",
+    "card_bg": "#362C20",
+    "surface": "#3E3428",
+
+    "text": "#E8DCCA",
+    "text_secondary": "#B8A888",
+    "text_muted": "#7A6A52",
+
+    "border": "#D4A85660",
+    "divider": "#D4A85630",
+
+    "health": "#CC3333",
+    "health_low": "#661111",
+    "mana": "#4466BB",
+    "stamina": "#CC8800",
+    "xp": "#D4A856",
+
+    "shadow": "rgba(0,0,0,0.5)"
+  },
+
+  "fonts": {
+    "heading": {"family": "MedieviSharp", "weight": "Bold"},
+    "body": {"family": "Cinzel", "weight": "Regular"},
+    "mono": {"family": "IM Fell English", "weight": "Regular"},
+    "ui": {"family": "Cinzel", "weight": "SemiBold"}
+  },
+
+  "sizes": {
+    "h1": 38,
+    "h2": 30,
+    "h3": 24,
+    "h4": 20,
+    "body": 17,
+    "small": 14,
+    "tiny": 12,
+    "icon_small": 26,
+    "icon_medium": 36,
+    "icon_large": 52,
+    "corner_radius": 0,
+    "border_width": 3,
+    "spacing_xs": 6,
+    "spacing_sm": 10,
+    "spacing_md": 18,
+    "spacing_lg": 28,
+    "spacing_xl": 38
+  },
+
+  "defaults": {
+    "TEXT": {
+      "color": "#E8DCCA",
+      "font_size": 17,
+      "font": "Cinzel"
+    },
+    "PROGRESS_BAR": {
+      "fill_color": "#D4A856",
+      "bar_color": "#362C20",
+      "percent": 100
+    },
+    "BUTTON": {
+      "font_size": 17,
+      "normal_color": "#D4A856",
+      "hovered_color": "#E8C070",
+      "pressed_color": "#B8860B"
+    },
+    "BORDER": {
+      "border_color": "#D4A85660",
+      "corner_radius": 0,
+      "background": "#362C20"
+    },
+    "CANVAS": {},
+    "VBOX": {
+      "spacing": 10
+    },
+    "HBOX": {
+      "spacing": 10
+    }
+  }
+}

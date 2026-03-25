@@ -1,0 +1,40 @@
+{
+  "template_id": "trigger_victory",
+  "name": "Victory Zone",
+  "category": "triggers",
+  "description": "A trigger area that ends the game with a win message when the player enters. Green visual indicator.",
+  "version": "1.0",
+  "proven_in": "Pickup Collector Demo",
+  "customizable": {
+    "blueprint_name": "BP_VictoryZone",
+    "message": "Win message (default: You Win!)",
+    "zone_scale": "Visual size (default: 4,4,4)",
+    "collision_extent": "Trigger box size (default: 200,200,200)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_VictoryZone}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: PrintString [InString=\"{{message|You Win!}}\"]\n\nEXEC n1.Then -> n2.Execute",
+  "components": [
+    {
+      "type": "BoxCollision",
+      "name": "VictoryCollision",
+      "properties": {
+        "extent": {"x": 200, "y": 200, "z": 200},
+        "generate_overlap_events": true
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "VictoryMesh",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Cube.Cube",
+        "scale": {"x": 4, "y": 4, "z": 4}
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_VictoryGreen",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 0.1, "g": 1.0, "b": 0.2, "a": 1.0}
+    }
+  }
+}

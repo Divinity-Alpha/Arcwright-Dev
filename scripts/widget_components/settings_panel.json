@@ -1,0 +1,133 @@
+{
+  "id": "settings_panel",
+  "name": "Settings Panel",
+  "category": "menu",
+  "description": "Volume sliders",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    500,
+    400
+  ],
+  "variables": [
+    {
+      "name": "MasterVolume",
+      "type": "Float",
+      "default": 80.0
+    },
+    {
+      "name": "SFXVolume",
+      "type": "Float",
+      "default": 100.0
+    },
+    {
+      "name": "MusicVolume",
+      "type": "Float",
+      "default": 70.0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "SettingsBox",
+    "properties": {
+      "spacing": "12"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "SettingsTitle",
+        "properties": {
+          "text": "SETTINGS",
+          "font_size": "28",
+          "color": "$text",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "MasterRow",
+        "properties": {
+          "spacing": "10"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "MasterLabel",
+            "properties": {
+              "text": "Master Volume",
+              "font_size": "16",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "SLIDER",
+            "name": "MasterSlider",
+            "properties": {
+              "value": "BIND:MasterVolume",
+              "min": "0",
+              "max": "100"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "SFXRow",
+        "properties": {
+          "spacing": "10"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "SFXLabel",
+            "properties": {
+              "text": "SFX Volume",
+              "font_size": "16",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "SLIDER",
+            "name": "SFXSlider",
+            "properties": {
+              "value": "BIND:SFXVolume",
+              "min": "0",
+              "max": "100"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "MusicRow",
+        "properties": {
+          "spacing": "10"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "MusicLabel",
+            "properties": {
+              "text": "Music Volume",
+              "font_size": "16",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "SLIDER",
+            "name": "MusicSlider",
+            "properties": {
+              "value": "BIND:MusicVolume",
+              "min": "0",
+              "max": "100"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

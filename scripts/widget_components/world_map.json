@@ -1,0 +1,88 @@
+{
+  "id": "world_map",
+  "name": "World Map",
+  "category": "quest",
+  "description": "Full screen map with markers and legend",
+  "default_anchor": "Fill",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    0,
+    0
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "OVERLAY",
+    "name": "MapRoot",
+    "properties": {},
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "MapImage",
+        "properties": {
+          "tint": "$text",
+          "size_x": "1920",
+          "size_y": "1080"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "PlayerMarker",
+        "properties": {
+          "text": "X",
+          "font_size": "24",
+          "color": "$accent",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "Legend",
+        "properties": {
+          "spacing": "2"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "LegendTitle",
+            "properties": {
+              "text": "LEGEND",
+              "font_size": "12",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "QuestIcon",
+            "properties": {
+              "text": "! Quest",
+              "font_size": "11",
+              "color": "$warning"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "TravelIcon",
+            "properties": {
+              "text": "* Fast Travel",
+              "font_size": "11",
+              "color": "$primary"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BUTTON",
+        "name": "CloseBtn",
+        "properties": {
+          "text": "CLOSE",
+          "font_size": "14"
+        }
+      }
+    ]
+  }
+}

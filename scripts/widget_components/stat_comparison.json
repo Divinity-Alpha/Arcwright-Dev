@@ -1,0 +1,100 @@
+{
+  "id": "stat_comparison",
+  "name": "Stat Comparison",
+  "category": "character",
+  "description": "Before/after columns with improvement arrows",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    350,
+    250
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "CompRoot",
+    "properties": {
+      "spacing": "20"
+    },
+    "children": [
+      {
+        "type": "VBOX",
+        "name": "Before",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "BeforeTitle",
+            "properties": {
+              "text": "BEFORE",
+              "font_size": "14",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "BeforeStat1",
+            "properties": {
+              "text": "BIND:\"ATK: {OldAtk}\"",
+              "font_size": "16",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "BeforeStat2",
+            "properties": {
+              "text": "BIND:\"DEF: {OldDef}\"",
+              "font_size": "16",
+              "color": "$text"
+            }
+          }
+        ]
+      },
+      {
+        "type": "VBOX",
+        "name": "After",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "AfterTitle",
+            "properties": {
+              "text": "AFTER",
+              "font_size": "14",
+              "color": "$accent",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "AfterStat1",
+            "properties": {
+              "text": "BIND:\"ATK: {NewAtk}\"",
+              "font_size": "16",
+              "color": "$accent"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "AfterStat2",
+            "properties": {
+              "text": "BIND:\"DEF: {NewDef}\"",
+              "font_size": "16",
+              "color": "$accent"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

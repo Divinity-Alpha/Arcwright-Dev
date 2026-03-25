@@ -1,0 +1,38 @@
+{
+  "template_id": "movement_rotating",
+  "name": "Rotating Actor",
+  "category": "movement",
+  "description": "An actor that rotates continuously around a specified axis. Uses AddActorLocalRotation on Tick. Great for spinning obstacles, rotating platforms, or decorative elements.",
+  "version": "1.0",
+  "proven_in": "Template Library",
+  "customizable": {
+    "blueprint_name": "Name of the Blueprint (default: BP_RotatingActor)",
+    "rotation_speed": "Degrees per tick (default: 1.0)",
+    "rotation_axis": "Which axis to rotate around: Yaw, Pitch, or Roll (default: Yaw)",
+    "mesh": "Mesh asset path (default: Cube)",
+    "mesh_scale": "Scale of the mesh (default: 2,2,0.3)",
+    "color": "Actor color (default: orange)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_RotatingActor}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: PrintString [InString=\"Rotating Actor Active\"]\nNODE n3: Event_Tick\nNODE n4: MakeRotator [Yaw={{rotation_speed|1.0}}]\nNODE n5: AddActorLocalRotation\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n5.Execute\n\nDATA n4.ReturnValue -> n5.DeltaRotation [Rotator]",
+  "components": [
+    {
+      "type": "StaticMesh",
+      "name": "RotatingMesh",
+      "properties": {
+        "mesh": "{{mesh|/Engine/BasicShapes/Cube.Cube}}",
+        "scale": {"x": 2, "y": 2, "z": 0.3}
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_Rotating",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 1.0, "g": 0.5, "b": 0.0, "a": 1.0}
+    }
+  },
+  "example_spawn": {
+    "location": {"x": 200, "y": 200, "z": 150},
+    "notes": "Place elevated so rotation is visible"
+  }
+}

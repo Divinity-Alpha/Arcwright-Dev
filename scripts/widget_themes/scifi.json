@@ -1,0 +1,90 @@
+{
+  "name": "SciFi",
+  "description": "Neon sci-fi theme — Orbitron headings, Rajdhani body, holographic glow, sharp edges",
+  "version": "1.0",
+
+  "colors": {
+    "primary": "#00D4FF",
+    "secondary": "#0088CC",
+    "accent": "#FF3A5C",
+    "warning": "#FFB800",
+    "danger": "#FF2244",
+
+    "panel_bg": "#0A1628",
+    "card_bg": "#0E1E36",
+    "surface": "#122444",
+
+    "text": "#D0E8FF",
+    "text_secondary": "#6A8CB0",
+    "text_muted": "#3A5A78",
+
+    "border": "#00D4FF40",
+    "divider": "#00D4FF20",
+
+    "health": "#00FF99",
+    "health_low": "#FF2244",
+    "mana": "#00D4FF",
+    "stamina": "#FFB800",
+    "xp": "#AA44FF",
+
+    "shadow": "rgba(0,212,255,0.15)"
+  },
+
+  "fonts": {
+    "heading": {"family": "Orbitron", "weight": "Bold"},
+    "body": {"family": "Rajdhani", "weight": "Regular"},
+    "mono": {"family": "JetBrains Mono", "weight": "Regular"},
+    "ui": {"family": "Rajdhani", "weight": "SemiBold"}
+  },
+
+  "sizes": {
+    "h1": 34,
+    "h2": 26,
+    "h3": 20,
+    "h4": 16,
+    "body": 15,
+    "small": 12,
+    "tiny": 10,
+    "icon_small": 22,
+    "icon_medium": 30,
+    "icon_large": 44,
+    "corner_radius": 2,
+    "border_width": 1,
+    "spacing_xs": 3,
+    "spacing_sm": 6,
+    "spacing_md": 12,
+    "spacing_lg": 20,
+    "spacing_xl": 28
+  },
+
+  "defaults": {
+    "TEXT": {
+      "color": "#D0E8FF",
+      "font_size": 15,
+      "font": "Rajdhani"
+    },
+    "PROGRESS_BAR": {
+      "fill_color": "#00D4FF",
+      "bar_color": "#0E1E36",
+      "percent": 100
+    },
+    "BUTTON": {
+      "font_size": 15,
+      "normal_color": "#00D4FF",
+      "hovered_color": "#33E0FF",
+      "pressed_color": "#0088CC"
+    },
+    "BORDER": {
+      "border_color": "#00D4FF40",
+      "corner_radius": 2,
+      "background": "#0E1E36"
+    },
+    "CANVAS": {},
+    "VBOX": {
+      "spacing": 6
+    },
+    "HBOX": {
+      "spacing": 6
+    }
+  }
+}

@@ -1,0 +1,1060 @@
+{
+  "version": "v6",
+  "lessons": [
+    {
+      "lesson_id": "L01",
+      "lesson_name": "Core Pattern Gaps",
+      "status": "done",
+      "valid_count": 18,
+      "total_count": 20,
+      "completed_prompts": 20,
+      "prompts": [
+        {
+          "prompt_id": "L01_01",
+          "category": "print_hello",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 15.8
+        },
+        {
+          "prompt_id": "L01_02",
+          "category": "rotating_actor",
+          "valid": true,
+          "similarity": 36.4,
+          "time_seconds": 38.0
+        },
+        {
+          "prompt_id": "L01_03",
+          "category": "overlap_event",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 24.9
+        },
+        {
+          "prompt_id": "L01_04",
+          "category": "branch",
+          "valid": false,
+          "similarity": 41.7,
+          "time_seconds": 32.2
+        },
+        {
+          "prompt_id": "L01_05",
+          "category": "delay",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 19.6
+        },
+        {
+          "prompt_id": "L01_06",
+          "category": "sequence",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 36.4
+        },
+        {
+          "prompt_id": "L01_07",
+          "category": "flipflop",
+          "valid": true,
+          "similarity": 90.0,
+          "time_seconds": 29.9
+        },
+        {
+          "prompt_id": "L01_08",
+          "category": "doonce",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 20.2
+        },
+        {
+          "prompt_id": "L01_09",
+          "category": "cast",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 33.4
+        },
+        {
+          "prompt_id": "L01_10",
+          "category": "foreach",
+          "valid": true,
+          "similarity": 36.4,
+          "time_seconds": 42.2
+        },
+        {
+          "prompt_id": "L01_11",
+          "category": "gate",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 34.9
+        },
+        {
+          "prompt_id": "L01_12",
+          "category": "custom_event",
+          "valid": true,
+          "similarity": 66.7,
+          "time_seconds": 26.0
+        },
+        {
+          "prompt_id": "L01_13",
+          "category": "variable_set_get",
+          "valid": true,
+          "similarity": 92.9,
+          "time_seconds": 40.8
+        },
+        {
+          "prompt_id": "L01_14",
+          "category": "spawn_actor",
+          "valid": true,
+          "similarity": 50.0,
+          "time_seconds": 25.0
+        },
+        {
+          "prompt_id": "L01_15",
+          "category": "play_sound",
+          "valid": true,
+          "similarity": 75.0,
+          "time_seconds": 18.3
+        },
+        {
+          "prompt_id": "L01_16",
+          "category": "distance_check",
+          "valid": true,
+          "similarity": 85.7,
+          "time_seconds": 33.3
+        },
+        {
+          "prompt_id": "L01_17",
+          "category": "multi_event",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 32.7
+        },
+        {
+          "prompt_id": "L01_18",
+          "category": "set_visibility",
+          "valid": true,
+          "similarity": 85.7,
+          "time_seconds": 44.8
+        },
+        {
+          "prompt_id": "L01_19",
+          "category": "math_chain",
+          "valid": false,
+          "similarity": 80.0,
+          "time_seconds": 27.1
+        },
+        {
+          "prompt_id": "L01_20",
+          "category": "delay_chain",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 47.3
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "rotating_actor",
+          "similarity": 36.4
+        },
+        {
+          "category": "foreach",
+          "similarity": 36.4
+        },
+        {
+          "category": "branch",
+          "similarity": 41.7
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "gate",
+          "similarity": 100.0
+        },
+        {
+          "category": "multi_event",
+          "similarity": 100.0
+        },
+        {
+          "category": "delay_chain",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 90.0,
+      "avg_similarity": 82.0,
+      "duration_seconds": 622.8,
+      "avg_prompt_time": 31.1
+    },
+    {
+      "lesson_id": "L02",
+      "lesson_name": "Corrections: Variables, Events, Complex Nodes",
+      "status": "done",
+      "valid_count": 21,
+      "total_count": 24,
+      "completed_prompts": 24,
+      "prompts": [
+        {
+          "prompt_id": "L02_01",
+          "category": "branch",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 36.4
+        },
+        {
+          "prompt_id": "L02_02",
+          "category": "branch",
+          "valid": true,
+          "similarity": 92.3,
+          "time_seconds": 33.9
+        },
+        {
+          "prompt_id": "L02_03",
+          "category": "variable_set_get",
+          "valid": false,
+          "similarity": 100.0,
+          "time_seconds": 40.9
+        },
+        {
+          "prompt_id": "L02_04",
+          "category": "variable_set_get",
+          "valid": true,
+          "similarity": 91.7,
+          "time_seconds": 40.3
+        },
+        {
+          "prompt_id": "L02_05",
+          "category": "custom_event",
+          "valid": true,
+          "similarity": 55.6,
+          "time_seconds": 24.1
+        },
+        {
+          "prompt_id": "L02_06",
+          "category": "custom_event",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 21.6
+        },
+        {
+          "prompt_id": "L02_07",
+          "category": "gate",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 32.4
+        },
+        {
+          "prompt_id": "L02_08",
+          "category": "gate",
+          "valid": true,
+          "similarity": 90.0,
+          "time_seconds": 28.9
+        },
+        {
+          "prompt_id": "L02_09",
+          "category": "spawn_actor",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 24.7
+        },
+        {
+          "prompt_id": "L02_10",
+          "category": "spawn_actor",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 35.7
+        },
+        {
+          "prompt_id": "L02_11",
+          "category": "foreach",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 31.9
+        },
+        {
+          "prompt_id": "L02_12",
+          "category": "foreach",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 31.7
+        },
+        {
+          "prompt_id": "L02_13",
+          "category": "distance_check",
+          "valid": true,
+          "similarity": 92.9,
+          "time_seconds": 39.3
+        },
+        {
+          "prompt_id": "L02_14",
+          "category": "distance_check",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 73.7
+        },
+        {
+          "prompt_id": "L02_15",
+          "category": "set_visibility",
+          "valid": false,
+          "similarity": 100.0,
+          "time_seconds": 31.1
+        },
+        {
+          "prompt_id": "L02_16",
+          "category": "set_visibility",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 32.4
+        },
+        {
+          "prompt_id": "L02_17",
+          "category": "sequence",
+          "valid": true,
+          "similarity": 91.7,
+          "time_seconds": 41.4
+        },
+        {
+          "prompt_id": "L02_18",
+          "category": "rotating_actor",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 21.0
+        },
+        {
+          "prompt_id": "L02_19",
+          "category": "overlap_event",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 24.1
+        },
+        {
+          "prompt_id": "L02_20",
+          "category": "play_sound",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 22.0
+        },
+        {
+          "prompt_id": "L02_21",
+          "category": "doonce",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 20.1
+        },
+        {
+          "prompt_id": "L02_22",
+          "category": "math_chain",
+          "valid": false,
+          "similarity": 50.0,
+          "time_seconds": 23.2
+        },
+        {
+          "prompt_id": "L02_23",
+          "category": "multi_event",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 23.4
+        },
+        {
+          "prompt_id": "L02_24",
+          "category": "multi_event",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 36.1
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "math_chain",
+          "similarity": 50.0
+        },
+        {
+          "category": "custom_event",
+          "similarity": 77.8
+        },
+        {
+          "category": "sequence",
+          "similarity": 91.7
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "play_sound",
+          "similarity": 100.0
+        },
+        {
+          "category": "doonce",
+          "similarity": 100.0
+        },
+        {
+          "category": "multi_event",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 87.5,
+      "avg_similarity": 94.3,
+      "duration_seconds": 770.3,
+      "avg_prompt_time": 32.1
+    },
+    {
+      "lesson_id": "L03",
+      "lesson_name": "Timers and Delayed Actions",
+      "status": "done",
+      "valid_count": 19,
+      "total_count": 20,
+      "completed_prompts": 20,
+      "prompts": [
+        {
+          "prompt_id": "L03_01",
+          "category": "timer_basic",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 36.3
+        },
+        {
+          "prompt_id": "L03_02",
+          "category": "timer_clear",
+          "valid": true,
+          "similarity": 58.3,
+          "time_seconds": 41.8
+        },
+        {
+          "prompt_id": "L03_03",
+          "category": "timer_oneshot",
+          "valid": true,
+          "similarity": 66.7,
+          "time_seconds": 28.2
+        },
+        {
+          "prompt_id": "L03_04",
+          "category": "retriggerable_delay",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 23.4
+        },
+        {
+          "prompt_id": "L03_05",
+          "category": "timer_with_branch",
+          "valid": true,
+          "similarity": 81.2,
+          "time_seconds": 50.7
+        },
+        {
+          "prompt_id": "L03_06",
+          "category": "delay_sequence",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 55.2
+        },
+        {
+          "prompt_id": "L03_07",
+          "category": "timer_counter",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 77.9
+        },
+        {
+          "prompt_id": "L03_08",
+          "category": "delay_with_visibility",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 29.3
+        },
+        {
+          "prompt_id": "L03_09",
+          "category": "timer_toggle",
+          "valid": false,
+          "similarity": 81.8,
+          "time_seconds": 73.5
+        },
+        {
+          "prompt_id": "L03_10",
+          "category": "delay_overlap",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 33.4
+        },
+        {
+          "prompt_id": "L03_11",
+          "category": "timer_spawner",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 38.1
+        },
+        {
+          "prompt_id": "L03_12",
+          "category": "delay_chain_branch",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 49.3
+        },
+        {
+          "prompt_id": "L03_13",
+          "category": "timer_health_regen",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 92.2
+        },
+        {
+          "prompt_id": "L03_14",
+          "category": "retriggerable_interaction",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 33.9
+        },
+        {
+          "prompt_id": "L03_15",
+          "category": "timer_with_sound",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 43.8
+        },
+        {
+          "prompt_id": "L03_16",
+          "category": "delay_destroy_sequence",
+          "valid": true,
+          "similarity": 91.7,
+          "time_seconds": 37.8
+        },
+        {
+          "prompt_id": "L03_17",
+          "category": "timer_with_gate",
+          "valid": true,
+          "similarity": 78.6,
+          "time_seconds": 52.4
+        },
+        {
+          "prompt_id": "L03_18",
+          "category": "delay_flipflop",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 44.7
+        },
+        {
+          "prompt_id": "L03_19",
+          "category": "timer_overlap_clear",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 45.8
+        },
+        {
+          "prompt_id": "L03_20",
+          "category": "delay_multi_event",
+          "valid": true,
+          "similarity": 93.8,
+          "time_seconds": 46.6
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "timer_clear",
+          "similarity": 58.3
+        },
+        {
+          "category": "timer_oneshot",
+          "similarity": 66.7
+        },
+        {
+          "category": "timer_with_gate",
+          "similarity": 78.6
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "timer_with_sound",
+          "similarity": 100.0
+        },
+        {
+          "category": "delay_flipflop",
+          "similarity": 100.0
+        },
+        {
+          "category": "timer_overlap_clear",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 95.0,
+      "avg_similarity": 92.6,
+      "duration_seconds": 934.3,
+      "avg_prompt_time": 46.7
+    },
+    {
+      "lesson_id": "L04",
+      "lesson_name": "Physics and Movement",
+      "status": "done",
+      "valid_count": 20,
+      "total_count": 20,
+      "completed_prompts": 20,
+      "prompts": [
+        {
+          "prompt_id": "L04_01",
+          "category": "physics_impulse",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 22.2
+        },
+        {
+          "prompt_id": "L04_02",
+          "category": "physics_force",
+          "valid": true,
+          "similarity": 80.0,
+          "time_seconds": 29.9
+        },
+        {
+          "prompt_id": "L04_03",
+          "category": "physics_toggle",
+          "valid": true,
+          "similarity": 50.0,
+          "time_seconds": 36.4
+        },
+        {
+          "prompt_id": "L04_04",
+          "category": "movement_offset",
+          "valid": true,
+          "similarity": 50.0,
+          "time_seconds": 25.6
+        },
+        {
+          "prompt_id": "L04_05",
+          "category": "movement_teleport",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 28.2
+        },
+        {
+          "prompt_id": "L04_06",
+          "category": "physics_overlap_launch",
+          "valid": true,
+          "similarity": 87.5,
+          "time_seconds": 25.2
+        },
+        {
+          "prompt_id": "L04_07",
+          "category": "movement_lerp",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 38.0
+        },
+        {
+          "prompt_id": "L04_08",
+          "category": "movement_input",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 31.6
+        },
+        {
+          "prompt_id": "L04_09",
+          "category": "physics_bounce",
+          "valid": true,
+          "similarity": 44.4,
+          "time_seconds": 36.3
+        },
+        {
+          "prompt_id": "L04_10",
+          "category": "movement_patrol",
+          "valid": true,
+          "similarity": 46.2,
+          "time_seconds": 94.0
+        },
+        {
+          "prompt_id": "L04_11",
+          "category": "physics_delayed",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 32.8
+        },
+        {
+          "prompt_id": "L04_12",
+          "category": "movement_rotate_and_move",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 29.6
+        },
+        {
+          "prompt_id": "L04_13",
+          "category": "physics_conditional_force",
+          "valid": true,
+          "similarity": 92.3,
+          "time_seconds": 43.9
+        },
+        {
+          "prompt_id": "L04_14",
+          "category": "movement_speed_variable",
+          "valid": true,
+          "similarity": 64.3,
+          "time_seconds": 38.7
+        },
+        {
+          "prompt_id": "L04_15",
+          "category": "physics_gravity_zone",
+          "valid": true,
+          "similarity": 33.3,
+          "time_seconds": 22.6
+        },
+        {
+          "prompt_id": "L04_16",
+          "category": "movement_clamp",
+          "valid": true,
+          "similarity": 75.0,
+          "time_seconds": 66.9
+        },
+        {
+          "prompt_id": "L04_17",
+          "category": "physics_multigate",
+          "valid": true,
+          "similarity": 91.7,
+          "time_seconds": 46.1
+        },
+        {
+          "prompt_id": "L04_18",
+          "category": "movement_sine_wave",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 55.3
+        },
+        {
+          "prompt_id": "L04_19",
+          "category": "physics_projectile",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 47.7
+        },
+        {
+          "prompt_id": "L04_20",
+          "category": "movement_scale_speed",
+          "valid": true,
+          "similarity": 38.1,
+          "time_seconds": 66.9
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "physics_gravity_zone",
+          "similarity": 33.3
+        },
+        {
+          "category": "movement_scale_speed",
+          "similarity": 38.1
+        },
+        {
+          "category": "physics_bounce",
+          "similarity": 44.4
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "movement_rotate_and_move",
+          "similarity": 100.0
+        },
+        {
+          "category": "movement_sine_wave",
+          "similarity": 100.0
+        },
+        {
+          "category": "physics_projectile",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 100.0,
+      "avg_similarity": 77.6,
+      "duration_seconds": 817.9,
+      "avg_prompt_time": 40.9
+    },
+    {
+      "lesson_id": "L05",
+      "lesson_name": "IsValid Checks and Defensive Patterns",
+      "status": "done",
+      "valid_count": 19,
+      "total_count": 20,
+      "completed_prompts": 20,
+      "prompts": [
+        {
+          "prompt_id": "L05_01",
+          "category": "isvalid_basic",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 55.1
+        },
+        {
+          "prompt_id": "L05_02",
+          "category": "isvalid_cast",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 39.2
+        },
+        {
+          "prompt_id": "L05_03",
+          "category": "isvalid_destroy",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 45.1
+        },
+        {
+          "prompt_id": "L05_04",
+          "category": "isvalid_overlap_cast",
+          "valid": true,
+          "similarity": 93.8,
+          "time_seconds": 50.5
+        },
+        {
+          "prompt_id": "L05_05",
+          "category": "isvalid_timer_check",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 65.1
+        },
+        {
+          "prompt_id": "L05_06",
+          "category": "isvalid_array",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 53.4
+        },
+        {
+          "prompt_id": "L05_07",
+          "category": "isvalid_spawn_check",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 52.0
+        },
+        {
+          "prompt_id": "L05_08",
+          "category": "isvalid_get_player",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 63.0
+        },
+        {
+          "prompt_id": "L05_09",
+          "category": "isvalid_before_distance",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 58.2
+        },
+        {
+          "prompt_id": "L05_10",
+          "category": "isvalid_doonce_cast",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 36.1
+        },
+        {
+          "prompt_id": "L05_11",
+          "category": "cast_to_controller",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 25.3
+        },
+        {
+          "prompt_id": "L05_12",
+          "category": "isvalid_sequence_checks",
+          "valid": true,
+          "similarity": 21.4,
+          "time_seconds": 76.4
+        },
+        {
+          "prompt_id": "L05_13",
+          "category": "isvalid_set_after_spawn",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 79.9
+        },
+        {
+          "prompt_id": "L05_14",
+          "category": "cast_with_variable",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 64.8
+        },
+        {
+          "prompt_id": "L05_15",
+          "category": "isvalid_conditional_destroy",
+          "valid": false,
+          "similarity": 95.2,
+          "time_seconds": 103.9
+        },
+        {
+          "prompt_id": "L05_16",
+          "category": "isvalid_gate_pattern",
+          "valid": true,
+          "similarity": 94.1,
+          "time_seconds": 75.5
+        },
+        {
+          "prompt_id": "L05_17",
+          "category": "isvalid_multi_cast",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 84.1
+        },
+        {
+          "prompt_id": "L05_18",
+          "category": "isvalid_foreach_destroy",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 115.4
+        },
+        {
+          "prompt_id": "L05_19",
+          "category": "isvalid_safe_distance",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 92.7
+        },
+        {
+          "prompt_id": "L05_20",
+          "category": "isvalid_complete_pattern",
+          "valid": true,
+          "similarity": 85.7,
+          "time_seconds": 91.6
+        }
+      ],
+      "weakest_categories": [
+        {
+          "category": "isvalid_sequence_checks",
+          "similarity": 21.4
+        },
+        {
+          "category": "isvalid_complete_pattern",
+          "similarity": 85.7
+        },
+        {
+          "category": "isvalid_overlap_cast",
+          "similarity": 93.8
+        }
+      ],
+      "strongest_categories": [
+        {
+          "category": "isvalid_multi_cast",
+          "similarity": 100.0
+        },
+        {
+          "category": "isvalid_foreach_destroy",
+          "similarity": 100.0
+        },
+        {
+          "category": "isvalid_safe_distance",
+          "similarity": 100.0
+        }
+      ],
+      "valid_syntax_pct": 95.0,
+      "avg_similarity": 94.5,
+      "duration_seconds": 1327.3,
+      "avg_prompt_time": 66.4
+    },
+    {
+      "lesson_id": "L06",
+      "lesson_name": "While Loops, For Loops, and Iteration",
+      "status": "running",
+      "valid_count": 14,
+      "total_count": 20,
+      "completed_prompts": 14,
+      "prompts": [
+        {
+          "prompt_id": "L06_01",
+          "category": "forloop_basic",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 32.9
+        },
+        {
+          "prompt_id": "L06_02",
+          "category": "forloop_spawn",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 48.6
+        },
+        {
+          "prompt_id": "L06_03",
+          "category": "forloop_sum",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 61.3
+        },
+        {
+          "prompt_id": "L06_04",
+          "category": "whileloop_basic",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 64.9
+        },
+        {
+          "prompt_id": "L06_05",
+          "category": "forloop_even",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 52.5
+        },
+        {
+          "prompt_id": "L06_06",
+          "category": "foreach_destroy",
+          "valid": true,
+          "similarity": 92.9,
+          "time_seconds": 43.5
+        },
+        {
+          "prompt_id": "L06_07",
+          "category": "forloop_grid",
+          "valid": true,
+          "similarity": 55.6,
+          "time_seconds": 66.6
+        },
+        {
+          "prompt_id": "L06_08",
+          "category": "forloop_delay_after",
+          "valid": true,
+          "similarity": 92.3,
+          "time_seconds": 41.4
+        },
+        {
+          "prompt_id": "L06_09",
+          "category": "foreach_filter",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 68.7
+        },
+        {
+          "prompt_id": "L06_10",
+          "category": "forloop_countdown",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 35.2
+        },
+        {
+          "prompt_id": "L06_11",
+          "category": "foreach_toggle_vis",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 40.3
+        },
+        {
+          "prompt_id": "L06_12",
+          "category": "whileloop_halving",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 83.2
+        },
+        {
+          "prompt_id": "L06_13",
+          "category": "forloop_random_spawn",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 49.8
+        },
+        {
+          "prompt_id": "L06_14",
+          "category": "foreach_max",
+          "valid": true,
+          "similarity": 100.0,
+          "time_seconds": 68.7
+        }
+      ],
+      "weakest_categories": [],
+      "strongest_categories": []
+    }
+  ],
+  "aggregate": {
+    "total_prompts_completed": 118,
+    "total_prompts_remaining": 0,
+    "overall_valid_syntax_pct": 94.1,
+    "overall_avg_similarity": 89.3,
+    "estimated_remaining_seconds": 0
+  }
+}

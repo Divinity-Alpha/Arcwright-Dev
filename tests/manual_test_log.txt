@@ -1,0 +1,124 @@
+# Arcwright Manual Test Log
+# Generated: 20260313_102307
+# Replay these prompts in the Arcwright Generator Panel
+
+[10:07:34] USER TYPES: "health check"
+[10:08:53] INTENT RETURNS: mode=QUERY, ops=0, summary=Check health
+[10:08:53] 
+============================================================
+[10:08:53] TEST C.01: Create simple pickup
+[10:08:53] ============================================================
+[10:08:53] USER TYPES: "Create a key pickup that sets HasKey to true when collected"
+[10:08:53] INTENT RETURNS: mode=CREATE, ops=1, summary=Create blueprint from description
+[10:08:53] EXECUTE: create_blueprint → DSL pipeline (blueprint): "create a key pickup that sets haskey to true when collected"
+[10:10:27] DSL GENERATE: Got 575 chars of blueprint DSL
+[10:10:27] PARSE: IR generated for blueprint
+[10:10:27] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_KeyPickup.blueprint.json
+[10:10:28] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_KeyPickup", "asset_path": "/Game/Arcwright/Generated/BP_KeyPickup", "nodes_created...
+[10:10:30] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+[10:10:32] 
+============================================================
+[10:10:32] TEST C.02: Create door with logic
+[10:10:32] ============================================================
+[10:10:32] USER TYPES: "Make a door that checks if the player has a key before opening"
+[10:10:32] INTENT RETURNS: mode=CREATE, ops=1, summary=Create blueprint from description
+[10:10:32] EXECUTE: create_blueprint → DSL pipeline (blueprint): "make a door that checks if the player has a key before opening"
+[10:11:19] DSL GENERATE: Got 449 chars of blueprint DSL
+[10:11:19] PARSE: IR generated for blueprint
+[10:11:19] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_DoorCheck.blueprint.json
+[10:11:20] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_DoorCheck", "asset_path": "/Game/Arcwright/Generated/BP_DoorCheck", "nodes_created...
+[10:11:20] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+[10:11:22] 
+============================================================
+[10:11:22] TEST C.03: Create timer-based hazard
+[10:11:22] ============================================================
+[10:11:22] USER TYPES: "Build a damage zone that hurts the player 10 HP per second while they stand on it"
+[10:11:22] INTENT RETURNS: mode=CREATE, ops=1, summary=Create blueprint from description
+[10:11:22] EXECUTE: create_blueprint → DSL pipeline (blueprint): "build a damage zone that hurts the player 10 hp per second while they stand on i"
+[10:13:11] DSL GENERATE: Got 890 chars of blueprint DSL
+[10:13:11] PARSE: IR generated for blueprint
+[10:13:11] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_DamageZone.blueprint.json
+[10:13:12] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_DamageZone", "asset_path": "/Game/Arcwright/Generated/BP_DamageZone", "nodes_creat...
+[10:13:12] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+[10:13:14] 
+============================================================
+[10:13:14] TEST C.04: Create score manager
+[10:13:14] ============================================================
+[10:13:14] USER TYPES: "I need a score manager that tracks points and prints New High Score when the record is beaten"
+[10:13:14] INTENT RETURNS: mode=CREATE, ops=1, summary=Create blueprint from description
+[10:13:14] EXECUTE: create_blueprint → DSL pipeline (blueprint): "i need a score manager that tracks points and prints new high score when the rec"
+[10:14:23] DSL GENERATE: Got 645 chars of blueprint DSL
+[10:14:23] PARSE: IR generated for blueprint
+[10:14:23] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_ScoreManager.blueprint.json
+[10:14:24] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_ScoreManager", "asset_path": "/Game/Arcwright/Generated/BP_ScoreManager", "nodes_c...
+[10:14:24] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+[10:14:26] 
+============================================================
+[10:14:26] TEST C.05: Create wave spawner
+[10:14:26] ============================================================
+[10:14:26] USER TYPES: "Create a wave spawner that sends enemies every 15 seconds with increasing counts"
+[10:14:26] INTENT RETURNS: mode=CREATE, ops=1, summary=Create blueprint from description
+[10:14:26] EXECUTE: create_blueprint → DSL pipeline (blueprint): "create a wave spawner that sends enemies every 15 seconds with increasing counts"
+[10:16:11] DSL GENERATE: Got 953 chars of blueprint DSL
+[10:16:11] PARSE: IR generated for blueprint
+[10:16:11] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_WaveSpawner.blueprint.json
+[10:16:12] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_WaveSpawner", "asset_path": "/Game/Arcwright/Generated/BP_WaveSpawner", "nodes_cre...
+[10:16:12] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+[10:16:14] 
+============================================================
+[10:16:14] TEST C.06: Create behavior tree
+[10:16:14] ============================================================
+[10:16:14] USER TYPES: "Make a patrol AI that walks between two points and chases the player when spotted"
+[10:16:14] INTENT RETURNS: mode=CREATE, ops=1, summary=Create bt from description
+[10:16:14] EXECUTE: create_behavior_tree → DSL pipeline (bt): "make a patrol ai that walks between two points and chases the player when spotte"
+[10:17:27] DSL GENERATE: Got 709 chars of bt DSL
+[10:17:27] PARSE: IR generated for bt
+[10:17:27] RESULT: OK -- {"success": true, "status": "ok", "data": {"tree_asset_path": "/Game/Arcwright/BehaviorTrees/BT_PatrolChase.BT_PatrolChase", "blackboard_asset_path...
+[10:17:27] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+[10:17:29] 
+============================================================
+[10:17:29] TEST C.07: Create data table
+[10:17:29] ============================================================
+[10:17:29] USER TYPES: "I need a weapons table with name, damage, fire rate, and ammo count"
+[10:17:29] INTENT RETURNS: mode=CREATE, ops=1, summary=Create dt from description
+[10:17:29] EXECUTE: create_data_table → DSL pipeline (dt): "i need a weapons table with name, damage, fire rate, and ammo count"
+[10:18:11] DSL GENERATE: Got 278 chars of dt DSL
+[10:18:11] PARSE: IR generated for dt
+[10:18:12] RESULT: OK -- {"success": true, "status": "ok", "data": {"table_asset_path": "/Game/Arcwright/DataTables/DT_Weapons", "struct_asset_path": "/Game/Arcwright/Da...
+[10:18:12] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+[10:18:14] 
+============================================================
+[10:18:14] TEST C.08: Create with casual language
+[10:18:14] ============================================================
+[10:18:14] USER TYPES: "Can you make me a treasure chest that gives random gold between 10 and 50"
+[10:18:34] INTENT RETURNS: mode=CREATE, ops=1, summary=Create treasure chest BP
+[10:18:34] EXECUTE: create_blueprint → DSL pipeline (blueprint): "treasure chest that gives random gold between|10 and|50"
+[10:19:48] DSL GENERATE: Got 666 chars of blueprint DSL
+[10:19:48] PARSE: IR generated for blueprint
+[10:19:48] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_TreasureChest.blueprint.json
+[10:19:49] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_TreasureChest", "asset_path": "/Game/Arcwright/Generated/BP_TreasureChest", "nodes...
+[10:19:49] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+[10:19:51] 
+============================================================
+[10:19:51] TEST C.09: Create checkpoint
+[10:19:51] ============================================================
+[10:19:51] USER TYPES: "I want a checkpoint that saves the player position when they touch it"
+[10:19:51] INTENT RETURNS: mode=CREATE, ops=1, summary=Create blueprint from description
+[10:19:51] EXECUTE: create_blueprint → DSL pipeline (blueprint): "i want a checkpoint that saves the player position when they touch it"
+[10:21:04] DSL GENERATE: Got 723 chars of blueprint DSL
+[10:21:04] PARSE: IR generated for blueprint
+[10:21:04] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Checkpoint.blueprint.json
+[10:21:04] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_Checkpoint", "asset_path": "/Game/Arcwright/Generated/BP_Checkpoint", "nodes_creat...
+[10:21:04] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)
+[10:21:06] 
+============================================================
+[10:21:06] TEST C.10: Create spinning actor
+[10:21:06] ============================================================
+[10:21:06] USER TYPES: "Make something that spins on its Z axis"
+[10:21:06] INTENT RETURNS: mode=CREATE, ops=1, summary=Create blueprint from description
+[10:21:06] EXECUTE: create_blueprint → DSL pipeline (blueprint): "make something that spins on its z axis"
+[10:23:04] DSL GENERATE: Got 504 chars of blueprint DSL
+[10:23:04] PARSE: IR generated for blueprint
+[10:23:04] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Spinner.blueprint.json
+[10:23:05] RESULT: OK -- {"success": true, "status": "ok", "data": {"blueprint_name": "BP_Spinner", "asset_path": "/Game/Arcwright/Generated/BP_Spinner", "nodes_created": 8...
+[10:23:05] SCORE: 4/4 PASS (intent=True, plan=True, exec=True, verify=True)

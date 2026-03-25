@@ -1,6 +1,6 @@
 {
   "version": "v11",
-  "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+  "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
   "base_model": "meta-llama/Meta-Llama-3.1-70B",
   "timestamp": "20260306_141228",
   "total_lessons": 16,
@@ -14,7 +14,7 @@
     {
       "lesson_id": "lesson_01",
       "lesson_name": "Core Pattern Gaps",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_082818",
       "total_prompts": 20,
@@ -127,7 +127,7 @@
     {
       "lesson_id": "lesson_02",
       "lesson_name": "Corrections: Variables, Events, Complex Nodes",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_084331",
       "total_prompts": 24,
@@ -215,7 +215,7 @@
     {
       "lesson_id": "lesson_03",
       "lesson_name": "Timers and Delayed Actions",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_090046",
       "total_prompts": 20,
@@ -328,7 +328,7 @@
     {
       "lesson_id": "lesson_04",
       "lesson_name": "Physics and Movement",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_092120",
       "total_prompts": 20,
@@ -441,7 +441,7 @@
     {
       "lesson_id": "lesson_05",
       "lesson_name": "IsValid Checks and Defensive Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_093936",
       "total_prompts": 20,
@@ -554,7 +554,7 @@
     {
       "lesson_id": "lesson_06",
       "lesson_name": "While Loops, For Loops, and Iteration",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_100134",
       "total_prompts": 20,
@@ -667,7 +667,7 @@
     {
       "lesson_id": "lesson_07",
       "lesson_name": "String Operations and Debug Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_102337",
       "total_prompts": 20,
@@ -780,7 +780,7 @@
     {
       "lesson_id": "lesson_08",
       "lesson_name": "UI Widgets and HUD Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_104156",
       "total_prompts": 20,
@@ -893,7 +893,7 @@
     {
       "lesson_id": "lesson_09",
       "lesson_name": "Nested Branches and Switch Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_110409",
       "total_prompts": 20,
@@ -1006,7 +1006,7 @@
     {
       "lesson_id": "lesson_10",
       "lesson_name": "Complex Real-World Blueprints",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_113031",
       "total_prompts": 20,
@@ -1119,7 +1119,7 @@
     {
       "lesson_id": "lesson_11",
       "lesson_name": "Arrays and Data Structures",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_120019",
       "total_prompts": 20,
@@ -1232,7 +1232,7 @@
     {
       "lesson_id": "lesson_12",
       "lesson_name": "Edge Cases and Unusual Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_122353",
       "total_prompts": 20,
@@ -1345,7 +1345,7 @@
     {
       "lesson_id": "lesson_13",
       "lesson_name": "Corrective Training: Connection Patterns + New Node Types",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_124237",
       "total_prompts": 20,
@@ -1403,7 +1403,7 @@
     {
       "lesson_id": "lesson_14",
       "lesson_name": "Corrective Training: DATA Line Completion + Core Pattern Consistency",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_130514",
       "total_prompts": 20,
@@ -1466,7 +1466,7 @@
     {
       "lesson_id": "lesson_15",
       "lesson_name": "Corrective Training: Weak Similarity Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_132518",
       "total_prompts": 20,
@@ -1549,7 +1549,7 @@
     {
       "lesson_id": "lesson_16",
       "lesson_name": "Generalization: Varied Phrasing for Weak Patterns",
-      "model": "C:\\BlueprintLLM\\models\\blueprint-lora-v11\\final",
+      "model": "C:\\Arcwright\\models\\blueprint-lora-v11\\final",
       "base_model": "meta-llama/Meta-Llama-3.1-70B",
       "timestamp": "20260306_135259",
       "total_prompts": 20,

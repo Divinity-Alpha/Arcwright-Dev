@@ -1,0 +1,131 @@
+{
+  "id": "journal_codex",
+  "name": "Journal / Codex",
+  "category": "quest",
+  "description": "Tab categories with entry list and detail view",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    600,
+    450
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "CodexRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "HBOX",
+        "name": "CodexTabs",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "LoreTab",
+            "properties": {
+              "text": "Lore",
+              "font_size": "14"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "BestiaryTab",
+            "properties": {
+              "text": "Bestiary",
+              "font_size": "14"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "PeopleTab",
+            "properties": {
+              "text": "People",
+              "font_size": "14"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "CodexBody",
+        "properties": {
+          "spacing": "12"
+        },
+        "children": [
+          {
+            "type": "VBOX",
+            "name": "EntryList",
+            "properties": {
+              "spacing": "4"
+            },
+            "children": [
+              {
+                "type": "BUTTON",
+                "name": "Entry1",
+                "properties": {
+                  "text": "Ancient Kingdom",
+                  "font_size": "13"
+                }
+              },
+              {
+                "type": "BUTTON",
+                "name": "Entry2",
+                "properties": {
+                  "text": "The Great War",
+                  "font_size": "13"
+                }
+              }
+            ]
+          },
+          {
+            "type": "VBOX",
+            "name": "EntryDetail",
+            "properties": {
+              "spacing": "6"
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "EntryTitle",
+                "properties": {
+                  "text": "BIND:\"{EntryName}\"",
+                  "font_size": "20",
+                  "color": "$primary",
+                  "bold": "true"
+                }
+              },
+              {
+                "type": "IMAGE",
+                "name": "EntryImage",
+                "properties": {
+                  "tint": "$surface",
+                  "size_x": "200",
+                  "size_y": "120"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "EntryText",
+                "properties": {
+                  "text": "BIND:\"{EntryContent}\"",
+                  "font_size": "13",
+                  "color": "$text",
+                  "wrap": "true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

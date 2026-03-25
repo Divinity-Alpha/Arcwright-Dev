@@ -1,0 +1,56 @@
+{
+  "id": "notification_stack",
+  "name": "Notification Stack",
+  "category": "hud",
+  "description": "Slide-in notifications",
+  "default_anchor": "TopCenter",
+  "default_offset": [
+    0,
+    80
+  ],
+  "default_size": [
+    350,
+    200
+  ],
+  "variables": [
+    {
+      "name": "Notification1",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {
+    "max_visible": {
+      "type": "int",
+      "default": 3
+    }
+  },
+  "tree": {
+    "type": "VBOX",
+    "name": "NotifStack",
+    "properties": {
+      "spacing": "6"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "Notif1",
+        "properties": {
+          "text": "BIND:\"{Notification1}\"",
+          "font_size": "14",
+          "color": "$text"
+        },
+        "animations": [
+          {
+            "trigger": "OnShow",
+            "type": "SlideIn",
+            "params": {
+              "direction": "Right",
+              "duration": 0.3
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

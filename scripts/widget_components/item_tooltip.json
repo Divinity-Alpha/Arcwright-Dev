@@ -1,0 +1,117 @@
+{
+  "id": "item_tooltip",
+  "name": "Item Tooltip",
+  "category": "inventory",
+  "description": "Popup panel with item details, stats, and flavor text",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    280,
+    320
+  ],
+  "variables": [
+    {
+      "name": "ItemName",
+      "type": "String",
+      "default": ""
+    },
+    {
+      "name": "ItemDesc",
+      "type": "String",
+      "default": ""
+    },
+    {
+      "name": "ItemRarity",
+      "type": "String",
+      "default": "Common"
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "TooltipPanel",
+    "properties": {
+      "spacing": "6"
+    },
+    "children": [
+      {
+        "type": "HBOX",
+        "name": "HeaderRow",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "ItemIcon",
+            "properties": {
+              "tint": "$primary",
+              "size_x": "48",
+              "size_y": "48"
+            }
+          },
+          {
+            "type": "VBOX",
+            "name": "NameBlock",
+            "properties": {
+              "spacing": "2"
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "ItemNameText",
+                "properties": {
+                  "text": "BIND:\"{ItemName}\"",
+                  "font_size": "18",
+                  "color": "$primary",
+                  "bold": "true"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "RarityLabel",
+                "properties": {
+                  "text": "BIND:\"{ItemRarity}\"",
+                  "font_size": "12",
+                  "color": "$text_muted"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TEXT",
+        "name": "DescText",
+        "properties": {
+          "text": "BIND:\"{ItemDesc}\"",
+          "font_size": "13",
+          "color": "$text",
+          "wrap": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "StatsHeader",
+        "properties": {
+          "text": "Stats",
+          "font_size": "14",
+          "color": "$text_secondary",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "StatLine1",
+        "properties": {
+          "text": "BIND:\"{StatLine1}\"",
+          "font_size": "13",
+          "color": "$accent"
+        }
+      }
+    ]
+  }
+}

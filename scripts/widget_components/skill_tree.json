@@ -1,0 +1,111 @@
+{
+  "id": "skill_tree",
+  "name": "Skill Tree",
+  "category": "character",
+  "description": "Node layout with locked/available/unlocked states",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    600,
+    500
+  ],
+  "variables": [
+    {
+      "name": "SkillPoints",
+      "type": "Integer",
+      "default": 0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "SkillRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "SkillTitle",
+        "properties": {
+          "text": "SKILL TREE",
+          "font_size": "22",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "PointsText",
+        "properties": {
+          "text": "BIND:\"Points: {SkillPoints}\"",
+          "font_size": "16",
+          "color": "$accent",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "Tier1",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "Skill1",
+            "properties": {
+              "text": "Power Strike",
+              "font_size": "12"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "Skill2",
+            "properties": {
+              "text": "Shield Bash",
+              "font_size": "12"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "Skill3",
+            "properties": {
+              "text": "Quick Dodge",
+              "font_size": "12"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "Tier2",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "Skill4",
+            "properties": {
+              "text": "Whirlwind",
+              "font_size": "12"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "Skill5",
+            "properties": {
+              "text": "Iron Wall",
+              "font_size": "12"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

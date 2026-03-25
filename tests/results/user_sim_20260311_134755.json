@@ -1,0 +1,408 @@
+{
+  "timestamp": "20260311_134755",
+  "total_tests": 8,
+  "total_score": 14,
+  "max_score": 32,
+  "results": [
+    {
+      "test_id": "S.01",
+      "name": "Setup: Create enemy blueprint",
+      "prompt": "Create an enemy with 100 health, 15 damage, and 300 speed",
+      "expected_mode": "CREATE",
+      "actual_mode": "ERROR",
+      "intent_ok": false,
+      "plan_ok": false,
+      "plan_ops": 0,
+      "exec_ok": false,
+      "exec_results": [],
+      "verify_ok": false,
+      "verify_results": [],
+      "score": 0,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.02",
+      "name": "Setup: Create health pickup",
+      "prompt": "Create a health pickup that heals 25 HP when touched and destroys itself",
+      "expected_mode": "CREATE",
+      "actual_mode": "MULTI",
+      "intent_ok": false,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Unknown command: create_blueprint"
+          }
+        }
+      ],
+      "verify_ok": false,
+      "verify_results": [],
+      "score": 1,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.03",
+      "name": "Setup: Create coin",
+      "prompt": "Create a gold coin pickup worth 10 points that destroys on collection",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Unknown command: create_blueprint"
+          }
+        }
+      ],
+      "verify_ok": false,
+      "verify_results": [],
+      "score": 2,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.04",
+      "name": "Setup: Create torch",
+      "prompt": "Create a torch with a point light intensity of 5000",
+      "expected_mode": "CREATE",
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 1,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Unknown command: create_blueprint"
+          }
+        }
+      ],
+      "verify_ok": false,
+      "verify_results": [],
+      "score": 2,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.05",
+      "name": "Setup: Add lighting",
+      "prompt": "Set up dark indoor lighting for the level",
+      "expected_mode": "CREATE",
+      "actual_mode": "MODIFY",
+      "intent_ok": false,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": true,
+      "exec_results": [
+        {
+          "command": "get_level_info",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "level_name": "Untitled_1",
+              "level_path": "/Temp/Untitled_1",
+              "actor_count": 144,
+              "class_counts": [
+                {
+                  "class": "WorldSettings",
+                  "count": 1
+                },
+                {
+                  "class": "Brush",
+                  "count": 1
+                },
+                {
+                  "class": "WorldDataLayers",
+                  "count": 1
+                },
+                {
+                  "class": "DefaultPhysicsVolume",
+                  "count": 1
+                },
+                {
+                  "class": "GameplayDebuggerPlayerManager",
+                  "count": 1
+                },
+                {
+                  "class": "Actor",
+                  "count": 1
+                },
+                {
+                  "class": "WorldPartitionMiniMap",
+                  "count": 1
+                },
+                {
+                  "class": "DirectionalLight",
+                  "count": 1
+                },
+                {
+                  "class": "StaticMeshActor",
+                  "count": 1
+                },
+                {
+                  "class": "SkyAtmosphere",
+                  "count": 1
+                },
+                {
+                  "class": "SkyLight",
+                  "count": 1
+                },
+                {
+                  "class": "PlayerStart",
+                  "count": 1
+                },
+                {
+                  "class": "ExponentialHeightFog",
+                  "count": 1
+                },
+                {
+                  "class": "VolumetricCloud",
+                  "count": 1
+                },
+                {
+                  "class": "Landscape",
+                  "count": 1
+                },
+                {
+                  "class": "LandscapeStreamingProxy",
+                  "count": 64
+                },
+                {
+                  "class": "AbstractNavData",
+                  "count": 1
+                },
+                {
+                  "class": "WorldPartitionHLOD",
+                  "count": 64
+                }
+              ],
+              "player_start_location": {
+                "x": -200,
+                "y": 0,
+                "z": 92.00009999999747
+              }
+            }
+          }
+        },
+        {
+          "command": "setup_scene_lighting",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "preset": "indoor_dark",
+              "actors": [
+                {
+                  "label": "SceneDirectionalLight",
+                  "intensity": 2,
+                  "pitch": -45
+                },
+                {
+                  "label": "SceneSkyLight",
+                  "intensity": 0.5
+                }
+              ],
+              "actors_created": 2
+            }
+          }
+        }
+      ],
+      "verify_ok": true,
+      "verify_results": [
+        {
+          "check": "Level has actors",
+          "passed": true,
+          "count": 144
+        }
+      ],
+      "score": 3,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.06",
+      "name": "Setup: Spawn enemies",
+      "prompt": "Spawn 3 enemies in the level",
+      "expected_mode": [
+        "CREATE",
+        "MULTI"
+      ],
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Unknown command: create_blueprint"
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "Actor2",
+              "class": "Actor",
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": false,
+      "verify_results": [],
+      "score": 2,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.07",
+      "name": "Setup: Spawn coins",
+      "prompt": "Place 5 gold coins around the level",
+      "expected_mode": [
+        "CREATE",
+        "MULTI"
+      ],
+      "actual_mode": "MULTI",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Unknown command: create_blueprint"
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "Actor3",
+              "class": "Actor",
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": false,
+      "verify_results": [],
+      "score": 2,
+      "max_score": 4
+    },
+    {
+      "test_id": "S.08",
+      "name": "Setup: Spawn torches",
+      "prompt": "Put 4 torches in the level",
+      "expected_mode": [
+        "CREATE",
+        "MULTI"
+      ],
+      "actual_mode": "CREATE",
+      "intent_ok": true,
+      "plan_ok": true,
+      "plan_ops": 2,
+      "exec_ok": false,
+      "exec_results": [
+        {
+          "command": "create_blueprint",
+          "success": false,
+          "result": {
+            "success": false,
+            "status": "error",
+            "message": "Unknown command: create_blueprint"
+          }
+        },
+        {
+          "command": "spawn_actor_at",
+          "success": true,
+          "result": {
+            "success": true,
+            "status": "ok",
+            "data": {
+              "label": "Actor4",
+              "class": "Actor",
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          }
+        }
+      ],
+      "verify_ok": false,
+      "verify_results": [],
+      "score": 2,
+      "max_score": 4
+    }
+  ]
+}

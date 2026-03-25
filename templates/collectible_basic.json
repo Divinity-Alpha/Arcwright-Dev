@@ -1,0 +1,48 @@
+{
+  "template_id": "collectible_basic",
+  "name": "Basic Collectible",
+  "category": "collectibles",
+  "description": "A pickup item that prints a message and destroys itself when the player walks through it. The simplest game interaction pattern.",
+  "version": "1.0",
+  "proven_in": "Arena Collector, Pickup Collector Demo",
+  "customizable": {
+    "blueprint_name": "Name of the Blueprint (default: BP_Collectible)",
+    "message": "Text shown when collected (default: Collected!)",
+    "mesh": "Mesh asset path (default: Sphere)",
+    "mesh_scale": "Scale of the visible mesh (default: 0.5,0.5,0.5)",
+    "color": "BaseColor RGBA (default: gold)",
+    "collision_extent": "Box collision size (default: 50,50,50)",
+    "light_color": "Optional point light color (default: none)",
+    "light_intensity": "Optional point light intensity (default: 3000)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_Collectible}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: PrintString [InString=\"{{message|Collected!}}\"]\nNODE n3: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute",
+  "components": [
+    {
+      "type": "BoxCollision",
+      "name": "CollectibleCollision",
+      "properties": {
+        "extent": "{{collision_extent|{\"x\": 50, \"y\": 50, \"z\": 50}}}",
+        "generate_overlap_events": true
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "CollectibleMesh",
+      "properties": {
+        "mesh": "{{mesh|/Engine/BasicShapes/Sphere.Sphere}}",
+        "scale": "{{mesh_scale|{\"x\": 0.5, \"y\": 0.5, \"z\": 0.5}}}"
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_{{blueprint_name|Collectible}}",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": "{{color|{\"r\": 1.0, \"g\": 0.8, \"b\": 0.0, \"a\": 1.0}}}"
+    }
+  },
+  "example_spawn": {
+    "location": {"x": 0, "y": 500, "z": 92},
+    "notes": "Place at player height on ground level"
+  }
+}

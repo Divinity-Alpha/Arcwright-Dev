@@ -1,0 +1,160 @@
+
+=================================================================
+ ARCWRIGHT ACCURACY TEST — 120 commands
+=================================================================
+
+  Pre-flight checks:
+  Checking UE command server (13377)... OK — Arcwright
+  Checking intent server (13380)... OK
+
+  Cleaning level for fresh start...
+    Deleted 2 actors
+    Deleted 24 blueprints
+    Level cleaned.
+
+  Running 120 tests...
+
+  --- FOUNDATION ---
+  [  1/120] F.01  [..EVQ]  3/5 (31.3s)  Set up FPS controls for the game
+  [  2/120] F.02  [I.E.Q]  3/5 (34.7s)  Add dark indoor lighting to the level
+  [  3/120] F.03  [I.E.Q]  3/5 (37.4s)  Create a ground floor with stone texture
+  [  4/120] F.04  [IPEVQ] PASS (74.1s)  Create an enemy with 100 health, 15 damage, and 30
+  [  5/120] F.05  [IPEVQ] PASS (61.3s)  Create a gold coin pickup worth 10 points
+  [  6/120] F.06  [IPEVQ] PASS (72.3s)  Create a torch with a point light
+  [  7/120] F.07  [IPEVQ] PASS (78.3s)  Create a health pickup that heals 25 HP
+  [  8/120] F.08  [I....]  1/5 (89.3s)  Spawn 5 enemies around the level
+  [  9/120] F.09  [I....]  1/5 (393.7s)  Spawn 8 coins around the level
+  [ 10/120] F.10  [I.E..]  2/5 (271.7s)  Spawn 4 torches along the walls
+
+    Phase 'foundation': 33/50 (66%) in 1144s
+
+  --- CREATE ---
+  [ 11/120] C.01  [IP.V.]  3/5 (334.7s)  Create a health pickup that restores 25 HP when th
+  [ 12/120] C.02  [IPEVQ] PASS (84.4s)  Make a coin that adds 10 points to the score and d
+  [ 13/120] C.03  [IPEVQ] PASS (62.7s)  Build a door that opens when the player has a key
+  [ 14/120] C.04  [IPEVQ] PASS (52.0s)  Create a pressure plate that activates when someth
+  [ 15/120] C.05  [IPEVQ] PASS (52.0s)  Make a timed bomb that explodes after 5 seconds
+  [ 16/120] C.06  [IPEVQ] PASS (40.7s)  Build a checkpoint that saves the player's positio
+  [ 17/120] C.07  [IPEVQ] PASS (86.7s)  Create a turret that fires at the player every 2 s
+  [ 18/120] C.08  [IPEVQ] PASS (76.0s)  Make a moving platform that goes up 300 units and 
+  [ 19/120] C.09  [IPEVQ] PASS (105.0s)  Build a score manager that tracks points and high 
+  [ 20/120] C.10  [IPEVQ] PASS (55.7s)  Create a wave spawner that sends enemies every 15 
+  [ 21/120] C.11  [IPEVQ] PASS (64.3s)  Make a day night cycle that toggles every 60 secon
+  [ 22/120] C.12  [IPEVQ] PASS (82.7s)  Build a respawn system that resets the player afte
+  [ 23/120] C.13  [IPEVQ] PASS (56.0s)  Create a treasure chest that gives random gold bet
+  [ 24/120] C.14  [IPEVQ] PASS (66.3s)  Make a lever that toggles between on and off
+  [ 25/120] C.15  [IPEVQ] PASS (116.0s)  Build a damage zone that hurts 10 HP per second
+  [ 26/120] C.16  [IPEVQ] PASS (44.7s)  Create a teleporter that moves the player to a tar
+  [ 27/120] C.17  [IPEVQ] PASS (64.7s)  Make a blinking light that turns on and off every 
+  [ 28/120] C.18  [IPEVQ] PASS (52.0s)  Create a spinning actor that rotates on its Z axis
+  [ 29/120] C.19  [IPEVQ] PASS (64.3s)  Build a spring pad that launches the player upward
+  [ 30/120] C.20  [IPEVQ] PASS (57.0s)  Create a game manager that initializes score and h
+  [ 31/120] C.21  [I.E.Q]  3/5 (55.7s)  Make a patrol AI that walks between two waypoints
+  [ 32/120] C.22  [I.E.Q]  3/5 (116.0s)  Build a boss AI with three phases based on health
+  [ 33/120] C.23  [IPEVQ] PASS (58.7s)  Create a weapons table with name, damage, fire rat
+  [ 34/120] C.24  [IPEVQ] PASS (62.4s)  Make an enemy stats table with name, health, damag
+  [ 35/120] C.25  [IPEVQ] PASS (53.0s)  Build a difficulty settings table with multipliers
+
+    Phase 'create': 119/125 (95%) in 1964s
+
+  --- MODIFY ---
+  [ 36/120] M.01  [IPEVQ] PASS (166.0s)  Set health to 200 on all enemies
+  [ 37/120] M.02  [IPEVQ] PASS (36.7s)  Make the enemies faster
+  [ 38/120] M.03  [IPEVQ] PASS (39.4s)  Double the enemy damage
+  [ 39/120] M.04  [I.EVQ]  4/5 (41.3s)  Gold coins should be worth 50 each
+  [ 40/120] M.05  [IPEVQ] PASS (46.0s)  Reduce torch intensity to 2000
+  [ 41/120] M.06  [I.EVQ]  4/5 (47.0s)  All enemies need 500 HP and 40 damage
+  [ 42/120] M.07  [I..V.]  2/5 (63.3s)  Make the health pickups heal 50 instead of 25
+  [ 43/120] M.08  [IPEVQ] PASS (2.3s)  Change the material on all the walls to brick
+  [ 44/120] M.09  [IP.V.]  3/5 (2.3s)  Replace the texture on every floor with marble
+  [ 45/120] M.10  [I..V.]  2/5 (47.2s)  Make the torches look like gold
+  [ 46/120] M.11  [I..V.]  2/5 (16.4s)  Swap the stone material to concrete on all walls
+  [ 47/120] M.12  [IP.V.]  3/5 (22.5s)  Replace stone with brick everywhere in the level
+  [ 48/120] M.13  [IP.V.]  3/5 (16.4s)  Apply the lava material to all hazard zones
+  [ 49/120] M.14  [IP.V.]  3/5 (16.5s)  Change the wall texture to M_Pack_Bonus_Stone_2
+  [ 50/120] M.15  [I..V.]  2/5 (25.1s)  Scale all enemies up by 1.5
+  [ 51/120] M.16  [I.EV.]  3/5 (22.8s)  Make the coins smaller
+  [ 52/120] M.17  [IP.V.]  3/5 (12.3s)  Delete all the gold coins from the level
+  [ 53/120] M.18  [IP.V.]  3/5 (12.3s)  Remove every torch
+  [ 54/120] M.19  [I..V.]  2/5 (25.0s)  Hide all the health pickups
+  [ 55/120] M.20  [IP.V.]  3/5 (32.7s)  Move all coins up by 50 units
+  [ 56/120] M.21  [IP.V.]  3/5 (12.4s)  Clear out all the damage zones
+  [ 57/120] M.22  [IP.V.]  3/5 (39.0s)  Add a point light to every torch
+  [ 58/120] M.23  [IP.V.]  3/5 (28.1s)  Give all enemies a sphere collision component
+  [ 59/120] M.24  [IP...]  2/5 (28.7s)  Rename BP_GoldCoin to BP_TreasureCoin
+  [ 60/120] M.25  [I..V.]  2/5 (16.4s)  Change the enemy parent class to Character
+  [ 61/120] M.26  [IP.V.]  3/5 (28.9s)  The enemies are too weak, buff them
+  [ 62/120] M.27  [I..V.]  2/5 (25.0s)  Everything looks too plain, change the walls
+  [ 63/120] M.28  [IP.V.]  3/5 (26.8s)  Make all coins worth double
+  [ 64/120] M.29  [I..V.]  2/5 (33.0s)  The torches are too bright, dim them
+  [ 65/120] M.30  [IP.V.]  3/5 (16.3s)  Replace the material on all walls with M_Pack_Bonu
+  [ 66/120] M.31  [IP.V.]  3/5 (16.4s)  Swap the wall material to marble
+  [ 67/120] M.32  [IP.V.]  3/5 (16.3s)  Change the texture on all the walls to stone
+  [ 68/120] M.33  [IP.V.]  3/5 (37.1s)  Make the floor darker
+  [ 69/120] M.34  [IP.V.]  3/5 (31.8s)  Set the coin value to 100 on every pickup
+  [ 70/120] M.35  [IP.V.]  3/5 (30.5s)  Increase enemy detection range to 1200
+
+    Phase 'modify': 108/175 (62%) in 1080s
+
+  --- QUERY ---
+  [ 71/120] Q.01  [IP.VQ]  4/5 (18.0s)  How many enemies are in the level?
+  [ 72/120] Q.02  [IP.VQ]  4/5 (16.3s)  Show me all the blueprints in the project
+  [ 73/120] Q.03  [IP.VQ]  4/5 (16.9s)  What's in the level right now?
+  [ 74/120] Q.04  [...VQ]  2/5 (30.5s)  Which blueprints have a Health variable?
+  [ 75/120] Q.05  [IP.VQ]  4/5 (18.0s)  How many coins did I place?
+  [ 76/120] Q.06  [I.EVQ]  4/5 (14.3s)  List all the materials in the project
+  [ 77/120] Q.07  [IP.VQ]  4/5 (16.0s)  What components does the enemy blueprint have?
+  [ 78/120] Q.08  [IP.VQ]  4/5 (15.1s)  How many actors total are in the level?
+  [ 79/120] Q.09  [I.EVQ]  4/5 (13.3s)  Show me all the data tables I've created
+  [ 80/120] Q.10  [I.EVQ]  4/5 (14.2s)  What variables does BP_Enemy have?
+  [ 81/120] Q.11  [IP.VQ]  4/5 (16.7s)  Are there any torches in the level?
+  [ 82/120] Q.12  [IP.VQ]  4/5 (17.1s)  How many health pickups are placed?
+  [ 83/120] Q.13  [I.EVQ]  4/5 (14.0s)  What's the current lighting setup?
+  [ 84/120] Q.14  [I.EVQ]  4/5 (17.0s)  List all behavior trees in the project
+  [ 85/120] Q.15  [IP.VQ]  4/5 (19.3s)  Show me everything matching 'wall'
+
+    Phase 'query': 58/75 (77%) in 257s
+
+  --- MULTI ---
+  [ 86/120] X.01  [IP...]  2/5 (106.6s)  Create a health potion and spawn 3 of them
+  [ 87/120] X.02  [IP...]  2/5 (31.0s)  Set up FPS controls and add dark lighting
+  [ 88/120] X.03  [...V.]  1/5 (12.3s)  Delete all coins and replace them with gems worth 
+  [ 89/120] X.04  [IP.V.]  3/5 (38.7s)  Make all enemies tougher and change lighting to ou
+  [ 90/120] X.05  [I....]  1/5 (180.4s)  Build a boss room with one strong enemy and health
+  [ 91/120] X.06  [IP...]  2/5 (76.2s)  Create a patrol enemy, set health to 200, spawn 5 
+  [ 92/120] X.07  [IP...]  2/5 (58.8s)  Add torches to the hallway and make them glow warm
+  [ 93/120] X.08  [IP...]  2/5 (123.2s)  Create an enemy and a behavior tree and wire them 
+  [ 94/120] X.09  [...V.]  1/5 (22.5s)  Replace all wall materials with brick and add bloo
+  [ 95/120] X.10  [IP...]  2/5 (138.4s)  Create weapons, enemy stats, and difficulty tables
+  [ 96/120] X.11  [I....]  1/5 (68.4s)  Delete all enemies, create a stronger version, spa
+  [ 97/120] X.12  [.P.V.]  2/5 (16.3s)  Change walls to marble and make the room brighter
+  [ 98/120] X.13  [IP...]  2/5 (124.5s)  Create a key, a locked door, and place them in the
+  [ 99/120] X.14  [I....]  1/5 (47.5s)  Add 6 torches along the corridor and apply gold ma
+  [100/120] X.15  [I....]  1/5 (265.0s)  Set up the arena: floor, walls, lighting, enemies,
+
+    Phase 'multi': 25/75 (33%) in 1310s
+
+  --- VAGUE ---
+  [101/120] V.01  [IPEVQ] PASS (10.0s)  The level feels empty
+  [102/120] V.02  [IPEVQ] PASS (10.4s)  Make it better
+  [103/120] V.03  [IPEVQ] PASS (10.0s)  The game is too easy
+  [104/120] V.04  [IPEVQ] PASS (10.0s)  I'm stuck, help me
+  [105/120] V.05  [IPEVQ] PASS (10.5s)  Can you suggest what to add next?
+  [106/120] V.06  [IPEVQ] PASS (10.7s)  The boss room needs to feel more dramatic
+  [107/120] V.07  [IPEVQ] PASS (10.3s)  Something doesn't look right about the lighting
+  [108/120] V.08  [IPEVQ] PASS (10.0s)  I need more variety
+  [109/120] V.09  [IPEVQ] PASS (11.3s)  The enemies are boring
+  [110/120] V.10  [..EVQ]  3/5 (11.8s)  Too many coins
+
+    Phase 'vague': 48/50 (96%) in 105s
+
+  --- EDGE ---
+  [111/120] E.01  [IP..Q]  3/5 (52.6s)  Create a blueprint called BP_Test with no function
+  [112/120] E.02  [IP.VQ]  4/5 (10.2s)  Delete everything in the level
+  [113/120] E.03  [IP.VQ]  4/5 (31.1s)  Set health to -50 on all enemies
+  [114/120] E.04  [IP.VQ]  4/5 (16.3s)  Apply a material that doesn't exist to the walls
+  [115/120] E.05  [IP.VQ]  4/5 (27.4s)  Create 100 enemies
+  [116/120] E.06  [IP.VQ]  4/5 (14.3s)  Change the material on actors that don't exist
+  [117/120] E.07  [IP.VQ]  4/5 (24.5s)  Rename a blueprint that doesn't exist
+  [118/120] E.08  [I..VQ]  3/5 (37.4s)  Make the walls transparent
+  [119/120] E.09  

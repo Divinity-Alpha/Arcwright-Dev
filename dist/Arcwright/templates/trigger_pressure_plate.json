@@ -1,0 +1,49 @@
+{
+  "template_id": "trigger_pressure_plate",
+  "name": "Pressure Plate",
+  "category": "triggers",
+  "description": "A floor trigger that activates when the player steps on it and deactivates when they step off. Prints on/off messages. Useful for doors, bridges, or puzzle mechanics.",
+  "version": "1.0",
+  "proven_in": "Template Library",
+  "customizable": {
+    "blueprint_name": "Name of the Blueprint (default: BP_PressurePlate)",
+    "activate_message": "Message when stepped on (default: Plate Activated!)",
+    "deactivate_message": "Message when stepped off (default: Plate Deactivated)",
+    "plate_scale": "Visual scale of the plate (default: 2,2,0.1)",
+    "collision_extent": "Trigger box size (default: 100,100,20)"
+  },
+  "blueprint_dsl": "BLUEPRINT: {{blueprint_name|BP_PressurePlate}}\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: PrintString [InString=\"{{activate_message|Plate Activated!}}\"]\nNODE n3: Event_ActorEndOverlap\nNODE n4: PrintString [InString=\"{{deactivate_message|Plate Deactivated}}\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute",
+  "components": [
+    {
+      "type": "BoxCollision",
+      "name": "PlateCollision",
+      "properties": {
+        "extent": {"x": 100, "y": 100, "z": 20},
+        "generate_overlap_events": true
+      }
+    },
+    {
+      "type": "StaticMesh",
+      "name": "PlateMesh",
+      "properties": {
+        "mesh": "/Engine/BasicShapes/Cube.Cube",
+        "scale": {"x": 2, "y": 2, "z": 0.1}
+      }
+    }
+  ],
+  "material": {
+    "name": "MI_PressurePlate",
+    "parent": "/Engine/BasicShapes/BasicShapeMaterial",
+    "vector_params": {
+      "BaseColor": {"r": 0.6, "g": 0.6, "b": 0.7, "a": 1.0}
+    },
+    "scalar_params": {
+      "Metallic": 0.8,
+      "Roughness": 0.2
+    }
+  },
+  "example_spawn": {
+    "location": {"x": 0, "y": 0, "z": 50},
+    "notes": "Place flush with ground level"
+  }
+}

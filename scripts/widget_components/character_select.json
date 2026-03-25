@@ -1,0 +1,80 @@
+{
+  "id": "character_select",
+  "name": "Character Select",
+  "category": "menu",
+  "description": "Horizontal character cards",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    600,
+    300
+  ],
+  "variables": [
+    {
+      "name": "SelectedChar",
+      "type": "Integer",
+      "default": 0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "CharSelectBox",
+    "properties": {
+      "spacing": "16"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "CharTitle",
+        "properties": {
+          "text": "SELECT CHARACTER",
+          "font_size": "28",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "CharRow",
+        "properties": {
+          "spacing": "16"
+        },
+        "children": [
+          {
+            "type": "VBOX",
+            "name": "Char1Card",
+            "properties": {
+              "spacing": "4"
+            },
+            "children": [
+              {
+                "type": "IMAGE",
+                "name": "Char1Portrait",
+                "properties": {
+                  "tint": "$primary",
+                  "size_x": "120",
+                  "size_y": "160"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Char1Name",
+                "properties": {
+                  "text": "Warrior",
+                  "font_size": "16",
+                  "color": "$text",
+                  "justification": "Center"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

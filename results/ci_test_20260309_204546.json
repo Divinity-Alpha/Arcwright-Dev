@@ -1,0 +1,654 @@
+{
+  "timestamp": "2026-03-09T20:45:46.682770",
+  "passed": 70,
+  "failed": 21,
+  "skipped": 1,
+  "total": 92,
+  "duration_seconds": 13.8,
+  "results": [
+    {
+      "name": "health_check",
+      "category": "connection",
+      "status": "PASS",
+      "detail": "server=Arcwright",
+      "duration_seconds": 0.21
+    },
+    {
+      "name": "create_blueprint_from_dsl",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "created BP_ArcwrightTest",
+      "duration_seconds": 0.424
+    },
+    {
+      "name": "get_blueprint_info",
+      "category": "blueprint_crud",
+      "status": "FAIL",
+      "detail": "ASSERT: Expected >=2 nodes, got None",
+      "duration_seconds": 0.01
+    },
+    {
+      "name": "compile_blueprint",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "compiled",
+      "duration_seconds": 0.253
+    },
+    {
+      "name": "duplicate_blueprint",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "duplicated to BP_ArcwrightTest2",
+      "duration_seconds": 0.341
+    },
+    {
+      "name": "delete_blueprint",
+      "category": "blueprint_crud",
+      "status": "PASS",
+      "detail": "deleted",
+      "duration_seconds": 0.405
+    },
+    {
+      "name": "get_blueprint_info_nonexistent",
+      "category": "blueprint_crud",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Blueprint not found: BP_NonExistent_XYZ_99",
+      "duration_seconds": 0.003
+    },
+    {
+      "name": "add_node",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "added Delay",
+      "duration_seconds": 0.041
+    },
+    {
+      "name": "set_node_param",
+      "category": "node_editing",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Node not found: TestDelay",
+      "duration_seconds": 0.289
+    },
+    {
+      "name": "add_connection",
+      "category": "node_editing",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Target node not found: TestDelay",
+      "duration_seconds": 0.009
+    },
+    {
+      "name": "remove_connection",
+      "category": "node_editing",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Target node not found: TestDelay",
+      "duration_seconds": 0.325
+    },
+    {
+      "name": "remove_node",
+      "category": "node_editing",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Node not found: TestDelay",
+      "duration_seconds": 0.008
+    },
+    {
+      "name": "set_variable_default",
+      "category": "node_editing",
+      "status": "PASS",
+      "detail": "Health=75.0",
+      "duration_seconds": 0.343
+    },
+    {
+      "name": "add_component_BoxCollision",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added BoxCollision",
+      "duration_seconds": 0.028
+    },
+    {
+      "name": "add_component_SphereCollision",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added SphereCollision",
+      "duration_seconds": 0.304
+    },
+    {
+      "name": "add_component_StaticMesh",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added StaticMesh",
+      "duration_seconds": 0.029
+    },
+    {
+      "name": "add_component_PointLight",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added PointLight",
+      "duration_seconds": 0.306
+    },
+    {
+      "name": "add_component_SpotLight",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added SpotLight",
+      "duration_seconds": 0.029
+    },
+    {
+      "name": "add_component_Audio",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added Audio",
+      "duration_seconds": 0.304
+    },
+    {
+      "name": "add_component_Arrow",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added Arrow",
+      "duration_seconds": 0.023
+    },
+    {
+      "name": "add_component_Scene",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added Scene",
+      "duration_seconds": 0.03
+    },
+    {
+      "name": "add_component_CapsuleCollision",
+      "category": "components",
+      "status": "PASS",
+      "detail": "added CapsuleCollision",
+      "duration_seconds": 0.282
+    },
+    {
+      "name": "get_components",
+      "category": "components",
+      "status": "PASS",
+      "detail": "count=9",
+      "duration_seconds": 0.008
+    },
+    {
+      "name": "set_component_property",
+      "category": "components",
+      "status": "PASS",
+      "detail": "intensity=1000",
+      "duration_seconds": 0.326
+    },
+    {
+      "name": "remove_component",
+      "category": "components",
+      "status": "PASS",
+      "detail": "removed Arrow",
+      "duration_seconds": 0.03
+    },
+    {
+      "name": "remove_component_idempotent",
+      "category": "components",
+      "status": "PASS",
+      "detail": "idempotent ok",
+      "duration_seconds": 0.281
+    },
+    {
+      "name": "create_simple_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "created red material",
+      "duration_seconds": 0.025
+    },
+    {
+      "name": "create_simple_material_emissive",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "created green emissive",
+      "duration_seconds": 0.325
+    },
+    {
+      "name": "apply_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "applied to StaticMesh",
+      "duration_seconds": 0.026
+    },
+    {
+      "name": "create_textured_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "created textured material",
+      "duration_seconds": 0.028
+    },
+    {
+      "name": "set_actor_material",
+      "category": "materials",
+      "status": "PASS",
+      "detail": "material applied to actor",
+      "duration_seconds": 0.931
+    },
+    {
+      "name": "spawn_actor_at",
+      "category": "level",
+      "status": "PASS",
+      "detail": "spawned actor",
+      "duration_seconds": 0.351
+    },
+    {
+      "name": "get_actors",
+      "category": "level",
+      "status": "PASS",
+      "detail": "actors=93",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "set_actor_transform",
+      "category": "level",
+      "status": "PASS",
+      "detail": "moved actor",
+      "duration_seconds": 0.007
+    },
+    {
+      "name": "get_level_info",
+      "category": "level",
+      "status": "PASS",
+      "detail": "level=ArenaLevel",
+      "duration_seconds": 0.309
+    },
+    {
+      "name": "delete_actor",
+      "category": "level",
+      "status": "PASS",
+      "detail": "deleted",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "save_all",
+      "category": "level",
+      "status": "PASS",
+      "detail": "saved",
+      "duration_seconds": 0.341
+    },
+    {
+      "name": "save_level",
+      "category": "level",
+      "status": "PASS",
+      "detail": "saved",
+      "duration_seconds": 0.037
+    },
+    {
+      "name": "create_widget_blueprint",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "created",
+      "duration_seconds": 0.042
+    },
+    {
+      "name": "add_widget_child_canvas",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "added root CanvasPanel",
+      "duration_seconds": 0.025
+    },
+    {
+      "name": "add_widget_child_text",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "added TextBlock",
+      "duration_seconds": 0.087
+    },
+    {
+      "name": "add_widget_child_progress",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "added ProgressBar",
+      "duration_seconds": 0.074
+    },
+    {
+      "name": "set_widget_property_text",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "text set",
+      "duration_seconds": 0.022
+    },
+    {
+      "name": "set_widget_property_percent",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "percent=0.75",
+      "duration_seconds": 0.022
+    },
+    {
+      "name": "get_widget_tree",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "tree retrieved",
+      "duration_seconds": 0.023
+    },
+    {
+      "name": "remove_widget",
+      "category": "widgets",
+      "status": "PASS",
+      "detail": "removed ProgressBar",
+      "duration_seconds": 0.059
+    },
+    {
+      "name": "create_behavior_tree",
+      "category": "behavior_tree",
+      "status": "PASS",
+      "detail": "created BT",
+      "duration_seconds": 0.035
+    },
+    {
+      "name": "get_behavior_tree_info",
+      "category": "behavior_tree",
+      "status": "PASS",
+      "detail": "queried BT",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "get_behavior_tree_info_nonexistent",
+      "category": "behavior_tree",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Behavior Tree not found: BT_NonExistent_XYZ",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "create_data_table",
+      "category": "data_table",
+      "status": "PASS",
+      "detail": "created DT",
+      "duration_seconds": 0.235
+    },
+    {
+      "name": "get_data_table_info",
+      "category": "data_table",
+      "status": "PASS",
+      "detail": "queried DT",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "create_ai_pawn",
+      "category": "ai_setup",
+      "status": "PASS",
+      "detail": "pawn created",
+      "duration_seconds": 0.386
+    },
+    {
+      "name": "setup_ai_for_pawn",
+      "category": "ai_setup",
+      "status": "PASS",
+      "detail": "AI setup complete",
+      "duration_seconds": 0.087
+    },
+    {
+      "name": "set_class_defaults",
+      "category": "ai_setup",
+      "status": "PASS",
+      "detail": "class defaults set",
+      "duration_seconds": 0.037
+    },
+    {
+      "name": "import_static_mesh_bad_path",
+      "category": "asset_import",
+      "status": "FAIL",
+      "detail": "ArcwrightError: File not found: C:/nonexistent/mesh.fbx",
+      "duration_seconds": 0.182
+    },
+    {
+      "name": "import_texture_bad_path",
+      "category": "asset_import",
+      "status": "FAIL",
+      "detail": "ArcwrightError: File not found: C:/nonexistent/tex.png",
+      "duration_seconds": 0.005
+    },
+    {
+      "name": "import_sound_bad_path",
+      "category": "asset_import",
+      "status": "FAIL",
+      "detail": "ArcwrightError: File not found: C:/nonexistent/sfx.wav",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "create_spline_actor",
+      "category": "splines",
+      "status": "PASS",
+      "detail": "created spline",
+      "duration_seconds": 0.358
+    },
+    {
+      "name": "add_spline_point",
+      "category": "splines",
+      "status": "PASS",
+      "detail": "added point",
+      "duration_seconds": 0.028
+    },
+    {
+      "name": "get_spline_info",
+      "category": "splines",
+      "status": "PASS",
+      "detail": "points=4",
+      "duration_seconds": 0.274
+    },
+    {
+      "name": "add_post_process_volume",
+      "category": "post_process",
+      "status": "PASS",
+      "detail": "added PP volume",
+      "duration_seconds": 0.342
+    },
+    {
+      "name": "set_post_process_settings",
+      "category": "post_process",
+      "status": "PASS",
+      "detail": "settings applied",
+      "duration_seconds": 0.009
+    },
+    {
+      "name": "set_movement_defaults",
+      "category": "movement",
+      "status": "PASS",
+      "detail": "movement defaults set",
+      "duration_seconds": 1.004
+    },
+    {
+      "name": "add_physics_constraint",
+      "category": "physics",
+      "status": "PASS",
+      "detail": "added hinge constraint",
+      "duration_seconds": 0.662
+    },
+    {
+      "name": "break_constraint",
+      "category": "physics",
+      "status": "PASS",
+      "detail": "status=ok",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "create_sequence",
+      "category": "sequencer",
+      "status": "PASS",
+      "detail": "created 5s sequence",
+      "duration_seconds": 0.021
+    },
+    {
+      "name": "add_sequence_track",
+      "category": "sequencer",
+      "status": "PASS",
+      "detail": "added Transform track",
+      "duration_seconds": 0.968
+    },
+    {
+      "name": "add_keyframe",
+      "category": "sequencer",
+      "status": "PASS",
+      "detail": "keyframe at t=0",
+      "duration_seconds": 0.027
+    },
+    {
+      "name": "get_sequence_info",
+      "category": "sequencer",
+      "status": "PASS",
+      "detail": "queried sequence",
+      "duration_seconds": 0.302
+    },
+    {
+      "name": "play_sequence",
+      "category": "sequencer",
+      "status": "FAIL",
+      "detail": "ArcwrightError: play_sequence not supported outside PIE. Use play_in_editor to start PIE first, or preview the sequence manually in the Sequencer window.",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "create_foliage_type",
+      "category": "foliage",
+      "status": "PASS",
+      "detail": "created foliage type",
+      "duration_seconds": 0.018
+    },
+    {
+      "name": "paint_foliage",
+      "category": "foliage",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Foliage type not found: FT_ArcwrightTest",
+      "duration_seconds": 0.316
+    },
+    {
+      "name": "get_foliage_info",
+      "category": "foliage",
+      "status": "PASS",
+      "detail": "queried foliage",
+      "duration_seconds": 0.004
+    },
+    {
+      "name": "get_landscape_info",
+      "category": "landscape",
+      "status": "PASS",
+      "detail": "queried landscape",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "set_landscape_material",
+      "category": "landscape",
+      "status": "FAIL",
+      "detail": "ArcwrightError: No landscape found in current level",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "setup_scene_lighting",
+      "category": "scene_setup",
+      "status": "PASS",
+      "detail": "lighting set up",
+      "duration_seconds": 0.007
+    },
+    {
+      "name": "set_game_mode",
+      "category": "scene_setup",
+      "status": "PASS",
+      "detail": "status=ok",
+      "duration_seconds": 0.022
+    },
+    {
+      "name": "get_output_log",
+      "category": "misc",
+      "status": "PASS",
+      "detail": "log retrieved",
+      "duration_seconds": 0.047
+    },
+    {
+      "name": "take_screenshot",
+      "category": "misc",
+      "status": "PASS",
+      "detail": "screenshot taken",
+      "duration_seconds": 0.63
+    },
+    {
+      "name": "get_viewport_info",
+      "category": "misc",
+      "status": "PASS",
+      "detail": "viewport info retrieved",
+      "duration_seconds": 0.005
+    },
+    {
+      "name": "set_viewport_camera",
+      "category": "misc",
+      "status": "PASS",
+      "detail": "camera moved",
+      "duration_seconds": 0.013
+    },
+    {
+      "name": "quit_editor",
+      "category": "misc",
+      "status": "SKIP",
+      "detail": "skipped: would close the editor",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "empty_blueprint_name",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Missing 'name' parameter",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "empty_node_type",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Missing 'node_type' parameter",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "compile_nonexistent_bp",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Blueprint not found: BP_NoSuchThing_99",
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "delete_nonexistent_actor",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ASSERT: delete non-existent actor: expected error but got ok",
+      "duration_seconds": 0.0
+    },
+    {
+      "name": "transform_nonexistent_actor",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Actor not found with label: NoSuchActor_99",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "bad_material_path",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Could not load material: /Game/TOTALLY_FAKE_PATH/BadMat",
+      "duration_seconds": 0.051
+    },
+    {
+      "name": "unknown_command",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Unknown command: totally_fake_command_xyz",
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "missing_required_params",
+      "category": "error_handling",
+      "status": "PASS",
+      "detail": "status=ok",
+      "duration_seconds": 0.013
+    },
+    {
+      "name": "very_long_string",
+      "category": "error_handling",
+      "status": "FAIL",
+      "detail": "ArcwrightError: Blueprint not found: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "duration_seconds": 0.322
+    },
+    {
+      "name": "server_still_alive",
+      "category": "error_handling",
+      "status": "PASS",
+      "detail": "server survived",
+      "duration_seconds": 0.009
+    }
+  ]
+}

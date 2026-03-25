@@ -1,0 +1,253 @@
+{
+  "metadata": {
+    "name": "BP_PrintCoords",
+    "parent_class": "Actor",
+    "category": null
+  },
+  "variables": [
+    {
+      "name": "X",
+      "type": "Float",
+      "default": "10.0"
+    },
+    {
+      "name": "Y",
+      "type": "Float",
+      "default": "20.0"
+    },
+    {
+      "name": "Z",
+      "type": "Float",
+      "default": "30.0"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "dsl_type": "Event_BeginPlay",
+      "params": {},
+      "ue_class": "UK2Node_Event",
+      "ue_event": "ReceiveBeginPlay",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "n2",
+      "dsl_type": "Sequence",
+      "params": {},
+      "ue_class": "UK2Node_ExecutionSequence",
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "id": "n3",
+      "dsl_type": "VariableGet",
+      "params": {
+        "VarName": "X"
+      },
+      "ue_class": "UK2Node_VariableGet",
+      "param_key": "VarName",
+      "position": [
+        0,
+        150
+      ]
+    },
+    {
+      "id": "n4",
+      "dsl_type": "PrintString",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "id": "n5",
+      "dsl_type": "VariableGet",
+      "params": {
+        "VarName": "Y"
+      },
+      "ue_class": "UK2Node_VariableGet",
+      "param_key": "VarName",
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "id": "n6",
+      "dsl_type": "PrintString",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        600,
+        150
+      ]
+    },
+    {
+      "id": "n7",
+      "dsl_type": "VariableGet",
+      "params": {
+        "VarName": "Z"
+      },
+      "ue_class": "UK2Node_VariableGet",
+      "param_key": "VarName",
+      "position": [
+        0,
+        450
+      ]
+    },
+    {
+      "id": "n8",
+      "dsl_type": "PrintString",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        600,
+        300
+      ]
+    },
+    {
+      "id": "n9",
+      "dsl_type": "AddFloat",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Add_FloatFloat",
+      "position": [
+        0,
+        600
+      ]
+    },
+    {
+      "id": "n10",
+      "dsl_type": "AddFloat",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetMathLibrary:Add_FloatFloat",
+      "position": [
+        0,
+        750
+      ]
+    },
+    {
+      "id": "n11",
+      "dsl_type": "PrintString",
+      "params": {},
+      "ue_class": "UK2Node_CallFunction",
+      "ue_function": "/Script/Engine.KismetSystemLibrary:PrintString",
+      "position": [
+        600,
+        450
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "type": "exec",
+      "src_node": "n1",
+      "src_pin": "Then",
+      "dst_node": "n2",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "A",
+      "dst_node": "n4",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n3",
+      "src_pin": "Value",
+      "dst_node": "n4",
+      "dst_pin": "I",
+      "data_type": null
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "B",
+      "dst_node": "n6",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n5",
+      "src_pin": "Value",
+      "dst_node": "n6",
+      "dst_pin": "I",
+      "data_type": null
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "C",
+      "dst_node": "n8",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n7",
+      "src_pin": "Value",
+      "dst_node": "n8",
+      "dst_pin": "I",
+      "data_type": null
+    },
+    {
+      "type": "exec",
+      "src_node": "n2",
+      "src_pin": "D",
+      "dst_node": "n11",
+      "dst_pin": "Execute"
+    },
+    {
+      "type": "data",
+      "src_node": "n3",
+      "src_pin": "Value",
+      "dst_node": "n9",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n5",
+      "src_pin": "Value",
+      "dst_node": "n9",
+      "dst_pin": "B",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n9",
+      "src_pin": "ReturnValue",
+      "dst_node": "n10",
+      "dst_pin": "A",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n7",
+      "src_pin": "Value",
+      "dst_node": "n10",
+      "dst_pin": "B",
+      "data_type": "Float"
+    },
+    {
+      "type": "data",
+      "src_node": "n10",
+      "src_pin": "ReturnValue",
+      "dst_node": "n11",
+      "dst_pin": "I",
+      "data_type": null
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "mission_briefing",
+  "name": "Mission Briefing",
+  "category": "genre",
+  "description": "Map overview, objectives, loadout, deploy button",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    600,
+    450
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "BriefRoot",
+    "properties": {
+      "spacing": "10"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "MissionTitle",
+        "properties": {
+          "text": "BIND:\"{MissionName}\"",
+          "font_size": "24",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "IMAGE",
+        "name": "MapOverview",
+        "properties": {
+          "tint": "$surface",
+          "size_x": "400",
+          "size_y": "200"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "ObjList",
+        "properties": {
+          "text": "BIND:\"{Objectives}\"",
+          "font_size": "14",
+          "color": "$text",
+          "wrap": "true"
+        }
+      },
+      {
+        "type": "BUTTON",
+        "name": "DeployBtn",
+        "properties": {
+          "text": "DEPLOY",
+          "font_size": "18"
+        }
+      }
+    ]
+  }
+}

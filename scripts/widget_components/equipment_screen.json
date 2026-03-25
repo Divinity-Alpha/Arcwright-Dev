@@ -1,0 +1,177 @@
+{
+  "id": "equipment_screen",
+  "name": "Equipment Screen",
+  "category": "inventory",
+  "description": "Character silhouette with 8 equip slots and stat panel",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    700,
+    500
+  ],
+  "variables": [
+    {
+      "name": "SelectedSlot",
+      "type": "Integer",
+      "default": -1
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "EquipRoot",
+    "properties": {
+      "spacing": "16"
+    },
+    "children": [
+      {
+        "type": "VBOX",
+        "name": "SlotColumn",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "HeadSlot",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "64",
+              "size_y": "64"
+            }
+          },
+          {
+            "type": "IMAGE",
+            "name": "ChestSlot",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "64",
+              "size_y": "64"
+            }
+          },
+          {
+            "type": "IMAGE",
+            "name": "LegsSlot",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "64",
+              "size_y": "64"
+            }
+          },
+          {
+            "type": "IMAGE",
+            "name": "FeetSlot",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "64",
+              "size_y": "64"
+            }
+          }
+        ]
+      },
+      {
+        "type": "IMAGE",
+        "name": "CharSilhouette",
+        "properties": {
+          "tint": "$text_muted",
+          "size_x": "200",
+          "size_y": "400"
+        }
+      },
+      {
+        "type": "VBOX",
+        "name": "WeaponColumn",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "WeaponLSlot",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "64",
+              "size_y": "64"
+            }
+          },
+          {
+            "type": "IMAGE",
+            "name": "WeaponRSlot",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "64",
+              "size_y": "64"
+            }
+          },
+          {
+            "type": "IMAGE",
+            "name": "RingSlot",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "48",
+              "size_y": "48"
+            }
+          },
+          {
+            "type": "IMAGE",
+            "name": "AmuletSlot",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "48",
+              "size_y": "48"
+            }
+          }
+        ]
+      },
+      {
+        "type": "VBOX",
+        "name": "StatPanel",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "StatsTitle",
+            "properties": {
+              "text": "STATS",
+              "font_size": "16",
+              "color": "$text",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "StrStat",
+            "properties": {
+              "text": "BIND:\"STR: {Strength}\"",
+              "font_size": "14",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "DexStat",
+            "properties": {
+              "text": "BIND:\"DEX: {Dexterity}\"",
+              "font_size": "14",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "IntStat",
+            "properties": {
+              "text": "BIND:\"INT: {Intelligence}\"",
+              "font_size": "14",
+              "color": "$text"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "lesson_id": "lesson_23",
+  "lesson_name": "Complex Systems: 20-35 Node Blueprints",
+  "model": "C:/BlueprintLLM/models/blueprint-lora-v14/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260316_004329",
+  "total_prompts": 8,
+  "valid_syntax": 8,
+  "valid_syntax_pct": 100.0,
+  "avg_similarity_score": 82.2,
+  "per_category": {
+    "character_health_system": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 90.3
+    },
+    "pickup_with_effects": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "enemy_damage_system": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 94.3
+    },
+    "timed_hazard": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 96.4
+    },
+    "door_lock_system": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 33.3
+    },
+    "countdown_timer": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 100.0
+    },
+    "multi_phase_spawner": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 86.4
+    },
+    "interactive_switch": {
+      "count": 1,
+      "valid": 1,
+      "avg_score": 56.7
+    }
+  }
+}

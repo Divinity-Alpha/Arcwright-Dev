@@ -1,0 +1,76 @@
+{
+  "id": "player_card",
+  "name": "Player Card",
+  "category": "multiplayer",
+  "description": "Avatar, username, level, stats, history",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    300,
+    350
+  ],
+  "variables": [
+    {
+      "name": "PlayerName",
+      "type": "String",
+      "default": ""
+    },
+    {
+      "name": "PlayerLevel",
+      "type": "Integer",
+      "default": 1
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "CardRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "IMAGE",
+        "name": "Avatar",
+        "properties": {
+          "tint": "$primary",
+          "size_x": "80",
+          "size_y": "80"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "NameText",
+        "properties": {
+          "text": "BIND:\"{PlayerName}\"",
+          "font_size": "20",
+          "color": "$text",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "LevelBadge",
+        "properties": {
+          "text": "BIND:\"Lv.{PlayerLevel}\"",
+          "font_size": "14",
+          "color": "$accent",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "WinRate",
+        "properties": {
+          "text": "BIND:\"Win Rate: {WinRate}%\"",
+          "font_size": "13",
+          "color": "$text"
+        }
+      }
+    ]
+  }
+}

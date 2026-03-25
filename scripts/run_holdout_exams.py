@@ -260,7 +260,7 @@ def notify():
              "Add-Type -AssemblyName System.Windows.Forms; "
              "[System.Windows.Forms.MessageBox]::Show("
              "'Holdout exams complete! Results pushed. Open GRADE_ME.txt.', "
-             "'BlueprintLLM', 'OK', 'Information')"],
+             "'Arcwright', 'OK', 'Information')"],
             creationflags=0x00000008,
         )
     except Exception:

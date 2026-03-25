@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(source:*)",
+      "Bash(gcc:*)",
+      "Bash(wmic process:*)",
+      "Bash(python:*)",
+      "Bash(ls:*)",
+      "Bash(powershell.exe:*)",
+      "Bash(tasklist:*)",
+      "Bash(nvidia-smi:*)",
+      "Bash(# Kill remaining zombie python processes that may be from previous runs tasklist)",
+      "Bash(while read pid)",
+      "Bash(do echo \"Killing remaining python PID $pid\" taskkill //F //PID $pid done echo \"Cleanup done\")",
+      "Bash(# Kill any remaining python processes tasklist)",
+      "Bash(do taskkill //F //PID $pid done sleep 5 rm -rf C:/BlueprintLLM/models/blueprint-lora-v2 nvidia-smi --query-gpu=index,name,memory.used --format=csv,noheader)",
+      "Bash(CUDA_VISIBLE_DEVICES=0 python:*)",
+      "Bash(curl:*)",
+      "Bash(start:*)"
+    ]
+  }
+}

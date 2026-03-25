@@ -1,0 +1,80 @@
+{
+  "lesson_id": "lesson_18",
+  "lesson_name": "Showcase Prompts: Marketing-Ready Blueprint Patterns",
+  "version": "v2",
+  "description": "Marketing showcase prompts for Blueprint domain. Every prompt will appear in docs, landing page, or demo video. Uses ONLY proven strong node types (events, delays, timers, FlipFlop, Gate, DoOnce, Sequence, math, rotation, variables). Deliberately avoids Branch (33% sim), ForEachLoop (36% sim), SpawnActor (50% sim), and CreateWidget (not in DSL spec).",
+  "prompts": [
+    {
+      "id": "L18_01",
+      "category": "showcase_collectible",
+      "instruction": "Create a spinning coin pickup that rotates 90 degrees per second and destroys itself when touched",
+      "expected_dsl": "BLUEPRINT: BP_SpinningCoin\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: MultiplyFloat [B=90.0]\nNODE n3: MakeRotator [Roll=0, Pitch=0]\nNODE n4: AddActorLocalRotation\nNODE n5: Event_ActorBeginOverlap\nNODE n6: DoOnce\nNODE n7: PrintString [InString=\"Coin Collected!\"]\nNODE n8: DestroyActor\n\nEXEC n1.Then -> n4.Execute\nEXEC n5.Then -> n6.Execute\nEXEC n6.Completed -> n7.Execute\nEXEC n7.Then -> n8.Execute\n\nDATA n1.DeltaSeconds -> n2.A [Float]\nDATA n2.ReturnValue -> n3.Yaw [Float]\nDATA n3.ReturnValue -> n4.DeltaRotation [Rotator]"
+    },
+    {
+      "id": "L18_02",
+      "category": "showcase_explosive",
+      "instruction": "Create a timed bomb that prints Armed on start, waits 5 seconds, prints Detonating, then destroys itself",
+      "expected_dsl": "BLUEPRINT: BP_TimedBomb\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: PrintString [InString=\"Bomb Armed\"]\nNODE n3: Delay [Duration=5.0]\nNODE n4: PrintString [InString=\"Detonating!\"]\nNODE n5: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Completed -> n4.Execute\nEXEC n4.Then -> n5.Execute"
+    },
+    {
+      "id": "L18_03",
+      "category": "showcase_hazard",
+      "instruction": "Create a damage zone that deals 10 damage per second using a timer. Track Health starting at 100 and print the remaining health each tick",
+      "expected_dsl": "BLUEPRINT: BP_DamageZone\nPARENT: Actor\n\nVAR Health: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetTimerByFunctionName [FunctionName=\"DealDamage\", Time=1.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"DealDamage\"]\nNODE n4: GetVar [Variable=Health]\nNODE n5: SubtractFloat [B=10.0]\nNODE n6: SetVar [Variable=Health]\nNODE n7: PrintString\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n6.Execute\nEXEC n6.Then -> n7.Execute\n\nDATA n4.Value -> n5.A [Float]\nDATA n5.ReturnValue -> n6.Value [Float]\nDATA n5.ReturnValue -> n7.InString [String]"
+    },
+    {
+      "id": "L18_04",
+      "category": "showcase_lighting",
+      "instruction": "Create a flickering light that toggles visibility every 0.3 seconds using a timer and FlipFlop",
+      "expected_dsl": "BLUEPRINT: BP_FlickerLight\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"ToggleFlicker\", Time=0.3, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"ToggleFlicker\"]\nNODE n4: FlipFlop\nNODE n5: SetActorHiddenInGame [bNewHidden=false]\nNODE n6: SetActorHiddenInGame [bNewHidden=true]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.A -> n5.Execute\nEXEC n4.B -> n6.Execute"
+    },
+    {
+      "id": "L18_05",
+      "category": "showcase_interaction",
+      "instruction": "Create a light switch that toggles between on and off when the player presses the Use input, printing the status each time",
+      "expected_dsl": "BLUEPRINT: BP_LightSwitch\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Use\"]\nNODE n2: FlipFlop\nNODE n3: SetActorHiddenInGame [bNewHidden=false]\nNODE n4: PrintString [InString=\"Light On\"]\nNODE n5: SetActorHiddenInGame [bNewHidden=true]\nNODE n6: PrintString [InString=\"Light Off\"]\n\nEXEC n1.Pressed -> n2.Execute\nEXEC n2.A -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n2.B -> n5.Execute\nEXEC n5.Then -> n6.Execute"
+    },
+    {
+      "id": "L18_06",
+      "category": "showcase_health",
+      "instruction": "Create a health regeneration system with a Health variable starting at 50. On Tick, add 5 times DeltaSeconds to Health, clamp it between 0 and 100, and print the current health",
+      "expected_dsl": "BLUEPRINT: BP_HealthRegen\nPARENT: Actor\n\nVAR Health: Float = 50.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: GetVar [Variable=Health]\nNODE n3: MultiplyFloat [B=5.0]\nNODE n4: AddFloat\nNODE n5: ClampFloat [Min=0.0, Max=100.0]\nNODE n6: SetVar [Variable=Health]\nNODE n7: PrintString\n\nEXEC n1.Then -> n6.Execute\nEXEC n6.Then -> n7.Execute\n\nDATA n1.DeltaSeconds -> n3.A [Float]\nDATA n2.Value -> n4.A [Float]\nDATA n3.ReturnValue -> n4.B [Float]\nDATA n4.ReturnValue -> n5.Value [Float]\nDATA n5.ReturnValue -> n6.Value [Float]\nDATA n5.ReturnValue -> n7.InString [String]"
+    },
+    {
+      "id": "L18_07",
+      "category": "showcase_sequence",
+      "instruction": "Create a game startup sequence that on BeginPlay executes three steps in order: prints Loading Assets, then Spawning Enemies, then Game Ready",
+      "expected_dsl": "BLUEPRINT: BP_GameStartup\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: Sequence\nNODE n3: PrintString [InString=\"Loading Assets\"]\nNODE n4: PrintString [InString=\"Spawning Enemies\"]\nNODE n5: PrintString [InString=\"Game Ready\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then_0 -> n3.Execute\nEXEC n2.Then_1 -> n4.Execute\nEXEC n2.Then_2 -> n5.Execute"
+    },
+    {
+      "id": "L18_08",
+      "category": "showcase_gate",
+      "instruction": "Build an event gate system. On BeginPlay open the gate. When an actor overlaps, enter the gate and print Access Granted on exit. On pressing Disable close the gate and print System Disabled",
+      "expected_dsl": "BLUEPRINT: BP_EventGate\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: Gate\nNODE n3: Event_ActorBeginOverlap\nNODE n4: PrintString [InString=\"Access Granted\"]\nNODE n5: Event_InputAction [ActionName=\"Disable\"]\nNODE n6: PrintString [InString=\"System Disabled\"]\n\nEXEC n1.Then -> n2.Open\nEXEC n3.Then -> n2.Enter\nEXEC n2.Exit -> n4.Execute\nEXEC n5.Pressed -> n2.Close\nEXEC n5.Pressed -> n6.Execute"
+    },
+    {
+      "id": "L18_09",
+      "category": "showcase_movement",
+      "instruction": "Create a rotating platform with a configurable RotationSpeed variable defaulting to 45. On Tick, rotate the actor by RotationSpeed times DeltaSeconds degrees on the yaw axis",
+      "expected_dsl": "BLUEPRINT: BP_RotatingPlatform\nPARENT: Actor\n\nVAR RotationSpeed: Float = 45.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: GetVar [Variable=RotationSpeed]\nNODE n3: MultiplyFloat\nNODE n4: MakeRotator [Roll=0, Pitch=0]\nNODE n5: AddActorLocalRotation\n\nEXEC n1.Then -> n5.Execute\n\nDATA n1.DeltaSeconds -> n3.A [Float]\nDATA n2.Value -> n3.B [Float]\nDATA n3.ReturnValue -> n4.Yaw [Float]\nDATA n4.ReturnValue -> n5.DeltaRotation [Rotator]"
+    },
+    {
+      "id": "L18_10",
+      "category": "showcase_alarm",
+      "instruction": "Create an alarm system that on BeginPlay starts a looping 2-second timer. Each tick of the timer prints ALERT: Intruder Detected",
+      "expected_dsl": "BLUEPRINT: BP_Alarm\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"SoundAlarm\", Time=2.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"SoundAlarm\"]\nNODE n4: PrintString [InString=\"ALERT: Intruder Detected\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute"
+    },
+    {
+      "id": "L18_11",
+      "category": "showcase_trap",
+      "instruction": "Create a trap that triggers once when an actor overlaps, prints Trap Triggered, waits 1 second, then destroys itself",
+      "expected_dsl": "BLUEPRINT: BP_Trap\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: DoOnce\nNODE n3: PrintString [InString=\"Trap Triggered!\"]\nNODE n4: Delay [Duration=1.0]\nNODE n5: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Completed -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Completed -> n5.Execute"
+    },
+    {
+      "id": "L18_12",
+      "category": "showcase_score",
+      "instruction": "Create a score tracker with a Score variable starting at 0. Each time an actor overlaps, add 10 to the score and print the new score",
+      "expected_dsl": "BLUEPRINT: BP_ScoreTracker\nPARENT: Actor\n\nVAR Score: Float = 0.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Score]\nNODE n3: AddFloat [B=10.0]\nNODE n4: SetVar [Variable=Score]\nNODE n5: PrintString\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n2.Value -> n3.A [Float]\nDATA n3.ReturnValue -> n4.Value [Float]\nDATA n3.ReturnValue -> n5.InString [String]"
+    }
+  ]
+}

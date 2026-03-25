@@ -1,0 +1,110 @@
+{
+  "lesson_id": "bt_lesson_01",
+  "lesson_name": "BT Core Patterns",
+  "domain": "behavior_tree",
+  "model": "models/bt-lora-v1/final",
+  "base_model": "meta-llama/Meta-Llama-3.1-70B",
+  "timestamp": "20260307_024438",
+  "total_prompts": 20,
+  "valid_syntax": 0,
+  "valid_syntax_pct": 0.0,
+  "avg_similarity_score": 86.4,
+  "timeout_count": 0,
+  "per_category": {
+    "simple_sequence": {
+      "count": 2,
+      "valid": 0,
+      "avg_score": 85.7
+    },
+    "selector": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 85.7
+    },
+    "blackboard_decorator": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 85.7
+    },
+    "patrol": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 87.5
+    },
+    "chase_patrol": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 91.7
+    },
+    "service": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 88.9
+    },
+    "cooldown": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 90.0
+    },
+    "timelimit": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 88.9
+    },
+    "force_success": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 87.5
+    },
+    "multi_key": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 92.3
+    },
+    "rotate_face": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 85.7
+    },
+    "three_branch_selector": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 87.5
+    },
+    "wait_blackboard": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 85.7
+    },
+    "focus_service": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 75.0
+    },
+    "destroy_task": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 80.0
+    },
+    "set_blackboard": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 77.8
+    },
+    "nested_selector": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 95.0
+    },
+    "finish_result": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 88.9
+    },
+    "multi_service": {
+      "count": 1,
+      "valid": 0,
+      "avg_score": 83.3
+    }
+  }
+}

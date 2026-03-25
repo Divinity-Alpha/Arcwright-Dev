@@ -1,0 +1,163 @@
+{
+  "id": "server_browser",
+  "name": "Server Browser",
+  "category": "multiplayer",
+  "description": "Filterable server list with join button",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    700,
+    450
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "BrowserRoot",
+    "properties": {
+      "spacing": "8"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "BrowserTitle",
+        "properties": {
+          "text": "SERVER BROWSER",
+          "font_size": "22",
+          "color": "$text",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "FilterRow",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "INPUT",
+            "name": "SearchInput",
+            "properties": {
+              "hint": "Search...",
+              "font_size": "13"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "RefreshBtn",
+            "properties": {
+              "text": "Refresh",
+              "font_size": "13"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "Headers",
+        "properties": {
+          "spacing": "16"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "HServer",
+            "properties": {
+              "text": "SERVER",
+              "font_size": "12",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "HMap",
+            "properties": {
+              "text": "MAP",
+              "font_size": "12",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "HPlayers",
+            "properties": {
+              "text": "PLAYERS",
+              "font_size": "12",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "HPing",
+            "properties": {
+              "text": "PING",
+              "font_size": "12",
+              "color": "$text_muted",
+              "bold": "true"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "Server1",
+        "properties": {
+          "spacing": "16"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "S1Name",
+            "properties": {
+              "text": "Arena #1",
+              "font_size": "13",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "S1Map",
+            "properties": {
+              "text": "DustBowl",
+              "font_size": "13",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "S1Players",
+            "properties": {
+              "text": "12/24",
+              "font_size": "13",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "S1Ping",
+            "properties": {
+              "text": "45ms",
+              "font_size": "13",
+              "color": "$accent"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "S1Join",
+            "properties": {
+              "text": "Join",
+              "font_size": "12"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

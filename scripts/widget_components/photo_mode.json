@@ -1,0 +1,77 @@
+{
+  "id": "photo_mode",
+  "name": "Photo Mode",
+  "category": "genre",
+  "description": "Camera controls, filters, frame, capture button",
+  "default_anchor": "Fill",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    0,
+    0
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "OVERLAY",
+    "name": "PhotoRoot",
+    "properties": {},
+    "children": [
+      {
+        "type": "VBOX",
+        "name": "Controls",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "PhotoTitle",
+            "properties": {
+              "text": "PHOTO MODE",
+              "font_size": "18",
+              "color": "$text",
+              "bold": "true"
+            }
+          },
+          {
+            "type": "SLIDER",
+            "name": "DoFSlider",
+            "properties": {
+              "value": "50",
+              "min": "0",
+              "max": "100"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "DoFLabel",
+            "properties": {
+              "text": "Depth of Field",
+              "font_size": "12",
+              "color": "$text_muted"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "CaptureBtn",
+            "properties": {
+              "text": "CAPTURE",
+              "font_size": "16"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BUTTON",
+        "name": "ExitBtn",
+        "properties": {
+          "text": "EXIT",
+          "font_size": "14"
+        }
+      }
+    ]
+  }
+}

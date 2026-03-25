@@ -1,0 +1,46 @@
+{
+  "id": "tooltip_system",
+  "name": "Tooltip",
+  "category": "system",
+  "description": "Small popup with title and description",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    200,
+    80
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "TipRoot",
+    "properties": {
+      "spacing": "2"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "TipTitle",
+        "properties": {
+          "text": "BIND:\"{TooltipTitle}\"",
+          "font_size": "14",
+          "color": "$text",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "TipDesc",
+        "properties": {
+          "text": "BIND:\"{TooltipDesc}\"",
+          "font_size": "12",
+          "color": "$text_muted",
+          "wrap": "true"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "id": "team_select",
+  "name": "Team Select",
+  "category": "multiplayer",
+  "description": "Team cards with player count and join",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    500,
+    300
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "HBOX",
+    "name": "TeamRoot",
+    "properties": {
+      "spacing": "30"
+    },
+    "children": [
+      {
+        "type": "VBOX",
+        "name": "Team1",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "T1Name",
+            "properties": {
+              "text": "TEAM ALPHA",
+              "font_size": "22",
+              "color": "$primary",
+              "bold": "true",
+              "justification": "Center"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "T1Count",
+            "properties": {
+              "text": "BIND:\"{Team1Count}/12\"",
+              "font_size": "16",
+              "color": "$text",
+              "justification": "Center"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "JoinT1",
+            "properties": {
+              "text": "JOIN",
+              "font_size": "16"
+            }
+          }
+        ]
+      },
+      {
+        "type": "VBOX",
+        "name": "Team2",
+        "properties": {
+          "spacing": "8"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "T2Name",
+            "properties": {
+              "text": "TEAM BRAVO",
+              "font_size": "22",
+              "color": "$danger",
+              "bold": "true",
+              "justification": "Center"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "T2Count",
+            "properties": {
+              "text": "BIND:\"{Team2Count}/12\"",
+              "font_size": "16",
+              "color": "$text",
+              "justification": "Center"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "JoinT2",
+            "properties": {
+              "text": "JOIN",
+              "font_size": "16"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

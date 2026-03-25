@@ -1,0 +1,6715 @@
+{
+  "run": 1,
+  "timestamp": "20260312_205158",
+  "date": "2026-03-12",
+  "total_score": 337,
+  "max_score": 600,
+  "pct": 56.2,
+  "test_count": 120,
+  "categories": {
+    "foundation": {
+      "intent": 8,
+      "plan": 5,
+      "exec": 3,
+      "verify": 1,
+      "quality": 3,
+      "count": 10
+    },
+    "create": {
+      "intent": 24,
+      "plan": 22,
+      "exec": 0,
+      "verify": 3,
+      "quality": 0,
+      "count": 25
+    },
+    "modify": {
+      "intent": 35,
+      "plan": 21,
+      "exec": 5,
+      "verify": 34,
+      "quality": 4,
+      "count": 35
+    },
+    "query": {
+      "intent": 14,
+      "plan": 9,
+      "exec": 5,
+      "verify": 15,
+      "quality": 15,
+      "count": 15
+    },
+    "multi": {
+      "intent": 12,
+      "plan": 9,
+      "exec": 0,
+      "verify": 4,
+      "quality": 0,
+      "count": 15
+    },
+    "vague": {
+      "intent": 9,
+      "plan": 9,
+      "exec": 10,
+      "verify": 10,
+      "quality": 10,
+      "count": 10
+    },
+    "edge": {
+      "intent": 10,
+      "plan": 9,
+      "exec": 1,
+      "verify": 8,
+      "quality": 10,
+      "count": 10
+    }
+  },
+  "failure_counts": {
+    "I1": 6,
+    "P2": 27,
+    "V3": 8,
+    "E1": 127,
+    "Q2": 76,
+    "V1": 35,
+    "I2": 2,
+    "P1": 7
+  },
+  "results": {
+    "F.01": {
+      "test_id": "F.01",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_add_component"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Add FPS controls to the game",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_add_component",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "ArenaLevel",
+                  "component_type": "FPSController",
+                  "component_name": "FPSController"
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "results": [
+              {
+                "blueprint": "ArenaLevel",
+                "component_type": "FPSController",
+                "success": false,
+                "error": "Blueprint not found"
+              }
+            ],
+            "errors": [
+              "ArenaLevel: Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_add_component"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_FirstPersonPlayerController"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2"
+      ],
+      "duration_s": 34.35
+    },
+    "F.02": {
+      "test_id": "F.02",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_add_component"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Add dark indoor lighting to the level",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_add_component",
+            "params": {
+              "operations": [
+                {
+                  "blueprint": "ArenaLevel",
+                  "component_type": "DirectionalLight",
+                  "component_name": "IndoorLighting"
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "results": [
+              {
+                "blueprint": "ArenaLevel",
+                "component_type": "DirectionalLight",
+                "success": false,
+                "error": "Blueprint not found"
+              }
+            ],
+            "errors": [
+              "ArenaLevel: Blueprint not found"
+            ]
+          },
+          "step": 1,
+          "command": "batch_add_component"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "No actor matching name='' class='DirectionalLight|Light'"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "V3"
+      ],
+      "duration_s": 38.0
+    },
+    "F.03": {
+      "test_id": "F.03",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create ground floor BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "ground floor with stone texture"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_GroundFloor\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetMaterial [Target=Self, Material=StoneMat]\n\nEXEC n1.Then -> n2.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "No actor matching name='Floor|Ground|Plane' class=''"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 33.34
+    },
+    "F.04": {
+      "test_id": "F.04",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create enemy BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "an enemy with|100 health||15 damage||300 speed"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Enemy\nPARENT: Actor\n\nVAR Health: Float = 100.0\nVAR Damage: Float = 15.0\nVAR Speed: Float = 300.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetVar [Variable=Health]\nNODE n3: SetVar [Variable=Damage]\nNODE n4: SetVar [Variable=Speed]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\n\nDATA 100.0 -> n2.Value [Float]\nDATA 15.0 -> n3.Value [Float]\nDATA 300.0 -> n4.Value [Float]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Enemy' found"
+        },
+        {
+          "type": "blueprint_has_variable",
+          "passed": false,
+          "detail": "No blueprint matching 'Enemy'"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 66.69
+    },
+    "F.05": {
+      "test_id": "F.05",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create gold coin BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "gold coin pickup worth|10 points"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Coin\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Score]\nNODE n3: AddFloat [B=10]\nNODE n4: SetVar [Variable=Score]\nNODE n5: DestroyActor\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n2.Value -> n3.A [Int]\nDATA n3.ReturnValue -> n4.Value [Int]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Coin|Gold' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 51.34
+    },
+    "F.06": {
+      "test_id": "F.06",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create torch BP with point light",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "a torch with a point light"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_TorchLight\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: AddPointLight\nNODE n3: GetActorLocation\nNODE n4: SetIntensity [Intensity=500]\nNODE n5: SetColor [Color=(R=255,G=200,B=100)]\nNODE n6: SetRadius [Radius=800]\nNODE n7: SetFalloffExponent [FalloffExponent=10]\nNODE n8: SetCastsShadows [bCastsShadows=false]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\nEXEC n6.Then -> n7.Execute\nEXEC n7.Then -> n8....",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Torch' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 88.35
+    },
+    "F.07": {
+      "test_id": "F.07",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create health pickup BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "health pickup that heals|25 HP"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_HealthPickup\nPARENT: Actor\n\nCATEGORY: Pickups\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE n3: GetVar [Variable=Health]\nNODE n4: AddFloat [B=25]\nNODE n5: SetVar [Variable=Health]\nNODE n6: PrintString [InString=\"Healed +25 HP\"]\nNODE n7: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.CastSucceeded -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\nEXEC n6.Then -> n7.Execute\n\nDATA n1.OtherActor -> n2.O...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Health|Heal' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 81.34
+    },
+    "F.08": {
+      "test_id": "F.08",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "spawn_actor_at"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Spawn 5 enemies around the level",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 5,
+              "location": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "pitch": 0,
+                "yaw": 0,
+                "roll": 0
+              },
+              "parent": "ArenaLevel",
+              "blueprint_name": "BP_Enemy"
+            },
+            "depends_on": null
+          }
+        ],
+        "validation_warnings": [
+          "Operation 0: 'batch_spawn_actor' \u2192 aliased to 'spawn_actor_at'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "label": "Actor2",
+            "class": "Actor",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "pitch": 0,
+              "yaw": 0,
+              "roll": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          },
+          "step": 1,
+          "command": "spawn_actor_at"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_count",
+          "passed": false,
+          "detail": "Found 0 actors, expected >= 3"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "V3"
+      ],
+      "duration_s": 88.0
+    },
+    "F.09": {
+      "test_id": "F.09",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Spawn 8 coins around the level",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Spawn 8 coins around the level"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL generation failed: Timeout after 180s (hard deadline)",
+          "stage": "generate",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_count",
+          "passed": false,
+          "detail": "Found 0 actors, expected >= 5"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 268.71
+    },
+    "F.10": {
+      "test_id": "F.10",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Timeout after 300s (hard deadline)"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Timeout after 300s (hard deadline)",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 300.07
+    },
+    "C.01": {
+      "test_id": "C.01",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 0,
+      "actual_mode": "ERROR",
+      "actual_commands": [],
+      "plan_raw": {
+        "status": "error",
+        "message": "Timeout after 300s (hard deadline)"
+      },
+      "exec_results": [],
+      "verify_results": [],
+      "error": "Timeout after 300s (hard deadline)",
+      "failure_codes": [
+        "I2"
+      ],
+      "duration_s": 300.04
+    },
+    "C.02": {
+      "test_id": "C.02",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create coin BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "coin that adds|10 points to the score and destroys itself"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Coin\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Score]\nNODE n3: AddFloat [B=10]\nNODE n4: SetVar [Variable=Score]\nNODE n5: DestroyActor\n\nEXEC n1.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n2.Value -> n3.A [Int]\nDATA n3.ReturnValue -> n4.Value [Int]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Coin|Score|Point' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 68.36
+    },
+    "C.03": {
+      "test_id": "C.03",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create door BP with key check",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "a door that opens when the player has a key"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_DoorCheck\nPARENT: Actor\n\nVAR HasKey: Bool = false\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=HasKey]\nNODE n3: Branch\nNODE n4: SetActorHiddenInGame [bNewHidden=false]\nNODE n5: PrintString [InString=\"Condition Met\"]\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.True -> n4.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n2.Value -> n3.Condition [Bool]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Door' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 58.01
+    },
+    "C.04": {
+      "test_id": "C.04",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create pressure plate BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "pressure plate that activates when something stands on it"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_PressurePlate\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetActorHiddenInGame [bNewHidden=false]\nNODE n3: Event_ActorEndOverlap\nNODE n4: SetActorHiddenInGame [bNewHidden=true]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute\n\nDATA n1.OtherActor -> n2.Target [Actor]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Pressure|Plate' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 51.35
+    },
+    "C.05": {
+      "test_id": "C.05",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create timed bomb BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "timed bomb that explodes after|5 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_TimedBomb\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Explode\", Time=5.0, bLooping=false]\nNODE n3: Event_CustomEvent [EventName=\"Explode\"]\nNODE n4: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Bomb|Explosive' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 47.67
+    },
+    "C.06": {
+      "test_id": "C.06",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create checkpoint BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "checkpoint that saves the player's position"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Checkpoint\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Save\"]\nNODE n2: GetActorLocation\nNODE n3: SetVar [Variable=SavedPosition]\n\nEXEC n1.Pressed -> n3.Execute\n\nDATA n2.ReturnValue -> n3.Value [Vector]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Checkpoint|Save' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 40.34
+    },
+    "C.07": {
+      "test_id": "C.07",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create turret BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "turret that fires at the player every|2 seconds when in range"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Turret\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Fire\", Time=2.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"Fire\"]\nNODE n4: GetPlayerPawn\nNODE n5: GetDistanceTo\nNODE n6: LessThan [B=1000.0]\nNODE n7: Branch\nNODE n8: DestroyActor\nNODE n9: PrintString [InString=\"Turret Fired\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n7.Execute\nEXEC n7.True -> n8.Execute\nEXEC n8.Then -> n9.Execute\n\nDATA n4.ReturnValue -> n5...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Turret' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 84.68
+    },
+    "C.08": {
+      "test_id": "C.08",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create moving platform BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "moving platform that goes up|300 units and comes back down"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_MovingPlatform\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: GetActorLocation\nNODE n3: BreakVector\nNODE n4: Sin\nNODE n5: MultiplyFloat [B=150.0]\nNODE n6: AddFloat [B=150.0]\nNODE n7: MakeVector [Y=0, Z=0]\nNODE n8: SetActorLocation\n\nEXEC n1.Then -> n8.Execute\n\nDATA n2.ReturnValue -> n3.Input [Vector]\nDATA n3.X -> n4.A [Float]\nDATA n4.ReturnValue -> n5.A [Float]\nDATA n5.ReturnValue -> n6.A [Float]\nDATA n6.ReturnValue -> n7.X [Float]\nDATA n7.ReturnValue -> n8.NewLocati...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Platform|Moving' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 82.68
+    },
+    "C.09": {
+      "test_id": "C.09",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create score manager BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "score manager that tracks points and high score"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_ScoreManager\nPARENT: Actor\n\nVAR Score: Int = 0\nVAR HighScore: Int = 0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetVar [Variable=HighScore]\nNODE n3: PrintString [InString=\"High Score: \"]\nNODE n4: AddInt [B=0]\nNODE n5: SetVar [Variable=Score]\nNODE n6: GreaterThan\nNODE n7: Branch\nNODE n8: SetVar [Variable=HighScore]\nNODE n9: PrintString [InString=\"New High Score!\"]\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.Then -> n5.Execute\nEXEC n5.Then -> n7.Execute\nEXEC n7.True -> n8.Execute...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Score|Manager' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 104.68
+    },
+    "C.10": {
+      "test_id": "C.10",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create wave spawner BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "wave spawner that sends enemies every|15 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_WaveSpawner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"SpawnEnemy\", Time=15.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"SpawnEnemy\"]\nNODE n4: PrintString [InString=\"Enemy Spawned\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Wave|Spawner' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 50.68
+    },
+    "C.11": {
+      "test_id": "C.11",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create day night cycle BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "day night cycle that toggles every|60 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_DayNightCycle\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"ToggleDay\", Time=60.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"ToggleDay\"]\nNODE n4: Branch\nNODE n5: SetActorHiddenInGame [bNewHidden=false]\nNODE n6: SetActorHiddenInGame [bNewHidden=true]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.True -> n5.Execute\nEXEC n4.False -> n6.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Day|Night|Cycle' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 62.67
+    },
+    "C.12": {
+      "test_id": "C.12",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create respawn system BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "respawn system that resets the player after|3 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_TimedRespawn\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"ExecuteRespawn\", Time=3.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"ExecuteRespawn\"]\nNODE n4: GetPlayerPawn\nNODE n5: DestroyActor\nNODE n6: SpawnSystemAtLocation [SpawnTransform=(X=0,Y=0,Z=100)]\nNODE n7: AddToPlayerScreen\nNODE n8: PrintString [InString=\"Respawn Active\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\nEX...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Respawn|Reset' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 82.02
+    },
+    "C.13": {
+      "test_id": "C.13",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create treasure chest BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "treasure chest that gives random gold between|10 and|50"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_TreasureChest\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: RandomInteger [Min=10, Max=50]\nNODE n3: PrintString [InString=\"Gold: \"]\nNODE n4: DestroyActor []\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\n\nDATA n2.ReturnValue -> n3.InString [String]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Chest|Treasure' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 56.34
+    },
+    "C.14": {
+      "test_id": "C.14",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create lever BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "lever that toggles between on and off"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_ToggleLever\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Use\"]\nNODE n2: FlipFlop\nNODE n3: SetVar [Variable=IsOn, Value=true]\nNODE n4: PrintString [InString=\"ON\"]\nNODE n5: SetVar [Variable=IsOn, Value=false]\nNODE n6: PrintString [InString=\"OFF\"]\n\nEXEC n1.Pressed -> n2.Execute\nEXEC n2.A -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n2.B -> n5.Execute\nEXEC n5.Then -> n6.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Lever|Switch|Toggle' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 69.68
+    },
+    "C.15": {
+      "test_id": "C.15",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create damage zone BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "damage zone that hurts|10 HP per second"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_DamageZone\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetTimerByFunctionName [FunctionName=\"DealDamage\", Time=1.0, bLooping=true]\nNODE n3: Event_ActorEndOverlap\nNODE n4: ClearTimerByFunctionName [FunctionName=\"DealDamage\"]\nNODE n5: Event_CustomEvent [EventName=\"DealDamage\"]\nNODE n6: GetOverlappingActors [bIncludePlayer=true]\nNODE n7: ForEachLoop\nNODE n8: SubtractFloat [B=10.0]\nNODE n9: SetVar [Variable=Health]\nNODE n10: LessThan [B=25.0]\nNODE n11: B...",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Damage|Hazard|Zone' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 110.68
+    },
+    "C.16": {
+      "test_id": "C.16",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create teleporter BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "teleporter that moves the player to a target point"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Teleporter\nPARENT: Actor\n\nVAR TargetPoint: Vector\n\nGRAPH: EventGraph\n\nNODE n1: Event_InputAction [ActionName=\"Teleport\"]\nNODE n2: GetVar [Variable=TargetPoint]\nNODE n3: SetActorLocation\n\nEXEC n1.Pressed -> n3.Execute\n\nDATA n2.Value -> n3.NewLocation [Vector]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Teleport' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 44.01
+    },
+    "C.17": {
+      "test_id": "C.17",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create blinking light BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "blinking light that turns on and off every|3 seconds"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_BlinkLight\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"Blink\", Time=3.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=Blink]\nNODE n4: FlipFlop\nNODE n5: SetVisibility [Target=LightComponent, NewVisibility=true]\nNODE n6: SetVisibility [Target=LightComponent, NewVisibility=false]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.A -> n5.Execute\nEXEC n4.B -> n6.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Blink|Light' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 64.34
+    },
+    "C.18": {
+      "test_id": "C.18",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create spinning BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "spinning actor that rotates on its Z axis"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Spinner\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_Tick\nNODE n2: MakeRotator [Roll=0, Pitch=0, Yaw=10]\nNODE n3: AddActorLocalRotation\n\nEXEC n1.Then -> n3.Execute\n\nDATA n1.DeltaSeconds -> n2.Yaw [Float]\nDATA n2.ReturnValue -> n3.DeltaRotation [Rotator]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Spin|Rotat' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 53.01
+    },
+    "C.19": {
+      "test_id": "C.19",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create spring pad BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "spring pad that launches the player upward"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_SpringPad\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetActorHiddenInGame [bNewHidden=true]\nNODE n3: AddImpulse [Impulse=(X=0,Y=0,Z=2000)]\nNODE n4: Delay [Duration=1.0]\nNODE n5: SetActorHiddenInGame [bNewHidden=false]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Completed -> n5.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Spring|Launch|Pad|Jump' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 59.01
+    },
+    "C.20": {
+      "test_id": "C.20",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create game manager BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "game manager that initializes score and health"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_GameManager\nPARENT: Actor\n\nVAR Score: Int = 0\nVAR Health: Float = 100.0\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetVar [Variable=Score]\nNODE n3: SetVar [Variable=Health]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\n\nDATA 0 -> n2.Value [Int]\nDATA 100.0 -> n3.Value [Float]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": true,
+          "detail": "Found: BP_FirstPersonGameMode"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 54.01
+    },
+    "C.21": {
+      "test_id": "C.21",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_behavior_tree"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create patrol AI behavior tree",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_behavior_tree",
+            "params": {
+              "prompt": "patrol AI that walks between two waypoints"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BEHAVIORTREE: BT_Patrol\nBLACKBOARD: BB_Patrol\n\nKEY WaypointA: Vector\nKEY WaypointB: Vector\n\nTREE:\n\nSEQUENCE: PatrolAB\n  TASK: MoveTo [Key=WaypointA, AcceptableRadius=100]\n  TASK: Wait [Duration=3.0]\n  TASK: MoveTo [Key=WaypointB, AcceptableRadius=100]\n  TASK: Wait [Duration=3.0]",
+          "step": 1,
+          "command": "create_behavior_tree"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Patrol|AI' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 49.67
+    },
+    "C.22": {
+      "test_id": "C.22",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_behavior_tree"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create boss AI behavior tree",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_behavior_tree",
+            "params": {
+              "prompt": "boss AI with three phases based on health"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BEHAVIORTREE: BT_PhaseBoss\nBLACKBOARD: BB_PhaseBoss\n\nKEY TargetActor: Object\nKEY BossHealth: Float = 1000.0\nKEY SpawnPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Phase3\n    DECORATOR: BlackboardBased [Key=BossHealth, Condition=LessThan, Value=300]\n    TASK: MoveTo [Key=SpawnPoint, AcceptableRadius=200]\n    TASK: SpawnActor [Class=BP_Minion, Key=SpawnPoint]\n    TASK: PrintString [Message=\"Rise, my minions!\"]\n    TASK: Wait [Duration=1.0]\n  SEQUENCE: Phase2\n    DECORATOR: BlackboardBased [Key=...",
+          "step": 1,
+          "command": "create_behavior_tree"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "No blueprint matching 'Boss' found"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 105.36
+    },
+    "C.23": {
+      "test_id": "C.23",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_data_table"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create weapons data table",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_data_table",
+            "params": {
+              "prompt": "weapons table with name damage fire rate and ammo"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN AmmoCapacity: Int = 30\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12\nROW SMG: \"SMG\", 10.0, 0.08, 30\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8\nROW Sniper: \"Sniper\", 90.0, 2.0, 5",
+          "step": 1,
+          "command": "create_data_table"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "asset_exists",
+          "passed": true,
+          "detail": "Found asset: DT_Weapons"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 64.67
+    },
+    "C.24": {
+      "test_id": "C.24",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_data_table"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create enemy stats table",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_data_table",
+            "params": {
+              "prompt": "enemy stats table with name health damage and XP reward"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "DATATABLE: DT_Enemies\nSTRUCT: FEnemyData\n\nCOLUMN EnemyName: String\nCOLUMN Health: Float\nCOLUMN Damage: Float\nCOLUMN XPReward: Int\n\nROW Goblin: \"Goblin\", 50.0, 8.0, 25\nROW Skeleton: \"Skeleton\", 80.0, 12.0, 40\nROW Troll: \"Troll\", 150.0, 20.0, 100\nROW Dragon: \"Dragon\", 500.0, 60.0, 500",
+          "step": 1,
+          "command": "create_data_table"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "asset_exists",
+          "passed": true,
+          "detail": "Found asset: BP_EnemyGuard_C_UAID_345A60780266B3C602_1495407117"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 56.01
+    },
+    "C.25": {
+      "test_id": "C.25",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_data_table"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create difficulty settings table",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_data_table",
+            "params": {
+              "prompt": "difficulty settings table with multipliers for health and damage"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "DATATABLE: DT_Difficulty\nSTRUCT: FDifficultySettings\n\nCOLUMN DifficultyLevel: String\nCOLUMN HealthMultiplier: Float = 1.0\nCOLUMN DamageMultiplier: Float = 1.0\n\nROW Easy: \"Easy\", 1.5, 0.8\nROW Normal: \"Normal\", 1.0, 1.0\nROW Hard: \"Hard\", 0.75, 1.25\nROW Nightmare: \"Nightmare\", 0.5, 1.5",
+          "step": 1,
+          "command": "create_data_table"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "asset_exists",
+          "passed": false,
+          "detail": "No DataTable matching 'Difficult'"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 52.34
+    },
+    "M.01": {
+      "test_id": "M.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Set Health=200 on enemies",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "value": 200
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 25.33
+    },
+    "M.02": {
+      "test_id": "M.02",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Make the enemies faster",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "ArenaLevel",
+                  "property": "speed",
+                  "value": 1.25
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Actor not found: ArenaLevel"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 34.34
+    },
+    "M.03": {
+      "test_id": "M.03",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Double the enemy damage",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "ArenaLevel",
+                  "property": "damage",
+                  "value": 2
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Actor not found: ArenaLevel"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 33.67
+    },
+    "M.04": {
+      "test_id": "M.04",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Coin blueprint",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "set_class_defaults": [
+                {
+                  "variable_name": "Value",
+                  "default_value": "50"
+                }
+              ],
+              "add_variables": [],
+              "remove_variables": [],
+              "blueprint_name": "BP_Coin"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Missing 'name' parameter",
+          "step": 1,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 39.34
+    },
+    "M.05": {
+      "test_id": "M.05",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Reduce torch intensity to 2000",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "operations": [
+                {
+                  "actor_label": "BP_Torch_01",
+                  "property": "intensity",
+                  "value": 200
+                },
+                {
+                  "actor_label": "BP_Torch_02",
+                  "property": "intensity",
+                  "value": 200
+                }
+              ]
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "total": 2,
+            "succeeded": 0,
+            "failed": 2,
+            "errors": [
+              "Actor not found: BP_Torch_01",
+              "Actor not found: BP_Torch_02"
+            ]
+          },
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2"
+      ],
+      "duration_s": 51.34
+    },
+    "M.06": {
+      "test_id": "M.06",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint",
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Enemy and BP_EnemyBoss blueprints",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "set_class_defaults": {
+                "Health": 500,
+                "Damage": 40
+              },
+              "blueprint_name": "BP_Enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "modify_blueprint",
+            "params": {
+              "set_class_defaults": {
+                "Health": 500,
+                "Damage": 40
+              },
+              "blueprint_name": "BP_EnemyBoss"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Missing 'name' parameter",
+          "step": 1,
+          "command": "modify_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'name' parameter",
+          "step": 2,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 64.01
+    },
+    "M.07": {
+      "test_id": "M.07",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "modify_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Modify BP_Pickup_Health_C to change default value of Health to 50",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "modify_blueprint",
+            "params": {
+              "set_class_defaults": [
+                {
+                  "variable_name": "Health",
+                  "default_value": "50"
+                }
+              ],
+              "remove_variables": [],
+              "add_variables": [],
+              "blueprint_name": "BP_Pickup_Health_C"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Missing 'name' parameter",
+          "step": 1,
+          "command": "modify_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 72.68
+    },
+    "M.08": {
+      "test_id": "M.08",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply brick to wall",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find wall actors in level",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply brick to found actors",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "brick"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "ok",
+          "data": {
+            "total": 1,
+            "succeeded": 0,
+            "failed": 1,
+            "errors": [
+              "Material 'brick' not found. Similar: M_StdSSSFabric M_MS_Fabric M_MS_Fabric_Masked M_MS_Fabric_Masked_VT M_MS_Fabric_VT"
+            ]
+          },
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 2.34
+    },
+    "M.09": {
+      "test_id": "M.09",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply marble to floor",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "description": "Find floor actors in level",
+            "params": {
+              "name_filter": "floor"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "description": "Apply  to found actors",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "ok",
+          "data": {
+            "count": 0,
+            "actors": []
+          },
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Missing 'operations' array",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 2.33
+    },
+    "M.10": {
+      "test_id": "M.10",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_replace_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Replace material MI_TorchDark with MAT_SM_Torch on all torches",
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_replace_material",
+            "params": {
+              "old_material": "/Game/Materials/Torch/MAT_TorchDark.mat",
+              "new_material": "/Game/Materials/Torch/MAT_SM_Torch.mat"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "[WinError 10054] An existing connection was forcibly closed by the remote host",
+          "step": 1,
+          "command": "batch_replace_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 55.11
+    },
+    "M.11": {
+      "test_id": "M.11",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply concrete on all walls to wall",
+        "targets": [
+          "wall"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "concrete on all walls"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 18.41
+    },
+    "M.12": {
+      "test_id": "M.12",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_replace_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Replace stone with brick",
+        "targets": [
+          "stone",
+          "brick"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_replace_material",
+            "params": {
+              "old_material": "stone",
+              "new_material": "brick"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_replace_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 22.6
+    },
+    "M.13": {
+      "test_id": "M.13",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply all hazard zones to *",
+        "targets": [
+          "*"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": ""
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "all hazard zones"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 18.39
+    },
+    "M.14": {
+      "test_id": "M.14",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply m_pack_bonus_stone_2 to wall",
+        "targets": [
+          "wall"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "m_pack_bonus_stone_2"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 18.41
+    },
+    "M.15": {
+      "test_id": "M.15",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Scale enemies up by|1.5",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "scale_factor": 1.5
+            },
+            "depends_on": null
+          }
+        ],
+        "validation_warnings": [
+          "Operation 0: 'batch_scale_up' \u2192 aliased to 'batch_set_property'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 24.68
+    },
+    "M.16": {
+      "test_id": "M.16",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Scale coin actors down",
+        "targets": [
+          "coin"
+        ],
+        "requires_confirmation": true,
+        "operations": [],
+        "validation_warnings": [
+          "Operation 0: unknown command 'batch_scale_down' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P1",
+        "Q2"
+      ],
+      "duration_s": 20.71
+    },
+    "M.17": {
+      "test_id": "M.17",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete gold actors",
+        "targets": [
+          "gold"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "find_actors failed (assumed no actors)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 12.29
+    },
+    "M.18": {
+      "test_id": "M.18",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete torch actors",
+        "targets": [
+          "torch"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "find_actors failed (assumed no actors)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 12.27
+    },
+    "M.19": {
+      "test_id": "M.19",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Hide health pickups",
+        "targets": [
+          "health_pickup"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_property",
+            "params": {
+              "visible": false
+            },
+            "depends_on": null
+          }
+        ],
+        "validation_warnings": [
+          "Operation 0: 'batch_set_visibility' \u2192 aliased to 'batch_set_property'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 23.27
+    },
+    "M.20": {
+      "test_id": "M.20",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Move coins up by|50",
+        "targets": [
+          "coin"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "direction": "up",
+              "distance": 50
+            },
+            "depends_on": 1
+          }
+        ],
+        "validation_warnings": [
+          "Operation 1: 'batch_move_by' \u2192 aliased to 'batch_set_property'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 35.37
+    },
+    "M.21": {
+      "test_id": "M.21",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete out actors",
+        "targets": [
+          "out"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "find_actors failed (assumed no actors)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 12.25
+    },
+    "M.22": {
+      "test_id": "M.22",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_add_component"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Add PointLight to torch BPs",
+        "targets": [
+          "torch"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_add_component",
+            "params": {
+              "component_type": "PointLight"
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_add_component"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 40.73
+    },
+    "M.23": {
+      "test_id": "M.23",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_add_component"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Add SphereCollision to enemies",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_add_component",
+            "params": {
+              "component_type": "SphereCollision"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_add_component"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 29.15
+    },
+    "M.24": {
+      "test_id": "M.24",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "rename_asset"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Rename BP_GoldCoin to BP_TreasureCoin",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "rename_asset",
+            "params": {
+              "old_name": "BP_GoldCoin",
+              "new_name": "BP_TreasureCoin"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "rename_asset"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "find_blueprints failed: Connection refused on port 13377"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 29.1
+    },
+    "M.25": {
+      "test_id": "M.25",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply character to enemy",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "character"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 18.45
+    },
+    "M.26": {
+      "test_id": "M.26",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Buff enemies",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "value": 200
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 28.03
+    },
+    "M.27": {
+      "test_id": "M.27",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Change walls",
+        "targets": [
+          "wall"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 25.25
+    },
+    "M.28": {
+      "test_id": "M.28",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Double coin value",
+        "targets": [
+          "coin"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Value",
+              "value": 2
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 26.87
+    },
+    "M.29": {
+      "test_id": "M.29",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Dim torches",
+        "targets": [
+          "torch"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Intensity",
+              "value": 0.5
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 35.19
+    },
+    "M.30": {
+      "test_id": "M.30",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply m_pack_bonus_stone_2 to wall",
+        "targets": [
+          "wall"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "m_pack_bonus_stone_2"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 18.42
+    },
+    "M.31": {
+      "test_id": "M.31",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply marble to wall",
+        "targets": [
+          "wall"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "marble"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 18.46
+    },
+    "M.32": {
+      "test_id": "M.32",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply stone to wall",
+        "targets": [
+          "wall"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "stone"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 18.43
+    },
+    "M.33": {
+      "test_id": "M.33",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Make floor darker",
+        "targets": [
+          "floor"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "floor"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": []
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 37.66
+    },
+    "M.34": {
+      "test_id": "M.34",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Set CoinValue=100 on pickups",
+        "targets": [
+          "pickup"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "CoinValue",
+              "value": 100
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 30.78
+    },
+    "M.35": {
+      "test_id": "M.35",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Increase enemy detection range to|1200",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "DetectionRange",
+              "value": 1200
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 31.03
+    },
+    "Q.01": {
+      "test_id": "Q.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [
+        "find_actors"
+      ],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "Count enemies",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "enemy"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 18.49
+    },
+    "Q.02": {
+      "test_id": "Q.02",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [
+        "find_blueprints"
+      ],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "List blueprints",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_blueprints",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_blueprints"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 16.78
+    },
+    "Q.03": {
+      "test_id": "Q.03",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [
+        "find_actors"
+      ],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "List actors",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 17.27
+    },
+    "Q.04": {
+      "test_id": "Q.04",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 2,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Which blueprints have a Health variable?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "Which blueprints have a Health variable?"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Demo115.Dsl.Dsl.Dsl.Dsl that performs an action an event.",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1"
+      ],
+      "duration_s": 26.79
+    },
+    "Q.05": {
+      "test_id": "Q.05",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [
+        "find_actors"
+      ],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "Count coin actors",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "coin"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 18.26
+    },
+    "Q.06": {
+      "test_id": "Q.06",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "List materials",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [],
+        "validation_warnings": [
+          "Operation 0: unknown command 'list_assets' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Summary: List materials"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P1"
+      ],
+      "duration_s": 14.55
+    },
+    "Q.07": {
+      "test_id": "Q.07",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [
+        "get_components"
+      ],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "List enemy components",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "get_components",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "get_components"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 15.35
+    },
+    "Q.08": {
+      "test_id": "Q.08",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [
+        "find_actors"
+      ],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "Count actors",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 15.59
+    },
+    "Q.09": {
+      "test_id": "Q.09",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "List data tables",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [],
+        "validation_warnings": [
+          "Operation 0: unknown command 'list_assets' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Summary: List data tables"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P1"
+      ],
+      "duration_s": 13.44
+    },
+    "Q.10": {
+      "test_id": "Q.10",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "List Enemy variables",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": false,
+        "operations": [],
+        "validation_warnings": [
+          "Operation 0: unknown command 'get_variables' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Summary: List Enemy variables"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P1"
+      ],
+      "duration_s": 14.3
+    },
+    "Q.11": {
+      "test_id": "Q.11",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [
+        "find_actors"
+      ],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "Check if torches exist",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "torch"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 16.84
+    },
+    "Q.12": {
+      "test_id": "Q.12",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [
+        "find_actors"
+      ],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "Count health pickups",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "health_pickup"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 17.05
+    },
+    "Q.13": {
+      "test_id": "Q.13",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "Get scene lighting preset",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [],
+        "validation_warnings": [
+          "Operation 0: unknown command 'get_scene_lighting' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Summary: Get scene lighting preset"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P1"
+      ],
+      "duration_s": 13.8
+    },
+    "Q.14": {
+      "test_id": "Q.14",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "List behavior trees",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [],
+        "validation_warnings": [
+          "Operation 0: unknown command 'list_assets' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Summary: List behavior trees"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P1"
+      ],
+      "duration_s": 13.69
+    },
+    "Q.15": {
+      "test_id": "Q.15",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "QUERY",
+      "actual_commands": [
+        "find_actors"
+      ],
+      "plan_raw": {
+        "mode": "QUERY",
+        "summary": "Find actors matching 'wall'",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "data_returned",
+          "passed": true,
+          "detail": "Plan has operations with data"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 17.17
+    },
+    "X.01": {
+      "test_id": "X.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "spawn_actor_at"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create health potions and spawn|3",
+        "targets": [
+          "health_potion"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "health potion"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 3
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_HealthPotion\nPARENT: Actor\n\nCATEGORY: Pickups\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE n3: GetVar [Variable=Health]\nNODE n4: AddFloat [B=25]\nNODE n5: SetVar [Variable=Health]\nNODE n6: PlaySound [Sound=\"PickupSound\"]\nNODE n7: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.CastSucceeded -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\nEXEC n6.Then -> n7.Execute\n\nDATA n1.OtherActor -> n2.Object [...",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "spawn_actor_at"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "find_blueprints failed: Connection refused on port 13377"
+        },
+        {
+          "type": "actor_count",
+          "passed": false,
+          "detail": "find_actors failed"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 98.39
+    },
+    "X.02": {
+      "test_id": "X.02",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "setup_scene_lighting"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Setup FPS controls and dark lighting",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 2,
+            "command": "setup_scene_lighting",
+            "params": {
+              "preset": "indoor_dark"
+            },
+            "depends_on": null
+          }
+        ],
+        "validation_warnings": [
+          "Operation 0: unknown command 'setup_player_controls' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "setup_scene_lighting"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "find_actors failed"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 31.27
+    },
+    "X.03": {
+      "test_id": "X.03",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete coins actors",
+        "targets": [
+          "coins"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_not_exists",
+          "passed": true,
+          "detail": "find_actors failed (assumed no actors)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 12.27
+    },
+    "X.04": {
+      "test_id": "X.04",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 3,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "setup_scene_lighting",
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Make enemies tougher with outdoor lighting",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "setup_scene_lighting",
+            "params": {
+              "preset": "outdor_day"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "value": 300
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "setup_scene_lighting"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 37.17
+    },
+    "X.05": {
+      "test_id": "X.05",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "create_blueprint",
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Build boss room",
+        "targets": [
+          "boss_room"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "boss room"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "strong enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "health pickup"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_BossRoom\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetVisibility [Target=HUD, NewVisibility=false]\nNODE n3: SetVisibility [Target=HUD, NewVisibility=true]\n\nEXEC n1.Then -> n2.Execute\nEXEC n1.EndOverlap -> n3.Execute\n\nDATA n1.OtherActor -> n2.Target [Actor]\nDATA n1.OtherActor -> n3.Target [Actor]",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_StrongEnemy\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetVar [Variable=Health, Value=200]\nNODE n3: SetVar [Variable=Damage, Value=30]\nNODE n4: PrintString [InString=\"Strong Enemy Spawned\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute",
+          "step": 2,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_HealthPickup\nPARENT: Actor\n\nCATEGORY: Pickups\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE n3: GetVar [Variable=CurrentHealth]\nNODE n4: AddFloat [B=25]\nNODE n5: SetVar [Variable=CurrentHealth]\nNODE n6: PrintString [InString=\"Health Restored\"]\nNODE n7: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.CastSucceeded -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\nEXEC n5.Then -> n6.Execute\nEXEC n6.Then -> n7.Execute\n\nDATA n1.Ot...",
+          "step": 3,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "find_blueprints failed: Connection refused on port 13377"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "E1",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 165.07
+    },
+    "X.06": {
+      "test_id": "X.06",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "batch_set_variable",
+        "spawn_actor_at"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create patrol enemy with health=200 and spawn|5",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "patrol enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "value": 200
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 3,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 5
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_PatrolEnemy\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: GetPlayerPawn\nNODE n3: SetPatrolTarget\nNODE n4: Event_EndPlay\nNODE n5: ClearPatrolTarget\n\nEXEC n1.Then -> n3.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n2.ReturnValue -> n3.Target [Actor]",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_set_variable"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 3,
+          "command": "spawn_actor_at"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "find_blueprints failed: Connection refused on port 13377"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 77.45
+    },
+    "X.07": {
+      "test_id": "X.07",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "find_actors",
+        "spawn_actor_at",
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Add torches to hallway and set color",
+        "targets": [
+          "hallway",
+          "torch"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "hallway"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 4,
+              "blueprint_name": "BP_Torch"
+            },
+            "depends_on": 1
+          },
+          {
+            "step": 3,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "color",
+              "value": {
+                "r": 255,
+                "g": 128,
+                "b": 64
+              }
+            },
+            "depends_on": 2
+          }
+        ],
+        "validation_warnings": [
+          "Operation 1: 'batch_spawn_actor' \u2192 aliased to 'spawn_actor_at'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "spawn_actor_at"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 3,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "find_actors failed"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 59.96
+    },
+    "X.08": {
+      "test_id": "X.08",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "create_behavior_tree"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create enemy and behavior tree",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_behavior_tree",
+            "params": {
+              "prompt": "behavior tree for enemy"
+            },
+            "depends_on": null
+          }
+        ],
+        "validation_warnings": [
+          "Operation 2: unknown command 'wire_behavior_to_actor' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Demofpscr_Mannequin_Footik.Dsl.Dsl.Dsl.Dsl that performs an action an event.assistant\n\nGRAPH: EventGraph",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BEHAVIORTREE: BT_EnemyAI\nBLACKBOARD: BB_EnemyAI\n\nKEY TargetActor: Object\nKEY PatrolPoint: Vector\n\nTREE:\n\nSELECTOR: Root\n  SEQUENCE: Attack\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: RotateToFaceBBEntry [Key=TargetActor]\n    TASK: ApplyDamage [Key=TargetActor, Damage=20]\n    TASK: Wait [Duration=1.0]\n  SEQUENCE: Chase\n    DECORATOR: BlackboardBased [Key=TargetActor, Condition=IsSet, AbortMode=LowerPriority]\n    TASK: MoveTo [Key=TargetActo...",
+          "step": 2,
+          "command": "create_behavior_tree"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "find_blueprints failed: Connection refused on port 13377"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 132.01
+    },
+    "X.09": {
+      "test_id": "X.09",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_replace_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Replace wall materials with brick and add bloom",
+        "targets": [
+          "wall materials",
+          "brick and add bloom"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_replace_material",
+            "params": {
+              "old_material": "wall materials",
+              "new_material": "brick and add bloom"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_replace_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P2",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 22.59
+    },
+    "X.10": {
+      "test_id": "X.10",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_data_table",
+        "create_data_table"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create weapons and difficulty tables",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_data_table",
+            "params": {
+              "prompt": "weapons table with name damage fire rate and ammo count"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_data_table",
+            "params": {
+              "prompt": "difficulty table with easy medium hard settings"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "DATATABLE: DT_Weapons\nSTRUCT: FWeaponData\n\nCOLUMN WeaponName: String\nCOLUMN Damage: Float\nCOLUMN FireRate: Float\nCOLUMN AmmoCount: Int\n\nROW Pistol: \"Pistol\", 15.0, 0.5, 12\nROW SMG: \"SMG\", 10.0, 0.08, 30\nROW Shotgun: \"Shotgun\", 45.0, 1.2, 8\nROW Sniper: \"Sniper\", 90.0, 2.0, 5",
+          "step": 1,
+          "command": "create_data_table"
+        },
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "DATATABLE: DT_Difficulty\nSTRUCT: FDifficultySettings\n\nCOLUMN DifficultyLevel: String\nCOLUMN EnemyHealth: Float\nCOLUMN EnemyDamage: Float\nCOLUMN PlayerHealth: Float\nCOLUMN XPModifier: Float = 1.0\n\nROW Easy: \"Easy\", 50.0, 10.0, 150.0, 1.5\nROW Medium: \"Medium\", 100.0, 20.0, 120.0, 1.0\nROW Hard: \"Hard\", 200.0, 40.0, 90.0, 0.5",
+          "step": 2,
+          "command": "create_data_table"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "asset_exists",
+          "passed": false,
+          "detail": "find_assets failed"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 108.67
+    },
+    "X.11": {
+      "test_id": "X.11",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "spawn_actor_at"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create stronger enemies",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "stronger enemy"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 3
+            },
+            "depends_on": 2
+          }
+        ],
+        "validation_warnings": [
+          "Operation 0: command 'batch_delete_actors' missing required params: ['labels'] \u2014 removed"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_StrongEnemy\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetVar [Variable=Health, Value=200]\nNODE n3: PrintString [InString=\"Strong Enemy Spawned\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n3.Execute",
+          "step": 2,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 3,
+          "command": "spawn_actor_at"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "find_blueprints failed: Connection refused on port 13377"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 64.91
+    },
+    "X.12": {
+      "test_id": "X.12",
+      "intent_score": 0,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply marble and make the room brighter to wall",
+        "targets": [
+          "wall"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "marble and make the room brighter"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "E1",
+        "E1",
+        "Q2"
+      ],
+      "duration_s": 18.46
+    },
+    "X.13": {
+      "test_id": "X.13",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 2,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "create_blueprint",
+        "spawn_actor_at"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Create key and door BPs",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "key pickup"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "locked door"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 2
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_KeyPickup\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE n3: SetVar [Variable=KeyHolder, Value=true]\nNODE n4: PlaySound [Sound=\"PickupSound\"]\nNODE n5: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.CastSucceeded -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n1.OtherActor -> n2.Object [Actor]",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_LockedDoor\nPARENT: Actor\n\nvar DoorOpen: Bool = false\n\ngraph: EventGraph\n\nnode n1: Event_InputAction [ActionName=\"Use\"]\nnode n2: GetVar [Variable=DoorOpen]\nnode n3: Branch\nnode n4: PrintString [InString=\"The door is locked\"]\nnode n5: PrintString [InString=\"The door opens\"]\n\nexec n1.Pressed -> n3.Execute\nexec n3.True -> n4.Execute\nexec n3.False -> n5.Execute\n\ndata n2.Value -> n3.Condition [Bool]",
+          "step": 2,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 3,
+          "command": "spawn_actor_at"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "find_blueprints failed: Connection refused on port 13377"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1",
+        "E1",
+        "V1",
+        "Q2"
+      ],
+      "duration_s": 124.09
+    },
+    "X.14": {
+      "test_id": "X.14",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Place torches and apply gold material",
+        "targets": [
+          "torch"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "material": "gold"
+            },
+            "depends_on": 1
+          }
+        ],
+        "validation_warnings": [
+          "Operation 0: unknown command 'place_along_path' \u2014 removed. Hint: 'add_point_light' \u2192 use add_component with component_type='PointLight'"
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_count",
+          "passed": false,
+          "detail": "find_actors failed"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 47.84
+    },
+    "X.15": {
+      "test_id": "X.15",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 0,
+      "total": 1,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "create_blueprint",
+        "create_blueprint",
+        "setup_scene_lighting",
+        "create_blueprint",
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Setup arena",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "floor"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "walls"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 3,
+            "command": "setup_scene_lighting",
+            "params": {
+              "preset": "arena"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 4,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "enemies"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 5,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "pickups"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_FloorTrigger\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: SetActorLocation\nNODE n3: GetActorLocation\nNODE n4: BreakVector\nNODE n5: MakeVector\nNODE n6: UnknownMath\nNODE n7: UnknownMath\nNODE n8: ClampFloat\nNODE n9: ClampFloat\nNODE n10: MakeVector\nNODE n11: SetActorLocation\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.Then -> n11.Execute\n\nDATA n1.OtherActor -> n3.Target [Actor]\nDATA n3.ReturnValue -> n4.Input [Vector]\nDATA n4.X -> n5.X [Float]\nDATA n4.Y -> n5.Y [...",
+          "step": 1,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Walls\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"OnTick\", Time=1.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"OnTick\"]\nNODE n4: GetPlayerPawn\nNODE n5: GetDistanceTo\nNODE n6: LessThan [B=500.0]\nNODE n7: Branch\nNODE n8: PrintString [InString=\"Near\"]\nNODE n9: PrintString [InString=\"Far\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n7.Execute\nEXEC n7.True -> n8.Execute\nEXEC n7.False -> n9.Execute\n\nDATA n4.Return...",
+          "step": 2,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 3,
+          "command": "setup_scene_lighting"
+        },
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Demofpscr_Mannequin_Footik.Dsl.Dsl.Dsl.Dsl that performs an action an event.manager\n\nBLUEPRINT: BP_Demofpscr_Mannequin_Footik.Dsl.Dsl.Dsl.Dsl\nPARENT: Actor\n\nGRAPH: EventGraph",
+          "step": 4,
+          "command": "create_blueprint"
+        },
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_PickupItem\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: CastToCharacter\nNODE n3: SetVar [Variable=PickupSound]\nNODE n4: PlaySoundAtLocation\nNODE n5: GetActorLocation\nNODE n6: DestroyActor\n\nEXEC n1.Then -> n2.Execute\nEXEC n2.CastSucceeded -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n6.Execute\n\nDATA n1.OtherActor -> n2.Object [Actor]\nDATA n5.ReturnValue -> n4.Location [Vector]",
+          "step": 5,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "actor_exists",
+          "passed": false,
+          "detail": "find_actors failed"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "E1",
+        "E1",
+        "E1",
+        "E1",
+        "V3",
+        "Q2"
+      ],
+      "duration_s": 280.72
+    },
+    "V.01": {
+      "test_id": "V.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What do you mean by 'empty'?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 11.09
+    },
+    "V.02": {
+      "test_id": "V.02",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What specifically would you like to improve?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 11.42
+    },
+    "V.03": {
+      "test_id": "V.03",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "How can we make it more challenging?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 10.07
+    },
+    "V.04": {
+      "test_id": "V.04",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What exactly do you need help with?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 10.31
+    },
+    "V.05": {
+      "test_id": "V.05",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What do you think should be added next?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 10.33
+    },
+    "V.06": {
+      "test_id": "V.06",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What exactly do you mean by 'dramatic'?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 10.85
+    },
+    "V.07": {
+      "test_id": "V.07",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What exactly do you dislike about the lighting?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 10.37
+    },
+    "V.08": {
+      "test_id": "V.08",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What exactly do you mean by variety?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 9.96
+    },
+    "V.09": {
+      "test_id": "V.09",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "What exactly do you mean by 'boring'?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 10.53
+    },
+    "V.10": {
+      "test_id": "V.10",
+      "intent_score": 0,
+      "plan_score": 0,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "How many coins do you mean?",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "I1",
+        "P1"
+      ],
+      "duration_s": 9.88
+    },
+    "E.01": {
+      "test_id": "E.01",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create empty BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "empty BP called BP_Test"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_Test\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_BeginPlay\nNODE n2: SetTimerByFunctionName [FunctionName=\"OnTick\", Time=1.0, bLooping=true]\nNODE n3: Event_CustomEvent [EventName=\"OnTick\"]\nNODE n4: PrintString [InString=\"Tick\"]\n\nEXEC n1.Then -> n2.Execute\nEXEC n3.Then -> n4.Execute",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "find_blueprints failed: Connection refused on port 13377"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1"
+      ],
+      "duration_s": 47.79
+    },
+    "E.02": {
+      "test_id": "E.02",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_delete_actors"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Delete everything actors",
+        "targets": [
+          "everything"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_delete_actors",
+            "params": {},
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_delete_actors"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 10.29
+    },
+    "E.03": {
+      "test_id": "E.03",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "batch_set_variable"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Set Health=-50 on enemies",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "batch_set_variable",
+            "params": {
+              "variable_name": "Health",
+              "value": -50
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "batch_set_variable"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 27.74
+    },
+    "E.04": {
+      "test_id": "E.04",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply the walls to wall",
+        "targets": [
+          "wall"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "operations": [
+                {
+                  "material_path": "the walls"
+                }
+              ]
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1"
+      ],
+      "duration_s": 18.39
+    },
+    "E.05": {
+      "test_id": "E.05",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MULTI",
+      "actual_commands": [
+        "spawn_actor_at"
+      ],
+      "plan_raw": {
+        "mode": "MULTI",
+        "summary": "Spawn|100 enemies",
+        "targets": [
+          "enemy"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "spawn_actor_at",
+            "params": {
+              "count": 100,
+              "blueprint_name": "BP_Enemy"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "spawn_actor_at"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 26.93
+    },
+    "E.06": {
+      "test_id": "E.06",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_apply_material"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Apply  to actor",
+        "targets": [
+          "actor"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "actor"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_apply_material",
+            "params": {
+              "material_path": ""
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_apply_material"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "E1"
+      ],
+      "duration_s": 16.42
+    },
+    "E.07": {
+      "test_id": "E.07",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 4,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "rename_asset"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Rename BP_GoldCoin to BP_TreasureCoin",
+        "targets": [],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "rename_asset",
+            "params": {
+              "old_name": "BP_GoldCoin",
+              "new_name": "BP_TreasureCoin"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "rename_asset"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1"
+      ],
+      "duration_s": 28.63
+    },
+    "E.08": {
+      "test_id": "E.08",
+      "intent_score": 1,
+      "plan_score": 0,
+      "exec_score": 0,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "MODIFY",
+      "actual_commands": [
+        "find_actors",
+        "batch_set_property"
+      ],
+      "plan_raw": {
+        "mode": "MODIFY",
+        "summary": "Make walls transparent",
+        "targets": [
+          "wall"
+        ],
+        "requires_confirmation": true,
+        "operations": [
+          {
+            "step": 1,
+            "command": "find_actors",
+            "params": {
+              "name_filter": "wall"
+            },
+            "depends_on": null
+          },
+          {
+            "step": 2,
+            "command": "batch_set_property",
+            "params": {
+              "property_name": "Opacity",
+              "value": 0.5
+            },
+            "depends_on": 1
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 1,
+          "command": "find_actors"
+        },
+        {
+          "status": "error",
+          "message": "Connection refused on port 13377",
+          "step": 2,
+          "command": "batch_set_property"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "no_error",
+          "passed": true,
+          "detail": "No error check (pass-through)"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "P2",
+        "E1",
+        "E1"
+      ],
+      "duration_s": 36.3
+    },
+    "E.09": {
+      "test_id": "E.09",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 0,
+      "verify_score": 0,
+      "quality_score": 1,
+      "total": 3,
+      "actual_mode": "CREATE",
+      "actual_commands": [
+        "create_blueprint"
+      ],
+      "plan_raw": {
+        "mode": "CREATE",
+        "summary": "Create weapon BP",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": [
+          {
+            "step": 1,
+            "command": "create_blueprint",
+            "params": {
+              "prompt": "weapon that does|999999 damage"
+            },
+            "depends_on": null
+          }
+        ]
+      },
+      "exec_results": [
+        {
+          "status": "error",
+          "message": "DSL parsing failed",
+          "stage": "parse",
+          "dsl": "BLUEPRINT: BP_DamageWeapon\nPARENT: Actor\n\nGRAPH: EventGraph\n\nNODE n1: Event_ActorBeginOverlap\nNODE n2: GetVar [Variable=Target]\nNODE n3: SetVar [Variable=Damage, Value=999999]\nNODE n4: PrintString [InString=\"Damage set\"]\nNODE n5: DestroyActor\n\nEXEC n1.Then -> n3.Execute\nEXEC n3.Then -> n4.Execute\nEXEC n4.Then -> n5.Execute\n\nDATA n1.OtherActor -> n2.Value [Actor]",
+          "step": 1,
+          "command": "create_blueprint"
+        }
+      ],
+      "verify_results": [
+        {
+          "type": "blueprint_exists",
+          "passed": false,
+          "detail": "find_blueprints failed: Connection refused on port 13377"
+        }
+      ],
+      "error": "",
+      "failure_codes": [
+        "E1",
+        "V1"
+      ],
+      "duration_s": 61.3
+    },
+    "E.10": {
+      "test_id": "E.10",
+      "intent_score": 1,
+      "plan_score": 1,
+      "exec_score": 1,
+      "verify_score": 1,
+      "quality_score": 1,
+      "total": 5,
+      "actual_mode": "CLARIFY",
+      "actual_commands": [],
+      "plan_raw": {
+        "mode": "CLARIFY",
+        "summary": "Undo the last thing you did",
+        "targets": [],
+        "requires_confirmation": false,
+        "operations": []
+      },
+      "exec_results": [],
+      "verify_results": [
+        {
+          "type": "response_mode",
+          "passed": true,
+          "detail": "Mode is CLARIFY as expected"
+        }
+      ],
+      "error": "",
+      "failure_codes": [],
+      "duration_s": 9.79
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "id": "match_results",
+  "name": "Match Results",
+  "category": "multiplayer",
+  "description": "Win/Lose banner, MVP, stats, XP, rewards",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    500,
+    450
+  ],
+  "variables": [
+    {
+      "name": "Result",
+      "type": "String",
+      "default": "VICTORY"
+    },
+    {
+      "name": "XPEarned",
+      "type": "Integer",
+      "default": 0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "ResultsRoot",
+    "properties": {
+      "spacing": "12"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "ResultBanner",
+        "properties": {
+          "text": "BIND:\"{Result}\"",
+          "font_size": "40",
+          "color": "$warning",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "MVPText",
+        "properties": {
+          "text": "BIND:\"MVP: {MVPName}\"",
+          "font_size": "18",
+          "color": "$accent",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "HBOX",
+        "name": "StatsRow",
+        "properties": {
+          "spacing": "20"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "KillsStat",
+            "properties": {
+              "text": "BIND:\"Kills: {Kills}\"",
+              "font_size": "16",
+              "color": "$text"
+            }
+          },
+          {
+            "type": "TEXT",
+            "name": "DeathsStat",
+            "properties": {
+              "text": "BIND:\"Deaths: {Deaths}\"",
+              "font_size": "16",
+              "color": "$text"
+            }
+          }
+        ]
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "XPBar",
+        "properties": {
+          "percent": "BIND:XPProgress",
+          "fill_color": "$xp",
+          "bar_color": "$surface",
+          "size_x": "400",
+          "size_y": "12"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "XPText",
+        "properties": {
+          "text": "BIND:\"+{XPEarned} XP\"",
+          "font_size": "16",
+          "color": "$xp"
+        }
+      },
+      {
+        "type": "BUTTON",
+        "name": "ContinueBtn",
+        "properties": {
+          "text": "CONTINUE",
+          "font_size": "16"
+        }
+      }
+    ]
+  }
+}

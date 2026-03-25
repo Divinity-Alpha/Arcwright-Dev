@@ -1,0 +1,88 @@
+{
+  "id": "build_menu",
+  "name": "Build Menu",
+  "category": "genre",
+  "description": "Category tabs, item grid, resource costs, placement toggle",
+  "default_anchor": "BottomCenter",
+  "default_offset": [
+    0,
+    -10
+  ],
+  "default_size": [
+    500,
+    300
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "BuildRoot",
+    "properties": {
+      "spacing": "6"
+    },
+    "children": [
+      {
+        "type": "HBOX",
+        "name": "CatTabs",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "BuildingsTab",
+            "properties": {
+              "text": "Buildings",
+              "font_size": "13"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "DefenseTab",
+            "properties": {
+              "text": "Defenses",
+              "font_size": "13"
+            }
+          }
+        ]
+      },
+      {
+        "type": "GRID",
+        "name": "ItemGrid",
+        "properties": {
+          "columns": "5",
+          "col_spacing": "4",
+          "row_spacing": "4"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "BSlot1",
+            "properties": {
+              "tint": "$surface",
+              "size_x": "56",
+              "size_y": "56"
+            }
+          }
+        ]
+      },
+      {
+        "type": "TEXT",
+        "name": "CostText",
+        "properties": {
+          "text": "BIND:\"Cost: {ResourceCost}\"",
+          "font_size": "14",
+          "color": "$warning"
+        }
+      },
+      {
+        "type": "BUTTON",
+        "name": "PlaceBtn",
+        "properties": {
+          "text": "PLACE",
+          "font_size": "14"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "dialogue_history",
+  "name": "Dialogue History",
+  "category": "quest",
+  "description": "Scrollable log of speaker + line entries",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    500,
+    400
+  ],
+  "variables": [],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "HistoryRoot",
+    "properties": {
+      "spacing": "6"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "HistTitle",
+        "properties": {
+          "text": "DIALOGUE LOG",
+          "font_size": "18",
+          "color": "$text",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "SCROLLBOX",
+        "name": "HistScroll",
+        "properties": {
+          "orientation": "Vertical"
+        },
+        "children": [
+          {
+            "type": "HBOX",
+            "name": "Entry1",
+            "properties": {
+              "spacing": "8"
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Speaker1",
+                "properties": {
+                  "text": "Guard:",
+                  "font_size": "14",
+                  "color": "$accent",
+                  "bold": "true"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Line1",
+                "properties": {
+                  "text": "Halt! State your business.",
+                  "font_size": "14",
+                  "color": "$text"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

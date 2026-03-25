@@ -1,0 +1,100 @@
+{
+  "id": "chat_window",
+  "name": "Chat Window",
+  "category": "multiplayer",
+  "description": "Message history, input field, channel tabs",
+  "default_anchor": "BottomLeft",
+  "default_offset": [
+    10,
+    -10
+  ],
+  "default_size": [
+    350,
+    250
+  ],
+  "variables": [
+    {
+      "name": "ChatInput",
+      "type": "String",
+      "default": ""
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "ChatRoot",
+    "properties": {
+      "spacing": "4"
+    },
+    "children": [
+      {
+        "type": "HBOX",
+        "name": "ChannelTabs",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "BUTTON",
+            "name": "AllTab",
+            "properties": {
+              "text": "All",
+              "font_size": "11"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "TeamTab",
+            "properties": {
+              "text": "Team",
+              "font_size": "11"
+            }
+          }
+        ]
+      },
+      {
+        "type": "SCROLLBOX",
+        "name": "MsgScroll",
+        "properties": {
+          "orientation": "Vertical"
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "Msg1",
+            "properties": {
+              "text": "[Player1] Hello!",
+              "font_size": "12",
+              "color": "$text"
+            }
+          }
+        ]
+      },
+      {
+        "type": "HBOX",
+        "name": "InputRow",
+        "properties": {
+          "spacing": "4"
+        },
+        "children": [
+          {
+            "type": "INPUT",
+            "name": "ChatInput",
+            "properties": {
+              "hint": "Type message...",
+              "font_size": "12"
+            }
+          },
+          {
+            "type": "BUTTON",
+            "name": "SendBtn",
+            "properties": {
+              "text": "Send",
+              "font_size": "12"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

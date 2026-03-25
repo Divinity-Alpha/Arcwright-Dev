@@ -1,0 +1,1 @@
+{"metadata": {"name": "BP_TestInspect", "parent_class": "Actor"}, "variables": [{"name": "Health", "type": "float", "default": "100.0"}, {"name": "Score", "type": "int", "default": "0"}], "nodes": [], "connections": []}

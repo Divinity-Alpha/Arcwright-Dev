@@ -1,0 +1,276 @@
+============================================================
+  FULL EXAM SUITE — v14
+  11 lessons, model: models/blueprint-lora-v14/final
+  2026-03-15 19:11:05
+============================================================
+
+Loading model...
+Loaded system prompt from models\blueprint-lora-v14\system_prompt.txt (463 chars)
+Loading base model: meta-llama/Meta-Llama-3.1-70B
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:04<02:22,  4.90s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:09<02:12,  4.74s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:14<02:04,  4.63s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:19<02:04,  4.79s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:23<01:59,  4.77s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:28<01:52,  4.69s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:33<01:49,  4.77s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:39<01:56,  5.29s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:46<01:59,  5.69s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:51<01:53,  5.67s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:55<01:34,  4.99s/it]Loading checkpoint shards:  40%|████      | 12/30 [01:00<01:29,  4.99s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [01:05<01:26,  5.07s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [01:10<01:22,  5.14s/it]Loading checkpoint shards:  50%|█████     | 15/30 [01:15<01:15,  5.04s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [01:20<01:09,  4.97s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:25<01:04,  4.94s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:30<01:00,  5.04s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:36<00:56,  5.15s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:41<00:51,  5.13s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:46<00:46,  5.13s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:51<00:41,  5.14s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [01:56<00:36,  5.20s/it]Loading checkpoint shards:  80%|████████  | 24/30 [02:01<00:31,  5.20s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [02:06<00:25,  5.13s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [02:11<00:20,  5.04s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [02:16<00:14,  4.98s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [02:21<00:10,  5.05s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [02:27<00:05,  5.12s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:28<00:00,  4.10s/it]Loading checkpoint shards: 100%|██████████| 30/30 [02:28<00:00,  4.96s/it]
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Loading LoRA adapter: models/blueprint-lora-v14/final
+Model loaded in 242s
+
+
+============================================================
+  [1/11] lesson_13: Corrective Training: Connection Patterns + New Node Types (20 prompts)
+============================================================
+  [1/20] L13_01: Create a Blueprint that on overlap casts to Character. ...
+    [OK] Score: 100% | Nodes: 4 | 37.4s
+  [2/20] L13_02: Create a Blueprint that on overlap casts the other acto...
+    [OK] Score: 94% | Nodes: 6 | 55.2s
+  [3/20] L13_03: Create a Blueprint with a float variable Speed. On over...
+    [OK] Score: 100% | Nodes: 5 | 53.8s
+  [4/20] L13_04: Create a Blueprint that on BeginPlay uses a Sequence wi...
+    [OK] Score: 100% | Nodes: 5 | 38.8s
+  [5/20] L13_05: Create a Blueprint with float variables X, Y, Z. On Beg...
+    [OK] Score: 100% | Nodes: 11 | 105.4s
+  [6/20] L13_06: Create a Blueprint that on BeginPlay uses a Sequence wi...
+    [OK] Score: 100% | Nodes: 7 | 57.0s
+  [7/20] L13_07: Create a Blueprint with float Health at 100. On AnyDama...
+    [OK] Score: 100% | Nodes: 8 | 74.0s
+  [8/20] L13_08: Create a Blueprint with float Score at 0. On BeginPlay ...
+    [OK] Score: 100% | Nodes: 8 | 73.5s
+  [9/20] L13_09: Create a Blueprint with float Temperature. On BeginPlay...
+    [OK] Score: 100% | Nodes: 9 | 82.0s
+  [10/20] L13_10: Create a Blueprint that on AnyDamage subtracts the dama...
+    [OK] Score: 87% | Nodes: 5 | 52.5s
+  [11/20] L13_11: Create a Blueprint that on ActorBeginOverlap gets the o...
+    [OK] Score: 100% | Nodes: 3 | 29.0s
+  [12/20] L13_12: Create a Blueprint that on ActorHit gets the hit compon...
+    [OK] Score: 100% | Nodes: 5 | 46.1s
+  [13/20] L13_13: Create a character Blueprint with Health at 100 and Nam...
+    [OK] Score: 97% | Nodes: 15 | 122.8s
+  [14/20] L13_14: Create a Blueprint with integer Counter at 0 and bool I...
+    [X] Score: 100% | Nodes: 0 | 108.7s
+  [15/20] L13_15: Create a Blueprint that on BeginPlay runs a ForLoop fro...
+    [OK] Score: 100% | Nodes: 4 | 38.4s
+  [16/20] L13_16: Create a Blueprint with integer Total at 0. On BeginPla...
+    [OK] Score: 100% | Nodes: 7 | 67.0s
+  [17/20] L13_17: Create a Blueprint with an actor array Targets. On Begi...
+    [OK] Score: 90% | Nodes: 7 | 61.9s
+  [18/20] L13_18: Create a Blueprint with integer Difficulty at 1. On Beg...
+    [OK] Score: 100% | Nodes: 6 | 54.1s
+  [19/20] L13_19: Create a Blueprint with a string State variable. On Beg...
+    [OK] Score: 100% | Nodes: 7 | 61.2s
+  [20/20] L13_20: Create a Blueprint with bool IsEnemy and float Damage a...
+    [OK] Score: 100% | Nodes: 6 | 61.7s
+  => syntax=95.0% sim=98.4%
+
+============================================================
+  [2/11] lesson_14: Corrective Training: DATA Line Completion + Core Pattern Consistency (20 prompts)
+============================================================
+  [1/20] L14_01: Create a Blueprint with a boolean variable IsActive. On...
+    [OK] Score: 100% | Nodes: 5 | 42.4s
+  [2/20] L14_02: Create a Blueprint with a boolean variable DoorOpen def...
+    [OK] Score: 100% | Nodes: 5 | 44.5s
+  [3/20] L14_03: Create a Blueprint with an integer Score variable set t...
+    [OK] Score: 100% | Nodes: 6 | 50.6s
+  [4/20] L14_04: Create a Blueprint that on BeginPlay calculates (5 + 3)...
+    [OK] Score: 100% | Nodes: 4 | 37.4s
+  [5/20] L14_05: Create a Blueprint that on BeginPlay subtracts 25 from ...
+    [OK] Score: 100% | Nodes: 5 | 48.1s
+  [6/20] L14_06: Create a Blueprint that on BeginPlay divides 100 by 3, ...
+    [OK] Score: 100% | Nodes: 4 | 38.3s
+  [7/20] L14_07: Create a Blueprint with an actor array called Targets. ...
+    [OK] Score: 100% | Nodes: 4 | 39.3s
+  [8/20] L14_08: Create a Blueprint with an actor array Enemies. On Begi...
+    [OK] Score: 100% | Nodes: 7 | 66.0s
+  [9/20] L14_09: Create a Blueprint for an actor that continuously rotat...
+    [OK] Score: 91% | Nodes: 4 | 39.8s
+  [10/20] L14_10: Create a Blueprint that rotates an actor at 45 degrees ...
+    [OK] Score: 100% | Nodes: 4 | 38.9s
+  [11/20] L14_11: Create a Blueprint that on Tick moves an actor forward ...
+    [OK] Score: 100% | Nodes: 4 | 40.6s
+  [12/20] L14_12: Create a Blueprint that on overlap, casts the other act...
+    [OK] Score: 80% | Nodes: 5 | 48.9s
+  [13/20] L14_13: Create a Blueprint that on overlap casts to Character. ...
+    [OK] Score: 100% | Nodes: 6 | 59.4s
+  [14/20] L14_14: Create a Blueprint that on AnyDamage subtracts the dama...
+    [OK] Score: 100% | Nodes: 8 | 78.4s
+  [15/20] L14_15: Create a Blueprint that on AnyDamage gets the damage am...
+    [OK] Score: 100% | Nodes: 8 | 75.3s
+  [16/20] L14_16: Create a Blueprint with boolean IsVisible defaulting to...
+    [OK] Score: 100% | Nodes: 5 | 50.6s
+  [17/20] L14_17: Create a Blueprint that when Fire input is pressed, get...
+    [OK] Score: 70% | Nodes: 4 | 38.4s
+  [18/20] L14_18: Create a Blueprint with a Gate node. On pressing Open i...
+    [OK] Score: 100% | Nodes: 7 | 57.8s
+  [19/20] L14_19: Create a Blueprint with float variables Health and MaxH...
+    [OK] Score: 73% | Nodes: 10 | 94.5s
+  [20/20] L14_20: Create a Blueprint with an actor array Pickups and inte...
+    [OK] Score: 100% | Nodes: 9 | 79.3s
+  => syntax=100.0% sim=95.7%
+
+============================================================
+  [3/11] lesson_15: Corrective Training: Weak Similarity Patterns (20 prompts)
+============================================================
+  [1/20] L15_01: Create a Blueprint with an actor array Targets. On Begi...
+    [OK] Score: 100% | Nodes: 7 | 60.7s
+  [2/20] L15_02: Create a Blueprint with an actor array Enemies. On Begi...
+    [OK] Score: 100% | Nodes: 10 | 95.6s
+  [3/20] L15_03: Create a Blueprint with vector variables PointA at (0,0...
+    [OK] Score: 46% | Nodes: 11 | 100.3s
+  [4/20] L15_04: Create a Blueprint that moves an actor back and forth a...
+    [OK] Score: 100% | Nodes: 9 | 86.2s
+  [5/20] L15_05: Create a Blueprint with a float GravityScale variable d...
+    [OK] Score: 100% | Nodes: 7 | 55.6s
+  [6/20] L15_06: Create a Blueprint that on pressing PhysicsToggle input...
+    [OK] Score: 100% | Nodes: 6 | 51.8s
+  [7/20] L15_07: Create a Blueprint with a Gate. On pressing Open, open ...
+    [OK] Score: 100% | Nodes: 7 | 58.4s
+  [8/20] L15_08: Create a Blueprint with a Gate. On BeginPlay open the g...
+    [OK] Score: 100% | Nodes: 6 | 47.0s
+  [9/20] L15_09: Create a Blueprint for a damage zone. On overlap begin,...
+    [OK] Score: 100% | Nodes: 9 | 78.4s
+  [10/20] L15_10: Create a Blueprint for a healing zone. On overlap start...
+    [OK] Score: 84% | Nodes: 11 | 102.6s
+  [11/20] L15_11: Create a Blueprint for a collectible pickup. On overlap...
+    [OK] Score: 90% | Nodes: 8 | 75.2s
+  [12/20] L15_12: Create a Blueprint for a health pickup. On overlap cast...
+    [OK] Score: 93% | Nodes: 11 | 104.9s
+  [13/20] L15_13: Create a Blueprint that on pressing Spawn input, gets t...
+    [OK] Score: 100% | Nodes: 7 | 61.1s
+  [14/20] L15_14: Create a Blueprint that on BeginPlay spawns BP_Helper. ...
+    [OK] Score: 91% | Nodes: 10 | 87.6s
+  [15/20] L15_15: Create a Blueprint that on BeginPlay spawns a BP_Turret...
+    [OK] Score: 96% | Nodes: 11 | 94.6s
+  [16/20] L15_16: Create a Blueprint that on pressing Start input, starts...
+    [OK] Score: 100% | Nodes: 9 | 81.7s
+  [17/20] L15_17: Create a Blueprint that on BeginPlay calculates: take 1...
+    [OK] Score: 93% | Nodes: 6 | 54.4s
+  [18/20] L15_18: Create a Blueprint that on BeginPlay creates WBP_Loadin...
+    [OK] Score: 95% | Nodes: 8 | 72.9s
+  [19/20] L15_19: Create a Blueprint for a pressure plate. On overlap, if...
+    [OK] Score: 100% | Nodes: 7 | 63.0s
+  [20/20] L15_20: Create a Blueprint for a moving platform. Use float var...
+    [OK] Score: 100% | Nodes: 11 | 106.3s
+  => syntax=100.0% sim=94.4%
+
+============================================================
+  [4/11] lesson_16: Generalization: Varied Phrasing for Weak Patterns (20 prompts)
+============================================================
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.

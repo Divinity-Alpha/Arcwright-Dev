@@ -1,0 +1,45 @@
+
+  Checking connections...
+  OK: UE editor connected
+  [16:44:29] USER TYPES: "health check"
+  [16:44:46] INTENT RETURNS: mode=QUERY, ops=1, summary=Check if any actor has less than 50% health
+  OK: Intent server connected
+
+  Running 48 user simulation tests...
+
+  [16:44:46] 
+============================================================
+  [16:44:46] TEST S.01: Setup: Create enemy blueprint
+  [16:44:46] ============================================================
+  [16:44:46] USER TYPES: "Create an enemy with 100 health, 15 damage, and 300 speed"
+  [16:46:10] INTENT RETURNS: mode=CREATE, ops=1, summary=Create an enemy with 100 health, 15 damage, and 300 speed
+  [16:46:10] EXECUTE: create_blueprint → DSL pipeline (blueprint): "Create an enemy with 100 health, 15 damage, and 300 speed"
+  [16:47:00] DSL GENERATE: Got 431 chars of blueprint DSL
+  [16:47:00] PARSE: Exception - No module named 'node_map'
+  [16:47:00] RESULT: FAIL -- {"success": false, "status": "error", "message": "DSL parsing failed"}
+  [16:47:00] SCORE: 2/4 WARN (intent=True, plan=True, exec=False, verify=False)
+  [16:47:02] 
+============================================================
+  [16:47:02] TEST S.02: Setup: Create health pickup
+  [16:47:02] ============================================================
+  [16:47:02] USER TYPES: "Create a health pickup that heals 25 HP when touched and destroys itself"
+  [16:47:21] INTENT RETURNS: mode=MULTI, ops=0, summary=Create health pickup BP
+  [16:47:21] SCORE: 0/4 FAIL (intent=False, plan=False, exec=False, verify=False)
+  [16:47:23] 
+============================================================
+  [16:47:23] TEST S.03: Setup: Create coin
+  [16:47:23] ============================================================
+  [16:47:23] USER TYPES: "Create a gold coin pickup worth 10 points that destroys on collection"
+  [16:47:37] INTENT RETURNS: mode=CREATE, ops=1, summary=Create gold coin BP
+  [16:47:37] EXECUTE: create_blueprint → DSL pipeline (blueprint): "gold coin worth 10 points that destroys on collection"
+  [16:48:10] DSL GENERATE: Got 314 chars of blueprint DSL
+  [16:48:10] PARSE: Exception - No module named 'node_map'
+  [16:48:10] RESULT: FAIL -- {"success": false, "status": "error", "message": "DSL parsing failed"}
+  [16:48:10] SCORE: 2/4 WARN (intent=True, plan=True, exec=False, verify=False)
+  [16:48:12] 
+============================================================
+  [16:48:12] TEST S.04: Setup: Create torch
+  [16:48:12] ============================================================
+  [16:48:12] USER TYPES: "Create a torch with a point light intensity of 5000"
+  [16:49:36] INTENT RETURNS: mode=CREATE, ops=1, summary=Create a torch with a point light intensity of 5000
+  [16:49:36] EXECUTE: create_blueprint → DSL pipeline (blueprint): "Create a torch with a point light intensity of 5000"

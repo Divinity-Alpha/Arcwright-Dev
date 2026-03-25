@@ -1,0 +1,94 @@
+{
+  "id": "game_over",
+  "name": "Game Over",
+  "category": "menu",
+  "description": "GAME OVER + score + replay/quit",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    400,
+    350
+  ],
+  "variables": [
+    {
+      "name": "FinalScore",
+      "type": "Integer",
+      "default": 0
+    },
+    {
+      "name": "HighScore",
+      "type": "Integer",
+      "default": 0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "GameOverPanel",
+    "properties": {
+      "spacing": "16"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "GameOverTitle",
+        "properties": {
+          "text": "GAME OVER",
+          "font_size": "40",
+          "color": "$danger",
+          "bold": "true",
+          "justification": "Center"
+        },
+        "animations": [
+          {
+            "trigger": "OnShow",
+            "type": "ScalePop",
+            "params": {
+              "target_scale": 1.2,
+              "duration": 0.4
+            }
+          }
+        ]
+      },
+      {
+        "type": "TEXT",
+        "name": "FinalScoreLabel",
+        "properties": {
+          "text": "BIND:\"SCORE: {FinalScore}\"",
+          "font_size": "24",
+          "color": "$text",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "HighScoreLabel",
+        "properties": {
+          "text": "BIND:\"BEST: {HighScore}\"",
+          "font_size": "16",
+          "color": "$text_secondary",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "BUTTON",
+        "name": "ReplayBtn",
+        "properties": {
+          "text": "PLAY AGAIN",
+          "font_size": "18"
+        }
+      },
+      {
+        "type": "BUTTON",
+        "name": "GameOverQuitBtn",
+        "properties": {
+          "text": "QUIT",
+          "font_size": "18"
+        }
+      }
+    ]
+  }
+}

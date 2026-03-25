@@ -1,0 +1,59 @@
+{
+  "id": "wave_counter",
+  "name": "Wave Counter",
+  "category": "hud",
+  "description": "WAVE X/Y with progress",
+  "default_anchor": "TopCenter",
+  "default_offset": [
+    0,
+    60
+  ],
+  "default_size": [
+    200,
+    50
+  ],
+  "variables": [
+    {
+      "name": "CurrentWave",
+      "type": "Integer",
+      "default": 1
+    },
+    {
+      "name": "TotalWaves",
+      "type": "Integer",
+      "default": 10
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "WaveBox",
+    "properties": {
+      "spacing": "4"
+    },
+    "children": [
+      {
+        "type": "TEXT",
+        "name": "WaveLabel",
+        "properties": {
+          "text": "BIND:\"WAVE {CurrentWave}/{TotalWaves}\"",
+          "font_size": "20",
+          "color": "$accent",
+          "bold": "true",
+          "justification": "Center"
+        }
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "WaveProgress",
+        "properties": {
+          "percent": "BIND:CurrentWave/TotalWaves",
+          "fill_color": "$accent",
+          "bar_color": "$surface",
+          "size_x": "180",
+          "size_y": "6"
+        }
+      }
+    ]
+  }
+}

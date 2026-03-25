@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlueprintLLM — Mission Control</title>
+<style>
+:root {
+  --bg: #0a0e17;
+  --card: #111827;
+  --inset: #0d1220;
+  --border: #1e293b;
+  --border-hi: #334155;
+  --t1: #e2e8f0;
+  --t2: #94a3b8;
+  --t3: #475569;
+  --green: #22c55e;
+  --green-bg: rgba(34,197,94,0.12);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,0.12);
+  --amber: #f59e0b;
+  --amber-bg: rgba(245,158,11,0.12);
+  --blue: #3b82f6;
+  --blue-bg: rgba(59,130,246,0.10);
+  --cyan: #06b6d4;
+  --purple: #a855f7;
+  --r: 8px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t1);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(59,130,246,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+.dash{position:relative;z-index:1;max-width:1540px;margin:0 auto;padding:20px}
+
+/* Header */
+.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.hdr-left{display:flex;align-items:center;gap:14px}
+.logo{font-family:monospace;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--blue);background:var(--blue-bg);padding:5px 12px;border-radius:4px;border:1px solid rgba(59,130,246,.2)}
+.hdr-title{font-size:22px;font-weight:600}
+.hdr-sub{font-size:12px;color:var(--t3);margin-top:1px}
+.hdr-right{display:flex;align-items:center;gap:16px}
+.beacon{display:flex;align-items:center;gap:7px;font-family:monospace;font-size:11px;font-weight:600;padding:6px 14px;border-radius:var(--r);border:1px solid var(--border)}
+.beacon.on{color:var(--green);border-color:rgba(34,197,94,.3);background:var(--green-bg)}
+.beacon.off{color:var(--t3)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.dot.off{background:var(--t3);animation:none}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{opacity:.6;box-shadow:0 0 0 5px rgba(34,197,94,0)}}
+.clock{font-family:monospace;font-size:12px;color:var(--t3)}
+
+/* ETA bar */
+.eta{background:var(--inset);border-radius:var(--r);padding:12px 16px;display:flex;align-items:center;gap:14px;margin-bottom:16px;border:1px solid var(--border)}
+.eta-lbl{font-family:monospace;font-size:10px;letter-spacing:1.5px;color:var(--t3);flex-shrink:0}
+.eta-track{flex:1;height:7px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden}
+.eta-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:4px;transition:width 1s}
+.eta-txt{font-family:monospace;font-size:11px;color:var(--t1);min-width:160px;text-align:right}
+
+/* Grid */
+.g-top{display:grid;grid-template-columns:300px 1fr 280px;gap:14px;margin-bottom:14px}
+.g-mid{margin-bottom:14px}
+.g-bot{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.g-full{margin-bottom:14px}
+
+/* Card */
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;transition:border-color .2s}
+.card:hover{border-color:var(--border-hi)}
+.card-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-t{font-family:monospace;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3)}
+.badge{font-family:monospace;font-size:9px;padding:3px 7px;border-radius:4px;border:1px solid var(--border);color:var(--t2)}
+
+/* Pipeline */
+.steps{display:flex;flex-direction:column;gap:3px}
+.step{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:5px;font-size:12px}
+.step.done{color:var(--t3)}
+.step.active{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(59,130,246,.18)}
+.step.pending{color:var(--t3);opacity:.45}
+.step-i{width:18px;text-align:center;font-size:10px;flex-shrink:0}
+.step-i.done{color:var(--green)}
+.step-i.active{color:var(--blue)}
+.step-n{flex:1;font-family:monospace;font-size:10px}
+.step-t{font-family:monospace;font-size:9px;color:var(--t3)}
+.step-detail{color:var(--cyan);margin-left:4px}
+
+/* Version bars */
+.vchart{display:flex;align-items:flex-end;gap:3px;height:130px;padding-top:8px}
+.vgroup{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;justify-content:flex-end}
+.vbars{display:flex;gap:2px;align-items:flex-end;width:100%;height:calc(100% - 18px)}
+.vb{flex:1;border-radius:2px 2px 0 0;min-height:2px;position:relative;transition:height .4s}
+.vb.s{background:var(--green);opacity:.85}
+.vb.m{background:var(--blue);opacity:.65}
+.vb:hover{opacity:1}
+.vb:hover::after{content:attr(data-v)'%';position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:monospace;font-size:8px;color:var(--t1);background:var(--bg);padding:1px 4px;border-radius:2px;white-space:nowrap}
+.vlbl{font-family:monospace;font-size:8px;color:var(--t3)}
+.legend{display:flex;gap:14px;margin-top:10px;justify-content:center}
+.leg{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--t2)}
+.ld{width:7px;height:7px;border-radius:2px}
+
+/* Big stats */
+.bstats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bstat{background:var(--inset);border-radius:var(--r);padding:14px;text-align:center}
+.bv{font-size:28px;font-weight:700;line-height:1}
+.bl{font-size:10px;color:var(--t3);margin-top:5px}
+.bd{font-family:monospace;font-size:9px;margin-top:3px}
+.du{color:var(--green)}.dd{color:var(--red)}.ds{color:var(--t3)}
+
+/* Exam table */
+.etbl{width:100%;border-collapse:separate;border-spacing:0 3px}
+.etbl th{font-family:monospace;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);text-align:left;padding:7px 10px}
+.etbl th.r{text-align:right}.etbl th.c{text-align:center}
+.etbl td{padding:9px 10px;font-size:12px;background:var(--inset)}
+.etbl tr td:first-child{border-radius:5px 0 0 5px}
+.etbl tr td:last-child{border-radius:0 5px 5px 0}
+.ln{font-weight:500;color:var(--t1)}
+.mono{font-family:monospace;font-size:11px}
+.r{text-align:right}.c{text-align:center}
+
+.pc{display:flex;align-items:center;gap:8px}
+.pt{flex:1;height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden}
+.pf{height:100%;border-radius:3px;transition:width .4s}
+.pf.hi{background:var(--green)}.pf.mi{background:var(--amber)}.pf.lo{background:var(--red)}
+.pp{font-family:monospace;font-size:10px;min-width:36px;text-align:right}
+
+.tag{display:inline-flex;align-items:center;gap:3px;font-family:monospace;font-size:9px;padding:2px 7px;border-radius:3px}
+.tag.d{color:var(--green);background:var(--green-bg)}
+.tag.r{color:var(--blue);background:var(--blue-bg)}
+.tag.p{color:var(--t3);background:rgba(255,255,255,.02)}
+
+/* Eval grid */
+.egrid{display:grid;grid-template-columns:repeat(11,1fr);gap:4px}
+.ecell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:6px;font-family:monospace;transition:transform .15s;cursor:default}
+.ecell:hover{transform:scale(1.08)}
+.ecell .eid{font-size:7px;letter-spacing:.5px;opacity:.65;margin-bottom:1px}
+.ecell .esc{font-size:15px;font-weight:700}
+
+/* Log */
+.log{max-height:200px;overflow-y:auto;font-family:monospace;font-size:10px;line-height:1.8;color:var(--t2);scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.le{display:flex;gap:10px;padding:1px 0}
+.lt{color:var(--t3);flex-shrink:0}
+.lm{flex:1}
+.lm .hi{color:var(--green)}.lm .wa{color:var(--amber)}.lm .in{color:var(--blue)}
+
+/* Heatmap */
+.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:3px}
+.hcell{padding:7px;border-radius:4px;font-size:9px;text-align:center;font-family:monospace;transition:transform .15s;cursor:default;position:relative}
+.hcell:hover{transform:scale(1.06);z-index:2}
+.hcell .cn{display:block;font-size:7px;letter-spacing:.4px;opacity:.75;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hcell .cs{font-size:13px;font-weight:600}
+
+@media(max-width:1200px){.g-top{grid-template-columns:1fr}.g-bot{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="dash">
+
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">BPLLM</div>
+    <div><div class="hdr-title">Mission Control</div><div class="hdr-sub">BlueprintLLM · 70B LoRA · RTX PRO 6000</div></div>
+  </div>
+  <div class="hdr-right">
+    <div class="beacon on" id="beacon"><div class="dot"></div><span id="sTxt">RUNNING</span></div>
+    <div class="clock" id="clk">00:00:00</div>
+  </div>
+</div>
+
+<div class="eta">
+  <div class="eta-lbl">PIPELINE</div>
+  <div class="eta-track"><div class="eta-fill" id="etaF" style="width:52%"></div></div>
+  <div class="eta-txt" id="etaT">Step 6/9 · L03 4/20 · ETA 1h 23m</div>
+</div>
+
+<div class="g-top">
+  <div class="card"><div class="card-h"><div class="card-t">Pipeline Steps</div><div class="badge" id="vBadge">v5</div></div><div class="steps" id="steps"></div></div>
+  <div class="card"><div class="card-h"><div class="card-t">Version Progression</div><div class="badge">L01-L10 avg</div></div><div class="vchart" id="vchart"></div><div class="legend"><div class="leg"><div class="ld" style="background:var(--green)"></div>Valid Syntax</div><div class="leg"><div class="ld" style="background:var(--blue)"></div>Similarity</div></div></div>
+  <div class="card"><div class="card-h"><div class="card-t">Current Version</div><div class="badge" id="cvBadge">v5</div></div><div class="bstats" id="bstats"></div></div>
+</div>
+
+<div class="card g-mid"><div class="card-h"><div class="card-t">Exam Results by Lesson</div><div class="badge" id="examCt">164 prompts</div></div><table class="etbl"><thead><tr><th style="width:36px">ID</th><th>Lesson</th><th class="c" style="width:70px">Status</th><th class="c" style="width:70px">Valid</th><th style="width:200px">Syntax Rate</th><th style="width:200px">Similarity</th><th class="r" style="width:60px">Time</th><th class="r" style="width:60px">vs Prev</th></tr></thead><tbody id="etbody"></tbody></table></div>
+
+<div class="g-bot">
+  <div class="card"><div class="card-h"><div class="card-t">Eval Scorecard</div><div class="badge" id="evalP">11/11</div></div><div class="egrid" id="egrid"></div></div>
+  <div class="card"><div class="card-h"><div class="card-t">Activity Log</div><div class="badge">LIVE</div></div><div class="log" id="log"></div></div>
+</div>
+
+<div class="card g-full"><div class="card-h"><div class="card-t">Category Heatmap — Similarity</div><div class="badge">Sorted weakest → strongest</div></div><div class="hgrid" id="hmap"></div></div>
+
+</div>
+<script>
+const STEPS=[
+{n:'Load config',s:'done',t:'2s'},
+{n:'Prepare dataset',s:'done',t:'12s'},
+{n:'Validate data',s:'done',t:'3s'},
+{n:'Training (2 epochs)',s:'done',t:'47m',d:'148 steps'},
+{n:'Merge LoRA weights',s:'done',t:'8m'},
+{n:'Run exams (L01-L10)',s:'active',t:'~1h 20m',d:'L03 4/20'},
+{n:'Run eval suite',s:'pending',t:'~12m'},
+{n:'Generate reports',s:'pending',t:'~5s'},
+{n:'Git push + notify',s:'pending',t:'~30s'}
+];
+
+const VERS=[
+{v:'v2',sx:2,sm:1.5,ev:78},
+{v:'v3',sx:85,sm:56,ev:88},
+{v:'v4',sx:93,sm:62,ev:93.6},
+{v:'v5',sx:87,sm:64,ev:92.5}
+];
+
+const EXAMS=[
+{id:'L01',nm:'Core Patterns',st:'done',vl:17,tl:20,sx:85,sm:62.3,tm:'8m',vs:'+5%'},
+{id:'L02',nm:'Variables & Events',st:'done',vl:19,tl:24,sx:79,sm:66.6,tm:'12m',vs:'+3%'},
+{id:'L03',nm:'Timers & Delays',st:'running',vl:4,tl:20,sx:null,sm:null,tm:'—',vs:'—'},
+{id:'L04',nm:'Physics & Movement',st:'pending',vl:0,tl:20,sx:null,sm:null,tm:'—',vs:'—'},
+{id:'L05',nm:'IsValid & Defensive',st:'pending',vl:0,tl:20,sx:null,sm:null,tm:'—',vs:'—'},
+{id:'L06',nm:'Loops & Iteration',st:'pending',vl:0,tl:20,sx:null,sm:null,tm:'—',vs:'—'},
+{id:'L07',nm:'Strings & Debug',st:'pending',vl:0,tl:20,sx:null,sm:null,tm:'—',vs:'—'},
+{id:'L08',nm:'UI Widgets & HUD',st:'pending',vl:0,tl:20,sx:null,sm:null,tm:'—',vs:'—'},
+{id:'L09',nm:'Branches & Switch',st:'pending',vl:0,tl:20,sx:null,sm:null,tm:'—',vs:'—'},
+{id:'L10',nm:'Complex Blueprints',st:'pending',vl:0,tl:20,sx:null,sm:null,tm:'—',vs:'—'},
+];
+
+const EVALS=[
+{id:'T1.1',sc:100,lb:'Hello'},{id:'T1.2',sc:100,lb:'Destroy'},{id:'T1.3',sc:100,lb:'GameOver'},
+{id:'T2.1',sc:100,lb:'Rotate'},{id:'T2.2',sc:100,lb:'Toggle'},{id:'T2.3',sc:78,lb:'Overlap'},
+{id:'T3.1',sc:88,lb:'Pickup'},{id:'T3.2',sc:100,lb:'Health'},{id:'T3.3',sc:72,lb:'Timer'},
+{id:'T4.1',sc:92,lb:'Door'},{id:'T4.2',sc:88,lb:'Coin'}
+];
+
+const CATS=[
+{n:'gate_ctrl',s:14},{n:'ff_swap',s:13},{n:'mv_platform',s:16},{n:'dmg_log',s:21},{n:'respawn',s:22},
+{n:'turret',s:24},{n:'dbg_gate',s:25},{n:'patrol',s:15},{n:'endplay',s:35},{n:'ovlp_show',s:44},
+{n:'dist_check',s:54},{n:'tmr_toggle',s:56},{n:'str_concat',s:72},{n:'branch',s:77},{n:'delay_ch',s:86},
+{n:'tmr_spawn',s:73},{n:'sw_string',s:94},{n:'fe_create',s:88},{n:'sw_spawn',s:95},{n:'print',s:100},
+{n:'overlap',s:78},{n:'cast_ch',s:67},{n:'sequence',s:92},{n:'doonce',s:81},{n:'countdown',s:91},
+{n:'vld_branch',s:92},{n:'health_sys',s:85},{n:'load_scrn',s:91},{n:'enemy_prx',s:91},{n:'trap_flr',s:85}
+];
+
+const LOGS=[
+{t:'00:03',m:'<span class="in">v5</span> pipeline started — 587 examples'},
+{t:'00:05',m:'Dataset validated, max_seq_len 1024'},
+{t:'00:06',m:'Training: 148 steps, 2 epochs, lr=2e-4'},
+{t:'00:48',m:'Training done — loss <span class="hi">2.41</span>'},
+{t:'00:56',m:'LoRA merge complete'},
+{t:'00:57',m:'Exam L01 started (20 prompts)'},
+{t:'01:05',m:'L01: <span class="hi">85% valid</span>, 62.3% sim, 8m'},
+{t:'01:05',m:'Exam L02 started (24 prompts)'},
+{t:'01:17',m:'L02: <span class="hi">79% valid</span>, 66.6% sim, 12m'},
+{t:'01:17',m:'Exam L03 started (20 prompts)'},
+{t:'01:20',m:'L03 in progress: <span class="in">4/20</span>'},
+];
+
+// Render
+document.getElementById('steps').innerHTML=STEPS.map(s=>`<div class="step ${s.s}"><div class="step-i ${s.s}">${s.s==='done'?'✓':s.s==='active'?'▶':'○'}</div><div class="step-n">${s.n}${s.d?`<span class="step-detail">${s.d}</span>`:''}</div><div class="step-t">${s.t}</div></div>`).join('');
+
+document.getElementById('vchart').innerHTML=VERS.map(v=>`<div class="vgroup"><div class="vbars"><div class="vb s" data-v="${v.sx}" style="height:${Math.max(v.sx,2)}%"></div><div class="vb m" data-v="${v.sm}" style="height:${Math.max(v.sm,2)}%"></div></div><div class="vlbl">${v.v}</div></div>`).join('');
+
+const cur=VERS[VERS.length-1],prev=VERS[VERS.length-2];
+const dSx=cur.sx-prev.sx,dSm=cur.sm-prev.sm,dEv=+(cur.ev-prev.ev).toFixed(1);
+document.getElementById('bstats').innerHTML=`
+<div class="bstat"><div class="bv" style="color:var(--green)">${cur.sx}%</div><div class="bl">Valid Syntax</div><div class="bd ${dSx>0?'du':dSx<0?'dd':'ds'}">${dSx>0?'↑':dSx<0?'↓':'—'} ${dSx>0?'+':''}${dSx}% vs ${prev.v}</div></div>
+<div class="bstat"><div class="bv" style="color:var(--blue)">${cur.sm}%</div><div class="bl">Avg Similarity</div><div class="bd ${dSm>0?'du':dSm<0?'dd':'ds'}">${dSm>0?'↑':dSm<0?'↓':'—'} ${dSm>0?'+':''}${dSm}% vs ${prev.v}</div></div>
+<div class="bstat"><div class="bv" style="color:var(--amber)">${cur.ev}%</div><div class="bl">Eval Score</div><div class="bd ${dEv>0?'du':dEv<0?'dd':'ds'}">${dEv>0?'↑':dEv<0?'↓':'—'} ${dEv>0?'+':''}${dEv}% vs ${prev.v}</div></div>
+<div class="bstat"><div class="bv" style="color:var(--cyan)">37s</div><div class="bl">Avg Gen Time</div><div class="bd du">↑ -4s vs ${prev.v}</div></div>`;
+
+document.getElementById('etbody').innerHTML=EXAMS.map(e=>{
+const sx=e.sx??0,sm=e.sm??0;
+const sc=sx>=80?'hi':sx>=50?'mi':'lo',mc=sm>=70?'hi':sm>=45?'mi':'lo';
+const tg=e.st==='done'?'<span class="tag d">✓</span>':e.st==='running'?'<span class="tag r">▶</span>':'<span class="tag p">○</span>';
+const vc=e.vs.startsWith('+')?'du':e.vs.startsWith('-')?'dd':'ds';
+return`<tr><td class="mono" style="color:var(--t3)">${e.id}</td><td class="ln">${e.nm}</td><td class="c">${tg}</td><td class="mono c">${e.st!=='pending'?e.vl+'/'+e.tl:'—'}</td><td><div class="pc"><div class="pt"><div class="pf ${sc}" style="width:${sx}%"></div></div><div class="pp" style="color:${sx>=80?'var(--green)':sx>=50?'var(--amber)':'var(--t3)'}">${e.sx!==null?sx+'%':'—'}</div></div></td><td><div class="pc"><div class="pt"><div class="pf ${mc}" style="width:${sm}%"></div></div><div class="pp" style="color:${sm>=70?'var(--blue)':sm>=45?'var(--amber)':'var(--t3)'}">${e.sm!==null?sm+'%':'—'}</div></div></td><td class="mono r" style="color:var(--t3)">${e.tm}</td><td class="mono r ${vc}">${e.vs}</td></tr>`;
+}).join('');
+
+document.getElementById('egrid').innerHTML=EVALS.map(e=>{
+const bg=e.sc===100?'var(--green-bg)':e.sc>=85?'var(--blue-bg)':e.sc>=70?'var(--amber-bg)':'var(--red-bg)';
+const c=e.sc===100?'var(--green)':e.sc>=85?'var(--blue)':e.sc>=70?'var(--amber)':'var(--red)';
+const bd=e.sc===100?'rgba(34,197,94,.25)':e.sc>=85?'rgba(59,130,246,.2)':e.sc>=70?'rgba(245,158,11,.2)':'rgba(239,68,68,.2)';
+return`<div class="ecell" style="background:${bg};border:1px solid ${bd}"><div class="eid" style="color:${c}">${e.id}</div><div class="esc" style="color:${c}">${e.sc}</div></div>`;
+}).join('');
+
+document.getElementById('log').innerHTML=LOGS.slice().reverse().map(e=>`<div class="le"><span class="lt">${e.t}</span><span class="lm">${e.m}</span></div>`).join('');
+
+const sorted=[...CATS].sort((a,b)=>a.s-b.s);
+document.getElementById('hmap').innerHTML=sorted.map(c=>{
+const h=c.s<=25?0:c.s<=50?30:c.s<=75?120:150;
+const tc=c.s<=25?'var(--red)':c.s<=50?'var(--amber)':c.s<=75?'var(--t1)':'var(--green)';
+return`<div class="hcell" style="background:hsl(${h},${c.s<=25?'70%':'50%'},${c.s<=25?'24%':c.s<=50?'21%':'19%'})"><span class="cn" style="color:${tc}">${c.n}</span><span class="cs" style="color:${tc}">${c.s}%</span></div>`;
+}).join('');
+
+function tick(){document.getElementById('clk').textContent=new Date().toLocaleTimeString('en-US',{hour12:false})}
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+{
+  "id": "character_sheet",
+  "name": "Character Sheet",
+  "category": "character",
+  "description": "Portrait, name, level, stats, XP bar, skill points",
+  "default_anchor": "Center",
+  "default_offset": [
+    0,
+    0
+  ],
+  "default_size": [
+    500,
+    600
+  ],
+  "variables": [
+    {
+      "name": "CharName",
+      "type": "String",
+      "default": "Hero"
+    },
+    {
+      "name": "CharLevel",
+      "type": "Integer",
+      "default": 1
+    },
+    {
+      "name": "XP",
+      "type": "Float",
+      "default": 0.0
+    },
+    {
+      "name": "MaxXP",
+      "type": "Float",
+      "default": 100.0
+    }
+  ],
+  "options": {},
+  "tree": {
+    "type": "VBOX",
+    "name": "SheetRoot",
+    "properties": {
+      "spacing": "10"
+    },
+    "children": [
+      {
+        "type": "HBOX",
+        "name": "HeaderRow",
+        "properties": {
+          "spacing": "12"
+        },
+        "children": [
+          {
+            "type": "IMAGE",
+            "name": "Portrait",
+            "properties": {
+              "tint": "$primary",
+              "size_x": "100",
+              "size_y": "100"
+            }
+          },
+          {
+            "type": "VBOX",
+            "name": "NameBlock",
+            "properties": {
+              "spacing": "2"
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "CharNameText",
+                "properties": {
+                  "text": "BIND:\"{CharName}\"",
+                  "font_size": "24",
+                  "color": "$text",
+                  "bold": "true"
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "LevelText",
+                "properties": {
+                  "text": "BIND:\"Level {CharLevel}\"",
+                  "font_size": "16",
+                  "color": "$accent"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "PROGRESS_BAR",
+        "name": "XPBar",
+        "properties": {
+          "percent": "BIND:XP/MaxXP",
+          "fill_color": "$xp",
+          "bar_color": "$surface",
+          "size_x": "400",
+          "size_y": "10"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "StatsTitle",
+        "properties": {
+          "text": "ATTRIBUTES",
+          "font_size": "16",
+          "color": "$text_muted",
+          "bold": "true"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "StrText",
+        "properties": {
+          "text": "BIND:\"Strength: {Strength}\"",
+          "font_size": "14",
+          "color": "$text"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "DexText",
+        "properties": {
+          "text": "BIND:\"Dexterity: {Dexterity}\"",
+          "font_size": "14",
+          "color": "$text"
+        }
+      },
+      {
+        "type": "TEXT",
+        "name": "IntText",
+        "properties": {
+          "text": "BIND:\"Intelligence: {Intelligence}\"",
+          "font_size": "14",
+          "color": "$text"
+        }
+      }
+    ]
+  }
+}

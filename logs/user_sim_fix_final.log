@@ -1,0 +1,50 @@
+
+  Checking connections...
+  OK: UE editor connected
+  [17:06:17] USER TYPES: "health check"
+  [17:06:38] INTENT RETURNS: mode=QUERY, ops=2, summary=Check if player has more than 1000 HP
+  OK: Intent server connected
+
+  Running 48 user simulation tests...
+
+  [17:06:38] 
+============================================================
+  [17:06:38] TEST S.01: Setup: Create enemy blueprint
+  [17:06:38] ============================================================
+  [17:06:38] USER TYPES: "Create an enemy with 100 health, 15 damage, and 300 speed"
+  [17:08:02] INTENT RETURNS: mode=CREATE, ops=1, summary=Create an enemy with 100 health, 15 damage, and 300 speed
+  [17:08:02] EXECUTE: create_blueprint → DSL pipeline (blueprint): "Create an enemy with 100 health, 15 damage, and 300 speed"
+  [17:09:02] DSL GENERATE: Got 431 chars of blueprint DSL
+  [17:09:02] PARSE: IR generated for blueprint
+  [17:09:02] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Enemy.blueprint.json
+  [17:09:02] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'path' parameter"}
+  [17:09:02] SCORE: 2/4 WARN (intent=True, plan=True, exec=False, verify=False)
+  [17:09:04] 
+============================================================
+  [17:09:04] TEST S.02: Setup: Create health pickup
+  [17:09:04] ============================================================
+  [17:09:04] USER TYPES: "Create a health pickup that heals 25 HP when touched and destroys itself"
+  [17:09:24] INTENT RETURNS: mode=MULTI, ops=1, summary=Create health pickup BP
+  [17:09:24] EXECUTE: create_blueprint → DSL pipeline (blueprint): "health pickup that heals 25 HP when touched and destroys itself"
+  [17:10:26] DSL GENERATE: Got 590 chars of blueprint DSL
+  [17:10:26] PARSE: IR generated for blueprint
+  [17:10:26] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_HealthPickup.blueprint.json
+  [17:10:26] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'path' parameter"}
+  [17:10:26] SCORE: 1/4 FAIL (intent=False, plan=True, exec=False, verify=False)
+  [17:10:28] 
+============================================================
+  [17:10:28] TEST S.03: Setup: Create coin
+  [17:10:28] ============================================================
+  [17:10:28] USER TYPES: "Create a gold coin pickup worth 10 points that destroys on collection"
+  [17:10:43] INTENT RETURNS: mode=CREATE, ops=1, summary=Create gold coin BP
+  [17:10:43] EXECUTE: create_blueprint → DSL pipeline (blueprint): "gold coin pickup worth 10 points that destroys on collection"
+  [17:11:30] DSL GENERATE: Got 459 chars of blueprint DSL
+  [17:11:30] PARSE: IR generated for blueprint
+  [17:11:30] IMPORT: Saved IR to C:\BlueprintLLM\test_ir\BP_Coin.blueprint.json
+  [17:11:30] RESULT: FAIL -- {"success": false, "status": "error", "message": "Missing 'path' parameter"}
+  [17:11:30] SCORE: 2/4 WARN (intent=True, plan=True, exec=False, verify=False)
+  [17:11:32] 
+============================================================
+  [17:11:32] TEST S.04: Setup: Create torch
+  [17:11:32] ============================================================
+  [17:11:32] USER TYPES: "Create a torch with a point light intensity of 5000"
