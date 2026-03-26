@@ -1,3 +1,4 @@
+// Copyright 2026 Divinity Alpha. All Rights Reserved.
 using UnrealBuildTool;
 
 public class Arcwright : ModuleRules
