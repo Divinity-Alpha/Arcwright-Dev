@@ -1,3 +1,4 @@
+// Copyright 2026 Divinity Alpha. All Rights Reserved.
 #include "BlueprintBuilder.h"
 #include "SafeSavePackage.h"
 

@@ -1,3 +1,4 @@
+// Copyright 2026 Divinity Alpha. All Rights Reserved.
 #include "CommandServer.h"
 #include "TierGating.h"
 #include "ArcwrightStats.h"

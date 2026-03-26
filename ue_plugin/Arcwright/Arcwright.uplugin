@@ -6,6 +6,7 @@
 	"Description": "The Bridge Between AI and Unreal Engine",
 	"Category": "Editor",
 	"CreatedBy": "Arcwright",
+	"MarketplaceURL": "com.epicgames.launcher://ue/Fab/product/8c105c4d-90be-4464-96ad-a097aa66e07c",
 	"EnabledByDefault": true,
 	"CanContainContent": true,
 	"IsBetaVersion": true,
@@ -23,7 +24,8 @@
 		{
 			"Name": "Arcwright",
 			"Type": "Editor",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"PlatformAllowList": ["Win64"]
 		}
 	]
 }

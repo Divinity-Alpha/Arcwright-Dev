@@ -1,3 +1,4 @@
+// Copyright 2026 Divinity Alpha. All Rights Reserved.
 #include "DSLImporter.h"
 #include "Misc/FileHelper.h"
 #include "Serialization/JsonReader.h"

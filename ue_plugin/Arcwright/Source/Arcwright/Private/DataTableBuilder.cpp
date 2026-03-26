@@ -1,3 +1,4 @@
+// Copyright 2026 Divinity Alpha. All Rights Reserved.
 #include "DataTableBuilder.h"
 #include "SafeSavePackage.h"
 #include "Engine/DataTable.h"

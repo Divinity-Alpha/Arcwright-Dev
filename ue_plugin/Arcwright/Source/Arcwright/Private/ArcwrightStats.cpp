@@ -1,3 +1,4 @@
+// Copyright 2026 Divinity Alpha. All Rights Reserved.
 #include "ArcwrightStats.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
