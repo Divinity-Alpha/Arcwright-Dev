@@ -6,8 +6,7 @@
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 #include "Serialization/JsonWriter.h"
-
-DECLARE_LOG_CATEGORY_EXTERN(LogArcwright, Log, All);
+#include "CommandServer.h"
 
 // ── Time saved estimates (seconds per successful command) ────
 

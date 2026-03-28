@@ -8,6 +8,9 @@
 #include "AssetRegistry/AssetRegistryModule.h"
 // UObject/SavePackage.h included via SafeSavePackage.h
 #include "Dom/JsonValue.h"
+#include "EdGraphSchema_K2.h"
+#include "Misc/PackageName.h"
+#include "AssetRegistry/AssetData.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogDTBuilder, Log, All);
 

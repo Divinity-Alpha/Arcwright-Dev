@@ -7,16 +7,23 @@
 #include "BehaviorTreeBuilder.h"
 
 #include "Dom/JsonObject.h"
+#include "Dom/JsonValue.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 #include "Serialization/JsonWriter.h"
+#include "Policies/CondensedJsonPrintPolicy.h"
+#include "Misc/EngineVersionComparison.h"
+#include "Misc/PackageName.h"
+#include "AssetRegistry/AssetData.h"
 
 #include "Engine/Blueprint.h"
 #include "Engine/BlueprintGeneratedClass.h"
 #include "Kismet2/BlueprintEditorUtils.h"
 #include "Kismet2/KismetEditorUtilities.h"
 #include "EdGraphSchema_K2.h"
+#include "EdGraphSchema_K2_Actions.h"
 #include "AssetRegistry/AssetRegistryModule.h"
+#include "AssetRegistry/AssetData.h"
 #include "ObjectTools.h"
 #include "Misc/FileHelper.h"
 #include "Logging/MessageLog.h"
@@ -54,6 +61,7 @@
 #include "Components/LightComponent.h"
 
 // Material management
+#include "MaterialDomain.h"
 #include "Materials/MaterialInstanceConstant.h"
 #include "Materials/MaterialInterface.h"
 #include "Materials/Material.h"

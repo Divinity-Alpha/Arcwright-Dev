@@ -4,6 +4,7 @@
 #include "ArcwrightModule.h"
 #include "CommandServer.h"
 #include "ArcwrightStats.h"
+#include "Misc/EngineVersionComparison.h"
 
 #include "Framework/Docking/TabManager.h"
 #include "Widgets/Docking/SDockTab.h"

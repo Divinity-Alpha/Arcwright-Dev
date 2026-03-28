@@ -45,10 +45,10 @@
 #include "BehaviorTree/BehaviorTreeTypes.h"
 
 #include "AssetRegistry/AssetRegistryModule.h"
+#include "AssetRegistry/AssetData.h"
 // UObject/SavePackage.h included via SafeSavePackage.h
 #include "Misc/PackageName.h"
-
-DECLARE_LOG_CATEGORY_EXTERN(LogArcwright, Log, All);
+#include "CommandServer.h"
 
 // Helper: Set BlackboardKey.SelectedKeyName on any BT node via UProperty reflection.
 // BlackboardKey is protected on UBTTask_BlackboardBase, UBTDecorator_BlackboardBase, UBTService_BlackboardBase,

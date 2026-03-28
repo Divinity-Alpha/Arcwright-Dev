@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "DSLImporter.h"
+#include "EdGraph/EdGraphPin.h"
 
 class UBlueprint;
 class UEdGraph;

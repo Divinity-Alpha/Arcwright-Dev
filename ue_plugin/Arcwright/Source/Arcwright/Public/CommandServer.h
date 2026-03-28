@@ -4,11 +4,23 @@
 #include "CoreMinimal.h"
 #include "Common/TcpListener.h"
 #include "Sockets.h"
+#include "Dom/JsonObject.h"
+#include "Dom/JsonValue.h"
 #include <atomic>
 
 class USimpleConstructionScript;
 class USCS_Node;
 class FArcwrightStats;
+class UBlueprint;
+class UAnimBlueprint;
+class UEdGraph;
+class UEdGraphNode;
+class AActor;
+class UActorComponent;
+class UMaterialInterface;
+class UWidget;
+class UEdGraphPin;
+struct FAssetData;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogArcwright, Log, All);
 
