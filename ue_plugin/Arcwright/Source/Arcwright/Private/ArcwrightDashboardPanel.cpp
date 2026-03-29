@@ -1269,7 +1269,7 @@ FReply SArcwrightDashboardPanel::OnSubmitFeedbackClicked()
 	HttpRequest->SetURL(Endpoint);
 	HttpRequest->SetVerb(TEXT("POST"));
 	HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
-	HttpRequest->SetHeader(TEXT("User-Agent"), TEXT("Arcwright-Plugin/1.0.3"));
+	HttpRequest->SetHeader(TEXT("User-Agent"), TEXT("Arcwright-Plugin/1.0.4"));
 	HttpRequest->SetContentAsString(JsonString);
 	HttpRequest->OnProcessRequestComplete().BindRaw(this, &SArcwrightDashboardPanel::OnFeedbackHttpComplete);
 	HttpRequest->ProcessRequest();
