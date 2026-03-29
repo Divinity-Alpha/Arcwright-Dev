@@ -527,6 +527,15 @@ private:
 	TSharedPtr<FJsonObject> VectorToJson(const FVector& V);
 	TSharedPtr<FJsonObject> RotatorToJson(const FRotator& R);
 
+	// v1.0.4 commands
+	FCommandResult HandleBatchSpawnActors(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleApplyMaterialByName(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleSetLevelPostProcess(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleSetTimeOfDay(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleTeleportPlayerSmooth(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleCreatePostProcessVolume(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleGetActorScreenshot(const TSharedPtr<FJsonObject>& Params);
+
 	// Last error tracking (Phase 4)
 	FString LastErrorMessage;
 	FString LastErrorCommand;

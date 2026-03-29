@@ -1479,6 +1479,15 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	if (Command == TEXT("spawn_actor_circle")) { return HandleSpawnActorCircle(Params); }
 	if (Command == TEXT("spawn_actor_line"))   { return HandleSpawnActorLine(Params); }
 
+	// v1.0.4 new commands
+	if (Command == TEXT("batch_spawn_actors"))          { return HandleBatchSpawnActors(Params); }
+	if (Command == TEXT("apply_material_by_name"))      { return HandleApplyMaterialByName(Params); }
+	if (Command == TEXT("set_level_post_process"))      { return HandleSetLevelPostProcess(Params); }
+	if (Command == TEXT("set_time_of_day"))             { return HandleSetTimeOfDay(Params); }
+	if (Command == TEXT("teleport_player_smooth"))      { return HandleTeleportPlayerSmooth(Params); }
+	if (Command == TEXT("create_post_process_volume"))  { return HandleCreatePostProcessVolume(Params); }
+	if (Command == TEXT("get_actor_screenshot"))        { return HandleGetActorScreenshot(Params); }
+
 	// Relative transform batch commands
 	if (Command == TEXT("batch_scale_actors")) { return HandleBatchScaleActors(Params); }
 	if (Command == TEXT("batch_move_actors"))  { return HandleBatchMoveActors(Params); }
@@ -20634,4 +20643,341 @@ FCommandResult FCommandServer::HandleCompileAnimBlueprint(const TSharedPtr<FJson
 	return FCommandResult::Ok(Data);
 }
 
+// ============================================================
+// v1.0.4 — New Commands
+// ============================================================
 
+// M006 — batch_spawn_actors
+FCommandResult FCommandServer::HandleBatchSpawnActors(const TSharedPtr<FJsonObject>& Params)
+{
+	const TArray<TSharedPtr<FJsonValue>>* ActorsArray;
+	if (!Params->TryGetArrayField(TEXT("actors"), ActorsArray) || ActorsArray->Num() == 0)
+	{
+		return FCommandResult::Error(TEXT("Missing or empty 'actors' array"));
+	}
+
+	UWorld* World = GEditor ? GEditor->GetEditorWorldContext().World() : nullptr;
+	if (!World) return FCommandResult::Error(TEXT("No world"));
+
+	int32 Spawned = 0;
+	int32 Failed = 0;
+	TArray<TSharedPtr<FJsonValue>> ResultActors;
+	TArray<TSharedPtr<FJsonValue>> FailedActors;
+
+	for (const TSharedPtr<FJsonValue>& ActorVal : *ActorsArray)
+	{
+		const TSharedPtr<FJsonObject>* ActorObj;
+		if (!ActorVal->TryGetObject(ActorObj)) { Failed++; continue; }
+
+		FString ClassName = (*ActorObj)->GetStringField(TEXT("class"));
+		FString Label = (*ActorObj)->GetStringField(TEXT("label"));
+		if (ClassName.IsEmpty()) { Failed++; continue; }
+
+		UClass* ActorClass = ResolveActorClass(ClassName);
+		if (!ActorClass)
+		{
+			Failed++;
+			TSharedPtr<FJsonObject> FailObj = MakeShareable(new FJsonObject());
+			FailObj->SetStringField(TEXT("label"), Label);
+			FailObj->SetStringField(TEXT("error"), FString::Printf(TEXT("Could not resolve class: %s"), *ClassName));
+			FailedActors.Add(MakeShareable(new FJsonValueObject(FailObj)));
+			continue;
+		}
+
+		FVector Location(
+			(*ActorObj)->HasField(TEXT("x")) ? (*ActorObj)->GetNumberField(TEXT("x")) : 0.0,
+			(*ActorObj)->HasField(TEXT("y")) ? (*ActorObj)->GetNumberField(TEXT("y")) : 0.0,
+			(*ActorObj)->HasField(TEXT("z")) ? (*ActorObj)->GetNumberField(TEXT("z")) : 0.0);
+		FRotator Rotation(
+			(*ActorObj)->HasField(TEXT("pitch")) ? (*ActorObj)->GetNumberField(TEXT("pitch")) : 0.0,
+			(*ActorObj)->HasField(TEXT("yaw")) ? (*ActorObj)->GetNumberField(TEXT("yaw")) : 0.0,
+			(*ActorObj)->HasField(TEXT("roll")) ? (*ActorObj)->GetNumberField(TEXT("roll")) : 0.0);
+
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		AActor* NewActor = World->SpawnActor(ActorClass, &Location, &Rotation, SpawnParams);
+		if (NewActor)
+		{
+			if (!Label.IsEmpty()) NewActor->SetActorLabel(Label);
+			NewActor->MarkPackageDirty();
+			Spawned++;
+			ResultActors.Add(MakeShareable(new FJsonValueString(Label.IsEmpty() ? NewActor->GetName() : Label)));
+		}
+		else
+		{
+			Failed++;
+		}
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetNumberField(TEXT("spawned"), Spawned);
+	Data->SetNumberField(TEXT("failed"), Failed);
+	Data->SetArrayField(TEXT("actors"), ResultActors);
+	if (FailedActors.Num() > 0) Data->SetArrayField(TEXT("failures"), FailedActors);
+	return FCommandResult::Ok(Data);
+}
+
+// M010 — apply_material_by_name
+FCommandResult FCommandServer::HandleApplyMaterialByName(const TSharedPtr<FJsonObject>& Params)
+{
+	FString ActorName = Params->GetStringField(TEXT("actor_name"));
+	if (ActorName.IsEmpty()) ActorName = Params->GetStringField(TEXT("actor_label"));
+	FString MaterialName = Params->GetStringField(TEXT("material_name"));
+	int32 Slot = Params->HasField(TEXT("slot")) ? (int32)Params->GetNumberField(TEXT("slot")) : 0;
+
+	if (ActorName.IsEmpty()) return FCommandResult::Error(TEXT("Missing 'actor_name'"));
+	if (MaterialName.IsEmpty()) return FCommandResult::Error(TEXT("Missing 'material_name'"));
+
+	AActor* Actor = FindActorByLabel(ActorName);
+	if (!Actor) return FCommandResult::Error(FormatActorNotFound(ActorName));
+
+	FString ResolvedPath, OutError;
+	UMaterialInterface* Mat = ResolveMaterialByName(MaterialName, ResolvedPath, OutError);
+	if (!Mat) return FCommandResult::Error(OutError.IsEmpty() ? FString::Printf(TEXT("Material not found: %s"), *MaterialName) : OutError);
+
+	UStaticMeshComponent* MeshComp = Actor->FindComponentByClass<UStaticMeshComponent>();
+	if (MeshComp)
+	{
+		MeshComp->SetMaterial(Slot, Mat);
+	}
+	else
+	{
+		return FCommandResult::Error(TEXT("Actor has no StaticMeshComponent to apply material to"));
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("actor"), ActorName);
+	Data->SetStringField(TEXT("material"), ResolvedPath);
+	Data->SetNumberField(TEXT("slot"), Slot);
+	return FCommandResult::Ok(Data);
+}
+
+// M007 — set_level_post_process
+FCommandResult FCommandServer::HandleSetLevelPostProcess(const TSharedPtr<FJsonObject>& Params)
+{
+	UWorld* World = GEditor ? GEditor->GetEditorWorldContext().World() : nullptr;
+	if (!World) return FCommandResult::Error(TEXT("No world"));
+
+	APostProcessVolume* PPV = nullptr;
+	for (TActorIterator<APostProcessVolume> It(World); It; ++It) { PPV = *It; break; }
+
+	if (!PPV)
+	{
+		PPV = World->SpawnActor<APostProcessVolume>(APostProcessVolume::StaticClass());
+		if (!PPV) return FCommandResult::Error(TEXT("Failed to create PostProcessVolume"));
+		PPV->bUnbound = true;
+		PPV->SetActorLabel(TEXT("ArcwrightPostProcess"));
+	}
+
+	FPostProcessSettings& S = PPV->Settings;
+	int32 Applied = 0;
+
+	if (Params->HasField(TEXT("bloom_intensity")))    { S.bOverride_BloomIntensity = true; S.BloomIntensity = Params->GetNumberField(TEXT("bloom_intensity")); Applied++; }
+	if (Params->HasField(TEXT("bloom_threshold")))    { S.bOverride_BloomThreshold = true; S.BloomThreshold = Params->GetNumberField(TEXT("bloom_threshold")); Applied++; }
+	if (Params->HasField(TEXT("exposure_compensation"))) { S.bOverride_AutoExposureBias = true; S.AutoExposureBias = Params->GetNumberField(TEXT("exposure_compensation")); Applied++; }
+	if (Params->HasField(TEXT("saturation")))         { S.bOverride_ColorSaturation = true; S.ColorSaturation = FVector4(Params->GetNumberField(TEXT("saturation")), Params->GetNumberField(TEXT("saturation")), Params->GetNumberField(TEXT("saturation")), 1.0f); Applied++; }
+	if (Params->HasField(TEXT("contrast")))           { S.bOverride_ColorContrast = true; S.ColorContrast = FVector4(Params->GetNumberField(TEXT("contrast")), Params->GetNumberField(TEXT("contrast")), Params->GetNumberField(TEXT("contrast")), 1.0f); Applied++; }
+	if (Params->HasField(TEXT("vignette_intensity"))) { S.bOverride_VignetteIntensity = true; S.VignetteIntensity = Params->GetNumberField(TEXT("vignette_intensity")); Applied++; }
+	if (Params->HasField(TEXT("chromatic_aberration"))) { S.bOverride_SceneFringeIntensity = true; S.SceneFringeIntensity = Params->GetNumberField(TEXT("chromatic_aberration")); Applied++; }
+
+	PPV->MarkPackageDirty();
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("volume"), PPV->GetActorLabel());
+	Data->SetNumberField(TEXT("settings_applied"), Applied);
+	Data->SetBoolField(TEXT("unbound"), PPV->bUnbound);
+	return FCommandResult::Ok(Data);
+}
+
+// M009 — set_time_of_day
+FCommandResult FCommandServer::HandleSetTimeOfDay(const TSharedPtr<FJsonObject>& Params)
+{
+	if (!Params->HasField(TEXT("hour")))
+		return FCommandResult::Error(TEXT("Missing 'hour' param (0-24)"));
+
+	float HourF = Params->GetNumberField(TEXT("hour"));
+	HourF = FMath::Clamp(HourF, 0.0f, 24.0f);
+
+	UWorld* World = GEditor ? GEditor->GetEditorWorldContext().World() : nullptr;
+	if (!World) return FCommandResult::Error(TEXT("No world"));
+
+	// Map hour to sun pitch: noon=-60 (high), dawn/dusk=0 (horizon), midnight=90 (below)
+	float NormalizedHour = HourF / 24.0f;
+	float SunPitch = FMath::Sin(NormalizedHour * PI * 2.0f - PI / 2.0f) * -60.0f;
+
+	// Light intensity based on time
+	float Intensity = 10.0f;
+	FLinearColor LightColor(1.0f, 0.98f, 0.92f); // midday
+	if (HourF < 5.0f || HourF > 22.0f) { Intensity = 0.1f; LightColor = FLinearColor(0.1f, 0.1f, 0.3f); }
+	else if (HourF < 7.0f || HourF > 20.0f) { Intensity = 3.0f; LightColor = FLinearColor(1.0f, 0.5f, 0.2f); }
+	else if (HourF < 9.0f || HourF > 18.0f) { Intensity = 6.0f; LightColor = FLinearColor(1.0f, 0.85f, 0.65f); }
+
+	ADirectionalLight* Sun = nullptr;
+	for (TActorIterator<ADirectionalLight> It(World); It; ++It) { Sun = *It; break; }
+
+	FString SunStatus = TEXT("not_found");
+	if (Sun)
+	{
+		FRotator SunRot = Sun->GetActorRotation();
+		SunRot.Pitch = SunPitch;
+		Sun->SetActorRotation(SunRot);
+		ULightComponent* LC = Sun->GetLightComponent();
+		if (LC)
+		{
+			LC->SetIntensity(Intensity);
+			LC->SetLightColor(LightColor);
+		}
+		Sun->MarkPackageDirty();
+		SunStatus = TEXT("updated");
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetNumberField(TEXT("hour"), HourF);
+	Data->SetNumberField(TEXT("sun_pitch"), SunPitch);
+	Data->SetNumberField(TEXT("intensity"), Intensity);
+	Data->SetStringField(TEXT("directional_light"), SunStatus);
+	return FCommandResult::Ok(Data);
+}
+
+// M008 — teleport_player_smooth
+FCommandResult FCommandServer::HandleTeleportPlayerSmooth(const TSharedPtr<FJsonObject>& Params)
+{
+	if (!GEditor || !GEditor->PlayWorld)
+		return FCommandResult::Error(TEXT("PIE not running"));
+
+	APlayerController* PC = GEditor->PlayWorld->GetFirstPlayerController();
+	if (!PC || !PC->GetPawn())
+		return FCommandResult::Error(TEXT("No player pawn in PIE"));
+
+	FVector TargetLoc(
+		Params->HasField(TEXT("x")) ? Params->GetNumberField(TEXT("x")) : 0.0,
+		Params->HasField(TEXT("y")) ? Params->GetNumberField(TEXT("y")) : 0.0,
+		Params->HasField(TEXT("z")) ? Params->GetNumberField(TEXT("z")) : 0.0);
+
+	float DurationSeconds = Params->HasField(TEXT("duration_seconds"))
+		? Params->GetNumberField(TEXT("duration_seconds")) : 0.0f;
+
+	APawn* PlayerPawn = PC->GetPawn();
+
+	if (DurationSeconds <= 0.01f)
+	{
+		PlayerPawn->SetActorLocation(TargetLoc);
+	}
+	else
+	{
+		FVector StartLoc = PlayerPawn->GetActorLocation();
+		float Elapsed = 0.0f;
+		const float TickRate = 0.016f;
+
+		while (Elapsed < DurationSeconds)
+		{
+			FPlatformProcess::Sleep(TickRate);
+			Elapsed += TickRate;
+			float Alpha = FMath::Clamp(Elapsed / DurationSeconds, 0.0f, 1.0f);
+			// Smooth step for nicer interpolation
+			Alpha = Alpha * Alpha * (3.0f - 2.0f * Alpha);
+			FVector NewLoc = FMath::Lerp(StartLoc, TargetLoc, Alpha);
+			PlayerPawn->SetActorLocation(NewLoc);
+		}
+	}
+
+	// Optional: look at actor
+	if (Params->HasField(TEXT("look_at_actor")))
+	{
+		FString LookTarget = Params->GetStringField(TEXT("look_at_actor"));
+		AActor* Target = FindActorByLabel(LookTarget);
+		if (Target)
+		{
+			FVector LookDir = (Target->GetActorLocation() - PlayerPawn->GetActorLocation()).GetSafeNormal();
+			PC->SetControlRotation(LookDir.Rotation());
+		}
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetObjectField(TEXT("location"), VectorToJson(TargetLoc));
+	Data->SetNumberField(TEXT("duration"), DurationSeconds);
+	Data->SetBoolField(TEXT("smooth"), DurationSeconds > 0.01f);
+	return FCommandResult::Ok(Data);
+}
+
+// M011 — create_post_process_volume
+FCommandResult FCommandServer::HandleCreatePostProcessVolume(const TSharedPtr<FJsonObject>& Params)
+{
+	UWorld* World = GEditor ? GEditor->GetEditorWorldContext().World() : nullptr;
+	if (!World) return FCommandResult::Error(TEXT("No world"));
+
+	FString Name = Params->HasField(TEXT("name")) ? Params->GetStringField(TEXT("name")) : TEXT("PPV_Arcwright");
+	bool bInfinite = Params->HasField(TEXT("infinite")) ? Params->GetBoolField(TEXT("infinite")) : false;
+	float Priority = Params->HasField(TEXT("priority")) ? Params->GetNumberField(TEXT("priority")) : 0.0f;
+	float BlendRadius = Params->HasField(TEXT("blend_radius")) ? Params->GetNumberField(TEXT("blend_radius")) : 100.0f;
+
+	FVector Location = FVector::ZeroVector;
+	if (Params->HasTypedField<EJson::Object>(TEXT("location")))
+	{
+		Location = JsonToVector(Params->GetObjectField(TEXT("location")));
+	}
+
+	APostProcessVolume* PPV = World->SpawnActor<APostProcessVolume>(Location, FRotator::ZeroRotator);
+	if (!PPV) return FCommandResult::Error(TEXT("Failed to create PostProcessVolume"));
+
+	PPV->SetActorLabel(Name);
+	PPV->bUnbound = bInfinite;
+	PPV->Priority = Priority;
+	PPV->BlendRadius = BlendRadius;
+	PPV->MarkPackageDirty();
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("name"), Name);
+	Data->SetBoolField(TEXT("infinite"), bInfinite);
+	Data->SetNumberField(TEXT("priority"), Priority);
+	Data->SetNumberField(TEXT("blend_radius"), BlendRadius);
+	return FCommandResult::Ok(Data);
+}
+
+// M012 — get_actor_screenshot
+FCommandResult FCommandServer::HandleGetActorScreenshot(const TSharedPtr<FJsonObject>& Params)
+{
+	FString ActorName = Params->GetStringField(TEXT("actor_name"));
+	if (ActorName.IsEmpty()) ActorName = Params->GetStringField(TEXT("actor_label"));
+	if (ActorName.IsEmpty()) return FCommandResult::Error(TEXT("Missing 'actor_name'"));
+
+	FString Filename = Params->HasField(TEXT("filename"))
+		? Params->GetStringField(TEXT("filename"))
+		: FString::Printf(TEXT("actor_%s"), *ActorName);
+	float Distance = Params->HasField(TEXT("distance")) ? Params->GetNumberField(TEXT("distance")) : 400.0f;
+	float HeightOffset = Params->HasField(TEXT("height_offset")) ? Params->GetNumberField(TEXT("height_offset")) : 100.0f;
+
+	if (!GEditor || !GEditor->PlayWorld)
+		return FCommandResult::Error(TEXT("PIE not running — start play_in_editor first"));
+
+	AActor* Target = FindActorByLabel(ActorName);
+	if (!Target) return FCommandResult::Error(FormatActorNotFound(ActorName));
+
+	APlayerController* PC = GEditor->PlayWorld->GetFirstPlayerController();
+	if (!PC || !PC->GetPawn()) return FCommandResult::Error(TEXT("No player pawn in PIE"));
+
+	FVector ActorLoc = Target->GetActorLocation();
+	FVector CameraPos = ActorLoc + FVector(-Distance, 0, HeightOffset);
+
+	PC->GetPawn()->SetActorLocation(CameraPos);
+	FVector LookDir = (ActorLoc - CameraPos).GetSafeNormal();
+	PC->SetControlRotation(LookDir.Rotation());
+
+	// Wait for render stabilization
+	int32 DelayMs = Params->HasField(TEXT("delay_ms")) ? (int32)Params->GetNumberField(TEXT("delay_ms")) : 500;
+	FPlatformProcess::Sleep(DelayMs / 1000.0f);
+
+	// Take screenshot using the updated PIE-aware handler
+	TSharedPtr<FJsonObject> ScreenshotParams = MakeShareable(new FJsonObject());
+	ScreenshotParams->SetStringField(TEXT("filename"), Filename);
+	FCommandResult ScreenshotResult = HandleTakeScreenshot(ScreenshotParams);
+
+	if (ScreenshotResult.bSuccess && ScreenshotResult.Data.IsValid())
+	{
+		ScreenshotResult.Data->SetStringField(TEXT("target_actor"), ActorName);
+		ScreenshotResult.Data->SetObjectField(TEXT("actor_location"), VectorToJson(ActorLoc));
+		ScreenshotResult.Data->SetObjectField(TEXT("camera_location"), VectorToJson(CameraPos));
+	}
+
+	return ScreenshotResult;
+}
