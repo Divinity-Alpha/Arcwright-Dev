@@ -2,8 +2,8 @@
 
 > *The Bridge Between AI and Unreal Engine.*
 
-> **Doc Version:** 13.6
-> **Last Updated:** 2026-03-24
+> **Doc Version:** 21.0
+> **Last Updated:** 2026-03-28
 > **Owner:** Divinity Alpha
 > **Repo:** github.com/Divinity-Alpha/Arcwright
 > **Product Name:** Arcwright
@@ -293,6 +293,52 @@ python scripts/mcp_client/verify.py
 10. **70B first training step takes ~96 min** — CUDA JIT + cuBLAS autotuning, normal
 11. **UE Editor on wrong GPU = 245x training slowdown** — always use `-graphicsadapter=0`
 12. **create_simple_material works with Substrate** — create_material_instance does NOT
+13. **FAB requires PlatformAllowList in every .uplugin module**, copyright headers on all source files, no Binaries/Intermediate/Saved in submission, MarketplaceURL in .uplugin
+14. **FAB Python folder structure** — `Content/Python/Lib/site-packages/` must exist even if no third-party packages are bundled. RunUAT leaves `Intermediate/` in packaged output — always remove it before zipping.
+15. **FAB copyright headers required on ALL source files** including `.cs` (Build.cs) — not just `.cpp` and `.h`. Check every file type in `Source/`.
+16. **FAB ships source-only** — no pre-compiled Binaries folder. Customers compile on first load in UE5. Exclude Binaries/, Intermediate/, Saved/, Build/ from submission zip.
+17. **Website sidebar layout rules** — Sidebars on help.html and docs.html must follow these exact CSS rules or links collapse into a horizontal mess instead of a vertical list:
+    - Layout container: `display:grid` (NOT `display:flex`), NO `align-items:start` on the container — use `align-self:start` on each child instead
+    - Sidebar div: `align-self:start` + `position:sticky` + `display:flex` + `flex-direction:column` (ALL FOUR required)
+    - Sidebar section: `display:flex` + `flex-direction:column` (explicit vertical)
+    - Sidebar link: `display:block` + `width:100%` (explicit block, not inline)
+    - Sidebar title: `display:block` (explicit)
+    - Use `<div class="help-sidebar">` NOT `<nav class="help-sidebar">` — browsers apply default flex/inline styling to nav elements that breaks the vertical layout
+    - Every sidebar-section must be a properly closed `<div>` — orphaned links outside their section div break the layout
+    - **Common mistakes causing horizontal packing:** `align-items:start` on grid parent instead of `align-self:start` on children, using `<nav>` tag, missing `flex-direction:column` on sidebar or sidebar-section, unclosed sidebar-section divs
+18. **Strict includes required for FAB submission** — FAB's build server compiles with `-StrictIncludes` and without unity builds. Local builds hide missing includes through unity build merging. Before any FAB submission always run: (1) Add `bUseUnity = false` to Build.cs temporarily, (2) clean intermediates, (3) `Build.bat` with `-DisableUnity -NoHotReload`, (4) `RunUAT BuildPlugin` with `-StrictIncludes`, (5) must show zero errors, (6) remove `bUseUnity = false` before final package. Files commonly affected: any `.h` or `.cpp` that uses `FJsonObject`, `FJsonValue`, `FAssetData`, `UEdGraphPin`, `EMaterialDomain` values, `ENGINE_MAJOR_VERSION`, or any UE type without explicitly including its header. These all get pulled in transitively by unity builds but fail under strict compilation.
+19. **setup_default_lighting missing from v1.0.2** — every new level session needs lighting. Workaround: create BP_Lighting with SkyLight + DirectionalLight components. Fix: v1.0.3 command.
+20. **take_screenshot captures editor viewport not PIE** — always wait 5 seconds after `play_in_editor` before any screenshot. Fix: v1.0.3 PIE viewport detection.
+21. **Fresh install test required before every FAB release** — test on blank project with zero prior setup. Lighting and PIE screenshots must both pass. No exceptions.
+22. **Workarounds are always future commands** — every time a workaround is used, log it as a future Arcwright command requirement in `knowledge/skills/`.
+23. **The knowledge system IS the product roadmap** — command failures and workarounds directly become the v1.0.3, v1.0.4 feature lists.
+24. **Null check every asset load (F008)** — every `LoadObject` call must check for null and return a graceful error response. Never let a missing asset reach a dereference. Pattern: `UObject* Asset = LoadObject<...>(nullptr, *Path); if (!Asset) return FCommandResult::Error("Asset not found: " + Path);`
+25. **Test suite before every FAB submission** — run `python arcwright_test_suite.py --mode all`. Regression must be 36/36. Stress must be 0 crashes, 0 timeouts. Discovery warnings acceptable, failures are not. Gate: 95%+ pass rate before packaging.
+26. **Accept multiple param names for actor references** — commands that accept actor references must accept: `actor_name`, `label`, `name`, `actor_label`. Never reject a valid actor reference due to param name mismatch.
+
+---
+
+## Knowledge Capture Protocol
+
+Every Claude Code session must log to `C:\Arcwright\knowledge\`:
+
+**START:** `python C:\Arcwright\knowledge\capture_session.py [session_name]`
+
+**DURING — log every:**
+- Command failure (command, params, exact error)
+- Workaround used (intended, actual, why)
+- Problem encountered (description, UE error)
+- Problem resolved (root cause, resolution, lesson)
+
+**END:**
+- Save session log
+- Run `extract_lessons.py`
+- Create `SKILL_XXX.md` for any new lessons
+- Update CLAUDE.md if new strategic rules discovered
+
+**WEEKLY:**
+- Run `generate_report.py`
+- Review output for CLAUDE.md updates
 
 ---
 
@@ -315,3 +361,11 @@ python scripts/mcp_client/verify.py
 | 13.4 | 2026-03-24 | Root CanvasPanel auto-clips. protect_widget_layout command. Rule 18. |
 | 13.5 | 2026-03-24 | Content paths /Game/Arcwright/ → /Game/Arcwright/. HTML→Arcwright translator. Display string rename (202 replacements across 8 files). |
 | 13.6 | 2026-03-24 | Plugin v1.0.1 release. hex:/srgb: colors, set_widget_design_size, protect_widget_layout, auto-clip root canvas, content path rename. |
+| 14.0 | 2026-03-25 | FAB resubmission: PlatformAllowList, MarketplaceURL, copyright headers, clean package (Arcwright_1.0.2_r2.zip). |
+| 15.0 | 2026-03-26 | FAB r3: Python folder at Content/Python/Lib/site-packages/, confirmed Niagara+EnhancedInput deps required, Intermediate cleanup, package Arcwright_1.0.2_r3.zip. |
+| 16.0 | 2026-03-26 | FAB r4: Build.cs copyright header fix. All source file types (.cpp, .h, .cs) now have headers. Package Arcwright_1.0.2_r4.zip. |
+| 17.0 | 2026-03-27 | FAB r5: Source-only submission — Binaries excluded. Customers compile from source. Package Arcwright_1.0.2_r5.zip (223 KB). |
+| 18.0 | 2026-03-27 | Added website sidebar layout rules to Key Lessons (lesson 17). |
+| 19.0 | 2026-03-27 | FAB r6: strict include fixes across 9 source files. Added lesson 18 (strict includes verification protocol). |
+| 20.0 | 2026-03-28 | Knowledge capture system deployed. 5 skill files, session logger, lesson extractor, weekly report generator. Lessons 19-23 added. Knowledge capture protocol section. |
+| 21.0 | 2026-03-28 | v1.0.3 release. F008/F007/F009 fixed. Regression 36/36. Stress 26/26 (0 crashes). Test suite mandatory before every release. Lessons 24-26 added. |

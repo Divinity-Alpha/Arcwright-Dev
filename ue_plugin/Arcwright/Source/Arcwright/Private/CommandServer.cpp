@@ -289,7 +289,7 @@
 
 DEFINE_LOG_CATEGORY(LogArcwright);
 
-const FString FCommandServer::SERVER_VERSION = TEXT("1.0.2");
+const FString FCommandServer::SERVER_VERSION = TEXT("1.0.3");
 
 // ============================================================
 // Error Suggestion Helpers
