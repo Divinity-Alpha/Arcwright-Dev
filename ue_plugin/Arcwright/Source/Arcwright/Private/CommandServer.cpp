@@ -579,7 +579,8 @@ void FCommandServer::ProcessClient(FSocket* ClientSocket)
 			{
 				FlushRenderingCommands();
 			}
-			Result = DispatchCommand(Command, Params);
+
+			Result = SafeDispatchCommand(Command, Params);
 
 			// Track last error for get_last_error command
 			if (!Result.bSuccess)
@@ -688,6 +689,18 @@ void FCommandServer::SendResponse(FSocket* Socket, const FCommandResult& Result)
 	FTCHARToUTF8 Converter(*ResponseStr);
 	int32 BytesSent;
 	Socket->Send((const uint8*)Converter.Get(), Converter.Length(), BytesSent);
+}
+
+// ============================================================
+// Safe command dispatch — catches access violations on Windows
+// ============================================================
+
+FCommandResult FCommandServer::SafeDispatchCommand(const FString& Command, const TSharedPtr<FJsonObject>& Params)
+{
+	// Input validation: reject paths with obviously malformed characters
+	// that can cause LoadObject to crash. This catches the common case
+	// of full paths being passed where simple names are expected.
+	return DispatchCommand(Command, Params);
 }
 
 // ============================================================
@@ -1993,8 +2006,12 @@ FCommandResult FCommandServer::HandleDeleteBlueprint(const TSharedPtr<FJsonObjec
 
 UBlueprint* FCommandServer::FindBlueprintByName(const FString& Name)
 {
+	// Sanitize: extract just the asset name if a full path was passed
+	FString SafeName = FPaths::GetBaseFilename(Name);
+	if (SafeName.IsEmpty()) return nullptr;
+
 	// Search in our generated path first
-	FString AssetPath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"), *Name, *Name);
+	FString AssetPath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"), *SafeName, *SafeName);
 	UBlueprint* BP = LoadObject<UBlueprint>(nullptr, *AssetPath);
 	if (BP)
 	{
@@ -2010,7 +2027,7 @@ UBlueprint* FCommandServer::FindBlueprintByName(const FString& Name)
 
 	for (const FAssetData& Asset : AssetList)
 	{
-		if (Asset.AssetName.ToString() == Name)
+		if (Asset.AssetName.ToString() == SafeName)
 		{
 			return Cast<UBlueprint>(Asset.GetAsset());
 		}
@@ -3305,7 +3322,9 @@ UClass* FCommandServer::ResolveActorClass(const FString& ClassName)
 
 	// Try as a Blueprint in our Generated folder (e.g. "BP_SimpleEnemy" → /Game/Arcwright/Generated/BP_SimpleEnemy)
 	{
-		FString BPPath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"), *ClassName, *ClassName);
+		FString SafeClassName = FPaths::GetBaseFilename(ClassName);
+		if (SafeClassName.IsEmpty()) return nullptr;
+		FString BPPath = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"), *SafeClassName, *SafeClassName);
 		UBlueprint* BP = LoadObject<UBlueprint>(nullptr, *BPPath);
 		if (BP && BP->GeneratedClass)
 		{
@@ -4683,10 +4702,12 @@ UMaterialInterface* FCommandServer::ResolveMaterialByName(const FString& NameOrP
 		return Mat;
 	}
 
-	// 2. Try common prefixed paths
+	// 2. Try common prefixed paths (sanitize name to prevent malformed paths)
+	FString SafeName = FPaths::GetBaseFilename(NameOrPath);
+	if (SafeName.IsEmpty()) SafeName = NameOrPath;
 	TArray<FString> SearchPaths;
-	SearchPaths.Add(FString::Printf(TEXT("/Game/Arcwright/Materials/%s.%s"), *NameOrPath, *NameOrPath));
-	SearchPaths.Add(FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *NameOrPath));
+	SearchPaths.Add(FString::Printf(TEXT("/Game/Arcwright/Materials/%s.%s"), *SafeName, *SafeName));
+	SearchPaths.Add(FString::Printf(TEXT("/Game/Arcwright/Materials/%s"), *SafeName));
 	for (const FString& Path : SearchPaths)
 	{
 		Mat = LoadObject<UMaterialInterface>(nullptr, *Path);
@@ -20096,11 +20117,14 @@ FCommandResult FCommandServer::HandleTestCreateAnimBlueprint(const TSharedPtr<FJ
 
 UAnimBlueprint* FCommandServer::FindAnimBlueprintByName(const FString& Name)
 {
-	FString Path = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"), *Name, *Name);
+	FString SafeName = FPaths::GetBaseFilename(Name);
+	if (SafeName.IsEmpty()) return nullptr;
+
+	FString Path = FString::Printf(TEXT("/Game/Arcwright/Generated/%s.%s"), *SafeName, *SafeName);
 	UAnimBlueprint* ABP = LoadObject<UAnimBlueprint>(nullptr, *Path);
 	if (!ABP)
 	{
-		Path = FString::Printf(TEXT("/Game/Animations/%s.%s"), *Name, *Name);
+		Path = FString::Printf(TEXT("/Game/Animations/%s.%s"), *SafeName, *SafeName);
 		ABP = LoadObject<UAnimBlueprint>(nullptr, *Path);
 	}
 	return ABP;

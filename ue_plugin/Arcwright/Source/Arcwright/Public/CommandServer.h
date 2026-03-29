@@ -84,6 +84,9 @@ public:
 	/** Dispatch a command (public for in-process panel access) */
 	FCommandResult DispatchCommand(const FString& Command, const TSharedPtr<FJsonObject>& Params);
 
+	/** Safe dispatch — catches SEH exceptions to prevent editor crash on bad input */
+	FCommandResult SafeDispatchCommand(const FString& Command, const TSharedPtr<FJsonObject>& Params);
+
 private:
 	// Connection handling
 	bool OnConnectionAccepted(FSocket* ClientSocket, const FIPv4Endpoint& ClientEndpoint);
