@@ -54,6 +54,24 @@ Launch/close/restart UE, kill processes, run training/exams/backups/tests.
 
 **Stop and notify only for:** Unrecoverable data deletion, Golden Config deviation, 3x failure, genuine irreversible fork.
 
+### UE5 Level Startup Protocol
+
+**Opening an existing project:**
+1. `health_check`
+2. `find_actors` search "DirectionalLight"
+   - If found: scene already lit, proceed
+   - If not found: `setup_default_lighting` (outdoor/indoor/dark)
+3. `verify_all_blueprints`
+4. Begin work
+
+**Starting a new blank level:**
+1. `health_check`
+2. `setup_default_lighting {"scene_type": "outdoor"}` (saves level automatically)
+3. `spawn_mesh_actor` for floor geometry
+4. `save_level`
+5. `verify_all_blueprints`
+6. Begin work
+
 ---
 
 ## Project Structure
