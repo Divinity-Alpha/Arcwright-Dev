@@ -889,17 +889,43 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	}
 	if (Command == TEXT("run_console_command"))
 	{
-		FString Cmd = Params->GetStringField(TEXT("command"));
-		if (Cmd.IsEmpty()) return FCommandResult::Error(TEXT("Missing 'command' param"));
-		if (!GEditor || !GEditor->PlayWorld)
-			return FCommandResult::Error(TEXT("PIE not running — console commands need a game world"));
-		APlayerController* PC = GEditor->PlayWorld->GetFirstPlayerController();
-		if (!PC) return FCommandResult::Error(TEXT("No player controller"));
-		FString Result;
-		PC->ConsoleCommand(Cmd);
+		FString ConsoleCmd = Params->GetStringField(TEXT("command"));
+		if (ConsoleCmd.IsEmpty()) ConsoleCmd = Params->GetStringField(TEXT("cmd"));
+		if (ConsoleCmd.IsEmpty()) return FCommandResult::Error(TEXT("Missing 'command' param"));
+
+		bool bExecuted = false;
+		FString ExecutionContext;
+
+		// F004 fix: Try PIE world first, fall back to editor world
+		if (GEditor && GEditor->PlayWorld)
+		{
+			APlayerController* PC = GEditor->PlayWorld->GetFirstPlayerController();
+			if (PC)
+			{
+				PC->ConsoleCommand(ConsoleCmd);
+				bExecuted = true;
+				ExecutionContext = TEXT("PIE");
+			}
+		}
+
+		if (!bExecuted && GEngine)
+		{
+			// Execute on editor world
+			UWorld* EditorWorld = GEditor ? GEditor->GetEditorWorldContext().World() : nullptr;
+			if (EditorWorld)
+			{
+				GEngine->Exec(EditorWorld, *ConsoleCmd);
+				bExecuted = true;
+				ExecutionContext = TEXT("Editor");
+			}
+		}
+
+		if (!bExecuted) return FCommandResult::Error(TEXT("No world available for console command execution"));
+
 		TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
-		Data->SetStringField(TEXT("command"), Cmd);
+		Data->SetStringField(TEXT("command"), ConsoleCmd);
 		Data->SetBoolField(TEXT("executed"), true);
+		Data->SetStringField(TEXT("context"), ExecutionContext);
 		return FCommandResult::Ok(Data);
 	}
 	if (Command == TEXT("get_player_view"))      { return HandleGetPlayerView(Params); }
@@ -1276,6 +1302,85 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 		return HandleSetupAIForPawn(Params);
 	}
 
+	// M002: set_view_mode
+	if (Command == TEXT("set_view_mode"))
+	{
+		FString Mode = Params->GetStringField(TEXT("mode"));
+		if (Mode.IsEmpty()) return FCommandResult::Error(TEXT("Missing 'mode' param (lit/unlit/wireframe/detail_lighting)"));
+
+		static TMap<FString, EViewModeIndex> ModeMap;
+		if (ModeMap.Num() == 0)
+		{
+			ModeMap.Add(TEXT("lit"), VMI_Lit);
+			ModeMap.Add(TEXT("unlit"), VMI_Unlit);
+			ModeMap.Add(TEXT("wireframe"), VMI_BrushWireframe);
+			ModeMap.Add(TEXT("detail_lighting"), VMI_LightingOnly);
+		}
+
+		EViewModeIndex* ModeIndex = ModeMap.Find(Mode.ToLower());
+		if (!ModeIndex) return FCommandResult::Error(FString::Printf(TEXT("Unknown view mode: %s. Use: lit, unlit, wireframe, detail_lighting"), *Mode));
+
+		for (FLevelEditorViewportClient* Client : GEditor->GetLevelViewportClients())
+		{
+			if (Client)
+			{
+				Client->SetViewMode(*ModeIndex);
+				Client->Invalidate();
+			}
+		}
+
+		TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+		Data->SetStringField(TEXT("mode"), Mode);
+		return FCommandResult::Ok(Data);
+	}
+
+	// M005: get_build_errors
+	if (Command == TEXT("get_build_errors"))
+	{
+		TArray<TSharedPtr<FJsonValue>> ErrorsArr;
+		TArray<TSharedPtr<FJsonValue>> WarningsArr;
+
+		// Scan all blueprints for compile errors
+		FAssetRegistryModule& ARModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+		TArray<FAssetData> AllBPs;
+		ARModule.Get().GetAssetsByClass(UBlueprint::StaticClass()->GetClassPathName(), AllBPs);
+
+		for (const FAssetData& Asset : AllBPs)
+		{
+			if (!Asset.PackagePath.ToString().StartsWith(TEXT("/Game/"))) continue;
+			UBlueprint* BP = Cast<UBlueprint>(Asset.GetAsset());
+			if (!BP) continue;
+			if (BP->Status == BS_Error)
+			{
+				UEdGraph* Graph = FBlueprintEditorUtils::FindEventGraph(BP);
+				if (Graph)
+				{
+					for (UEdGraphNode* Node : Graph->Nodes)
+					{
+						if (Node->bHasCompilerMessage)
+						{
+							TSharedPtr<FJsonObject> Entry = MakeShareable(new FJsonObject());
+							Entry->SetStringField(TEXT("blueprint"), BP->GetName());
+							Entry->SetStringField(TEXT("message"), Node->ErrorMsg);
+							Entry->SetStringField(TEXT("severity"), Node->ErrorType == EMessageSeverity::Error ? TEXT("error") : TEXT("warning"));
+							if (Node->ErrorType == EMessageSeverity::Error)
+								ErrorsArr.Add(MakeShareable(new FJsonValueObject(Entry)));
+							else
+								WarningsArr.Add(MakeShareable(new FJsonValueObject(Entry)));
+						}
+					}
+				}
+			}
+		}
+
+		TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+		Data->SetNumberField(TEXT("error_count"), ErrorsArr.Num());
+		Data->SetNumberField(TEXT("warning_count"), WarningsArr.Num());
+		Data->SetArrayField(TEXT("errors"), ErrorsArr);
+		Data->SetArrayField(TEXT("warnings"), WarningsArr);
+		return FCommandResult::Ok(Data);
+	}
+
 	// Data Table commands
 	if (Command == TEXT("create_data_table"))
 	{
@@ -1289,6 +1394,27 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	// Scene lighting
 	if (Command == TEXT("setup_scene_lighting"))
 	{
+		return HandleSetupSceneLighting(Params);
+	}
+	if (Command == TEXT("setup_default_lighting"))
+	{
+		// M001: Alias with outdoor_day default instead of indoor_dark
+		if (!Params->HasField(TEXT("preset")))
+		{
+			TSharedPtr<FJsonObject> MutableParams = MakeShareable(new FJsonObject());
+			// Copy fields from original params
+			for (const auto& Field : Params->Values)
+			{
+				MutableParams->SetField(Field.Key, Field.Value);
+			}
+			FString SceneType = Params->HasField(TEXT("scene_type"))
+				? Params->GetStringField(TEXT("scene_type")) : TEXT("outdoor");
+			if (SceneType == TEXT("outdoor")) MutableParams->SetStringField(TEXT("preset"), TEXT("outdoor_day"));
+			else if (SceneType == TEXT("indoor")) MutableParams->SetStringField(TEXT("preset"), TEXT("indoor_bright"));
+			else if (SceneType == TEXT("dark")) MutableParams->SetStringField(TEXT("preset"), TEXT("outdoor_night"));
+			else MutableParams->SetStringField(TEXT("preset"), TEXT("outdoor_day"));
+			return HandleSetupSceneLighting(MutableParams);
+		}
 		return HandleSetupSceneLighting(Params);
 	}
 
@@ -5329,14 +5455,54 @@ FCommandResult FCommandServer::HandlePlayInEditor(const TSharedPtr<FJsonObject>&
 		return FCommandResult::Error(TEXT("PIE session already running. Call stop_play first."));
 	}
 
+	// F003/M004: wait_for_ready param (default true)
+	bool bWaitForReady = true;
+	if (Params->HasField(TEXT("wait_for_ready")))
+	{
+		bWaitForReady = Params->GetBoolField(TEXT("wait_for_ready"));
+	}
+
 	// Set atomic flag — Slate OnPostTick callback picks it up during the next Slate tick.
 	bPIERequested.store(true);
 
 	UE_LOG(LogArcwright, Log, TEXT("PIE: Flag set, will be processed by Slate OnPostTick callback"));
 
+	if (bWaitForReady)
+	{
+		// Poll until PIE world is active (max 10 seconds)
+		float Elapsed = 0.0f;
+		const float MaxWait = 10.0f;
+		const float PollInterval = 0.1f;
+
+		while (GEditor->PlayWorld == nullptr && Elapsed < MaxWait)
+		{
+			FPlatformProcess::Sleep(PollInterval);
+			Elapsed += PollInterval;
+		}
+
+		if (GEditor->PlayWorld == nullptr)
+		{
+			TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+			Data->SetBoolField(TEXT("playing"), false);
+			Data->SetStringField(TEXT("warning"), TEXT("PIE may not be fully loaded after 10s wait"));
+			Data->SetNumberField(TEXT("wait_seconds"), Elapsed);
+			return FCommandResult::Ok(Data);
+		}
+
+		// Additional stabilization delay for rendering
+		FPlatformProcess::Sleep(0.5f);
+		Elapsed += 0.5f;
+
+		TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+		Data->SetBoolField(TEXT("playing"), true);
+		Data->SetBoolField(TEXT("waited"), true);
+		Data->SetNumberField(TEXT("wait_seconds"), Elapsed);
+		return FCommandResult::Ok(Data);
+	}
+
 	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
 	Data->SetBoolField(TEXT("requested"), true);
-	Data->SetStringField(TEXT("note"), TEXT("PIE starts on next editor tick. Wait 1-2 seconds before reading output log."));
+	Data->SetStringField(TEXT("note"), TEXT("PIE starts on next editor tick. wait_for_ready=false, caller must manage timing."));
 
 	return FCommandResult::Ok(Data);
 }
@@ -5468,13 +5634,13 @@ FCommandResult FCommandServer::HandlePlayAndCapture(const TSharedPtr<FJsonObject
 
 FCommandResult FCommandServer::HandleVerifyAllBlueprints(const TSharedPtr<FJsonObject>& Params)
 {
-	// Find all Blueprints in /Game/Arcwright/Generated/
+	// F007 fix: Search ALL /Game/ paths, not just /Game/Arcwright/Generated/
 	FAssetRegistryModule& AssetReg = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
 	IAssetRegistry& Registry = AssetReg.Get();
 
 	FARFilter Filter;
 	Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
-	Filter.PackagePaths.Add(TEXT("/Game/Arcwright/Generated"));
+	Filter.PackagePaths.Add(TEXT("/Game"));
 	Filter.bRecursivePaths = true;
 
 	TArray<FAssetData> Assets;
@@ -6378,22 +6544,55 @@ FCommandResult FCommandServer::HandleTakeScreenshot(const TSharedPtr<FJsonObject
 		? Params->GetStringField(TEXT("filename"))
 		: FString::Printf(TEXT("screenshot_%s"), *FDateTime::Now().ToString(TEXT("%Y%m%d_%H%M%S")));
 
-	// Get the active viewport
-	FLevelEditorViewportClient* ViewportClient = nullptr;
-	if (GCurrentLevelEditingViewportClient)
+	// Optional delay before capture (useful for PIE stabilization)
+	if (Params->HasField(TEXT("delay_ms")))
 	{
-		ViewportClient = GCurrentLevelEditingViewportClient;
-	}
-	else if (GEditor)
-	{
-		const TArray<FLevelEditorViewportClient*>& Clients = GEditor->GetLevelViewportClients();
-		if (Clients.Num() > 0)
+		int32 DelayMs = (int32)Params->GetNumberField(TEXT("delay_ms"));
+		if (DelayMs > 0 && DelayMs <= 10000)
 		{
-			ViewportClient = Clients[0];
+			FPlatformProcess::Sleep(DelayMs / 1000.0f);
 		}
 	}
 
-	if (!ViewportClient || !ViewportClient->Viewport)
+	// F002 fix: Use PIE viewport when PIE is active
+	FViewport* PIEViewport = nullptr;
+	bool bUsingPIE = false;
+	if (GEditor && GEditor->PlayWorld)
+	{
+		// PIE is active — try to get the PIE game viewport
+		UGameViewportClient* GameVP = GEditor->PlayWorld->GetGameViewport();
+		if (GameVP && GameVP->Viewport)
+		{
+			PIEViewport = GameVP->Viewport;
+			bUsingPIE = true;
+		}
+	}
+
+	// Fall back to editor viewport
+	FLevelEditorViewportClient* ViewportClient = nullptr;
+	if (!bUsingPIE)
+	{
+		if (GCurrentLevelEditingViewportClient)
+		{
+			ViewportClient = GCurrentLevelEditingViewportClient;
+		}
+		else if (GEditor)
+		{
+			const TArray<FLevelEditorViewportClient*>& Clients = GEditor->GetLevelViewportClients();
+			if (Clients.Num() > 0)
+			{
+				ViewportClient = Clients[0];
+			}
+		}
+	}
+
+	// Determine which viewport to use
+	FViewport* TargetViewport = PIEViewport;
+	if (!TargetViewport && ViewportClient)
+	{
+		TargetViewport = ViewportClient->Viewport;
+	}
+	if (!TargetViewport)
 	{
 		return FCommandResult::Error(TEXT("No active viewport found for screenshot"));
 	}
@@ -6412,37 +6611,43 @@ FCommandResult FCommandServer::HandleTakeScreenshot(const TSharedPtr<FJsonObject
 	// Ensure directory exists
 	IFileManager::Get().MakeDirectory(*OutputDir, true);
 
-	FViewport* Viewport = ViewportClient->Viewport;
-	int32 Width = Viewport->GetSizeXY().X;
-	int32 Height = Viewport->GetSizeXY().Y;
+	int32 Width = TargetViewport->GetSizeXY().X;
+	int32 Height = TargetViewport->GetSizeXY().Y;
 
 	if (Width == 0 || Height == 0)
 	{
 		return FCommandResult::Error(TEXT("Viewport has zero size — is it visible?"));
 	}
 
-	// Use UE's built-in screenshot request system which hooks into the rendering
-	// pipeline at the right point. Direct ReadPixels() on editor viewports returns
-	// stale/blank content because the viewport backbuffer isn't updated until
-	// a proper render pass completes through the Slate/RHI pipeline.
+	// Use UE's built-in screenshot request system
 	FScreenshotRequest::RequestScreenshot(FullPath, false, false);
 
-	// Force viewport to render the frame that will be captured
-	bool bWasRealtime = ViewportClient->IsRealtime();
-	ViewportClient->SetRealtime(true);
-	ViewportClient->Invalidate();
-	Viewport->InvalidateDisplay();
-
-	// Pump rendering multiple times to ensure the screenshot request is processed
-	for (int32 i = 0; i < 6; i++)
+	if (bUsingPIE)
 	{
-		FSlateApplication::Get().Tick();
-		ViewportClient->Viewport->Draw();
-		FlushRenderingCommands();
+		// PIE path: pump Slate ticks to process the screenshot request
+		for (int32 i = 0; i < 6; i++)
+		{
+			FSlateApplication::Get().Tick();
+			FlushRenderingCommands();
+		}
 	}
+	else if (ViewportClient)
+	{
+		// Editor path: force viewport render
+		bool bWasRealtime = ViewportClient->IsRealtime();
+		ViewportClient->SetRealtime(true);
+		ViewportClient->Invalidate();
+		TargetViewport->InvalidateDisplay();
 
-	// Restore realtime state
-	ViewportClient->SetRealtime(bWasRealtime);
+		for (int32 i = 0; i < 6; i++)
+		{
+			FSlateApplication::Get().Tick();
+			ViewportClient->Viewport->Draw();
+			FlushRenderingCommands();
+		}
+
+		ViewportClient->SetRealtime(bWasRealtime);
+	}
 
 	// Check if file was written by FScreenshotRequest
 	bool bScreenshotSaved = FPaths::FileExists(FullPath);
@@ -6454,7 +6659,7 @@ FCommandResult FCommandServer::HandleTakeScreenshot(const TSharedPtr<FJsonObject
 		UE_LOG(LogArcwright, Warning, TEXT("FScreenshotRequest didn't write file, falling back to ReadPixels"));
 
 		TArray<FColor> Bitmap;
-		bool bReadSuccess = Viewport->ReadPixels(Bitmap);
+		bool bReadSuccess = TargetViewport->ReadPixels(Bitmap);
 		if (bReadSuccess && Bitmap.Num() > 0)
 		{
 			TArray64<uint8> PngData;
@@ -6477,6 +6682,7 @@ FCommandResult FCommandServer::HandleTakeScreenshot(const TSharedPtr<FJsonObject
 	Data->SetObjectField(TEXT("resolution"), ResObj);
 	Data->SetBoolField(TEXT("success"), true);
 	Data->SetStringField(TEXT("method"), bUsedFallback ? TEXT("ReadPixels") : TEXT("FScreenshotRequest"));
+	Data->SetBoolField(TEXT("pie_viewport"), bUsingPIE);
 	return FCommandResult::Ok(Data);
 }
 
