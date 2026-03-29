@@ -295,6 +295,9 @@ const FString FCommandServer::SERVER_VERSION = TEXT("1.0.2");
 // Error Suggestion Helpers
 // ============================================================
 
+// Forward declarations for helpers used before their definition
+static FLinearColor ParseLinearColor(const FString& Value);
+
 static TArray<FString> GetSuggestions(const FString& Query, const TArray<FString>& Available, int32 MaxResults = 5)
 {
 	TArray<FString> Matches;
@@ -4130,18 +4133,36 @@ bool FCommandServer::ApplyComponentProperty(UActorComponent* Template, const FSt
 	}
 
 	// --- Light: color ---
-	if (PropertyName == TEXT("light_color"))
+	if (PropertyName == TEXT("light_color") || PropertyName == TEXT("LightColor"))
 	{
 		ULightComponent* LightComp = Cast<ULightComponent>(Template);
 		if (!LightComp) { OutError = TEXT("Not a LightComponent"); return false; }
+
+		FLinearColor Color = FLinearColor::White;
+		FString StrVal;
 		const TSharedPtr<FJsonObject>* ObjPtr;
-		if (!Value->TryGetObject(ObjPtr)) { OutError = TEXT("Expected {r,g,b} object"); return false; }
-		FLinearColor Color(
-			(*ObjPtr)->GetNumberField(TEXT("r")),
-			(*ObjPtr)->GetNumberField(TEXT("g")),
-			(*ObjPtr)->GetNumberField(TEXT("b")),
-			(*ObjPtr)->HasField(TEXT("a")) ? (*ObjPtr)->GetNumberField(TEXT("a")) : 1.0f
-		);
+
+		if (Value->TryGetString(StrVal))
+		{
+			// Accept string: "hex:#4a9eff", "srgb:(R=...)", or "(R=...)"
+			Color = ParseLinearColor(StrVal);
+		}
+		else if (Value->TryGetObject(ObjPtr))
+		{
+			// Accept object: {r, g, b, a}
+			Color = FLinearColor(
+				(*ObjPtr)->GetNumberField(TEXT("r")),
+				(*ObjPtr)->GetNumberField(TEXT("g")),
+				(*ObjPtr)->GetNumberField(TEXT("b")),
+				(*ObjPtr)->HasField(TEXT("a")) ? (*ObjPtr)->GetNumberField(TEXT("a")) : 1.0f
+			);
+		}
+		else
+		{
+			OutError = TEXT("Expected hex string (\"hex:#RRGGBB\") or {r,g,b} object");
+			return false;
+		}
+
 		LightComp->SetLightColor(Color);
 		return true;
 	}
@@ -15235,9 +15256,12 @@ FCommandResult FCommandServer::HandleSetActorTags(const TSharedPtr<FJsonObject>&
 FCommandResult FCommandServer::HandleGetActorProperties(const TSharedPtr<FJsonObject>& Params)
 {
 	FString ActorLabel = Params->GetStringField(TEXT("actor_label"));
+	if (ActorLabel.IsEmpty()) ActorLabel = Params->GetStringField(TEXT("actor_name"));
+	if (ActorLabel.IsEmpty()) ActorLabel = Params->GetStringField(TEXT("label"));
+	if (ActorLabel.IsEmpty()) ActorLabel = Params->GetStringField(TEXT("name"));
 	if (ActorLabel.IsEmpty())
 	{
-		return FCommandResult::Error(TEXT("Missing 'actor_label' parameter"));
+		return FCommandResult::Error(TEXT("Missing 'actor_label' parameter (also accepts: actor_name, label, name)"));
 	}
 
 	AActor* Actor = FindActorByLabel(ActorLabel);
