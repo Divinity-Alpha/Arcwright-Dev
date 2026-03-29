@@ -527,6 +527,10 @@ private:
 	TSharedPtr<FJsonObject> VectorToJson(const FVector& V);
 	TSharedPtr<FJsonObject> RotatorToJson(const FRotator& R);
 
+	// F012: mesh commands
+	FCommandResult HandleSpawnMeshActor(const TSharedPtr<FJsonObject>& Params);
+	FCommandResult HandleSetStaticMesh(const TSharedPtr<FJsonObject>& Params);
+
 	// v1.0.4 commands
 	FCommandResult HandleBatchSpawnActors(const TSharedPtr<FJsonObject>& Params);
 	FCommandResult HandleApplyMaterialByName(const TSharedPtr<FJsonObject>& Params);

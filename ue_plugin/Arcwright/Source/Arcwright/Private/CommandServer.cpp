@@ -1488,6 +1488,10 @@ FCommandResult FCommandServer::DispatchCommand(const FString& Command, const TSh
 	if (Command == TEXT("create_post_process_volume"))  { return HandleCreatePostProcessVolume(Params); }
 	if (Command == TEXT("get_actor_screenshot"))        { return HandleGetActorScreenshot(Params); }
 
+	// F012: spawn_mesh_actor + set_static_mesh
+	if (Command == TEXT("spawn_mesh_actor"))   { return HandleSpawnMeshActor(Params); }
+	if (Command == TEXT("set_static_mesh"))    { return HandleSetStaticMesh(Params); }
+
 	// Relative transform batch commands
 	if (Command == TEXT("batch_scale_actors")) { return HandleBatchScaleActors(Params); }
 	if (Command == TEXT("batch_move_actors"))  { return HandleBatchMoveActors(Params); }
@@ -21026,4 +21030,121 @@ FCommandResult FCommandServer::HandleGetActorScreenshot(const TSharedPtr<FJsonOb
 	}
 
 	return ScreenshotResult;
+}
+
+// ============================================================
+// F012 — spawn_mesh_actor + set_static_mesh
+// ============================================================
+
+FCommandResult FCommandServer::HandleSpawnMeshActor(const TSharedPtr<FJsonObject>& Params)
+{
+	FString Label = Params->GetStringField(TEXT("label"));
+	FString MeshPath = Params->HasField(TEXT("mesh_path"))
+		? Params->GetStringField(TEXT("mesh_path"))
+		: TEXT("/Engine/BasicShapes/Cube");
+
+	UWorld* World = GEditor ? GEditor->GetEditorWorldContext().World() : nullptr;
+	if (!World) return FCommandResult::Error(TEXT("No world"));
+
+	FVector Location(
+		Params->HasField(TEXT("x")) ? Params->GetNumberField(TEXT("x")) : 0.0,
+		Params->HasField(TEXT("y")) ? Params->GetNumberField(TEXT("y")) : 0.0,
+		Params->HasField(TEXT("z")) ? Params->GetNumberField(TEXT("z")) : 0.0);
+	FRotator Rotation(
+		Params->HasField(TEXT("pitch")) ? Params->GetNumberField(TEXT("pitch")) : 0.0,
+		Params->HasField(TEXT("yaw")) ? Params->GetNumberField(TEXT("yaw")) : 0.0,
+		Params->HasField(TEXT("roll")) ? Params->GetNumberField(TEXT("roll")) : 0.0);
+	FVector Scale(
+		Params->HasField(TEXT("scale_x")) ? Params->GetNumberField(TEXT("scale_x")) : 1.0,
+		Params->HasField(TEXT("scale_y")) ? Params->GetNumberField(TEXT("scale_y")) : 1.0,
+		Params->HasField(TEXT("scale_z")) ? Params->GetNumberField(TEXT("scale_z")) : 1.0);
+
+	// Load mesh
+	UStaticMesh* Mesh = LoadObject<UStaticMesh>(nullptr, *MeshPath);
+	if (!Mesh)
+	{
+		// Try with full path variations
+		FString FullPath = FString::Printf(TEXT("%s.%s"), *MeshPath, *FPaths::GetBaseFilename(MeshPath));
+		Mesh = LoadObject<UStaticMesh>(nullptr, *FullPath);
+	}
+	if (!Mesh)
+	{
+		return FCommandResult::Error(FString::Printf(TEXT("Static mesh not found: %s"), *MeshPath));
+	}
+
+	// Spawn StaticMeshActor
+	AStaticMeshActor* Actor = World->SpawnActor<AStaticMeshActor>(Location, Rotation);
+	if (!Actor)
+	{
+		return FCommandResult::Error(TEXT("Failed to spawn StaticMeshActor"));
+	}
+
+	if (!Label.IsEmpty())
+	{
+		Actor->SetActorLabel(Label);
+	}
+	Actor->SetActorScale3D(Scale);
+	Actor->GetRootComponent()->SetMobility(EComponentMobility::Movable);
+
+	// Set the mesh
+	UStaticMeshComponent* MeshComp = Actor->GetStaticMeshComponent();
+	if (MeshComp)
+	{
+		MeshComp->SetStaticMesh(Mesh);
+		MeshComp->SetMobility(EComponentMobility::Movable);
+	}
+
+	Actor->MarkPackageDirty();
+
+	// Apply material if specified
+	if (Params->HasField(TEXT("material")))
+	{
+		FString MatName = Params->GetStringField(TEXT("material"));
+		FString ResolvedPath, OutError;
+		UMaterialInterface* Mat = ResolveMaterialByName(MatName, ResolvedPath, OutError);
+		if (Mat && MeshComp)
+		{
+			MeshComp->SetMaterial(0, Mat);
+		}
+	}
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("label"), Label.IsEmpty() ? Actor->GetName() : Label);
+	Data->SetStringField(TEXT("mesh"), MeshPath);
+	Data->SetObjectField(TEXT("location"), VectorToJson(Location));
+	Data->SetObjectField(TEXT("scale"), VectorToJson(Scale));
+	return FCommandResult::Ok(Data);
+}
+
+FCommandResult FCommandServer::HandleSetStaticMesh(const TSharedPtr<FJsonObject>& Params)
+{
+	FString ActorName = Params->GetStringField(TEXT("actor_name"));
+	if (ActorName.IsEmpty()) ActorName = Params->GetStringField(TEXT("actor_label"));
+	if (ActorName.IsEmpty()) ActorName = Params->GetStringField(TEXT("label"));
+	if (ActorName.IsEmpty()) return FCommandResult::Error(TEXT("Missing actor_name"));
+
+	FString MeshPath = Params->GetStringField(TEXT("mesh_path"));
+	if (MeshPath.IsEmpty()) return FCommandResult::Error(TEXT("Missing mesh_path"));
+
+	AActor* Actor = FindActorByLabel(ActorName);
+	if (!Actor) return FCommandResult::Error(FormatActorNotFound(ActorName));
+
+	UStaticMesh* Mesh = LoadObject<UStaticMesh>(nullptr, *MeshPath);
+	if (!Mesh)
+	{
+		FString FullPath = FString::Printf(TEXT("%s.%s"), *MeshPath, *FPaths::GetBaseFilename(MeshPath));
+		Mesh = LoadObject<UStaticMesh>(nullptr, *FullPath);
+	}
+	if (!Mesh) return FCommandResult::Error(FString::Printf(TEXT("Mesh not found: %s"), *MeshPath));
+
+	UStaticMeshComponent* MeshComp = Actor->FindComponentByClass<UStaticMeshComponent>();
+	if (!MeshComp) return FCommandResult::Error(TEXT("Actor has no StaticMeshComponent"));
+
+	MeshComp->SetStaticMesh(Mesh);
+	Actor->MarkPackageDirty();
+
+	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
+	Data->SetStringField(TEXT("actor"), ActorName);
+	Data->SetStringField(TEXT("mesh"), MeshPath);
+	return FCommandResult::Ok(Data);
 }
