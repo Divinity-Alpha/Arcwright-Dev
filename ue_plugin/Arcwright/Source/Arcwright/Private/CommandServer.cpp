@@ -5464,8 +5464,8 @@ FCommandResult FCommandServer::HandlePlayInEditor(const TSharedPtr<FJsonObject>&
 		return FCommandResult::Error(TEXT("PIE session already running. Call stop_play first."));
 	}
 
-	// F003/M004: wait_for_ready param (default true)
-	bool bWaitForReady = true;
+	// F003/M004: wait_for_ready param (default false — polling blocks game thread and deadlocks PIE startup)
+	bool bWaitForReady = false;
 	if (Params->HasField(TEXT("wait_for_ready")))
 	{
 		bWaitForReady = Params->GetBoolField(TEXT("wait_for_ready"));
@@ -13450,9 +13450,11 @@ FCommandResult FCommandServer::HandleSetupSceneLighting(const TSharedPtr<FJsonOb
 	if (DirLight)
 	{
 		DirLight->SetActorLabel(TEXT("SceneDirectionalLight"));
+		DirLight->SetMobility(EComponentMobility::Movable);
 		ULightComponent* DirComp = DirLight->GetLightComponent();
 		if (DirComp)
 		{
+			DirComp->SetMobility(EComponentMobility::Movable);
 			DirComp->SetIntensity(DirIntensity);
 			DirComp->SetLightColor(DirColor);
 		}
@@ -13477,11 +13479,14 @@ FCommandResult FCommandServer::HandleSetupSceneLighting(const TSharedPtr<FJsonOb
 	if (Sky)
 	{
 		Sky->SetActorLabel(TEXT("SceneSkyLight"));
+		Sky->GetRootComponent()->SetMobility(EComponentMobility::Movable);
 		USkyLightComponent* SkyComp = Sky->GetLightComponent();
 		if (SkyComp)
 		{
+			SkyComp->SetMobility(EComponentMobility::Movable);
 			SkyComp->SetIntensity(SkyIntensity);
 			SkyComp->bLowerHemisphereIsBlack = false;
+			SkyComp->SetRealTimeCaptureEnabled(true);
 			SkyComp->RecaptureSky();
 		}
 		Sky->MarkPackageDirty();
