@@ -2,7 +2,7 @@
 
 > *The Bridge Between AI and Unreal Engine.*
 
-> **Doc Version:** 24.0
+> **Doc Version:** 25.0
 > **Last Updated:** 2026-03-29
 > **Owner:** Divinity Alpha
 > **Repo:** github.com/Divinity-Alpha/Arcwright
@@ -317,6 +317,8 @@ python scripts/mcp_client/verify.py
 26. **Accept multiple param names for actor references** — commands that accept actor references must accept: `actor_name`, `label`, `name`, `actor_label`. Never reject a valid actor reference due to param name mismatch.
 27. **Test project pollution** — keep test project (ArcwrightTestBed) clean. Never use it for development or demos. Maintain separate ArcwrightDemo project for game builds and recordings. Content pollution causes false discovery failures that look like command bugs but are environment issues.
 28. **F010 — Widget root CanvasPanel** — `create_widget_blueprint` now auto-creates a `RootCanvas` CanvasPanel. All `add_widget_child` calls without `parent_widget` add to this canvas as siblings. Previously, the first child became the root (Border only accepts 1 child), silently losing subsequent children.
+29. **PIE lighting requires Movable lights** — `setup_default_lighting` now sets `EComponentMobility::Movable` on DirectionalLight and SkyLight. Static lights require a lighting build to appear in PIE. Blank levels have no lighting build. After lighting setup, run `r.SkyLight.RealTimeCapture 1` and `r.DynamicGlobalIlluminationMethod 0` via `run_console_command`.
+30. **play_in_editor wait_for_ready=false** — the polling loop (Sleep on game thread) deadlocks PIE startup when Blueprint actors are present. Default changed to false. Callers must add their own 5-second delay after `play_in_editor` before taking screenshots.
 
 ---
 
@@ -374,3 +376,4 @@ Every Claude Code session must log to `C:\Arcwright\knowledge\`:
 | 22.0 | 2026-03-28 | v1.0.3 final. All F001-F008 FIXED. M001/M002/M004/M005 ADDED. Lesson 27 (test pollution). SKILL_006 added. Run 4 results. Docs updated for shipped fixes. |
 | 23.0 | 2026-03-29 | v1.0.4 release. 7 new commands. Regression 36/36. Strict includes PASS. |
 | 24.0 | 2026-03-29 | F010 fixed — widget root CanvasPanel auto-created. FindWidgetByName improved with display label + case-insensitive fallback. Lesson 28 added. Regression 36/36. |
+| 25.0 | 2026-03-29 | PIE lighting fix — Movable mobility on all setup_default_lighting lights. play_in_editor wait_for_ready default changed to false. Lessons 29-30. PIE screenshot confirmed lit. |
