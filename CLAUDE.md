@@ -2,7 +2,7 @@
 
 > *The Bridge Between AI and Unreal Engine.*
 
-> **Doc Version:** 21.0
+> **Doc Version:** 22.0
 > **Last Updated:** 2026-03-28
 > **Owner:** Divinity Alpha
 > **Repo:** github.com/Divinity-Alpha/Arcwright
@@ -315,6 +315,7 @@ python scripts/mcp_client/verify.py
 24. **Null check every asset load (F008)** — every `LoadObject` call must check for null and return a graceful error response. Never let a missing asset reach a dereference. Pattern: `UObject* Asset = LoadObject<...>(nullptr, *Path); if (!Asset) return FCommandResult::Error("Asset not found: " + Path);`
 25. **Test suite before every FAB submission** — run `python arcwright_test_suite.py --mode all`. Regression must be 36/36. Stress must be 0 crashes, 0 timeouts. Discovery warnings acceptable, failures are not. Gate: 95%+ pass rate before packaging.
 26. **Accept multiple param names for actor references** — commands that accept actor references must accept: `actor_name`, `label`, `name`, `actor_label`. Never reject a valid actor reference due to param name mismatch.
+27. **Test project pollution** — keep test project (ArcwrightTestBed) clean. Never use it for development or demos. Maintain separate ArcwrightDemo project for game builds and recordings. Content pollution causes false discovery failures that look like command bugs but are environment issues.
 
 ---
 
@@ -369,3 +370,4 @@ Every Claude Code session must log to `C:\Arcwright\knowledge\`:
 | 19.0 | 2026-03-27 | FAB r6: strict include fixes across 9 source files. Added lesson 18 (strict includes verification protocol). |
 | 20.0 | 2026-03-28 | Knowledge capture system deployed. 5 skill files, session logger, lesson extractor, weekly report generator. Lessons 19-23 added. Knowledge capture protocol section. |
 | 21.0 | 2026-03-28 | v1.0.3 release. F008/F007/F009 fixed. Regression 36/36. Stress 26/26 (0 crashes). Test suite mandatory before every release. Lessons 24-26 added. |
+| 22.0 | 2026-03-28 | v1.0.3 final. All F001-F008 FIXED. M001/M002/M004/M005 ADDED. Lesson 27 (test pollution). SKILL_006 added. Run 4 results. Docs updated for shipped fixes. |
