@@ -337,7 +337,8 @@ python scripts/mcp_client/verify.py
 28. **F010 — Widget root CanvasPanel** — `create_widget_blueprint` now auto-creates a `RootCanvas` CanvasPanel. All `add_widget_child` calls without `parent_widget` add to this canvas as siblings. Previously, the first child became the root (Border only accepts 1 child), silently losing subsequent children.
 29. **PIE lighting requires Movable lights** — `setup_default_lighting` now sets `EComponentMobility::Movable` on DirectionalLight and SkyLight. Static lights require a lighting build to appear in PIE. Blank levels have no lighting build. After lighting setup, run `r.SkyLight.RealTimeCapture 1` and `r.DynamicGlobalIlluminationMethod 0` via `run_console_command`.
 30. **play_in_editor wait_for_ready=false** — the polling loop (Sleep on game thread) deadlocks PIE startup when Blueprint actors are present. Default changed to false. Callers must add their own 5-second delay after `play_in_editor` before taking screenshots.
-31. **Always save_level after setup_default_lighting** — lights do not persist across editor restart without an explicit level save. `setup_default_lighting` now calls `SaveCurrentLevel` internally. Also call `save_level` explicitly as belt-and-suspenders after any scene setup.
+31. **save_level vs save_all** — `save_all` saves assets (BPs, widgets, data tables, materials). `save_level` saves actor placement in the level. Both are needed. After spawning actors: `save_level`. After creating assets: `save_all`. After significant work: call both. **Never call save_level from inside setup_default_lighting** — HandleSaveLevel renames untitled level packages, which corrupts PIE world state and causes crashes (F013).
+32. **F013 — HandleSaveLevel crashes PIE on untitled levels** — renaming the package to `/Game/Maps/ArenaLevel` makes PIE unable to find the world context. `setup_default_lighting` must NOT save the level internally. Callers save explicitly after all spawning is done.
 
 ---
 
