@@ -7452,9 +7452,24 @@ UWidget* FCommandServer::FindWidgetByName(UWidgetBlueprint* WBP, const FString& 
 	UWidget* Found = nullptr;
 	WBP->WidgetTree->ForEachWidget([&](UWidget* Widget)
 	{
-		if (!Found && Widget->GetName() == WidgetName)
+		if (!Found)
 		{
-			Found = Widget;
+			FString ActualName = Widget->GetName();
+			// Try exact match first
+			if (ActualName == WidgetName)
+			{
+				Found = Widget;
+			}
+			// Try display label match (UMG designer name)
+			else if (Widget->GetDisplayLabel() == WidgetName)
+			{
+				Found = Widget;
+			}
+			// Try case-insensitive match
+			else if (ActualName.Equals(WidgetName, ESearchCase::IgnoreCase))
+			{
+				Found = Widget;
+			}
 		}
 	});
 	return Found;
@@ -7642,7 +7657,20 @@ FCommandResult FCommandServer::HandleCreateWidgetBlueprint(const TSharedPtr<FJso
 	}
 #endif
 
+	// F010 fix: Auto-create root CanvasPanel so add_widget_child has a proper container
+	if (WBP->WidgetTree && !WBP->WidgetTree->RootWidget)
+	{
+		UCanvasPanel* RootCanvas = WBP->WidgetTree->ConstructWidget<UCanvasPanel>(UCanvasPanel::StaticClass(), FName(TEXT("RootCanvas")));
+		if (RootCanvas)
+		{
+			WBP->WidgetTree->RootWidget = RootCanvas;
+			RootCanvas->SetClipping(EWidgetClipping::ClipToBounds);
+			UE_LOG(LogArcwright, Log, TEXT("CreateWidgetBP: Auto-created root CanvasPanel 'RootCanvas'"));
+		}
+	}
+
 	// Compile
+	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(WBP);
 	FKismetEditorUtilities::CompileBlueprint(WBP);
 
 	// Save the package to disk
@@ -8101,7 +8129,20 @@ FCommandResult FCommandServer::HandleSetWidgetProperty(const TSharedPtr<FJsonObj
 	UWidget* Widget = FindWidgetByName(WBP, WidgetName);
 	if (!Widget)
 	{
-		return FCommandResult::Error(FString::Printf(TEXT("Widget not found: %s"), *WidgetName));
+		// F010 diagnostic: list all widgets so caller can see exact names
+		TArray<FString> AvailableWidgets;
+		if (WBP->WidgetTree)
+		{
+			WBP->WidgetTree->ForEachWidget([&](UWidget* W)
+			{
+				AvailableWidgets.Add(FString::Printf(TEXT("%s (%s)"), *W->GetName(), *W->GetClass()->GetName()));
+			});
+		}
+		FString AvailStr = AvailableWidgets.Num() > 0
+			? FString::Join(AvailableWidgets, TEXT(", "))
+			: TEXT("(empty tree)");
+		return FCommandResult::Error(FString::Printf(
+			TEXT("Widget not found: %s. Available: %s"), *WidgetName, *AvailStr));
 	}
 
 	const TSharedPtr<FJsonValue>& Value = Params->Values.FindChecked(TEXT("value"));
