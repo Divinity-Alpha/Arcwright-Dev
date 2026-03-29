@@ -13624,12 +13624,11 @@ FCommandResult FCommandServer::HandleSetupSceneLighting(const TSharedPtr<FJsonOb
 		UE_LOG(LogArcwright, Log, TEXT("Executed lighting console commands"));
 	}
 
-	// --- 7. Save level immediately so lights persist across editor restarts ---
-	// Use HandleSaveLevel which handles untitled levels via package rename
-	TSharedPtr<FJsonObject> SaveParams = MakeShareable(new FJsonObject());
-	FCommandResult SaveResult = HandleSaveLevel(SaveParams);
-	bool bLevelSaved = SaveResult.bSuccess;
-	UE_LOG(LogArcwright, Log, TEXT("setup_default_lighting: SaveLevel = %s"), bLevelSaved ? TEXT("SUCCESS") : TEXT("FAILED"));
+	// --- 7. Mark all created actors as needing save ---
+	// Do NOT call HandleSaveLevel here — it renames untitled level packages
+	// which corrupts PIE world state. Let the caller save_level explicitly.
+	bool bLevelSaved = false;
+	UE_LOG(LogArcwright, Log, TEXT("setup_default_lighting: actors spawned, caller should save_level"));
 
 	ResultData->SetStringField(TEXT("preset"), Preset);
 	ResultData->SetArrayField(TEXT("actors"), CreatedActors);
