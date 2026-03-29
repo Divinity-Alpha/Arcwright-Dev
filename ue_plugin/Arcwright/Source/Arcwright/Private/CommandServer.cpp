@@ -13625,8 +13625,11 @@ FCommandResult FCommandServer::HandleSetupSceneLighting(const TSharedPtr<FJsonOb
 	}
 
 	// --- 7. Save level immediately so lights persist across editor restarts ---
-	bool bLevelSaved = FEditorFileUtils::SaveCurrentLevel();
-	UE_LOG(LogArcwright, Log, TEXT("setup_default_lighting: SaveCurrentLevel = %s"), bLevelSaved ? TEXT("SUCCESS") : TEXT("FAILED"));
+	// Use HandleSaveLevel which handles untitled levels via package rename
+	TSharedPtr<FJsonObject> SaveParams = MakeShareable(new FJsonObject());
+	FCommandResult SaveResult = HandleSaveLevel(SaveParams);
+	bool bLevelSaved = SaveResult.bSuccess;
+	UE_LOG(LogArcwright, Log, TEXT("setup_default_lighting: SaveLevel = %s"), bLevelSaved ? TEXT("SUCCESS") : TEXT("FAILED"));
 
 	ResultData->SetStringField(TEXT("preset"), Preset);
 	ResultData->SetArrayField(TEXT("actors"), CreatedActors);
