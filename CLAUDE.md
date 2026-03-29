@@ -341,7 +341,8 @@ python scripts/mcp_client/verify.py
 32. **F013 — HandleSaveLevel crashes PIE on untitled levels** — renaming the package to `/Game/Maps/ArenaLevel` makes PIE unable to find the world context. `setup_default_lighting` must NOT save the level internally. Callers save explicitly after all spawning is done.
 33. **Nuclear clean before every build** — never build on a stale level. Protocol: (1) `find_actors` all, (2) `batch_delete_actors` all, (3) `save_all` to persist clean state, (4) build fresh, (5) `save_all` after build. Stale actors from prior sessions accumulate and crash PIE.
 34. **Never call save_level on untitled levels** — use `save_all` instead. `save_level` is only safe on named/saved map files. On untitled levels, `save_level` renames the package which corrupts PIE (F013).
-35. **Point light default height = 80% of wall height** — standard room (wall scale_z 10) = Z=400. Low ceiling (scale_z 6) = Z=250. Outdoor/tall = Z=600. Never place below Z=100 unless explicitly requested. Low lights cause harsh upward shadows that look wrong in every scene type. Always above player eye height (Z=170).
+35. **Default FP player movement** — ground-bound, no flying. Walk 400 UU/s, Sprint 700 UU/s (Shift), Jump 420 UU (Space), GravityScale 1.5, AirControl 0.2. Set on Character Blueprint CharacterMovement component. Always set GameMode DefaultPawnClass to the Character BP. Never use default UE5 spectator pawn.
+36. **Point light default height = 80% of wall height** — standard room (wall scale_z 10) = Z=400. Low ceiling (scale_z 6) = Z=250. Outdoor/tall = Z=600. Never place below Z=100 unless explicitly requested. Low lights cause harsh upward shadows that look wrong in every scene type. Always above player eye height (Z=170).
 
 ---
 
