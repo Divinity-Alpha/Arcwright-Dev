@@ -13624,11 +13624,16 @@ FCommandResult FCommandServer::HandleSetupSceneLighting(const TSharedPtr<FJsonOb
 		UE_LOG(LogArcwright, Log, TEXT("Executed lighting console commands"));
 	}
 
+	// --- 7. Save level immediately so lights persist across editor restarts ---
+	bool bLevelSaved = FEditorFileUtils::SaveCurrentLevel();
+	UE_LOG(LogArcwright, Log, TEXT("setup_default_lighting: SaveCurrentLevel = %s"), bLevelSaved ? TEXT("SUCCESS") : TEXT("FAILED"));
+
 	ResultData->SetStringField(TEXT("preset"), Preset);
 	ResultData->SetArrayField(TEXT("actors"), CreatedActors);
 	ResultData->SetNumberField(TEXT("actors_created"), CreatedActors.Num());
 	ResultData->SetBoolField(TEXT("console_commands_executed"), true);
 	ResultData->SetBoolField(TEXT("ambient_fill"), bNeedsAmbientFill);
+	ResultData->SetBoolField(TEXT("level_saved"), bLevelSaved);
 
 	return FCommandResult::Ok(ResultData);
 }
