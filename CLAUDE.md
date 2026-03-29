@@ -339,6 +339,8 @@ python scripts/mcp_client/verify.py
 30. **play_in_editor wait_for_ready=false** — the polling loop (Sleep on game thread) deadlocks PIE startup when Blueprint actors are present. Default changed to false. Callers must add their own 5-second delay after `play_in_editor` before taking screenshots.
 31. **save_level vs save_all** — `save_all` saves assets (BPs, widgets, data tables, materials). `save_level` saves actor placement in the level. Both are needed. After spawning actors: `save_level`. After creating assets: `save_all`. After significant work: call both. **Never call save_level from inside setup_default_lighting** — HandleSaveLevel renames untitled level packages, which corrupts PIE world state and causes crashes (F013).
 32. **F013 — HandleSaveLevel crashes PIE on untitled levels** — renaming the package to `/Game/Maps/ArenaLevel` makes PIE unable to find the world context. `setup_default_lighting` must NOT save the level internally. Callers save explicitly after all spawning is done.
+33. **Nuclear clean before every build** — never build on a stale level. Protocol: (1) `find_actors` all, (2) `batch_delete_actors` all, (3) `save_all` to persist clean state, (4) build fresh, (5) `save_all` after build. Stale actors from prior sessions accumulate and crash PIE.
+34. **Never call save_level on untitled levels** — use `save_all` instead. `save_level` is only safe on named/saved map files. On untitled levels, `save_level` renames the package which corrupts PIE (F013).
 
 ---
 
