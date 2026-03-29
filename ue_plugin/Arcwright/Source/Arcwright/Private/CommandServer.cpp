@@ -13572,9 +13572,63 @@ FCommandResult FCommandServer::HandleSetupSceneLighting(const TSharedPtr<FJsonOb
 		}
 	}
 
+	// --- 5. AmbientFill PointLight for dark modes ---
+	bool bNeedsAmbientFill = (Preset == TEXT("outdoor_night") || Preset == TEXT("indoor_dark"));
+	float MinAmbient = Params->HasField(TEXT("minimum_ambient"))
+		? Params->GetNumberField(TEXT("minimum_ambient")) : 0.15f;
+
+	if (bNeedsAmbientFill || MinAmbient > 0.0f)
+	{
+		// Remove existing ambient fill
+		for (TActorIterator<APointLight> It(World); It; ++It)
+		{
+			if (It->GetActorLabel() == TEXT("AmbientFill"))
+			{
+				EAS->DestroyActor(*It);
+				break;
+			}
+		}
+
+		float AmbientIntensity = bNeedsAmbientFill ? 200.0f : 50.0f;
+		APointLight* AmbientLight = World->SpawnActor<APointLight>(FVector(0, 0, 2000), FRotator::ZeroRotator);
+		if (AmbientLight)
+		{
+			AmbientLight->SetActorLabel(TEXT("AmbientFill"));
+			AmbientLight->SetMobility(EComponentMobility::Movable);
+			UPointLightComponent* AmbComp = Cast<UPointLightComponent>(AmbientLight->GetLightComponent());
+			if (AmbComp)
+			{
+				AmbComp->SetMobility(EComponentMobility::Movable);
+				AmbComp->SetIntensity(AmbientIntensity);
+				AmbComp->SetAttenuationRadius(50000.0f);
+				AmbComp->SetLightColor(FLinearColor(0.1f, 0.12f, 0.2f)); // subtle blue-grey
+				AmbComp->SetCastShadows(false);
+			}
+			AmbientLight->MarkPackageDirty();
+
+			TSharedPtr<FJsonObject> AmbInfo = MakeShareable(new FJsonObject());
+			AmbInfo->SetStringField(TEXT("label"), TEXT("AmbientFill"));
+			AmbInfo->SetNumberField(TEXT("intensity"), AmbientIntensity);
+			CreatedActors.Add(MakeShareable(new FJsonValueObject(AmbInfo)));
+
+			UE_LOG(LogArcwright, Log, TEXT("Created AmbientFill: intensity=%.0f"), AmbientIntensity);
+		}
+	}
+
+	// --- 6. Console commands (run internally — no manual call needed) ---
+	if (GEngine)
+	{
+		GEngine->Exec(World, TEXT("r.SkyLight.RealTimeCapture 1"));
+		GEngine->Exec(World, TEXT("r.DynamicGlobalIlluminationMethod 0"));
+		GEngine->Exec(World, TEXT("r.AmbientOcclusion.Method 0"));
+		UE_LOG(LogArcwright, Log, TEXT("Executed lighting console commands"));
+	}
+
 	ResultData->SetStringField(TEXT("preset"), Preset);
 	ResultData->SetArrayField(TEXT("actors"), CreatedActors);
 	ResultData->SetNumberField(TEXT("actors_created"), CreatedActors.Num());
+	ResultData->SetBoolField(TEXT("console_commands_executed"), true);
+	ResultData->SetBoolField(TEXT("ambient_fill"), bNeedsAmbientFill);
 
 	return FCommandResult::Ok(ResultData);
 }
